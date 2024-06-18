@@ -1,0 +1,29 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>warning1.png</file>
+        <file>ci1.png</file>
+        <file>main.png</file>
+        <file>handpiece1.png</file>
+        <file>up1.png</file>
+        <file>down1.png</file>
+        <file>main1.png</file>
+        <file>up2.png</file>
+        <file>d2.png</file>
+        <file>settings1.png</file>
+        <file>backimg.png</file>
+        <file>backbutton.png</file>
+        <file>touchscreen.png</file>
+        <file>person.png</file>
+        <file>notifi.png</file>
+        <file>logs.png</file>
+        <file>learner.png</file>
+        <file>genral1.png</file>
+        <file>doctor.png</file>
+        <file>display.png</file>
+        <file>footimg.png</file>
+        <file>backarr.png</file>
+        <file>nextimg.png</file>
+        <file>tickimg.png</file>
+        <file>keypadbg3 1.png</file>
+    </qresource>
+</RCC>
