@@ -820,6 +820,7 @@ qrc_img.cpp: img.qrc \
 		d2.png \
 		main.png \
 		notifi.png \
+		settings.png \
 		backarr.png \
 		warning1.png \
 		backimg.png \
@@ -828,6 +829,7 @@ qrc_img.cpp: img.qrc \
 		settings1.png \
 		up1.png \
 		up2.png \
+		circlee.png \
 		display.png \
 		touchscreen.png
 	/home/amt-04/Qt5.14.2/5.14.2/gcc_64/bin/rcc -name img img.qrc -o qrc_img.cpp

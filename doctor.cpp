@@ -141,10 +141,10 @@ doctor::doctor(QWidget *parent) :
 
 
 
-    ui->tabWidget->setTabText(0,"    DIA");
-    ui->tabWidget->setTabText(1,"    PHACO");
-    ui->tabWidget->setTabText(2,"    IA");
-    ui->tabWidget->setTabText(3,"    VIT    ");
+    ui->tabWidget->setTabText(0,"                             DIA           ");
+    ui->tabWidget->setTabText(1,"                             PHACO         ");
+    ui->tabWidget->setTabText(2,"                             IA            ");
+    ui->tabWidget->setTabText(3,"                             VIT           ");
 
     connect(ui->tabWidget, &QTabWidget::currentChanged, this, &doctor::click);
      click(ui->tabWidget->currentIndex());
@@ -179,7 +179,7 @@ bool doctor::eventFilter(QObject *object, QEvent *event)
       QMouseEvent *k = static_cast<QMouseEvent *> (event);
       if( k->button() == Qt::LeftButton ) {
           key->close();
-          key->resize(273,149);
+          key->resize(481,301);
           key->move(280,320);
           key->show();
 
@@ -196,7 +196,7 @@ bool doctor::eventFilter(QObject *object, QEvent *event)
       QMouseEvent *k = static_cast<QMouseEvent *> (event);
       if( k->button() == Qt::LeftButton ) {
           key->close();
-          key->resize(273,149);
+          key->resize(481,301);
           key->move(280,320);
           key->show();
           ui->lineEdit_2->setFocus();
@@ -211,7 +211,7 @@ bool doctor::eventFilter(QObject *object, QEvent *event)
       QMouseEvent *k = static_cast<QMouseEvent *> (event);
       if( k->button() == Qt::LeftButton ) {
           key->close();
-          key->resize(273,149);
+          key->resize(481,301);
           key->move(280,320);
           key->show();
           ui->lineEdit_3->setFocus();
@@ -226,7 +226,7 @@ bool doctor::eventFilter(QObject *object, QEvent *event)
       QMouseEvent *k = static_cast<QMouseEvent *> (event);
       if( k->button() == Qt::LeftButton ) {
           key->close();
-          key->resize(273,149);
+          key->resize(481,301);
           key->move(280,320);
           key->show();
           ui->lineEdit_4->setFocus();
@@ -242,7 +242,7 @@ bool doctor::eventFilter(QObject *object, QEvent *event)
       QMouseEvent *k = static_cast<QMouseEvent *> (event);
       if( k->button() == Qt::LeftButton ) {
           key->close();
-          key->resize(273,149);
+          key->resize(481,301);
           key->move(280,320);
           key->show();
           ui->lineEdit_5->setFocus();
@@ -258,7 +258,7 @@ bool doctor::eventFilter(QObject *object, QEvent *event)
       QMouseEvent *k = static_cast<QMouseEvent *> (event);
       if( k->button() == Qt::LeftButton ) {
           key->close();
-          key->resize(273,149);
+          key->resize(481,301);
           key->move(280,320);
           key->show();
           ui->lineEdit_7->setFocus();
@@ -274,7 +274,7 @@ bool doctor::eventFilter(QObject *object, QEvent *event)
         QMouseEvent *k = static_cast<QMouseEvent *> (event);
         if( k->button() == Qt::LeftButton ) {
             key->close();
-            key->resize(273,149);
+            key->resize(481,301);
             key->move(280,320);
             key->show();
             ui->lineEdit_12->setFocus();
@@ -290,7 +290,7 @@ bool doctor::eventFilter(QObject *object, QEvent *event)
         QMouseEvent *k = static_cast<QMouseEvent *> (event);
         if( k->button() == Qt::LeftButton ) {
             key->close();
-            key->resize(273,149);
+            key->resize(481,301);
             key->move(280,320);
             key->show();
             ui->lineEdit_11->setFocus();
@@ -307,7 +307,7 @@ bool doctor::eventFilter(QObject *object, QEvent *event)
         QMouseEvent *k = static_cast<QMouseEvent *> (event);
         if( k->button() == Qt::LeftButton ) {
             key->close();
-            key->resize(273,149);
+            key->resize(481,301);
             key->move(280,320);
             key->show();
             ui->lineEdit->setFocus();
@@ -321,7 +321,7 @@ bool doctor::eventFilter(QObject *object, QEvent *event)
           QMouseEvent *k = static_cast<QMouseEvent *> (event);
           if( k->button() == Qt::LeftButton ) {
               key->close();
-              key->resize(273,149);
+              key->resize(481,301);
               key->move(280,320);
               key->show();
               ui->lineEdit_19->setFocus();
@@ -337,7 +337,7 @@ bool doctor::eventFilter(QObject *object, QEvent *event)
           QMouseEvent *k = static_cast<QMouseEvent *> (event);
           if( k->button() == Qt::LeftButton ) {
               key->close();
-              key->resize(273,149);
+              key->resize(481,301);
               key->move(280,320);
               key->show();
               ui->lineEdit_20->setFocus();
@@ -380,7 +380,6 @@ void doctor::on_clicked(const QString& digit)
         int value = (ui->lineEdit_6->text()+digit).toInt();
 
         setRange(ui->lineEdit_6, prevValue, value, 100);
-         userMessage(value,5,100);
 
 
     }
@@ -392,7 +391,7 @@ void doctor::on_clicked(const QString& digit)
         int prevValue = ui->lineEdit_2->text().toInt();
         int value = (ui->lineEdit_2->text()+digit).toInt();
         setRange(ui->lineEdit_2, prevValue, value, 500);
-        userMessage(value,5,500);
+       // userMessage(value,5,500);
     }
     else if(ui->lineEdit_3->focusWidget()) {
         ui->lineEdit_2->clearFocus();
@@ -401,7 +400,8 @@ void doctor::on_clicked(const QString& digit)
         int prevValue = ui->lineEdit_3->text().toInt();
         int value = (ui->lineEdit_3->text()+digit).toInt();
         setRange(ui->lineEdit_3, prevValue, value, 500);
-        userMessage(value,5,500);}
+        //userMessage(value,5,500);
+    }
     else if(ui->lineEdit_4->focusWidget()) {
         ui->lineEdit_2->clearFocus();
         ui->lineEdit_3->clearFocus();
@@ -409,7 +409,8 @@ void doctor::on_clicked(const QString& digit)
         int prevValue = ui->lineEdit_4->text().toInt();
         int value = (ui->lineEdit_4->text()+digit).toInt();
         setRange(ui->lineEdit_4, prevValue, value, 100);
-        userMessage(value,5,100);}
+       // userMessage(value,5,100);
+    }
     //irrigation
    else if(ui->lineEdit_5->focusWidget()) {
         ui->lineEdit_7->clearFocus();
@@ -419,7 +420,8 @@ void doctor::on_clicked(const QString& digit)
         int prevValue = ui->lineEdit_5->text().toInt();
         int value = (ui->lineEdit_5->text()+digit).toInt();
         setRange(ui->lineEdit_5, prevValue, value, 500);
-        userMessage(value,5,500);}
+       // userMessage(value,5,500);
+    }
    else if(ui->lineEdit_7->focusWidget()) {
         ui->lineEdit_5->clearFocus();
         ui->lineEdit_11->clearFocus();
@@ -428,7 +430,8 @@ void doctor::on_clicked(const QString& digit)
         int prevValue = ui->lineEdit_7->text().toInt();
         int value = (ui->lineEdit_7->text()+digit).toInt();
         setRange(ui->lineEdit_7, prevValue, value, 500);
-        userMessage(value,5,500);}
+        //userMessage(value,5,500);
+    }
     else if(ui->lineEdit_12->focusWidget()) {
         ui->lineEdit_5->clearFocus();
         ui->lineEdit_11->clearFocus();
@@ -437,7 +440,8 @@ void doctor::on_clicked(const QString& digit)
         int prevValue = ui->lineEdit_12->text().toInt();
         int value = (ui->lineEdit_12->text()+digit).toInt();
         setRange(ui->lineEdit_12, prevValue, value, 500);
-        userMessage(value,5,500);}
+      //  userMessage(value,5,500);
+    }
    else  if(ui->lineEdit_11->focusWidget()) {
         ui->lineEdit_7->clearFocus();
         ui->lineEdit_12->clearFocus();
@@ -446,7 +450,8 @@ void doctor::on_clicked(const QString& digit)
         int prevValue = ui->lineEdit_11->text().toInt();
         int value = (ui->lineEdit_11->text()+digit).toInt();
         setRange(ui->lineEdit_11, prevValue, value, 500);
-        userMessage(value,5,500);}
+       // userMessage(value,5,500);
+    }
     //vitrectomy
   else  if(ui->lineEdit->focusWidget()) {
         ui->lineEdit_19->clearFocus();
@@ -456,7 +461,8 @@ void doctor::on_clicked(const QString& digit)
         int prevValue = ui->lineEdit->text().toInt();
         int value = (ui->lineEdit->text()+digit).toInt();
         setRange(ui->lineEdit, prevValue, value, 960);
-        userMessage(value,60,960);}
+        //userMessage(value,60,960);
+    }
     else if(ui->lineEdit_19->focusWidget()) {
         ui->lineEdit->clearFocus();
         ui->lineEdit_20->clearFocus();
@@ -465,7 +471,8 @@ void doctor::on_clicked(const QString& digit)
         int prevValue = ui->lineEdit_19->text().toInt();
         int value = (ui->lineEdit_19->text()+digit).toInt();
         setRange(ui->lineEdit_19, prevValue, value, 500);
-        userMessage(value,5,500);}
+       // userMessage(value,5,500);
+    }
     if(ui->lineEdit_20->focusWidget()) {
         ui->lineEdit->clearFocus();
         ui->lineEdit_19->clearFocus();
@@ -474,7 +481,7 @@ void doctor::on_clicked(const QString& digit)
         int prevValue = ui->lineEdit_20->text().toInt();
         int value = (ui->lineEdit_20->text()+digit).toInt();
         setRange(ui->lineEdit_20, prevValue, value, 500);
-        userMessage(value,5,500);
+       // userMessage(value,5,500);
     }
 }
 
@@ -751,7 +758,8 @@ void doctor::click(int tab)
             "background-color:black;"
             "color:white;"
             "border:none;"
-            "font:bold;"// Adjust the radius as needed
+            "font:bold;"
+            "border:3px solid black;"// Adjust the radius as needed
                                  "}";
     QString styleSheet1 = "QPushButton {"
             "border-radius: 40px;"
@@ -760,7 +768,8 @@ void doctor::click(int tab)
             "background-color:transparent;"
             "border:none;"
             "font:bold;"// Adjust the radius as needed
-                                 "}";
+                                "border:3px solid black;"
+                                "}";
     if (tab!=0) {
         ui->DiaBut->setStyleSheet("");
    ui->DiaBut->setStyleSheet(styleSheet1);

@@ -36,6 +36,7 @@ public:
     QPushButton *pushButton_12;
     QPushButton *pushButton_15;
     QLabel *label;
+    QPushButton *pushButton_16;
 
     void setupUi(QWidget *keypad)
     {
@@ -66,32 +67,44 @@ public:
         pushButton_14 = new QPushButton(keypad);
         pushButton_14->setObjectName(QString::fromUtf8("pushButton_14"));
         pushButton_14->setGeometry(QRect(360, 20, 91, 41));
-        pushButton_14->setStyleSheet(QString::fromUtf8("border-radius:20px;\n"
+        pushButton_14->setStyleSheet(QString::fromUtf8("\n"
+"\n"
+"border-radius:20px;\n"
 "border:3px solid black;"));
         pushButton_3 = new QPushButton(keypad);
         pushButton_3->setObjectName(QString::fromUtf8("pushButton_3"));
         pushButton_3->setGeometry(QRect(240, 21, 91, 41));
-        pushButton_3->setStyleSheet(QString::fromUtf8("border-radius:20px;\n"
+        pushButton_3->setStyleSheet(QString::fromUtf8("\n"
+"\n"
+"border-radius:20px;\n"
 "border:3px solid black;"));
         pushButton_2 = new QPushButton(keypad);
         pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
         pushButton_2->setGeometry(QRect(240, 90, 91, 41));
-        pushButton_2->setStyleSheet(QString::fromUtf8("border-radius:20px;\n"
+        pushButton_2->setStyleSheet(QString::fromUtf8("\n"
+"\n"
+"border-radius:20px;\n"
 "border:3px solid black;"));
         pushButton = new QPushButton(keypad);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
         pushButton->setGeometry(QRect(130, 21, 91, 41));
-        pushButton->setStyleSheet(QString::fromUtf8("border-radius:20px;\n"
+        pushButton->setStyleSheet(QString::fromUtf8("\n"
+"\n"
+"border-radius:20px;\n"
 "border:3px solid black;"));
         pushButton_4 = new QPushButton(keypad);
         pushButton_4->setObjectName(QString::fromUtf8("pushButton_4"));
         pushButton_4->setGeometry(QRect(130, 90, 91, 41));
-        pushButton_4->setStyleSheet(QString::fromUtf8("border-radius:20px;\n"
+        pushButton_4->setStyleSheet(QString::fromUtf8("\n"
+"\n"
+"border-radius:20px;\n"
 "border:3px solid black;"));
         pushButton_6 = new QPushButton(keypad);
         pushButton_6->setObjectName(QString::fromUtf8("pushButton_6"));
         pushButton_6->setGeometry(QRect(10, 90, 91, 41));
-        pushButton_6->setStyleSheet(QString::fromUtf8("border-radius:20px;\n"
+        pushButton_6->setStyleSheet(QString::fromUtf8("\n"
+"\n"
+"border-radius:20px;\n"
 "border:3px solid black;"));
         pushButton_13 = new QPushButton(keypad);
         pushButton_13->setObjectName(QString::fromUtf8("pushButton_13"));
@@ -106,12 +119,16 @@ public:
         pushButton_8 = new QPushButton(keypad);
         pushButton_8->setObjectName(QString::fromUtf8("pushButton_8"));
         pushButton_8->setGeometry(QRect(10, 150, 91, 41));
-        pushButton_8->setStyleSheet(QString::fromUtf8("border-radius:20px;\n"
+        pushButton_8->setStyleSheet(QString::fromUtf8("\n"
+"\n"
+"border-radius:20px;\n"
 "border:3px solid black;"));
         pushButton_12 = new QPushButton(keypad);
         pushButton_12->setObjectName(QString::fromUtf8("pushButton_12"));
-        pushButton_12->setGeometry(QRect(10, 30, 91, 41));
-        pushButton_12->setStyleSheet(QString::fromUtf8("border-radius:20px;\n"
+        pushButton_12->setGeometry(QRect(10, 20, 91, 41));
+        pushButton_12->setStyleSheet(QString::fromUtf8("\n"
+"\n"
+"border-radius:20px;\n"
 "border:3px solid black;"));
         pushButton_15 = new QPushButton(keypad);
         pushButton_15->setObjectName(QString::fromUtf8("pushButton_15"));
@@ -123,6 +140,11 @@ public:
         label->setGeometry(QRect(0, 0, 481, 301));
         label->setStyleSheet(QString::fromUtf8("border-radius:20px;\n"
 "background-color: rgb(153, 193, 241);\n"
+"border:3px solid black;"));
+        pushButton_16 = new QPushButton(keypad);
+        pushButton_16->setObjectName(QString::fromUtf8("pushButton_16"));
+        pushButton_16->setGeometry(QRect(250, 210, 91, 71));
+        pushButton_16->setStyleSheet(QString::fromUtf8("border-radius:20px;\n"
 "border:3px solid black;"));
         label->raise();
         pushButton_7->raise();
@@ -140,6 +162,7 @@ public:
         pushButton_11->raise();
         pushButton_14->raise();
         pushButton_15->raise();
+        pushButton_16->raise();
 
         retranslateUi(keypad);
 
@@ -165,6 +188,7 @@ public:
         pushButton_12->setText(QCoreApplication::translate("keypad", "7", nullptr));
         pushButton_15->setText(QCoreApplication::translate("keypad", "CLEAR", nullptr));
         label->setText(QString());
+        pushButton_16->setText(QCoreApplication::translate("keypad", "BACK", nullptr));
     } // retranslateUi
 
 };

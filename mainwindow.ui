@@ -33,8 +33,8 @@
    <widget class="QPushButton" name="pushButton_42">
     <property name="geometry">
      <rect>
-      <x>160</x>
-      <y>280</y>
+      <x>170</x>
+      <y>260</y>
       <width>111</width>
       <height>121</height>
      </rect>
@@ -57,19 +57,17 @@ border:5px solid black;</string>
    <widget class="QPushButton" name="ULTRASONICBUT3">
     <property name="geometry">
      <rect>
-      <x>270</x>
-      <y>390</y>
+      <x>280</x>
+      <y>370</y>
       <width>81</width>
       <height>81</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">
-font:20pt &quot;Ubuntu&quot;;
+     <string notr="true">font:20pt &quot;Ubuntu&quot;;
 
 border-radius:40px;
-border:none;
-font-weight: bold;border:3px solid black;</string>
+border:none;font-weight: bold;border:3px solid black;</string>
     </property>
     <property name="text">
      <string>U/S 3</string>
@@ -96,7 +94,7 @@ font-weight: bold;border:3px solid black;</string>
 </string>
     </property>
     <property name="currentIndex">
-     <number>7</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tab_33">
      <property name="styleSheet">
@@ -3130,8 +3128,8 @@ font:bold;</string>
    <widget class="QPushButton" name="ULTRASONICBUT4">
     <property name="geometry">
      <rect>
-      <x>170</x>
-      <y>430</y>
+      <x>190</x>
+      <y>410</y>
       <width>81</width>
       <height>81</height>
      </rect>
@@ -3210,8 +3208,8 @@ font-weight: bold;</string>
    <widget class="QPushButton" name="IA1BUT">
     <property name="geometry">
      <rect>
-      <x>70</x>
-      <y>390</y>
+      <x>90</x>
+      <y>370</y>
       <width>81</width>
       <height>81</height>
      </rect>
@@ -3229,8 +3227,8 @@ border:none;font-weight: bold;border:3px solid black;</string>
    <widget class="QPushButton" name="ULTRASONICBUT1">
     <property name="geometry">
      <rect>
-      <x>260</x>
-      <y>210</y>
+      <x>280</x>
+      <y>190</y>
       <width>81</width>
       <height>81</height>
      </rect>
@@ -3286,8 +3284,8 @@ border:3px solid black;</string>
    <widget class="QPushButton" name="elapsed_time">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>640</y>
+      <x>50</x>
+      <y>630</y>
       <width>191</width>
       <height>41</height>
      </rect>
@@ -3338,16 +3336,14 @@ border:none;</string>
    <widget class="QPushButton" name="VITRECTOMYBUT">
     <property name="geometry">
      <rect>
-      <x>70</x>
-      <y>210</y>
+      <x>90</x>
+      <y>190</y>
       <width>81</width>
       <height>81</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">font:20pt &quot;Ubuntu&quot;;
-color: rgb(255, 255, 255);
-background-color: rgb(0, 0, 0);
 
 border-radius:40px;font-weight: bold;border:3px solid black;</string>
     </property>
@@ -3358,14 +3354,17 @@ border-radius:40px;font-weight: bold;border:3px solid black;</string>
    <widget class="QPushButton" name="DIABUT">
     <property name="geometry">
      <rect>
-      <x>170</x>
-      <y>180</y>
+      <x>190</x>
+      <y>150</y>
       <width>81</width>
       <height>81</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true"/>
+     <string notr="true">font:20pt &quot;Ubuntu&quot;;
+
+border-radius:40px;
+border:none;font-weight: bold;border:3px solid black;</string>
     </property>
     <property name="text">
      <string>DIA</string>
@@ -3374,14 +3373,15 @@ border-radius:40px;font-weight: bold;border:3px solid black;</string>
    <widget class="QPushButton" name="ULTRASONICBUT2">
     <property name="geometry">
      <rect>
-      <x>300</x>
-      <y>300</y>
+      <x>320</x>
+      <y>280</y>
       <width>81</width>
       <height>81</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">font:20pt &quot;Ubuntu&quot;;
+
 border-radius:40px;
 border:none;font-weight: bold;border:3px solid black;</string>
     </property>
@@ -3392,8 +3392,8 @@ border:none;font-weight: bold;border:3px solid black;</string>
    <widget class="QPushButton" name="IA2BUT">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>300</y>
+      <x>50</x>
+      <y>280</y>
       <width>81</width>
       <height>81</height>
      </rect>
@@ -3885,16 +3885,17 @@ border:none;</string>
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>180</y>
-      <width>341</width>
-      <height>331</height>
+      <x>50</x>
+      <y>150</y>
+      <width>351</width>
+      <height>341</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgba(152, 236, 255, 229);
-border-radius:150px;
-border:5px solid black;</string>
+     <string notr="true">border-radius:170px;
+background-color: rgb(152, 236, 255);
+
+border:3px solid black;</string>
     </property>
     <property name="text">
      <string/>
@@ -3936,6 +3937,25 @@ border-radius:20px;</string>
      <string/>
     </property>
    </widget>
+   <widget class="QPushButton" name="SETTINGS_BUT">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>600</y>
+      <width>91</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">
+image: url(:/images/settings.png);
+background-color:transparent;
+border:none;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
    <zorder>label</zorder>
    <zorder>tabWidget</zorder>
    <zorder>CutMode_vit</zorder>
@@ -3948,17 +3968,18 @@ border-radius:20px;</string>
    <zorder>tabWidget_2</zorder>
    <zorder>label_9</zorder>
    <zorder>label_2</zorder>
-   <zorder>DIABUT</zorder>
-   <zorder>ULTRASONICBUT4</zorder>
-   <zorder>IA2BUT</zorder>
-   <zorder>IA1BUT</zorder>
-   <zorder>ULTRASONICBUT1</zorder>
-   <zorder>ULTRASONICBUT3</zorder>
-   <zorder>VITRECTOMYBUT</zorder>
-   <zorder>ULTRASONICBUT2</zorder>
    <zorder>label_124</zorder>
    <zorder>handpiece</zorder>
    <zorder>pushButton_42</zorder>
+   <zorder>ULTRASONICBUT1</zorder>
+   <zorder>DIABUT</zorder>
+   <zorder>IA2BUT</zorder>
+   <zorder>IA1BUT</zorder>
+   <zorder>ULTRASONICBUT4</zorder>
+   <zorder>ULTRASONICBUT3</zorder>
+   <zorder>ULTRASONICBUT2</zorder>
+   <zorder>VITRECTOMYBUT</zorder>
+   <zorder>SETTINGS_BUT</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>

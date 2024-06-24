@@ -58,16 +58,16 @@ MainWindow::MainWindow(QWidget *parent)
        connect(sensortimer, SIGNAL(timeout()), this, SLOT(sensor2()));
        sensortimer->start(100); // Update labels every 1000 milliseconds (1 second)
  //   ui->lineEdit_57->setText("100");
-       QString styleSheet = "QPushButton {"
-                            "    height: 101px;" // Height must match width for a circle
-                            "    width: 81px;" // Width must match height for a circle
-                            "    font-family: Ubuntu;"
-                            "    font-size: 20pt;"
-                            "    background-color: white;"
-                            "    color: black;"
-                            "    border-radius: 40px;" // Half of the width/height
+//       QString styleSheet = "QPushButton {"
+//                            "    height: 101px;" // Height must match width for a circle
+//                            "    width: 81px;" // Width must match height for a circle
+//                            "    font-family: Ubuntu;"
+//                            "    font-size: 20pt;"
+//                            "    background-color: white;"
+//                            "    color: black;"
+//                            "    border-radius: 40px;" // Half of the width/height
 
-                            "}";
+//                            "}";
 
  //  ui->us1onoff->setCheckable(true);
 
@@ -115,7 +115,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tabWidget->setTabText(5, "IRRIGATION ASPIRATION 2");
 
     ui->tabWidget->setTabText(7, "DIATHERMY");
-    ui->ULTRASONICBUT1->setStyleSheet(styleSheet);
+    //ui->ULTRASONICBUT1->setStyleSheet(styleSheet);
            QFont font("Ubuntu", 20, QFont::Bold);
 
                // Set the font for the QPushButton
@@ -287,7 +287,7 @@ MainWindow::MainWindow(QWidget *parent)
        connect(ui->us1flowdown_but,&QPushButton::clicked,this,&MainWindow::US1FLOWDOWN);
        connect(ui->us1flowup_but,&QPushButton::clicked,this,&MainWindow::US1FLOWUP);
        connect(ui->BACKBUT,&QPushButton::clicked,this,&MainWindow::BACKBUT);
-    //   connect(ui->SETTINGSBUT,&QPushButton::clicked,this,&MainWindow::SETTINGSBUT);
+      connect(ui->SETTINGS_BUT,&QPushButton::clicked,this,&MainWindow::SETTINGSBUT);
        //us2
        connect(ui->us2powup_but,&QPushButton::clicked,this,&MainWindow::us2powup);
        connect(ui->us2powdown_but,&QPushButton::clicked,this,&MainWindow::us2powdown);
@@ -354,30 +354,30 @@ MainWindow::MainWindow(QWidget *parent)
       connect(ui->ia2mode,&QPushButton::clicked,this,&MainWindow::ia2_linear_nonlinear);
       connect(ui->vitmode,&QPushButton::clicked,this,&MainWindow::vit_linear_nonlinear);
 
-       connect(ui->ULTRASONICBUT1, &QPushButton::clicked, [=](){
-           ui->ULTRASONICBUT1->setStyleSheet(styleSheet);
-                 });
-       connect(ui->ULTRASONICBUT2, &QPushButton::clicked, [=](){
-           ui->ULTRASONICBUT2->setStyleSheet(styleSheet);
-       });
-       connect(ui->ULTRASONICBUT4, &QPushButton::clicked, [=](){
-           ui->ULTRASONICBUT4->setStyleSheet(styleSheet);
-       });
-       connect(ui->ULTRASONICBUT3, &QPushButton::clicked, [=](){
-           ui->ULTRASONICBUT3->setStyleSheet(styleSheet);
-       });
-       connect(ui->IA1BUT, &QPushButton::clicked, [=](){
-           ui->IA1BUT->setStyleSheet(styleSheet);
-       });
-       connect(ui->IA2BUT, &QPushButton::clicked, [=](){
-           ui->IA2BUT->setStyleSheet(styleSheet);
-       });
-       connect(ui->VITRECTOMYBUT, &QPushButton::clicked, [=](){
-           ui->VITRECTOMYBUT->setStyleSheet(styleSheet);
-       });
-      connect(ui->DIABUT, &QPushButton::clicked, [=](){
-          ui->DIABUT->setStyleSheet(styleSheet);
-      });
+//       connect(ui->ULTRASONICBUT1, &QPushButton::clicked, [=](){
+//           ui->ULTRASONICBUT1->setStyleSheet(styleSheet);
+//                 });
+//       connect(ui->ULTRASONICBUT2, &QPushButton::clicked, [=](){
+//           ui->ULTRASONICBUT2->setStyleSheet(styleSheet);
+//       });
+//       connect(ui->ULTRASONICBUT4, &QPushButton::clicked, [=](){
+//           ui->ULTRASONICBUT4->setStyleSheet(styleSheet);
+//       });
+//       connect(ui->ULTRASONICBUT3, &QPushButton::clicked, [=](){
+//           ui->ULTRASONICBUT3->setStyleSheet(styleSheet);
+//       });
+//       connect(ui->IA1BUT, &QPushButton::clicked, [=](){
+//           ui->IA1BUT->setStyleSheet(styleSheet);
+//       });
+//       connect(ui->IA2BUT, &QPushButton::clicked, [=](){
+//           ui->IA2BUT->setStyleSheet(styleSheet);
+//       });
+//       connect(ui->VITRECTOMYBUT, &QPushButton::clicked, [=](){
+//           ui->VITRECTOMYBUT->setStyleSheet(styleSheet);
+//       });
+//      connect(ui->DIABUT, &QPushButton::clicked, [=](){
+//          ui->DIABUT->setStyleSheet(styleSheet);
+//      });
       connect(ui->tabWidget, SIGNAL(tabBarClicked(int)), this, SLOT(changeButtonColor(int)));
 }
 void MainWindow::click()
@@ -432,67 +432,100 @@ void MainWindow::updateElapsedTime()
         ui->elapsed_time->setText(elapsedTimeStr);
     }
 }
-void MainWindow::changeButtonColor(int tabIndex) {
 
-    if (tabIndex!=0) {
-        ui->ULTRASONICBUT1->setStyleSheet("");
-  ui->ULTRASONICBUT1->setStyleSheet("border-radius: 20px;background-color:black;color:white;");
-    }
-    if(tabIndex!=1)
-    {
-        ui->ULTRASONICBUT2->setStyleSheet("");
-          ui->ULTRASONICBUT2->setStyleSheet("border-radius: 20px;background-color:black;color:white;");
-    }
-    if(tabIndex!=2){
-        ui->ULTRASONICBUT3->setStyleSheet("");
-          ui->ULTRASONICBUT3->setStyleSheet("border-radius: 20px;background-color:black;color:white;");
-    }
-    if(tabIndex!=3){
-    ui->ULTRASONICBUT4->setStyleSheet("");
-      ui->ULTRASONICBUT4->setStyleSheet("border-radius: 20px;background-color:black;color:white;");
-    }
-    if(tabIndex!=4){
-    ui->IA1BUT->setStyleSheet("");
-      ui->IA1BUT->setStyleSheet("border-radius: 20px;background-color:black;color:white;");
-    }           //empty color
-    if(tabIndex!=5){
-    ui->IA2BUT->setStyleSheet("");
-      ui->IA2BUT->setStyleSheet("border-radius: 20px;background-color:black;color:white;");
-    }
-    if(tabIndex!=6){
-    ui->VITRECTOMYBUT->setStyleSheet("");
-      ui->VITRECTOMYBUT->setStyleSheet("border-radius: 20px;background-color:black;color:white;");
-    }
-    if(tabIndex!=7){
-    ui->DIABUT->setStyleSheet("");
-      ui->DIABUT->setStyleSheet("border-radius: 20px;background-color:black;color:white;");
-    }
+void MainWindow::increaseline(QLineEdit *incrline)
+{
+    //bool ok;
+      int value = incrline->text().toInt();
+      if (value % 2 == 0) {
+               // If the number is even, round it up to the next multiple of 5
+               value = (value + 4) / 5 * 5;
+           }
+
+      incrline->setText(QString::number(value));
+}
+
+void MainWindow::decreaseline(QLineEdit *decreline)
+{
+    int value1 = decreline->text().toInt();
+        if (value1 % 2 != 0) {
+
+                 value1++;
+             }
+        decreline->setText(QString::number(value1));
+}
+
+void MainWindow::vaccumline(QLineEdit *vacline)
+{
+    int val = vacline->text().toInt();
+    if (val % 2 == 0) {
+             // If the number is even, round it up to the next multiple of 5
+             val = (val + 4) / 5 * 5;
+         }
+    vacline->setText(QString::number(val));
+
+}
+//void MainWindow::changeButtonColor(int tabIndex) {
+
+//    if (tabIndex!=0) {
+//        ui->ULTRASONICBUT1->setStyleSheet("");
+//  ui->ULTRASONICBUT1->setStyleSheet("border-radius: 20px;background-color:black;color:white;");
+//    }
+//    if(tabIndex!=1)
+//    {
+//        ui->ULTRASONICBUT2->setStyleSheet("");
+//          ui->ULTRASONICBUT2->setStyleSheet("border-radius: 20px;background-color:black;color:white;");
+//    }
+//    if(tabIndex!=2){
+//        ui->ULTRASONICBUT3->setStyleSheet("");
+//          ui->ULTRASONICBUT3->setStyleSheet("border-radius: 20px;background-color:black;color:white;");
+//    }
+//    if(tabIndex!=3){
+//    ui->ULTRASONICBUT4->setStyleSheet("");
+//      ui->ULTRASONICBUT4->setStyleSheet("border-radius: 20px;background-color:black;color:white;");
+//    }
+//    if(tabIndex!=4){
+//    ui->IA1BUT->setStyleSheet("");
+//      ui->IA1BUT->setStyleSheet("border-radius: 20px;background-color:black;color:white;");
+//    }           //empty color
+//    if(tabIndex!=5){
+//    ui->IA2BUT->setStyleSheet("");
+//      ui->IA2BUT->setStyleSheet("border-radius: 20px;background-color:black;color:white;");
+//    }
+//    if(tabIndex!=6){
+//    ui->VITRECTOMYBUT->setStyleSheet("");
+//      ui->VITRECTOMYBUT->setStyleSheet("border-radius: 20px;background-color:black;color:white;");
+//    }
+//    if(tabIndex!=7){
+//    ui->DIABUT->setStyleSheet("");
+//      ui->DIABUT->setStyleSheet("border-radius: 20px;background-color:black;color:white;");
+//    }
 
 
-        if (tabIndex == 0) {
-        ui->ULTRASONICBUT1->setStyleSheet("border-radius: 20px;background-color: green;");
-        } else if (tabIndex == 1) {
-         ui->ULTRASONICBUT2 ->setStyleSheet("border-radius: 20px;background-color: green;");
-        }                                                                      //set color
-        else if(tabIndex==2){
-             ui->ULTRASONICBUT3->setStyleSheet("border-radius: 20px;background-color: green;");
-        }
-        else if(tabIndex==3){
-             ui->ULTRASONICBUT4->setStyleSheet("border-radius: 20px;background-color: green;");
-        }
-        else if(tabIndex==4){
-             ui->IA1BUT->setStyleSheet("border-radius: 20px;background-color: green;");
-        }
-        else if(tabIndex==5){
-             ui->IA2BUT->setStyleSheet("border-radius: 20px;background-color: green;");
-        }
-        else if(tabIndex==6){
-             ui->VITRECTOMYBUT->setStyleSheet("border-radius: 20px;background-color: green;");
-        }
-        else if(tabIndex==7){
-             ui->DIABUT->setStyleSheet("border-radius: 20px;background-color: green;");
-        }
-    }
+//        if (tabIndex == 0) {
+//        ui->ULTRASONICBUT1->setStyleSheet("border-radius: 20px;background-color: green;");
+//        } else if (tabIndex == 1) {
+//         ui->ULTRASONICBUT2 ->setStyleSheet("border-radius: 20px;background-color: green;");
+//        }                                                                      //set color
+//        else if(tabIndex==2){
+//             ui->ULTRASONICBUT3->setStyleSheet("border-radius: 20px;background-color: green;");
+//        }
+//        else if(tabIndex==3){
+//             ui->ULTRASONICBUT4->setStyleSheet("border-radius: 20px;background-color: green;");
+//        }
+//        else if(tabIndex==4){
+//             ui->IA1BUT->setStyleSheet("border-radius: 20px;background-color: green;");
+//        }
+//        else if(tabIndex==5){
+//             ui->IA2BUT->setStyleSheet("border-radius: 20px;background-color: green;");
+//        }
+//        else if(tabIndex==6){
+//             ui->VITRECTOMYBUT->setStyleSheet("border-radius: 20px;background-color: green;");
+//        }
+//        else if(tabIndex==7){
+//             ui->DIABUT->setStyleSheet("border-radius: 20px;background-color: green;");
+//        }
+//    }
 MainWindow::~MainWindow()
 {
     delete ui;
@@ -835,6 +868,7 @@ void MainWindow::on_clicked(const QString& digit)
       int value = (ui->lineEdit_57->text()+digit).toInt();
       setRange(ui->lineEdit_57, prevValue, value, 100);
      updateLineedit(ui->lineEdit_57, prevValue, value, 100);
+     increaseline(ui->lineEdit_57);
   }
   if(ui->lineEdit_55->focusWidget()) {
       ui->lineEdit_56->clearFocus();
@@ -844,6 +878,8 @@ void MainWindow::on_clicked(const QString& digit)
       int value = (ui->lineEdit_55->text()+digit).toInt();
       setRange(ui->lineEdit_55, prevValue, value, 500);
       updateLineedit(ui->lineEdit_55, prevValue, value, 500);
+      vaccumline(ui->lineEdit_55);
+
   }
   if(ui->lineEdit_56->focusWidget()) {
       ui->lineEdit_55->clearFocus();
@@ -853,6 +889,7 @@ void MainWindow::on_clicked(const QString& digit)
       int value = (ui->lineEdit_56->text()+digit).toInt();
       setRange(ui->lineEdit_56, prevValue, value, 40);
    updateLineedit(ui->lineEdit_56, prevValue, value, 40);
+   decreaseline(ui->lineEdit_56);
   }
   //ULTRASONIC 2
    if(ui->lineEdit_58->focusWidget()) {
@@ -1045,10 +1082,10 @@ void MainWindow::on_clickedenter()
 void MainWindow::ULTRASONICBUT1()
 {
     ui->tabWidget->setCurrentIndex(0);
-   click();
+ //  click();
 //ui->label_6->setStyleSheet("image: url(:/connected.png);");
-    ui->ULTRASONICBUT1->setStyleSheet("");
-    changeButtonColor(0);
+   // ui->ULTRASONICBUT1->setStyleSheet("");
+  //  changeButtonColor(0);
     ui->CutMode_vit->show();
     ui->CutMode_vitCom->show();
     ui->tabWidget_2->show();
@@ -1060,10 +1097,10 @@ void MainWindow::ULTRASONICBUT2()
 {
     ui->tabWidget->setCurrentIndex(1);
    // ui->label_11->setText("ULTRASONIC 2");
-    click();
+   // click();
 
-    ui->ULTRASONICBUT2->setStyleSheet("");
-    changeButtonColor(1);
+   // ui->ULTRASONICBUT2->setStyleSheet("");
+   // changeButtonColor(1);
 
 
     ui->CutMode_vit->show();
@@ -1077,9 +1114,9 @@ void MainWindow::ULTRASONICBUT4()
 
     ui->tabWidget->setCurrentIndex(3);
 
-    click();
+  //  click();
 
-     changeButtonColor(3);
+     //changeButtonColor(3);
      ui->CutMode_vit->show();
      ui->CutMode_vitCom->show();
      ui->tabWidget_2->show();
@@ -1090,8 +1127,8 @@ void MainWindow::IRRIGATIONBUT1()
 {
     ui->tabWidget->setCurrentIndex(4);
    // ui->label_11->setText("IRRIGATION/ASPIRATION 1");
-    click();
-     changeButtonColor(4);
+   // click();
+    // changeButtonColor(4);
      ui->CutMode_vit->hide();
      ui->CutMode_vitCom->hide();
      ui->tabWidget_2->hide();
@@ -1102,8 +1139,8 @@ void MainWindow::IRRIGATIONBUT2()
 {
     ui->tabWidget->setCurrentIndex(5);
     //ui->label_11->setText("IRRIGATION/ASPIRATION 2");
-    click();
-     changeButtonColor(5);
+   // click();
+    // changeButtonColor(5);
      ui->CutMode_vit->hide();
      ui->CutMode_vitCom->hide();
      ui->tabWidget_2->hide();
@@ -1114,8 +1151,8 @@ void MainWindow::VITRECTOMYBUT()
 {
     ui->tabWidget->setCurrentIndex(6);
    // ui->label_11->setText("VITRECTOMY");
-   click();
-    changeButtonColor(6);
+  // click();
+ //   changeButtonColor(6);
     butname=7;
 }
 
@@ -1127,8 +1164,8 @@ void MainWindow::DIATHERMYBUT()
     ui->tabWidget_2->hide();
     butname=0;
     ui->tabWidget->setCurrentIndex(7);
-    click();
- changeButtonColor(7);
+ //   click();
+ //changeButtonColor(7);
 //dia();
 }
 void MainWindow::diapowup()
@@ -1519,9 +1556,9 @@ void MainWindow::us2flowdown()
 void MainWindow::ULTRASONICBUT3()
 {
     ui->tabWidget->setCurrentIndex(2);
-      click();
+    //  click();
 
-    changeButtonColor(2);
+    //changeButtonColor(2);
     ui->CutMode_vit->show();
     ui->CutMode_vitCom->show();
     ui->tabWidget_2->show();
@@ -2800,13 +2837,13 @@ void MainWindow::HANDPIECE()
     flag1=!flag1;
     QString lnl6 = ui->handpiece->text();
     QString styleSheet4 = "QPushButton {"
-            "image: url(:/hand.png);"
+"image: url(:/images/handpiece1.png);"
            "background-color:green;"
             "border:4px solid black;"
             "border-radius:20px;"
                                  "}";
     QString styleSheet5 = "QPushButton {"
-            "image: url(:/hand.png);"
+            "image: url(:/images/handpiece1.png);"
            "background-color: rgb(192, 28, 40);"
             "border:4px solid black;"
             "border-radius:20px;"

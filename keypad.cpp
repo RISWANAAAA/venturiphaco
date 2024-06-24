@@ -23,6 +23,7 @@ keypad::keypad(QWidget *parent) :
     connect(ui->pushButton_13, &QPushButton::clicked, this, &keypad::entertext);
     connect(ui->pushButton_14, &QPushButton::clicked, this, &keypad::entertext);
     connect(ui->pushButton_15, &QPushButton::clicked, this, &keypad::entertext);
+     connect(ui->pushButton_16, &QPushButton::clicked, this, &keypad::enterenter);
 
 
 

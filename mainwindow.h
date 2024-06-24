@@ -51,7 +51,9 @@ public:
 
     int butname=0;
 
-
+    void increaseline(QLineEdit *incrline);
+    void decreaseline(QLineEdit *decreline);
+    void vaccumline(QLineEdit *vacline);
 
 
 
@@ -60,7 +62,7 @@ public slots:
      void updateLineedit(QLineEdit *lineEdit, int prevValue, int value, int maxValue);
     void on_clicked(const QString& digit);
     void on_clickedenter();
-     void changeButtonColor(int tabIndex);
+    // void changeButtonColor(int tabIndex);
    //  void buttons();
      void current(int tab);
    //  void handpiece();
@@ -74,6 +76,7 @@ public slots:
 // void motordirection(bool forward);
 // void motorpwm(QLineEdit *lineEdit, int index);
 // int getPWMDutyCycle(int flowrate);
+
 private slots:
  //void label43();
 //void sensor2();

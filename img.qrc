@@ -25,5 +25,7 @@
         <file>nextimg.png</file>
         <file>tickimg.png</file>
         <file>keypadbg3 1.png</file>
+        <file>circlee.png</file>
+        <file>settings.png</file>
     </qresource>
 </RCC>

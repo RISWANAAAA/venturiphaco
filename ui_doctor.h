@@ -118,7 +118,7 @@ public:
         doctor->setStyleSheet(QString::fromUtf8("background-color: rgb(28, 113, 216);"));
         Mode = new QLabel(doctor);
         Mode->setObjectName(QString::fromUtf8("Mode"));
-        Mode->setGeometry(QRect(150, 250, 81, 41));
+        Mode->setGeometry(QRect(160, 250, 81, 41));
         Mode->setStyleSheet(QString::fromUtf8("font:bold;\n"
 "background-color:transparent;"));
         BottomRFoot = new QComboBox(doctor);
@@ -171,13 +171,14 @@ public:
 "background-color:transparent;"));
         VitBut = new QPushButton(doctor);
         VitBut->setObjectName(QString::fromUtf8("VitBut"));
-        VitBut->setGeometry(QRect(130, 320, 101, 81));
+        VitBut->setGeometry(QRect(140, 320, 101, 81));
         VitBut->setStyleSheet(QString::fromUtf8("border-radius: 40px;\n"
 "width:10px;\n"
 "height:10px;\n"
 "background-color:transparent;\n"
 "border:none;\n"
-"font:bold;"));
+"font:bold;\n"
+"border:3px solid black;"));
         circle = new QLabel(doctor);
         circle->setObjectName(QString::fromUtf8("circle"));
         circle->setGeometry(QRect(50, 150, 271, 251));
@@ -192,13 +193,13 @@ public:
 "font:bold;"));
         IABut = new QPushButton(doctor);
         IABut->setObjectName(QString::fromUtf8("IABut"));
-        IABut->setGeometry(QRect(50, 220, 91, 81));
+        IABut->setGeometry(QRect(50, 230, 91, 81));
         IABut->setStyleSheet(QString::fromUtf8("border-radius: 40px;\n"
 "width:10px;\n"
 "height:10px;\n"
 "background-color:transparent;\n"
 "border:none;\n"
-"font:bold;"));
+"font:bold;border:3px solid black;"));
         Select = new QLabel(doctor);
         Select->setObjectName(QString::fromUtf8("Select"));
         Select->setGeometry(QRect(200, 40, 191, 17));
@@ -227,13 +228,13 @@ public:
 "font:20pt \"Ubuntu\";"));
         PhacoBut = new QPushButton(doctor);
         PhacoBut->setObjectName(QString::fromUtf8("PhacoBut"));
-        PhacoBut->setGeometry(QRect(220, 220, 91, 81));
+        PhacoBut->setGeometry(QRect(230, 230, 91, 81));
         PhacoBut->setStyleSheet(QString::fromUtf8("border-radius: 40px;\n"
 "width:10px;\n"
 "height:10px;\n"
 "background-color:transparent;\n"
 "border:none;\n"
-"font:bold;"));
+"font:bold;border:3px solid black;"));
         Surgeon = new QLabel(doctor);
         Surgeon->setObjectName(QString::fromUtf8("Surgeon"));
         Surgeon->setGeometry(QRect(110, 50, 81, 91));
@@ -693,7 +694,8 @@ public:
 "height:10px;\n"
 "background-color:transparent;\n"
 "border:none;\n"
-"font:bold;"));
+"font:bold;\n"
+"border:3px solid black;"));
         circle->raise();
         Mode->raise();
         BottomRFoot->raise();

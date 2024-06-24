@@ -19,7 +19,7 @@
   <widget class="QLabel" name="Mode">
    <property name="geometry">
     <rect>
-     <x>150</x>
+     <x>160</x>
      <y>250</y>
      <width>81</width>
      <height>41</height>
@@ -198,7 +198,7 @@ background-color:transparent;</string>
   <widget class="QPushButton" name="VitBut">
    <property name="geometry">
     <rect>
-     <x>130</x>
+     <x>140</x>
      <y>320</y>
      <width>101</width>
      <height>81</height>
@@ -210,7 +210,8 @@ width:10px;
 height:10px;
 background-color:transparent;
 border:none;
-font:bold;</string>
+font:bold;
+border:3px solid black;</string>
    </property>
    <property name="text">
     <string>VIT</string>
@@ -256,7 +257,7 @@ font:bold;</string>
    <property name="geometry">
     <rect>
      <x>50</x>
-     <y>220</y>
+     <y>230</y>
      <width>91</width>
      <height>81</height>
     </rect>
@@ -267,7 +268,7 @@ width:10px;
 height:10px;
 background-color:transparent;
 border:none;
-font:bold;</string>
+font:bold;border:3px solid black;</string>
    </property>
    <property name="text">
     <string>I/A</string>
@@ -380,8 +381,8 @@ font:20pt &quot;Ubuntu&quot;;</string>
   <widget class="QPushButton" name="PhacoBut">
    <property name="geometry">
     <rect>
-     <x>220</x>
-     <y>220</y>
+     <x>230</x>
+     <y>230</y>
      <width>91</width>
      <height>81</height>
     </rect>
@@ -392,7 +393,7 @@ width:10px;
 height:10px;
 background-color:transparent;
 border:none;
-font:bold;</string>
+font:bold;border:3px solid black;</string>
    </property>
    <property name="text">
     <string>PHACO</string>
@@ -1709,7 +1710,8 @@ width:10px;
 height:10px;
 background-color:transparent;
 border:none;
-font:bold;</string>
+font:bold;
+border:3px solid black;</string>
    </property>
    <property name="text">
     <string>DIA</string>

@@ -94,7 +94,9 @@ border:3px solid black;</string>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">border-radius:20px;
+    <string notr="true">
+
+border-radius:20px;
 border:3px solid black;</string>
    </property>
    <property name="text">
@@ -111,7 +113,9 @@ border:3px solid black;</string>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">border-radius:20px;
+    <string notr="true">
+
+border-radius:20px;
 border:3px solid black;</string>
    </property>
    <property name="text">
@@ -128,7 +132,9 @@ border:3px solid black;</string>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">border-radius:20px;
+    <string notr="true">
+
+border-radius:20px;
 border:3px solid black;</string>
    </property>
    <property name="text">
@@ -145,7 +151,9 @@ border:3px solid black;</string>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">border-radius:20px;
+    <string notr="true">
+
+border-radius:20px;
 border:3px solid black;</string>
    </property>
    <property name="text">
@@ -162,7 +170,9 @@ border:3px solid black;</string>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">border-radius:20px;
+    <string notr="true">
+
+border-radius:20px;
 border:3px solid black;</string>
    </property>
    <property name="text">
@@ -179,7 +189,9 @@ border:3px solid black;</string>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">border-radius:20px;
+    <string notr="true">
+
+border-radius:20px;
 border:3px solid black;</string>
    </property>
    <property name="text">
@@ -230,7 +242,9 @@ border:3px solid black;</string>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">border-radius:20px;
+    <string notr="true">
+
+border-radius:20px;
 border:3px solid black;</string>
    </property>
    <property name="text">
@@ -241,13 +255,15 @@ border:3px solid black;</string>
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>30</y>
+     <y>20</y>
      <width>91</width>
      <height>41</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">border-radius:20px;
+    <string notr="true">
+
+border-radius:20px;
 border:3px solid black;</string>
    </property>
    <property name="text">
@@ -289,6 +305,23 @@ border:3px solid black;</string>
     <string/>
    </property>
   </widget>
+  <widget class="QPushButton" name="pushButton_16">
+   <property name="geometry">
+    <rect>
+     <x>250</x>
+     <y>210</y>
+     <width>91</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-radius:20px;
+border:3px solid black;</string>
+   </property>
+   <property name="text">
+    <string>BACK</string>
+   </property>
+  </widget>
   <zorder>label</zorder>
   <zorder>pushButton_7</zorder>
   <zorder>pushButton_9</zorder>
@@ -305,6 +338,7 @@ border:3px solid black;</string>
   <zorder>pushButton_11</zorder>
   <zorder>pushButton_14</zorder>
   <zorder>pushButton_15</zorder>
+  <zorder>pushButton_16</zorder>
  </widget>
  <resources/>
  <connections/>

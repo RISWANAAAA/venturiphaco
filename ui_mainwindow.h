@@ -230,6 +230,7 @@ public:
     QLabel *label_2;
     QLabel *label_124;
     QPushButton *handpiece;
+    QPushButton *SETTINGS_BUT;
     QStatusBar *statusbar;
 
     void setupUi(QMainWindow *MainWindow)
@@ -245,7 +246,7 @@ public:
         label->setStyleSheet(QString::fromUtf8("background-color: rgb(28, 113, 216);"));
         pushButton_42 = new QPushButton(centralwidget);
         pushButton_42->setObjectName(QString::fromUtf8("pushButton_42"));
-        pushButton_42->setGeometry(QRect(160, 280, 111, 121));
+        pushButton_42->setGeometry(QRect(170, 260, 111, 121));
         pushButton_42->setLayoutDirection(Qt::LeftToRight);
         pushButton_42->setStyleSheet(QString::fromUtf8("font:70pt \"Ubuntu\";\n"
 "background-color: rgb(255,255,255);\n"
@@ -255,13 +256,11 @@ public:
 "border:5px solid black;"));
         ULTRASONICBUT3 = new QPushButton(centralwidget);
         ULTRASONICBUT3->setObjectName(QString::fromUtf8("ULTRASONICBUT3"));
-        ULTRASONICBUT3->setGeometry(QRect(270, 390, 81, 81));
-        ULTRASONICBUT3->setStyleSheet(QString::fromUtf8("\n"
-"font:20pt \"Ubuntu\";\n"
+        ULTRASONICBUT3->setGeometry(QRect(280, 370, 81, 81));
+        ULTRASONICBUT3->setStyleSheet(QString::fromUtf8("font:20pt \"Ubuntu\";\n"
 "\n"
 "border-radius:40px;\n"
-"border:none;\n"
-"font-weight: bold;border:3px solid black;"));
+"border:none;font-weight: bold;border:3px solid black;"));
         tabWidget = new QTabWidget(centralwidget);
         tabWidget->setObjectName(QString::fromUtf8("tabWidget"));
         tabWidget->setEnabled(true);
@@ -1443,7 +1442,7 @@ public:
 "font:bold;"));
         ULTRASONICBUT4 = new QPushButton(centralwidget);
         ULTRASONICBUT4->setObjectName(QString::fromUtf8("ULTRASONICBUT4"));
-        ULTRASONICBUT4->setGeometry(QRect(170, 430, 81, 81));
+        ULTRASONICBUT4->setGeometry(QRect(190, 410, 81, 81));
         ULTRASONICBUT4->setStyleSheet(QString::fromUtf8("font:20pt \"Ubuntu\";\n"
 "\n"
 "border-radius:40px;\n"
@@ -1470,14 +1469,14 @@ public:
 "font-weight: bold;"));
         IA1BUT = new QPushButton(centralwidget);
         IA1BUT->setObjectName(QString::fromUtf8("IA1BUT"));
-        IA1BUT->setGeometry(QRect(70, 390, 81, 81));
+        IA1BUT->setGeometry(QRect(90, 370, 81, 81));
         IA1BUT->setStyleSheet(QString::fromUtf8("font:20pt \"Ubuntu\";\n"
 "\n"
 "border-radius:40px;\n"
 "border:none;font-weight: bold;border:3px solid black;"));
         ULTRASONICBUT1 = new QPushButton(centralwidget);
         ULTRASONICBUT1->setObjectName(QString::fromUtf8("ULTRASONICBUT1"));
-        ULTRASONICBUT1->setGeometry(QRect(260, 210, 81, 81));
+        ULTRASONICBUT1->setGeometry(QRect(280, 190, 81, 81));
         ULTRASONICBUT1->setStyleSheet(QString::fromUtf8("font:20pt \"Ubuntu\";\n"
 "\n"
 "\n"
@@ -1501,7 +1500,7 @@ public:
 "border:3px solid black;"));
         elapsed_time = new QPushButton(centralwidget);
         elapsed_time->setObjectName(QString::fromUtf8("elapsed_time"));
-        elapsed_time->setGeometry(QRect(100, 640, 191, 41));
+        elapsed_time->setGeometry(QRect(50, 630, 191, 41));
         elapsed_time->setStyleSheet(QString::fromUtf8("background-color: rgb(192, 28, 40);\n"
 "border:3px solid black;\n"
 "border-radius:20px;"));
@@ -1517,25 +1516,27 @@ public:
 "border:none;"));
         VITRECTOMYBUT = new QPushButton(centralwidget);
         VITRECTOMYBUT->setObjectName(QString::fromUtf8("VITRECTOMYBUT"));
-        VITRECTOMYBUT->setGeometry(QRect(70, 210, 81, 81));
+        VITRECTOMYBUT->setGeometry(QRect(90, 190, 81, 81));
         VITRECTOMYBUT->setStyleSheet(QString::fromUtf8("font:20pt \"Ubuntu\";\n"
-"color: rgb(255, 255, 255);\n"
-"background-color: rgb(0, 0, 0);\n"
 "\n"
 "border-radius:40px;font-weight: bold;border:3px solid black;"));
         DIABUT = new QPushButton(centralwidget);
         DIABUT->setObjectName(QString::fromUtf8("DIABUT"));
-        DIABUT->setGeometry(QRect(170, 180, 81, 81));
-        DIABUT->setStyleSheet(QString::fromUtf8(""));
+        DIABUT->setGeometry(QRect(190, 150, 81, 81));
+        DIABUT->setStyleSheet(QString::fromUtf8("font:20pt \"Ubuntu\";\n"
+"\n"
+"border-radius:40px;\n"
+"border:none;font-weight: bold;border:3px solid black;"));
         ULTRASONICBUT2 = new QPushButton(centralwidget);
         ULTRASONICBUT2->setObjectName(QString::fromUtf8("ULTRASONICBUT2"));
-        ULTRASONICBUT2->setGeometry(QRect(300, 300, 81, 81));
+        ULTRASONICBUT2->setGeometry(QRect(320, 280, 81, 81));
         ULTRASONICBUT2->setStyleSheet(QString::fromUtf8("font:20pt \"Ubuntu\";\n"
+"\n"
 "border-radius:40px;\n"
 "border:none;font-weight: bold;border:3px solid black;"));
         IA2BUT = new QPushButton(centralwidget);
         IA2BUT->setObjectName(QString::fromUtf8("IA2BUT"));
-        IA2BUT->setGeometry(QRect(40, 300, 81, 81));
+        IA2BUT->setGeometry(QRect(50, 280, 81, 81));
         IA2BUT->setStyleSheet(QString::fromUtf8("font:20pt \"Ubuntu\";\n"
 "\n"
 "border-radius:40px;font-weight: bold;border:3px solid black;"));
@@ -1719,10 +1720,11 @@ public:
         tabWidget_2->addTab(tab_48, QString());
         label_2 = new QLabel(centralwidget);
         label_2->setObjectName(QString::fromUtf8("label_2"));
-        label_2->setGeometry(QRect(40, 180, 341, 331));
-        label_2->setStyleSheet(QString::fromUtf8("background-color: rgba(152, 236, 255, 229);\n"
-"border-radius:150px;\n"
-"border:5px solid black;"));
+        label_2->setGeometry(QRect(50, 150, 351, 341));
+        label_2->setStyleSheet(QString::fromUtf8("border-radius:170px;\n"
+"background-color: rgb(152, 236, 255);\n"
+"\n"
+"border:3px solid black;"));
         label_124 = new QLabel(centralwidget);
         label_124->setObjectName(QString::fromUtf8("label_124"));
         label_124->setGeometry(QRect(140, 260, 131, 41));
@@ -1735,6 +1737,13 @@ public:
 "background-color: rgb(192, 28, 40);\n"
 "border:4px solid black;\n"
 "border-radius:20px;"));
+        SETTINGS_BUT = new QPushButton(centralwidget);
+        SETTINGS_BUT->setObjectName(QString::fromUtf8("SETTINGS_BUT"));
+        SETTINGS_BUT->setGeometry(QRect(350, 600, 91, 81));
+        SETTINGS_BUT->setStyleSheet(QString::fromUtf8("\n"
+"image: url(:/images/settings.png);\n"
+"background-color:transparent;\n"
+"border:none;"));
         MainWindow->setCentralWidget(centralwidget);
         label->raise();
         tabWidget->raise();
@@ -1748,24 +1757,25 @@ public:
         tabWidget_2->raise();
         label_9->raise();
         label_2->raise();
-        DIABUT->raise();
-        ULTRASONICBUT4->raise();
-        IA2BUT->raise();
-        IA1BUT->raise();
-        ULTRASONICBUT1->raise();
-        ULTRASONICBUT3->raise();
-        VITRECTOMYBUT->raise();
-        ULTRASONICBUT2->raise();
         label_124->raise();
         handpiece->raise();
         pushButton_42->raise();
+        ULTRASONICBUT1->raise();
+        DIABUT->raise();
+        IA2BUT->raise();
+        IA1BUT->raise();
+        ULTRASONICBUT4->raise();
+        ULTRASONICBUT3->raise();
+        ULTRASONICBUT2->raise();
+        VITRECTOMYBUT->raise();
+        SETTINGS_BUT->raise();
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
         MainWindow->setStatusBar(statusbar);
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(7);
+        tabWidget->setCurrentIndex(1);
         tabWidget_2->setCurrentIndex(1);
 
 
@@ -2054,6 +2064,7 @@ public:
         label_2->setText(QString());
         label_124->setText(QString());
         handpiece->setText(QString());
+        SETTINGS_BUT->setText(QString());
     } // retranslateUi
 
 };
