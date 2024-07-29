@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'settings.ui'
 **
-** Created by: Qt User Interface Compiler version 5.14.2
+** Created by: Qt User Interface Compiler version 5.15.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -37,7 +37,7 @@ public:
         if (settings->objectName().isEmpty())
             settings->setObjectName(QString::fromUtf8("settings"));
         settings->resize(1280, 720);
-        settings->setStyleSheet(QString::fromUtf8("background-color: rgb(28, 113, 216);"));
+        settings->setStyleSheet(QString::fromUtf8("background-color: rgb(162, 128, 137);"));
         display_but = new QPushButton(settings);
         display_but->setObjectName(QString::fromUtf8("display_but"));
         display_but->setGeometry(QRect(890, 140, 131, 101));
@@ -90,7 +90,7 @@ public:
         back_but = new QPushButton(settings);
         back_but->setObjectName(QString::fromUtf8("back_but"));
         back_but->setGeometry(QRect(30, 10, 121, 121));
-        back_but->setStyleSheet(QString::fromUtf8("image: url(:/images/backbutton.png);\n"
+        back_but->setStyleSheet(QString::fromUtf8("image: url(:/images/backarrowimg.png);\n"
 "background-color:transparent;\n"
 "border:none;"));
         surgeon_lab = new QLabel(settings);

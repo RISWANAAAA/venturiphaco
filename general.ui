@@ -14,7 +14,7 @@
    <string>Dialog</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(28, 113, 216);</string>
+   <string notr="true">background-color: rgb(162, 128, 137);</string>
   </property>
   <widget class="QPushButton" name="networkingbut">
    <property name="geometry">
@@ -63,6 +63,9 @@ border:5px solid black;</string>
      <width>801</width>
      <height>711</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(162, 128, 137);</string>
    </property>
    <widget class="QWidget" name="tab">
     <attribute name="title">
@@ -500,7 +503,7 @@ border:5px solid black;</string>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(153, 193, 241);</string>
+    <string notr="true">background-color: rgb(162, 128, 137);</string>
    </property>
    <property name="text">
     <string/>
@@ -535,7 +538,7 @@ border:5px solid black;</string>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">image: url(:/images/backbutton.png);
+    <string notr="true">image: url(:/images/backarrowimg.png);
 background-color:transparent;
 border:none;</string>
    </property>

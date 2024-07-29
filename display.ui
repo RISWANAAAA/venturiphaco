@@ -14,7 +14,7 @@
    <string>Dialog</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(28, 113, 216);</string>
+   <string notr="true">background-color: rgb(162, 128, 137);</string>
   </property>
   <widget class="QLabel" name="label">
    <property name="geometry">
@@ -38,16 +38,17 @@ font: 15pt &quot;Ubuntu Condensed&quot;;</string>
     <rect>
      <x>30</x>
      <y>30</y>
-     <width>71</width>
-     <height>61</height>
+     <width>121</width>
+     <height>91</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">image: url(:/back4.png);
+    <string notr="true">
+image: url(:/images/backarrowimg.png);
 border:none;</string>
    </property>
    <property name="text">
-    <string>BACK</string>
+    <string/>
    </property>
   </widget>
   <widget class="QTextEdit" name="textEdit">
@@ -90,11 +91,11 @@ p, li { white-space: pre-wrap; }
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">image: url(:/touchscreen.png);
+    <string notr="true">image: url(:/images/touchscreen.png);
 background-color:transparent;</string>
    </property>
    <property name="text">
-    <string>IMG</string>
+    <string/>
    </property>
   </widget>
   <widget class="QLabel" name="label_3">

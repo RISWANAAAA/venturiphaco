@@ -6,6 +6,7 @@
 #include<QTimer>
 #include "doctor.h"
 #include "settings.h"
+#include"hwhandler.h"
 class MainWindow;
 class doctor;
 class settings;
@@ -22,12 +23,26 @@ public:
     explicit prime(QWidget *parent = nullptr);
     ~prime();
     void click();
+    void exportGPIO(int pin);
+    void setGPIODirection(const QString &direction,int pin);
+    int readGPIOValue(int pin);
+    void onUpdateStatusTimeout();
+    void updatehandpieceStatus();
+    void start_irrigation();
 
+    void champer_Filled();
+    void done();
+    void motoron();
+    void motoroff();
+    bool checkChamberFill();
 public slots:
     void timer();
+    void primetimer();
     void current(int tab);
     void update();
    void hp(int connected);
+    void Start_Tune();
+
 private slots:
     void Prime();
 
@@ -35,24 +50,20 @@ private slots:
 
     void Clean();
 
-    void Start_Tune();
 
 
 
 
-    void on_pushButton_clicked();
 
 
-    void on_pushButton_2_clicked();
 
-    void on_pushButton_3_clicked();
+    void on_start_prime_but_2_clicked();
 
-
-    void on_pushButton_4_clicked();
-
-    void on_pushButton_6_clicked();
+    void on_begin_clean_but_2_clicked();
 
     void on_pushButton_5_clicked();
+
+    void on_pushButton_6_clicked();
 
     void on_pushButton_8_clicked();
 
@@ -61,10 +72,13 @@ private:
 //    int hp=0;
     MainWindow *m;
     QTimer *timer1;
+    QTimer *pretimer;
     int value=0;
     int val1=0;
     doctor *sur;
     settings *set;
+     QTimer *statusUpdateTimer;
+     hwhandler *hand;
 };
 
 #endif // PRIME_H

@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'footpedal.ui'
 **
-** Created by: Qt User Interface Compiler version 5.14.2
+** Created by: Qt User Interface Compiler version 5.15.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -39,7 +39,7 @@ public:
         if (footpedal->objectName().isEmpty())
             footpedal->setObjectName(QString::fromUtf8("footpedal"));
         footpedal->resize(1280, 720);
-        footpedal->setStyleSheet(QString::fromUtf8("background-color: rgb(28, 113, 216);"));
+        footpedal->setStyleSheet(QString::fromUtf8("background-color: rgb(162, 128, 137);"));
         right_footcom = new QComboBox(footpedal);
         right_footcom->addItem(QString());
         right_footcom->addItem(QString());
@@ -116,7 +116,7 @@ public:
         backbut = new QPushButton(footpedal);
         backbut->setObjectName(QString::fromUtf8("backbut"));
         backbut->setGeometry(QRect(40, 20, 111, 91));
-        backbut->setStyleSheet(QString::fromUtf8("image: url(:/images/backbutton.png);\n"
+        backbut->setStyleSheet(QString::fromUtf8("image: url(:/images/backarrowimg.png);\n"
 "background-color:transparent;\n"
 "border:none;"));
         label_7 = new QLabel(footpedal);

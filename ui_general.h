@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'general.ui'
 **
-** Created by: Qt User Interface Compiler version 5.14.2
+** Created by: Qt User Interface Compiler version 5.15.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -63,7 +63,7 @@ public:
         if (general->objectName().isEmpty())
             general->setObjectName(QString::fromUtf8("general"));
         general->resize(1280, 720);
-        general->setStyleSheet(QString::fromUtf8("background-color: rgb(28, 113, 216);"));
+        general->setStyleSheet(QString::fromUtf8("background-color: rgb(162, 128, 137);"));
         networkingbut = new QPushButton(general);
         networkingbut->setObjectName(QString::fromUtf8("networkingbut"));
         networkingbut->setGeometry(QRect(130, 550, 171, 91));
@@ -82,6 +82,7 @@ public:
         tabWidget = new QTabWidget(general);
         tabWidget->setObjectName(QString::fromUtf8("tabWidget"));
         tabWidget->setGeometry(QRect(430, 10, 801, 711));
+        tabWidget->setStyleSheet(QString::fromUtf8("background-color: rgb(162, 128, 137);"));
         tab = new QWidget();
         tab->setObjectName(QString::fromUtf8("tab"));
         seria_lab = new QLabel(tab);
@@ -255,7 +256,7 @@ public:
         label_7 = new QLabel(general);
         label_7->setObjectName(QString::fromUtf8("label_7"));
         label_7->setGeometry(QRect(430, 10, 801, 31));
-        label_7->setStyleSheet(QString::fromUtf8("background-color: rgb(153, 193, 241);"));
+        label_7->setStyleSheet(QString::fromUtf8("background-color: rgb(162, 128, 137);"));
         storagebut = new QPushButton(general);
         storagebut->setObjectName(QString::fromUtf8("storagebut"));
         storagebut->setGeometry(QRect(130, 280, 181, 91));
@@ -266,7 +267,7 @@ public:
         backbut = new QPushButton(general);
         backbut->setObjectName(QString::fromUtf8("backbut"));
         backbut->setGeometry(QRect(40, 20, 111, 91));
-        backbut->setStyleSheet(QString::fromUtf8("image: url(:/images/backbutton.png);\n"
+        backbut->setStyleSheet(QString::fromUtf8("image: url(:/images/backarrowimg.png);\n"
 "background-color:transparent;\n"
 "border:none;"));
 

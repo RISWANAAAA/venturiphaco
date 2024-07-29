@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'keypad.ui'
 **
-** Created by: Qt User Interface Compiler version 5.14.2
+** Created by: Qt User Interface Compiler version 5.15.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -139,7 +139,7 @@ public:
         label->setObjectName(QString::fromUtf8("label"));
         label->setGeometry(QRect(0, 0, 481, 301));
         label->setStyleSheet(QString::fromUtf8("border-radius:20px;\n"
-"background-color: rgb(153, 193, 241);\n"
+"background-color: rgb(154, 153, 150);\n"
 "border:3px solid black;"));
         pushButton_16 = new QPushButton(keypad);
         pushButton_16->setObjectName(QString::fromUtf8("pushButton_16"));

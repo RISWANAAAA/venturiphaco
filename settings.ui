@@ -14,7 +14,7 @@
    <string>Dialog</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(28, 113, 216);</string>
+   <string notr="true">background-color: rgb(162, 128, 137);</string>
   </property>
   <widget class="QPushButton" name="display_but">
    <property name="geometry">
@@ -167,7 +167,7 @@ border-radius:20px;</string>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">image: url(:/images/backbutton.png);
+    <string notr="true">image: url(:/images/backarrowimg.png);
 background-color:transparent;
 border:none;</string>
    </property>

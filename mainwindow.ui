@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1280</width>
-    <height>720</height>
+    <width>1517</width>
+    <height>719</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,60 +17,17 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>1280</width>
+      <x>10</x>
+      <y>-30</y>
+      <width>1270</width>
       <height>720</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(28, 113, 216);</string>
+     <string notr="true">background-color: rgb(162, 128, 137);</string>
     </property>
     <property name="text">
      <string/>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_42">
-    <property name="geometry">
-     <rect>
-      <x>170</x>
-      <y>260</y>
-      <width>111</width>
-      <height>121</height>
-     </rect>
-    </property>
-    <property name="layoutDirection">
-     <enum>Qt::LeftToRight</enum>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">font:70pt &quot;Ubuntu&quot;;
-background-color: rgb(255,255,255);
-border-radius:20px;
-border:none;
-font-weight: bold;
-border:5px solid black;</string>
-    </property>
-    <property name="text">
-     <string>0</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="ULTRASONICBUT3">
-    <property name="geometry">
-     <rect>
-      <x>280</x>
-      <y>370</y>
-      <width>81</width>
-      <height>81</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">font:20pt &quot;Ubuntu&quot;;
-
-border-radius:40px;
-border:none;font-weight: bold;border:3px solid black;</string>
-    </property>
-    <property name="text">
-     <string>U/S 3</string>
     </property>
    </widget>
    <widget class="QTabWidget" name="tabWidget">
@@ -79,27 +36,22 @@ border:none;font-weight: bold;border:3px solid black;</string>
     </property>
     <property name="geometry">
      <rect>
-      <x>460</x>
-      <y>20</y>
-      <width>821</width>
-      <height>741</height>
+      <x>-20</x>
+      <y>-20</y>
+      <width>1311</width>
+      <height>791</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(153, 193, 241);
-
-
-
-
+     <string notr="true">background-color: rgb(162, 128, 137);
 </string>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab_33">
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(28, 113, 216);
-</string>
+      <string notr="true">background-color:rgb(83, 104, 120);</string>
      </property>
      <attribute name="title">
       <string>Tab 1</string>
@@ -107,8 +59,8 @@ border:none;font-weight: bold;border:3px solid black;</string>
      <widget class="QPushButton" name="us1powup_but">
       <property name="geometry">
        <rect>
-        <x>260</x>
-        <y>90</y>
+        <x>780</x>
+        <y>130</y>
         <width>91</width>
         <height>61</height>
        </rect>
@@ -126,8 +78,8 @@ border:none;</string>
      <widget class="QPushButton" name="us1powdown_but">
       <property name="geometry">
        <rect>
-        <x>510</x>
-        <y>90</y>
+        <x>1010</x>
+        <y>130</y>
         <width>91</width>
         <height>61</height>
        </rect>
@@ -144,8 +96,8 @@ border:none;</string>
      <widget class="QLineEdit" name="lineEdit_55">
       <property name="geometry">
        <rect>
-        <x>380</x>
-        <y>310</y>
+        <x>190</x>
+        <y>130</y>
         <width>101</width>
         <height>61</height>
        </rect>
@@ -166,8 +118,8 @@ border:2px solid black;</string>
      <widget class="QPushButton" name="us1vacdow_but">
       <property name="geometry">
        <rect>
-        <x>510</x>
-        <y>310</y>
+        <x>330</x>
+        <y>130</y>
         <width>91</width>
         <height>61</height>
        </rect>
@@ -184,8 +136,8 @@ border:none;</string>
      <widget class="QPushButton" name="us1vacup_but">
       <property name="geometry">
        <rect>
-        <x>270</x>
-        <y>310</y>
+        <x>70</x>
+        <y>130</y>
         <width>91</width>
         <height>61</height>
        </rect>
@@ -202,8 +154,8 @@ border:none;</string>
      <widget class="QLineEdit" name="lineEdit_56">
       <property name="geometry">
        <rect>
-        <x>390</x>
-        <y>520</y>
+        <x>560</x>
+        <y>580</y>
         <width>101</width>
         <height>61</height>
        </rect>
@@ -224,8 +176,8 @@ border:2px solid black;</string>
      <widget class="QPushButton" name="us1flowdown_but">
       <property name="geometry">
        <rect>
-        <x>510</x>
-        <y>520</y>
+        <x>710</x>
+        <y>580</y>
         <width>91</width>
         <height>61</height>
        </rect>
@@ -242,8 +194,8 @@ border:none;</string>
      <widget class="QPushButton" name="us1flowup_but">
       <property name="geometry">
        <rect>
-        <x>270</x>
-        <y>520</y>
+        <x>430</x>
+        <y>590</y>
         <width>91</width>
         <height>61</height>
        </rect>
@@ -260,8 +212,8 @@ border:none;</string>
      <widget class="QLineEdit" name="lineEdit_57">
       <property name="geometry">
        <rect>
-        <x>380</x>
-        <y>90</y>
+        <x>890</x>
+        <y>130</y>
         <width>101</width>
         <height>61</height>
        </rect>
@@ -282,8 +234,8 @@ border:2px solid black;</string>
      <widget class="QTextEdit" name="textEdit_41">
       <property name="geometry">
        <rect>
-        <x>300</x>
-        <y>470</y>
+        <x>410</x>
+        <y>550</y>
         <width>191</width>
         <height>31</height>
        </rect>
@@ -306,8 +258,8 @@ p, li { white-space: pre-wrap; }
      <widget class="QTextEdit" name="textEdit_42">
       <property name="geometry">
        <rect>
-        <x>300</x>
-        <y>250</y>
+        <x>70</x>
+        <y>80</y>
         <width>431</width>
         <height>71</height>
        </rect>
@@ -331,8 +283,8 @@ p, li { white-space: pre-wrap; }
      <widget class="QTextEdit" name="textEdit_43">
       <property name="geometry">
        <rect>
-        <x>290</x>
-        <y>40</y>
+        <x>780</x>
+        <y>80</y>
         <width>251</width>
         <height>41</height>
        </rect>
@@ -355,15 +307,31 @@ p, li { white-space: pre-wrap; }
      <widget class="QLabel" name="label_85">
       <property name="geometry">
        <rect>
-        <x>210</x>
-        <y>-80</y>
-        <width>591</width>
-        <height>381</height>
+        <x>740</x>
+        <y>60</y>
+        <width>531</width>
+        <height>181</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color:transparent;
-image: url(:/images/main1.png);</string>
+       <string notr="true">border-radius:90px;
+
+
+border:4px solid black;
+
+border-left: 10px solid black;
+border-right: 10px solid black;
+border-top: 10px solid black;
+border-bottom: 10px solid black;
+
+border-left-color: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop: 0 rgb(195,195,195), stop: 1 rgb(12, 29, 54));
+border-right-color: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop: 0 rgb(195,195,195), stop: 1 rgb(12, 29, 54));
+border-top-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop: 0 rgb(195,195,195), stop: 1 rgb(12, 29, 54));
+border-bottom-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop: 0 rgb(195,195,195), stop: 1 rgb(12, 29, 54));
+
+
+
+</string>
       </property>
       <property name="text">
        <string/>
@@ -372,15 +340,31 @@ image: url(:/images/main1.png);</string>
      <widget class="QLabel" name="label_86">
       <property name="geometry">
        <rect>
-        <x>210</x>
-        <y>130</y>
-        <width>591</width>
-        <height>381</height>
+        <x>20</x>
+        <y>60</y>
+        <width>531</width>
+        <height>181</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color:transparent;
-image: url(:/images/main1.png);</string>
+       <string notr="true">border-radius:90px;
+
+
+border:4px solid black;
+
+border-left: 10px solid black;
+border-right: 10px solid black;
+border-top: 10px solid black;
+border-bottom: 10px solid black;
+
+border-left-color: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop: 0 rgb(195,195,195), stop: 1 rgb(12, 29, 54));
+border-right-color: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop: 0 rgb(195,195,195), stop: 1 rgb(12, 29, 54));
+border-top-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop: 0 rgb(195,195,195), stop: 1 rgb(12, 29, 54));
+border-bottom-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop: 0 rgb(195,195,195), stop: 1 rgb(12, 29, 54));
+
+
+
+</string>
       </property>
       <property name="text">
        <string/>
@@ -389,15 +373,31 @@ image: url(:/images/main1.png);</string>
      <widget class="QLabel" name="label_87">
       <property name="geometry">
        <rect>
-        <x>210</x>
-        <y>340</y>
-        <width>591</width>
-        <height>381</height>
+        <x>390</x>
+        <y>500</y>
+        <width>531</width>
+        <height>181</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color:transparent;
-image: url(:/images/main1.png);</string>
+       <string notr="true">border-radius:90px;
+
+
+border:4px solid black;
+
+border-left: 10px solid black;
+border-right: 10px solid black;
+border-top: 10px solid black;
+border-bottom: 10px solid black;
+
+border-left-color: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop: 0 rgb(195,195,195), stop: 1 rgb(12, 29, 54));
+border-right-color: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop: 0 rgb(195,195,195), stop: 1 rgb(12, 29, 54));
+border-top-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop: 0 rgb(195,195,195), stop: 1 rgb(12, 29, 54));
+border-bottom-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop: 0 rgb(195,195,195), stop: 1 rgb(12, 29, 54));
+
+
+
+</string>
       </property>
       <property name="text">
        <string/>
@@ -406,10 +406,10 @@ image: url(:/images/main1.png);</string>
      <widget class="QLabel" name="label_7">
       <property name="geometry">
        <rect>
-        <x>700</x>
-        <y>80</y>
-        <width>81</width>
-        <height>81</height>
+        <x>1210</x>
+        <y>110</y>
+        <width>91</width>
+        <height>91</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -424,17 +424,33 @@ border-radius:40px;font-weight: bold;</string>
      <widget class="QLabel" name="label_8">
       <property name="geometry">
        <rect>
-        <x>700</x>
-        <y>300</y>
-        <width>81</width>
-        <height>81</height>
+        <x>490</x>
+        <y>100</y>
+        <width>91</width>
+        <height>91</height>
        </rect>
       </property>
       <property name="styleSheet">
        <string notr="true">font:20pt &quot;Ubuntu&quot;;
 
 border:5px solid black;
-border-radius:40px;font-weight: bold;</string>
+border-radius:40px;font-weight: bold;
+
+
+
+border-left: 10px solid black;
+border-right: 10px solid black;
+border-top: 10px solid black;
+border-bottom: 10px solid black;
+
+border-left-color: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop: 0 rgb(195,195,195), stop: 1 rgb(12, 29, 54));
+border-right-color: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop: 0 rgb(195,195,195), stop: 1 rgb(12, 29, 54));
+border-top-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop: 0 rgb(195,195,195), stop: 1 rgb(12, 29, 54));
+border-bottom-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop: 0 rgb(195,195,195), stop: 1 rgb(12, 29, 54));
+
+
+
+</string>
       </property>
       <property name="text">
        <string/>
@@ -443,8 +459,8 @@ border-radius:40px;font-weight: bold;</string>
      <widget class="QPushButton" name="us1mode">
       <property name="geometry">
        <rect>
-        <x>610</x>
-        <y>30</y>
+        <x>1070</x>
+        <y>70</y>
         <width>121</width>
         <height>41</height>
        </rect>
@@ -464,8 +480,8 @@ font:bold;background-color:white</string>
      <widget class="QPushButton" name="us1vacmode">
       <property name="geometry">
        <rect>
-        <x>620</x>
-        <y>250</y>
+        <x>350</x>
+        <y>70</y>
         <width>121</width>
         <height>41</height>
        </rect>
@@ -486,8 +502,8 @@ font:bold;background-color:white</string>
      <widget class="QPushButton" name="CI1">
       <property name="geometry">
        <rect>
-        <x>660</x>
-        <y>500</y>
+        <x>820</x>
+        <y>560</y>
         <width>61</width>
         <height>61</height>
        </rect>
@@ -496,7 +512,7 @@ font:bold;background-color:white</string>
        <string notr="true">font:20pt &quot;Ubuntu&quot;;
 background-color: rgb(224, 27, 36);
 color: rgb(224, 27, 36);
-image: url(:/ci.png);
+image: url(:/images/ci.png);
 border:5px solid black;
 border-radius:30px;font-weight: bold;</string>
       </property>
@@ -507,8 +523,8 @@ border-radius:30px;font-weight: bold;</string>
      <widget class="QPushButton" name="us1onoff">
       <property name="geometry">
        <rect>
-        <x>640</x>
-        <y>90</y>
+        <x>1120</x>
+        <y>130</y>
         <width>61</width>
         <height>61</height>
        </rect>
@@ -526,52 +542,140 @@ color: rgb(0, 0, 0);</string>
      <widget class="QLabel" name="label_88">
       <property name="geometry">
        <rect>
-        <x>0</x>
-        <y>530</y>
-        <width>221</width>
+        <x>540</x>
+        <y>0</y>
+        <width>331</width>
         <height>51</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">font:30pt &quot;Ubuntu&quot;;
-
+       <string notr="true">background-color: rgb(0, 0, 0);
+color: rgb(255, 255, 255);
 border-radius:20px;
 
-border:none;font-weight: bold;border:3px solid black;
-background-color: rgb(0, 0, 0);
-color: rgb(255, 255, 255);</string>
+font:20pt &quot;Ubuntu&quot;;
+font-weight: bold;</string>
       </property>
       <property name="text">
        <string>Epinucles</string>
       </property>
      </widget>
-     <zorder>label_85</zorder>
+     <widget class="QPushButton" name="SETTINGS_BUT_4">
+      <property name="geometry">
+       <rect>
+        <x>1210</x>
+        <y>0</y>
+        <width>81</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">image: url(:/images/settings.png);
+background-color:transparent;
+border:4px solid black;
+border-radius:30px;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="CutMode_vitCom">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>260</y>
+        <width>221</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-radius:20px;
+color: rgb(255, 255, 255);
+background-color: rgb(0, 0, 0);
+font:20pt &quot;Ubuntu&quot;;</string>
+      </property>
+      <item>
+       <property name="text">
+        <string>Continous</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Pulse</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Ocupulse</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Ocuburst</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Single burst</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Multi burst</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Cold phaco</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLabel" name="CutMode_vit">
+      <property name="geometry">
+       <rect>
+        <x>60</x>
+        <y>270</y>
+        <width>181</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color:transparent;font: 15pt &quot;Ubuntu Condensed&quot;;
+font:bold;</string>
+      </property>
+      <property name="text">
+       <string>Mode</string>
+      </property>
+     </widget>
      <zorder>label_86</zorder>
+     <zorder>label_85</zorder>
      <zorder>label_87</zorder>
      <zorder>us1powup_but</zorder>
      <zorder>us1powdown_but</zorder>
-     <zorder>lineEdit_55</zorder>
-     <zorder>us1vacdow_but</zorder>
-     <zorder>us1vacup_but</zorder>
      <zorder>lineEdit_56</zorder>
      <zorder>us1flowdown_but</zorder>
      <zorder>us1flowup_but</zorder>
      <zorder>lineEdit_57</zorder>
      <zorder>textEdit_41</zorder>
-     <zorder>textEdit_42</zorder>
      <zorder>textEdit_43</zorder>
      <zorder>label_7</zorder>
      <zorder>label_8</zorder>
      <zorder>us1mode</zorder>
-     <zorder>us1vacmode</zorder>
      <zorder>CI1</zorder>
      <zorder>us1onoff</zorder>
      <zorder>label_88</zorder>
+     <zorder>us1vacup_but</zorder>
+     <zorder>us1vacdow_but</zorder>
+     <zorder>lineEdit_55</zorder>
+     <zorder>textEdit_42</zorder>
+     <zorder>us1vacmode</zorder>
+     <zorder>SETTINGS_BUT_4</zorder>
+     <zorder>CutMode_vitCom</zorder>
+     <zorder>CutMode_vit</zorder>
     </widget>
     <widget class="QWidget" name="tab_34">
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(28, 113, 216);
-</string>
+      <string notr="true">background-color:rgb(83, 104, 120);</string>
      </property>
      <attribute name="title">
       <string>Page</string>
@@ -579,8 +683,8 @@ color: rgb(255, 255, 255);</string>
      <widget class="QLineEdit" name="lineEdit_58">
       <property name="geometry">
        <rect>
-        <x>380</x>
-        <y>90</y>
+        <x>890</x>
+        <y>130</y>
         <width>101</width>
         <height>61</height>
        </rect>
@@ -601,8 +705,8 @@ border:2px solid black;</string>
      <widget class="QPushButton" name="us2powup_but">
       <property name="geometry">
        <rect>
-        <x>260</x>
-        <y>90</y>
+        <x>760</x>
+        <y>130</y>
         <width>91</width>
         <height>61</height>
        </rect>
@@ -619,8 +723,8 @@ border:none;</string>
      <widget class="QPushButton" name="us2powdown_but">
       <property name="geometry">
        <rect>
-        <x>510</x>
-        <y>90</y>
+        <x>1010</x>
+        <y>130</y>
         <width>91</width>
         <height>61</height>
        </rect>
@@ -637,8 +741,8 @@ border:none;</string>
      <widget class="QLineEdit" name="lineEdit_59">
       <property name="geometry">
        <rect>
-        <x>390</x>
-        <y>520</y>
+        <x>560</x>
+        <y>600</y>
         <width>101</width>
         <height>61</height>
        </rect>
@@ -659,8 +763,8 @@ border:2px solid black;</string>
      <widget class="QPushButton" name="us2flowup_but">
       <property name="geometry">
        <rect>
-        <x>270</x>
-        <y>520</y>
+        <x>430</x>
+        <y>600</y>
         <width>91</width>
         <height>61</height>
        </rect>
@@ -677,8 +781,8 @@ border:none;</string>
      <widget class="QPushButton" name="us2flowdown_but">
       <property name="geometry">
        <rect>
-        <x>510</x>
-        <y>520</y>
+        <x>710</x>
+        <y>600</y>
         <width>91</width>
         <height>61</height>
        </rect>
@@ -695,8 +799,8 @@ border:none;</string>
      <widget class="QTextEdit" name="textEdit_44">
       <property name="geometry">
        <rect>
-        <x>300</x>
-        <y>470</y>
+        <x>420</x>
+        <y>560</y>
         <width>221</width>
         <height>31</height>
        </rect>
@@ -719,8 +823,8 @@ p, li { white-space: pre-wrap; }
      <widget class="QTextEdit" name="textEdit_45">
       <property name="geometry">
        <rect>
-        <x>290</x>
-        <y>40</y>
+        <x>770</x>
+        <y>80</y>
         <width>251</width>
         <height>41</height>
        </rect>
@@ -743,8 +847,8 @@ p, li { white-space: pre-wrap; }
      <widget class="QLineEdit" name="lineEdit_60">
       <property name="geometry">
        <rect>
-        <x>380</x>
-        <y>310</y>
+        <x>190</x>
+        <y>130</y>
         <width>101</width>
         <height>61</height>
        </rect>
@@ -765,8 +869,8 @@ border:2px solid black;</string>
      <widget class="QPushButton" name="us2vacup_but">
       <property name="geometry">
        <rect>
-        <x>270</x>
-        <y>310</y>
+        <x>70</x>
+        <y>130</y>
         <width>91</width>
         <height>61</height>
        </rect>
@@ -783,8 +887,8 @@ border:none;</string>
      <widget class="QTextEdit" name="textEdit_46">
       <property name="geometry">
        <rect>
-        <x>300</x>
-        <y>250</y>
+        <x>70</x>
+        <y>80</y>
         <width>241</width>
         <height>41</height>
        </rect>
@@ -807,8 +911,8 @@ p, li { white-space: pre-wrap; }
      <widget class="QPushButton" name="us2vacdown_but">
       <property name="geometry">
        <rect>
-        <x>510</x>
-        <y>310</y>
+        <x>330</x>
+        <y>130</y>
         <width>91</width>
         <height>61</height>
        </rect>
@@ -825,15 +929,15 @@ border:none;</string>
      <widget class="QLabel" name="label_90">
       <property name="geometry">
        <rect>
-        <x>210</x>
-        <y>-80</y>
-        <width>591</width>
-        <height>381</height>
+        <x>740</x>
+        <y>60</y>
+        <width>531</width>
+        <height>181</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color:transparent;
-image: url(:/images/main1.png);</string>
+       <string notr="true">border-radius:90px;
+border:3px solid black;</string>
       </property>
       <property name="text">
        <string/>
@@ -842,15 +946,15 @@ image: url(:/images/main1.png);</string>
      <widget class="QLabel" name="label_91">
       <property name="geometry">
        <rect>
-        <x>210</x>
-        <y>340</y>
-        <width>591</width>
-        <height>381</height>
+        <x>390</x>
+        <y>510</y>
+        <width>531</width>
+        <height>181</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color:transparent;
-image: url(:/images/main1.png);</string>
+       <string notr="true">border-radius:90px;
+border:3px solid black;</string>
       </property>
       <property name="text">
        <string/>
@@ -859,10 +963,10 @@ image: url(:/images/main1.png);</string>
      <widget class="QLabel" name="label_92">
       <property name="geometry">
        <rect>
-        <x>700</x>
-        <y>80</y>
-        <width>81</width>
-        <height>81</height>
+        <x>1210</x>
+        <y>110</y>
+        <width>91</width>
+        <height>91</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -877,10 +981,10 @@ border-radius:40px;font-weight: bold;</string>
      <widget class="QLabel" name="label_93">
       <property name="geometry">
        <rect>
-        <x>700</x>
-        <y>300</y>
-        <width>81</width>
-        <height>81</height>
+        <x>490</x>
+        <y>100</y>
+        <width>91</width>
+        <height>91</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -895,8 +999,8 @@ border-radius:40px;font-weight: bold;</string>
      <widget class="QPushButton" name="us2mode">
       <property name="geometry">
        <rect>
-        <x>610</x>
-        <y>30</y>
+        <x>1070</x>
+        <y>60</y>
         <width>121</width>
         <height>41</height>
        </rect>
@@ -916,8 +1020,8 @@ font:bold;background-color:white</string>
      <widget class="QPushButton" name="us2vacmode">
       <property name="geometry">
        <rect>
-        <x>620</x>
-        <y>250</y>
+        <x>350</x>
+        <y>60</y>
         <width>121</width>
         <height>41</height>
        </rect>
@@ -937,8 +1041,8 @@ font:bold;background-color:white</string>
      <widget class="QPushButton" name="CI2">
       <property name="geometry">
        <rect>
-        <x>660</x>
-        <y>500</y>
+        <x>840</x>
+        <y>590</y>
         <width>61</width>
         <height>61</height>
        </rect>
@@ -947,7 +1051,7 @@ font:bold;background-color:white</string>
        <string notr="true">font:20pt &quot;Ubuntu&quot;;
 background-color: rgb(224, 27, 36);
 color: rgb(224, 27, 36);
-image: url(:/ci.png);
+image: url(:/images/ci.png);
 border:5px solid black;
 border-radius:30px;font-weight: bold;</string>
       </property>
@@ -958,8 +1062,8 @@ border-radius:30px;font-weight: bold;</string>
      <widget class="QPushButton" name="us2onoff">
       <property name="geometry">
        <rect>
-        <x>640</x>
-        <y>90</y>
+        <x>1120</x>
+        <y>130</y>
         <width>61</width>
         <height>61</height>
        </rect>
@@ -977,8 +1081,8 @@ color: rgb(0, 0, 0);</string>
      <widget class="QLabel" name="label_94">
       <property name="geometry">
        <rect>
-        <x>0</x>
-        <y>530</y>
+        <x>230</x>
+        <y>370</y>
         <width>161</width>
         <height>51</height>
        </rect>
@@ -999,25 +1103,75 @@ color: rgb(255, 255, 255);</string>
      <widget class="QLabel" name="label_123">
       <property name="geometry">
        <rect>
-        <x>210</x>
-        <y>130</y>
-        <width>591</width>
-        <height>381</height>
+        <x>20</x>
+        <y>60</y>
+        <width>531</width>
+        <height>181</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color:transparent;
-image: url(:/images/main1.png);</string>
+       <string notr="true">border-radius:90px;
+border:3px solid black;</string>
       </property>
       <property name="text">
        <string/>
       </property>
      </widget>
+     <widget class="QComboBox" name="CutMode_vitCom_2">
+      <property name="geometry">
+       <rect>
+        <x>1030</x>
+        <y>300</y>
+        <width>221</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-radius:20px;
+color: rgb(255, 255, 255);
+background-color: rgb(0, 0, 0);
+font:20pt &quot;Ubuntu&quot;;</string>
+      </property>
+      <item>
+       <property name="text">
+        <string>Continous</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Pulse</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Ocupulse</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Ocuburst</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Single burst</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Multi burst</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Cold phaco</string>
+       </property>
+      </item>
+     </widget>
      <zorder>label_123</zorder>
      <zorder>label_91</zorder>
      <zorder>label_90</zorder>
      <zorder>lineEdit_58</zorder>
-     <zorder>us2powup_but</zorder>
      <zorder>us2powdown_but</zorder>
      <zorder>lineEdit_59</zorder>
      <zorder>us2flowup_but</zorder>
@@ -1035,11 +1189,12 @@ image: url(:/images/main1.png);</string>
      <zorder>CI2</zorder>
      <zorder>us2onoff</zorder>
      <zorder>label_94</zorder>
+     <zorder>CutMode_vitCom_2</zorder>
+     <zorder>us2powup_but</zorder>
     </widget>
     <widget class="QWidget" name="tab_35">
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(28, 113, 216);
-</string>
+      <string notr="true">background-color:rgb(83, 104, 120);</string>
      </property>
      <attribute name="title">
       <string>Page</string>
@@ -1047,8 +1202,8 @@ image: url(:/images/main1.png);</string>
      <widget class="QPushButton" name="us3powup_but">
       <property name="geometry">
        <rect>
-        <x>260</x>
-        <y>90</y>
+        <x>790</x>
+        <y>120</y>
         <width>91</width>
         <height>61</height>
        </rect>
@@ -1065,8 +1220,8 @@ border:none;</string>
      <widget class="QPushButton" name="us3powdown_but">
       <property name="geometry">
        <rect>
-        <x>510</x>
-        <y>90</y>
+        <x>1020</x>
+        <y>120</y>
         <width>91</width>
         <height>61</height>
        </rect>
@@ -1083,8 +1238,8 @@ border:none;</string>
      <widget class="QLineEdit" name="lineEdit_61">
       <property name="geometry">
        <rect>
-        <x>380</x>
-        <y>90</y>
+        <x>890</x>
+        <y>120</y>
         <width>101</width>
         <height>61</height>
        </rect>
@@ -1102,68 +1257,11 @@ border:2px solid black;</string>
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
-     <widget class="QPushButton" name="us3flowup_but">
-      <property name="geometry">
-       <rect>
-        <x>270</x>
-        <y>520</y>
-        <width>91</width>
-        <height>61</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">image: url(:/images/up1.png);
-background-color:transparent;
-border:none;</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="us3flowdown_but">
-      <property name="geometry">
-       <rect>
-        <x>510</x>
-        <y>520</y>
-        <width>91</width>
-        <height>61</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">image: url(:/images/down1.png);
-background-color:transparent;
-border:none;</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="lineEdit_62">
-      <property name="geometry">
-       <rect>
-        <x>390</x>
-        <y>520</y>
-        <width>101</width>
-        <height>61</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">font:20pt &quot;Ubuntu&quot;;
-background-color: rgb(255,255,255);
-border-radius:20px;border:2px solid black;</string>
-      </property>
-      <property name="text">
-       <string>40</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
      <widget class="QTextEdit" name="textEdit_47">
       <property name="geometry">
        <rect>
-        <x>290</x>
-        <y>40</y>
+        <x>770</x>
+        <y>70</y>
         <width>251</width>
         <height>41</height>
        </rect>
@@ -1183,59 +1281,18 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;POWER(%)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
-     <widget class="QTextEdit" name="textEdit_48">
-      <property name="geometry">
-       <rect>
-        <x>300</x>
-        <y>470</y>
-        <width>221</width>
-        <height>51</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color:transparent;
-font: 15pt &quot;Ubuntu Condensed&quot;;
-font:bold;
-border:none;
-</string>
-      </property>
-      <property name="html">
-       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu Condensed'; font-size:15pt; font-weight:600; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:12pt;&quot;&gt;FLOW RATE(ml/min)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_95">
-      <property name="geometry">
-       <rect>
-        <x>210</x>
-        <y>130</y>
-        <width>591</width>
-        <height>381</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color:transparent;
-image: url(:/images/main1.png);</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
      <widget class="QLabel" name="label_96">
       <property name="geometry">
        <rect>
-        <x>210</x>
-        <y>340</y>
-        <width>591</width>
-        <height>381</height>
+        <x>410</x>
+        <y>510</y>
+        <width>511</width>
+        <height>181</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color:transparent;
-image: url(:/images/main1.png);</string>
+       <string notr="true">border-radius:90px;
+border:3px solid black;</string>
       </property>
       <property name="text">
        <string/>
@@ -1244,82 +1301,174 @@ image: url(:/images/main1.png);</string>
      <widget class="QLabel" name="label_97">
       <property name="geometry">
        <rect>
-        <x>210</x>
-        <y>-80</y>
-        <width>591</width>
-        <height>381</height>
+        <x>720</x>
+        <y>50</y>
+        <width>531</width>
+        <height>181</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color:transparent;
-image: url(:/images/main1.png);</string>
+       <string notr="true">border-radius:90px;
+border:3px solid black;</string>
       </property>
       <property name="text">
        <string/>
       </property>
      </widget>
-     <widget class="QPushButton" name="us3vacdown_but">
+     <widget class="QLabel" name="label_98">
       <property name="geometry">
        <rect>
-        <x>510</x>
-        <y>310</y>
+        <x>1210</x>
+        <y>100</y>
         <width>91</width>
-        <height>61</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">image: url(:/images/down1.png);
-background-color:transparent;
-border:none;</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="us3vacup_but">
-      <property name="geometry">
-       <rect>
-        <x>270</x>
-        <y>310</y>
-        <width>91</width>
-        <height>61</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">image: url(:/images/up1.png);
-background-color:transparent;
-border:none;</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="lineEdit_63">
-      <property name="geometry">
-       <rect>
-        <x>380</x>
-        <y>310</y>
-        <width>101</width>
-        <height>61</height>
+        <height>91</height>
        </rect>
       </property>
       <property name="styleSheet">
        <string notr="true">font:20pt &quot;Ubuntu&quot;;
-background-color: rgb(255,255,255);
-border-radius:20px;border:2px solid black;</string>
+border:5px solid black;
+border-radius:40px;font-weight: bold;</string>
       </property>
       <property name="text">
-       <string>500</string>
+       <string/>
       </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
+     </widget>
+     <widget class="QPushButton" name="us3mode">
+      <property name="geometry">
+       <rect>
+        <x>1080</x>
+        <y>50</y>
+        <width>121</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font:15pt &quot;Ubuntu&quot;;
+
+border-radius:20px;
+border:none;
+border:3px solid black;
+font:bold;background-color:white</string>
+      </property>
+      <property name="text">
+       <string>SURGEON</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="us3onoff">
+      <property name="geometry">
+       <rect>
+        <x>1130</x>
+        <y>120</y>
+        <width>61</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border:5px solid black;
+border-radius:30px;font-weight: bold;
+background-color: rgb(224, 27, 36);
+color: rgb(0, 0, 0);</string>
+      </property>
+      <property name="text">
+       <string>OFF</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_100">
+      <property name="geometry">
+       <rect>
+        <x>200</x>
+        <y>330</y>
+        <width>151</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font:30pt &quot;Ubuntu&quot;;
+
+border-radius:20px;
+
+border:none;font-weight: bold;border:3px solid black;
+background-color: rgb(0, 0, 0);
+color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>Chop</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="CutMode_vitCom_3">
+      <property name="geometry">
+       <rect>
+        <x>980</x>
+        <y>280</y>
+        <width>211</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-radius:20px;
+color: rgb(255, 255, 255);
+background-color: rgb(0, 0, 0);
+font:20pt &quot;Ubuntu&quot;;</string>
+      </property>
+      <item>
+       <property name="text">
+        <string>Continous</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Pulse</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Ocupulse</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Ocuburst</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Single burst</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Multi burst</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Cold phaco</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLabel" name="label_99">
+      <property name="geometry">
+       <rect>
+        <x>490</x>
+        <y>90</y>
+        <width>91</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font:20pt &quot;Ubuntu&quot;;
+border:5px solid black;
+border-radius:40px;font-weight: bold;</string>
+      </property>
+      <property name="text">
+       <string/>
       </property>
      </widget>
      <widget class="QTextEdit" name="textEdit_49">
       <property name="geometry">
        <rect>
-        <x>300</x>
-        <y>250</y>
+        <x>60</x>
+        <y>80</y>
         <width>241</width>
         <height>61</height>
        </rect>
@@ -1339,68 +1488,85 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;VACCUM (mmHg)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_98">
+     <widget class="QLabel" name="label_95">
       <property name="geometry">
        <rect>
-        <x>700</x>
-        <y>80</y>
-        <width>81</width>
-        <height>81</height>
+        <x>20</x>
+        <y>60</y>
+        <width>531</width>
+        <height>181</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">font:20pt &quot;Ubuntu&quot;;
-border:5px solid black;
-border-radius:40px;font-weight: bold;</string>
+       <string notr="true">border-radius:90px;
+border:3px solid black;</string>
       </property>
       <property name="text">
        <string/>
       </property>
      </widget>
-     <widget class="QLabel" name="label_99">
+     <widget class="QLineEdit" name="lineEdit_63">
       <property name="geometry">
        <rect>
-        <x>700</x>
-        <y>300</y>
-        <width>81</width>
-        <height>81</height>
+        <x>160</x>
+        <y>130</y>
+        <width>101</width>
+        <height>61</height>
        </rect>
       </property>
       <property name="styleSheet">
        <string notr="true">font:20pt &quot;Ubuntu&quot;;
-border:5px solid black;
-border-radius:40px;font-weight: bold;</string>
+background-color: rgb(255,255,255);
+border-radius:20px;border:2px solid black;</string>
+      </property>
+      <property name="text">
+       <string>500</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="us3vacdown_but">
+      <property name="geometry">
+       <rect>
+        <x>290</x>
+        <y>130</y>
+        <width>91</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">image: url(:/images/down1.png);
+background-color:transparent;
+border:none;</string>
       </property>
       <property name="text">
        <string/>
       </property>
      </widget>
-     <widget class="QPushButton" name="us3mode">
+     <widget class="QPushButton" name="us3vacup_but">
       <property name="geometry">
        <rect>
-        <x>610</x>
-        <y>30</y>
-        <width>121</width>
-        <height>41</height>
+        <x>30</x>
+        <y>130</y>
+        <width>91</width>
+        <height>61</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">font:15pt &quot;Ubuntu&quot;;
-
-border-radius:20px;
-border:none;
-border:3px solid black;
-font:bold;background-color:white</string>
+       <string notr="true">image: url(:/images/up1.png);
+background-color:transparent;
+border:none;</string>
       </property>
       <property name="text">
-       <string>SURGEON</string>
+       <string/>
       </property>
      </widget>
      <widget class="QPushButton" name="us3vacmode">
       <property name="geometry">
        <rect>
-        <x>620</x>
-        <y>240</y>
+        <x>350</x>
+        <y>60</y>
         <width>121</width>
         <height>41</height>
        </rect>
@@ -1420,8 +1586,8 @@ font:bold;background-color:white</string>
      <widget class="QPushButton" name="CI3">
       <property name="geometry">
        <rect>
-        <x>660</x>
-        <y>500</y>
+        <x>810</x>
+        <y>590</y>
         <width>61</width>
         <height>61</height>
        </rect>
@@ -1430,7 +1596,7 @@ font:bold;background-color:white</string>
        <string notr="true">font:20pt &quot;Ubuntu&quot;;
 background-color: rgb(224, 27, 36);
 color: rgb(224, 27, 36);
-image: url(:/ci.png);
+image: url(:/images/ci.png);
 border:5px solid black;
 border-radius:30px;font-weight: bold;</string>
       </property>
@@ -1438,74 +1604,114 @@ border-radius:30px;font-weight: bold;</string>
        <string/>
       </property>
      </widget>
-     <widget class="QPushButton" name="us3onoff">
+     <widget class="QLineEdit" name="lineEdit_62">
       <property name="geometry">
        <rect>
-        <x>640</x>
-        <y>90</y>
-        <width>61</width>
+        <x>560</x>
+        <y>600</y>
+        <width>101</width>
         <height>61</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">border:5px solid black;
-border-radius:30px;font-weight: bold;
-background-color: rgb(224, 27, 36);
-color: rgb(0, 0, 0);</string>
+       <string notr="true">font:20pt &quot;Ubuntu&quot;;
+background-color: rgb(255,255,255);
+border-radius:20px;border:2px solid black;</string>
       </property>
       <property name="text">
-       <string>OFF</string>
+       <string>40</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="label_100">
+     <widget class="QTextEdit" name="textEdit_48">
       <property name="geometry">
        <rect>
-        <x>0</x>
-        <y>530</y>
-        <width>151</width>
+        <x>440</x>
+        <y>550</y>
+        <width>221</width>
         <height>51</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">font:30pt &quot;Ubuntu&quot;;
-
-border-radius:20px;
-
-border:none;font-weight: bold;border:3px solid black;
-background-color: rgb(0, 0, 0);
-color: rgb(255, 255, 255);</string>
+       <string notr="true">background-color:transparent;
+font: 15pt &quot;Ubuntu Condensed&quot;;
+font:bold;
+border:none;
+</string>
+      </property>
+      <property name="html">
+       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu Condensed'; font-size:15pt; font-weight:600; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:12pt;&quot;&gt;FLOW RATE(ml/min)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="us3flowdown_but">
+      <property name="geometry">
+       <rect>
+        <x>690</x>
+        <y>600</y>
+        <width>91</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">image: url(:/images/down1.png);
+background-color:transparent;
+border:none;</string>
       </property>
       <property name="text">
-       <string>Chop</string>
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="us3flowup_but">
+      <property name="geometry">
+       <rect>
+        <x>430</x>
+        <y>600</y>
+        <width>91</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">image: url(:/images/up1.png);
+background-color:transparent;
+border:none;</string>
+      </property>
+      <property name="text">
+       <string/>
       </property>
      </widget>
      <zorder>label_97</zorder>
-     <zorder>label_95</zorder>
      <zorder>label_96</zorder>
      <zorder>us3powup_but</zorder>
      <zorder>us3powdown_but</zorder>
      <zorder>lineEdit_61</zorder>
-     <zorder>us3flowup_but</zorder>
-     <zorder>us3flowdown_but</zorder>
-     <zorder>lineEdit_62</zorder>
      <zorder>textEdit_47</zorder>
-     <zorder>textEdit_48</zorder>
-     <zorder>us3vacdown_but</zorder>
-     <zorder>us3vacup_but</zorder>
-     <zorder>lineEdit_63</zorder>
-     <zorder>textEdit_49</zorder>
      <zorder>label_98</zorder>
-     <zorder>label_99</zorder>
      <zorder>us3mode</zorder>
-     <zorder>us3vacmode</zorder>
-     <zorder>CI3</zorder>
      <zorder>us3onoff</zorder>
      <zorder>label_100</zorder>
+     <zorder>CutMode_vitCom_3</zorder>
+     <zorder>label_95</zorder>
+     <zorder>lineEdit_63</zorder>
+     <zorder>us3vacdown_but</zorder>
+     <zorder>us3vacup_but</zorder>
+     <zorder>us3vacmode</zorder>
+     <zorder>label_99</zorder>
+     <zorder>textEdit_49</zorder>
+     <zorder>CI3</zorder>
+     <zorder>lineEdit_62</zorder>
+     <zorder>textEdit_48</zorder>
+     <zorder>us3flowdown_but</zorder>
+     <zorder>us3flowup_but</zorder>
     </widget>
     <widget class="QWidget" name="tab_36">
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(28, 113, 216);
-</string>
+      <string notr="true">background-color:rgb(83, 104, 120);</string>
      </property>
      <attribute name="title">
       <string>Page</string>
@@ -1513,8 +1719,8 @@ color: rgb(255, 255, 255);</string>
      <widget class="QLineEdit" name="lineEdit_64">
       <property name="geometry">
        <rect>
-        <x>380</x>
-        <y>90</y>
+        <x>870</x>
+        <y>130</y>
         <width>101</width>
         <height>61</height>
        </rect>
@@ -1534,8 +1740,8 @@ border-radius:20px;border:2px solid black;</string>
      <widget class="QPushButton" name="us4powup_but">
       <property name="geometry">
        <rect>
-        <x>260</x>
-        <y>90</y>
+        <x>750</x>
+        <y>130</y>
         <width>91</width>
         <height>61</height>
        </rect>
@@ -1552,8 +1758,8 @@ border:none;</string>
      <widget class="QPushButton" name="us4powdown_but">
       <property name="geometry">
        <rect>
-        <x>510</x>
-        <y>90</y>
+        <x>1010</x>
+        <y>130</y>
         <width>91</width>
         <height>61</height>
        </rect>
@@ -1570,8 +1776,8 @@ border:none;</string>
      <widget class="QPushButton" name="us4flowup_but">
       <property name="geometry">
        <rect>
-        <x>270</x>
-        <y>520</y>
+        <x>410</x>
+        <y>590</y>
         <width>91</width>
         <height>61</height>
        </rect>
@@ -1588,8 +1794,8 @@ border:none;</string>
      <widget class="QLineEdit" name="lineEdit_65">
       <property name="geometry">
        <rect>
-        <x>390</x>
-        <y>520</y>
+        <x>560</x>
+        <y>590</y>
         <width>101</width>
         <height>61</height>
        </rect>
@@ -1609,8 +1815,8 @@ border-radius:20px;border:2px solid black;</string>
      <widget class="QPushButton" name="us4flowdown_but">
       <property name="geometry">
        <rect>
-        <x>510</x>
-        <y>520</y>
+        <x>700</x>
+        <y>580</y>
         <width>91</width>
         <height>61</height>
        </rect>
@@ -1627,8 +1833,8 @@ border:none;</string>
      <widget class="QTextEdit" name="textEdit_50">
       <property name="geometry">
        <rect>
-        <x>300</x>
-        <y>470</y>
+        <x>410</x>
+        <y>540</y>
         <width>221</width>
         <height>51</height>
        </rect>
@@ -1651,8 +1857,8 @@ p, li { white-space: pre-wrap; }
      <widget class="QTextEdit" name="textEdit_51">
       <property name="geometry">
        <rect>
-        <x>290</x>
-        <y>40</y>
+        <x>780</x>
+        <y>80</y>
         <width>251</width>
         <height>41</height>
        </rect>
@@ -1675,15 +1881,15 @@ p, li { white-space: pre-wrap; }
      <widget class="QLabel" name="label_101">
       <property name="geometry">
        <rect>
-        <x>210</x>
-        <y>130</y>
-        <width>591</width>
-        <height>381</height>
+        <x>20</x>
+        <y>60</y>
+        <width>531</width>
+        <height>181</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color:transparent;
-image: url(:/images/main1.png);</string>
+       <string notr="true">border-radius:90px;
+border:3px solid black;</string>
       </property>
       <property name="text">
        <string/>
@@ -1692,15 +1898,15 @@ image: url(:/images/main1.png);</string>
      <widget class="QLabel" name="label_102">
       <property name="geometry">
        <rect>
-        <x>210</x>
-        <y>-80</y>
-        <width>591</width>
-        <height>381</height>
+        <x>740</x>
+        <y>60</y>
+        <width>531</width>
+        <height>181</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color:transparent;
-image: url(:/images/main1.png);</string>
+       <string notr="true">border-radius:90px;
+border:3px solid black;</string>
       </property>
       <property name="text">
        <string/>
@@ -1709,15 +1915,15 @@ image: url(:/images/main1.png);</string>
      <widget class="QLabel" name="label_103">
       <property name="geometry">
        <rect>
-        <x>210</x>
-        <y>340</y>
-        <width>591</width>
-        <height>381</height>
+        <x>370</x>
+        <y>510</y>
+        <width>531</width>
+        <height>181</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color:transparent;
-image: url(:/images/main1.png);</string>
+       <string notr="true">border-radius:90px;
+border:3px solid black;</string>
       </property>
       <property name="text">
        <string/>
@@ -1726,8 +1932,8 @@ image: url(:/images/main1.png);</string>
      <widget class="QTextEdit" name="textEdit_52">
       <property name="geometry">
        <rect>
-        <x>300</x>
-        <y>250</y>
+        <x>70</x>
+        <y>80</y>
         <width>241</width>
         <height>61</height>
        </rect>
@@ -1750,8 +1956,8 @@ p, li { white-space: pre-wrap; }
      <widget class="QPushButton" name="us4vacdown_but">
       <property name="geometry">
        <rect>
-        <x>510</x>
-        <y>310</y>
+        <x>340</x>
+        <y>130</y>
         <width>91</width>
         <height>61</height>
        </rect>
@@ -1768,8 +1974,8 @@ border:none;</string>
      <widget class="QLineEdit" name="lineEdit_66">
       <property name="geometry">
        <rect>
-        <x>380</x>
-        <y>310</y>
+        <x>180</x>
+        <y>130</y>
         <width>101</width>
         <height>61</height>
        </rect>
@@ -1789,8 +1995,8 @@ border-radius:20px;border:2px solid black;</string>
      <widget class="QPushButton" name="us4vacup_but">
       <property name="geometry">
        <rect>
-        <x>270</x>
-        <y>310</y>
+        <x>40</x>
+        <y>130</y>
         <width>91</width>
         <height>61</height>
        </rect>
@@ -1807,10 +2013,10 @@ border:none;</string>
      <widget class="QLabel" name="label_104">
       <property name="geometry">
        <rect>
-        <x>700</x>
-        <y>300</y>
-        <width>81</width>
-        <height>81</height>
+        <x>490</x>
+        <y>100</y>
+        <width>91</width>
+        <height>91</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -1825,10 +2031,10 @@ border-radius:40px;font-weight: bold;</string>
      <widget class="QLabel" name="label_105">
       <property name="geometry">
        <rect>
-        <x>700</x>
-        <y>80</y>
-        <width>81</width>
-        <height>81</height>
+        <x>1210</x>
+        <y>110</y>
+        <width>91</width>
+        <height>91</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -1843,8 +2049,8 @@ border-radius:40px;font-weight: bold;</string>
      <widget class="QPushButton" name="us4mode">
       <property name="geometry">
        <rect>
-        <x>610</x>
-        <y>30</y>
+        <x>1080</x>
+        <y>60</y>
         <width>121</width>
         <height>41</height>
        </rect>
@@ -1864,8 +2070,8 @@ border:3px solid black;</string>
      <widget class="QPushButton" name="us4vacmode">
       <property name="geometry">
        <rect>
-        <x>620</x>
-        <y>240</y>
+        <x>360</x>
+        <y>60</y>
         <width>121</width>
         <height>41</height>
        </rect>
@@ -1885,8 +2091,8 @@ border:3px solid black;</string>
      <widget class="QPushButton" name="CI4">
       <property name="geometry">
        <rect>
-        <x>660</x>
-        <y>500</y>
+        <x>830</x>
+        <y>560</y>
         <width>61</width>
         <height>61</height>
        </rect>
@@ -1895,7 +2101,7 @@ border:3px solid black;</string>
        <string notr="true">font:20pt &quot;Ubuntu&quot;;
 background-color: rgb(224, 27, 36);
 color: rgb(224, 27, 36);
-image: url(:/ci.png);
+image: url(:/images/ci.png);
 border:5px solid black;
 border-radius:30px;font-weight: bold;</string>
       </property>
@@ -1906,8 +2112,8 @@ border-radius:30px;font-weight: bold;</string>
      <widget class="QPushButton" name="us4onoff">
       <property name="geometry">
        <rect>
-        <x>640</x>
-        <y>90</y>
+        <x>1120</x>
+        <y>130</y>
         <width>61</width>
         <height>61</height>
        </rect>
@@ -1925,8 +2131,8 @@ color: rgb(0, 0, 0);</string>
      <widget class="QLabel" name="label_106">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>530</y>
+        <x>200</x>
+        <y>340</y>
         <width>161</width>
         <height>51</height>
        </rect>
@@ -1943,6 +2149,57 @@ color: rgb(255, 255, 255);</string>
       <property name="text">
        <string>Sculpt</string>
       </property>
+     </widget>
+     <widget class="QComboBox" name="CutMode_vitCom_4">
+      <property name="geometry">
+       <rect>
+        <x>1010</x>
+        <y>290</y>
+        <width>211</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-radius:20px;
+color: rgb(255, 255, 255);
+background-color: rgb(0, 0, 0);
+font:20pt &quot;Ubuntu&quot;;</string>
+      </property>
+      <item>
+       <property name="text">
+        <string>Continous</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Pulse</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Ocupulse</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Ocuburst</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Single burst</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Multi burst</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Cold phaco</string>
+       </property>
+      </item>
      </widget>
      <zorder>label_102</zorder>
      <zorder>label_101</zorder>
@@ -1966,11 +2223,11 @@ color: rgb(255, 255, 255);</string>
      <zorder>CI4</zorder>
      <zorder>us4onoff</zorder>
      <zorder>label_106</zorder>
+     <zorder>CutMode_vitCom_4</zorder>
     </widget>
     <widget class="QWidget" name="tab_38">
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(28, 113, 216);
-</string>
+      <string notr="true">background-color:rgb(83, 104, 120);</string>
      </property>
      <attribute name="title">
       <string>Page</string>
@@ -1978,8 +2235,8 @@ color: rgb(255, 255, 255);</string>
      <widget class="QPushButton" name="ia2flowup_but">
       <property name="geometry">
        <rect>
-        <x>270</x>
-        <y>460</y>
+        <x>430</x>
+        <y>600</y>
         <width>91</width>
         <height>61</height>
        </rect>
@@ -1996,8 +2253,8 @@ border:none;</string>
      <widget class="QPushButton" name="ia2flowdown_but">
       <property name="geometry">
        <rect>
-        <x>520</x>
-        <y>450</y>
+        <x>680</x>
+        <y>600</y>
         <width>91</width>
         <height>61</height>
        </rect>
@@ -2014,8 +2271,8 @@ border:none;</string>
      <widget class="QLineEdit" name="lineEdit_69">
       <property name="geometry">
        <rect>
-        <x>390</x>
-        <y>460</y>
+        <x>550</x>
+        <y>600</y>
         <width>101</width>
         <height>61</height>
        </rect>
@@ -2036,8 +2293,8 @@ border-radius:20px;border:2px solid black;</string>
      <widget class="QTextEdit" name="textEdit_55">
       <property name="geometry">
        <rect>
-        <x>290</x>
-        <y>410</y>
+        <x>440</x>
+        <y>550</y>
         <width>201</width>
         <height>41</height>
        </rect>
@@ -2060,15 +2317,15 @@ p, li { white-space: pre-wrap; }
      <widget class="QLabel" name="label_111">
       <property name="geometry">
        <rect>
-        <x>210</x>
-        <y>30</y>
-        <width>591</width>
-        <height>381</height>
+        <x>30</x>
+        <y>50</y>
+        <width>531</width>
+        <height>181</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color:transparent;
-image: url(:/images/main1.png);</string>
+       <string notr="true">border-radius:90px;
+border:3px solid black;</string>
       </property>
       <property name="text">
        <string/>
@@ -2077,15 +2334,15 @@ image: url(:/images/main1.png);</string>
      <widget class="QLabel" name="label_112">
       <property name="geometry">
        <rect>
-        <x>210</x>
-        <y>280</y>
-        <width>591</width>
-        <height>381</height>
+        <x>400</x>
+        <y>510</y>
+        <width>521</width>
+        <height>181</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color:transparent;
-image: url(:/images/main1.png);</string>
+       <string notr="true">border-radius:90px;
+border:3px solid black;</string>
       </property>
       <property name="text">
        <string/>
@@ -2094,8 +2351,8 @@ image: url(:/images/main1.png);</string>
      <widget class="QLineEdit" name="lineEdit_70">
       <property name="geometry">
        <rect>
-        <x>380</x>
-        <y>210</y>
+        <x>200</x>
+        <y>120</y>
         <width>101</width>
         <height>61</height>
        </rect>
@@ -2116,8 +2373,8 @@ border-radius:20px;border:2px solid black;</string>
      <widget class="QPushButton" name="ia2vacup_but">
       <property name="geometry">
        <rect>
-        <x>270</x>
-        <y>210</y>
+        <x>60</x>
+        <y>120</y>
         <width>91</width>
         <height>61</height>
        </rect>
@@ -2134,8 +2391,8 @@ border:none;</string>
      <widget class="QTextEdit" name="textEdit_56">
       <property name="geometry">
        <rect>
-        <x>300</x>
-        <y>150</y>
+        <x>70</x>
+        <y>70</y>
         <width>351</width>
         <height>31</height>
        </rect>
@@ -2158,8 +2415,8 @@ p, li { white-space: pre-wrap; }
      <widget class="QPushButton" name="ia2vacdown_but">
       <property name="geometry">
        <rect>
-        <x>510</x>
-        <y>210</y>
+        <x>360</x>
+        <y>120</y>
         <width>91</width>
         <height>61</height>
        </rect>
@@ -2176,10 +2433,10 @@ border:none;</string>
      <widget class="QLabel" name="label_113">
       <property name="geometry">
        <rect>
-        <x>690</x>
-        <y>190</y>
-        <width>81</width>
-        <height>81</height>
+        <x>500</x>
+        <y>90</y>
+        <width>91</width>
+        <height>91</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -2194,8 +2451,8 @@ border-radius:40px;font-weight: bold;</string>
      <widget class="QPushButton" name="ia2mode">
       <property name="geometry">
        <rect>
-        <x>610</x>
-        <y>130</y>
+        <x>360</x>
+        <y>50</y>
         <width>121</width>
         <height>41</height>
        </rect>
@@ -2215,8 +2472,8 @@ border:3px solid black;</string>
      <widget class="QLabel" name="label_114">
       <property name="geometry">
        <rect>
-        <x>420</x>
-        <y>320</y>
+        <x>200</x>
+        <y>410</y>
         <width>191</width>
         <height>51</height>
        </rect>
@@ -2234,6 +2491,27 @@ color: rgb(255, 255, 255);</string>
        <string>Polish</string>
       </property>
      </widget>
+     <widget class="QPushButton" name="CI5_3">
+      <property name="geometry">
+       <rect>
+        <x>840</x>
+        <y>590</y>
+        <width>61</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font:20pt &quot;Ubuntu&quot;;
+background-color: rgb(224, 27, 36);
+color: rgb(224, 27, 36);
+image: url(:/images/ci.png);
+border:5px solid black;
+border-radius:30px;font-weight: bold;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
      <zorder>label_112</zorder>
      <zorder>ia2flowup_but</zorder>
      <zorder>ia2flowdown_but</zorder>
@@ -2247,11 +2525,11 @@ color: rgb(255, 255, 255);</string>
      <zorder>label_114</zorder>
      <zorder>textEdit_56</zorder>
      <zorder>textEdit_55</zorder>
+     <zorder>CI5_3</zorder>
     </widget>
     <widget class="QWidget" name="tab_37">
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(28, 113, 216);
-</string>
+      <string notr="true">background-color:rgb(83, 104, 120);</string>
      </property>
      <attribute name="title">
       <string>Page</string>
@@ -2259,8 +2537,8 @@ color: rgb(255, 255, 255);</string>
      <widget class="QPushButton" name="ia1flowdown_but">
       <property name="geometry">
        <rect>
-        <x>520</x>
-        <y>450</y>
+        <x>680</x>
+        <y>590</y>
         <width>91</width>
         <height>61</height>
        </rect>
@@ -2277,8 +2555,8 @@ border:none;</string>
      <widget class="QLineEdit" name="lineEdit_67">
       <property name="geometry">
        <rect>
-        <x>390</x>
-        <y>460</y>
+        <x>550</x>
+        <y>600</y>
         <width>101</width>
         <height>61</height>
        </rect>
@@ -2298,8 +2576,8 @@ border-radius:20px;border:2px solid black;</string>
      <widget class="QPushButton" name="ia1flowup_but">
       <property name="geometry">
        <rect>
-        <x>270</x>
-        <y>460</y>
+        <x>430</x>
+        <y>600</y>
         <width>91</width>
         <height>61</height>
        </rect>
@@ -2316,8 +2594,8 @@ border:none;</string>
      <widget class="QTextEdit" name="textEdit_53">
       <property name="geometry">
        <rect>
-        <x>290</x>
-        <y>410</y>
+        <x>450</x>
+        <y>550</y>
         <width>191</width>
         <height>41</height>
        </rect>
@@ -2340,15 +2618,15 @@ p, li { white-space: pre-wrap; }
      <widget class="QLabel" name="label_107">
       <property name="geometry">
        <rect>
-        <x>210</x>
-        <y>30</y>
-        <width>591</width>
-        <height>381</height>
+        <x>30</x>
+        <y>50</y>
+        <width>531</width>
+        <height>181</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color:transparent;
-image: url(:/images/main1.png);</string>
+       <string notr="true">border-radius:90px;
+border:3px solid black;</string>
       </property>
       <property name="text">
        <string/>
@@ -2357,15 +2635,15 @@ image: url(:/images/main1.png);</string>
      <widget class="QLabel" name="label_108">
       <property name="geometry">
        <rect>
-        <x>210</x>
-        <y>280</y>
-        <width>591</width>
-        <height>381</height>
+        <x>390</x>
+        <y>510</y>
+        <width>531</width>
+        <height>181</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color:transparent;
-image: url(:/images/main1.png);</string>
+       <string notr="true">border-radius:90px;
+border:3px solid black;</string>
       </property>
       <property name="text">
        <string/>
@@ -2374,8 +2652,8 @@ image: url(:/images/main1.png);</string>
      <widget class="QPushButton" name="ia1vacdown_but">
       <property name="geometry">
        <rect>
-        <x>510</x>
-        <y>210</y>
+        <x>370</x>
+        <y>130</y>
         <width>91</width>
         <height>61</height>
        </rect>
@@ -2392,8 +2670,8 @@ border:none;</string>
      <widget class="QTextEdit" name="textEdit_54">
       <property name="geometry">
        <rect>
-        <x>300</x>
-        <y>150</y>
+        <x>70</x>
+        <y>60</y>
         <width>271</width>
         <height>51</height>
        </rect>
@@ -2416,8 +2694,8 @@ p, li { white-space: pre-wrap; }
      <widget class="QPushButton" name="ia1vacup_but">
       <property name="geometry">
        <rect>
-        <x>270</x>
-        <y>210</y>
+        <x>70</x>
+        <y>130</y>
         <width>91</width>
         <height>61</height>
        </rect>
@@ -2434,8 +2712,8 @@ border:none;</string>
      <widget class="QLineEdit" name="lineEdit_68">
       <property name="geometry">
        <rect>
-        <x>380</x>
-        <y>210</y>
+        <x>210</x>
+        <y>130</y>
         <width>101</width>
         <height>61</height>
        </rect>
@@ -2455,10 +2733,10 @@ border-radius:20px;border:2px solid black;</string>
      <widget class="QLabel" name="label_109">
       <property name="geometry">
        <rect>
-        <x>690</x>
-        <y>190</y>
-        <width>81</width>
-        <height>81</height>
+        <x>500</x>
+        <y>90</y>
+        <width>91</width>
+        <height>91</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -2473,8 +2751,8 @@ border-radius:40px;font-weight: bold;</string>
      <widget class="QPushButton" name="ia1mode">
       <property name="geometry">
        <rect>
-        <x>610</x>
-        <y>130</y>
+        <x>360</x>
+        <y>50</y>
         <width>121</width>
         <height>41</height>
        </rect>
@@ -2494,8 +2772,8 @@ border:3px solid black;</string>
      <widget class="QLabel" name="label_110">
       <property name="geometry">
        <rect>
-        <x>420</x>
-        <y>320</y>
+        <x>190</x>
+        <y>390</y>
         <width>181</width>
         <height>51</height>
        </rect>
@@ -2513,11 +2791,29 @@ color: rgb(255, 255, 255);</string>
        <string>Cortex</string>
       </property>
      </widget>
+     <widget class="QPushButton" name="CI5_4">
+      <property name="geometry">
+       <rect>
+        <x>840</x>
+        <y>580</y>
+        <width>61</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font:20pt &quot;Ubuntu&quot;;
+background-color: rgb(224, 27, 36);
+color: rgb(224, 27, 36);
+image: url(:/images/ci.png);
+border:5px solid black;
+border-radius:30px;font-weight: bold;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
      <zorder>label_108</zorder>
-     <zorder>ia1flowdown_but</zorder>
      <zorder>lineEdit_67</zorder>
-     <zorder>ia1flowup_but</zorder>
-     <zorder>textEdit_53</zorder>
      <zorder>label_107</zorder>
      <zorder>ia1vacdown_but</zorder>
      <zorder>textEdit_54</zorder>
@@ -2526,11 +2822,14 @@ color: rgb(255, 255, 255);</string>
      <zorder>label_109</zorder>
      <zorder>ia1mode</zorder>
      <zorder>label_110</zorder>
+     <zorder>CI5_4</zorder>
+     <zorder>ia1flowdown_but</zorder>
+     <zorder>ia1flowup_but</zorder>
+     <zorder>textEdit_53</zorder>
     </widget>
     <widget class="QWidget" name="tab_39">
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(28, 113, 216);
-</string>
+      <string notr="true">background-color:rgb(83, 104, 120);</string>
      </property>
      <attribute name="title">
       <string>Page</string>
@@ -2538,8 +2837,8 @@ color: rgb(255, 255, 255);</string>
      <widget class="QLineEdit" name="lineEdit_71">
       <property name="geometry">
        <rect>
-        <x>380</x>
-        <y>90</y>
+        <x>870</x>
+        <y>100</y>
         <width>101</width>
         <height>61</height>
        </rect>
@@ -2559,8 +2858,8 @@ border-radius:20px;border:2px solid black;</string>
      <widget class="QPushButton" name="vitpowup_but">
       <property name="geometry">
        <rect>
-        <x>270</x>
-        <y>90</y>
+        <x>770</x>
+        <y>100</y>
         <width>91</width>
         <height>61</height>
        </rect>
@@ -2577,8 +2876,8 @@ border:none;</string>
      <widget class="QPushButton" name="vitpowdown_but">
       <property name="geometry">
        <rect>
-        <x>510</x>
-        <y>90</y>
+        <x>990</x>
+        <y>100</y>
         <width>91</width>
         <height>61</height>
        </rect>
@@ -2595,8 +2894,8 @@ border:none;</string>
      <widget class="QLineEdit" name="lineEdit_72">
       <property name="geometry">
        <rect>
-        <x>390</x>
-        <y>520</y>
+        <x>540</x>
+        <y>600</y>
         <width>101</width>
         <height>61</height>
        </rect>
@@ -2616,8 +2915,8 @@ border-radius:20px;border:2px solid black;</string>
      <widget class="QPushButton" name="vitflowup_but">
       <property name="geometry">
        <rect>
-        <x>270</x>
-        <y>520</y>
+        <x>420</x>
+        <y>600</y>
         <width>91</width>
         <height>61</height>
        </rect>
@@ -2634,8 +2933,8 @@ border:none;</string>
      <widget class="QPushButton" name="vitflowdown_but">
       <property name="geometry">
        <rect>
-        <x>510</x>
-        <y>520</y>
+        <x>660</x>
+        <y>590</y>
         <width>91</width>
         <height>61</height>
        </rect>
@@ -2652,8 +2951,8 @@ border:none;</string>
      <widget class="QTextEdit" name="textEdit_57">
       <property name="geometry">
        <rect>
-        <x>290</x>
-        <y>40</y>
+        <x>770</x>
+        <y>60</y>
         <width>251</width>
         <height>41</height>
        </rect>
@@ -2676,8 +2975,8 @@ p, li { white-space: pre-wrap; }
      <widget class="QTextEdit" name="textEdit_58">
       <property name="geometry">
        <rect>
-        <x>300</x>
-        <y>460</y>
+        <x>430</x>
+        <y>560</y>
         <width>221</width>
         <height>51</height>
        </rect>
@@ -2700,15 +2999,15 @@ p, li { white-space: pre-wrap; }
      <widget class="QLabel" name="label_115">
       <property name="geometry">
        <rect>
-        <x>220</x>
-        <y>130</y>
-        <width>591</width>
-        <height>381</height>
+        <x>30</x>
+        <y>60</y>
+        <width>531</width>
+        <height>181</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color:transparent;
-image: url(:/images/main1.png);</string>
+       <string notr="true">border-radius:90px;
+border:3px solid black;</string>
       </property>
       <property name="text">
        <string/>
@@ -2717,15 +3016,15 @@ image: url(:/images/main1.png);</string>
      <widget class="QLabel" name="label_117">
       <property name="geometry">
        <rect>
-        <x>220</x>
-        <y>-80</y>
-        <width>591</width>
-        <height>381</height>
+        <x>730</x>
+        <y>50</y>
+        <width>531</width>
+        <height>181</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color:transparent;
-image: url(:/images/main1.png);</string>
+       <string notr="true">border-radius:90px;
+border:3px solid black;</string>
       </property>
       <property name="text">
        <string/>
@@ -2734,8 +3033,8 @@ image: url(:/images/main1.png);</string>
      <widget class="QPushButton" name="vitvacup_but">
       <property name="geometry">
        <rect>
-        <x>270</x>
-        <y>310</y>
+        <x>70</x>
+        <y>140</y>
         <width>91</width>
         <height>61</height>
        </rect>
@@ -2752,8 +3051,8 @@ border:none;</string>
      <widget class="QPushButton" name="vitvacdown_but">
       <property name="geometry">
        <rect>
-        <x>510</x>
-        <y>310</y>
+        <x>350</x>
+        <y>130</y>
         <width>91</width>
         <height>61</height>
        </rect>
@@ -2770,8 +3069,8 @@ border:none;</string>
      <widget class="QTextEdit" name="textEdit_59">
       <property name="geometry">
        <rect>
-        <x>300</x>
-        <y>250</y>
+        <x>70</x>
+        <y>90</y>
         <width>241</width>
         <height>61</height>
        </rect>
@@ -2794,8 +3093,8 @@ p, li { white-space: pre-wrap; }
      <widget class="QLineEdit" name="lineEdit_73">
       <property name="geometry">
        <rect>
-        <x>380</x>
-        <y>310</y>
+        <x>200</x>
+        <y>130</y>
         <width>101</width>
         <height>61</height>
        </rect>
@@ -2815,10 +3114,10 @@ border-radius:20px;border:2px solid black;</string>
      <widget class="QLabel" name="label_118">
       <property name="geometry">
        <rect>
-        <x>710</x>
-        <y>290</y>
-        <width>81</width>
-        <height>81</height>
+        <x>490</x>
+        <y>90</y>
+        <width>91</width>
+        <height>91</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -2833,10 +3132,10 @@ border-radius:40px;font-weight: bold;</string>
      <widget class="QLabel" name="label_119">
       <property name="geometry">
        <rect>
-        <x>710</x>
+        <x>1200</x>
         <y>80</y>
-        <width>81</width>
-        <height>81</height>
+        <width>91</width>
+        <height>91</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -2851,7 +3150,7 @@ border-radius:40px;font-weight: bold;</string>
      <widget class="QPushButton" name="vitmode">
       <property name="geometry">
        <rect>
-        <x>640</x>
+        <x>1080</x>
         <y>30</y>
         <width>121</width>
         <height>41</height>
@@ -2872,8 +3171,8 @@ border:3px solid black;</string>
      <widget class="QPushButton" name="vitvacmode">
       <property name="geometry">
        <rect>
-        <x>630</x>
-        <y>240</y>
+        <x>370</x>
+        <y>60</y>
         <width>121</width>
         <height>41</height>
        </rect>
@@ -2893,8 +3192,8 @@ border:3px solid black;</string>
      <widget class="QPushButton" name="vitonoff">
       <property name="geometry">
        <rect>
-        <x>650</x>
-        <y>90</y>
+        <x>1100</x>
+        <y>100</y>
         <width>61</width>
         <height>61</height>
        </rect>
@@ -2912,8 +3211,8 @@ color: rgb(0, 0, 0);</string>
      <widget class="QPushButton" name="CI5">
       <property name="geometry">
        <rect>
-        <x>690</x>
-        <y>480</y>
+        <x>840</x>
+        <y>580</y>
         <width>61</width>
         <height>61</height>
        </rect>
@@ -2922,36 +3221,86 @@ color: rgb(0, 0, 0);</string>
        <string notr="true">font:20pt &quot;Ubuntu&quot;;
 background-color: rgb(224, 27, 36);
 color: rgb(224, 27, 36);
-image: url(:/ci.png);
+image: url(:/images/ci.png);
 border:5px solid black;
 border-radius:30px;font-weight: bold;</string>
-      </property>
-      <property name="text">
-       <string>ci</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_122">
-      <property name="geometry">
-       <rect>
-        <x>220</x>
-        <y>340</y>
-        <width>591</width>
-        <height>381</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color:transparent;
-image: url(:/images/main1.png);</string>
       </property>
       <property name="text">
        <string/>
       </property>
      </widget>
+     <widget class="QLabel" name="label_122">
+      <property name="geometry">
+       <rect>
+        <x>390</x>
+        <y>510</y>
+        <width>531</width>
+        <height>181</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-radius:90px;
+border:3px solid black;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="CutMode_vitCom_5">
+      <property name="geometry">
+       <rect>
+        <x>920</x>
+        <y>250</y>
+        <width>221</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-radius:20px;
+color: rgb(255, 255, 255);
+background-color: rgb(0, 0, 0);
+font:20pt &quot;Ubuntu&quot;;</string>
+      </property>
+      <item>
+       <property name="text">
+        <string>Continous</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Pulse</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Ocupulse</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Ocuburst</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Single burst</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Multi burst</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Cold phaco</string>
+       </property>
+      </item>
+     </widget>
      <zorder>label_115</zorder>
      <zorder>label_122</zorder>
      <zorder>label_117</zorder>
      <zorder>lineEdit_71</zorder>
-     <zorder>vitpowup_but</zorder>
      <zorder>vitpowdown_but</zorder>
      <zorder>lineEdit_72</zorder>
      <zorder>vitflowup_but</zorder>
@@ -2968,42 +3317,22 @@ image: url(:/images/main1.png);</string>
      <zorder>vitvacmode</zorder>
      <zorder>vitonoff</zorder>
      <zorder>CI5</zorder>
+     <zorder>CutMode_vitCom_5</zorder>
+     <zorder>vitpowup_but</zorder>
     </widget>
     <widget class="QWidget" name="tab_40">
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(28, 113, 216);
-</string>
+      <string notr="true">background-color:rgb(83, 104, 120);</string>
      </property>
      <attribute name="title">
       <string>Page</string>
      </attribute>
-     <widget class="QLineEdit" name="lineEdit_74">
-      <property name="geometry">
-       <rect>
-        <x>390</x>
-        <y>240</y>
-        <width>111</width>
-        <height>71</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">font:20pt &quot;Ubuntu&quot;;
-background-color: rgb(255,255,255);
-border-radius:20px;border:2px solid black;</string>
-      </property>
-      <property name="text">
-       <string>100</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
      <widget class="QTextEdit" name="textEdit_60">
       <property name="geometry">
        <rect>
-        <x>290</x>
-        <y>200</y>
-        <width>104</width>
+        <x>800</x>
+        <y>80</y>
+        <width>181</width>
         <height>70</height>
        </rect>
       </property>
@@ -3022,70 +3351,11 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;POWER(%)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_120">
-      <property name="geometry">
-       <rect>
-        <x>210</x>
-        <y>110</y>
-        <width>601</width>
-        <height>331</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color:transparent;
-image: url(:/images/main1.png);</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_121">
-      <property name="geometry">
-       <rect>
-        <x>700</x>
-        <y>230</y>
-        <width>81</width>
-        <height>81</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">font:20pt &quot;Ubuntu&quot;;
-background-color: rgb(28, 113, 216);
-
-border:5px solid black;
-border-radius:40px;font-weight: bold;</string>
-      </property>
-      <property name="text">
-       <string>10</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="diapowup_but">
-      <property name="geometry">
-       <rect>
-        <x>260</x>
-        <y>250</y>
-        <width>91</width>
-        <height>61</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">image: url(:/images/up1.png);
-background-color: transparent;
-
-border:none;</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
      <widget class="QPushButton" name="diapowdown_but">
       <property name="geometry">
        <rect>
-        <x>550</x>
-        <y>250</y>
+        <x>1060</x>
+        <y>140</y>
         <width>91</width>
         <height>61</height>
        </rect>
@@ -3100,74 +3370,112 @@ border:none;</string>
        <string/>
       </property>
      </widget>
-     <zorder>label_120</zorder>
-     <zorder>lineEdit_74</zorder>
-     <zorder>textEdit_60</zorder>
-     <zorder>label_121</zorder>
-     <zorder>diapowup_but</zorder>
-     <zorder>diapowdown_but</zorder>
-    </widget>
-   </widget>
-   <widget class="QLabel" name="CutMode_vit">
-    <property name="geometry">
-     <rect>
-      <x>500</x>
-      <y>90</y>
-      <width>181</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color:transparent;font: 15pt &quot;Ubuntu Condensed&quot;;
-font:bold;</string>
-    </property>
-    <property name="text">
-     <string>Mode</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="ULTRASONICBUT4">
-    <property name="geometry">
-     <rect>
-      <x>190</x>
-      <y>410</y>
-      <width>81</width>
-      <height>81</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">font:20pt &quot;Ubuntu&quot;;
+     <widget class="QLabel" name="label_120">
+      <property name="geometry">
+       <rect>
+        <x>760</x>
+        <y>60</y>
+        <width>541</width>
+        <height>201</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-radius:90px;
+border:5px solid black;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="diapowup_but">
+      <property name="geometry">
+       <rect>
+        <x>810</x>
+        <y>140</y>
+        <width>91</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">image: url(:/images/up1.png);
+background-color: transparent;
 
-border-radius:40px;
-border:none;
-font-weight: bold;border:3px solid black;</string>
-    </property>
-    <property name="text">
-     <string>U/S 4</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_9">
-    <property name="geometry">
-     <rect>
-      <x>460</x>
-      <y>210</y>
-      <width>231</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(28, 113, 216);
-</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
+border:none;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_74">
+      <property name="geometry">
+       <rect>
+        <x>930</x>
+        <y>130</y>
+        <width>111</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font:20pt &quot;Ubuntu&quot;;
+background-color: rgb(255,255,255);
+border-radius:20px;border:2px solid black;</string>
+      </property>
+      <property name="text">
+       <string>100</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="CI5_2">
+      <property name="geometry">
+       <rect>
+        <x>1170</x>
+        <y>130</y>
+        <width>61</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font:20pt &quot;Ubuntu&quot;;
+background-color: rgb(224, 27, 36);
+color: rgb(224, 27, 36);
+image: url(:/images/ci.png);
+border:5px solid black;
+border-radius:30px;font-weight: bold;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_18">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>300</y>
+        <width>121</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <zorder>label_120</zorder>
+     <zorder>diapowup_but</zorder>
+     <zorder>lineEdit_74</zorder>
+     <zorder>CI5_2</zorder>
+     <zorder>diapowdown_but</zorder>
+     <zorder>textEdit_60</zorder>
+     <zorder>label_18</zorder>
+    </widget>
    </widget>
    <widget class="QComboBox" name="comboBox_4">
     <property name="geometry">
      <rect>
-      <x>190</x>
-      <y>30</y>
-      <width>261</width>
+      <x>100</x>
+      <y>10</y>
+      <width>361</width>
       <height>51</height>
      </rect>
     </property>
@@ -3181,110 +3489,34 @@ font-weight: bold;</string>
     </property>
     <item>
      <property name="text">
-      <string>    Surgeon 1</string>
+      <string>Surgeon 1</string>
      </property>
     </item>
     <item>
      <property name="text">
-      <string>    Surgeon 2</string>
+      <string>Surgeon 2</string>
      </property>
     </item>
     <item>
      <property name="text">
-      <string>    Surgeon 3</string>
+      <string>Surgeon 3</string>
      </property>
     </item>
     <item>
      <property name="text">
-      <string>    Surgeon 4</string>
+      <string>Surgeon 4</string>
      </property>
     </item>
     <item>
      <property name="text">
-      <string>    Surgeon 5</string>
+      <string>Surgeon 5</string>
      </property>
     </item>
-   </widget>
-   <widget class="QPushButton" name="IA1BUT">
-    <property name="geometry">
-     <rect>
-      <x>90</x>
-      <y>370</y>
-      <width>81</width>
-      <height>81</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">font:20pt &quot;Ubuntu&quot;;
-
-border-radius:40px;
-border:none;font-weight: bold;border:3px solid black;</string>
-    </property>
-    <property name="text">
-     <string>I/A 1</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="ULTRASONICBUT1">
-    <property name="geometry">
-     <rect>
-      <x>280</x>
-      <y>190</y>
-      <width>81</width>
-      <height>81</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">font:20pt &quot;Ubuntu&quot;;
-
-
-border-radius:40px;
-border:none;
-font-weight: bold;
-border:3px solid black;</string>
-    </property>
-    <property name="text">
-     <string>U/S 1</string>
-    </property>
-   </widget>
-   <widget class="QComboBox" name="CutMode_vitCom">
-    <property name="geometry">
-     <rect>
-      <x>480</x>
-      <y>120</y>
-      <width>181</width>
-      <height>61</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">border-radius:20px;
-color: rgb(255, 255, 255);
-background-color: rgb(0, 0, 0);
-font:20pt &quot;Ubuntu&quot;;</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_10">
-    <property name="geometry">
-     <rect>
-      <x>170</x>
-      <y>30</y>
-      <width>41</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">image: url(:/images/doctor.png);
-background-color: rgb(255, 255, 255);
-border-radius:20px;
-border:3px solid black;</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
    </widget>
    <widget class="QPushButton" name="elapsed_time">
     <property name="geometry">
      <rect>
-      <x>50</x>
+      <x>80</x>
       <y>630</y>
       <width>191</width>
       <height>41</height>
@@ -3302,14 +3534,14 @@ border-radius:20px;</string>
    <widget class="QPushButton" name="BACKBUT">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>-10</x>
       <y>0</y>
-      <width>111</width>
-      <height>91</height>
+      <width>101</width>
+      <height>71</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">image: url(:/images/backbutton.png);
+     <string notr="true">image: url(:/images/backarrowimg.png);
 border:none;</string>
     </property>
     <property name="text">
@@ -3333,54 +3565,202 @@ border:none;</string>
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="VITRECTOMYBUT">
+   <widget class="QLabel" name="label_14">
     <property name="geometry">
      <rect>
-      <x>90</x>
-      <y>190</y>
-      <width>81</width>
+      <x>670</x>
+      <y>380</y>
+      <width>41</width>
       <height>81</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font:20pt &quot;Ubuntu&quot;;
-
-border-radius:40px;font-weight: bold;border:3px solid black;</string>
+     <string notr="true">image: url(:/images/rightdown.png);
+background-color:transparent;
+border:none;</string>
     </property>
     <property name="text">
-     <string>VIT</string>
+     <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="DIABUT">
+   <widget class="QLabel" name="label_12">
     <property name="geometry">
      <rect>
-      <x>190</x>
-      <y>150</y>
+      <x>610</x>
+      <y>410</y>
+      <width>41</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:/images/downarrow.png);
+background-color:transparent;
+border:none;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="IA2BUT">
+    <property name="geometry">
+     <rect>
+      <x>440</x>
+      <y>320</y>
       <width>81</width>
       <height>81</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font:20pt &quot;Ubuntu&quot;;
+     <string notr="true">font:15pt &quot;Ubuntu&quot;;
 
 border-radius:40px;
 border:none;font-weight: bold;border:3px solid black;</string>
     </property>
     <property name="text">
-     <string>DIA</string>
+     <string>I/A 2</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="ULTRASONICBUT2">
+   <widget class="QPushButton" name="VITRECTOMYBUT">
     <property name="geometry">
      <rect>
-      <x>320</x>
-      <y>280</y>
+      <x>480</x>
+      <y>220</y>
       <width>81</width>
       <height>81</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font:20pt &quot;Ubuntu&quot;;
+     <string notr="true">font:15pt &quot;Ubuntu&quot;;
+
+border-radius:40px;
+border:none;font-weight: bold;border:3px solid black;</string>
+    </property>
+    <property name="text">
+     <string>VIT</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_6">
+    <property name="geometry">
+     <rect>
+      <x>540</x>
+      <y>270</y>
+      <width>41</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:/images/leftside.png);
+background-color:transparent;
+border:none;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="ULTRASONICBUT1">
+    <property name="geometry">
+     <rect>
+      <x>690</x>
+      <y>220</y>
+      <width>81</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font:15pt &quot;Ubuntu&quot;;
+
+border-radius:40px;
+border:none;font-weight: bold;border:3px solid black;</string>
+    </property>
+    <property name="text">
+     <string>U/S 1</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>670</x>
+      <y>270</y>
+      <width>41</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:/images/upcrossr.png);
+background-color:transparent;
+border:none;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="ULTRASONICBUT3">
+    <property name="geometry">
+     <rect>
+      <x>700</x>
+      <y>410</y>
+      <width>81</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font:15pt &quot;Ubuntu&quot;;
+
+border-radius:40px;
+border:none;font-weight: bold;border:3px solid black;</string>
+    </property>
+    <property name="text">
+     <string>U/S 3</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>510</x>
+      <y>330</y>
+      <width>51</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:/images/left.png);
+background-color:transparent;
+border:none;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="IA1BUT">
+    <property name="geometry">
+     <rect>
+      <x>470</x>
+      <y>410</y>
+      <width>81</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font:15pt &quot;Ubuntu&quot;;
+
+border-radius:40px;
+border:none;font-weight: bold;border:3px solid black;</string>
+    </property>
+    <property name="text">
+     <string>I/A 1</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="ULTRASONICBUT2">
+    <property name="geometry">
+     <rect>
+      <x>730</x>
+      <y>310</y>
+      <width>81</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font:15pt &quot;Ubuntu&quot;;
 
 border-radius:40px;
 border:none;font-weight: bold;border:3px solid black;</string>
@@ -3389,87 +3769,133 @@ border:none;font-weight: bold;border:3px solid black;</string>
      <string>U/S 2</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="IA2BUT">
+   <widget class="QLabel" name="label_13">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>280</y>
+      <x>540</x>
+      <y>390</y>
+      <width>41</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:/images/leftdown.png);
+background-color:transparent;
+border:none;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>680</x>
+      <y>320</y>
+      <width>51</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:/images/straightr.png);
+background-color:transparent;
+border:none;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="ULTRASONICBUT4">
+    <property name="geometry">
+     <rect>
+      <x>590</x>
+      <y>470</y>
       <width>81</width>
       <height>81</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font:20pt &quot;Ubuntu&quot;;
+     <string notr="true">font:15pt &quot;Ubuntu&quot;;
 
-border-radius:40px;font-weight: bold;border:3px solid black;</string>
+border-radius:40px;
+border:none;font-weight: bold;border:3px solid black;</string>
     </property>
     <property name="text">
-     <string>I/A 2</string>
+     <string>U/S 4</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="DIABUT">
+    <property name="geometry">
+     <rect>
+      <x>580</x>
+      <y>180</y>
+      <width>81</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font:15pt &quot;Ubuntu&quot;;
+
+border-radius:40px;
+border:none;font-weight: bold;border:3px solid black;</string>
+    </property>
+    <property name="text">
+     <string>DIA</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_11">
+    <property name="geometry">
+     <rect>
+      <x>600</x>
+      <y>250</y>
+      <width>41</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:/images/uparrow.png);
+background-color:transparent;
+border:none;</string>
+    </property>
+    <property name="text">
+     <string/>
     </property>
    </widget>
    <widget class="QTabWidget" name="tabWidget_2">
     <property name="geometry">
      <rect>
-      <x>460</x>
-      <y>220</y>
-      <width>231</width>
+      <x>30</x>
+      <y>320</y>
+      <width>331</width>
       <height>311</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(28, 113, 216);</string>
+     <string notr="true">background-color:rgb(83, 104, 120);</string>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab_41">
+     <property name="styleSheet">
+      <string notr="true">background-color:rgb(83, 104, 120);</string>
+     </property>
      <attribute name="title">
       <string>Page</string>
      </attribute>
-     <widget class="QLabel" name="label_116">
-      <property name="geometry">
-       <rect>
-        <x>-170</x>
-        <y>50</y>
-        <width>471</width>
-        <height>261</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color:transparent;
-image: url(:/rect3.png);</string>
-      </property>
-      <property name="text">
-       <string>imgflowwwwwwwwwww</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_89">
-      <property name="geometry">
-       <rect>
-        <x>-30</x>
-        <y>140</y>
-        <width>471</width>
-        <height>231</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color:transparent;
-image: url(:/rect3.png);</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
     </widget>
     <widget class="QWidget" name="tab_42">
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(162, 128, 137);</string>
+     </property>
      <attribute name="title">
       <string>Tab 1</string>
      </attribute>
      <widget class="QLineEdit" name="lineEdit_75">
       <property name="geometry">
        <rect>
-        <x>80</x>
-        <y>60</y>
+        <x>120</x>
+        <y>90</y>
         <width>91</width>
         <height>51</height>
        </rect>
@@ -3488,7 +3914,7 @@ border:2px solid black;</string>
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>20</y>
+        <y>90</y>
         <width>71</width>
         <height>61</height>
        </rect>
@@ -3505,8 +3931,8 @@ border:none;</string>
      <widget class="QPushButton" name="pushButton_6">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>90</y>
+        <x>240</x>
+        <y>80</y>
         <width>71</width>
         <height>61</height>
        </rect>
@@ -3522,13 +3948,16 @@ border:none;</string>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_43">
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(162, 128, 137);</string>
+     </property>
      <attribute name="title">
       <string>Page</string>
      </attribute>
      <widget class="QPushButton" name="pushButton_44">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>250</x>
         <y>90</y>
         <width>71</width>
         <height>61</height>
@@ -3547,7 +3976,7 @@ border:none;</string>
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>20</y>
+        <y>90</y>
         <width>71</width>
         <height>61</height>
        </rect>
@@ -3564,8 +3993,8 @@ border:none;</string>
      <widget class="QLineEdit" name="lineEdit_76">
       <property name="geometry">
        <rect>
-        <x>80</x>
-        <y>60</y>
+        <x>120</x>
+        <y>100</y>
         <width>91</width>
         <height>51</height>
        </rect>
@@ -3589,7 +4018,7 @@ border:2px solid black;</string>
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>10</y>
+        <y>100</y>
         <width>71</width>
         <height>61</height>
        </rect>
@@ -3606,8 +4035,8 @@ border:none;</string>
      <widget class="QPushButton" name="pushButton_47">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>80</y>
+        <x>250</x>
+        <y>100</y>
         <width>71</width>
         <height>61</height>
        </rect>
@@ -3624,8 +4053,8 @@ border:none;</string>
      <widget class="QLineEdit" name="lineEdit_77">
       <property name="geometry">
        <rect>
-        <x>80</x>
-        <y>50</y>
+        <x>120</x>
+        <y>110</y>
         <width>91</width>
         <height>51</height>
        </rect>
@@ -3648,8 +4077,8 @@ border:2px solid black;</string>
      <widget class="QPushButton" name="pushButton_48">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>90</y>
+        <x>250</x>
+        <y>100</y>
         <width>71</width>
         <height>61</height>
        </rect>
@@ -3667,7 +4096,7 @@ border:none;</string>
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>20</y>
+        <y>100</y>
         <width>71</width>
         <height>61</height>
        </rect>
@@ -3684,8 +4113,8 @@ border:none;</string>
      <widget class="QLineEdit" name="lineEdit_78">
       <property name="geometry">
        <rect>
-        <x>80</x>
-        <y>60</y>
+        <x>120</x>
+        <y>100</y>
         <width>91</width>
         <height>51</height>
        </rect>
@@ -3708,8 +4137,8 @@ border:2px solid black;</string>
      <widget class="QLineEdit" name="lineEdit_79">
       <property name="geometry">
        <rect>
-        <x>80</x>
-        <y>50</y>
+        <x>110</x>
+        <y>120</y>
         <width>91</width>
         <height>51</height>
        </rect>
@@ -3728,7 +4157,7 @@ border:2px solid black;</string>
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>10</y>
+        <y>110</y>
         <width>71</width>
         <height>61</height>
        </rect>
@@ -3745,8 +4174,8 @@ border:none;</string>
      <widget class="QPushButton" name="pushButton_51">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>80</y>
+        <x>230</x>
+        <y>110</y>
         <width>71</width>
         <height>61</height>
        </rect>
@@ -3768,8 +4197,8 @@ border:none;</string>
      <widget class="QLineEdit" name="lineEdit_80">
       <property name="geometry">
        <rect>
-        <x>90</x>
-        <y>50</y>
+        <x>110</x>
+        <y>70</y>
         <width>91</width>
         <height>51</height>
        </rect>
@@ -3788,7 +4217,7 @@ border:2px solid black;</string>
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>10</y>
+        <y>60</y>
         <width>71</width>
         <height>61</height>
        </rect>
@@ -3805,8 +4234,8 @@ border:none;</string>
      <widget class="QPushButton" name="pushButton_53">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>90</y>
+        <x>230</x>
+        <y>60</y>
         <width>71</width>
         <height>61</height>
        </rect>
@@ -3823,8 +4252,8 @@ border:none;</string>
      <widget class="QLineEdit" name="lineEdit_81">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>180</y>
+        <x>120</x>
+        <y>200</y>
         <width>91</width>
         <height>51</height>
        </rect>
@@ -3842,8 +4271,8 @@ border:2px solid black;</string>
      <widget class="QPushButton" name="pushButton_54">
       <property name="geometry">
        <rect>
-        <x>110</x>
-        <y>130</y>
+        <x>10</x>
+        <y>190</y>
         <width>71</width>
         <height>61</height>
        </rect>
@@ -3860,8 +4289,8 @@ border:none;</string>
      <widget class="QPushButton" name="pushButton_55">
       <property name="geometry">
        <rect>
-        <x>110</x>
-        <y>210</y>
+        <x>230</x>
+        <y>190</y>
         <width>71</width>
         <height>61</height>
        </rect>
@@ -3882,53 +4311,56 @@ border:none;</string>
      </attribute>
     </widget>
    </widget>
-   <widget class="QLabel" name="label_2">
+   <widget class="QPushButton" name="SETTINGS_BUT_2">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>150</y>
-      <width>351</width>
-      <height>341</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">border-radius:170px;
-background-color: rgb(152, 236, 255);
-
-border:3px solid black;</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_124">
-    <property name="geometry">
-     <rect>
-      <x>140</x>
-      <y>260</y>
-      <width>131</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">font:30px;</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="handpiece">
-    <property name="geometry">
-     <rect>
-      <x>490</x>
-      <y>640</y>
-      <width>111</width>
+      <x>390</x>
+      <y>10</y>
+      <width>51</width>
       <height>51</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">
-image: url(:/images/handpiece1.png);
+image: url(:/images/doctor.png);
+background-color:transparent;
+border:4px solid black;
+border-radius:30px;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="SETTINGS_BUT_3">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>370</y>
+      <width>81</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:/images/footimg.png);
+background-color:transparent;
+border:4px solid black;
+border-radius:30px;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_15">
+    <property name="geometry">
+     <rect>
+      <x>-720</x>
+      <y>400</y>
+      <width>191</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:/images/handpiece1.png);
 background-color: rgb(192, 28, 40);
 border:4px solid black;
 border-radius:20px;</string>
@@ -3937,49 +4369,158 @@ border-radius:20px;</string>
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="SETTINGS_BUT">
+   <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>350</x>
-      <y>600</y>
-      <width>91</width>
-      <height>81</height>
+      <x>410</x>
+      <y>140</y>
+      <width>431</width>
+      <height>451</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">
-image: url(:/images/settings.png);
+     <string notr="true">border-radius:170px;
+image: url(:/images/EYE.png);
 background-color:transparent;
-border:none;</string>
+</string>
     </property>
     <property name="text">
      <string/>
     </property>
    </widget>
+   <widget class="QLabel" name="label_9">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>320</y>
+      <width>341</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:rgb(83, 104, 120);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_16">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>340</y>
+      <width>16</width>
+      <height>301</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:rgb(83, 104, 120);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_17">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>350</y>
+      <width>20</width>
+      <height>301</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:rgb(83, 104, 120);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QDial" name="dial">
+    <property name="geometry">
+     <rect>
+      <x>520</x>
+      <y>260</y>
+      <width>201</width>
+      <height>191</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_42">
+    <property name="geometry">
+     <rect>
+      <x>570</x>
+      <y>290</y>
+      <width>111</width>
+      <height>121</height>
+     </rect>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LeftToRight</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font:70pt &quot;Ubuntu&quot;;
+color: rgb(255, 255, 255);
+border:none;
+font-weight: bold;
+</string>
+    </property>
+    <property name="text">
+     <string>0</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_10">
+    <property name="geometry">
+     <rect>
+      <x>-10</x>
+      <y>-40</y>
+      <width>1401</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:rgb(83, 104, 120);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <zorder>SETTINGS_BUT_3</zorder>
    <zorder>label</zorder>
    <zorder>tabWidget</zorder>
-   <zorder>CutMode_vit</zorder>
    <zorder>comboBox_4</zorder>
-   <zorder>CutMode_vitCom</zorder>
-   <zorder>label_10</zorder>
    <zorder>elapsed_time</zorder>
-   <zorder>BACKBUT</zorder>
    <zorder>pushButton_7</zorder>
    <zorder>tabWidget_2</zorder>
-   <zorder>label_9</zorder>
+   <zorder>SETTINGS_BUT_2</zorder>
    <zorder>label_2</zorder>
-   <zorder>label_124</zorder>
-   <zorder>handpiece</zorder>
-   <zorder>pushButton_42</zorder>
-   <zorder>ULTRASONICBUT1</zorder>
-   <zorder>DIABUT</zorder>
    <zorder>IA2BUT</zorder>
+   <zorder>DIABUT</zorder>
+   <zorder>ULTRASONICBUT1</zorder>
+   <zorder>VITRECTOMYBUT</zorder>
+   <zorder>ULTRASONICBUT2</zorder>
+   <zorder>ULTRASONICBUT3</zorder>
    <zorder>IA1BUT</zorder>
    <zorder>ULTRASONICBUT4</zorder>
-   <zorder>ULTRASONICBUT3</zorder>
-   <zorder>ULTRASONICBUT2</zorder>
-   <zorder>VITRECTOMYBUT</zorder>
-   <zorder>SETTINGS_BUT</zorder>
+   <zorder>label_13</zorder>
+   <zorder>label_11</zorder>
+   <zorder>label_12</zorder>
+   <zorder>label_4</zorder>
+   <zorder>label_14</zorder>
+   <zorder>label_5</zorder>
+   <zorder>label_6</zorder>
+   <zorder>label_15</zorder>
+   <zorder>label_3</zorder>
+   <zorder>label_16</zorder>
+   <zorder>label_17</zorder>
+   <zorder>label_9</zorder>
+   <zorder>dial</zorder>
+   <zorder>pushButton_42</zorder>
+   <zorder>label_10</zorder>
+   <zorder>BACKBUT</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
