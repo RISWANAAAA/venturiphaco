@@ -720,10 +720,12 @@ compiler_rcc_clean:
 qrc_img.cpp: img.qrc \
 		../../xsdk-2023.1/sysroots/x86_64-petalinux-linux/usr/bin/rcc \
 		tickimg.png \
+		elapsed.png \
 		sidearrow.png \
 		keypadbg3\ 1.png \
 		leftdown.png \
 		2nd.png \
+		irr.png \
 		rightdown.png \
 		backbutton.png \
 		display.png \
@@ -739,31 +741,40 @@ qrc_img.cpp: img.qrc \
 		notifi.png \
 		d2.png \
 		footimg.png \
+		darrpng \
 		settings1.png \
 		touchscreen.png \
 		circlee.png \
 		settings.png \
 		main.png \
 		up2.png \
+		open.png \
 		uparr.png \
 		up1.png \
 		person.png \
 		locked.png \
 		learner.png \
-		downarrow.png \
+		button.png \
+		buttonimg.png \
 		upcrossr.png \
 		notconnected.png \
 		straightr.png \
 		logs.png \
 		nextarrow.png \
+		uarrow.png \
 		nextimg.png \
 		ci.png \
 		leftside.png \
 		backimg.png \
 		left.png \
+		darrow.png \
+		us1.png \
 		backarrowimg.png \
+		newbut.png \
+		close.png \
 		genral1.png \
 		warning1.png \
+		glass.png \
 		uparrow.png \
 		connected.png \
 		ci1.png \

@@ -32,7 +32,6 @@
         <file>leftcross.png</file>
         <file>straightr.png</file>
         <file>upcrossr.png</file>
-        <file>downarrow.png</file>
         <file>leftdown.png</file>
         <file>leftside.png</file>
         <file>rightdown.png</file>
@@ -50,5 +49,17 @@
         <file>downarr.png</file>
         <file>rightarr.png</file>
         <file>uparr.png</file>
+        <file>buttonimg.png</file>
+        <file>button.png</file>
+        <file>glass.png</file>
+        <file>uarrow.png</file>
+        <file>darrpng</file>
+        <file>elapsed.png</file>
+        <file>darrow.png</file>
+        <file>close.png</file>
+        <file>open.png</file>
+        <file>us1.png</file>
+        <file>newbut.png</file>
+        <file>irr.png</file>
     </qresource>
 </RCC>

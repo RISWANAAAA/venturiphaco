@@ -14,7 +14,7 @@
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(162, 128, 137);</string>
+   <string notr="true">background-color:rgb(83, 104, 120);</string>
   </property>
   <widget class="QPushButton" name="clean_but">
    <property name="geometry">
@@ -94,7 +94,7 @@ font:bold;border:3px solid black;</string>
    </property>
    <widget class="QWidget" name="tab_6">
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(162, 128, 137);</string>
+     <string notr="true">background-color:rgb(83, 104, 120);</string>
     </property>
     <attribute name="title">
      <string>Tab 1</string>
@@ -244,7 +244,7 @@ border:none;</string>
    </widget>
    <widget class="QWidget" name="tab_7">
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(162, 128, 137);</string>
+     <string notr="true">background-color:rgb(83, 104, 120);</string>
     </property>
     <attribute name="title">
      <string>Tab 2</string>
@@ -379,7 +379,7 @@ border:none;</string>
    </widget>
    <widget class="QWidget" name="tab_8">
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(162, 128, 137);</string>
+     <string notr="true">background-color:rgb(83, 104, 120);</string>
     </property>
     <attribute name="title">
      <string>Page</string>

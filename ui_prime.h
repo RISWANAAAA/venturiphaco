@@ -58,7 +58,7 @@ public:
         if (prime->objectName().isEmpty())
             prime->setObjectName(QString::fromUtf8("prime"));
         prime->resize(1280, 720);
-        prime->setStyleSheet(QString::fromUtf8("background-color: rgb(162, 128, 137);"));
+        prime->setStyleSheet(QString::fromUtf8("background-color:rgb(83, 104, 120);"));
         clean_but = new QPushButton(prime);
         clean_but->setObjectName(QString::fromUtf8("clean_but"));
         clean_but->setGeometry(QRect(140, 480, 151, 91));
@@ -90,7 +90,7 @@ public:
         tabWidget->setStyleSheet(QString::fromUtf8(""));
         tab_6 = new QWidget();
         tab_6->setObjectName(QString::fromUtf8("tab_6"));
-        tab_6->setStyleSheet(QString::fromUtf8("background-color: rgb(162, 128, 137);"));
+        tab_6->setStyleSheet(QString::fromUtf8("background-color:rgb(83, 104, 120);"));
         process_lab_2 = new QLabel(tab_6);
         process_lab_2->setObjectName(QString::fromUtf8("process_lab_2"));
         process_lab_2->setGeometry(QRect(140, 20, 351, 51));
@@ -143,7 +143,7 @@ public:
         tabWidget->addTab(tab_6, QString());
         tab_7 = new QWidget();
         tab_7->setObjectName(QString::fromUtf8("tab_7"));
-        tab_7->setStyleSheet(QString::fromUtf8("background-color: rgb(162, 128, 137);"));
+        tab_7->setStyleSheet(QString::fromUtf8("background-color:rgb(83, 104, 120);"));
         handpice_img_2 = new QLabel(tab_7);
         handpice_img_2->setObjectName(QString::fromUtf8("handpice_img_2"));
         handpice_img_2->setGeometry(QRect(10, 20, 841, 361));
@@ -193,7 +193,7 @@ public:
         label->raise();
         tab_8 = new QWidget();
         tab_8->setObjectName(QString::fromUtf8("tab_8"));
-        tab_8->setStyleSheet(QString::fromUtf8("background-color: rgb(162, 128, 137);"));
+        tab_8->setStyleSheet(QString::fromUtf8("background-color:rgb(83, 104, 120);"));
         warning_lab_2 = new QLabel(tab_8);
         warning_lab_2->setObjectName(QString::fromUtf8("warning_lab_2"));
         warning_lab_2->setGeometry(QRect(50, 60, 431, 41));

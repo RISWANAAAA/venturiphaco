@@ -42,10 +42,10 @@ MainWindow::MainWindow(QWidget *parent)
    connect(updateTimer, &QTimer::timeout, this, &MainWindow::updateTimers);
    // Populate the combobox with surgeon names and IDs
 
-   ui->dial->setStyleSheet("");
-   ui->dial->setStyle(QStyleFactory::create("Fusion"));
-   ui->dial->setStyleSheet("background-color: rgb(26, 95, 180);");
-
+   ui->dial_2->setStyleSheet("");
+   ui->dial_2->setStyle(QStyleFactory::create("Fusion"));
+   //ui->dial_2->setStyleSheet("background-color: rgb(255, 255, 255);");
+   ui->dial_2->setRange(0,4096);
 
    // Connect the combobox signal to the slot
 
@@ -1740,27 +1740,49 @@ void MainWindow::BACKBUT()
 }
 void MainWindow::current(int tab)
 {
-   QString styleSheet = "QPushButton {"
+
+     QString styleSheet =
+    "QPushButton {"
                         "    font-family: Ubuntu;"
                         "    font-size: 15pt;"
-           "width :81;"
-           "height:81;"
-                        "    background-color: white;"
-                        "    color: black;"
+
+              "image: url(:/images/glass.png);"
+                        //"    background-color: white;"
+                        "    color: white;"
                         "    border-radius: 40px;"
-           "border:2px solid black;"
 
                         "}";
    QString styleSheet1 = "QPushButton {"
                          "    font-family: Ubuntu;"
                          "    font-size: 15pt;"
-                         "width :81;"
-                         "height:81;"
-                         "    background-color: black;"
-                         "    color: white;"
-           "border:2px solid black;"
+                       //  "width :81;"
+                        // "height:81;"
+                         "image: url(:/images/glass.png);"
+                         "    color: black;"
+          // "border:2px solid black;"
                          "    border-radius: 40px;"
                          "}";
+   QString styleSheet2 = "QPushButton {"
+                         "    font-family: Ubuntu;"
+                         "    font-size: 15pt;"
+                         "width :81;"
+                         "height:81;"
+                         "image: url(:/images/us1.png);"
+                         "    color: black;"
+          // "border:2px solid black;"
+                         "    border-radius: 40px;"
+                         "}";
+   QString styleSheet3 = "QPushButton {"
+                         "    font-family: Ubuntu;"
+                         "    font-size: 15pt;"
+                         "width :81;"
+                         "height:81;"
+                         "image: url(:/images/irr.png);"
+                         "    color: black;"
+          // "border:2px solid black;"
+                         "    border-radius: 40px;"
+                         "}";
+
 
    // Reset all buttons' styles to default (styleSheet1)
    ui->ULTRASONICBUT1->setStyleSheet(styleSheet1);
@@ -1785,27 +1807,27 @@ void MainWindow::current(int tab)
    // Set the styleSheet for the button corresponding to the current tab
    switch (tab) {
        case 0:
-           ui->ULTRASONICBUT1->setStyleSheet(styleSheet);
+           ui->ULTRASONICBUT1->setStyleSheet(styleSheet2);
            ui->label_3->show();
            break;
        case 1:
-           ui->ULTRASONICBUT2->setStyleSheet(styleSheet);
+           ui->ULTRASONICBUT2->setStyleSheet(styleSheet2);
            ui->label_4->show();
            break;
        case 2:
-           ui->ULTRASONICBUT3->setStyleSheet(styleSheet);
+           ui->ULTRASONICBUT3->setStyleSheet(styleSheet2);
            ui->label_14->show();
            break;
        case 3:
-           ui->ULTRASONICBUT4->setStyleSheet(styleSheet);
+           ui->ULTRASONICBUT4->setStyleSheet(styleSheet2);
            ui->label_12->show();
            break;
        case 4:
-           ui->IA1BUT->setStyleSheet(styleSheet);
+           ui->IA1BUT->setStyleSheet(styleSheet3);
            ui->label_13->show();
            break;
        case 5:
-           ui->IA2BUT->setStyleSheet(styleSheet);
+           ui->IA2BUT->setStyleSheet(styleSheet3);
            ui->label_5->show();
            break;
        case 6:
@@ -1930,7 +1952,8 @@ void MainWindow::footpedalcheck()
        if (us1 == "PANEL" || vus1 == "PANEL") {
            if (range >= 0 && range < 1024) {
                ui->pushButton_42->setText("0");
-
+                //ui->dial_2->setStyleSheet("");
+               ui->dial_2->setValue(range);
                motoroff();
                if(!cius1){
                    ui->CI1->setStyleSheet(styleSheet4);
@@ -1950,6 +1973,7 @@ void MainWindow::footpedalcheck()
                flag1 = true; // Reset flag
            } else if (range >= 1024 && range < 2048) {
                ui->pushButton_42->setText("1");
+                ui->dial_2->setValue(range);
                handler->pinchvalve_on();
                handler->safetyvent_on();
                  ui->CI1->setStyleSheet(styleSheet3);
@@ -1966,6 +1990,7 @@ void MainWindow::footpedalcheck()
                flag1 = true; // Reset flag
            } else if (range >= 2048 && range < 3072) {
                ui->pushButton_42->setText("2");
+                ui->dial_2->setValue(range);
                ui->CI1->setStyleSheet(styleSheet3);
                handler->pinchvalve_on();
                handler->safetyvent_on();
@@ -1982,6 +2007,7 @@ void MainWindow::footpedalcheck()
                flag1 = true; // Reset flag
            } else if (range >= 3072 && range < 4096) {
                ui->pushButton_42->setText("3");
+                ui->dial_2->setValue(range);
                ui->CI1->setStyleSheet(styleSheet3);
                handler->safetyvent_on();
                handler->pinchvalve_on();
@@ -2006,7 +2032,7 @@ void MainWindow::footpedalcheck()
        } else if (us1 == "SURGEON" || vus1 == "SURGEON") {
            if (range >= 0 && range < 1024) {
                ui->pushButton_42->setText("0");
-
+ ui->dial_2->setValue(range);
                motoroff();
                if(!cius1){
                    ui->CI1->setStyleSheet(styleSheet4);
@@ -2026,6 +2052,7 @@ void MainWindow::footpedalcheck()
                flag1 = true; // Reset flag
            } else if (range >= 1024 && range < 2048) {
                ui->pushButton_42->setText("1");
+                ui->dial_2->setValue(range);
                handler->pinchvalve_on();
                handler->safetyvent_on();
                ui->CI1->setStyleSheet(styleSheet3);
@@ -2042,6 +2069,7 @@ void MainWindow::footpedalcheck()
                flag1 = true; // Reset flag
            } else if (range >= 2048 && range < 3072) {
                ui->pushButton_42->setText("2");
+                ui->dial_2->setValue(range);
                handler->pinchvalve_on();
                handler->safetyvent_on();
                ui->CI1->setStyleSheet(styleSheet3);
@@ -2058,6 +2086,7 @@ void MainWindow::footpedalcheck()
                flag1 = true; // Reset flag
            } else if (range >= 3072 && range <= 4096) {
                ui->pushButton_42->setText("3");
+                ui->dial_2->setValue(range);
                ui->CI1->setStyleSheet(styleSheet3);
                handler->safetyvent_on();
                handler->pinchvalve_on();
@@ -2078,15 +2107,15 @@ handler->phaco_on();
                    int powervalue = range*pow1/4096;
                    ui->label_7->setText(QString::number(powervalue));
                }
+
+               elapsedTimeUS1 += elapsed;
+               message = "Effective time for US1: " + QString::number(elapsedTimeUS1 / 1000.0, 'f', 2) + " s";
+               break;
+           }
+
                updatesensor();
            }
        }
-
-       elapsedTimeUS1 += elapsed;
-       message = "Effective time for US1: " + QString::number(elapsedTimeUS1 / 1000.0, 'f', 2) + " s";
-       break;
-   }
-
 
        // us2
    case 2: {
