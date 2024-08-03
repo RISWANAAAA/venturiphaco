@@ -27,11 +27,11 @@
    </property>
    <property name="styleSheet">
     <string notr="true">font:20pt &quot;Ubuntu&quot;;
-
+background-color:transparent;
+image: url(:/images/g1094.png);
 border-radius:20px;
 border:none;
-font:bold;
-border:3px solid black;</string>
+font:bold;</string>
    </property>
    <property name="text">
     <string>CLEAN</string>
@@ -48,10 +48,11 @@ border:3px solid black;</string>
    </property>
    <property name="styleSheet">
     <string notr="true">font:20pt &quot;Ubuntu&quot;;
-
+background-color:transparent;
+image: url(:/images/g1094.png);
 border-radius:20px;
 border:none;
-font:bold;border:3px solid black;</string>
+font:bold;</string>
    </property>
    <property name="text">
     <string>TUNE</string>
@@ -68,10 +69,11 @@ font:bold;border:3px solid black;</string>
    </property>
    <property name="styleSheet">
     <string notr="true">font:20pt &quot;Ubuntu&quot;;
-
+background-color:transparent;
+image: url(:/images/g3042.png);
 border-radius:20px;
 border:none;
-font:bold;border:3px solid black;</string>
+font:bold;</string>
    </property>
    <property name="text">
     <string>PRIME</string>
@@ -90,7 +92,7 @@ font:bold;border:3px solid black;</string>
     <string notr="true"/>
    </property>
    <property name="currentIndex">
-    <number>2</number>
+    <number>1</number>
    </property>
    <widget class="QWidget" name="tab_6">
     <property name="styleSheet">
@@ -124,13 +126,14 @@ border:none;font:bold;</string>
       <rect>
        <x>260</x>
        <y>540</y>
-       <width>281</width>
+       <width>301</width>
        <height>71</height>
       </rect>
      </property>
      <property name="styleSheet">
       <string notr="true">font:20pt &quot;Ubuntu&quot;;
-background-color: rgb(36, 31, 49);
+image: url(:/images/g4210.png);
+background-color:transparent;
 color: rgb(255, 255, 255);
 border-radius:20px;
 border:none;font:bold;</string>
@@ -270,15 +273,16 @@ background-color:transparent;</string>
     <widget class="QPushButton" name="Start_tune_2">
      <property name="geometry">
       <rect>
-       <x>260</x>
+       <x>220</x>
        <y>510</y>
-       <width>281</width>
-       <height>71</height>
+       <width>341</width>
+       <height>111</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">font:20pt &quot;Ubuntu&quot;;
-background-color: rgb(36, 31, 49);
+      <string notr="true">font:22pt &quot;Ubuntu&quot;;
+image: url(:/images/g4210.png);
+background-color: transparent;
 color: rgb(255, 255, 255);
 border-radius:20px;
 border:none;
@@ -441,13 +445,14 @@ p, li { white-space: pre-wrap; }
       <rect>
        <x>300</x>
        <y>520</y>
-       <width>291</width>
-       <height>71</height>
+       <width>301</width>
+       <height>91</height>
       </rect>
      </property>
      <property name="styleSheet">
       <string notr="true">font:20pt &quot;Ubuntu&quot;;
-background-color: rgb(36, 31, 49);
+background-color: transparent;
+image: url(:/images/g4210.png);
 color: rgb(255, 255, 255);
 font:bold;
 border-radius:20px;

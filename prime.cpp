@@ -23,7 +23,8 @@ prime::prime(QWidget *parent) :
     QString styleSheet = "QPushButton {"
                                  "    font-family: Ubuntu;"
                                  "    font-size: 20pt;"
-                                 "    background-color: white;"
+                                 "    background-color: transparent;"
+            "image: url(:/images/g3645.png);"
                                  "color:black;"
                                  "    border-radius: 20px;" // Adjust the radius as needed
                                  "}";
@@ -88,7 +89,8 @@ void prime::click()
     QString styleSheet = "QPushButton {"
                                  "    font-family: Ubuntu;"
                                  "    font-size: 20pt;"
-                                 "    background-color: black;"
+            "image: url(:/images/g3042.png);"
+                                 "    background-color: transparent;"
             "color:white;"
                                  "    border-radius: 20px;" // Adjust the radius as needed
                                  "}";
@@ -104,17 +106,19 @@ void prime::current(int tab)
     QString styleSheet = "QPushButton {"
                          "    font-family: Ubuntu;"
                          "    font-size: 20pt;"
-                         "    background-color: white;"
+                         "  image: url(:/images/g3645.png);"
+            "background-color:transparent;"
                          "    color: black;"
-                         "    border-radius: 20px;" // Adjust the radius as needed
+                         //"    border-radius: 20px;" // Adjust the radius as needed
                          "}";
 
     QString styleSheet1 = "QPushButton {"
                           "    font-family: Ubuntu;"
                           "    font-size: 20pt;"
-                          "    background-color: black;"
+                          "    image: url(:/images/g3042.png);"
+            "background-color:transparent;"
                           "    color: white;"
-                          "    border-radius: 20px;"
+                         // "    border-radius: 20px;"
                           "    font: bold;" // Adjust the radius as needed
                           "}";
 
@@ -314,6 +318,7 @@ void prime::timer(){
 
         } else {
             timer1->stop();
+            m->show();
             m->DIATHERMYBUT(); // Show the main window after progress is complete
         }
 
@@ -401,6 +406,8 @@ void prime::on_begin_clean_but_2_clicked()
     ui->wait_Check_2->setChecked(false);
     ui->done_Check_2->setChecked(false);
     ui->progressBar->setValue(0);
+    motoron();
+    hand->pinchvalve_on();
     pretimer->stop();
 
 
@@ -411,9 +418,9 @@ void prime::on_pushButton_5_clicked()
     QString styleSheet = "QPushButton {"
                                  "    font-family: Ubuntu;"
                                  "    font-size: 20pt;"
-                                 "    background-color: white;"
+                                 "    background-color: transparent;"
                                  "color:black;"
-
+     "  image: url(:/images/g3645.png);"
                                  "    border-radius: 20px;" // Adjust the radius as needed
                                  "}";
 
@@ -426,8 +433,8 @@ void prime::on_pushButton_5_clicked()
 void prime::on_pushButton_6_clicked()
 {
 
-
-   m->show();
+  m->show();
+   m->DIATHERMYBUT();
 
 }
 
@@ -436,9 +443,9 @@ void prime::on_pushButton_8_clicked()
     QString styleSheet = "QPushButton {"
                                  "    font-family: Ubuntu;"
                                  "    font-size: 20pt;"
-                                 "    background-color: white;"
+                                 "    background-color: transparent;"
                                  "color:black;"
-
+     "  image: url(:/images/g3645.png);"
                                  "    border-radius: 20px;" // Adjust the radius as needed
                                  "}";
   Prime();

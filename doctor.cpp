@@ -13,35 +13,18 @@ doctor::doctor(QWidget *parent) :
       //connect(ui->SavePhacoBut_phaco,&QPushButton::clicked,this,&doctor::PhacoSaveBut);
     move(0,0);
     timer=new QTimer;
-  ui->progressBar->setRange(5,100);
-  ui->progressBar_5->setRange(2,40);
-  ui->progressBar_6->setRange(5,500);
-  ui->progressBar_7->setRange(5,100);
-  ui->progressBar_8->setRange(2,40);
-  ui->progressBar_9->setRange(5,500);
-  ui->progressBar_10->setRange(5,100);
-  ui->progressBar_11->setRange(2,40);
-  ui->progressBar_12->setRange(5,500);
-  ui->progressBar_13->setRange(5,100);
-  ui->progressBar_2->setRange(2,40);
-  ui->progressBar_3->setRange(5,500);
-  ui->progressBar_4->setRange(5,100);
-  ui->progressBar_17->setRange(2,40);
-  ui->progressBar_16->setRange(5,500);
-  ui->progressBar_15->setRange(2,40);
-  ui->progressBar_14->setRange(5,500);
-  ui->progressBar_21->setRange(2,40);
-  ui->progressBar_19->setRange(5,500);
-  ui->progressBar_20->setRange(5,100);
+    QString tabStyle = "QTabBar::tab:selected { background-color: black; color: #ffffff; }";
+    ui->tabWidget_2->setStyleSheet(tabStyle);
+         connect(ui->tabWidget_2, &QTabWidget::currentChanged, this, &doctor::clickedtab);
+          clickedtab(ui->tabWidget_2->currentIndex());
 
 
     message=new QMessageBox(this);
     QSqlDatabase mydb = QSqlDatabase::addDatabase("QSQLITE");
-       mydb.setDatabaseName(PATH);
+       mydb.setDatabaseName(PATH1);
        mydb.open();
     surgeonid=ui->SelectSurgeon->currentText();
-    QString tabStyle = "QTabBar::tab:selected { background-color: black; color: #ffffff; }";
-    ui->tabWidget_2->setStyleSheet(tabStyle);
+
   //  connect(this,&doctor::valueSaved,m,&MainWindow::onMainLineEditTextChanged);
    //connect(ui->lineEdit_4,&QLineEdit::textChanged,this,&doctor::dialine);
 
@@ -53,42 +36,42 @@ doctor::doctor(QWidget *parent) :
                         });
                         QString tabStyle1 = "QTabBar::tab:selected { background-color: black; color: #ffffff; }";
                          ui-> tabWidget->setStyleSheet(tabStyle1);
-                         QString tabStyle2 = "QTabBar::tab:selected { background-color: black; color: #ffffff; }";
-                          ui-> tabWidget_2->setStyleSheet(tabStyle1);
+
     //p=new prime;
     //p=new prime;
     key=new keypad;
     connect(key,&keypad::textsignal,this,&doctor::on_clicked);
     connect(key,&keypad::entersignal,this,&doctor::on_clickedenter);
-    connect(ui->savefootpedal,&QPushButton::clicked,this,&doctor::savesettings);
+    //connect(ui->pushButton,&QPushButton::clicked,this,&doctor::savesettings);
      connect(ui->SelectSurgeon, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &doctor::current);
-  ui->lineEdit_6->setText("100");
-
+    connect(ui->comboBox,&QComboBox::currentTextChanged, this, &doctor::trasmitcomboBox);
+     ui->lineEdit_6->setText("100");
   ui->lineEdit_2->setText("40");
   ui->lineEdit_3->setText("500");
   ui->lineEdit_4->setText("100");
-
   ui->lineEdit_5->setText("500");
   ui->lineEdit_7->setText("40");
   ui->lineEdit_11->setText("500");
   ui->lineEdit_12->setText("40");
-
-  ui->lineEdit->setText("40");
+  ui->lineEdit->setText("100");
   ui->lineEdit_19->setText("500");
-    ui->lineEdit_20->setText("960");
+  ui->lineEdit_20->setText("40");
+  ui->lineEdit_2->setText("22");
+  ui->lineEdit_3->setText("200");
+  ui->lineEdit_4->setText("60");
 
+  // Set default values to UI elements
   ui->lineEdit_8->setText("22");
-  ui->lineEdit_9->setText("200");
-    ui->lineEdit_10->setText("50");
+  ui->lineEdit_10->setText("200");
+  ui->lineEdit_9->setText("50");
 
-  ui->lineEdit_13->setText("26");
-    ui->lineEdit_14->setText("200");
-        ui->lineEdit_15->setText("60");
+  ui->lineEdit_14->setText("26");
+    ui->lineEdit_15->setText("200");
+    ui->lineEdit_13->setText("60");
 
-    ui->lineEdit_16->setText("16");
-       ui->lineEdit_17->setText("150");
-       ui->lineEdit_18->setText("70");
-
+  ui->lineEdit_17->setText("16");
+     ui->lineEdit_16->setText("150");
+     ui->lineEdit_18->setText("70");
 
     ui->lineEdit_6->installEventFilter(this);
     //phaco
@@ -133,10 +116,7 @@ doctor::doctor(QWidget *parent) :
   connect(ui->SavePhacoBut_phaco,&QPushButton::clicked,this,&doctor::PhacoSaveBut);
 //  connect(ui->IABut,&QPushButton::clicked,this,&doctor::IASaveBut);
   connect(ui->savevitbut,&QPushButton::clicked,this,&doctor::VitSaveBut);
-//   connect(ui->EpinBut_phaco,&QPushButton::clicked,this,&doctor::Epinucleus);
-//    connect(ui->QuadBut_phaco,&QPushButton::clicked,this,&doctor::Quad);
-//     connect(ui->ChopBut_phaco,&QPushButton::clicked,this,&doctor::Chop);
-//      connect(ui->ScupltBut_phaco,&QPushButton::clicked,this,&doctor::Sculpt);
+
       connect(ui->BackBut,&QPushButton::clicked,this,&doctor::BackBut);
 
       ui->tabWidget->setTabText(0,"    DIA");
@@ -146,8 +126,6 @@ doctor::doctor(QWidget *parent) :
 
     connect(ui->tabWidget, &QTabWidget::currentChanged, this, &doctor::click);
      click(ui->tabWidget->currentIndex());
-     connect(ui->tabWidget_2, &QTabWidget::currentChanged, this, &doctor::clicked);
-      clicked(ui->tabWidget_2->currentIndex());
 
 }
 
@@ -177,7 +155,7 @@ bool doctor::eventFilter(QObject *object, QEvent *event)
       QMouseEvent *k = static_cast<QMouseEvent *> (event);
       if( k->button() == Qt::LeftButton ) {
           key->close();
-                key->resize(481,301);
+          key->resize(481,301);
           key->move(280,320);
           key->show();
 
@@ -522,10 +500,8 @@ void doctor::on_clicked(const QString& digit)
         int value = (ui->lineEdit_6->text()+digit).toInt();
 
         setRange(ui->lineEdit_6, prevValue, value, 100);
-        ui->progressBar->setValue(value);
         // userMessage(value,5,100);
         increasebutton(ui->lineEdit_6);
-
 
 
 
@@ -540,8 +516,6 @@ void doctor::on_clicked(const QString& digit)
         setRange(ui->lineEdit_2, prevValue, value1, 40);
         //userMessage(value,5,500);
         decreasebutton(ui->lineEdit_2);
-        ui->progressBar_5->setValue(value1);
-
     }
     if(ui->lineEdit_3->focusWidget()) {
         ui->lineEdit_2->clearFocus();
@@ -552,7 +526,6 @@ void doctor::on_clicked(const QString& digit)
         setRange(ui->lineEdit_3, prevValue, value2, 500);
         //userMessage(value,5,500);
         vacbutton(ui->lineEdit_3);
-        ui->progressBar_6->setValue(value2);
     }
      if(ui->lineEdit_4->focusWidget()) {
         ui->lineEdit_2->clearFocus();
@@ -563,7 +536,6 @@ void doctor::on_clicked(const QString& digit)
         setRange(ui->lineEdit_4, prevValue, value3, 100);
         //userMessage(value,5,100);
         increasebutton(ui->lineEdit_4);
-        ui->progressBar_7->setValue(value3);
     }
      //quad
      if(ui->lineEdit_8->focusWidget()) {
@@ -575,29 +547,26 @@ void doctor::on_clicked(const QString& digit)
         setRange(ui->lineEdit_8, prevValue, value1, 40);
         //userMessage(value,5,500);
         decreasebutton(ui->lineEdit_8);
-        ui->progressBar_8->setValue(value1);
     }
-    if(ui->lineEdit_9->focusWidget()) {
-        ui->lineEdit_10->clearFocus();
-        ui->lineEdit_8->clearFocus();
-        ui->lineEdit_9->setFocus();
-        int prevValue = ui->lineEdit_9->text().toInt();
-        int value2 = (ui->lineEdit_9->text()+digit).toInt();
-        setRange(ui->lineEdit_9, prevValue, value2, 500);
-        //userMessage(value,5,500);
-        vacbutton(ui->lineEdit_9);
-        ui->progressBar_9->setValue(value2);
-    }
-     if(ui->lineEdit_10->focusWidget()) {
+    if(ui->lineEdit_10->focusWidget()) {
         ui->lineEdit_9->clearFocus();
         ui->lineEdit_8->clearFocus();
         ui->lineEdit_10->setFocus();
         int prevValue = ui->lineEdit_10->text().toInt();
-        int value3 = (ui->lineEdit_10->text()+digit).toInt();
-        setRange(ui->lineEdit_10, prevValue, value3, 100);
+        int value2 = (ui->lineEdit_10->text()+digit).toInt();
+        setRange(ui->lineEdit_10, prevValue, value2, 500);
+        //userMessage(value,5,500);
+        vacbutton(ui->lineEdit_10);
+    }
+     if(ui->lineEdit_9->focusWidget()) {
+        ui->lineEdit_10->clearFocus();
+        ui->lineEdit_8->clearFocus();
+        ui->lineEdit_9->setFocus();
+        int prevValue = ui->lineEdit_9->text().toInt();
+        int value3 = (ui->lineEdit_9->text()+digit).toInt();
+        setRange(ui->lineEdit_9, prevValue, value3, 100);
         //userMessage(value,5,100);
-        increasebutton(ui->lineEdit_10);
-        ui->progressBar_10->setValue(value3);
+        increasebutton(ui->lineEdit_9);
     }
      //chop
 
@@ -610,7 +579,6 @@ void doctor::on_clicked(const QString& digit)
         setRange(ui->lineEdit_13, prevValue, value1, 40);
         //userMessage(value,5,500);
         decreasebutton(ui->lineEdit_13);
-        ui->progressBar_11->setValue(value1);
     }
     if(ui->lineEdit_14->focusWidget()) {
         ui->lineEdit_13->clearFocus();
@@ -621,7 +589,6 @@ void doctor::on_clicked(const QString& digit)
         setRange(ui->lineEdit_14, prevValue, value2, 100);
         //userMessage(value,5,500);
         vacbutton(ui->lineEdit_14);
-        ui->progressBar_12->setValue(value2);
     }
      if(ui->lineEdit_15->focusWidget()) {
         ui->lineEdit_13->clearFocus();
@@ -632,7 +599,6 @@ void doctor::on_clicked(const QString& digit)
         setRange(ui->lineEdit_15, prevValue, value3, 500);
         //userMessage(value,5,100);
         increasebutton(ui->lineEdit_15);
-        ui->progressBar_13->setValue(value3);
     }
      //sculpt
      if(ui->lineEdit_16->focusWidget()) {
@@ -644,29 +610,26 @@ void doctor::on_clicked(const QString& digit)
         setRange(ui->lineEdit_16, prevValue, value1, 40);
         //userMessage(value,5,500);
         decreasebutton(ui->lineEdit_16);
-        ui->progressBar_2->setValue(value1);
     }
-    if(ui->lineEdit_17->focusWidget()) {
-        ui->lineEdit_16->clearFocus();
-        ui->lineEdit_18->clearFocus();
-        ui->lineEdit_17->setFocus();
-        int prevValue = ui->lineEdit_17->text().toInt();
-        int value2 = (ui->lineEdit_17->text()+digit).toInt();
-        setRange(ui->lineEdit_17, prevValue, value2, 500);
-        //userMessage(value,5,500);
-        vacbutton(ui->lineEdit_17);
-        ui->progressBar_3->setValue(value2);
-    }
-     if(ui->lineEdit_18->focusWidget()) {
+    if(ui->lineEdit_18->focusWidget()) {
         ui->lineEdit_16->clearFocus();
         ui->lineEdit_17->clearFocus();
         ui->lineEdit_18->setFocus();
         int prevValue = ui->lineEdit_18->text().toInt();
-        int value3 = (ui->lineEdit_18->text()+digit).toInt();
-        setRange(ui->lineEdit_18, prevValue, value3, 100);
+        int value2 = (ui->lineEdit_18->text()+digit).toInt();
+        setRange(ui->lineEdit_18, prevValue, value2, 500);
+        //userMessage(value,5,500);
+        vacbutton(ui->lineEdit_18);
+    }
+     if(ui->lineEdit_17->focusWidget()) {
+        ui->lineEdit_16->clearFocus();
+        ui->lineEdit_18->clearFocus();
+        ui->lineEdit_17->setFocus();
+        int prevValue = ui->lineEdit_17->text().toInt();
+        int value3 = (ui->lineEdit_17->text()+digit).toInt();
+        setRange(ui->lineEdit_17, prevValue, value3, 100);
         //userMessage(value,5,100);
-        increasebutton(ui->lineEdit_18);
-        ui->progressBar_4->setValue(value3);
+        increasebutton(ui->lineEdit_17);
 
       }
 
@@ -683,7 +646,6 @@ void doctor::on_clicked(const QString& digit)
         setRange(ui->lineEdit_5, prevValue, value4, 40);
       //  userMessage(value,5,500);
         decreasebutton(ui->lineEdit_5);
-        ui->progressBar_17->setValue(value4);
     }
    if(ui->lineEdit_7->focusWidget()) {
         ui->lineEdit_5->clearFocus();
@@ -695,7 +657,6 @@ void doctor::on_clicked(const QString& digit)
         setRange(ui->lineEdit_7, prevValue, value5, 500);
         //userMessage(value,5,500);
         vacbutton(ui->lineEdit_7);
-        ui->progressBar_16->setValue(value5);
     }
      if(ui->lineEdit_12->focusWidget()) {
         ui->lineEdit_5->clearFocus();
@@ -707,7 +668,6 @@ void doctor::on_clicked(const QString& digit)
         setRange(ui->lineEdit_12, prevValue, value6, 40);
        // userMessage(value,5,500);
         decreasebutton(ui->lineEdit_12);
-        ui->progressBar_15->setValue(value6);
     }
     if(ui->lineEdit_11->focusWidget()) {
         ui->lineEdit_7->clearFocus();
@@ -719,7 +679,6 @@ void doctor::on_clicked(const QString& digit)
         setRange(ui->lineEdit_11, prevValue, value7, 500);
         //userMessage(value,5,500);
         vacbutton(ui->lineEdit_11);
-        ui->progressBar_14->setValue(value7);
     }
     //vitrectomy
     if(ui->lineEdit->focusWidget()) {
@@ -730,7 +689,6 @@ void doctor::on_clicked(const QString& digit)
         int prevValue = ui->lineEdit->text().toInt();
         int value8 = (ui->lineEdit->text()+digit).toInt();
         setRange(ui->lineEdit, prevValue, value8, 960);
-        ui->progressBar_21->setValue(value8);
         //userMessage(value,60,960);
         //powervit();
     }
@@ -744,7 +702,6 @@ void doctor::on_clicked(const QString& digit)
         setRange(ui->lineEdit_19, prevValue, value9, 500);
         //userMessage(value,5,500);
         vacbutton(ui->lineEdit_19);
-        ui->progressBar_19->setValue(value9);
     }
     if(ui->lineEdit_20->focusWidget()) {
         ui->lineEdit->clearFocus();
@@ -755,7 +712,6 @@ void doctor::on_clicked(const QString& digit)
         int value10 = (ui->lineEdit_20->text()+digit).toInt();
         setRange(ui->lineEdit_20, prevValue, value10, 40);
         decreasebutton(ui->lineEdit_20);
-        ui->progressBar_20->setValue(value10);
         //userMessage(value,5,500);
     }
 }
@@ -849,14 +805,14 @@ void doctor::currentcombobox2(const QString &text)
     QString right = text;
        QString surgeonid = ui->SelectSurgeon->currentText();
        QSqlDatabase mydb = QSqlDatabase::addDatabase("QSQLITE");
-       mydb.setDatabaseName(PATH);
+       mydb.setDatabaseName(PATH1);
        if (!mydb.open()) {
            qDebug() << "Error: Unable to open database";
            return;
        }
 
        QSqlQuery query;
-       query.prepare("UPDATE phacoupdate.db SET footright = :right WHERE surgeon = :surgeon");
+       query.prepare("UPDATE phacohigh SET footright = :right WHERE surgeon = :surgeon");
        query.bindValue(":right", right);
        query.bindValue(":surgeon", surgeonid);
 
@@ -878,14 +834,14 @@ void doctor::currentcombobox3(const QString &text)
     QString bleft = text;
         QString surgeonid = ui->SelectSurgeon->currentText();
         QSqlDatabase mydb = QSqlDatabase::addDatabase("QSQLITE");
-        mydb.setDatabaseName(PATH);
+        mydb.setDatabaseName(PATH1);
         if (!mydb.open()) {
             qDebug() << "Error: Unable to open database";
             return;
         }
 
         QSqlQuery query;
-        query.prepare("UPDATE phacoupdate.db SET footbleft = :bleft WHERE surgeon = :surgeon");
+        query.prepare("UPDATE phacohigh SET footbleft = :bleft WHERE surgeon = :surgeon");
         query.bindValue(":bleft", bleft);
         query.bindValue(":surgeon", surgeonid);
 
@@ -907,14 +863,14 @@ void doctor::currentcombobox4(const QString &text)
     QString bright = text;
         QString surgeonid = ui->SelectSurgeon->currentText();
         QSqlDatabase mydb = QSqlDatabase::addDatabase("QSQLITE");
-        mydb.setDatabaseName(PATH);
+        mydb.setDatabaseName(PATH1);
         if (!mydb.open()) {
             qDebug() << "Error: Unable to open database";
             return;
         }
 
         QSqlQuery query;
-        query.prepare("UPDATE phacoupdate.db SET footbright = :bright WHERE surgeon = :surgeon");
+        query.prepare("UPDATE phacohigh SET footbright = :bright WHERE surgeon = :surgeon");
         query.bindValue(":bright", bright);
         query.bindValue(":surgeon", surgeonid);
 
@@ -930,19 +886,25 @@ void doctor::currentcombobox4(const QString &text)
         qDebug() << "BottomRFoot value updated:" << bright;
 }
 
+void doctor::trasmitcomboBox(const QString &text)
+{
+
+   emit transmitcombo(ui->comboBox->currentText());
+}
+
 void doctor::currentcombobox1(const QString &text)
 {
     QString left = text;
        QString surgeonid = ui->SelectSurgeon->currentText();
        QSqlDatabase mydb = QSqlDatabase::addDatabase("QSQLITE");
-       mydb.setDatabaseName(PATH);
+       mydb.setDatabaseName(PATH1);
        if (!mydb.open()) {
            qDebug() << "Error: Unable to open database";
            return;
        }
 
        QSqlQuery query;
-       query.prepare("UPDATE phacoupdate.db SET footleft = :left WHERE surgeon = :surgeon");
+       query.prepare("UPDATE phacohigh SET footleft = :left WHERE surgeon = :surgeon");
        query.bindValue(":left", left);
        query.bindValue(":surgeon", surgeonid);
 
@@ -964,8 +926,6 @@ void doctor::DiathermyBut()
     ui->tabWidget->setCurrentIndex(0);
    // ui->lineEdit_6->setText(QString::number(100));
    // QString value=ui->lineEdit_6->text();
-    int value=ui->lineEdit_6->text().toInt();
-    ui->progressBar->setValue(value);
 
 
 }
@@ -988,38 +948,6 @@ void doctor::VitrectomyBut()
 
 
 }
-void doctor::Epinucleus()
-{
-
-
-    ui->lineEdit_2->setText("22");
-    ui->lineEdit_3->setText("200");
-    ui->lineEdit_4->setText("60");
-
-
-}
-
-
-void doctor::Quad()
-{
-
-
-    // Set default values to UI elements
-
-}
-
-
-void doctor::Chop()
-{
-
-}
-
-void doctor::Sculpt()
-{
-
-
-}
-
 void doctor::savesettings()
 {
     emit currentcombobox1(ui->LeftFoot->currentText());
@@ -1037,51 +965,7 @@ void doctor::BackBut()
 
 void doctor::PhacoSaveBut()
 {
-//    QSqlDatabase mydb = QSqlDatabase::addDatabase("QSQLITE");
-//    mydb.setDatabaseName(PATH);
-//    if (!mydb.open()) {
-//        qDebug() << "Error: Unable to open database";
-//        return;
-//    }
-
-//    //QString surgeonid = ui->SelectSurgeon->currentText();
-//    QString paspmax = ui->lineEdit_2->text();
-//    QString pvacmax = ui->lineEdit_3->text();
-//    QString ppowmax = ui->lineEdit_4->text();
-
-//    QString surgeonid = ui->SelectSurgeon->currentText();
-//// int epinaspmax = ui->lineEdit_2->text().toInt();
-////    int epinvacmax = ui->lineEdit_3->text().toInt();
-////    int epinpowmax = ui->lineEdit_4->text().toInt();
-////    QString epinvac = ui->VacModeCom_phaco->currentText();
-////    QString epinpowmethod = ui->PowMethodCom_phaco->currentText();
-////    QString epinpowmod = ui->PowModeCom_phaco->currentText();
-
-
-
-//    QSqlQuery query;
-//    query.prepare("UPDATE phacoupdate.db SET phacoaspmax = :phacoaspmax, phacovacmax = :phacovacmax, phacopowmax = :phacopowmax WHERE surgeon = :surgeon");
-//    query.bindValue(":phacoaspmax", paspmax);
-//    query.bindValue(":phacovacmax", pvacmax);
-//    query.bindValue(":phacopowmax", ppowmax);
-//    query.bindValue(":surgeon", surgeonid);
-
-//    qDebug() << "Phaco parameters:" << paspmax << pvacmax << ppowmax;
-//    qDebug() << "Surgeon ID:" << surgeonid;
-
-//    if (query.exec()) {
-//        QMessageBox::information(nullptr, "Info", "Saved Successfully");
-
-//    } else {
-//      //  qDebug() << "Error: Unable to update database -" << query.lastError();
-//        QMessageBox::warning(nullptr, "Error", "Failed to save data");
-//    }
-
-//    mydb.close();
 }
-
-
-
 
 
 void doctor::DiaSaveBut()
@@ -1090,7 +974,7 @@ void doctor::DiaSaveBut()
     //transmitter = powmax;
 
     QSqlDatabase mydb = QSqlDatabase::addDatabase("QSQLITE");
-    mydb.setDatabaseName(PATH);
+    mydb.setDatabaseName(PATH1);
     if (!mydb.open()) {
         qDebug() << "Error: Unable to open database";
         return;
@@ -1099,21 +983,22 @@ void doctor::DiaSaveBut()
     QString surgeonid = ui->SelectSurgeon->currentText();
 
     QSqlQuery query;
-    query.prepare("UPDATE phacoupdate.db SET diapowmax = :diapowmax WHERE surgeon = :surgeon");
+    query.prepare("UPDATE phacohigh SET diapowmax = :diapowmax WHERE surgeon = :surgeon");
     query.bindValue(":diapowmax", powmax);
     query.bindValue(":surgeon", surgeonid);
 
     if (query.exec()) {
         QMessageBox::information(nullptr, "Info", "Saved Successfully");
          //emit dia(surgeonid,powmax);
-        onSaveButtonClicked(4);
+onSaveButtonClicked(4);
         qDebug()<<surgeonid<<powmax;
 
         //  emit selection(surgeonid);
     } else {
        // qDebug() << "Error: Failed to update database -" << query.lastError();
         QMessageBox::warning(nullptr, "Error", "Failed to save data");
-    }
+
+   }
 
     mydb.close();
 }
@@ -1121,7 +1006,7 @@ void doctor::DiaSaveBut()
 void doctor::IASaveBut()
 {
     QSqlDatabase mydb = QSqlDatabase::addDatabase("QSQLITE");
-    mydb.setDatabaseName(PATH);
+    mydb.setDatabaseName(PATH1);
     if (!mydb.open()) {
         qDebug() << "Error: Unable to open database";
         return;
@@ -1138,7 +1023,7 @@ void doctor::IASaveBut()
     QString surgeonid = ui->SelectSurgeon->currentText();
 
     QSqlQuery query;
-    query.prepare("UPDATE phacoupdate.db SET ia1aspmax = :ia1aspmax, ia1vacmax = :ia1vacmax, ia2aspmax = :ia2aspmax, ia2vacmax = :ia2vacmax WHERE surgeon = :surgeonid");
+    query.prepare("UPDATE phacohigh SET ia1aspmax = :ia1aspmax, ia1vacmax = :ia1vacmax, ia2aspmax = :ia2aspmax, ia2vacmax = :ia2vacmax WHERE surgeon = :surgeonid");
     query.bindValue(":ia1aspmax", ia1aspmax);
     query.bindValue(":ia1vacmax", ia1vacmax);
     query.bindValue(":ia2aspmax", ia2aspmax);
@@ -1146,7 +1031,7 @@ void doctor::IASaveBut()
     query.bindValue(":surgeonid", surgeonid);
 
     QSqlQuery query2;
-    query2.prepare("UPDATE phacoupdate.db SET cortexaspmode = :coraspmode, cortextvacmode = :corvacmode, polishaspmode = :polaspmode, polishvacmode = :polvacmode WHERE surgeon = :surgeonid");
+    query2.prepare("UPDATE phacohigh SET cortexaspmode = :coraspmode, cortextvacmode = :corvacmode, polishaspmode = :polaspmode, polishvacmode = :polvacmode WHERE surgeon = :surgeonid");
     query2.bindValue(":coraspmode", coraspmode);
     query2.bindValue(":corvacmode", corvacmode);
     query2.bindValue(":polaspmode", polaspmode);
@@ -1174,7 +1059,7 @@ void doctor::IASaveBut()
 void doctor::VitSaveBut()
 {
     QSqlDatabase mydb = QSqlDatabase::addDatabase("QSQLITE");
-    mydb.setDatabaseName(PATH);
+    mydb.setDatabaseName(PATH1);
     if (!mydb.open()) {
         qDebug() << "Error: Unable to open database";
         return;
@@ -1188,7 +1073,7 @@ void doctor::VitSaveBut()
     QString vitaspmax = ui->lineEdit_20->text();
 
     QSqlQuery query;
-    query.prepare("UPDATE phacoupdate.db SET vitcutmax = :vcutmax, vitvacmax = :vvacmax, vitcutmode = :vcutmode, vitvacmode = :vvacmode, vitaspmax = :vitaspmax WHERE surgeon = :surgeonid");
+    query.prepare("UPDATE phacohigh SET vitcutmax = :vcutmax, vitvacmax = :vvacmax, vitcutmode = :vcutmode, vitvacmode = :vvacmode, vitaspmax = :vitaspmax WHERE surgeon = :surgeonid");
     query.bindValue(":vcutmax", vcutmax);
     query.bindValue(":vvacmax", vvacmax);
     query.bindValue(":vcutmode", vcutmode);
@@ -1218,7 +1103,7 @@ void doctor::click(int tab)
             "height:10px;"
             "background-color:black;"
             "color:white;"
-            "border:2px solid black;"
+            "border:none;"
             "font:bold;"// Adjust the radius as needed
                                  "}";
     QString styleSheet1 = "QPushButton {"
@@ -1226,23 +1111,24 @@ void doctor::click(int tab)
             "width:10px;"
             "height:10px;"
             "background-color:transparent;"
-            "border:2px solid black;"
+            "border:none;"
             "font:bold;"// Adjust the radius as needed
                                  "}";
     if (tab!=0) {
-
+        ui->DiaBut->setStyleSheet("");
    ui->DiaBut->setStyleSheet(styleSheet1);
     }
     if(tab!=1)
     {
-        ui->PhacoBut->setStyleSheet(styleSheet1);
+        ui->PhacoBut->setStyleSheet("");
+          ui->PhacoBut->setStyleSheet(styleSheet1);
     }
     if(tab!=2){
-
+        ui->IABut->setStyleSheet("");
           ui->IABut->setStyleSheet(styleSheet1);
     }
     if(tab!=3){
-
+    ui->VitBut->setStyleSheet("");
      ui->VitBut->setStyleSheet(styleSheet1);
     }
     if (tab == 0) {
@@ -1258,62 +1144,61 @@ void doctor::click(int tab)
     }
 
 }
-
-
-void doctor::clicked(int tab)
+void doctor::clickedtab(int tab1)
 {
     QString styleSheet = "QPushButton {"
-            "border-radius: 40px;"
 
             "background-color:black;"
             "color:white;"
-            "border:3px solid black;"
+            "border:2px solid black;"
             "font:bold;"// Adjust the radius as needed
                                  "}";
     QString styleSheet1 = "QPushButton {"
-            "border-radius: 40px;"
 
             "background-color:white;"
             "color:black;"
-            "border:3px solid black;"
+            "border:2px solid black;"
             "font:bold;"// Adjust the radius as needed
                                  "}";
-    if (tab!=0) {
-
+    if (tab1!=0) {
+        ui->EpinBut_phaco->setStyleSheet("");
    ui->EpinBut_phaco->setStyleSheet(styleSheet1);
     }
-    if(tab!=1)
+    if(tab1!=1)
     {
-
+        ui->QuadBut_phaco->setStyleSheet("");
           ui->QuadBut_phaco->setStyleSheet(styleSheet1);
     }
-    if(tab!=2){
-
+    if(tab1!=2){
+        ui->ChopBut_phaco->setStyleSheet("");
           ui->ChopBut_phaco->setStyleSheet(styleSheet1);
     }
-    if(tab!=3){
-
+    if(tab1!=3){
+    ui->ScupltBut_phaco->setStyleSheet("");
      ui->ScupltBut_phaco->setStyleSheet(styleSheet1);
     }
-    if (tab == 0) {
+
+    if (tab1 == 0) {
     ui->EpinBut_phaco->setStyleSheet(styleSheet);
-    } else if (tab == 1) {
+    } else if (tab1 == 1) {
      ui->QuadBut_phaco->setStyleSheet(styleSheet);
     }                                                                      //set color
-    else if(tab==2){
+    else if(tab1==2){
          ui->ChopBut_phaco->setStyleSheet(styleSheet);
     }
-    else if(tab==3){
+    else if(tab1==3){
          ui->ScupltBut_phaco->setStyleSheet(styleSheet);
     }
 
 }
 
 
+
+
 void doctor::on_SavePhacoBut_phaco_2_clicked()
 {
     QSqlDatabase mydb = QSqlDatabase::addDatabase("QSQLITE");
-    mydb.setDatabaseName(PATH);
+    mydb.setDatabaseName(PATH1);
     if (!mydb.open()) {
         qDebug() << "Error: Unable to open database";
         return;
@@ -1335,7 +1220,7 @@ void doctor::on_SavePhacoBut_phaco_2_clicked()
 
     // Prepare SQL query to update the database
     QSqlQuery query;
-    query.prepare("UPDATE phacoupdate.db SET quadaspmax = :quadaspmax, quadvacmax = :quadvacmax, quadpowmax = :quadpowmax, Quadvacmode = :qvac, Quadpowermethod = :qpowmethod, Quadpowmode = :qpowmode WHERE surgeon = :surgeon");
+    query.prepare("UPDATE phacohigh SET quadaspmax = :quadaspmax, quadvacmax = :quadvacmax, quadpowmax = :quadpowmax, Quadvacmode = :qvac, Quadpowermethod = :qpowmethod, Quadpowmode = :qpowmode WHERE surgeon = :surgeon");
     query.bindValue(":quadaspmax", qaspmax);
     query.bindValue(":quadvacmax", qvacmax);
     query.bindValue(":quadpowmax", qpowmax);
@@ -1386,10 +1271,11 @@ void doctor::on_ScupltBut_phaco_clicked()
     ui->tabWidget_2->setCurrentIndex(3);
 }
 
+
 void doctor::on_SavePhacoBut_phaco_clicked()
 {
     QSqlDatabase mydb = QSqlDatabase::addDatabase("QSQLITE");
-    mydb.setDatabaseName(PATH);
+    mydb.setDatabaseName(PATH1);
     if (!mydb.open()) {
         qDebug() << "Error: Unable to open database";
         return;
@@ -1406,7 +1292,7 @@ void doctor::on_SavePhacoBut_phaco_clicked()
 
    QSqlQuery query;
 
-    query.prepare("UPDATE phacoupdate.db SET Epinaspmax = :epinaspmax, Epinvacmax = :epinvacmax, Epinpowmax = :epinpowmax, Epinvacmode = :epinvac, Epinpowermethod = :epinpowmethod, Epinpowmode = :epinpowmod WHERE surgeon = :surgeon");
+    query.prepare("UPDATE phacohigh SET Epinaspmax = :epinaspmax, Epinvacmax = :epinvacmax, Epinpowmax = :epinpowmax, Epinvacmode = :epinvac, Epinpowermethod = :epinpowmethod, Epinpowmode = :epinpowmod WHERE surgeon = :surgeon");
     query.bindValue(":epinaspmax", epinaspmax);
     query.bindValue(":epinvacmax", epinvacmax);
     query.bindValue(":epinpowmax", epinpowmax);
@@ -1443,14 +1329,14 @@ void doctor::on_SavePhacoBut_phaco_3_clicked()
     QString surgeonid = ui->SelectSurgeon->currentText();
 
     QSqlDatabase mydb = QSqlDatabase::addDatabase("QSQLITE");
-    mydb.setDatabaseName(PATH);
+    mydb.setDatabaseName(PATH1);
     if (!mydb.open()) {
         qDebug() << "Error: Unable to open database";
         return;
     }
 
     QSqlQuery query;
-    query.prepare("UPDATE phacoupdate.db SET caspmax = :caspmax, cvacmax = :cvacmax, cpowmax = :cpowmax, Chopvacmode = :cvacmode, Choppowermethod = :cpowmethod, Choppowmode = :cpowmode WHERE surgeon = :surgeon");
+    query.prepare("UPDATE phacohigh SET caspmax = :caspmax, cvacmax = :cvacmax, cpowmax = :cpowmax, Chopvacmode = :cvacmode, Choppowermethod = :cpowmethod, Choppowmode = :cpowmode WHERE surgeon = :surgeon");
     query.bindValue(":caspmax", caspmax);
     query.bindValue(":cvacmax", cvacmax);
     query.bindValue(":cpowmax", cpowmax);
@@ -1486,14 +1372,14 @@ void doctor::on_SavePhacoBut_phaco_4_clicked()
     QString surgeonid = ui->SelectSurgeon->currentText();
 
     QSqlDatabase mydb = QSqlDatabase::addDatabase("QSQLITE");
-    mydb.setDatabaseName(PATH);
+    mydb.setDatabaseName(PATH1);
     if (!mydb.open()) {
         qDebug() << "Error: Unable to open database";
         return;
     }
 
     QSqlQuery query;
-    query.prepare("UPDATE phacoupdate.db SET saspmax = :saspmax, svacmax = :svacmax, spowmax = :spowmax, Sculptvacmode = :svacmode, Sculptpowermethod = :spowmethod, Sculptpowmode = :spowmode WHERE surgeon = :surgeon");
+    query.prepare("UPDATE phacohigh SET saspmax = :saspmax, svacmax = :svacmax, spowmax = :spowmax, Sculptvacmode = :svacmode, Sculptpowermethod = :spowmethod, Sculptpowmode = :spowmode WHERE surgeon = :surgeon");
     query.bindValue(":saspmax", saspmax);
     query.bindValue(":svacmax", svacmax);
     query.bindValue(":spowmax", spowmax);
@@ -1582,4 +1468,3 @@ int doctor::getvalue(int input)
         return ((input-1)/60+1)*60;
     }
 }
-

@@ -39,7 +39,7 @@ public:
         if (footpedal->objectName().isEmpty())
             footpedal->setObjectName(QString::fromUtf8("footpedal"));
         footpedal->resize(1280, 720);
-        footpedal->setStyleSheet(QString::fromUtf8("background-color: rgb(162, 128, 137);"));
+        footpedal->setStyleSheet(QString::fromUtf8("background-color:rgb(83, 104, 120);"));
         right_footcom = new QComboBox(footpedal);
         right_footcom->addItem(QString());
         right_footcom->addItem(QString());

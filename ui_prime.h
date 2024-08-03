@@ -63,27 +63,29 @@ public:
         clean_but->setObjectName(QString::fromUtf8("clean_but"));
         clean_but->setGeometry(QRect(140, 480, 151, 91));
         clean_but->setStyleSheet(QString::fromUtf8("font:20pt \"Ubuntu\";\n"
-"\n"
+"background-color:transparent;\n"
+"image: url(:/images/g1094.png);\n"
 "border-radius:20px;\n"
 "border:none;\n"
-"font:bold;\n"
-"border:3px solid black;"));
+"font:bold;"));
         Tune_but = new QPushButton(prime);
         Tune_but->setObjectName(QString::fromUtf8("Tune_but"));
         Tune_but->setGeometry(QRect(140, 320, 161, 91));
         Tune_but->setStyleSheet(QString::fromUtf8("font:20pt \"Ubuntu\";\n"
-"\n"
+"background-color:transparent;\n"
+"image: url(:/images/g1094.png);\n"
 "border-radius:20px;\n"
 "border:none;\n"
-"font:bold;border:3px solid black;"));
+"font:bold;"));
         prime1_but = new QPushButton(prime);
         prime1_but->setObjectName(QString::fromUtf8("prime1_but"));
         prime1_but->setGeometry(QRect(140, 170, 161, 91));
         prime1_but->setStyleSheet(QString::fromUtf8("font:20pt \"Ubuntu\";\n"
-"\n"
+"background-color:transparent;\n"
+"image: url(:/images/g3042.png);\n"
 "border-radius:20px;\n"
 "border:none;\n"
-"font:bold;border:3px solid black;"));
+"font:bold;"));
         tabWidget = new QTabWidget(prime);
         tabWidget->setObjectName(QString::fromUtf8("tabWidget"));
         tabWidget->setGeometry(QRect(420, 10, 861, 711));
@@ -101,9 +103,10 @@ public:
 "border:none;font:bold;"));
         start_prime_but_2 = new QPushButton(tab_6);
         start_prime_but_2->setObjectName(QString::fromUtf8("start_prime_but_2"));
-        start_prime_but_2->setGeometry(QRect(260, 540, 281, 71));
+        start_prime_but_2->setGeometry(QRect(260, 540, 301, 71));
         start_prime_but_2->setStyleSheet(QString::fromUtf8("font:20pt \"Ubuntu\";\n"
-"background-color: rgb(36, 31, 49);\n"
+"image: url(:/images/g4210.png);\n"
+"background-color:transparent;\n"
 "color: rgb(255, 255, 255);\n"
 "border-radius:20px;\n"
 "border:none;font:bold;"));
@@ -152,9 +155,10 @@ public:
 "background-color:transparent;"));
         Start_tune_2 = new QPushButton(tab_7);
         Start_tune_2->setObjectName(QString::fromUtf8("Start_tune_2"));
-        Start_tune_2->setGeometry(QRect(260, 510, 281, 71));
-        Start_tune_2->setStyleSheet(QString::fromUtf8("font:20pt \"Ubuntu\";\n"
-"background-color: rgb(36, 31, 49);\n"
+        Start_tune_2->setGeometry(QRect(220, 510, 341, 111));
+        Start_tune_2->setStyleSheet(QString::fromUtf8("font:22pt \"Ubuntu\";\n"
+"image: url(:/images/g4210.png);\n"
+"background-color: transparent;\n"
 "color: rgb(255, 255, 255);\n"
 "border-radius:20px;\n"
 "border:none;\n"
@@ -212,9 +216,10 @@ public:
 ""));
         begin_clean_but_2 = new QPushButton(tab_8);
         begin_clean_but_2->setObjectName(QString::fromUtf8("begin_clean_but_2"));
-        begin_clean_but_2->setGeometry(QRect(300, 520, 291, 71));
+        begin_clean_but_2->setGeometry(QRect(300, 520, 301, 91));
         begin_clean_but_2->setStyleSheet(QString::fromUtf8("font:20pt \"Ubuntu\";\n"
-"background-color: rgb(36, 31, 49);\n"
+"background-color: transparent;\n"
+"image: url(:/images/g4210.png);\n"
 "color: rgb(255, 255, 255);\n"
 "font:bold;\n"
 "border-radius:20px;\n"
@@ -240,7 +245,7 @@ public:
 
         retranslateUi(prime);
 
-        tabWidget->setCurrentIndex(2);
+        tabWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(prime);

@@ -14,7 +14,7 @@ class QLineEdit;
 #include<QtSql/QSqlDatabase>
 #include <QtSql/QSqlQuery>
 //#define PATH "/home/phaco.db"
-#define PATH1 "phacoupdate.db"
+#define PATH1 "/home/phacohigh.db"
 
 namespace Ui {
 class doctor;
@@ -39,7 +39,7 @@ public slots:
 
     void on_clicked(const QString& digit);
     void on_clickedenter();
-    void clicked(int tab);
+    void clickedtab(int tab1);
     void PhacoSaveBut();
 
 
@@ -57,6 +57,7 @@ public slots:
     void currentcombobox2(const QString &text);
     void currentcombobox3(const QString &text);
     void currentcombobox4(const QString &text);
+    void trasmitcomboBox(const QString &text);
     void current(int index);
 
 
@@ -72,13 +73,6 @@ void DiaSaveBut();
 
     void BackBut();
 
-    void Epinucleus();
-
-    void Quad();
-
-    void Chop();
-
-    void Sculpt();
     void savesettings();
 
 
@@ -119,7 +113,7 @@ signals:
     void comboBox3Changed(const QString &text);
      void comboBox4Changed(const QString &text);
     void valuesUpdated(const QString &surgeon, int tabIndex, const QStringList &values);
-
+  void transmitcombo(const QString &text);
 
               //footpedal combo box;
               void leftfoot(const QString &value);

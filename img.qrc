@@ -61,5 +61,12 @@
         <file>us1.png</file>
         <file>newbut.png</file>
         <file>irr.png</file>
+        <file>primebut.png</file>
+        <file>g1290.png</file>
+        <file>g1094.png</file>
+        <file>g3042.png</file>
+        <file>g3645.png</file>
+        <file>g4196.png</file>
+        <file>g4210.png</file>
     </qresource>
 </RCC>

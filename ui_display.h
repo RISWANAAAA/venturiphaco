@@ -32,7 +32,7 @@ public:
         if (display->objectName().isEmpty())
             display->setObjectName(QString::fromUtf8("display"));
         display->resize(1280, 720);
-        display->setStyleSheet(QString::fromUtf8("background-color: rgb(162, 128, 137);"));
+        display->setStyleSheet(QString::fromUtf8("background-color:rgb(83, 104, 120);"));
         label = new QLabel(display);
         label->setObjectName(QString::fromUtf8("label"));
         label->setGeometry(QRect(400, 180, 381, 31));

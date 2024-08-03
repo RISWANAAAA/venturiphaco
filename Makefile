@@ -719,67 +719,74 @@ compiler_rcc_clean:
 	-$(DEL_FILE) qrc_img.cpp
 qrc_img.cpp: img.qrc \
 		../../xsdk-2023.1/sysroots/x86_64-petalinux-linux/usr/bin/rcc \
-		tickimg.png \
-		elapsed.png \
-		sidearrow.png \
-		keypadbg3\ 1.png \
-		leftdown.png \
-		2nd.png \
-		irr.png \
-		rightdown.png \
-		backbutton.png \
-		display.png \
-		downarr.png \
-		handpiece1.png \
-		down1.png \
-		doctor.png \
-		backarr.png \
-		downcross.png \
-		EYE.png \
-		leftcross.png \
-		rightarr.png \
-		notifi.png \
-		d2.png \
-		footimg.png \
-		darrpng \
-		settings1.png \
-		touchscreen.png \
-		circlee.png \
-		settings.png \
-		main.png \
-		up2.png \
-		open.png \
-		uparr.png \
-		up1.png \
-		person.png \
-		locked.png \
-		learner.png \
-		button.png \
-		buttonimg.png \
-		upcrossr.png \
-		notconnected.png \
 		straightr.png \
-		logs.png \
-		nextarrow.png \
-		uarrow.png \
-		nextimg.png \
-		ci.png \
-		leftside.png \
-		backimg.png \
-		left.png \
-		darrow.png \
-		us1.png \
-		backarrowimg.png \
-		newbut.png \
-		close.png \
-		genral1.png \
+		unlocked.png \
+		doctor.png \
 		warning1.png \
-		glass.png \
-		uparrow.png \
-		connected.png \
-		ci1.png \
+		elapsed.png \
 		main1.png \
-		unlocked.png
+		person.png \
+		rightdown.png \
+		leftcross.png \
+		d2.png \
+		leftside.png \
+		downarr.png \
+		settings.png \
+		left.png \
+		g1094.png \
+		notifi.png \
+		glass.png \
+		connected.png \
+		nextarrow.png \
+		uparr.png \
+		settings1.png \
+		nextimg.png \
+		uparrow.png \
+		g4196.png \
+		touchscreen.png \
+		logs.png \
+		us1.png \
+		g3645.png \
+		g3042.png \
+		keypadbg3\ 1.png \
+		backimg.png \
+		darrow.png \
+		main.png \
+		primebut.png \
+		footimg.png \
+		leftdown.png \
+		sidearrow.png \
+		backarr.png \
+		irr.png \
+		rightarr.png \
+		button.png \
+		locked.png \
+		down1.png \
+		open.png \
+		2nd.png \
+		circlee.png \
+		close.png \
+		newbut.png \
+		downcross.png \
+		g1290.png \
+		up2.png \
+		upcrossr.png \
+		buttonimg.png \
+		g4210.png \
+		uarrow.png \
+		darrpng \
+		tickimg.png \
+		backbutton.png \
+		EYE.png \
+		ci.png \
+		display.png \
+		backarrowimg.png \
+		notconnected.png \
+		learner.png \
+		genral1.png \
+		up1.png \
+		ci1.png \
+		handpiece1.png
 	/home/amt-04/xsdk-2023.1/sysroots/x86_64-petalinux-linux/usr/bin/rcc -name img img.qrc -o qrc_img.cpp
 
 compiler_moc_predefs_make_all: moc_predefs.h
