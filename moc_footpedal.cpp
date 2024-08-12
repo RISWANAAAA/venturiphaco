@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_footpedal_t {
-    QByteArrayData data[18];
-    char stringdata0[210];
+    QByteArrayData data[19];
+    char stringdata0[212];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -35,29 +35,30 @@ static const qt_meta_stringdata_footpedal_t qt_meta_stringdata_footpedal = {
 QT_MOC_LITERAL(0, 0, 9), // "footpedal"
 QT_MOC_LITERAL(1, 10, 15), // "moveTopToBottom"
 QT_MOC_LITERAL(2, 26, 0), // ""
-QT_MOC_LITERAL(3, 27, 15), // "moveBottomToTop"
-QT_MOC_LITERAL(4, 43, 13), // "performReflux"
-QT_MOC_LITERAL(5, 57, 11), // "togglePower"
-QT_MOC_LITERAL(6, 69, 20), // "continous_irrigation"
-QT_MOC_LITERAL(7, 90, 7), // "powerdm"
-QT_MOC_LITERAL(8, 98, 9), // "combobox1"
-QT_MOC_LITERAL(9, 108, 4), // "text"
-QT_MOC_LITERAL(10, 113, 9), // "combobox2"
-QT_MOC_LITERAL(11, 123, 9), // "combobox3"
-QT_MOC_LITERAL(12, 133, 9), // "combobox4"
-QT_MOC_LITERAL(13, 143, 22), // "storeComboBoxSelection"
-QT_MOC_LITERAL(14, 166, 5), // "index"
-QT_MOC_LITERAL(15, 172, 4), // "Back"
-QT_MOC_LITERAL(16, 177, 10), // "SaveForAll"
-QT_MOC_LITERAL(17, 188, 21) // "on_pushButton_clicked"
+QT_MOC_LITERAL(3, 27, 5), // "value"
+QT_MOC_LITERAL(4, 33, 15), // "moveBottomToTop"
+QT_MOC_LITERAL(5, 49, 13), // "performReflux"
+QT_MOC_LITERAL(6, 63, 11), // "togglePower"
+QT_MOC_LITERAL(7, 75, 20), // "continous_irrigation"
+QT_MOC_LITERAL(8, 96, 7), // "powerdm"
+QT_MOC_LITERAL(9, 104, 6), // "value1"
+QT_MOC_LITERAL(10, 111, 9), // "combobox1"
+QT_MOC_LITERAL(11, 121, 4), // "text"
+QT_MOC_LITERAL(12, 126, 9), // "combobox2"
+QT_MOC_LITERAL(13, 136, 9), // "combobox3"
+QT_MOC_LITERAL(14, 146, 9), // "combobox4"
+QT_MOC_LITERAL(15, 156, 22), // "storeComboBoxSelection"
+QT_MOC_LITERAL(16, 179, 5), // "index"
+QT_MOC_LITERAL(17, 185, 4), // "Back"
+QT_MOC_LITERAL(18, 190, 21) // "on_pushButton_clicked"
 
     },
-    "footpedal\0moveTopToBottom\0\0moveBottomToTop\0"
-    "performReflux\0togglePower\0"
-    "continous_irrigation\0powerdm\0combobox1\0"
-    "text\0combobox2\0combobox3\0combobox4\0"
-    "storeComboBoxSelection\0index\0Back\0"
-    "SaveForAll\0on_pushButton_clicked"
+    "footpedal\0moveTopToBottom\0\0value\0"
+    "moveBottomToTop\0performReflux\0togglePower\0"
+    "continous_irrigation\0powerdm\0value1\0"
+    "combobox1\0text\0combobox2\0combobox3\0"
+    "combobox4\0storeComboBoxSelection\0index\0"
+    "Back\0on_pushButton_clicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -67,7 +68,7 @@ static const uint qt_meta_data_footpedal[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-      14,   14, // methods
+      13,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -75,38 +76,36 @@ static const uint qt_meta_data_footpedal[] = {
        6,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    0,   84,    2, 0x06 /* Public */,
-       3,    0,   85,    2, 0x06 /* Public */,
-       4,    0,   86,    2, 0x06 /* Public */,
-       5,    0,   87,    2, 0x06 /* Public */,
-       6,    0,   88,    2, 0x06 /* Public */,
-       7,    0,   89,    2, 0x06 /* Public */,
+       1,    1,   79,    2, 0x06 /* Public */,
+       4,    1,   82,    2, 0x06 /* Public */,
+       5,    1,   85,    2, 0x06 /* Public */,
+       6,    1,   88,    2, 0x06 /* Public */,
+       7,    1,   91,    2, 0x06 /* Public */,
+       8,    1,   94,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       8,    1,   90,    2, 0x0a /* Public */,
-      10,    1,   93,    2, 0x0a /* Public */,
-      11,    1,   96,    2, 0x0a /* Public */,
-      12,    1,   99,    2, 0x0a /* Public */,
-      13,    1,  102,    2, 0x0a /* Public */,
-      15,    0,  105,    2, 0x08 /* Private */,
-      16,    0,  106,    2, 0x08 /* Private */,
-      17,    0,  107,    2, 0x08 /* Private */,
+      10,    1,   97,    2, 0x0a /* Public */,
+      12,    1,  100,    2, 0x0a /* Public */,
+      13,    1,  103,    2, 0x0a /* Public */,
+      14,    1,  106,    2, 0x0a /* Public */,
+      15,    1,  109,    2, 0x0a /* Public */,
+      17,    0,  112,    2, 0x08 /* Private */,
+      18,    0,  113,    2, 0x08 /* Private */,
 
  // signals: parameters
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
+    QMetaType::Void, QMetaType::Int,    3,
+    QMetaType::Void, QMetaType::Int,    3,
+    QMetaType::Void, QMetaType::Int,    3,
+    QMetaType::Void, QMetaType::Int,    3,
+    QMetaType::Void, QMetaType::Int,    3,
+    QMetaType::Void, QMetaType::Int,    9,
 
  // slots: parameters
-    QMetaType::Void, QMetaType::QString,    9,
-    QMetaType::Void, QMetaType::QString,    9,
-    QMetaType::Void, QMetaType::QString,    9,
-    QMetaType::Void, QMetaType::QString,    9,
-    QMetaType::Void, QMetaType::Int,   14,
-    QMetaType::Void,
+    QMetaType::Void, QMetaType::QString,   11,
+    QMetaType::Void, QMetaType::QString,   11,
+    QMetaType::Void, QMetaType::QString,   11,
+    QMetaType::Void, QMetaType::QString,   11,
+    QMetaType::Void, QMetaType::Int,   16,
     QMetaType::Void,
     QMetaType::Void,
 
@@ -119,61 +118,60 @@ void footpedal::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
         auto *_t = static_cast<footpedal *>(_o);
         (void)_t;
         switch (_id) {
-        case 0: _t->moveTopToBottom(); break;
-        case 1: _t->moveBottomToTop(); break;
-        case 2: _t->performReflux(); break;
-        case 3: _t->togglePower(); break;
-        case 4: _t->continous_irrigation(); break;
-        case 5: _t->powerdm(); break;
+        case 0: _t->moveTopToBottom((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 1: _t->moveBottomToTop((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 2: _t->performReflux((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 3: _t->togglePower((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 4: _t->continous_irrigation((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 5: _t->powerdm((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 6: _t->combobox1((*reinterpret_cast< const QString(*)>(_a[1]))); break;
         case 7: _t->combobox2((*reinterpret_cast< const QString(*)>(_a[1]))); break;
         case 8: _t->combobox3((*reinterpret_cast< const QString(*)>(_a[1]))); break;
         case 9: _t->combobox4((*reinterpret_cast< const QString(*)>(_a[1]))); break;
         case 10: _t->storeComboBoxSelection((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 11: _t->Back(); break;
-        case 12: _t->SaveForAll(); break;
-        case 13: _t->on_pushButton_clicked(); break;
+        case 12: _t->on_pushButton_clicked(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
         {
-            using _t = void (footpedal::*)();
+            using _t = void (footpedal::*)(int );
             if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&footpedal::moveTopToBottom)) {
                 *result = 0;
                 return;
             }
         }
         {
-            using _t = void (footpedal::*)();
+            using _t = void (footpedal::*)(int );
             if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&footpedal::moveBottomToTop)) {
                 *result = 1;
                 return;
             }
         }
         {
-            using _t = void (footpedal::*)();
+            using _t = void (footpedal::*)(int );
             if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&footpedal::performReflux)) {
                 *result = 2;
                 return;
             }
         }
         {
-            using _t = void (footpedal::*)();
+            using _t = void (footpedal::*)(int );
             if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&footpedal::togglePower)) {
                 *result = 3;
                 return;
             }
         }
         {
-            using _t = void (footpedal::*)();
+            using _t = void (footpedal::*)(int );
             if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&footpedal::continous_irrigation)) {
                 *result = 4;
                 return;
             }
         }
         {
-            using _t = void (footpedal::*)();
+            using _t = void (footpedal::*)(int );
             if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&footpedal::powerdm)) {
                 *result = 5;
                 return;
@@ -211,51 +209,57 @@ int footpedal::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 14)
+        if (_id < 13)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 14;
+        _id -= 13;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 14)
+        if (_id < 13)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 14;
+        _id -= 13;
     }
     return _id;
 }
 
 // SIGNAL 0
-void footpedal::moveTopToBottom()
+void footpedal::moveTopToBottom(int _t1)
 {
-    QMetaObject::activate(this, &staticMetaObject, 0, nullptr);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 
 // SIGNAL 1
-void footpedal::moveBottomToTop()
+void footpedal::moveBottomToTop(int _t1)
 {
-    QMetaObject::activate(this, &staticMetaObject, 1, nullptr);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 1, _a);
 }
 
 // SIGNAL 2
-void footpedal::performReflux()
+void footpedal::performReflux(int _t1)
 {
-    QMetaObject::activate(this, &staticMetaObject, 2, nullptr);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 2, _a);
 }
 
 // SIGNAL 3
-void footpedal::togglePower()
+void footpedal::togglePower(int _t1)
 {
-    QMetaObject::activate(this, &staticMetaObject, 3, nullptr);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 3, _a);
 }
 
 // SIGNAL 4
-void footpedal::continous_irrigation()
+void footpedal::continous_irrigation(int _t1)
 {
-    QMetaObject::activate(this, &staticMetaObject, 4, nullptr);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 4, _a);
 }
 
 // SIGNAL 5
-void footpedal::powerdm()
+void footpedal::powerdm(int _t1)
 {
-    QMetaObject::activate(this, &staticMetaObject, 5, nullptr);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 5, _a);
 }
 QT_WARNING_POP
 QT_END_MOC_NAMESPACE

@@ -47,7 +47,6 @@ public:
     QWidget *Diathermy;
     QLineEdit *lineEdit_6;
     QLabel *DiaPowMax;
-    QPushButton *SaveDiaBut;
     QProgressBar *progressBar;
     QWidget *tab_2;
     QPushButton *EpinBut_phaco;
@@ -63,7 +62,6 @@ public:
     QLabel *AspMax_phaco_2;
     QLineEdit *lineEdit_3;
     QLabel *AspMax_phaco_4;
-    QPushButton *SavePhacoBut_phaco;
     QLabel *VacMode_phaco;
     QLabel *AspMax_phaco;
     QComboBox *PowModeCom_phaco;
@@ -83,7 +81,6 @@ public:
     QLabel *AspMax_phaco_10;
     QLineEdit *lineEdit_9;
     QLabel *AspMax_phaco_11;
-    QPushButton *SavePhacoBut_phaco_2;
     QLabel *VacMode_phaco_2;
     QLabel *AspMax_phaco_12;
     QComboBox *PowModeCom_phaco_2;
@@ -123,7 +120,6 @@ public:
     QLabel *AspMax_phaco_18;
     QLineEdit *lineEdit_17;
     QLabel *AspMax_phaco_19;
-    QPushButton *SavePhacoBut_phaco_4;
     QLabel *VacMode_phaco_4;
     QLabel *AspMax_phaco_20;
     QComboBox *PowModeCom_phaco_4;
@@ -154,7 +150,6 @@ public:
     QLabel *Cortex;
     QComboBox *AspMode2_iacom;
     QLabel *Piolish;
-    QPushButton *IASaveBut;
     QLabel *AspMax_phaco_5;
     QLabel *AspMax_phaco_6;
     QLabel *AspMax_phaco_7;
@@ -176,22 +171,27 @@ public:
     QLineEdit *lineEdit_20;
     QLabel *CutRate;
     QLabel *Vaccum;
-    QPushButton *savevitbut;
     QProgressBar *progressBar_19;
     QProgressBar *progressBar_20;
     QProgressBar *progressBar_21;
     QPushButton *DiaBut;
     QPushButton *savefootpedal;
-    QComboBox *comboBox;
     QLabel *label;
     QLabel *Select_2;
+    QPushButton *pushButton;
+    QComboBox *comboBox;
+    QPushButton *SaveDiaBut;
 
     void setupUi(QDialog *doctor)
     {
         if (doctor->objectName().isEmpty())
             doctor->setObjectName(QString::fromUtf8("doctor"));
         doctor->resize(1280, 720);
-        doctor->setStyleSheet(QString::fromUtf8("background-color:rgb(83, 104, 120);"));
+        doctor->setStyleSheet(QString::fromUtf8("\n"
+"background-color: rgb(18, 78, 102);\n"
+"\n"
+"\n"
+""));
         Mode = new QLabel(doctor);
         Mode->setObjectName(QString::fromUtf8("Mode"));
         Mode->setGeometry(QRect(300, 250, 81, 41));
@@ -206,8 +206,10 @@ public:
         BottomRFoot->addItem(QString());
         BottomRFoot->setObjectName(QString::fromUtf8("BottomRFoot"));
         BottomRFoot->setGeometry(QRect(250, 630, 191, 41));
-        BottomRFoot->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);border-radius:20px;\n"
-"background-color: rgb(222, 221, 218);font:20pt \"Ubuntu\";"));
+        BottomRFoot->setStyleSheet(QString::fromUtf8("background-color: rgb(14, 50, 6);\n"
+"font:20pt \"Ubuntu\";\n"
+"border-radius:20px;\n"
+""));
         BottomRight = new QLabel(doctor);
         BottomRight->setObjectName(QString::fromUtf8("BottomRight"));
         BottomRight->setGeometry(QRect(20, 630, 281, 31));
@@ -216,8 +218,8 @@ public:
 "background-color:transparent;"));
         BackBut = new QPushButton(doctor);
         BackBut->setObjectName(QString::fromUtf8("BackBut"));
-        BackBut->setGeometry(QRect(-10, 0, 141, 91));
-        BackBut->setStyleSheet(QString::fromUtf8("image: url(:/images/backarrowimg.png);\n"
+        BackBut->setGeometry(QRect(-10, 10, 111, 71));
+        BackBut->setStyleSheet(QString::fromUtf8("image: url(:/images/backbuttonarrow.png);\n"
 "border:none;\n"
 "background-color:transparent;"));
         BottomLeft = new QLabel(doctor);
@@ -235,7 +237,7 @@ public:
         LeftFoot->addItem(QString());
         LeftFoot->setObjectName(QString::fromUtf8("LeftFoot"));
         LeftFoot->setGeometry(QRect(250, 450, 191, 41));
-        LeftFoot->setStyleSheet(QString::fromUtf8("background-color: rgb(222, 221, 218);\n"
+        LeftFoot->setStyleSheet(QString::fromUtf8("background-color: rgb(14, 50, 6);\n"
 "font:20pt \"Ubuntu\";\n"
 "border-radius:20px;\n"
 ""));
@@ -247,7 +249,7 @@ public:
 "background-color:transparent;"));
         VitBut = new QPushButton(doctor);
         VitBut->setObjectName(QString::fromUtf8("VitBut"));
-        VitBut->setGeometry(QRect(280, 320, 101, 81));
+        VitBut->setGeometry(QRect(280, 310, 101, 81));
         VitBut->setStyleSheet(QString::fromUtf8("border-radius: 40px;\n"
 "width:10px;\n"
 "height:10px;\n"
@@ -257,7 +259,7 @@ public:
 "border:3px solid black;"));
         circle = new QLabel(doctor);
         circle->setObjectName(QString::fromUtf8("circle"));
-        circle->setGeometry(QRect(190, 150, 271, 251));
+        circle->setGeometry(QRect(190, 140, 271, 251));
         circle->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);\n"
 "border:3px solid black;\n"
 "border-radius:120px;"));
@@ -269,7 +271,7 @@ public:
 "font:bold;"));
         IABut = new QPushButton(doctor);
         IABut->setObjectName(QString::fromUtf8("IABut"));
-        IABut->setGeometry(QRect(190, 230, 91, 81));
+        IABut->setGeometry(QRect(190, 220, 91, 81));
         IABut->setStyleSheet(QString::fromUtf8("border-radius: 40px;\n"
 "width:10px;\n"
 "height:10px;\n"
@@ -289,8 +291,10 @@ public:
         RightFoot->addItem(QString());
         RightFoot->setObjectName(QString::fromUtf8("RightFoot"));
         RightFoot->setGeometry(QRect(250, 510, 191, 41));
-        RightFoot->setStyleSheet(QString::fromUtf8("border-radius:20px;font:20pt \"Ubuntu\";\n"
-"background-color: rgb(222, 221, 218);"));
+        RightFoot->setStyleSheet(QString::fromUtf8("background-color: rgb(14, 50, 6);\n"
+"font:20pt \"Ubuntu\";\n"
+"border-radius:20px;\n"
+""));
         BottomLFoot = new QComboBox(doctor);
         BottomLFoot->addItem(QString());
         BottomLFoot->addItem(QString());
@@ -300,11 +304,13 @@ public:
         BottomLFoot->addItem(QString());
         BottomLFoot->setObjectName(QString::fromUtf8("BottomLFoot"));
         BottomLFoot->setGeometry(QRect(250, 570, 191, 41));
-        BottomLFoot->setStyleSheet(QString::fromUtf8("background-color: rgb(222, 221, 218);color: rgb(0, 0, 0);border-radius:20px;\n"
-"font:20pt \"Ubuntu\";"));
+        BottomLFoot->setStyleSheet(QString::fromUtf8("background-color: rgb(14, 50, 6);\n"
+"font:20pt \"Ubuntu\";\n"
+"border-radius:20px;\n"
+""));
         PhacoBut = new QPushButton(doctor);
         PhacoBut->setObjectName(QString::fromUtf8("PhacoBut"));
-        PhacoBut->setGeometry(QRect(370, 230, 91, 81));
+        PhacoBut->setGeometry(QRect(370, 220, 91, 81));
         PhacoBut->setStyleSheet(QString::fromUtf8("border-radius: 40px;\n"
 "width:10px;\n"
 "height:10px;\n"
@@ -333,12 +339,10 @@ public:
         SelectSurgeon->addItem(QString());
         SelectSurgeon->setObjectName(QString::fromUtf8("SelectSurgeon"));
         SelectSurgeon->setGeometry(QRect(180, 60, 291, 51));
-        SelectSurgeon->setStyleSheet(QString::fromUtf8("border-radius:20px;\n"
-"color: rgb(255, 255, 255);\n"
-"background-color: rgb(0, 0, 0);\n"
-"\n"
+        SelectSurgeon->setStyleSheet(QString::fromUtf8("background-color: rgb(14, 50, 6);\n"
 "font:20pt \"Ubuntu\";\n"
-"font:bold;"));
+"border-radius:20px;\n"
+""));
         tabWidget = new QTabWidget(doctor);
         tabWidget->setObjectName(QString::fromUtf8("tabWidget"));
         tabWidget->setGeometry(QRect(470, 10, 811, 711));
@@ -352,17 +356,12 @@ public:
         lineEdit_6->setStyleSheet(QString::fromUtf8("font:20pt \"Ubuntu\";\n"
 "background-color: rgb(255,255,255);\n"
 "border-radius:20px;"));
+        lineEdit_6->setAlignment(Qt::AlignCenter);
         DiaPowMax = new QLabel(Diathermy);
         DiaPowMax->setObjectName(QString::fromUtf8("DiaPowMax"));
         DiaPowMax->setGeometry(QRect(70, 190, 281, 51));
         DiaPowMax->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 15pt \"Ubuntu Condensed\";\n"
 "font:bold;"));
-        SaveDiaBut = new QPushButton(Diathermy);
-        SaveDiaBut->setObjectName(QString::fromUtf8("SaveDiaBut"));
-        SaveDiaBut->setGeometry(QRect(330, 430, 101, 41));
-        SaveDiaBut->setStyleSheet(QString::fromUtf8("font:20pt \"Ubuntu\";\n"
-"background-color: rgb(222, 221, 218);\n"
-"border-radius:20px;"));
         progressBar = new QProgressBar(Diathermy);
         progressBar->setObjectName(QString::fromUtf8("progressBar"));
         progressBar->setGeometry(QRect(40, 310, 701, 41));
@@ -376,17 +375,16 @@ public:
 "\n"
 "QProgressBar::chunk {\n"
 "    background: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1, stop: 0 #4568dc, stop: 1 #b06ab3);\n"
-"    width: 8px; /* Diameter of the circular chunk */\n"
-"    height: 8px; /* Diameter of the circular chunk */\n"
+"    width: 9px; /* Diameter of the circular chunk */\n"
+"    height: 9px; /* Diameter of the circular chunk */\n"
 "    border-radius: 4px; /* Half of the width/height to make it circular */\n"
-"    margin: 1px; /* Space between chunks */\n"
+"    margin: 2px; /* Space between chunks */\n"
 "}\n"
 ""));
         progressBar->setValue(0);
         tabWidget->addTab(Diathermy, QString());
         DiaPowMax->raise();
         lineEdit_6->raise();
-        SaveDiaBut->raise();
         progressBar->raise();
         tab_2 = new QWidget();
         tab_2->setObjectName(QString::fromUtf8("tab_2"));
@@ -424,6 +422,7 @@ public:
         lineEdit_2->setStyleSheet(QString::fromUtf8("font:20pt \"Ubuntu\";\n"
 "background-color: rgb(255,255,255);\n"
 "border-radius:20px;"));
+        lineEdit_2->setAlignment(Qt::AlignCenter);
         VacModeCom_phaco = new QComboBox(tab_6);
         VacModeCom_phaco->addItem(QString());
         VacModeCom_phaco->addItem(QString());
@@ -447,17 +446,12 @@ public:
         lineEdit_3->setStyleSheet(QString::fromUtf8("font:20pt \"Ubuntu\";\n"
 "background-color: rgb(255,255,255);\n"
 "border-radius:20px;"));
+        lineEdit_3->setAlignment(Qt::AlignCenter);
         AspMax_phaco_4 = new QLabel(tab_6);
         AspMax_phaco_4->setObjectName(QString::fromUtf8("AspMax_phaco_4"));
         AspMax_phaco_4->setGeometry(QRect(670, 260, 251, 31));
         AspMax_phaco_4->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 15pt \"Ubuntu Condensed\";\n"
 "font:bold;"));
-        SavePhacoBut_phaco = new QPushButton(tab_6);
-        SavePhacoBut_phaco->setObjectName(QString::fromUtf8("SavePhacoBut_phaco"));
-        SavePhacoBut_phaco->setGeometry(QRect(320, 560, 111, 41));
-        SavePhacoBut_phaco->setStyleSheet(QString::fromUtf8("font:20pt \"Ubuntu\";\n"
-"background-color: rgb(255,255,255);\n"
-"border-radius:20px;"));
         VacMode_phaco = new QLabel(tab_6);
         VacMode_phaco->setObjectName(QString::fromUtf8("VacMode_phaco"));
         VacMode_phaco->setGeometry(QRect(70, 370, 391, 31));
@@ -486,6 +480,7 @@ public:
         lineEdit_4->setStyleSheet(QString::fromUtf8("font:20pt \"Ubuntu\";\n"
 "background-color: rgb(255,255,255);\n"
 "border-radius:20px;"));
+        lineEdit_4->setAlignment(Qt::AlignCenter);
         PowMethodCom_phaco = new QComboBox(tab_6);
         PowMethodCom_phaco->addItem(QString());
         PowMethodCom_phaco->addItem(QString());
@@ -530,7 +525,7 @@ public:
         progressBar_5->setValue(0);
         progressBar_6 = new QProgressBar(tab_6);
         progressBar_6->setObjectName(QString::fromUtf8("progressBar_6"));
-        progressBar_6->setGeometry(QRect(40, 190, 701, 41));
+        progressBar_6->setGeometry(QRect(50, 190, 701, 41));
         progressBar_6->setStyleSheet(QString::fromUtf8("QProgressBar {\n"
 "    border: 2px solid #555;\n"
 "    border-radius: 15px; /* Radius for the curve of the progress bar */\n"
@@ -550,7 +545,7 @@ public:
         progressBar_6->setValue(0);
         progressBar_7 = new QProgressBar(tab_6);
         progressBar_7->setObjectName(QString::fromUtf8("progressBar_7"));
-        progressBar_7->setGeometry(QRect(40, 310, 701, 41));
+        progressBar_7->setGeometry(QRect(50, 310, 701, 41));
         progressBar_7->setStyleSheet(QString::fromUtf8("QProgressBar {\n"
 "    border: 2px solid #555;\n"
 "    border-radius: 15px; /* Radius for the curve of the progress bar */\n"
@@ -582,6 +577,7 @@ public:
         lineEdit_8->setStyleSheet(QString::fromUtf8("font:20pt \"Ubuntu\";\n"
 "background-color: rgb(255,255,255);\n"
 "border-radius:20px;"));
+        lineEdit_8->setAlignment(Qt::AlignCenter);
         VacModeCom_phaco_2 = new QComboBox(tab_7);
         VacModeCom_phaco_2->addItem(QString());
         VacModeCom_phaco_2->addItem(QString());
@@ -605,17 +601,12 @@ public:
         lineEdit_9->setStyleSheet(QString::fromUtf8("font:20pt \"Ubuntu\";\n"
 "background-color: rgb(255,255,255);\n"
 "border-radius:20px;"));
+        lineEdit_9->setAlignment(Qt::AlignCenter);
         AspMax_phaco_11 = new QLabel(tab_7);
         AspMax_phaco_11->setObjectName(QString::fromUtf8("AspMax_phaco_11"));
         AspMax_phaco_11->setGeometry(QRect(710, 240, 251, 31));
         AspMax_phaco_11->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 15pt \"Ubuntu Condensed\";\n"
 "font:bold;"));
-        SavePhacoBut_phaco_2 = new QPushButton(tab_7);
-        SavePhacoBut_phaco_2->setObjectName(QString::fromUtf8("SavePhacoBut_phaco_2"));
-        SavePhacoBut_phaco_2->setGeometry(QRect(310, 550, 111, 41));
-        SavePhacoBut_phaco_2->setStyleSheet(QString::fromUtf8("font:20pt \"Ubuntu\";\n"
-"background-color: rgb(255,255,255);\n"
-"border-radius:20px;"));
         VacMode_phaco_2 = new QLabel(tab_7);
         VacMode_phaco_2->setObjectName(QString::fromUtf8("VacMode_phaco_2"));
         VacMode_phaco_2->setGeometry(QRect(50, 370, 391, 31));
@@ -644,6 +635,7 @@ public:
         lineEdit_10->setStyleSheet(QString::fromUtf8("font:20pt \"Ubuntu\";\n"
 "background-color: rgb(255,255,255);\n"
 "border-radius:20px;"));
+        lineEdit_10->setAlignment(Qt::AlignCenter);
         PowMethodCom_phaco_2 = new QComboBox(tab_7);
         PowMethodCom_phaco_2->addItem(QString());
         PowMethodCom_phaco_2->addItem(QString());
@@ -740,6 +732,7 @@ public:
         lineEdit_13->setStyleSheet(QString::fromUtf8("font:20pt \"Ubuntu\";\n"
 "background-color: rgb(255,255,255);\n"
 "border-radius:20px;"));
+        lineEdit_13->setAlignment(Qt::AlignCenter);
         VacModeCom_phaco_3 = new QComboBox(tab_8);
         VacModeCom_phaco_3->addItem(QString());
         VacModeCom_phaco_3->addItem(QString());
@@ -763,6 +756,7 @@ public:
         lineEdit_14->setStyleSheet(QString::fromUtf8("font:20pt \"Ubuntu\";\n"
 "background-color: rgb(255,255,255);\n"
 "border-radius:20px;"));
+        lineEdit_14->setAlignment(Qt::AlignCenter);
         AspMax_phaco_15 = new QLabel(tab_8);
         AspMax_phaco_15->setObjectName(QString::fromUtf8("AspMax_phaco_15"));
         AspMax_phaco_15->setGeometry(QRect(730, 260, 251, 31));
@@ -802,6 +796,7 @@ public:
         lineEdit_15->setStyleSheet(QString::fromUtf8("font:20pt \"Ubuntu\";\n"
 "background-color: rgb(255,255,255);\n"
 "border-radius:20px;"));
+        lineEdit_15->setAlignment(Qt::AlignCenter);
         PowMethodCom_phaco_3 = new QComboBox(tab_8);
         PowMethodCom_phaco_3->addItem(QString());
         PowMethodCom_phaco_3->addItem(QString());
@@ -898,6 +893,7 @@ public:
         lineEdit_16->setStyleSheet(QString::fromUtf8("font:20pt \"Ubuntu\";\n"
 "background-color: rgb(255,255,255);\n"
 "border-radius:20px;"));
+        lineEdit_16->setAlignment(Qt::AlignCenter);
         VacModeCom_phaco_4 = new QComboBox(tab_9);
         VacModeCom_phaco_4->addItem(QString());
         VacModeCom_phaco_4->addItem(QString());
@@ -921,17 +917,12 @@ public:
         lineEdit_17->setStyleSheet(QString::fromUtf8("font:20pt \"Ubuntu\";\n"
 "background-color: rgb(255,255,255);\n"
 "border-radius:20px;"));
+        lineEdit_17->setAlignment(Qt::AlignCenter);
         AspMax_phaco_19 = new QLabel(tab_9);
         AspMax_phaco_19->setObjectName(QString::fromUtf8("AspMax_phaco_19"));
         AspMax_phaco_19->setGeometry(QRect(710, 240, 251, 31));
         AspMax_phaco_19->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 15pt \"Ubuntu Condensed\";\n"
 "font:bold;"));
-        SavePhacoBut_phaco_4 = new QPushButton(tab_9);
-        SavePhacoBut_phaco_4->setObjectName(QString::fromUtf8("SavePhacoBut_phaco_4"));
-        SavePhacoBut_phaco_4->setGeometry(QRect(290, 550, 111, 41));
-        SavePhacoBut_phaco_4->setStyleSheet(QString::fromUtf8("font:20pt \"Ubuntu\";\n"
-"background-color: rgb(255,255,255);\n"
-"border-radius:20px;"));
         VacMode_phaco_4 = new QLabel(tab_9);
         VacMode_phaco_4->setObjectName(QString::fromUtf8("VacMode_phaco_4"));
         VacMode_phaco_4->setGeometry(QRect(70, 350, 391, 31));
@@ -960,6 +951,7 @@ public:
         lineEdit_18->setStyleSheet(QString::fromUtf8("font:20pt \"Ubuntu\";\n"
 "background-color: rgb(255,255,255);\n"
 "border-radius:20px;"));
+        lineEdit_18->setAlignment(Qt::AlignCenter);
         PowMethodCom_phaco_4 = new QComboBox(tab_9);
         PowMethodCom_phaco_4->addItem(QString());
         PowMethodCom_phaco_4->addItem(QString());
@@ -1139,7 +1131,7 @@ public:
 "background-color: rgb(222, 221, 218);font:20pt \"Ubuntu\";"));
         Cortex = new QLabel(tab_3);
         Cortex->setObjectName(QString::fromUtf8("Cortex"));
-        Cortex->setGeometry(QRect(0, 10, 161, 31));
+        Cortex->setGeometry(QRect(0, 0, 161, 31));
         Cortex->setStyleSheet(QString::fromUtf8("font: 20pt \"Ubuntu Condensed\";\n"
 "background-color: rgb(255, 255, 255);\n"
 "font:bold;\n"
@@ -1156,12 +1148,6 @@ public:
         Piolish->setStyleSheet(QString::fromUtf8("border-radius:15px;font: 20pt \"Ubuntu Condensed\";\n"
 "font:bold;\n"
 "background-color: rgb(255, 255, 255);"));
-        IASaveBut = new QPushButton(tab_3);
-        IASaveBut->setObjectName(QString::fromUtf8("IASaveBut"));
-        IASaveBut->setGeometry(QRect(340, 630, 101, 41));
-        IASaveBut->setStyleSheet(QString::fromUtf8("font:20pt \"Ubuntu\";\n"
-"background-color: rgb(255,255,255);\n"
-"border-radius:20px;"));
         AspMax_phaco_5 = new QLabel(tab_3);
         AspMax_phaco_5->setObjectName(QString::fromUtf8("AspMax_phaco_5"));
         AspMax_phaco_5->setGeometry(QRect(700, 130, 251, 31));
@@ -1265,9 +1251,7 @@ public:
         tabWidget->addTab(tab_3, QString());
         AspMax_ia->raise();
         VacMax_ia->raise();
-        Cortex->raise();
         Piolish->raise();
-        IASaveBut->raise();
         VacMax_ia_2->raise();
         VacMode3_ia->raise();
         AspMode3_ia->raise();
@@ -1290,6 +1274,7 @@ public:
         progressBar_15->raise();
         progressBar_16->raise();
         progressBar_17->raise();
+        Cortex->raise();
         tab_4 = new QWidget();
         tab_4->setObjectName(QString::fromUtf8("tab_4"));
         tab_4->setStyleSheet(QString::fromUtf8("background-color:rgb(83, 104, 120);"));
@@ -1361,12 +1346,6 @@ public:
         Vaccum->setStyleSheet(QString::fromUtf8("font: 20pt \"Ubuntu Condensed\";\n"
 "font:bold;\n"
 "background-color: rgb(255, 255, 255);\n"
-"border-radius:20px;"));
-        savevitbut = new QPushButton(tab_4);
-        savevitbut->setObjectName(QString::fromUtf8("savevitbut"));
-        savevitbut->setGeometry(QRect(300, 600, 111, 41));
-        savevitbut->setStyleSheet(QString::fromUtf8("font:20pt \"Ubuntu\";\n"
-"background-color: rgb(255,255,255);\n"
 "border-radius:20px;"));
         progressBar_19 = new QProgressBar(tab_4);
         progressBar_19->setObjectName(QString::fromUtf8("progressBar_19"));
@@ -1441,13 +1420,12 @@ public:
         lineEdit->raise();
         lineEdit_19->raise();
         lineEdit_20->raise();
-        savevitbut->raise();
         progressBar_19->raise();
         progressBar_20->raise();
         progressBar_21->raise();
         DiaBut = new QPushButton(doctor);
         DiaBut->setObjectName(QString::fromUtf8("DiaBut"));
-        DiaBut->setGeometry(QRect(280, 150, 91, 81));
+        DiaBut->setGeometry(QRect(280, 140, 91, 81));
         DiaBut->setStyleSheet(QString::fromUtf8("border-radius: 40px;\n"
 "width:10px;\n"
 "height:10px;\n"
@@ -1461,26 +1439,44 @@ public:
         savefootpedal->setStyleSheet(QString::fromUtf8("font:20pt \"Ubuntu\";\n"
 "background-color: rgb(255,255,255);\n"
 "border-radius:20px;"));
+        label = new QLabel(doctor);
+        label->setObjectName(QString::fromUtf8("label"));
+        label->setGeometry(QRect(470, -10, 871, 51));
+        label->setStyleSheet(QString::fromUtf8("background-color:rgb(83, 104, 120);"));
+        Select_2 = new QLabel(doctor);
+        Select_2->setObjectName(QString::fromUtf8("Select_2"));
+        Select_2->setGeometry(QRect(20, 240, 191, 61));
+        Select_2->setStyleSheet(QString::fromUtf8("font: 15pt \"Ubuntu Condensed\";\n"
+"background-color:transparent;\n"
+"font:25px;\n"
+"font:bold;"));
+        pushButton = new QPushButton(doctor);
+        pushButton->setObjectName(QString::fromUtf8("pushButton"));
+        pushButton->setGeometry(QRect(570, 10, 531, 41));
+        pushButton->setStyleSheet(QString::fromUtf8("border-radius:20px;\n"
+"color: rgb(255, 255, 255);\n"
+"background-color: rgb(0, 0, 0);\n"
+"\n"
+"font:15pt \"Ubuntu\";\n"
+"font:bold;"));
         comboBox = new QComboBox(doctor);
         comboBox->addItem(QString());
         comboBox->addItem(QString());
         comboBox->setObjectName(QString::fromUtf8("comboBox"));
-        comboBox->setGeometry(QRect(620, 10, 621, 51));
+        comboBox->setGeometry(QRect(10, 310, 181, 51));
         comboBox->setStyleSheet(QString::fromUtf8("font:30px;\n"
-"background-color: rgb(0, 0, 0);\n"
-"color: rgb(255, 255, 255);\n"
+"background-color: rgb(14, 50, 6);\n"
+"color: rgb(0, 0, 0);\n"
 "border-radius:20px;\n"
 ""));
-        label = new QLabel(doctor);
-        label->setObjectName(QString::fromUtf8("label"));
-        label->setGeometry(QRect(470, 10, 871, 51));
-        label->setStyleSheet(QString::fromUtf8("background-color:rgb(83, 104, 120);"));
-        Select_2 = new QLabel(doctor);
-        Select_2->setObjectName(QString::fromUtf8("Select_2"));
-        Select_2->setGeometry(QRect(420, 10, 191, 61));
-        Select_2->setStyleSheet(QString::fromUtf8("font: 15pt \"Ubuntu Condensed\";\n"
-"background-color:transparent;\n"
-"font:25px;\n"
+        SaveDiaBut = new QPushButton(doctor);
+        SaveDiaBut->setObjectName(QString::fromUtf8("SaveDiaBut"));
+        SaveDiaBut->setGeometry(QRect(590, 670, 511, 41));
+        SaveDiaBut->setStyleSheet(QString::fromUtf8("border-radius:20px;\n"
+"color: rgb(255, 255, 255);\n"
+"background-color: rgb(0, 0, 0);\n"
+"\n"
+"font:15pt \"Ubuntu\";\n"
 "font:bold;"));
         circle->raise();
         Mode->raise();
@@ -1504,12 +1500,14 @@ public:
         DiaBut->raise();
         savefootpedal->raise();
         label->raise();
-        comboBox->raise();
         Select_2->raise();
+        pushButton->raise();
+        comboBox->raise();
+        SaveDiaBut->raise();
 
         retranslateUi(doctor);
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(1);
         tabWidget_2->setCurrentIndex(3);
 
 
@@ -1566,8 +1564,8 @@ public:
         SelectSurgeon->setItemText(3, QCoreApplication::translate("doctor", "Surgeon 4", nullptr));
         SelectSurgeon->setItemText(4, QCoreApplication::translate("doctor", "Surgeon 5", nullptr));
 
+        lineEdit_6->setText(QCoreApplication::translate("doctor", "100", nullptr));
         DiaPowMax->setText(QCoreApplication::translate("doctor", "POWER MAXIMUM", nullptr));
-        SaveDiaBut->setText(QCoreApplication::translate("doctor", "save", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(Diathermy), QCoreApplication::translate("doctor", "Page", nullptr));
         EpinBut_phaco->setText(QCoreApplication::translate("doctor", "Epinucleus", nullptr));
         QuadBut_phaco->setText(QCoreApplication::translate("doctor", "Quad", nullptr));
@@ -1580,7 +1578,6 @@ public:
         AspMax_phaco_3->setText(QCoreApplication::translate("doctor", "(mmHg)", nullptr));
         AspMax_phaco_2->setText(QCoreApplication::translate("doctor", "(ml/min)", nullptr));
         AspMax_phaco_4->setText(QCoreApplication::translate("doctor", "(%)", nullptr));
-        SavePhacoBut_phaco->setText(QCoreApplication::translate("doctor", "SAVE", nullptr));
         VacMode_phaco->setText(QCoreApplication::translate("doctor", "Vaccum Mode", nullptr));
         AspMax_phaco->setText(QCoreApplication::translate("doctor", "Aspiration (Max)", nullptr));
         PowModeCom_phaco->setItemText(0, QCoreApplication::translate("doctor", "Surgeon", nullptr));
@@ -1605,7 +1602,6 @@ public:
         AspMax_phaco_9->setText(QCoreApplication::translate("doctor", "(mmHg)", nullptr));
         AspMax_phaco_10->setText(QCoreApplication::translate("doctor", "(ml/min)", nullptr));
         AspMax_phaco_11->setText(QCoreApplication::translate("doctor", "(%)", nullptr));
-        SavePhacoBut_phaco_2->setText(QCoreApplication::translate("doctor", "SAVE", nullptr));
         VacMode_phaco_2->setText(QCoreApplication::translate("doctor", "Vaccum Mode", nullptr));
         AspMax_phaco_12->setText(QCoreApplication::translate("doctor", "Aspiration (Max)", nullptr));
         PowModeCom_phaco_2->setItemText(0, QCoreApplication::translate("doctor", "Surgeon", nullptr));
@@ -1655,7 +1651,6 @@ public:
         AspMax_phaco_17->setText(QCoreApplication::translate("doctor", "(mmHg)", nullptr));
         AspMax_phaco_18->setText(QCoreApplication::translate("doctor", "(ml/min)", nullptr));
         AspMax_phaco_19->setText(QCoreApplication::translate("doctor", "(%)", nullptr));
-        SavePhacoBut_phaco_4->setText(QCoreApplication::translate("doctor", "SAVE", nullptr));
         VacMode_phaco_4->setText(QCoreApplication::translate("doctor", "Vaccum Mode", nullptr));
         AspMax_phaco_20->setText(QCoreApplication::translate("doctor", "Aspiration (Max)", nullptr));
         PowModeCom_phaco_4->setItemText(0, QCoreApplication::translate("doctor", "Surgeon", nullptr));
@@ -1682,48 +1677,48 @@ public:
         VacMax_ia_2->setText(QCoreApplication::translate("doctor", "Vaccum Max                                     :", nullptr));
         AspMode3_ia->setText(QCoreApplication::translate("doctor", "Aspiration Mode                             :", nullptr));
         VacMode3_ia->setText(QCoreApplication::translate("doctor", "Vaccum Mode                                   :", nullptr));
-        AspMode_iacom->setItemText(0, QCoreApplication::translate("doctor", "Linear", nullptr));
-        AspMode_iacom->setItemText(1, QCoreApplication::translate("doctor", "Non Linear", nullptr));
+        AspMode_iacom->setItemText(0, QCoreApplication::translate("doctor", "Surgeon", nullptr));
+        AspMode_iacom->setItemText(1, QCoreApplication::translate("doctor", "Panel", nullptr));
 
-        VacMode1_iacom->setItemText(0, QCoreApplication::translate("doctor", "Linear", nullptr));
-        VacMode1_iacom->setItemText(1, QCoreApplication::translate("doctor", "Non Linear", nullptr));
+        VacMode1_iacom->setItemText(0, QCoreApplication::translate("doctor", "Surgeon", nullptr));
+        VacMode1_iacom->setItemText(1, QCoreApplication::translate("doctor", "PAnel", nullptr));
 
-        VacMode2_iacom->setItemText(0, QCoreApplication::translate("doctor", "Linear", nullptr));
-        VacMode2_iacom->setItemText(1, QCoreApplication::translate("doctor", "Non Linear", nullptr));
+        VacMode2_iacom->setItemText(0, QCoreApplication::translate("doctor", "Surgeon", nullptr));
+        VacMode2_iacom->setItemText(1, QCoreApplication::translate("doctor", "Panel", nullptr));
 
         Cortex->setText(QCoreApplication::translate("doctor", "Cortex", nullptr));
-        AspMode2_iacom->setItemText(0, QCoreApplication::translate("doctor", "Linear", nullptr));
-        AspMode2_iacom->setItemText(1, QCoreApplication::translate("doctor", "Non  Linear", nullptr));
+        AspMode2_iacom->setItemText(0, QCoreApplication::translate("doctor", "Surgeon", nullptr));
+        AspMode2_iacom->setItemText(1, QCoreApplication::translate("doctor", "Panel", nullptr));
 
         Piolish->setText(QCoreApplication::translate("doctor", "Polish", nullptr));
-        IASaveBut->setText(QCoreApplication::translate("doctor", "SAVE", nullptr));
         AspMax_phaco_5->setText(QCoreApplication::translate("doctor", "(mmHg)", nullptr));
         AspMax_phaco_6->setText(QCoreApplication::translate("doctor", "(ml/min)", nullptr));
         AspMax_phaco_7->setText(QCoreApplication::translate("doctor", "(ml/min)", nullptr));
         AspMax_phaco_8->setText(QCoreApplication::translate("doctor", "(mmHg)", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_3), QCoreApplication::translate("doctor", "Page", nullptr));
         CutMax_vit->setText(QCoreApplication::translate("doctor", "Maximum                                         :", nullptr));
-        CutMode_vitCom->setItemText(0, QCoreApplication::translate("doctor", "Linear", nullptr));
-        CutMode_vitCom->setItemText(1, QCoreApplication::translate("doctor", "Non Linear", nullptr));
+        CutMode_vitCom->setItemText(0, QCoreApplication::translate("doctor", "Surgeon", nullptr));
+        CutMode_vitCom->setItemText(1, QCoreApplication::translate("doctor", "Panel", nullptr));
 
         CutMode_vit->setText(QCoreApplication::translate("doctor", "Mode                                                 :", nullptr));
         VacMax_vit->setText(QCoreApplication::translate("doctor", "Maximum                                           :", nullptr));
-        VacMode_VitCom->setItemText(0, QCoreApplication::translate("doctor", "Linear", nullptr));
-        VacMode_VitCom->setItemText(1, QCoreApplication::translate("doctor", "Non Linear", nullptr));
+        VacMode_VitCom->setItemText(0, QCoreApplication::translate("doctor", "Surgeon", nullptr));
+        VacMode_VitCom->setItemText(1, QCoreApplication::translate("doctor", "Panel", nullptr));
 
         VacMode_vit->setText(QCoreApplication::translate("doctor", "Mode                                                    :", nullptr));
         AspMax_vit->setText(QCoreApplication::translate("doctor", "Aspiration Max                                    :", nullptr));
         CutRate->setText(QCoreApplication::translate("doctor", "Cut Rate", nullptr));
         Vaccum->setText(QCoreApplication::translate("doctor", "Vaccum", nullptr));
-        savevitbut->setText(QCoreApplication::translate("doctor", "SAVE", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_4), QCoreApplication::translate("doctor", "Page", nullptr));
         DiaBut->setText(QCoreApplication::translate("doctor", "DIA", nullptr));
         savefootpedal->setText(QCoreApplication::translate("doctor", "SAVE", nullptr));
-        comboBox->setItemText(0, QCoreApplication::translate("doctor", "Peristatic", nullptr));
-        comboBox->setItemText(1, QCoreApplication::translate("doctor", "Ventury", nullptr));
-
         label->setText(QString());
         Select_2->setText(QCoreApplication::translate("doctor", "Select Pump :", nullptr));
+        pushButton->setText(QCoreApplication::translate("doctor", "Load All Surgeons", nullptr));
+        comboBox->setItemText(0, QCoreApplication::translate("doctor", "Peristaltic", nullptr));
+        comboBox->setItemText(1, QCoreApplication::translate("doctor", "Venturi", nullptr));
+
+        SaveDiaBut->setText(QCoreApplication::translate("doctor", "Save All Values", nullptr));
     } // retranslateUi
 
 };

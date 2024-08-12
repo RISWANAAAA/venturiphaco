@@ -68,5 +68,12 @@
         <file>g3645.png</file>
         <file>g4196.png</file>
         <file>g4210.png</file>
+        <file>downarrow.png</file>
+        <file>silverback.png</file>
+        <file>backbuttonarrow.png</file>
+        <file>surgeonbut.png</file>
+        <file>panel.png</file>
+        <file>surgeonbutton.png</file>
+        <file>panelbutton.png</file>
     </qresource>
 </RCC>

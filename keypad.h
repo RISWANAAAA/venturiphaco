@@ -4,6 +4,8 @@
 #include <QWidget>
 #include <QMouseEvent>
 
+#include "hwhandler.h"
+
 namespace Ui {
 class keypad;
 }
@@ -36,6 +38,7 @@ private slots:
 
 private:
     Ui::keypad *ui;
+    hwhandler *handler;
 
 };
 

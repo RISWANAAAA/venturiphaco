@@ -10,26 +10,36 @@ footpedal::footpedal(QWidget *parent) :
     ui->setupUi(this);
     move(0,0);
     d1 = new doctor;
+
+    // Export and set direction of GPIOs
     exportGPIO(961);
-    exportGPIO(962);
-    exportGPIO(963);
-    exportGPIO(964);
+        exportGPIO(962);
+        exportGPIO(963);
+        exportGPIO(964);
 
-    setGPIODirection(961,"in");
-    setGPIODirection(962,"in");
-    setGPIODirection(963,"in");
-    setGPIODirection(964,"in");
+        setGPIODirection(961, "in");
+        setGPIODirection(962, "in");
+        setGPIODirection(963, "in");
+        setGPIODirection(964, "in");
 
+        qDebug() << "GPIO 961 direction set to in";
+        qDebug() << "GPIO 962 direction set to in";
+        qDebug() << "GPIO 963 direction set to in";
+        qDebug() << "GPIO 964 direction set to in";
+
+        readInitialGPIOValues(); // Read initial values
+
+    // Read GPIO values
+
+
+    // Set up connections
     setupConnections();
 
     connect(ui->backbut, &QPushButton::clicked, this, &footpedal::Back);
-    connect(ui->savebut, &QPushButton::clicked, this, &footpedal::SaveForAll);
-
-    QStringList options = {"Increment", "Decrement", "Reflux", "Continuous Irrigation", "PDM", "Power On/Off"};
-    ui->left_footcom->addItems(options);
-    ui->right_footcom->addItems(options);
-    ui->bleft_footcom->addItems(options);
-    ui->bright_footcom->addItems(options);
+    connect(ui->savebut, &QPushButton::clicked, this, &footpedal::on_pushButton_clicked);
+    QTimer *timer=new QTimer;
+    connect(timer,&QTimer::timeout,this,&footpedal::readInitialGPIOValues);
+    timer->start(1000);
 }
 
 footpedal::~footpedal()
@@ -49,7 +59,6 @@ void footpedal::setupConnections()
     connect(ui->bleft_footcom, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &footpedal::storeComboBoxSelection);
     connect(ui->bright_footcom, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &footpedal::storeComboBoxSelection);
 }
-
 void footpedal::storeComboBoxSelection(int index)
 {
     QComboBox *comboBox = qobject_cast<QComboBox *>(sender());
@@ -69,33 +78,81 @@ void footpedal::storeComboBoxSelection(int index)
     }
 }
 
-void footpedal::SaveForAll()
+void footpedal::readInitialGPIOValues()
 {
-    d1->IASaveBut();
-    QMessageBox::information(nullptr, "Info", "Saved Successfully");
+    qDebug() << "readInitialGPIOValues function entered.";
 
+    int value1 = readGPIOValue(961);
+    int value2 = readGPIOValue(962);
+    int value3 = readGPIOValue(963);
+    int value4 = readGPIOValue(964);
 
+    qDebug() << "GPIO 961 value:" << value1;
+    qDebug() << "GPIO 962 value:" << value2;
+    qDebug() << "GPIO 963 value:" << value3;
+    qDebug() << "GPIO 964 value:" << value4;
+
+    qDebug() << "Initial GPIO Values:" << value1 << value2 << value3 << value4;
+
+    if (leftFootcomAction == "Continuous Irrigation") {
+        qDebug() << "Continuous Irrigation action detected.";
+        if (value1 == 0) {
+            emit continous_irrigation(value1);
+            qDebug() << "Continuous Irrigation performed.";
+        }
+    } else if (leftFootcomAction == "Power ON/OFF") {
+        qDebug() << "Power ON/OFF action detected.";
+        if (value1 == 0) {
+            emit togglePower(value1);
+            qDebug() << "Power toggled.";
+        }
+    } else if (leftFootcomAction == "Increment") {
+        qDebug() << "Increment action detected.";
+        qDebug() << "leftFootcomAction value:" << leftFootcomAction;
+        if (value1 == 0) {
+      emit moveTopToBottom(0);
+            qDebug() << "Button moved from top to bottom.";
+        }
+    } else if (leftFootcomAction == "Decrement") {
+        qDebug() << "Decrement action detected.";
+
+        if (value1 == 0) {
+            emit moveBottomToTop(value1);
+            qDebug() << "Button moved from bottom to top.";
+        }
+    } else if (leftFootcomAction == "PDM") {
+        qDebug() << "PDM action detected.";
+        if (value1 == 0) {
+            emit powerdm(value1);
+            qDebug() << "PDM activated.";
+        }
+    }
+
+    // Add similar conditions for other GPIO pins as needed
 }
+
+
 
 void footpedal::performAction(const QString &action, int gpioNumber)
 {
     if (action == "Increment") {
-        emit moveTopToBottom();
+        //emit moveTopToBottom();
         qDebug() << "Increment for GPIO" << gpioNumber;
+
     } else if (action == "Decrement") {
-        emit moveBottomToTop();
+       // emit moveBottomToTop();
         qDebug() << "Decrement for GPIO" << gpioNumber;
     } else if (action == "Reflux") {
-        emit performReflux();
+       // emit performReflux();
         qDebug() << "Reflux for GPIO" << gpioNumber;
     } else if (action == "Power On/Off") {
-        emit togglePower();
+       // emit togglePower();
         qDebug() << "Power On/Off for GPIO" << gpioNumber;
     } else if (action == "PDM") {
-        emit powerdm();
+       // emit powerdm();
         qDebug() << "PDM for GPIO" << gpioNumber;
     } else if (action == "Continuous Irrigation") {
-        emit continous_irrigation();
+       // emit continous_irrigation();
         qDebug() << "Continuous Irrigation for GPIO" << gpioNumber;
     }
 }
@@ -181,6 +238,7 @@ void footpedal::combobox4(const QString &text)
 
 void footpedal::on_pushButton_clicked()
 {
+    readInitialGPIOValues();
     // Perform actions based on the stored combo box values
     performAction(leftFootcomAction, 961);
     performAction(rightFootcomAction, 962);

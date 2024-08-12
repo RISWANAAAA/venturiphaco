@@ -19,15 +19,19 @@ prime::prime(QWidget *parent) :
     hand=new hwhandler;
     ui->progressBar_2->setRange(0,100);
     //hand->freq_count(2500);
-
     QString styleSheet = "QPushButton {"
-                                 "    font-family: Ubuntu;"
-                                 "    font-size: 20pt;"
-                                 "    background-color: transparent;"
-            "image: url(:/images/g3645.png);"
-                                 "color:black;"
-                                 "    border-radius: 20px;" // Adjust the radius as needed
-                                 "}";
+                         "    font-family: Ubuntu;"
+                         "    font-size: 20pt;"
+                         "    background-color: transparent;"
+                         "    image: url(:/images/g3645.png);"
+                         "    color: black;"
+                         "    border-radius: 20px;" // Adjust the radius as needed
+                         "}"
+                         "QPushButton:focus {"
+                         "    outline: none;"
+                         "    border: none;"
+                         "}";
+
 
     QString tabStyle = "QTabBar::tab:selected { background-color: black; color: #ffffff; border-radius:50px}";
     QString styleSheet3 =
@@ -87,13 +91,18 @@ prime::~prime()
 void prime::click()
 {
     QString styleSheet = "QPushButton {"
-                                 "    font-family: Ubuntu;"
-                                 "    font-size: 20pt;"
-            "image: url(:/images/g3042.png);"
-                                 "    background-color: transparent;"
-            "color:white;"
-                                 "    border-radius: 20px;" // Adjust the radius as needed
-                                 "}";
+                         "    font-family: Ubuntu;"
+                         "    font-size: 20pt;"
+                         "    image: url(:/images/g3042.png);"
+                         "    background-color: transparent;"
+                         "    color: white;"
+                         "    border-radius: 20px;" // Adjust the radius as needed
+                         "}"
+                         "QPushButton:focus {"
+                         "    outline: none;"
+                         "    border: none;"
+                         "}";
+
 
    ui->prime1_but->setStyleSheet(styleSheet);
    ui->Tune_but->setStyleSheet(styleSheet);
@@ -106,20 +115,28 @@ void prime::current(int tab)
     QString styleSheet = "QPushButton {"
                          "    font-family: Ubuntu;"
                          "    font-size: 20pt;"
-                         "  image: url(:/images/g3645.png);"
-            "background-color:transparent;"
+                         "    image: url(:/images/g3645.png);"
+                         "    background-color: transparent;"
                          "    color: black;"
-                         //"    border-radius: 20px;" // Adjust the radius as needed
+                         //"    border-radius: 20px;" // Uncomment if needed
+                         "}"
+                         "QPushButton:focus {"
+                         "    outline: none;"
+                         "    border: none;"
                          "}";
 
     QString styleSheet1 = "QPushButton {"
                           "    font-family: Ubuntu;"
                           "    font-size: 20pt;"
                           "    image: url(:/images/g3042.png);"
-            "background-color:transparent;"
+                          "    background-color: transparent;"
                           "    color: white;"
-                         // "    border-radius: 20px;"
-                          "    font: bold;" // Adjust the radius as needed
+                          //"    border-radius: 20px;" // Uncomment if needed
+                          "    font-weight: bold;"  // Corrected from 'font: bold;'
+                          "}"
+                          "QPushButton:focus {"
+                          "    outline: none;"
+                          "    border: none;"
                           "}";
 
     // Reset all buttons to the default style
@@ -222,14 +239,7 @@ void prime::updatehandpieceStatus()
       // qDebug()<<"handpiece on"<<status;
        ui->Start_tune_2->setEnabled(true);
 
-//       ui->ULTRASONICBUT1->setEnabled(true);
-//       ui->ULTRASONICBUT2->setEnabled(true);
-//       ui->ULTRASONICBUT3->setEnabled(true);
-//       ui->ULTRASONICBUT4->setEnabled(true);
-//       ui->label_8->setStyleSheet(styleSheet7);
-//       ui->label_9->setStyleSheet(styleSheet7);
-//       ui->label_39->setStyleSheet(styleSheet7);
-//       ui->label_38->setStyleSheet(styleSheet7);
+
 
    }
    else
@@ -238,16 +248,17 @@ void prime::updatehandpieceStatus()
 
       //  qDebug()<<"handpiece off"<<status;
        ui->Start_tune_2->setEnabled(false);
-     //  QMessageBox::information(nullptr,"warning","please connect handpiece");
-//        ui->ULTRASONICBUT1->setEnabled(false);
-//        ui->ULTRASONICBUT2->setEnabled(false);
-//        ui->ULTRASONICBUT3->setEnabled(false);
-//        ui->ULTRASONICBUT4->setEnabled(false);
-//        ui->label_8->setStyleSheet(styleSheet6);
-//        ui->label_9->setStyleSheet(styleSheet6);
-//        ui->label_39->setStyleSheet(styleSheet6);
-//        ui->label_38->setStyleSheet(styleSheet6);
-     //flag1=false;
+       QMessageBox* msgBox = new QMessageBox(QMessageBox::Information, "Info", "Tune is not completed");
+
+       // Set the message box to show
+       msgBox->show();
+
+       // Create a QTimer to close the message box after 500 ms
+       QTimer::singleShot(700, msgBox, [msgBox]() {
+           msgBox->hide();  // Hide the message box
+           delete msgBox;   // Delete the message box to free memory
+
+   });
    }
 }
 
@@ -319,6 +330,7 @@ void prime::timer(){
         } else {
             timer1->stop();
             m->show();
+            m->setTuneMode(true);
             m->DIATHERMYBUT(); // Show the main window after progress is complete
         }
 
@@ -378,6 +390,7 @@ void prime::Start_Tune()
         timer1->start(500); // Update every 100 ms
 
 
+
 }
 
 
@@ -432,9 +445,22 @@ void prime::on_pushButton_5_clicked()
 
 void prime::on_pushButton_6_clicked()
 {
+    QMessageBox msgBox;
+    msgBox.setWindowTitle("Info");
+    msgBox.setText("Tune is not completed. Do you want to continue?");
+    msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+    msgBox.setDefaultButton(QMessageBox::No);
 
-  m->show();
-   m->DIATHERMYBUT();
+    int ret = msgBox.exec(); // Get the user's choice
+
+    if (ret == QMessageBox::Yes) {
+        m->show();
+        //m->setTuneMode(false);
+         m->DIATHERMYBUT();
+    } else {
+        // Handle the case where "No" is clicked (optional)
+    }
+
 
 }
 

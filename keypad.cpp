@@ -26,6 +26,7 @@ keypad::keypad(QWidget *parent) :
     connect(ui->pushButton_15, &QPushButton::clicked, this, &keypad::entertext);
      connect(ui->pushButton_16, &QPushButton::clicked, this, &keypad::enterenter);
 
+     handler=new hwhandler;
 
 
 
@@ -44,14 +45,13 @@ void keypad::entertext()
          digit = button->text();
          emit textsignal(digit);
      }
+     handler->buzz();
 }
 
 void keypad::enterenter()
 {
-
-
     emit entersignal();
-
+    handler->buzz();
 }
 
 

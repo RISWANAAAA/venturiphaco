@@ -18,11 +18,12 @@
 #include<QElapsedTimer>
 #include"hwhandler.h"
 #include"doctor.h"
-
+#include <QDir>
+#include <QFileInfo>
 #include<QSqlQuery>
 #include<QSqlRecord>
 
-
+#define PATH1 "/home/phacohigh.db"
 
 class settings;
 class prime;
@@ -44,9 +45,10 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-
+void push(const QString &surgeonName);
     void startPoint();
     bool eventFilter(QObject* object, QEvent* event);
+   // void push(const QString &surgeonName);
 
     void setRange(QLineEdit* lineEdit, int prevValue, int value, int maxValue);
 
@@ -94,6 +96,26 @@ public:
          QString pdmMode;
          QString vacmode;
     };
+      int pull();
+    struct SurgicalData {
+        QString comboBoxValue;
+        QString combo;
+        int dia;
+        int us1pow, us1vac, us1asp;
+        int us2pow, us2vac, us2asp;
+        int us3pow, us3vac, us3asp;
+        int us4pow, us4vac, us4asp;
+        int ia1vac, ia1asp;
+        int ia2vac, ia2asp;
+        int vitcut, vitvac, vitasp;
+        QString powmode, vacmode, powmethod;
+        QString us2powmode, us2vacmode, us2powermethod;
+        QString us3powmode, us3vacmode, us3powermethod;
+        QString us4powmode, us4vacmode, us4powermethod;
+        QString ia1mode, ia2mode;
+        QString vitmode, vitvacmode;
+    }surgicalData;
+
     int Flow_LUT[42]={95,95,  //0
                     110,110,  //2
                     112,112,  //4
@@ -116,7 +138,7 @@ public:
                     290,290, //38
                     299,299  //40
                     };
-
+void setTuneMode(bool isTuneEnabled);
 
 
 public slots:
@@ -148,19 +170,37 @@ void movePushButtonTopToBottom();
 void movePushButtonBottomToTop();
 void footreflux();
 void powerdeliverymethod();
-void continousirrigation();
+void continousirrigation(int gpioValue);
 void poweronoff();
 void poweron();
-void updateValues(const QString &surgeon, int tabIndex, const QStringList &values);
+//void updateValues(const QString &surgeon, int tabIndex, const QStringList &values);
 void onCutMode_vitComChanged(int index);
 void onCutMode_vitComChanged1(int index);
 void onCutMode_vitComChanged2(int index);
 void onCutMode_vitComChanged3(int index);
 void receivecombo(const QString &text);
-void performpump();
+void performpump(const QString &text);
+void receiveValues(
+        const QString &comboBoxValue,
+        const QString &combo,
+        int dia,
+        int us1pow, int us1vac, int us1asp,
+        int us2pow, int us2vac, int us2asp,
+        int us3pow, int us3vac, int us3asp,
+        int us4pow, int us4vac, int us4asp,
+        int ia1vac, int ia1asp,
+        int ia2vac, int ia2asp,
+        int vitcut, int vitvac, int vitasp,
+        const QString &powmode, const QString &vacmode, const QString &powmethod,
+        const QString &us2powmode, const QString &us2vacmode, const QString &us2powermethod,
+        const QString &us3powmode, const QString &us3vacmode, const QString &us3powermethod,
+        const QString &us4powmode, const QString &us4vacmode, const QString &us4powermethod,
+        const QString &ia1mode, const QString &ia2mode,
+        const QString &vitmode, const QString &vitvacmode
+    );
 
 
-
+//
 private slots:
 
 
@@ -355,31 +395,16 @@ void updateComboBox3(const QString &text);
 
 void updateComboBox4(const QString &text);
 
-void onSurgeonChanged();
+//void onSurgeonChanged();
 
 void updateButtonSelection(int index);
 
 
-void on_CI1_clicked();
-
-void on_CI2_clicked();
-
-void on_CI3_clicked();
-
-void on_CI4_clicked();
-
-void on_CI1_2_clicked();
-
-void on_CI1_3_clicked();
-
-void on_CI5_clicked();
-
-
-void on_diaci_clicked();
-
 void on_CI4_2_clicked();
 
 void on_SETTINGS_BUT_2_clicked();
+void onSurgeonSelectionChanged(const QString &surgeonName);
+
 
 signals:
     void sensorValueChanged(int value);
@@ -481,7 +506,16 @@ int currentButtonIndex;
 bool powerOn;
 QMap<QString, QMap<int, QStringList>> surgeonData;
 void updateTabsBasedOnComboBox(const QString &text);
+QSqlDatabase db;
 
+ void connectToDatabase();
 
+ void populateSurgeonList();
+ void handleDataSaved();
+ //void initializeSurgeonSelection();
+ QString getLastUpdatedSurgeon();
+  bool isTuneEnabled;
+  int buttonforgpio;  // Track the current active button
+    QPushButton* buttons[8]; // Array of pointers to the 7 buttons
 };
 #endif // MAINWINDOW_H

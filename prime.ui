@@ -14,24 +14,35 @@
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color:rgb(83, 104, 120);</string>
+   <string notr="true">
+background-color: rgb(18, 78, 102);
+
+
+</string>
   </property>
   <widget class="QPushButton" name="clean_but">
    <property name="geometry">
     <rect>
-     <x>140</x>
+     <x>70</x>
      <y>480</y>
-     <width>151</width>
-     <height>91</height>
+     <width>281</width>
+     <height>201</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">font:20pt &quot;Ubuntu&quot;;
+    <string notr="true">QPushButton{
+font:20pt &quot;Ubuntu&quot;;
 background-color:transparent;
 image: url(:/images/g1094.png);
 border-radius:20px;
 border:none;
-font:bold;</string>
+font:bold;
+}
+QPushButton:focus {
+    outline: none;
+    border: none;
+}
+</string>
    </property>
    <property name="text">
     <string>CLEAN</string>
@@ -40,19 +51,26 @@ font:bold;</string>
   <widget class="QPushButton" name="Tune_but">
    <property name="geometry">
     <rect>
-     <x>140</x>
-     <y>320</y>
-     <width>161</width>
-     <height>91</height>
+     <x>70</x>
+     <y>280</y>
+     <width>281</width>
+     <height>201</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">font:20pt &quot;Ubuntu&quot;;
+    <string notr="true">QPushButton{
+font:20pt &quot;Ubuntu&quot;;
 background-color:transparent;
 image: url(:/images/g1094.png);
 border-radius:20px;
 border:none;
-font:bold;</string>
+font:bold;
+}
+QPushButton:focus {
+    outline: none;
+    border: none;
+}
+</string>
    </property>
    <property name="text">
     <string>TUNE</string>
@@ -61,19 +79,27 @@ font:bold;</string>
   <widget class="QPushButton" name="prime1_but">
    <property name="geometry">
     <rect>
-     <x>140</x>
-     <y>170</y>
-     <width>161</width>
-     <height>91</height>
+     <x>70</x>
+     <y>70</y>
+     <width>281</width>
+     <height>201</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">font:20pt &quot;Ubuntu&quot;;
-background-color:transparent;
-image: url(:/images/g3042.png);
-border-radius:20px;
-border:none;
-font:bold;</string>
+    <string notr="true">QPushButton {
+    font: 20pt &quot;Ubuntu&quot;;
+    background-color: transparent;
+    image: url(:/images/g3042.png);
+    border-radius: 20px;
+    border: none;
+    font-weight: bold;
+}
+
+QPushButton:focus {
+    outline: none;
+    border: none;
+}
+</string>
    </property>
    <property name="text">
     <string>PRIME</string>
@@ -92,11 +118,15 @@ font:bold;</string>
     <string notr="true"/>
    </property>
    <property name="currentIndex">
-    <number>1</number>
+    <number>2</number>
    </property>
    <widget class="QWidget" name="tab_6">
     <property name="styleSheet">
-     <string notr="true">background-color:rgb(83, 104, 120);</string>
+     <string notr="true">
+background-color: rgb(18, 78, 102);
+
+
+</string>
     </property>
     <attribute name="title">
      <string>Tab 1</string>
@@ -125,18 +155,25 @@ border:none;font:bold;</string>
      <property name="geometry">
       <rect>
        <x>260</x>
-       <y>540</y>
-       <width>301</width>
-       <height>71</height>
+       <y>550</y>
+       <width>321</width>
+       <height>121</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">font:20pt &quot;Ubuntu&quot;;
+      <string notr="true">QPushButton{
+font:20pt &quot;Ubuntu&quot;;
 image: url(:/images/g4210.png);
 background-color:transparent;
 color: rgb(255, 255, 255);
 border-radius:20px;
-border:none;font:bold;</string>
+border:none;font:bold;
+}
+QPushButton:focus {
+    outline: none;
+    border: none;
+}
+</string>
      </property>
      <property name="text">
       <string>START PRIME</string>
@@ -216,10 +253,10 @@ border:none;font:bold;</string>
     <widget class="QProgressBar" name="progressBar_2">
      <property name="geometry">
       <rect>
-       <x>110</x>
+       <x>40</x>
        <y>480</y>
-       <width>561</width>
-       <height>23</height>
+       <width>761</width>
+       <height>51</height>
       </rect>
      </property>
      <property name="value">
@@ -236,9 +273,16 @@ border:none;font:bold;</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">image: url(:/images/nextimg.png);
+      <string notr="true">QPushButton{
+image: url(:/images/nextimg.png);
 background-color:transparent;
-border:none;</string>
+border:none;
+}
+QPushButton:focus {
+    outline: none;
+    border: none;
+}
+</string>
      </property>
      <property name="text">
       <string/>
@@ -247,7 +291,11 @@ border:none;</string>
    </widget>
    <widget class="QWidget" name="tab_7">
     <property name="styleSheet">
-     <string notr="true">background-color:rgb(83, 104, 120);</string>
+     <string notr="true">
+background-color: rgb(18, 78, 102);
+
+
+</string>
     </property>
     <attribute name="title">
      <string>Tab 2</string>
@@ -255,10 +303,10 @@ border:none;</string>
     <widget class="QLabel" name="handpice_img_2">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>20</y>
-       <width>841</width>
-       <height>361</height>
+       <x>-20</x>
+       <y>-20</y>
+       <width>851</width>
+       <height>491</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -275,38 +323,29 @@ background-color:transparent;</string>
       <rect>
        <x>220</x>
        <y>510</y>
-       <width>341</width>
-       <height>111</height>
+       <width>401</width>
+       <height>161</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">font:22pt &quot;Ubuntu&quot;;
-image: url(:/images/g4210.png);
-background-color: transparent;
-color: rgb(255, 255, 255);
-border-radius:20px;
-border:none;
-font:bold;</string>
+      <string notr="true">QPushButton {
+    font: 22pt &quot;Ubuntu&quot;;
+    image: url(:/images/g4210.png);
+    background-color: transparent;
+    color: rgb(255, 255, 255);
+    border-radius: 20px;
+    border: none;
+    font-weight: bold;
+}
+
+QPushButton:focus {
+    outline: none;
+    border: none;
+}
+</string>
      </property>
      <property name="text">
       <string>START TUNING </string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="tick_lab_2">
-     <property name="geometry">
-      <rect>
-       <x>790</x>
-       <y>420</y>
-       <width>51</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">
-background-color:transparent;</string>
-     </property>
-     <property name="text">
-      <string/>
      </property>
     </widget>
     <widget class="QLabel" name="initial_lab_2">
@@ -336,7 +375,7 @@ background-color:transparent;</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true"/>
+      <string notr="true">background-color:transparent;</string>
      </property>
      <property name="text">
       <string/>
@@ -352,9 +391,16 @@ background-color:transparent;</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">image: url(:/images/nextimg.png);
+      <string notr="true">QPushButton{
+image: url(:/images/nextimg.png);
 background-color:transparent;
-border:none;</string>
+border:none;
+}
+QPushButton:focus {
+    outline: none;
+    border: none;
+}
+</string>
      </property>
      <property name="text">
       <string/>
@@ -364,9 +410,9 @@ border:none;</string>
      <property name="geometry">
       <rect>
        <x>40</x>
-       <y>432</y>
-       <width>721</width>
-       <height>31</height>
+       <y>420</y>
+       <width>781</width>
+       <height>61</height>
       </rect>
      </property>
      <property name="value">
@@ -375,7 +421,6 @@ border:none;</string>
     </widget>
     <zorder>handpice_img_2</zorder>
     <zorder>Start_tune_2</zorder>
-    <zorder>tick_lab_2</zorder>
     <zorder>initial_lab_2</zorder>
     <zorder>pushButton_6</zorder>
     <zorder>progressBar</zorder>
@@ -383,7 +428,11 @@ border:none;</string>
    </widget>
    <widget class="QWidget" name="tab_8">
     <property name="styleSheet">
-     <string notr="true">background-color:rgb(83, 104, 120);</string>
+     <string notr="true">
+background-color: rgb(18, 78, 102);
+
+
+</string>
     </property>
     <attribute name="title">
      <string>Page</string>
@@ -445,18 +494,25 @@ p, li { white-space: pre-wrap; }
       <rect>
        <x>300</x>
        <y>520</y>
-       <width>301</width>
-       <height>91</height>
+       <width>331</width>
+       <height>141</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">font:20pt &quot;Ubuntu&quot;;
+      <string notr="true">QPushButton{
+font:20pt &quot;Ubuntu&quot;;
 background-color: transparent;
 image: url(:/images/g4210.png);
 color: rgb(255, 255, 255);
 font:bold;
 border-radius:20px;
-border:none;</string>
+border:none;
+}
+QPushButton:focus {
+    outline: none;
+    border: none;
+}
+</string>
      </property>
      <property name="text">
       <string>Begin Clean</string>
@@ -507,9 +563,16 @@ background-color:transparent;</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">image: url(:/images/backimg.png);
+      <string notr="true">QPushButton{
+image: url(:/images/backimg.png);
 border:none;
-background-color:transparent;</string>
+background-color:transparent;
+}
+QPushButton:focus {
+    outline: none;
+    border: none;
+}
+</string>
      </property>
      <property name="text">
       <string/>

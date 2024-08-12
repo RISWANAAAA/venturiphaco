@@ -48,7 +48,7 @@ public:
         right_footcom->addItem(QString());
         right_footcom->addItem(QString());
         right_footcom->setObjectName(QString::fromUtf8("right_footcom"));
-        right_footcom->setGeometry(QRect(430, 250, 151, 51));
+        right_footcom->setGeometry(QRect(430, 210, 281, 101));
         right_footcom->setStyleSheet(QString::fromUtf8("font:20pt \"Ubuntu\";\n"
 "color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 0);\n"
@@ -63,7 +63,7 @@ public:
         left_footcom->addItem(QString());
         left_footcom->addItem(QString());
         left_footcom->setObjectName(QString::fromUtf8("left_footcom"));
-        left_footcom->setGeometry(QRect(430, 150, 151, 51));
+        left_footcom->setGeometry(QRect(430, 100, 281, 101));
         left_footcom->setStyleSheet(QString::fromUtf8("font:20pt \"Ubuntu\";\n"
 "color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 0);\n"
@@ -84,7 +84,7 @@ public:
         bleft_footcom->addItem(QString());
         bleft_footcom->addItem(QString());
         bleft_footcom->setObjectName(QString::fromUtf8("bleft_footcom"));
-        bleft_footcom->setGeometry(QRect(430, 350, 151, 51));
+        bleft_footcom->setGeometry(QRect(430, 320, 281, 111));
         bleft_footcom->setStyleSheet(QString::fromUtf8("font:20pt \"Ubuntu\";\n"
 "color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 0);\n"
@@ -99,7 +99,7 @@ public:
         bright_footcom->addItem(QString());
         bright_footcom->addItem(QString());
         bright_footcom->setObjectName(QString::fromUtf8("bright_footcom"));
-        bright_footcom->setGeometry(QRect(430, 460, 151, 51));
+        bright_footcom->setGeometry(QRect(430, 440, 281, 111));
         bright_footcom->setStyleSheet(QString::fromUtf8("font:20pt \"Ubuntu\";\n"
 "color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 0);\n"
@@ -108,7 +108,7 @@ public:
 ""));
         savebut = new QPushButton(footpedal);
         savebut->setObjectName(QString::fromUtf8("savebut"));
-        savebut->setGeometry(QRect(370, 600, 541, 61));
+        savebut->setGeometry(QRect(350, 580, 541, 61));
         savebut->setStyleSheet(QString::fromUtf8("font: 30pt \"Ubuntu Condensed\";\n"
 "background-color: rgb(255, 255, 255);\n"
 "border-radius:20px;\n"
@@ -154,30 +154,30 @@ public:
     void retranslateUi(QDialog *footpedal)
     {
         footpedal->setWindowTitle(QCoreApplication::translate("footpedal", "Dialog", nullptr));
-        right_footcom->setItemText(0, QCoreApplication::translate("footpedal", "Increment Program", nullptr));
-        right_footcom->setItemText(1, QCoreApplication::translate("footpedal", "Decrement Program", nullptr));
+        right_footcom->setItemText(0, QCoreApplication::translate("footpedal", "Increment", nullptr));
+        right_footcom->setItemText(1, QCoreApplication::translate("footpedal", "Decrement", nullptr));
         right_footcom->setItemText(2, QCoreApplication::translate("footpedal", "Reflux", nullptr));
         right_footcom->setItemText(3, QCoreApplication::translate("footpedal", "Continuous Irrigation", nullptr));
         right_footcom->setItemText(4, QCoreApplication::translate("footpedal", "Power ON/OFF", nullptr));
         right_footcom->setItemText(5, QCoreApplication::translate("footpedal", "PDM", nullptr));
 
-        left_footcom->setItemText(0, QCoreApplication::translate("footpedal", "Increment Program", nullptr));
-        left_footcom->setItemText(1, QCoreApplication::translate("footpedal", "Decrement Program", nullptr));
+        left_footcom->setItemText(0, QCoreApplication::translate("footpedal", "Increment", nullptr));
+        left_footcom->setItemText(1, QCoreApplication::translate("footpedal", "Decrement ", nullptr));
         left_footcom->setItemText(2, QCoreApplication::translate("footpedal", "Reflux", nullptr));
         left_footcom->setItemText(3, QCoreApplication::translate("footpedal", "Continuous Irrigation", nullptr));
         left_footcom->setItemText(4, QCoreApplication::translate("footpedal", "Power ON/OFF", nullptr));
         left_footcom->setItemText(5, QCoreApplication::translate("footpedal", "PDM", nullptr));
 
         foot_img->setText(QString());
-        bleft_footcom->setItemText(0, QCoreApplication::translate("footpedal", "Increment Program", nullptr));
-        bleft_footcom->setItemText(1, QCoreApplication::translate("footpedal", "Decrement Program", nullptr));
+        bleft_footcom->setItemText(0, QCoreApplication::translate("footpedal", "Increment", nullptr));
+        bleft_footcom->setItemText(1, QCoreApplication::translate("footpedal", "Decrement", nullptr));
         bleft_footcom->setItemText(2, QCoreApplication::translate("footpedal", "Reflux", nullptr));
         bleft_footcom->setItemText(3, QCoreApplication::translate("footpedal", "Continuous Irrigation", nullptr));
         bleft_footcom->setItemText(4, QCoreApplication::translate("footpedal", "Power ON/OFF", nullptr));
         bleft_footcom->setItemText(5, QCoreApplication::translate("footpedal", "PDM", nullptr));
 
-        bright_footcom->setItemText(0, QCoreApplication::translate("footpedal", "Increment Program", nullptr));
-        bright_footcom->setItemText(1, QCoreApplication::translate("footpedal", "Decrement Program", nullptr));
+        bright_footcom->setItemText(0, QCoreApplication::translate("footpedal", "Increment", nullptr));
+        bright_footcom->setItemText(1, QCoreApplication::translate("footpedal", "Decrement", nullptr));
         bright_footcom->setItemText(2, QCoreApplication::translate("footpedal", "Reflux", nullptr));
         bright_footcom->setItemText(3, QCoreApplication::translate("footpedal", "Continuous Irrigation", nullptr));
         bright_footcom->setItemText(4, QCoreApplication::translate("footpedal", "Power ON/OFF", nullptr));

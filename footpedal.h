@@ -33,6 +33,7 @@ public:
           void setGPIODirection(int gpioNumber, const QString &direction);
           void writeGPIOValue(int gpioNumber, int value);
           int readGPIOValue(int gpioNumber);
+          void readInitialGPIOValues();
           void change_settings();
             void performAction(const QString &action, int gpioNumber);
 public slots:
@@ -44,27 +45,16 @@ public slots:
 
 
 signals:
-    void moveTopToBottom();    // Signal for moving pushbutton from top to bottom
-    void moveBottomToTop();    // Signal for moving pushbutton from bottom to top
-    void performReflux();      // Signal for performing reflux action
-    void togglePower();        // Signal for toggling power on/off
+    void moveTopToBottom(int value);    // Signal for moving pushbutton from top to bottom
+    void moveBottomToTop(int value);    // Signal for moving pushbutton from bottom to top
+    void performReflux(int value);      // Signal for performing reflux action
+    void togglePower(int value);        // Signal for toggling power on/off
 
-    void continous_irrigation();
-    void powerdm();
+    void continous_irrigation(int value);
+    void powerdm(int value1);
 
 private slots:
     void Back();
-
-// void handleComboBoxChange(int index);
-    void SaveForAll();
-
-
-
-
-
-
-  //  void on_pushButton_clicked();
-
     void on_pushButton_clicked();
 
 private:

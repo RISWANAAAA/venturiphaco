@@ -65,7 +65,6 @@
 #define FS_COUNT_REG            2
 #define PHACO_ONOFF_REG         0
 
-
 #define CONTINOUS       0x01
 #define PULSE_MODE      0x02
 #define OCUPULSE        0x04
@@ -74,6 +73,10 @@
 #define MULTI_BURST     0x07
 #define COLD_PHACO      0x03
 #define CONTINOUS_BURST 0x06
+
+#define SPEAKER_ASPIRATION  0x81
+#define SPEAKER_IRRIGATION  0x82
+#define SPEAKER_OCCLUSION   0x84
 
 class hwhandler: public QThread
 {
@@ -136,6 +139,9 @@ public:
 
     void convert_dac(int count);
 
+    void speaker_on(uint8_t value, uint8_t asp, uint8_t irr, uint8_t occ);
+    void speaker_off();
+    void buzz();
 
 
 

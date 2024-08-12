@@ -51,20 +51,18 @@ public slots:
     void increasebutton(QLineEdit *increaseline);
     void decreasebutton(QLineEdit *decreaseline);
     void vacbutton(QLineEdit *vacline);
-    void powervit();
-    void dialine(const QString text);
+
+
     void currentcombobox1(const QString &text);
     void currentcombobox2(const QString &text);
     void currentcombobox3(const QString &text);
     void currentcombobox4(const QString &text);
-    void trasmitcomboBox(const QString &text);
-    void current(int index);
 
 
 
 private slots:
     void DiathermyBut();
-void DiaSaveBut();
+
     void PhacoBut();
 
     void IrrigationAspirationBut();
@@ -80,7 +78,6 @@ void DiaSaveBut();
     //void on_pushButton_5_clicked();
 
 
-    void on_SavePhacoBut_phaco_2_clicked();
 
 
 
@@ -90,36 +87,62 @@ void DiaSaveBut();
 
     void on_ScupltBut_phaco_clicked();
 
-    void on_SavePhacoBut_phaco_clicked();
 
-    void on_SavePhacoBut_phaco_3_clicked();
-
-    void on_SavePhacoBut_phaco_4_clicked();
-    void onComboBox1Changed();
-    void onComboBox2Changed();
-    void onComboBox3Changed();
-    void onComboBox4Changed();
-  void onSaveButtonClicked(int tabIndex);
 
 
   void on_EpinBut_phaco_clicked();
 
 
 
+  void on_pushButton_clicked();
+  void pumpvalue();
+
+  void on_SaveDiaBut_clicked();
+
+
+
+  void on_savefootpedal_clicked();
+
 signals:
 
-    void comboBox1Changed(const QString &text);
-    void comboBox2Changed(const QString &text);
-    void comboBox3Changed(const QString &text);
-     void comboBox4Changed(const QString &text);
-    void valuesUpdated(const QString &surgeon, int tabIndex, const QStringList &values);
-  void transmitcombo(const QString &text);
-
+  void sendleftfootvalues(const QString &text1);
+  void sendrightfootvalues(const QString &text2);
+  void sendbleftfootvalues(const QString &text3);
+  void sendbrightfootvalues(const QString &text4);
               //footpedal combo box;
               void leftfoot(const QString &value);
               void rightfoot(const QString &value);
               void bottomleft(const QString &value);
               void bottomright(const QString &value);
+              void pumpsignal(const QString &value);
+              void sendValues(
+                     const QString &comboBoxValue,
+                      const QString &combo,
+                     int dia,
+                     int us1pow, int us1vac, int us1asp,
+                     int us2pow, int us2vac, int us2asp,
+                     int us3pow, int us3vac, int us3asp,
+                     int us4pow, int us4vac, int us4asp,
+                     int ia1vac, int ia1asp,
+                     int ia2vac, int ia2asp,
+                     int vitcut, int vitvac, int vitasp,
+                     const QString &powmode,
+                     const QString &vacmode,
+                     const QString &powmethod,
+                     const QString &us2powmode,
+                     const QString &us2vacmode,
+                     const QString &us2powermethod,
+                     const QString &us3powmode,
+                     const QString &us3vacmode,
+                     const QString &us3powermethod,
+                     const QString &us4powmode,
+                     const QString &us4vacmode,
+                     const QString &us4powermethod,
+                     const QString &ia1mode,
+                     const QString &ia2mode,
+                     const QString &vitmode,
+                     const QString &vitvacmode
+                 );
 
 
 private:
@@ -131,6 +154,7 @@ private:
 
 
     QMessageBox *message;
+    QMessageBox *messagebox;
     QTimer *timer;
     QMap<QString, QMap<int, QStringList>> surgeonData;
 

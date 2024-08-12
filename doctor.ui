@@ -14,7 +14,11 @@
    <string>Dialog</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color:rgb(83, 104, 120);</string>
+   <string notr="true">
+background-color: rgb(18, 78, 102);
+
+
+</string>
   </property>
   <widget class="QLabel" name="Mode">
    <property name="geometry">
@@ -43,8 +47,10 @@ background-color:transparent;</string>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">color: rgb(0, 0, 0);border-radius:20px;
-background-color: rgb(222, 221, 218);font:20pt &quot;Ubuntu&quot;;</string>
+    <string notr="true">background-color: rgb(14, 50, 6);
+font:20pt &quot;Ubuntu&quot;;
+border-radius:20px;
+</string>
    </property>
    <item>
     <property name="text">
@@ -99,13 +105,13 @@ background-color:transparent;</string>
    <property name="geometry">
     <rect>
      <x>-10</x>
-     <y>0</y>
-     <width>141</width>
-     <height>91</height>
+     <y>10</y>
+     <width>111</width>
+     <height>71</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">image: url(:/images/backarrowimg.png);
+    <string notr="true">image: url(:/images/backbuttonarrow.png);
 border:none;
 background-color:transparent;</string>
    </property>
@@ -141,7 +147,7 @@ background-color:transparent;</string>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(222, 221, 218);
+    <string notr="true">background-color: rgb(14, 50, 6);
 font:20pt &quot;Ubuntu&quot;;
 border-radius:20px;
 </string>
@@ -199,7 +205,7 @@ background-color:transparent;</string>
    <property name="geometry">
     <rect>
      <x>280</x>
-     <y>320</y>
+     <y>310</y>
      <width>101</width>
      <height>81</height>
     </rect>
@@ -221,7 +227,7 @@ border:3px solid black;</string>
    <property name="geometry">
     <rect>
      <x>190</x>
-     <y>150</y>
+     <y>140</y>
      <width>271</width>
      <height>251</height>
     </rect>
@@ -257,7 +263,7 @@ font:bold;</string>
    <property name="geometry">
     <rect>
      <x>190</x>
-     <y>230</y>
+     <y>220</y>
      <width>91</width>
      <height>81</height>
     </rect>
@@ -300,8 +306,10 @@ font:bold;border:3px solid black;</string>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">border-radius:20px;font:20pt &quot;Ubuntu&quot;;
-background-color: rgb(222, 221, 218);</string>
+    <string notr="true">background-color: rgb(14, 50, 6);
+font:20pt &quot;Ubuntu&quot;;
+border-radius:20px;
+</string>
    </property>
    <item>
     <property name="text">
@@ -344,8 +352,10 @@ background-color: rgb(222, 221, 218);</string>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(222, 221, 218);color: rgb(0, 0, 0);border-radius:20px;
-font:20pt &quot;Ubuntu&quot;;</string>
+    <string notr="true">background-color: rgb(14, 50, 6);
+font:20pt &quot;Ubuntu&quot;;
+border-radius:20px;
+</string>
    </property>
    <item>
     <property name="text">
@@ -382,7 +392,7 @@ font:20pt &quot;Ubuntu&quot;;</string>
    <property name="geometry">
     <rect>
      <x>370</x>
-     <y>230</y>
+     <y>220</y>
      <width>91</width>
      <height>81</height>
     </rect>
@@ -447,12 +457,10 @@ background-color:transparent;</string>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">border-radius:20px;
-color: rgb(255, 255, 255);
-background-color: rgb(0, 0, 0);
-
+    <string notr="true">background-color: rgb(14, 50, 6);
 font:20pt &quot;Ubuntu&quot;;
-font:bold;</string>
+border-radius:20px;
+</string>
    </property>
    <item>
     <property name="text">
@@ -493,7 +501,7 @@ font:bold;</string>
     <string notr="true">background-color: rgb(162, 128, 137);</string>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>1</number>
    </property>
    <widget class="QWidget" name="Diathermy">
     <property name="styleSheet">
@@ -516,6 +524,12 @@ font:bold;</string>
 background-color: rgb(255,255,255);
 border-radius:20px;</string>
      </property>
+     <property name="text">
+      <string>100</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
     </widget>
     <widget class="QLabel" name="DiaPowMax">
      <property name="geometry">
@@ -532,24 +546,6 @@ font:bold;</string>
      </property>
      <property name="text">
       <string>POWER MAXIMUM</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="SaveDiaBut">
-     <property name="geometry">
-      <rect>
-       <x>330</x>
-       <y>430</y>
-       <width>101</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">font:20pt &quot;Ubuntu&quot;;
-background-color: rgb(222, 221, 218);
-border-radius:20px;</string>
-     </property>
-     <property name="text">
-      <string>save</string>
      </property>
     </widget>
     <widget class="QProgressBar" name="progressBar">
@@ -572,10 +568,10 @@ border-radius:20px;</string>
 
 QProgressBar::chunk {
     background: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1, stop: 0 #4568dc, stop: 1 #b06ab3);
-    width: 8px; /* Diameter of the circular chunk */
-    height: 8px; /* Diameter of the circular chunk */
+    width: 9px; /* Diameter of the circular chunk */
+    height: 9px; /* Diameter of the circular chunk */
     border-radius: 4px; /* Half of the width/height to make it circular */
-    margin: 1px; /* Space between chunks */
+    margin: 2px; /* Space between chunks */
 }
 </string>
      </property>
@@ -585,7 +581,6 @@ QProgressBar::chunk {
     </widget>
     <zorder>DiaPowMax</zorder>
     <zorder>lineEdit_6</zorder>
-    <zorder>SaveDiaBut</zorder>
     <zorder>progressBar</zorder>
    </widget>
    <widget class="QWidget" name="tab_2">
@@ -709,6 +704,9 @@ font:bold;</string>
 background-color: rgb(255,255,255);
 border-radius:20px;</string>
        </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
       </widget>
       <widget class="QComboBox" name="VacModeCom_phaco">
        <property name="geometry">
@@ -782,6 +780,9 @@ font:bold;</string>
 background-color: rgb(255,255,255);
 border-radius:20px;</string>
        </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
       </widget>
       <widget class="QLabel" name="AspMax_phaco_4">
        <property name="geometry">
@@ -798,24 +799,6 @@ font:bold;</string>
        </property>
        <property name="text">
         <string>(%)</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="SavePhacoBut_phaco">
-       <property name="geometry">
-        <rect>
-         <x>320</x>
-         <y>560</y>
-         <width>111</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">font:20pt &quot;Ubuntu&quot;;
-background-color: rgb(255,255,255);
-border-radius:20px;</string>
-       </property>
-       <property name="text">
-        <string>SAVE</string>
        </property>
       </widget>
       <widget class="QLabel" name="VacMode_phaco">
@@ -906,6 +889,9 @@ font:bold;</string>
         <string notr="true">font:20pt &quot;Ubuntu&quot;;
 background-color: rgb(255,255,255);
 border-radius:20px;</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
        </property>
       </widget>
       <widget class="QComboBox" name="PowMethodCom_phaco">
@@ -1025,7 +1011,7 @@ QProgressBar::chunk {
       <widget class="QProgressBar" name="progressBar_6">
        <property name="geometry">
         <rect>
-         <x>40</x>
+         <x>50</x>
          <y>190</y>
          <width>701</width>
          <height>41</height>
@@ -1056,7 +1042,7 @@ QProgressBar::chunk {
       <widget class="QProgressBar" name="progressBar_7">
        <property name="geometry">
         <rect>
-         <x>40</x>
+         <x>50</x>
          <y>310</y>
          <width>701</width>
          <height>41</height>
@@ -1119,6 +1105,9 @@ font:bold;</string>
         <string notr="true">font:20pt &quot;Ubuntu&quot;;
 background-color: rgb(255,255,255);
 border-radius:20px;</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
        </property>
       </widget>
       <widget class="QComboBox" name="VacModeCom_phaco_2">
@@ -1193,6 +1182,9 @@ font:bold;</string>
 background-color: rgb(255,255,255);
 border-radius:20px;</string>
        </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
       </widget>
       <widget class="QLabel" name="AspMax_phaco_11">
        <property name="geometry">
@@ -1209,24 +1201,6 @@ font:bold;</string>
        </property>
        <property name="text">
         <string>(%)</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="SavePhacoBut_phaco_2">
-       <property name="geometry">
-        <rect>
-         <x>310</x>
-         <y>550</y>
-         <width>111</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">font:20pt &quot;Ubuntu&quot;;
-background-color: rgb(255,255,255);
-border-radius:20px;</string>
-       </property>
-       <property name="text">
-        <string>SAVE</string>
        </property>
       </widget>
       <widget class="QLabel" name="VacMode_phaco_2">
@@ -1317,6 +1291,9 @@ font:bold;</string>
         <string notr="true">font:20pt &quot;Ubuntu&quot;;
 background-color: rgb(255,255,255);
 border-radius:20px;</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
        </property>
       </widget>
       <widget class="QComboBox" name="PowMethodCom_phaco_2">
@@ -1531,6 +1508,9 @@ font:bold;</string>
 background-color: rgb(255,255,255);
 border-radius:20px;</string>
        </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
       </widget>
       <widget class="QComboBox" name="VacModeCom_phaco_3">
        <property name="geometry">
@@ -1603,6 +1583,9 @@ font:bold;</string>
         <string notr="true">font:20pt &quot;Ubuntu&quot;;
 background-color: rgb(255,255,255);
 border-radius:20px;</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
        </property>
       </widget>
       <widget class="QLabel" name="AspMax_phaco_15">
@@ -1728,6 +1711,9 @@ font:bold;</string>
         <string notr="true">font:20pt &quot;Ubuntu&quot;;
 background-color: rgb(255,255,255);
 border-radius:20px;</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
        </property>
       </widget>
       <widget class="QComboBox" name="PowMethodCom_phaco_3">
@@ -1942,6 +1928,9 @@ font:bold;</string>
 background-color: rgb(255,255,255);
 border-radius:20px;</string>
        </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
       </widget>
       <widget class="QComboBox" name="VacModeCom_phaco_4">
        <property name="geometry">
@@ -2015,6 +2004,9 @@ font:bold;</string>
 background-color: rgb(255,255,255);
 border-radius:20px;</string>
        </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
       </widget>
       <widget class="QLabel" name="AspMax_phaco_19">
        <property name="geometry">
@@ -2031,24 +2023,6 @@ font:bold;</string>
        </property>
        <property name="text">
         <string>(%)</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="SavePhacoBut_phaco_4">
-       <property name="geometry">
-        <rect>
-         <x>290</x>
-         <y>550</y>
-         <width>111</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">font:20pt &quot;Ubuntu&quot;;
-background-color: rgb(255,255,255);
-border-radius:20px;</string>
-       </property>
-       <property name="text">
-        <string>SAVE</string>
        </property>
       </widget>
       <widget class="QLabel" name="VacMode_phaco_4">
@@ -2139,6 +2113,9 @@ font:bold;</string>
         <string notr="true">font:20pt &quot;Ubuntu&quot;;
 background-color: rgb(255,255,255);
 border-radius:20px;</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
        </property>
       </widget>
       <widget class="QComboBox" name="PowMethodCom_phaco_4">
@@ -2543,12 +2520,12 @@ background-color: rgb(222, 221, 218);font:20pt &quot;Ubuntu&quot;;</string>
      </property>
      <item>
       <property name="text">
-       <string>Linear</string>
+       <string>Surgeon</string>
       </property>
      </item>
      <item>
       <property name="text">
-       <string>Non Linear</string>
+       <string>Panel</string>
       </property>
      </item>
     </widget>
@@ -2567,12 +2544,12 @@ background-color: rgb(222, 221, 218);font:20pt &quot;Ubuntu&quot;;</string>
      </property>
      <item>
       <property name="text">
-       <string>Linear</string>
+       <string>Surgeon</string>
       </property>
      </item>
      <item>
       <property name="text">
-       <string>Non Linear</string>
+       <string>PAnel</string>
       </property>
      </item>
     </widget>
@@ -2591,12 +2568,12 @@ background-color: rgb(222, 221, 218);font:20pt &quot;Ubuntu&quot;;</string>
      </property>
      <item>
       <property name="text">
-       <string>Linear</string>
+       <string>Surgeon</string>
       </property>
      </item>
      <item>
       <property name="text">
-       <string>Non Linear</string>
+       <string>Panel</string>
       </property>
      </item>
     </widget>
@@ -2604,7 +2581,7 @@ background-color: rgb(222, 221, 218);font:20pt &quot;Ubuntu&quot;;</string>
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>10</y>
+       <y>0</y>
        <width>161</width>
        <height>31</height>
       </rect>
@@ -2633,12 +2610,12 @@ border-radius:15px;</string>
      </property>
      <item>
       <property name="text">
-       <string>Linear</string>
+       <string>Surgeon</string>
       </property>
      </item>
      <item>
       <property name="text">
-       <string>Non  Linear</string>
+       <string>Panel</string>
       </property>
      </item>
     </widget>
@@ -2658,24 +2635,6 @@ background-color: rgb(255, 255, 255);</string>
      </property>
      <property name="text">
       <string>Polish</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="IASaveBut">
-     <property name="geometry">
-      <rect>
-       <x>340</x>
-       <y>630</y>
-       <width>101</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">font:20pt &quot;Ubuntu&quot;;
-background-color: rgb(255,255,255);
-border-radius:20px;</string>
-     </property>
-     <property name="text">
-      <string>SAVE</string>
      </property>
     </widget>
     <widget class="QLabel" name="AspMax_phaco_5">
@@ -2872,9 +2831,7 @@ QProgressBar::chunk {
     </widget>
     <zorder>AspMax_ia</zorder>
     <zorder>VacMax_ia</zorder>
-    <zorder>Cortex</zorder>
     <zorder>Piolish</zorder>
-    <zorder>IASaveBut</zorder>
     <zorder>VacMax_ia_2</zorder>
     <zorder>VacMode3_ia</zorder>
     <zorder>AspMode3_ia</zorder>
@@ -2897,6 +2854,7 @@ QProgressBar::chunk {
     <zorder>progressBar_15</zorder>
     <zorder>progressBar_16</zorder>
     <zorder>progressBar_17</zorder>
+    <zorder>Cortex</zorder>
    </widget>
    <widget class="QWidget" name="tab_4">
     <property name="styleSheet">
@@ -2952,12 +2910,12 @@ background-color: rgb(222, 221, 218);font:20pt &quot;Ubuntu&quot;;</string>
      </property>
      <item>
       <property name="text">
-       <string>Linear</string>
+       <string>Surgeon</string>
       </property>
      </item>
      <item>
       <property name="text">
-       <string>Non Linear</string>
+       <string>Panel</string>
       </property>
      </item>
     </widget>
@@ -3025,12 +2983,12 @@ background-color: rgb(222, 221, 218);font:20pt &quot;Ubuntu&quot;;</string>
      </property>
      <item>
       <property name="text">
-       <string>Linear</string>
+       <string>Surgeon</string>
       </property>
      </item>
      <item>
       <property name="text">
-       <string>Non Linear</string>
+       <string>Panel</string>
       </property>
      </item>
     </widget>
@@ -3117,24 +3075,6 @@ border-radius:20px;</string>
      </property>
      <property name="text">
       <string>Vaccum</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="savevitbut">
-     <property name="geometry">
-      <rect>
-       <x>300</x>
-       <y>600</y>
-       <width>111</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">font:20pt &quot;Ubuntu&quot;;
-background-color: rgb(255,255,255);
-border-radius:20px;</string>
-     </property>
-     <property name="text">
-      <string>SAVE</string>
      </property>
     </widget>
     <widget class="QProgressBar" name="progressBar_19">
@@ -3242,7 +3182,6 @@ QProgressBar::chunk {
     <zorder>lineEdit</zorder>
     <zorder>lineEdit_19</zorder>
     <zorder>lineEdit_20</zorder>
-    <zorder>savevitbut</zorder>
     <zorder>progressBar_19</zorder>
     <zorder>progressBar_20</zorder>
     <zorder>progressBar_21</zorder>
@@ -3252,7 +3191,7 @@ QProgressBar::chunk {
    <property name="geometry">
     <rect>
      <x>280</x>
-     <y>150</y>
+     <y>140</y>
      <width>91</width>
      <height>81</height>
     </rect>
@@ -3288,38 +3227,11 @@ border-radius:20px;</string>
     <string>SAVE</string>
    </property>
   </widget>
-  <widget class="QComboBox" name="comboBox">
-   <property name="geometry">
-    <rect>
-     <x>620</x>
-     <y>10</y>
-     <width>621</width>
-     <height>51</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">font:30px;
-background-color: rgb(0, 0, 0);
-color: rgb(255, 255, 255);
-border-radius:20px;
-</string>
-   </property>
-   <item>
-    <property name="text">
-     <string>Peristatic</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Ventury</string>
-    </property>
-   </item>
-  </widget>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
      <x>470</x>
-     <y>10</y>
+     <y>-10</y>
      <width>871</width>
      <height>51</height>
     </rect>
@@ -3334,8 +3246,8 @@ border-radius:20px;
   <widget class="QLabel" name="Select_2">
    <property name="geometry">
     <rect>
-     <x>420</x>
-     <y>10</y>
+     <x>20</x>
+     <y>240</y>
      <width>191</width>
      <height>61</height>
     </rect>
@@ -3348,6 +3260,75 @@ font:bold;</string>
    </property>
    <property name="text">
     <string>Select Pump :</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>570</x>
+     <y>10</y>
+     <width>531</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-radius:20px;
+color: rgb(255, 255, 255);
+background-color: rgb(0, 0, 0);
+
+font:15pt &quot;Ubuntu&quot;;
+font:bold;</string>
+   </property>
+   <property name="text">
+    <string>Load All Surgeons</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="comboBox">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>310</y>
+     <width>181</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font:30px;
+background-color: rgb(14, 50, 6);
+color: rgb(0, 0, 0);
+border-radius:20px;
+</string>
+   </property>
+   <item>
+    <property name="text">
+     <string>Peristaltic</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Venturi</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QPushButton" name="SaveDiaBut">
+   <property name="geometry">
+    <rect>
+     <x>590</x>
+     <y>670</y>
+     <width>511</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-radius:20px;
+color: rgb(255, 255, 255);
+background-color: rgb(0, 0, 0);
+
+font:15pt &quot;Ubuntu&quot;;
+font:bold;</string>
+   </property>
+   <property name="text">
+    <string>Save All Values</string>
    </property>
   </widget>
   <zorder>circle</zorder>
@@ -3372,8 +3353,10 @@ font:bold;</string>
   <zorder>DiaBut</zorder>
   <zorder>savefootpedal</zorder>
   <zorder>label</zorder>
-  <zorder>comboBox</zorder>
   <zorder>Select_2</zorder>
+  <zorder>pushButton</zorder>
+  <zorder>comboBox</zorder>
+  <zorder>SaveDiaBut</zorder>
  </widget>
  <resources/>
  <connections/>
