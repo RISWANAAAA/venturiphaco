@@ -65,7 +65,7 @@ void push(const QString &surgeonName);
     int range=0;
     int rec;
     int butname=0;
-    int readGPIO();
+    int readGPIO(int gpio,int gpio1,int gpio2,int gpio3);
     void moveTab(int usIndex);
       void moveTab1(int usIndex);
       void moveTab2(int usIndex);
@@ -514,7 +514,7 @@ int currentButtonIndex;
           void updateLabel();
           void switchTimer(int button);
            int counter=0;
-bool powerOn;
+bool powerOn1;
 QMap<QString, QMap<int, QStringList>> surgeonData;
 void updateTabsBasedOnComboBox(const QString &text);
 QSqlDatabase db;
@@ -527,6 +527,7 @@ QSqlDatabase db;
  QString getLastUpdatedSurgeon();
   bool isTuneEnabled;
   int buttonforgpio;  // Track the current active button
-    QPushButton* buttons[8]; // Array of pointers to the 7 buttons
+  QPushButton* buttons[7];  // Array to store the 7 buttons
+    int currentbut;   // Track the current button index
 };
 #endif // MAINWINDOW_H

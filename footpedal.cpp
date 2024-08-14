@@ -163,7 +163,71 @@ void footpedal::readInitialGPIOValues()
             qDebug() << "GPIO 962 - PDM activated.";
         }
     }
+    //topright
 
+    if (rightFootcomAction == "Continuous Irrigation") {
+        qDebug() << "GPIO 963 - Continuous Irrigation action detected.";
+        if (value3 == 0) {
+            emit continous_irrigation(value3);
+            qDebug() << "GPIO 963 - Continuous Irrigation performed.";
+        }
+    } else if (rightFootcomAction == "Power ON/OFF") {
+        qDebug() << "GPIO 962 - Power ON/OFF action detected.";
+        if (value3 == 0) {
+            emit togglePower(value3);
+            qDebug() << "GPIO 963 - Power toggled." << value3;
+        }
+    } else if (rightFootcomAction == "Increment") {
+        qDebug() << "GPIO 963 - Increment action detected.";
+        if (value3 == 0) {
+            emit moveTopToBottom(0);
+            qDebug() << "GPIO 963 - Button moved from top to bottom.";
+        }
+    } else if (rightFootcomAction == "Decrement") {
+        qDebug() << "GPIO 963 - Decrement action detected.";
+        if (value3 == 0) {
+            emit moveBottomToTop(value3);
+            qDebug() << "GPIO 963 - Button moved from bottom to top.";
+        }
+    } else if (rightFootcomAction == "PDM") {
+        qDebug() << "GPIO 963 - PDM action detected.";
+        if (value3 == 0) {
+            emit powerdm(value3);
+            qDebug() << "GPIO 963 - PDM activated.";
+        }
+    }
+    //bottom right
+    if (bleftFootcomAction == "Continuous Irrigation") {
+        qDebug() << "GPIO 964 - Continuous Irrigation action detected.";
+        if (value4 == 0) {
+            emit continous_irrigation(value4);
+            qDebug() << "GPIO 964 - Continuous Irrigation performed.";
+        }
+    } else if (bleftFootcomAction == "Power ON/OFF") {
+        qDebug() << "GPIO 964 - Power ON/OFF action detected.";
+        if (value4 == 0) {
+            emit togglePower(value4);
+            qDebug() << "GPIO 964 - Power toggled." <<value4;
+        }
+    } else if (bleftFootcomAction == "Increment") {
+        qDebug() << "GPIO 964 - Increment action detected.";
+        if (value4 == 0) {
+            emit moveTopToBottom(0);
+            qDebug() << "GPIO 964 - Button moved from top to bottom.";
+        }
+    } else if (bleftFootcomAction == "Decrement") {
+        qDebug() << "GPIO 964 - Decrement action detected.";
+        if (value4 == 0) {
+            emit moveBottomToTop(value4);
+            qDebug() << "GPIO 964 - Button moved from bottom to top.";
+        }
+    } else if (bleftFootcomAction == "PDM") {
+        qDebug() << "GPIO 964 - PDM action detected.";
+        if (value4 == 0) {
+            emit powerdm(value4);
+            qDebug() << "GPIO 964 - PDM activated.";
+        }
+    }
 
     // Add similar conditions for other GPIO pins as needed
 }

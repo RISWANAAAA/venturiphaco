@@ -455,7 +455,7 @@ void prime::on_pushButton_6_clicked()
 
     if (ret == QMessageBox::Yes) {
         m->show();
-        //m->setTuneMode(false);
+        m->setTuneMode(false);
          m->DIATHERMYBUT();
     } else {
         // Handle the case where "No" is clicked (optional)

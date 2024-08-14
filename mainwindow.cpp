@@ -14,9 +14,9 @@ MainWindow::MainWindow(QWidget *parent)
     , elapsedTimeUS3(0)
     , elapsedTimeUS4(0)
     , butname(-1)
-    ,isTuneEnabled(false),
-
-   overallci(false)
+    ,isTuneEnabled(false)
+      ,powerOn1(false)
+   ,overallci(false)
 {
     ui->setupUi(this);
    // resize(800,600);
@@ -53,7 +53,10 @@ MainWindow::MainWindow(QWidget *parent)
 
      // Initialize buttonforgpio to start from the first button
      buttonforgpio = 0;
-
+     for (int i = 0; i < 7; ++i) {
+           buttons[i] = new QPushButton(QString("Button %1").arg(i + 1), this);
+           // Set button positions, etc.
+       }
      // Set the initial button as selected
      buttons[buttonforgpio]->setChecked(true);
      QTimer *readgpio=new QTimer;
@@ -61,10 +64,8 @@ MainWindow::MainWindow(QWidget *parent)
      readgpio->start(100);
     updateTimer = new QTimer(this);
     connect(updateTimer, &QTimer::timeout, this, &MainWindow::updateTimers);
-    // Populate the combobox with surgeon names and IDs
 
   connect(ui->CI5_5,&QPushButton::clicked,this,&MainWindow::on_CI4_2_clicked);
-    // Connect the combobox signal to the slot
 
     updateTimer->start(1000); // Update every 100 milliseconds
   ui->tabWidget->setCurrentIndex(7);
@@ -79,9 +80,8 @@ MainWindow::MainWindow(QWidget *parent)
   power.buttonstate3="OFF";
   power.powerOn4=false;
   power.buttonstate4="OFF";
-connect(in,&doctor::sendValues,this,&MainWindow::receiveValues);
+       connect(in,&doctor::sendValues,this,&MainWindow::receiveValues);
        QTimer *timerdia=new QTimer;
-       updateButtonSelection(currentButtonIndex);
 
   messageline=new QMessageBox;
   for (int i = 0; i < 7; ++i) {
@@ -1838,25 +1838,25 @@ void MainWindow::current(int tab)
  ui->label_32->hide();
     switch (tab) {
         case 0:
-            ui->ULTRASONICBUT1->setStyleSheet(styleSheet3);
+            ui->ULTRASONICBUT1->setStyleSheet(styleSheet);
             ui->label_3->show();
  ui->elapsed_time->show();
  ui->label_32->show();
             break;
         case 1:
-            ui->ULTRASONICBUT2->setStyleSheet(styleSheet3);
+            ui->ULTRASONICBUT2->setStyleSheet(styleSheet);
             ui->label_4->show();
             ui->elapsed_time->show();
              ui->label_32->show();
             break;
         case 2:
-            ui->ULTRASONICBUT3->setStyleSheet(styleSheet3);
+            ui->ULTRASONICBUT3->setStyleSheet(styleSheet);
             ui->label_14->show();
             ui->elapsed_time->show();
              ui->label_32->show();
             break;
         case 3:
-            ui->ULTRASONICBUT4->setStyleSheet(styleSheet3);
+            ui->ULTRASONICBUT4->setStyleSheet(styleSheet);
                ui->elapsed_time->show();
                ui->label_12->show();
                 ui->label_32->show();
@@ -1912,10 +1912,20 @@ void MainWindow::updateline() {
           }
 }
 void MainWindow::setTuneMode(bool tuneEnabled) {
+    QString styleSheet4 = "QLabel {"
+               "image: url(:/images/unlocked.png);"
+
+                "background-color:transparent;"
+
+                                     "}";
     isTuneEnabled = tuneEnabled;  // Set the flag based on the argument
 
     // Enable or disable the US buttons based on the flag
     ui->ULTRASONICBUT1->setEnabled(isTuneEnabled);    // us1
+    ui->label_16->setStyleSheet(styleSheet4);
+    ui->label_17->setStyleSheet(styleSheet4);
+    ui->label_18->setStyleSheet(styleSheet4);
+    ui->label_27->setStyleSheet(styleSheet4);
     ui->ULTRASONICBUT2->setEnabled(isTuneEnabled);  // us2
     ui->ULTRASONICBUT3->setEnabled(isTuneEnabled);  // us3
     ui->ULTRASONICBUT4->setEnabled(isTuneEnabled);  // us4
@@ -2124,25 +2134,25 @@ if(!overallci){
                    power.powerOn= false;
                 }
                 flag1 = true; // Reset flag
-            } else if (range >= 100 & range < 1332) {
-                ui->pushButton_42->setText("1");
-   ui->dial_2->setValue(range);
+} else if (range >= 100 & range < 1332) {
+ui->pushButton_42->setText("1");
+ui->dial_2->setValue(range);
 
-                handler->pinchvalve_on();
-            handler->safetyvent_on();
-                  ui->CI5_5->setStyleSheet(styleSheet3);
+handler->pinchvalve_on();
+handler->safetyvent_on();
+ui->CI5_5->setStyleSheet(styleSheet3);
 
-                motoroff();
-                ui->label_7->setText("0");
-                ui->label_8->setText("0");
-                if (power.powerOn) {
-                    handler->freq_count(0);
-                    handler->phaco_off();
-                    handler->fs_count(0);
+motoroff();
+ui->label_7->setText("0");
+ui->label_8->setText("0");
+if (power.powerOn) {
+handler->freq_count(0);
+handler->phaco_off();
+handler->fs_count(0);
 
-                    power.powerOn = false;
-                }
-                flag1 = true; // Reset flag
+power.powerOn = false;
+}
+flag1 = true; // Reset flag
             } else if (range >= 1332 && range < 2664) {
                 ui->pushButton_42->setText("2");
                    ui->dial_2->setValue(range);
@@ -2150,13 +2160,15 @@ if(!overallci){
                 handler->pinchvalve_on();
                    handler->safetyvent_on();
 
-                sensor2();
+
                 if (text == "Peristatic") {
                                 motoron(ui->lineEdit_56);
+                                 sensor2();
                             } else {
                                 motoroff();
+                                 sensor2();
                             }
-                  motoron(ui->lineEdit_56);
+
                 ui->label_8->setText("0");
                 if (power.powerOn) {
                     handler->freq_count(0);
@@ -2269,7 +2281,7 @@ if(!overallci){
                   handler->pinchvalve_on();
                      handler->safetyvent_on();
                ui->CI5_5->setStyleSheet(styleSheet3);
-updateTabsBasedOnComboBox(powerdelivered);
+                updateTabsBasedOnComboBox(powerdelivered);
                 if (text == "Peristatic") {
                                 motoron(ui->lineEdit_56);
                                   updatesensor();
@@ -2356,8 +2368,14 @@ updateTabsBasedOnComboBox(powerdelivered);
                 handler->pinchvalve_on();
                 handler->safetyvent_on();
 
-                sensor2();
-                 motoron(ui->lineEdit_59);
+
+                if (text == "Peristatic") {
+                                motoron(ui->lineEdit_59);
+                                sensor2();
+                            } else {
+                                motoroff();
+                                 sensor2();
+                            }
                 ui->label_92->setText("0");
                 if (power.powerOn1) {
                     handler->freq_count(0);
@@ -2388,8 +2406,13 @@ updateTabsBasedOnComboBox(powerdelivered);
                 }
 
 
-                sensor2();
-                 motoron(ui->lineEdit_59);
+                if (text == "Peristatic") {
+                                motoron(ui->lineEdit_59);
+                                sensor2();
+                            } else {
+                                motoroff();
+                                 sensor2();
+                            }
             }
         } else if (us2 == "SURGEON" || vus2 == "SURGEON") {
             if (range >= 0 && range < 100) {
@@ -2439,8 +2462,13 @@ if(!overallci){
 
                 handler->pinchvalve_on();
                 handler->safetyvent_on();
-                motoron(ui->lineEdit_62);
-                updatesensor();
+                if (text == "Peristatic") {
+                                motoron(ui->lineEdit_59);
+                                updatesensor();
+                            } else {
+                                motoroff();
+                             updatesensor();
+                            }
                 ui->label_92->setText("0");
                 if (power.powerOn1) {
                     handler->freq_count(0);
@@ -2474,8 +2502,13 @@ if(!overallci){
                     ui->label_92->setText(QString::number(progress5));
                 }
 
-                motoron(ui->lineEdit_59);
-                updatesensor();
+                if (text == "Peristatic") {
+                                motoron(ui->lineEdit_59);
+                                updatesensor();
+                            } else {
+                                motoroff();
+                             updatesensor();
+                            }
             }
         }
 
@@ -2517,8 +2550,6 @@ if(!overallci){
                    ui->CI5_5->setStyleSheet(styleSheet3);
                    handler->safetyvent_on();
                    handler->pinchvalve_on();
- ui->CI5_5->setStyleSheet(styleSheet3);
-
                 motoroff();
                 handler->phaco_off();
                 ui->label_98->setText("0");
@@ -2539,8 +2570,14 @@ if(!overallci){
                 handler->safetyvent_on();
                 handler->pinchvalve_on();
 
-                motoron(ui->lineEdit_62);
-                sensor2();
+                if (text == "Peristatic") {
+                                motoron(ui->lineEdit_62);
+                              sensor2();
+                            } else {
+                                motoroff();
+                               sensor2();
+                            }
+
                 ui->label_98->setText("0");
                 if (power.powerOn2) {
                     handler->freq_count(0);
@@ -2562,6 +2599,7 @@ if(!overallci){
                     handler->phaco_on();
                     handler->fs_count(range);
                     handler->phaco_power(pow3);
+                    updateTabsBasedOnComboBox(powerdelivered_2);
                     power.powerOn2 = true;
                 }
                 if (power.powerOn2) {
@@ -2622,8 +2660,14 @@ if(!overallci){
         ui->CI5_5->setStyleSheet(styleSheet3);
                 handler->safetyvent_on();
                handler->pinchvalve_on();
-                motoron(ui->lineEdit_62);
-                updatesensor();
+               if (text == "Peristatic") {
+                               motoron(ui->lineEdit_62);
+                      updatesensor();
+                           } else {
+                               motoroff();
+                     updatesensor();
+                           }
+
                 ui->label_98->setText("0");
                 if (power.powerOn2) {
                     handler->freq_count(0);
@@ -2644,7 +2688,7 @@ if(!overallci){
                     handler->phaco_on();
                     handler->fs_count(range);
                     handler->phaco_power(pow3);
-                    handler->pdm_mode(1);
+                    updateTabsBasedOnComboBox(powerdelivered_2);
                     power.powerOn2 = true;
                     updateline();
                 }
@@ -2655,8 +2699,14 @@ if(!overallci){
                     ui->label_98->setText(QString::number(progress9));
                 }
 
-                motoron(ui->lineEdit_62);
-                updatesensor();
+                if (text == "Peristatic") {
+                                motoron(ui->lineEdit_62);
+                            updatesensor();
+                            } else {
+                                motoroff();
+                           updatesensor();
+                            }
+
 
             }
         }
@@ -2698,7 +2748,7 @@ if(!overallci){
                 ui->CI5_5->setStyleSheet(styleSheet3);
                 handler->safetyvent_on();
                 handler->pinchvalve_on();
- ui->CI5_5->setStyleSheet(styleSheet3);
+
 
                 motoroff();
                 handler->phaco_off();
@@ -2717,11 +2767,17 @@ if(!overallci){
              ui->CI5_5->setStyleSheet(styleSheet3);
                 handler->safetyvent_on();
                 handler->pinchvalve_on();
- ui->CI5_5->setStyleSheet(styleSheet3);
-                motoron(ui->lineEdit_65);
+
                 handler->phaco_off();
                 ui->label_105->setText("0");
-                sensor2();
+                if (text == "Peristatic") {
+                                motoron(ui->lineEdit_65);
+                              sensor2();
+                            } else {
+                                motoroff();
+                               sensor2();
+                            }
+
                 if (power.powerOn3) {
                     handler->freq_count(0);
                     handler->phaco_off();
@@ -2743,7 +2799,7 @@ if(!overallci){
                     handler->fs_count(range);
                     handler->phaco_power(pow4);
                     handler->pdm_mode(1);
-                    updateline();
+              updateTabsBasedOnComboBox(powerdeliverd_3);
                     power.powerOn3 = true;
                 }
                 if (power.powerOn3) {
@@ -2752,8 +2808,14 @@ if(!overallci){
                     ui->label_105->setText(QString::number(static_cast<int>(progress14)));
                 }
 
-                motoron(ui->lineEdit_65);
-                sensor2();
+                if (text == "Peristatic") {
+                                motoron(ui->lineEdit_65);
+                              sensor2();
+                            } else {
+                                motoroff();
+                               sensor2();
+                            }
+
 
             }
         } else if (us4 == "SURGEON" || vus4 == "SURGEON") {
@@ -2802,10 +2864,17 @@ if(!overallci){
                 handler->pinchvalve_on();
  ui->CI5_5->setStyleSheet(styleSheet3);
 
-                motoron(ui->lineEdit_65);
+
                 handler->phaco_off();
                 ui->label_105->setText("0");
-                sensor2();
+                if (text == "Peristatic") {
+                                motoron(ui->lineEdit_65);
+                        updatesensor();
+                            } else {
+                                motoroff();
+                   updatesensor();
+                            }
+
                 if (power.powerOn3) {
                     handler->freq_count(0);
                     handler->phaco_off();
@@ -2826,7 +2895,7 @@ if(!overallci){
                     handler->phaco_on();
                     handler->fs_count(range);
                     handler->phaco_power(pow4);
-                    handler->pdm_mode(1);
+                   updateTabsBasedOnComboBox(powerdeliverd_3);
                     updateline();
                     power.powerOn3 = true;
                 }
@@ -2836,9 +2905,14 @@ if(!overallci){
                     int progress12 = std::min(progress11, pow4);
                     ui->label_105->setText(QString::number(progress12));
                 }
+                if (text == "Peristatic") {
+                                motoron(ui->lineEdit_62);
+                              updatesensor();
+                            } else {
+                                motoroff();
+                        updatesensor();
+                            }
 
-                motoron(ui->lineEdit_65);
-                updatesensor();
 
             }
         }
@@ -2884,8 +2958,13 @@ if(!overallci){
       ui->CI5_5->setStyleSheet(styleSheet3);
                   handler->safetyvent_on();
                   handler->pinchvalve_on();
-                    motoron(ui->lineEdit_69);
-              sensor2();
+                 if(text == "Peristatic"){
+                     motoron(ui->lineEdit_69);
+                     sensor2();
+                 }else{
+                     motoroff();
+                     sensor2();
+                 }
 
         }
 
@@ -2917,8 +2996,13 @@ if(!overallci){
       ui->CI5_5->setStyleSheet(styleSheet3);
                        handler->safetyvent_on();
                        handler->pinchvalve_on();
-                        motoron(ui->lineEdit_69);
-                   updatesensor();
+                       if(text == "Peristatic"){
+                           motoron(ui->lineEdit_69);
+                           updatesensor();
+                       }else{
+                           motoroff();
+                          updatesensor();
+                       }
              }
                  }
 
@@ -2960,8 +3044,13 @@ if(!overallci){
        ui->CI5_5->setStyleSheet(styleSheet3);
                 handler->safetyvent_on();
                 handler->pinchvalve_on();
-                sensor2();
-               motoron(ui->lineEdit_67);
+                if(text == "Peristatic"){
+                    motoron(ui->lineEdit_67);
+                    sensor2();
+                }else{
+                    motoroff();
+                  sensor2();
+                }
             }
 
             }
@@ -2992,8 +3081,13 @@ if(!overallci){
                   ui->CI5_5->setStyleSheet(styleSheet3);
                     handler->safetyvent_on();
                     handler->pinchvalve_on();
-                       motoron(ui->lineEdit_68);
-                    updatesensor();      }
+                    if(text == "Peristatic"){
+                        motoron(ui->lineEdit_67);
+                        updatesensor();
+                    }else{
+                        motoroff();
+                       updatesensor();
+                    }   }
 
                 }
        }
@@ -3045,10 +3139,16 @@ handler->pinchvalve_on();
            ui->CI5_5->setStyleSheet(styleSheet3);
                     handler->safetyvent_on();
                     handler->pinchvalve_on();
-                    motoron(ui->lineEdit_72);
+
                     handler->vit_off();
                     ui->label_119->setText("0");
-                    sensor2();
+                    if(text == "Peristatic"){
+                        motoron(ui->lineEdit_72);
+                       sensor2();
+                    }else{
+                        motoroff();
+                       sensor2();
+                    }
                     if (power.powerOn4) {
                        handler->vit_off();
                         power.powerOn4 = false;
@@ -3062,7 +3162,7 @@ handler->pinchvalve_on();
                     if (power.buttonstate4 == "ON" && !power.powerOn4) {
                        handler->vit_on(pow7);
                        handler->vit_ontime(30);
-                        updateline();
+
                         power.powerOn4 = true;
                     }
                     if (power.powerOn4) {
@@ -3071,9 +3171,13 @@ handler->pinchvalve_on();
                     }
 
 
-                    motoron(ui->lineEdit_72);
-
-                    sensor2();
+                    if(text == "Peristatic"){
+                        motoron(ui->lineEdit_72);
+                       sensor2();
+                    }else{
+                        motoroff();
+                       sensor2();
+                    }
 
                 }
             } else if (vit == "SURGEON" || vvit == "SURGEON") {
@@ -3139,10 +3243,13 @@ handler->pinchvalve_on();
                         ui->label_119->setText(QString::number(progress25));
                     }
 
-
-                    motoron(ui->lineEdit_72);
-
+                    if(text == "Peristatic"){
+                        motoron(ui->lineEdit_72);
                     updatesensor();
+                    }else{
+                        motoroff();
+                      updatesensor();
+                    }
                   }
 
             }
@@ -3710,32 +3817,11 @@ void MainWindow::updatehandpieceStatus()
                                      "}";
    if(status==0)
    {
-     //  ui->label_2->setStyleSheet(styleSheet4);
-    //   ui->label_7->setStyleSheet(styleSheet2);
-    //   qDebug()<<"handpiece on"<<status;
-//       ui->ULTRASONICBUT1->setEnabled(true);
-//       ui->ULTRASONICBUT2->setEnabled(true);
-//       ui->ULTRASONICBUT3->setEnabled(true);
-//       ui->ULTRASONICBUT4->setEnabled(true);
-       ui->label_16->setStyleSheet(styleSheet7);
-       ui->label_17->setStyleSheet(styleSheet7);
-       ui->label_18->setStyleSheet(styleSheet7);
-       ui->label_27->setStyleSheet(styleSheet7);
-
+   ui->label_28->setStyleSheet(styleSheet4);
    }
    else
    {
-       //ui->label_2->setStyleSheet(styleSheet5);
-     //   ui->label_7->setStyleSheet("");
-       // qDebug()<<"handpiece off"<<status;
-//        ui->ULTRASONICBUT1->setEnabled(false);
-//        ui->ULTRASONICBUT2->setEnabled(false);
-//        ui->ULTRASONICBUT3->setEnabled(false);
-//        ui->ULTRASONICBUT4->setEnabled(false);
-        ui->label_16->setStyleSheet(styleSheet6);
-        ui->label_17->setStyleSheet(styleSheet6);
-        ui->label_18->setStyleSheet(styleSheet6);
-        ui->label_27->setStyleSheet(styleSheet6);
+      ui->label_28->setStyleSheet(styleSheet5);
      //flag1=false;
    }
 }
@@ -4235,36 +4321,36 @@ void MainWindow::settings_action(int index)
 }
 void MainWindow::updateButtonSelection(int index)
 {
-    currentButtonIndex = index;
+//    currentButtonIndex = index;
 
-    // Deselect all buttons
-    ui->DIABUT->setChecked(false);
-    ui->ULTRASONICBUT1->setChecked(false);
-    ui->ULTRASONICBUT2->setChecked(false);
-    ui->ULTRASONICBUT3->setChecked(false);
-    ui->ULTRASONICBUT4->setChecked(false);
-    ui->IA1BUT->setChecked(false);
-    ui->IA2BUT->setChecked(false);
-    ui->VITRECTOMYBUT->setChecked(false);
+//    // Deselect all buttons
+//    ui->DIABUT->setChecked(false);
+//    ui->ULTRASONICBUT1->setChecked(false);
+//    ui->ULTRASONICBUT2->setChecked(false);
+//    ui->ULTRASONICBUT3->setChecked(false);
+//    ui->ULTRASONICBUT4->setChecked(false);
+//    ui->IA1BUT->setChecked(false);
+//    ui->IA2BUT->setChecked(false);
+//    ui->VITRECTOMYBUT->setChecked(false);
 
-    // Select the current button
-    switch (index)
-    {
-        case 0: ui->DIABUT->setChecked(true); break;
-        case 1: ui->ULTRASONICBUT1->setChecked(true); break;
-        case 2: ui->ULTRASONICBUT2->setChecked(true); break;
-        case 3: ui->ULTRASONICBUT3->setChecked(true); break;
-        case 4: ui->ULTRASONICBUT4->setChecked(true); break;
-          case 5: ui->IA1BUT->setChecked(true); break;
-          case 6: ui->IA2BUT->setChecked(true); break;
-          case 7: ui->VITRECTOMYBUT->setChecked(true); break;
-        default: return; // Guard against invalid indices
-    }
+//    // Select the current button
+//    switch (index)
+//    {
+//        case 0: ui->DIABUT->setChecked(true); break;
+//        case 1: ui->ULTRASONICBUT1->setChecked(true); break;
+//        case 2: ui->ULTRASONICBUT2->setChecked(true); break;
+//        case 3: ui->ULTRASONICBUT3->setChecked(true); break;
+//        case 4: ui->ULTRASONICBUT4->setChecked(true); break;
+//          case 5: ui->IA1BUT->setChecked(true); break;
+//          case 6: ui->IA2BUT->setChecked(true); break;
+//          case 7: ui->VITRECTOMYBUT->setChecked(true); break;
+//        default: return; // Guard against invalid indices
+//    }
 
-    // Change the tab in the tab widget
-    ui->tabWidget->setCurrentIndex(index);
+//    // Change the tab in the tab widget
+//    ui->tabWidget->setCurrentIndex(index);
 }
-int MainWindow::readGPIO() {
+int MainWindow::readGPIO(int gpio,int gpio1,int gpio2,int gpio3) {
     // Define file paths for GPIO 961 and 962
     QString gpio961Path = "/sys/class/gpio/gpio961/value";
     QString gpio962Path = "/sys/class/gpio/gpio962/value";
@@ -4332,7 +4418,7 @@ void MainWindow::movePushButtonTopToBottom()
 
     // If the index reaches 7 (last button), check the GPIO pin
     if (buttonforgpio == 7) {
-        int gpioValue = readGPIO(); // Replace with your GPIO reading function
+        int gpioValue = readGPIO(961,962,963,964); // Replace with your GPIO reading function
 
         if (gpioValue == 0) {
             // If GPIO pin is 0, reset to the 0th index
@@ -4356,51 +4442,13 @@ void MainWindow::movePushButtonTopToBottom()
 
 void MainWindow::movePushButtonBottomToTop()
 {
-    qDebug() << "Initial Button Index:" << buttonforgpio;
-
-    // Check if the current button index is valid
-    if (buttonforgpio < 0 || buttonforgpio >= 8) {
-        qDebug() << "Error: Invalid button index" << buttonforgpio;
-        return; // Return early if the index is invalid
-    }
-
-    // Deselect the current button
-    if (buttons[buttonforgpio] != nullptr) {
-        buttons[buttonforgpio]->setChecked(false);
-    } else {
-        qDebug() << "Error: Null pointer for button at index" << buttonforgpio;
-        return; // Return early if the button is null
-    }
-
-    // Check the GPIO value
-    int gpioValue = readGPIO(); // Replace with your GPIO reading function
-    qDebug() << "GPIO value at index" << buttonforgpio << ":" << gpioValue;
-
-    // Move to the previous button if GPIO value is 0
-    if (gpioValue == 0) {
-        // Move to the previous button in sequence
-        if (buttonforgpio == 0) {
-            buttonforgpio = 7;
+    if (currentButtonIndex > 0) {
+            --currentButtonIndex;
         } else {
-            buttonforgpio = (buttonforgpio - 1 + 8) % 8; // Ensure button index wraps around correctly
+            currentButtonIndex = 6;
         }
-    } else {
-        // If GPIO is not 0, do not change the button
-        qDebug() << "GPIO value is not 0, stopping the movement.";
-    }
-
-    // Select the new button
-    if (buttons[buttonforgpio] != nullptr) {
-        buttons[buttonforgpio]->setChecked(true);
-    } else {
-        qDebug() << "Error: Null pointer for button at index" << buttonforgpio;
-        return; // Return early if the button is null
-    }
-
-    // Optionally switch the tab if buttons are linked to tabs
-    ui->tabWidget->setCurrentIndex(buttonforgpio);
-
-    qDebug() << "Moved to button:" << buttonforgpio + 1;
+        buttons[currentButtonIndex]->setFocus();
+        ui->tabWidget->setCurrentIndex(currentButtonIndex);
 }
 
 
@@ -4635,10 +4683,10 @@ void MainWindow::poweronoff(int gpio)
 
     if (gpio == 0) {
            // Toggle the power state
-           powerOn = !powerOn;
+           powerOn1 = !powerOn1;
 
            // Enable or disable the buttons based on the power state
-           enableButtons(powerOn);
+           enableButtons(powerOn1);
        }
 
 }
