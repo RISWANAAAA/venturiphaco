@@ -60,7 +60,7 @@ MainWindow::MainWindow(QWidget *parent)
      // Set the initial button as selected
      buttons[buttonforgpio]->setChecked(true);
      QTimer *readgpio=new QTimer;
-     connect(readgpio,&QTimer::timeout,this,&MainWindow::readGPIO);
+     //connect(readgpio,&QTimer::timeout,this,&MainWindow::readGPIO);
      readgpio->start(100);
     updateTimer = new QTimer(this);
     connect(updateTimer, &QTimer::timeout, this, &MainWindow::updateTimers);
