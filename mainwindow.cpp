@@ -42,19 +42,23 @@ MainWindow::MainWindow(QWidget *parent)
    ui->dial_2->setStyleSheet("background-color: rgb(26, 95, 180);");
    ui->dial_2->setRange(0, 4096);
    // Initialize the buttons array
-     buttons[0] = ui->ULTRASONICBUT1;
-     buttons[1] = ui->ULTRASONICBUT2;
-     buttons[2] = ui->ULTRASONICBUT3;
-     buttons[3] = ui->ULTRASONICBUT4;
-     buttons[4] = ui->IA1BUT;
-     buttons[5] = ui->IA2BUT;
-     buttons[6] = ui->VITRECTOMYBUT;
+     buttons[1] = ui->ULTRASONICBUT1;
+     buttons[2] = ui->ULTRASONICBUT2;
+     buttons[3] = ui->ULTRASONICBUT3;
+     buttons[4] = ui->ULTRASONICBUT4;
+     buttons[5] = ui->IA1BUT;
+     buttons[6] = ui->IA2BUT;
+     buttons[7] = ui->VITRECTOMYBUT;
+     buttons[0] = ui->DIABUT;
 
      // Initialize buttonforgpio to start from the first button
      buttonforgpio = 0;
 
      // Set the initial button as selected
      buttons[buttonforgpio]->setChecked(true);
+     QTimer *readgpio=new QTimer;
+     connect(readgpio,&QTimer::timeout,this,&MainWindow::readGPIO);
+     readgpio->start(100);
     updateTimer = new QTimer(this);
     connect(updateTimer, &QTimer::timeout, this, &MainWindow::updateTimers);
     // Populate the combobox with surgeon names and IDs
@@ -195,11 +199,13 @@ ui->vitpowdown_but->setEnabled(false);
     connect(foot, &footpedal::moveTopToBottom, this, &MainWindow::movePushButtonTopToBottom);
     connect(foot, &footpedal::moveBottomToTop, this, &MainWindow::movePushButtonBottomToTop);
    connect(foot,&footpedal::performReflux,this,&MainWindow::footreflux);
-   connect(foot,&footpedal::togglePower,this,&MainWindow::poweron);
+   connect(foot,&footpedal::togglePower,this,&MainWindow::poweronoff);
    connect(foot,&footpedal::continous_irrigation,this,&MainWindow::continousirrigation);
-   connect(foot,&footpedal::powerdm,this,&MainWindow::powerdeliverymethod);
-
-
+   connect(foot,&footpedal::powerdm,this,&MainWindow::onPdmModeSelected);
+connect(foot,&footpedal::powerdm,this,&MainWindow::onPdmModeSelected1);
+connect(foot,&footpedal::powerdm,this,&MainWindow::onPdmModeSelected2);
+connect(foot,&footpedal::powerdm,this,&MainWindow::onPdmModeSelected3);
+connect(this,&MainWindow::surgeonSelected,foot,&footpedal::updateFootpedalComboBoxes);
 //tabwidget current index selected
     ui->tabWidget->setTabText(6, "VITRECTOMY");
     QString tabStyle = "QTabBar::tab:selected { background-color: black; color: #ffffff; }";
@@ -259,11 +265,20 @@ ui->vitpowdown_but->setEnabled(false);
 
      connect(ui->comboBox_4, &QComboBox::currentTextChanged, this, &MainWindow::onSurgeonSelectionChanged);
      connect(ui->comboBox,&QComboBox::currentTextChanged,this,&MainWindow::performpump);
+     // Connect QComboBox signals to the slot
+//     connect(ui->CutMode_vitCom, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &MainWindow::onComboBoxChanged);
+//     connect(ui->CutMode_vitCom_2, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &MainWindow::onComboBoxChanged);
+//     connect(ui->CutMode_vitCom_3, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &MainWindow::onComboBoxChanged);
+//     connect(ui->CutMode_vitCom_4, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &MainWindow::onComboBoxChanged);
 
      connect(ui->CutMode_vitCom, QOverload<const QString &>::of(&QComboBox::currentIndexChanged), this, &MainWindow::updateTabsBasedOnComboBox);
       connect(ui->CutMode_vitCom_2, QOverload<const QString &>::of(&QComboBox::currentIndexChanged), this, &MainWindow::updateTabsBasedOnComboBox);
       connect(ui->CutMode_vitCom_3, QOverload<const QString &>::of(&QComboBox::currentIndexChanged), this, &MainWindow::updateTabsBasedOnComboBox);
     connect(ui->CutMode_vitCom_4, QOverload<const QString &>::of(&QComboBox::currentIndexChanged), this, &MainWindow::updateTabsBasedOnComboBox);
+//   // connect(ui->CutMode_vitCom, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &MainWindow::onComboBoxChanged);
+//     //  connect(ui->CutMode_vitCom_2, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &MainWindow::onCutMode_vitComChanged1);
+//    //   connect(ui->CutMode_vitCom_3, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &MainWindow::onCutMode_vitComChanged2);
+//    //   connect(ui->CutMode_vitCom_4, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &MainWindow::onCutMode_vitComChanged3);
    int currenttab=7;
 
      connect(ui->tabWidget, &QTabWidget::currentChanged, this, &MainWindow::current);
@@ -455,7 +470,8 @@ ui->vitpowdown_but->setEnabled(false);
       vit_linear_nonlinear();
 
 
-  push("Surgeon 1");
+//  push("Surgeon 1");
+      onSurgeonSelectionChanged("Surgeon 1");
 }
 //pushbutton pushbutton
 void MainWindow::click()
@@ -1908,6 +1924,93 @@ void MainWindow::setTuneMode(bool tuneEnabled) {
     ui->IA1BUT->setEnabled(true);  // ia1
     ui->IA2BUT->setEnabled(true);  // ia2
     ui->VITRECTOMYBUT->setEnabled(true);  // vit
+}
+
+void MainWindow::enableButtons(bool powerOn)
+{
+    // Style sheets for ON and OFF states
+    QString styleSheetOn = "QPushButton {"
+                           " font:20pt Ubuntu;"
+                           " background-color: green;"
+                           " color: black;"
+                           " border:5px solid black;"
+                           " border-radius:30px; font-weight: bold;"
+                           "}";
+    QString styleSheetOff = "QPushButton {"
+                            " font:20pt Ubuntu;"
+                            " background-color: red;"
+                            " color: black;"
+                            " border:5px solid black;"
+                            " border-radius:30px; font-weight: bold;"
+                            "}";
+
+    // Enable or disable buttons and update their styles
+    if (powerOn) {
+        ui->us1onoff->setStyleSheet(styleSheetOn);
+        ui->us1onoff->setText("ON");
+        ui->us1powup_but->setEnabled(true);
+        ui->us1powdown_but->setEnabled(true);
+
+        ui->us2onoff->setStyleSheet(styleSheetOn);
+        ui->us2onoff->setText("ON");
+        ui->us2powup_but->setEnabled(true);
+        ui->us2powdown_but->setEnabled(true);
+
+        ui->us3onoff->setStyleSheet(styleSheetOn);
+        ui->us3onoff->setText("ON");
+        ui->us3powup_but->setEnabled(true);
+        ui->us3powdown_but->setEnabled(true);
+
+        ui->us4onoff->setStyleSheet(styleSheetOn);
+        ui->us4onoff->setText("ON");
+        ui->us4powup_but->setEnabled(true);
+        ui->us4powdown_but->setEnabled(true);
+
+        ui->vitonoff->setStyleSheet(styleSheetOn);
+        ui->vitonoff->setText("ON");
+        ui->vitpowup_but->setEnabled(true);
+        ui->vitpowdown_but->setEnabled(true);
+
+        // Turn on the hardware features for all buttons
+        int range = lfoot->convert(0x97);
+        int pow1 = ui->lineEdit_57->text().toInt();
+        handler->fs_count(range);
+        handler->freq_count(2500);
+        handler->phaco_on();
+        handler->phaco_power(pow1);
+        handler->pdm_mode(0);
+
+    } else {
+        ui->us1onoff->setStyleSheet(styleSheetOff);
+        ui->us1onoff->setText("OFF");
+        ui->us1powup_but->setEnabled(false);
+        ui->us1powdown_but->setEnabled(false);
+
+        ui->us2onoff->setStyleSheet(styleSheetOff);
+        ui->us2onoff->setText("OFF");
+        ui->us2powup_but->setEnabled(false);
+        ui->us2powdown_but->setEnabled(false);
+
+        ui->us3onoff->setStyleSheet(styleSheetOff);
+        ui->us3onoff->setText("OFF");
+        ui->us3powup_but->setEnabled(false);
+        ui->us3powdown_but->setEnabled(false);
+
+        ui->us4onoff->setStyleSheet(styleSheetOff);
+        ui->us4onoff->setText("OFF");
+        ui->us4powup_but->setEnabled(false);
+        ui->us4powdown_but->setEnabled(false);
+
+        ui->vitonoff->setStyleSheet(styleSheetOff);
+        ui->vitonoff->setText("OFF");
+        ui->vitpowup_but->setEnabled(false);
+        ui->vitpowdown_but->setEnabled(false);
+
+        // Turn off the hardware features
+        handler->fs_count(0);
+        handler->freq_count(0);
+        handler->phaco_off();
+    }
 }
 void MainWindow::tabupdate(int index)
 {
@@ -4161,6 +4264,52 @@ void MainWindow::updateButtonSelection(int index)
     // Change the tab in the tab widget
     ui->tabWidget->setCurrentIndex(index);
 }
+int MainWindow::readGPIO() {
+    // Define file paths for GPIO 961 and 962
+    QString gpio961Path = "/sys/class/gpio/gpio961/value";
+    QString gpio962Path = "/sys/class/gpio/gpio962/value";
+
+    // Read GPIO 961
+    QFile gpioFile961(gpio961Path);
+    if (!gpioFile961.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        qDebug() << "Error: Unable to read GPIO 961 value";
+        return -1; // Return an error value
+    }
+
+    QTextStream in961(&gpioFile961);
+    QString gpioValueStr961 = in961.readLine().trimmed();
+    gpioFile961.close();
+
+    bool ok961;
+    int gpioValue961 = gpioValueStr961.toInt(&ok961);
+    if (!ok961) {
+        qDebug() << "Error: Invalid GPIO 961 value" << gpioValueStr961;
+        return -1; // Return an error value
+    }
+
+    // Read GPIO 962
+    QFile gpioFile962(gpio962Path);
+    if (!gpioFile962.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        qDebug() << "Error: Unable to read GPIO 962 value";
+        return -1; // Return an error value
+    }
+
+    QTextStream in962(&gpioFile962);
+    QString gpioValueStr962 = in962.readLine().trimmed();
+    gpioFile962.close();
+
+    bool ok962;
+    int gpioValue962 = gpioValueStr962.toInt(&ok962);
+    if (!ok962) {
+        qDebug() << "Error: Invalid GPIO 962 value" << gpioValueStr962;
+        return -1; // Return an error value
+    }
+
+    // Combine or return the GPIO values as needed
+    // Example: Return combined value (bitwise OR), or handle each separately.
+    return (gpioValue961 << 1) | gpioValue962;
+}
+
 
 void MainWindow::movePushButtonTopToBottom()
 {
@@ -4181,6 +4330,16 @@ void MainWindow::movePushButtonTopToBottom()
     // Move to the next button in sequence
     buttonforgpio = (buttonforgpio + 1) % 8;
 
+    // If the index reaches 7 (last button), check the GPIO pin
+    if (buttonforgpio == 7) {
+        int gpioValue = readGPIO(); // Replace with your GPIO reading function
+
+        if (gpioValue == 0) {
+            // If GPIO pin is 0, reset to the 0th index
+            buttonforgpio = 0;
+        }
+    }
+
     // Select the next button
     if (buttons[buttonforgpio] != nullptr) {
         buttons[buttonforgpio]->setChecked(true);
@@ -4197,13 +4356,216 @@ void MainWindow::movePushButtonTopToBottom()
 
 void MainWindow::movePushButtonBottomToTop()
 {
+    qDebug() << "Initial Button Index:" << buttonforgpio;
 
-    if (currentButtonIndex > 0)
-    {
-        updateButtonSelection(--currentButtonIndex);
+    // Check if the current button index is valid
+    if (buttonforgpio < 0 || buttonforgpio >= 8) {
+        qDebug() << "Error: Invalid button index" << buttonforgpio;
+        return; // Return early if the index is invalid
     }
-    qDebug()<<"decrement operation is working";
+
+    // Deselect the current button
+    if (buttons[buttonforgpio] != nullptr) {
+        buttons[buttonforgpio]->setChecked(false);
+    } else {
+        qDebug() << "Error: Null pointer for button at index" << buttonforgpio;
+        return; // Return early if the button is null
+    }
+
+    // Check the GPIO value
+    int gpioValue = readGPIO(); // Replace with your GPIO reading function
+    qDebug() << "GPIO value at index" << buttonforgpio << ":" << gpioValue;
+
+    // Move to the previous button if GPIO value is 0
+    if (gpioValue == 0) {
+        // Move to the previous button in sequence
+        if (buttonforgpio == 0) {
+            buttonforgpio = 7;
+        } else {
+            buttonforgpio = (buttonforgpio - 1 + 8) % 8; // Ensure button index wraps around correctly
+        }
+    } else {
+        // If GPIO is not 0, do not change the button
+        qDebug() << "GPIO value is not 0, stopping the movement.";
+    }
+
+    // Select the new button
+    if (buttons[buttonforgpio] != nullptr) {
+        buttons[buttonforgpio]->setChecked(true);
+    } else {
+        qDebug() << "Error: Null pointer for button at index" << buttonforgpio;
+        return; // Return early if the button is null
+    }
+
+    // Optionally switch the tab if buttons are linked to tabs
+    ui->tabWidget->setCurrentIndex(buttonforgpio);
+
+    qDebug() << "Moved to button:" << buttonforgpio + 1;
 }
+
+
+void MainWindow::onPdmModeSelected() {
+    // Example logic for handling mode selection
+    int usIndex = 1; // Default index for Continuous
+    moveTab(usIndex);
+}
+void MainWindow::onPdmModeSelected1(){
+    int index=2;
+    moveTab1(index);
+}
+void MainWindow::onPdmModeSelected2(){
+    int indec=3;
+    moveTab2(indec);
+}
+void MainWindow::onPdmModeSelected3(){
+        int index=4;
+        moveTab3(index);
+}
+
+
+void MainWindow::moveTab(int usIndex) {
+    if (!ui->tabWidget_2) {
+        qDebug() << "tabWidget_2 is null!";
+        return;
+    }
+
+    int currentIndex = ui->tabWidget_2->currentIndex();
+    int tabCount = ui->tabWidget_2->count();
+
+    if (tabCount == 0) {
+        qDebug() << "No tabs available!";
+        return;
+    }
+
+    // Update tab index based on usIndex
+    if (usIndex == 1 || usIndex == 2) {
+        currentIndex = (currentIndex + 1) % tabCount;
+    } else if (usIndex == 3 || usIndex == 4) {
+        currentIndex = (currentIndex - 1 + tabCount) % tabCount;
+    } else {
+        qDebug() << "Invalid usIndex value:" << usIndex;
+        return;
+    }
+
+    ui->tabWidget_2->setCurrentIndex(currentIndex);
+
+    // Update combo boxes based on usIndex
+    if (usIndex == 1) {
+        if (ui->CutMode_vitCom) {
+            ui->CutMode_vitCom->setCurrentIndex(currentIndex);
+        }
+
+    }
+
+    qDebug() << "Moved to tab index:" << currentIndex << " and updated combo box for usIndex:" << usIndex;
+}
+void MainWindow::moveTab1(int usIndex) {
+    if (!ui->tabWidget_2) {
+        qDebug() << "tabWidget_2 is null!";
+        return;
+    }
+
+    int currentIndex = ui->tabWidget_2->currentIndex();
+    int tabCount = ui->tabWidget_2->count();
+
+    if (tabCount == 0) {
+        qDebug() << "No tabs available!";
+        return;
+    }
+
+    // Update tab index based on usIndex
+    if (usIndex == 1 || usIndex == 2) {
+        currentIndex = (currentIndex + 1) % tabCount;
+    } else if (usIndex == 3 || usIndex == 4) {
+        currentIndex = (currentIndex - 1 + tabCount) % tabCount;
+    } else {
+        qDebug() << "Invalid usIndex value:" << usIndex;
+        return;
+    }
+
+    ui->tabWidget_2->setCurrentIndex(currentIndex);
+
+    // Update combo boxes based on usIndex
+   if (usIndex == 2) {
+        if (ui->CutMode_vitCom_2) {
+            ui->CutMode_vitCom_2->setCurrentIndex(currentIndex);
+        }
+    }
+
+    qDebug() << "Moved to tab index:" << currentIndex << " and updated combo box for usIndex:" << usIndex;
+}
+void MainWindow::moveTab2(int usIndex) {
+    if (!ui->tabWidget_2) {
+        qDebug() << "tabWidget_2 is null!";
+        return;
+    }
+
+    int currentIndex = ui->tabWidget_2->currentIndex();
+    int tabCount = ui->tabWidget_2->count();
+
+    if (tabCount == 0) {
+        qDebug() << "No tabs available!";
+        return;
+    }
+
+    // Update tab index based on usIndex
+    if (usIndex == 1 || usIndex == 2) {
+        currentIndex = (currentIndex + 1) % tabCount;
+    } else if (usIndex == 3 || usIndex == 4) {
+        currentIndex = (currentIndex - 1 + tabCount) % tabCount;
+    } else {
+        qDebug() << "Invalid usIndex value:" << usIndex;
+        return;
+    }
+
+    ui->tabWidget_2->setCurrentIndex(currentIndex);
+
+    // Update combo boxes based on usIndex
+   if (usIndex == 3) {
+        if (ui->CutMode_vitCom_3) {
+            ui->CutMode_vitCom_3->setCurrentIndex(currentIndex);
+        }
+    }
+
+    qDebug() << "Moved to tab index:" << currentIndex << " and updated combo box for usIndex:" << usIndex;
+}
+void MainWindow::moveTab3(int usIndex) {
+    if (!ui->tabWidget_2) {
+        qDebug() << "tabWidget_2 is null!";
+        return;
+    }
+
+    int currentIndex = ui->tabWidget_2->currentIndex();
+    int tabCount = ui->tabWidget_2->count();
+
+    if (tabCount == 0) {
+        qDebug() << "No tabs available!";
+        return;
+    }
+
+    // Update tab index based on usIndex
+    if (usIndex == 1 || usIndex == 2) {
+        currentIndex = (currentIndex + 1) % tabCount;
+    } else if (usIndex == 3 || usIndex == 4) {
+        currentIndex = (currentIndex - 1 + tabCount) % tabCount;
+    } else {
+        qDebug() << "Invalid usIndex value:" << usIndex;
+        return;
+    }
+
+    ui->tabWidget_2->setCurrentIndex(currentIndex);
+
+    // Update combo boxes based on usIndex
+   if (usIndex == 4) {
+        if (ui->CutMode_vitCom_4) {
+            ui->CutMode_vitCom_4->setCurrentIndex(currentIndex);
+        }
+    }
+
+    qDebug() << "Moved to tab index:" << currentIndex << " and updated combo box for usIndex:" << usIndex;
+}
+
+
 
 void MainWindow::footreflux()
 {
@@ -4268,12 +4630,17 @@ void MainWindow::continousirrigation(int gpioValue)
     }
 }
 
-void MainWindow::poweronoff()
+void MainWindow::poweronoff(int gpio)
 {
-    on_us1onoff_clicked();
-    on_us2onoff_clicked();
-    on_us3onoff_clicked();
-    on_us4onoff_clicked();
+
+    if (gpio == 0) {
+           // Toggle the power state
+           powerOn = !powerOn;
+
+           // Enable or disable the buttons based on the power state
+           enableButtons(powerOn);
+       }
+
 }
 
 void MainWindow::poweron()
@@ -4583,23 +4950,28 @@ void MainWindow::onCutMode_vitComChanged(int index) {
         allItems << ui->CutMode_vitCom->itemText(i);
     }
     qDebug() << "All ComboBox Items:" << allItems;
+int us1mode=1;
 
-   // updateTabsBasedOnComboBox(modeText);
+    updateTabsBasedOnComboBox(modeText);
 }
 
 void MainWindow::onCutMode_vitComChanged1(int index) {
     QString currentText = ui->CutMode_vitCom_2->currentText();
-    //updateTabsBasedOnComboBox(currentText);
+
+    updateTabsBasedOnComboBox(currentText);
 }
 
 void MainWindow::onCutMode_vitComChanged2(int index) {
     QString currentText = ui->CutMode_vitCom_3->currentText();
-    //updateTabsBasedOnComboBox(currentText);
+
+
+    updateTabsBasedOnComboBox(currentText);
 }
 
 void MainWindow::onCutMode_vitComChanged3(int index) {
     QString currentText = ui->CutMode_vitCom_4->currentText();
-  //  updateTabsBasedOnComboBox(currentText);
+
+  updateTabsBasedOnComboBox(currentText);
 }
 
 
@@ -5233,7 +5605,12 @@ void MainWindow::push(const QString &surgeonName) {
         qDebug() << "Failed to fetch data for surgeon:" << query.lastError().text();
         return;
     }
-
+    if (query.next()) {
+            // Process the data as needed...
+            // Emit the signal to update the footpedal class
+            emit surgeonSelected(surgeonName);
+          foot->setSurgeonName(surgeonName);
+        }
     // Check if data is available and update the UI
     if (query.next()) {
         // Retrieve the values from the query result

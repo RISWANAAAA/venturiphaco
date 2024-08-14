@@ -2,6 +2,7 @@
 #include "ui_footpedal.h"
 #include <QMessageBox>
 #include <QDebug>
+#include<QSqlError>
 
 footpedal::footpedal(QWidget *parent) :
     QDialog(parent),
@@ -28,7 +29,7 @@ footpedal::footpedal(QWidget *parent) :
         qDebug() << "GPIO 964 direction set to in";
 
         readInitialGPIOValues(); // Read initial values
-
+updateFootpedalComboBoxes("Surgeon 1");
     // Read GPIO values
 
 
@@ -39,7 +40,7 @@ footpedal::footpedal(QWidget *parent) :
     connect(ui->savebut, &QPushButton::clicked, this, &footpedal::on_pushButton_clicked);
     QTimer *timer=new QTimer;
     connect(timer,&QTimer::timeout,this,&footpedal::readInitialGPIOValues);
-    timer->start(1000);
+    timer->start(300);
 }
 
 footpedal::~footpedal()
@@ -83,7 +84,10 @@ void footpedal::readInitialGPIOValues()
     qDebug() << "readInitialGPIOValues function entered.";
 
     int value1 = readGPIOValue(961);
+    qDebug() << "Initial GPIO 961 Value:" << value1;
+
     int value2 = readGPIOValue(962);
+    qDebug() << "Initial GPIO 962 Value:" << value2;
     int value3 = readGPIOValue(963);
     int value4 = readGPIOValue(964);
 
@@ -104,7 +108,7 @@ void footpedal::readInitialGPIOValues()
         qDebug() << "Power ON/OFF action detected.";
         if (value1 == 0) {
             emit togglePower(value1);
-            qDebug() << "Power toggled.";
+            qDebug() << "Power toggled."<<value1;
         }
     } else if (leftFootcomAction == "Increment") {
         qDebug() << "Increment action detected.";
@@ -115,7 +119,7 @@ void footpedal::readInitialGPIOValues()
         }
     } else if (leftFootcomAction == "Decrement") {
         qDebug() << "Decrement action detected.";
-
+     qDebug() << "leftFootcomAction value:" << leftFootcomAction;
         if (value1 == 0) {
             emit moveBottomToTop(value1);
             qDebug() << "Button moved from bottom to top.";
@@ -127,6 +131,39 @@ void footpedal::readInitialGPIOValues()
             qDebug() << "PDM activated.";
         }
     }
+    //bottom right
+    if (brightFootcomAction == "Continuous Irrigation") {
+        qDebug() << "GPIO 962 - Continuous Irrigation action detected.";
+        if (value2 == 0) {
+            emit continous_irrigation(value2);
+            qDebug() << "GPIO 962 - Continuous Irrigation performed.";
+        }
+    } else if (brightFootcomAction == "Power ON/OFF") {
+        qDebug() << "GPIO 962 - Power ON/OFF action detected.";
+        if (value2 == 0) {
+            emit togglePower(value2);
+            qDebug() << "GPIO 962 - Power toggled." << value2;
+        }
+    } else if (brightFootcomAction == "Increment") {
+        qDebug() << "GPIO 962 - Increment action detected.";
+        if (value2 == 0) {
+            emit moveTopToBottom(0);
+            qDebug() << "GPIO 962 - Button moved from top to bottom.";
+        }
+    } else if (brightFootcomAction == "Decrement") {
+        qDebug() << "GPIO 962 - Decrement action detected.";
+        if (value2 == 0) {
+            emit moveBottomToTop(value2);
+            qDebug() << "GPIO 962 - Button moved from bottom to top.";
+        }
+    } else if (brightFootcomAction == "PDM") {
+        qDebug() << "GPIO 962 - PDM action detected.";
+        if (value2 == 0) {
+            emit powerdm(value2);
+            qDebug() << "GPIO 962 - PDM activated.";
+        }
+    }
+
 
     // Add similar conditions for other GPIO pins as needed
 }
@@ -215,15 +252,58 @@ void footpedal::change_settings()
 
     //emit cs(index);
 }
+void footpedal::updateFootpedalComboBoxes(const QString &surgeonName) {
+    QSqlQuery query(db);
+    query.prepare(
+        "SELECT footleft, footright, footbottomleft, footbottomright "
+        "FROM phacohigh "
+        "WHERE surgeon = :surgeon"
+    );
+    query.bindValue(":surgeon", surgeonName);
 
+    qDebug() << "Selected surgeon in footpedal and fetching data for surgeon:" << surgeonName;
+
+    if (!query.exec()) {
+        qDebug() << "Failed to fetch footpedal data for surgeon:" << query.lastError().text();
+        return;
+    }
+
+    if (query.next()) {
+        // Retrieve values from the query result
+        QString footLeftValue = query.value("footleft").toString();
+        QString footRightValue = query.value("footright").toString();
+        QString footBLeftValue = query.value("footbottomleft").toString();
+        QString footNRightValue = query.value("footbottomright").toString();
+
+        // Debug output to check retrieved values
+        qDebug() << "Foot pedal values retrieved:"
+                 << "footleft:" << footLeftValue
+                 << "footright:" << footRightValue
+                 << "footbleft:" << footBLeftValue
+                 << "footnright:" << footNRightValue;
+
+        // Set the retrieved values to the combo boxes
+        ui->left_footcom->setCurrentText(footLeftValue);
+        ui->right_footcom->setCurrentText(footRightValue);
+        ui->bleft_footcom->setCurrentText(footBLeftValue);
+        ui->bright_footcom->setCurrentText(footNRightValue);
+
+        // Debug output to confirm the values were set correctly
+        qDebug() << "ComboBox values set:"
+                 << "left_footcom:" << ui->left_footcom->currentText()
+                 << "right_footcom:" << ui->right_footcom->currentText()
+                 << "bleft_footcom:" << ui->bleft_footcom->currentText()
+                 << "bright_footcom:" << ui->bright_footcom->currentText();
+}
+}
 void footpedal::combobox1(const QString &text)
 {
-    ui->left_footcom->setCurrentText(text);
+  ui->left_footcom->setCurrentText(text);
 }
 
 void footpedal::combobox2(const QString &text)
 {
-    ui->right_footcom->setCurrentText(text);
+   ui->right_footcom->setCurrentText(text);
 }
 
 void footpedal::combobox3(const QString &text)
@@ -235,9 +315,47 @@ void footpedal::combobox4(const QString &text)
 {
     ui->bright_footcom->setCurrentText(text);
 }
+void footpedal::setSurgeonName(const QString &name) {
+    currentSurgeonName = name;
+}
 
 void footpedal::on_pushButton_clicked()
 {
+    if (currentSurgeonName.isEmpty()) {
+            qDebug() << "Surgeon name is not set. Cannot save footpedal settings.";
+            return;
+        }
+
+        QString footLeftValue = ui->left_footcom->currentText();
+        QString footRightValue = ui->right_footcom->currentText();
+        QString footBLeftValue = ui->bleft_footcom->currentText();
+        QString footNRightValue = ui->bright_footcom->currentText();
+
+        qDebug() << "Saving footpedal settings for surgeon:" << currentSurgeonName;
+        qDebug() << "footleft:" << footLeftValue << "footright:" << footRightValue;
+        qDebug() << "footbleft:" << footBLeftValue << "footnright:" << footNRightValue;
+
+        QSqlQuery query(db);
+        query.prepare(
+            "UPDATE phacohigh "
+            "SET footleft = :footleft, "
+            "footright = :footright, "
+            "footbottomleft = :footbleft, "
+            "footbottomright = :footnright "
+            "WHERE surgeon = :surgeon"
+        );
+        query.bindValue(":footleft", footLeftValue);
+        query.bindValue(":footright", footRightValue);
+        query.bindValue(":footbleft", footBLeftValue);
+        query.bindValue(":footnright", footNRightValue);
+        query.bindValue(":surgeon", currentSurgeonName);
+
+        if (!query.exec()) {
+            qDebug() << "Failed to update footpedal data for surgeon:" << query.lastError().text();
+            return;
+        }
+
+        qDebug() << "Footpedal settings saved successfully for surgeon:" << currentSurgeonName;
     readInitialGPIOValues();
     // Perform actions based on the stored combo box values
     performAction(leftFootcomAction, 961);

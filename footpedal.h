@@ -43,6 +43,8 @@ public slots:
             void combobox4(const QString &text);
             void storeComboBoxSelection(int index);
 
+            void updateFootpedalComboBoxes(const QString &surgeonName);
+            void setSurgeonName(const QString &name);
 
 signals:
     void moveTopToBottom(int value);    // Signal for moving pushbutton from top to bottom
@@ -59,6 +61,7 @@ private slots:
 
 private:
     Ui::footpedal *ui;
+     QString currentSurgeonName;
     QString left;
     QString right;
     QString bleft;
@@ -75,6 +78,8 @@ private:
            QString rightFootcomAction;
            QString bleftFootcomAction;
            QString brightFootcomAction;
+           QSqlDatabase db;
+
 
 };
 

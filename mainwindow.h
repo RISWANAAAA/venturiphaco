@@ -65,6 +65,12 @@ void push(const QString &surgeonName);
     int range=0;
     int rec;
     int butname=0;
+    int readGPIO();
+    void moveTab(int usIndex);
+      void moveTab1(int usIndex);
+      void moveTab2(int usIndex);
+      void moveTab3(int usIndex);
+
     struct SystemState {
            bool powerOn;
            bool powerOn1;
@@ -139,9 +145,14 @@ void push(const QString &surgeonName);
                     299,299  //40
                     };
 void setTuneMode(bool isTuneEnabled);
-
+void enableButtons(bool powerOn);
 
 public slots:
+   void onPdmModeSelected();
+   void onPdmModeSelected1();
+   void onPdmModeSelected2();
+   void onPdmModeSelected3();
+
  void userMessage(int value, int minValue, int maxValue);
  void updateLineedit(QLineEdit *lineEdit, int prevValue, int value, int maxValue);
  void on_clicked(const QString& digit);
@@ -171,7 +182,7 @@ void movePushButtonBottomToTop();
 void footreflux();
 void powerdeliverymethod();
 void continousirrigation(int gpioValue);
-void poweronoff();
+void poweronoff(int gpio);
 void poweron();
 //void updateValues(const QString &surgeon, int tabIndex, const QStringList &values);
 void onCutMode_vitComChanged(int index);
@@ -202,8 +213,7 @@ void receiveValues(
 
 //
 private slots:
-
-
+// void onComboBoxChanged(int index);
 void label43();
 void sensor2();
 void ULTRASONICBUT1();
@@ -408,6 +418,7 @@ void onSurgeonSelectionChanged(const QString &surgeonName);
 
 signals:
     void sensorValueChanged(int value);
+     void surgeonSelected(const QString &surgeonName);
 
 private:
     Ui::MainWindow *ui;

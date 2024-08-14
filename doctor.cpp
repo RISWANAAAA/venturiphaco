@@ -1221,8 +1221,8 @@ QString vitmode=ui->CutMode_vitCom->currentText();
 QString vitvacmode=ui->VacMode_VitCom->currentText();
 QString footleft=ui->LeftFoot->currentText();
 QString footright=ui->RightFoot->currentText();
-QString bleft=ui->BottomLFoot->currentText();
-QString bright=ui->BottomRFoot->currentText();
+QString b_left=ui->BottomLFoot->currentText();
+QString b_right=ui->BottomRFoot->currentText();
 // Check and clear existing default connection
     if (QSqlDatabase::contains("qt_sql_default_connection")) {
         QSqlDatabase::removeDatabase("qt_sql_default_connection");
@@ -1269,7 +1269,6 @@ QString bright=ui->BottomRFoot->currentText();
         return;
     }
 
-    // Prepare UPDATE query
     query.prepare("UPDATE phacohigh SET "
                   "diapowmax = :diapowmax, pump = :pump, Epinaspmax = :Epinaspmax, Epinvacmax = :Epinvacmax, "
                   "Epinpowmax = :Epinpowmax, quadpowmax = :quadpowmax, quadvacmax = :quadvacmax, "
@@ -1282,7 +1281,7 @@ QString bright=ui->BottomRFoot->currentText();
                   "polishvacmode = :polishvacmode, ia1aspmax = :ia1aspmax, ia1vacmax = :ia1vacmax, "
                   "ia2aspmax = :ia2aspmax, ia2vacmax = :ia2vacmax, vitcutmax = :vitcutmax, vitvacmax = :vitvacmax, "
                   "vitaspmax = :vitaspmax, vitcutmode = :vitcutmode, vitvacmode = :vitvacmode, "
-                  "footleft = :footleft, footright = :footleft, footbleft = :footbleft, footnright = :footnright, "
+                  "footleft = :footleft, footright = :footright, footbottomleft = :footbottomleft, footbottomright = :footbottomright, "
                   "Epinpowermethod = :Epinpowermethod, Epinpowmode = :Epinpowmode, Epinvacmode = :Epinvacmode "
                   "WHERE surgeon = :surgeon");
 
@@ -1328,8 +1327,8 @@ QString bright=ui->BottomRFoot->currentText();
     query.bindValue(":Epinvacmode", ui->VacModeCom_phaco->currentText());
     query.bindValue(":footleft", ui->LeftFoot->currentText());
     query.bindValue(":footright", ui->RightFoot->currentText());
-    query.bindValue("footbleft", ui->BottomLFoot->currentText());
-    query.bindValue("footnright", ui->BottomRFoot->currentText());
+    query.bindValue(":footbottomleft", ui->BottomLFoot->currentText());
+    query.bindValue(":footbottomright", ui->BottomRFoot->currentText());
     query.bindValue(":surgeon", surgeon);
 
     // Debug: Log the update query and bound values
@@ -1366,11 +1365,13 @@ emit sendValues(
     ia1mode, ia2mode, vitmode, vitvacmode
 );
 emit sendleftfootvalues(ui->LeftFoot->currentText());
-    qDebug()<<footleft;
+    qDebug()<<"footleft is"<<footleft;
     emit sendrightfootvalues(ui->RightFoot->currentText());
-      qDebug()<<footright;
+      qDebug()<<"footright is"<<footright;
     emit sendbleftfootvalues(ui->BottomLFoot->currentText());
+    qDebug()<<"footbottom left is"<<b_left;
     emit sendbrightfootvalues(ui->BottomRFoot->currentText());
+    qDebug()<<"footbottom right is"<<b_right;
 }
 
 void doctor::pumpvalue()
