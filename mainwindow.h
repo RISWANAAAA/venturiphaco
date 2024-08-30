@@ -23,7 +23,7 @@
 #include<QSqlQuery>
 #include<QSqlRecord>
 
-#define PATH1 "/home/phacohigh.db"
+#define SQLPATH "/home/amt-04/phacohigh.db"
 
 class settings;
 class prime;

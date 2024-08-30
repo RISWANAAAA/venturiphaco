@@ -1394,7 +1394,7 @@ void doctor::on_SaveDiaBut_clicked()
         delete msgBox;   // Delete the message box to free memory
 
 });
-   on_pushButton_clicked();
+  // on_pushButton_clicked();
 }
 
 void doctor::on_savefootpedal_clicked()

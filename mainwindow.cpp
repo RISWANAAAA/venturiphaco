@@ -20,15 +20,11 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
    // resize(800,600);
-    move(0,0);
+    //move(0,0);
 
     vac=new Vaccum;
     handler=new hwhandler;
-   // de=new demo;
-    db = QSqlDatabase::addDatabase("QSQLITE");
-    //QString dbPath = "/home/amt-04/phacohigh.db";  // Ensure this path is correct
-    db.setDatabaseName(PATH1);
-  //initializeSurgeonSelection();
+
  connectToDatabase();
  populateSurgeonList();
 
@@ -53,10 +49,10 @@ MainWindow::MainWindow(QWidget *parent)
 
      // Initialize buttonforgpio to start from the first button
      buttonforgpio = 0;
-     for (int i = 0; i < 7; ++i) {
-           buttons[i] = new QPushButton(QString("Button %1").arg(i + 1), this);
-           // Set button positions, etc.
-       }
+//     for (int i = 0; i < 7; ++i) {
+//           buttons[i] = new QPushButton(QString("Button %1").arg(i + 1), this);
+//           // Set button positions, etc.
+//       }
      // Set the initial button as selected
      buttons[buttonforgpio]->setChecked(true);
      QTimer *readgpio=new QTimer;
@@ -5398,13 +5394,14 @@ void MainWindow::connectToDatabase()
 {
 
 
-       QString connectionName = PATH1;
+       QString connectionName = SQLPATH;
 
        if (QSqlDatabase::contains(connectionName)) {
            db = QSqlDatabase::database(connectionName);
        } else {
            db = QSqlDatabase::addDatabase("QSQLITE", connectionName);
-           db.setDatabaseName("phacohigh.db");
+           db.setDatabaseName("phacohigh.db");  // Use the correct path to your SQLite file
+
        }
 
        if (!db.open()) {
@@ -5425,9 +5422,13 @@ void MainWindow::populateSurgeonList()
     QSqlQuery query(db);
 
     // Query to get the list of distinct surgeons
-    query.prepare("SELECT DISTINCT surgeon FROM phacohigh");
+    if (!query.prepare("SELECT DISTINCT surgeon FROM phacohigh")) {
+        qDebug() << "Query preparation failed:" << query.lastError().text();
+        return;
+    }
+
     if (!query.exec()) {
-        qDebug() << "Failed to fetch surgeons:" << query.lastError().text();
+        qDebug() << "Failed to execute surgeon fetch query:" << query.lastError().text();
         return;
     }
 
@@ -5440,8 +5441,21 @@ void MainWindow::populateSurgeonList()
         ui->comboBox_4->addItem(surgeon);
     }
 
+    // Check if there are any surgeons added
+    if (ui->comboBox_4->count() == 0) {
+        qDebug() << "No surgeons found in the database.";
+        return;
+    }
+
+    // Finish the first query
+    query.finish();
+
     // Query to get the last updated surgeon
-    query.prepare("SELECT lastupdate FROM phacohigh LIMIT 1");
+    if (!query.prepare("SELECT lastupdate FROM phacohigh LIMIT 1")) {
+        qDebug() << "Query preparation for last update failed:" << query.lastError().text();
+        return;
+    }
+
     if (!query.exec()) {
         qDebug() << "Failed to fetch last updated surgeon:" << query.lastError().text();
         return;
@@ -5467,7 +5481,6 @@ void MainWindow::populateSurgeonList()
 
     qDebug() << "Surgeon list populated and last updated surgeon set.";
 }
-
 
 void MainWindow::onSurgeonSelectionChanged(const QString &surgeonName)
 {
@@ -5606,8 +5619,8 @@ void MainWindow::onSurgeonSelectionChanged(const QString &surgeonName)
 
         // Update Vitrectomy UI components
         ui->lineEdit_71->setText(QString::number(vitcutmax));
-        ui->lineEdit_72->setText(QString::number(vitvacmax));
-        ui->lineEdit_73->setText(QString::number(vitaspmax));
+        ui->lineEdit_72->setText(QString::number(vitaspmax));
+        ui->lineEdit_73->setText(QString::number(vitvacmax));
         ui->vitmode->setText(vitcutmode);
         ui->vitvacmode->setText(vitvacmode);
     } else {

@@ -248,17 +248,17 @@ void prime::updatehandpieceStatus()
 
       //  qDebug()<<"handpiece off"<<status;
        ui->Start_tune_2->setEnabled(false);
-       QMessageBox* msgBox = new QMessageBox(QMessageBox::Information, "Info", "Tune is not completed");
+//       QMessageBox* msgBox = new QMessageBox(QMessageBox::Information, "Info", "Tune is not completed");
 
-       // Set the message box to show
-       msgBox->show();
+//       // Set the message box to show
+//       msgBox->show();
 
-       // Create a QTimer to close the message box after 500 ms
-       QTimer::singleShot(700, msgBox, [msgBox]() {
-           msgBox->hide();  // Hide the message box
-           delete msgBox;   // Delete the message box to free memory
+//       // Create a QTimer to close the message box after 500 ms
+//       QTimer::singleShot(700, msgBox, [msgBox]() {
+//           msgBox->hide();  // Hide the message box
+//           delete msgBox;   // Delete the message box to free memory
 
-   });
+//   });
    }
 }
 
@@ -460,7 +460,7 @@ void prime::on_pushButton_6_clicked()
     } else {
         // Handle the case where "No" is clicked (optional)
     }
-
+ // m->show();
 
 }
 
