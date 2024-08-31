@@ -48,9 +48,8 @@ public slots:
 
     void VitSaveBut();
     void click(int tab);
-    void increasebutton(QLineEdit *increaseline);
-    void decreasebutton(QLineEdit *decreaseline);
-    void vacbutton(QLineEdit *vacline);
+    int increasebutton(int input);
+    int decreasebutton(int input);
 
 
     void currentcombobox1(const QString &text);
@@ -157,6 +156,9 @@ private:
     QMessageBox *messagebox;
     QTimer *timer;
     QMap<QString, QMap<int, QStringList>> surgeonData;
+    QMap<QLineEdit*, int> lastValidValues;  // Declare the QMap as a member variable
+    QMap<QLineEdit*, int> lastValidValues1;  // Declare the QMap as a member variable
+
 
 
 

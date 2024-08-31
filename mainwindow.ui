@@ -5297,8 +5297,8 @@ background-color: rgb(18, 78, 102);
    <widget class="QLabel" name="label_16">
     <property name="geometry">
      <rect>
-      <x>760</x>
-      <y>290</y>
+      <x>740</x>
+      <y>300</y>
       <width>41</width>
       <height>31</height>
      </rect>
@@ -5575,9 +5575,9 @@ border-radius:20px;</string>
    <zorder>pushButton_42</zorder>
    <zorder>label_32</zorder>
    <zorder>SETTINGS_BUT_3</zorder>
-   <zorder>label_28</zorder>
    <zorder>label_17</zorder>
    <zorder>BACKBUT</zorder>
+   <zorder>label_28</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>

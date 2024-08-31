@@ -261,114 +261,17 @@ connect(this,&MainWindow::surgeonSelected,foot,&footpedal::updateFootpedalComboB
 
      connect(ui->comboBox_4, &QComboBox::currentTextChanged, this, &MainWindow::onSurgeonSelectionChanged);
      connect(ui->comboBox,&QComboBox::currentTextChanged,this,&MainWindow::performpump);
-     // Connect QComboBox signals to the slot
-//     connect(ui->CutMode_vitCom, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &MainWindow::onComboBoxChanged);
-//     connect(ui->CutMode_vitCom_2, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &MainWindow::onComboBoxChanged);
-//     connect(ui->CutMode_vitCom_3, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &MainWindow::onComboBoxChanged);
-//     connect(ui->CutMode_vitCom_4, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &MainWindow::onComboBoxChanged);
-
-     connect(ui->CutMode_vitCom, QOverload<const QString &>::of(&QComboBox::currentIndexChanged), this, &MainWindow::updateTabsBasedOnComboBox);
-      connect(ui->CutMode_vitCom_2, QOverload<const QString &>::of(&QComboBox::currentIndexChanged), this, &MainWindow::updateTabsBasedOnComboBox);
-      connect(ui->CutMode_vitCom_3, QOverload<const QString &>::of(&QComboBox::currentIndexChanged), this, &MainWindow::updateTabsBasedOnComboBox);
-    connect(ui->CutMode_vitCom_4, QOverload<const QString &>::of(&QComboBox::currentIndexChanged), this, &MainWindow::updateTabsBasedOnComboBox);
-//   // connect(ui->CutMode_vitCom, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &MainWindow::onComboBoxChanged);
-//     //  connect(ui->CutMode_vitCom_2, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &MainWindow::onCutMode_vitComChanged1);
-//    //   connect(ui->CutMode_vitCom_3, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &MainWindow::onCutMode_vitComChanged2);
-//    //   connect(ui->CutMode_vitCom_4, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &MainWindow::onCutMode_vitComChanged3);
+     connect(ui->CutMode_vitCom, QOverload<const QString &>::of(&QComboBox::currentTextChanged), this, &MainWindow::updateTabsBasedOnComboBox);
+      connect(ui->CutMode_vitCom_2, QOverload<const QString &>::of(&QComboBox::currentTextChanged), this, &MainWindow::updateTabsBasedOnComboBox);
+      connect(ui->CutMode_vitCom_3, QOverload<const QString &>::of(&QComboBox::currentTextChanged), this, &MainWindow::updateTabsBasedOnComboBox);
+    connect(ui->CutMode_vitCom_4, QOverload<const QString &>::of(&QComboBox::currentTextChanged), this, &MainWindow::updateTabsBasedOnComboBox);
    int currenttab=7;
 
      connect(ui->tabWidget, &QTabWidget::currentChanged, this, &MainWindow::current);
 
           current(currenttab);
-       connect(ui->lineEdit_73,&QLineEdit::textChanged,this,[=](){
-        int value3=ui->lineEdit_73->text().toInt();
 
-    });
-    connect(ui->lineEdit_72,&QLineEdit::textChanged,this,[=](){
-        int value4=ui->lineEdit_72->text().toInt();
 
-       });
-
-    connect(ui->lineEdit_68,&QLineEdit::textChanged,this,[=](){
-        int value5=ui->lineEdit_68->text().toInt();
-             });
-       connect(ui->lineEdit_67,&QLineEdit::textChanged,this,[=](){
-        int value6=ui->lineEdit_67->text().toInt();
-
-       });
-
-    connect(ui->lineEdit_70,&QLineEdit::textChanged,this,[=](){
-        int value7=ui->lineEdit_70->text().toInt();
-
-       });
-
-    connect(ui->lineEdit_69,&QLineEdit::textChanged,this,[=](){
-        int value8=ui->lineEdit_69->text().toInt();
-
-       });
-
-    connect(ui->lineEdit_57,&QLineEdit::textChanged,this,[=](){
-        int value9=ui->lineEdit_57->text().toInt();
-
-       });
-
-    connect(ui->lineEdit_55,&QLineEdit::textChanged,this,[=](){
-        int value10=ui->lineEdit_55->text().toInt();
-              });
-     connect(ui->lineEdit_56,&QLineEdit::textChanged,this,[=](){
-        int value11=ui->lineEdit_56->text().toInt();
-
-       });
-
-    connect(ui->lineEdit_58,&QLineEdit::textChanged,this,[=](){
-        int value12=ui->lineEdit_58->text().toInt();
-
-       });
-
-    connect(ui->lineEdit_60,&QLineEdit::textChanged,this,[=](){
-        int value13=ui->lineEdit_60->text().toInt();
-
-       });
-
-    connect(ui->lineEdit_59,&QLineEdit::textChanged,this,[=](){
-        int value14=ui->lineEdit_59->text().toInt();
-
-       });
-
-    connect(ui->lineEdit_64,&QLineEdit::textChanged,this,[=](){
-        int value15=ui->lineEdit_64->text().toInt();
-
-       });
-
-    connect(ui->lineEdit_66,&QLineEdit::textChanged,this,[=](){
-        int value16=ui->lineEdit_66->text().toInt();
-
-       });
-
-    connect(ui->lineEdit_65,&QLineEdit::textChanged,this,[=](){
-        int value17=ui->lineEdit_65->text().toInt();
-
-       });
-
-    connect(ui->lineEdit_61,&QLineEdit::textChanged,this,[=](){
-        int value18=ui->lineEdit_61->text().toInt();
-
-       });
-
-    connect(ui->lineEdit_63,&QLineEdit::textChanged,this,[=](){
-        int value19=ui->lineEdit_63->text().toInt();
-
-       });
-
-    connect(ui->lineEdit_62,&QLineEdit::textChanged,this,[=](){
-        int value20=ui->lineEdit_62->text().toInt();
-
-       });
-        //   connect(&updateTimer, &QTimer::timeout, this, &MainWindow::update);
-    QRegExp regex3("^(?:100|[1-9]\\d?|0)$");
-    // QRegExpValidator* validator3 = new QRegExpValidator(regex3, ui->lineEdit);
-   //  ui->lineEdit_57->setValidator(validator3);
-     ui->lineEdit_57->setMaxLength(3);
      //name chnage connection
        connect(ui->ULTRASONICBUT1,&QPushButton::clicked,this,&MainWindow::ULTRASONICBUT1);
        connect(ui->ULTRASONICBUT2,&QPushButton::clicked,this,&MainWindow::ULTRASONICBUT2);
@@ -1120,6 +1023,7 @@ void MainWindow::ULTRASONICBUT1()
 {
     ui->tabWidget->setCurrentIndex(0);
     QString currentText = ui->CutMode_vitCom->currentText();
+    updateTabsBasedOnComboBox(currentText);
     ui->CutMode_vit->show();
     ui->CutMode_vitCom->show();
     ui->tabWidget_2->show();
@@ -1140,11 +1044,27 @@ void MainWindow::ULTRASONICBUT2()
     butname=2;
   handler->buzz();
 }
+void MainWindow::ULTRASONICBUT3()
+{
+    ui->tabWidget->setCurrentIndex(2);
+      click();
+      QString currentText = ui->CutMode_vitCom_3->currentText();
+
+      updateTabsBasedOnComboBox(currentText);
+
+    ui->CutMode_vit->show();
+    ui->CutMode_vitCom->show();
+    ui->tabWidget_2->show();
+    butname=3;
+
+}
+
 void MainWindow::ULTRASONICBUT4()
 {
 
     ui->tabWidget->setCurrentIndex(3);
     QString currentText = ui->CutMode_vitCom_4->currentText();
+    updateTabsBasedOnComboBox(currentText);
      ui->CutMode_vit->show();
      ui->CutMode_vitCom->show();
      ui->tabWidget_2->show();
@@ -1580,20 +1500,6 @@ void MainWindow::us2flowdown()
     ui->lineEdit_59->setText(QString::number(value));
 }
 
-void MainWindow::ULTRASONICBUT3()
-{
-    ui->tabWidget->setCurrentIndex(2);
-      click();
-      QString currentText = ui->CutMode_vitCom_3->currentText();
-
-      updateTabsBasedOnComboBox(currentText);
-
-    ui->CutMode_vit->show();
-    ui->CutMode_vitCom->show();
-    ui->tabWidget_2->show();
-    butname=3;
-
-}
 
 void MainWindow::us3powup()
 {
@@ -1887,25 +1793,7 @@ void MainWindow::current(int tab)
 }
 
 void MainWindow::updateline() {
-    // Get the selected mode as a QString
-    QString selected = ui->CutMode_vitCom->currentText();
-     QString selected1 = ui->CutMode_vitCom_2->currentText();
-      QString selected2 = ui->CutMode_vitCom_3->currentText();
-       QString selected3 = ui->CutMode_vitCom_4->currentText();
-       qDebug() << "Selected Mode as Text:" << selected;
 
-
-          qDebug() << "CutMode_vitCom selected: " << selected;
-          qDebug() << "CutMode_vitCom_2 selected: " << selected1;
-          qDebug() << "CutMode_vitCom_3 selected: " << selected2;
-          qDebug() << "CutMode_vitCom_4 selected: " << selected3;
-
-          // Ensure all combo boxes have the same selected mode
-          if (selected == selected1 && selected1 == selected2 && selected2 == selected3) {
-              updateTabsBasedOnComboBox(selected);
-          } else {
-              qDebug() << "Selected modes do not match!";
-          }
 }
 void MainWindow::setTuneMode(bool tuneEnabled) {
     QString styleSheet4 = "QLabel {"
@@ -1917,14 +1805,14 @@ void MainWindow::setTuneMode(bool tuneEnabled) {
     isTuneEnabled = tuneEnabled;  // Set the flag based on the argument
 
     // Enable or disable the US buttons based on the flag
-    ui->ULTRASONICBUT1->setEnabled(isTuneEnabled);    // us1
+ //   ui->ULTRASONICBUT1->setEnabled(isTuneEnabled);    // us1
     ui->label_16->setStyleSheet(styleSheet4);
     ui->label_17->setStyleSheet(styleSheet4);
     ui->label_18->setStyleSheet(styleSheet4);
     ui->label_27->setStyleSheet(styleSheet4);
-    ui->ULTRASONICBUT2->setEnabled(isTuneEnabled);  // us2
-    ui->ULTRASONICBUT3->setEnabled(isTuneEnabled);  // us3
-    ui->ULTRASONICBUT4->setEnabled(isTuneEnabled);  // us4
+    //ui->ULTRASONICBUT2->setEnabled(isTuneEnabled);  // us2
+    //ui->ULTRASONICBUT3->setEnabled(isTuneEnabled);  // us3
+   // ui->ULTRASONICBUT4->setEnabled(isTuneEnabled);  // us4
 
     // These buttons are always enabled
     ui->IA1BUT->setEnabled(true);  // ia1
@@ -3778,7 +3666,7 @@ void MainWindow::updatehandpieceStatus()
 
 
     QString styleSheet4 = "QLabel {"
-                "image: url(:/hand.png);"
+                "image: url(:/handpiece1.png);"
             "background-color:green;"
 
                 "border: 4px solid black;"
@@ -3794,7 +3682,7 @@ void MainWindow::updatehandpieceStatus()
                                      "}";
 
     QString styleSheet5 = "QLabel {"
-                "image: url(:/hand.png);"
+                "image: url(:/handpiece1.png);"
 
              "background-color: rgb(192, 28, 40);"
                 "border: 4px solid black;"
@@ -3814,11 +3702,19 @@ void MainWindow::updatehandpieceStatus()
    if(status==0)
    {
    ui->label_28->setStyleSheet(styleSheet4);
+   ui->label_16->setStyleSheet(styleSheet7);
+   ui->label_17->setStyleSheet(styleSheet7);
+   ui->label_18->setStyleSheet(styleSheet7);
+   ui->label_27->setStyleSheet(styleSheet7);
    }
-   else
+   else if(status==1)
    {
-      ui->label_28->setStyleSheet(styleSheet5);
-     //flag1=false;
+     // ui->label_28->setStyleSheet(styleSheet5);
+      ui->label_16->setStyleSheet(styleSheet6);
+      ui->label_17->setStyleSheet(styleSheet6);
+      ui->label_18->setStyleSheet(styleSheet6);
+      ui->label_27->setStyleSheet(styleSheet6);
+
    }
 }
 void MainWindow::onUpdateStatusTimeout(){
@@ -4996,26 +4892,26 @@ void MainWindow::onCutMode_vitComChanged(int index) {
     qDebug() << "All ComboBox Items:" << allItems;
 int us1mode=1;
 
-    updateTabsBasedOnComboBox(modeText);
+  //  updateTabsBasedOnComboBox(modeText);
 }
 
 void MainWindow::onCutMode_vitComChanged1(int index) {
     QString currentText = ui->CutMode_vitCom_2->currentText();
 
-    updateTabsBasedOnComboBox(currentText);
+    //updateTabsBasedOnComboBox(currentText);
 }
 
 void MainWindow::onCutMode_vitComChanged2(int index) {
     QString currentText = ui->CutMode_vitCom_3->currentText();
 
 
-    updateTabsBasedOnComboBox(currentText);
+    //updateTabsBasedOnComboBox(currentText);
 }
 
 void MainWindow::onCutMode_vitComChanged3(int index) {
     QString currentText = ui->CutMode_vitCom_4->currentText();
 
-  updateTabsBasedOnComboBox(currentText);
+  //updateTabsBasedOnComboBox(currentText);
 }
 
 
@@ -5743,6 +5639,7 @@ void MainWindow::push(const QString &surgeonName) {
         ui->us1vacmode->setText(us1vacmode);
         ui->CutMode_vitCom->setCurrentText(us1powermethod);
 
+
         // Update US2 UI components
         ui->lineEdit_58->setText(QString::number(us2power)); // Power
         ui->lineEdit_60->setText(QString::number(us2vacmax)); // Vacuum
@@ -5751,6 +5648,7 @@ void MainWindow::push(const QString &surgeonName) {
         ui->us2vacmode->setText(us2vacmode);
         ui->CutMode_vitCom_2->setCurrentText(us2powermethod);
 
+
         // Update US3 UI components
         ui->lineEdit_61->setText(QString::number(us3power)); // Power
         ui->lineEdit_63->setText(QString::number(us3vacmax)); // Vacuum
@@ -5758,6 +5656,7 @@ void MainWindow::push(const QString &surgeonName) {
         ui->us3mode->setText(us3mode);
         ui->us3vacmode->setText(us3vacmode);
         ui->CutMode_vitCom_3->setCurrentText(us3powermethod);
+
 
         // Update US4 UI components
         ui->lineEdit_64->setText(QString::number(us4power)); // Power

@@ -2805,7 +2805,7 @@ public:
 ""));
         label_16 = new QLabel(centralwidget);
         label_16->setObjectName(QString::fromUtf8("label_16"));
-        label_16->setGeometry(QRect(760, 290, 41, 31));
+        label_16->setGeometry(QRect(740, 300, 41, 31));
         label_16->setStyleSheet(QString::fromUtf8("image: url(:/images/locked.png);\n"
 "background-color:transparent;"));
         label_17 = new QLabel(centralwidget);
@@ -2936,9 +2936,9 @@ public:
         pushButton_42->raise();
         label_32->raise();
         SETTINGS_BUT_3->raise();
-        label_28->raise();
         label_17->raise();
         BACKBUT->raise();
+        label_28->raise();
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
         MainWindow->setStatusBar(statusbar);

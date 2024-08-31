@@ -39,8 +39,8 @@ updateFootpedalComboBoxes("Surgeon 1");
     connect(ui->backbut, &QPushButton::clicked, this, &footpedal::Back);
     connect(ui->savebut, &QPushButton::clicked, this, &footpedal::on_pushButton_clicked);
     QTimer *timer=new QTimer;
-    connect(timer,&QTimer::timeout,this,&footpedal::readInitialGPIOValues);
-    timer->start(300);
+//    connect(timer,&QTimer::timeout,this,&footpedal::readInitialGPIOValues);
+//    timer->start(300);
 }
 
 footpedal::~footpedal()

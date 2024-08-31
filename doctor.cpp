@@ -3,11 +3,16 @@
 #include<QMessageBox>
 #include<QTimer>
 #include<QSqlError>
+#include<QMap>
 doctor::doctor(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::doctor)
 {
     ui->setupUi(this);
+    ui->lineEdit_20->setVisible(true);  // Ensure it is visible
+    ui->lineEdit_20->setEnabled(true);  // Ensure it is enabled
+    ui->lineEdit_20->setText("40");
+    ui->lineEdit_20->raise();
 
     move(0,0);
     timer=new QTimer;
@@ -45,13 +50,13 @@ doctor::doctor(QWidget *parent) :
   ui->lineEdit_2->setText("40");
   ui->lineEdit_3->setText("500");
   ui->lineEdit_4->setText("100");
-  ui->lineEdit_5->setText("500");
-  ui->lineEdit_7->setText("40");
+  ui->lineEdit_7->setText("500");
+  ui->lineEdit_5->setText("40");
   ui->lineEdit_11->setText("500");
   ui->lineEdit_12->setText("40");
   ui->lineEdit->setText("100");
   ui->lineEdit_19->setText("500");
-  ui->lineEdit_20->setText("40");
+
   ui->lineEdit_2->setText("22");
   ui->lineEdit_3->setText("200");
   ui->lineEdit_4->setText("60");
@@ -103,6 +108,26 @@ doctor::doctor(QWidget *parent) :
     ui->lineEdit_19->installEventFilter(this);
     ui->lineEdit_20->installEventFilter(this);
 
+  ui->progressBar->setRange(5,100);
+  ui->progressBar_5->setRange(2,40);
+  ui->progressBar_6->setRange(5,500);
+  ui->progressBar_7->setRange(5,100);
+  ui->progressBar_10->setRange(5,100);
+  ui->progressBar_8->setRange(2,40);
+  ui->progressBar_9->setRange(5,500);
+  ui->progressBar_11->setRange(2,40);
+  ui->progressBar_12->setRange(5,500);
+  ui->progressBar_13->setRange(5,100);
+  ui->progressBar_2->setRange(2,40);
+  ui->progressBar_3->setRange(5,500);
+  ui->progressBar_4->setRange(5,100);
+  ui->progressBar_14->setRange(5,500);
+  ui->progressBar_15->setRange(2,40);
+  ui->progressBar_16->setRange(5,500);
+  ui->progressBar_17->setRange(2,40);
+  ui->progressBar_19->setRange(5,500);
+  ui->progressBar_20->setRange(2,40);
+  ui->progressBar_21->setRange(60,960);
 
   connect(ui->DiaBut,&QPushButton::clicked,this,&doctor::DiathermyBut);
   connect(ui->PhacoBut,&QPushButton::clicked,this,&doctor::PhacoBut);
@@ -153,8 +178,6 @@ bool doctor::eventFilter(QObject *object, QEvent *event)
           key->show();
 
           ui->lineEdit_6->setFocus();
-//          ui->lineEdit_23->clearFocus();
-//          ui->lineEdit_24->clearFocus();
           ui->lineEdit_6->setText("");
 
       } else if ( k->button() == Qt::RightButton ) {
@@ -457,7 +480,9 @@ bool doctor::eventFilter(QObject *object, QEvent *event)
               ui->lineEdit_19->clearFocus();
               ui->lineEdit_20->setText("");
 
+
           } else if ( k->button() == Qt::RightButton ) {
+              ui->lineEdit_20->setText("40");
           }
 }
 
@@ -484,18 +509,18 @@ void doctor::on_clicked(const QString& digit)
 {
     //diathermy
     if(ui->lineEdit_6->focusWidget()) {
-//        ui->lineEdit_23->clearFocus();
-//        ui->lineEdit_24->clearFocus();
         ui->lineEdit_6->setFocus();
-
 
         int prevValue = ui->lineEdit_6->text().toInt();
         int value = (ui->lineEdit_6->text()+digit).toInt();
-
+if(value ==0){
+    ui->lineEdit_6->setText(QString::number(5));
+    ui->progressBar->setValue(5);
+    return;
+}
         setRange(ui->lineEdit_6, prevValue, value, 100);
         ui->progressBar->setValue(value);
-        // userMessage(value,5,100);
-        increasebutton(ui->lineEdit_6);
+       // increasebutton(ui->lineEdit_6);
 
 
 
@@ -507,9 +532,12 @@ void doctor::on_clicked(const QString& digit)
         ui->lineEdit_2->setFocus();
         int prevValue = ui->lineEdit_2->text().toInt();
         int value1 = (ui->lineEdit_2->text()+digit).toInt();
+        if(value1 == 0){
+            ui->lineEdit_2->setText(QString::number(2));
+            return;
+        }
         setRange(ui->lineEdit_2, prevValue, value1, 40);
-        //userMessage(value,5,500);
-        decreasebutton(ui->lineEdit_2);
+
         ui->progressBar_5->setValue(value1);
     }
     if(ui->lineEdit_3->focusWidget()) {
@@ -518,9 +546,12 @@ void doctor::on_clicked(const QString& digit)
         ui->lineEdit_3->setFocus();
         int prevValue = ui->lineEdit_3->text().toInt();
         int value2 = (ui->lineEdit_3->text()+digit).toInt();
+        if(value2 == 0){
+            ui->lineEdit_3->setText(QString::number(5));
+            return;
+        }
         setRange(ui->lineEdit_3, prevValue, value2, 500);
-        //userMessage(value,5,500);
-        vacbutton(ui->lineEdit_3);
+
         ui->progressBar_6->setValue(value2);
     }
      if(ui->lineEdit_4->focusWidget()) {
@@ -529,9 +560,12 @@ void doctor::on_clicked(const QString& digit)
         ui->lineEdit_4->setFocus();
         int prevValue = ui->lineEdit_4->text().toInt();
         int value3 = (ui->lineEdit_4->text()+digit).toInt();
+        if(value3 == 0){
+            ui->lineEdit_4->setText(QString::number(5));
+            return;
+        }
         setRange(ui->lineEdit_4, prevValue, value3, 100);
-        //userMessage(value,5,100);
-        increasebutton(ui->lineEdit_4);
+
         ui->progressBar_7->setValue(value3);
     }
      //quad
@@ -541,9 +575,14 @@ void doctor::on_clicked(const QString& digit)
         ui->lineEdit_8->setFocus();
         int prevValue = ui->lineEdit_8->text().toInt();
         int value1 = (ui->lineEdit_8->text()+digit).toInt();
+        if(value1 == 0){
+            ui->lineEdit_8->setText(QString::number(2));
+            ui->progressBar_8->setValue(5);
+            return;
+
+        }
         setRange(ui->lineEdit_8, prevValue, value1, 40);
-        //userMessage(value,5,500);
-        decreasebutton(ui->lineEdit_8);
+
         ui->progressBar_8->setValue(value1);
     }
     if(ui->lineEdit_10->focusWidget()) {
@@ -552,9 +591,12 @@ void doctor::on_clicked(const QString& digit)
         ui->lineEdit_10->setFocus();
         int prevValue = ui->lineEdit_10->text().toInt();
         int value2 = (ui->lineEdit_10->text()+digit).toInt();
+        if(value2 ==0){
+            ui->lineEdit_10->setText(QString::number(5));
+            return;
+        }
         setRange(ui->lineEdit_10, prevValue, value2, 100);
-        //userMessage(value,5,500);
-        increasebutton(ui->lineEdit_10);
+
         ui->progressBar_10->setValue(value2);
     }
      if(ui->lineEdit_9->focusWidget()) {
@@ -563,9 +605,12 @@ void doctor::on_clicked(const QString& digit)
         ui->lineEdit_9->setFocus();
         int prevValue = ui->lineEdit_9->text().toInt();
         int value3 = (ui->lineEdit_9->text()+digit).toInt();
+        if(value3 == 0){
+            ui->lineEdit_9->setText(QString::number(5));
+            return;
+        }
         setRange(ui->lineEdit_9, prevValue, value3, 500);
-        //userMessage(value,5,100);
-        vacbutton(ui->lineEdit_9);
+
         ui->progressBar_9->setValue(value3);
     }
      //chop
@@ -576,9 +621,12 @@ void doctor::on_clicked(const QString& digit)
         ui->lineEdit_13->setFocus();
         int prevValue = ui->lineEdit_13->text().toInt();
         int value1 = (ui->lineEdit_13->text()+digit).toInt();
+        if(value1 == 0){
+            ui->lineEdit_13->setText(QString::number(2));
+            return;
+        }
         setRange(ui->lineEdit_13, prevValue, value1, 40);
-        //userMessage(value,5,500);
-        decreasebutton(ui->lineEdit_13);
+
         ui->progressBar_11->setValue(value1);
     }
     if(ui->lineEdit_14->focusWidget()) {
@@ -587,9 +635,12 @@ void doctor::on_clicked(const QString& digit)
         ui->lineEdit_14->setFocus();
         int prevValue = ui->lineEdit_14->text().toInt();
         int value2 = (ui->lineEdit_14->text()+digit).toInt();
+        if(value2 == 0){
+            ui->lineEdit_14->setText(QString::number(5));
+            return;
+        }
         setRange(ui->lineEdit_14, prevValue, value2, 500);
-        //userMessage(value,5,500);
-        vacbutton(ui->lineEdit_14);
+
         ui->progressBar_12->setValue(value2);
     }
      if(ui->lineEdit_15->focusWidget()) {
@@ -598,9 +649,12 @@ void doctor::on_clicked(const QString& digit)
         ui->lineEdit_15->setFocus();
         int prevValue = ui->lineEdit_15->text().toInt();
         int value3 = (ui->lineEdit_15->text()+digit).toInt();
+        if(value3 == 0){
+            ui->lineEdit_15->setText(QString::number(5));
+            return;
+        }
         setRange(ui->lineEdit_15, prevValue, value3, 100);
-        //userMessage(value,5,100);
-        increasebutton(ui->lineEdit_15);
+
         ui->progressBar_13->setValue(value3);
     }
      //sculpt
@@ -610,9 +664,12 @@ void doctor::on_clicked(const QString& digit)
         ui->lineEdit_16->setFocus();
         int prevValue = ui->lineEdit_16->text().toInt();
         int value1 = (ui->lineEdit_16->text()+digit).toInt();
+        if(value1 == 0){
+            ui->lineEdit_16->setText(QString::number(2));
+            return;
+        }
         setRange(ui->lineEdit_16, prevValue, value1, 40);
-        //userMessage(value,5,500);
-        decreasebutton(ui->lineEdit_16);
+
         ui->progressBar_2->setValue(value1);
     }
     if(ui->lineEdit_18->focusWidget()) {
@@ -621,9 +678,12 @@ void doctor::on_clicked(const QString& digit)
         ui->lineEdit_18->setFocus();
         int prevValue = ui->lineEdit_18->text().toInt();
         int value2 = (ui->lineEdit_18->text()+digit).toInt();
+        if(value2 == 0){
+            ui->lineEdit_2->setText(QString::number(5));
+            return;
+        }
         setRange(ui->lineEdit_18, prevValue, value2, 100);
-        //userMessage(value,5,500);
-        increasebutton(ui->lineEdit_18);
+
         ui->progressBar_4->setValue(value2);
     }
      if(ui->lineEdit_17->focusWidget()) {
@@ -632,9 +692,12 @@ void doctor::on_clicked(const QString& digit)
         ui->lineEdit_17->setFocus();
         int prevValue = ui->lineEdit_17->text().toInt();
         int value3 = (ui->lineEdit_17->text()+digit).toInt();
+        if(value3 == 0){
+            ui->lineEdit_17->setText(QString::number(5));
+            return;
+        }
         setRange(ui->lineEdit_17, prevValue, value3, 500);
-        //userMessage(value,5,100);
-        vacbutton(ui->lineEdit_17);
+
         ui->progressBar_3->setValue(value3);
 
       }
@@ -649,9 +712,12 @@ void doctor::on_clicked(const QString& digit)
         ui->lineEdit_5->setFocus();
         int prevValue = ui->lineEdit_5->text().toInt();
         int value4 = (ui->lineEdit_5->text()+digit).toInt();
+        if(value4 == 0){
+            ui->lineEdit_5->setText(QString::number(2));
+            return;
+        }
         setRange(ui->lineEdit_5, prevValue, value4, 40);
-      //  userMessage(value,5,500);
-        decreasebutton(ui->lineEdit_5);
+
         ui->progressBar_17->setValue(value4);
     }
    if(ui->lineEdit_7->focusWidget()) {
@@ -661,9 +727,12 @@ void doctor::on_clicked(const QString& digit)
         ui->lineEdit_7->setFocus();
         int prevValue = ui->lineEdit_7->text().toInt();
         int value5 = (ui->lineEdit_7->text()+digit).toInt();
+        if(value5 == 0){
+            ui->lineEdit_7->setText(QString::number(5));
+            return;
+        }
         setRange(ui->lineEdit_7, prevValue, value5, 500);
-        //userMessage(value,5,500);
-        vacbutton(ui->lineEdit_7);
+
         ui->progressBar_16->setValue(value5);
     }
      if(ui->lineEdit_12->focusWidget()) {
@@ -673,9 +742,12 @@ void doctor::on_clicked(const QString& digit)
         ui->lineEdit_12->setFocus();
         int prevValue = ui->lineEdit_12->text().toInt();
         int value6 = (ui->lineEdit_12->text()+digit).toInt();
+        if(value6 == 0){
+            ui->lineEdit_12->setText(QString::number(2));
+            return;
+        }
         setRange(ui->lineEdit_12, prevValue, value6, 40);
-       // userMessage(value,5,500);
-        decreasebutton(ui->lineEdit_12);
+
         ui->progressBar_15->setValue(value6);
     }
     if(ui->lineEdit_11->focusWidget()) {
@@ -685,19 +757,27 @@ void doctor::on_clicked(const QString& digit)
         ui->lineEdit_11->setFocus();
         int prevValue = ui->lineEdit_11->text().toInt();
         int value7 = (ui->lineEdit_11->text()+digit).toInt();
+        if(value7 == 0){
+            ui->lineEdit_11->setText(QString::number(5));
+            return;
+        }
         setRange(ui->lineEdit_11, prevValue, value7, 500);
         //userMessage(value,5,500);
-        vacbutton(ui->lineEdit_11);
+       // vacbutton(ui->lineEdit_11);
         ui->progressBar_14->setValue(value7);
     }
     //vitrectomy
     if(ui->lineEdit->focusWidget()) {
         ui->lineEdit_19->clearFocus();
         ui->lineEdit_20->clearFocus();
-        //ui->lineEdit_12->clearFocus();
+
         ui->lineEdit->setFocus();
         int prevValue = ui->lineEdit->text().toInt();
         int value8 = (ui->lineEdit->text()+digit).toInt();
+        if(value8 == 0){
+            ui->lineEdit->setText(QString::number(60));
+            return;
+        }
         setRange(ui->lineEdit, prevValue, value8, 960);
         ui->progressBar_21->setValue(value8);
         //userMessage(value,60,960);
@@ -706,82 +786,125 @@ void doctor::on_clicked(const QString& digit)
      if(ui->lineEdit_19->focusWidget()) {
         ui->lineEdit->clearFocus();
         ui->lineEdit_20->clearFocus();
-        //ui->lineEdit_12->clearFocus();
         ui->lineEdit_19->setFocus();
         int prevValue = ui->lineEdit_19->text().toInt();
         int value9 = (ui->lineEdit_19->text()+digit).toInt();
+        if(value9 == 0){
+            ui->lineEdit_19->setText(QString::number(5));
+            return;
+        }
         setRange(ui->lineEdit_19, prevValue, value9, 500);
-        //userMessage(value,5,500);
-        vacbutton(ui->lineEdit_19);
         ui->progressBar_19->setValue(value9);
     }
     if(ui->lineEdit_20->focusWidget()) {
         ui->lineEdit->clearFocus();
         ui->lineEdit_19->clearFocus();
-        //ui->lineEdit_12->clearFocus();
-        ui->lineEdit_20->setFocus();
+      ui->lineEdit_20->setFocus();
         int prevValue = ui->lineEdit_20->text().toInt();
-        int value10 = (ui->lineEdit_20->text()+digit).toInt();
-        setRange(ui->lineEdit_20, prevValue, value10, 40);
-        decreasebutton(ui->lineEdit_20);
-        ui->progressBar_20->setValue(value10);
-        //userMessage(value,5,500);
+        int value = (ui->lineEdit_20->text()+digit).toInt();
+        if(value == 0){
+            ui->lineEdit_20->setText(QString::number(2));
+            return;
+        }
+
+        setRange(ui->lineEdit_20, prevValue, value, 40);
+        ui->progressBar_20->setValue(value);
+
     }
 }
 
 void doctor::on_clickedenter()
 {
     key->hide();
-    int  input=ui->lineEdit->text().toInt();
-    int output=getvalue(input);
-    ui->lineEdit->setText(QString::number(output));
+
+    // Maintain previous value for lineEdit
+    QString text = ui->lineEdit->text().trimmed();
+    if (!text.isEmpty()) {
+        int input = text.toInt();
+        int output = getvalue(input);  // Process the input to get the desired output
+        ui->lineEdit->setText(QString::number(output));
+        lastValidValues[ui->lineEdit] = output;  // Store the processed output as the last valid value
+    } else {
+        // Restore the last valid value if input is empty
+        if (lastValidValues.contains(ui->lineEdit)) {
+            ui->lineEdit->setText(QString::number(lastValidValues[ui->lineEdit]));
+        }
+    }
+
+    // Process other QLineEdits for power and vacuum
+    QList<QLineEdit*> lineEdits = {
+        ui->lineEdit_3, ui->lineEdit_4, ui->lineEdit_10, ui->lineEdit_9,
+        ui->lineEdit_14, ui->lineEdit_15, ui->lineEdit_17, ui->lineEdit_18,
+        ui->lineEdit_11, ui->lineEdit_7, ui->lineEdit_19
+    };
+
+    for (QLineEdit* lineEdit : lineEdits) {
+        QString currentText = lineEdit->text().trimmed();
+
+        if (!currentText.isEmpty()) {
+            int input = currentText.toInt();
+            int output = increasebutton(input);  // Process the input to get the desired output
+            lineEdit->setText(QString::number(output));
+            lastValidValues[lineEdit] = output;  // Update the last valid value
+        } else {
+            // Restore the last valid value if input is empty
+            if (lastValidValues.contains(lineEdit)) {
+                lineEdit->setText(QString::number(lastValidValues[lineEdit]));
+            }
+        }
+    }
+
+    // Process other QLineEdits for flow rate
+    QList<QLineEdit*> lineEdits1 = {
+        ui->lineEdit_2, ui->lineEdit_8, ui->lineEdit_13,
+        ui->lineEdit_16, ui->lineEdit_5, ui->lineEdit_12, ui->lineEdit_20
+    };
+
+    for (QLineEdit* lineEdit1 : lineEdits1) {
+        QString currentText1 = lineEdit1->text().trimmed();
+
+        if (!currentText1.isEmpty()) {
+            int input1 = currentText1.toInt();
+            int output1 = decreasebutton(input1);  // Process the input to get the desired output
+            lineEdit1->setText(QString::number(output1));
+            lastValidValues1[lineEdit1] = output1;  // Update the last valid value
+        } else {
+            // Restore the last valid value if input is empty
+            if (lastValidValues1.contains(lineEdit1)) {
+                lineEdit1->setText(QString::number(lastValidValues1[lineEdit1]));
+            }
+        }
+    }
 }
 
 
-void doctor::increasebutton(QLineEdit *increaseline)
+int doctor::increasebutton(int input)
 {
+    if (input < 10) {
+          // For single-digit values, set it to 5
+          return 5;
+      } else {
+          int remainder = input % 5; // Calculate the remainder when dividing by 5
 
-      int value =increaseline->text().toInt();
-      if(value>=10){
-      if (value % 2 == 0) {
-               // If the number is even, round it up to the next multiple of 5
-               value = (value + 4) / 5 * 5;
-           } else {
-               // If the number is odd, increment it to make it even
-                value = ((value + 4) / 5) * 5;
-           }
+          if (remainder == 0 || remainder == 1) {
+              // Round down to the nearest multiple of 5
+              return (input / 5) * 5;
+          } else {
+              // Round up to the next multiple of 5
+              return ((input / 5) + 1) * 5;
+          }
       }
-          increaseline->setText(QString::number(value));
-}
+  }
 
-void doctor::decreasebutton(QLineEdit *decreaseline)
+
+int doctor::decreasebutton(int input)
 {
-
-      int value1 = decreaseline->text().toInt();
-      if(value1>=10){
-      if (value1 % 2 != 0) {
-
-               value1++;
-           }
+    if (input % 2 != 0) {
+          input++;  // Increment if odd to make it even
       }
-      decreaseline->setText(QString::number(value1));
+      return input;
 }
 
-void doctor::vacbutton(QLineEdit *vacline)
-{
-    int val =vacline->text().toInt();
-    if(val>=99){
-    if (val % 2 == 0) {
-             // If the number is even, round it up to the next multiple of 5
-             val = (val + 3) / 5 * 5;
-         } else {
-             // If the number is odd, increment it to make it even
-              val = ((val + 3) / 5) * 5;
-         }}
-
-        vacline->setText(QString::number(val));
-
-}
 
 void doctor::currentcombobox2(const QString &text)
 {
@@ -960,9 +1083,9 @@ void doctor::IASaveBut()
     QString ia1vacmax = ui->lineEdit_7->text();
     QString ia2aspmax = ui->lineEdit_12->text();
     QString ia2vacmax = ui->lineEdit_11->text();
-    QString coraspmode = ui->AspMode_iacom->currentText();
+    //QString coraspmode = ui->AspMode_iacom->currentText();
     QString corvacmode = ui->VacMode1_iacom->currentText();
-    QString polaspmode = ui->AspMode2_iacom->currentText();
+    //QString polaspmode = ui->AspMode2_iacom->currentText();
     QString polvacmode = ui->VacMode2_iacom->currentText();
     QString surgeonid = ui->SelectSurgeon->currentText();
 
@@ -1022,7 +1145,7 @@ void doctor::VitSaveBut()
     QString vvacmax = ui->lineEdit_19->text();
     QString vcutmode = ui->CutMode_vitCom->currentText();
     QString vvacmode = ui->VacMode_VitCom->currentText();
-    QString vitaspmax = ui->lineEdit_20->text();
+
 
     // Prepare the SQL query
     QSqlQuery query;
@@ -1172,10 +1295,18 @@ void doctor::on_ScupltBut_phaco_clicked()
 
 int doctor::getvalue(int input)
 {
-    if(input<=60){
+    if (input <= 60) {
         return 60;
-    }else{
-        return ((input-1)/60+1)*60;
+    } else {
+        int remainder = input % 60; // Calculate the remainder when dividing by 60
+
+        if (remainder < 30) {
+            // Round down to the nearest multiple of 60
+            return (input / 60) * 60;
+        } else {
+            // Round up to the next multiple of 60
+            return ((input / 60) + 1) * 60;
+        }
     }
 }
 
@@ -1372,6 +1503,7 @@ emit sendleftfootvalues(ui->LeftFoot->currentText());
     qDebug()<<"footbottom left is"<<b_left;
     emit sendbrightfootvalues(ui->BottomRFoot->currentText());
     qDebug()<<"footbottom right is"<<b_right;
+    this->close();
 }
 
 void doctor::pumpvalue()
@@ -1394,7 +1526,8 @@ void doctor::on_SaveDiaBut_clicked()
         delete msgBox;   // Delete the message box to free memory
 
 });
-  // on_pushButton_clicked();
+   on_pushButton_clicked();
+   this->close();
 }
 
 void doctor::on_savefootpedal_clicked()
