@@ -170,7 +170,6 @@ public:
     QProgressBar *progressBar_21;
     QLineEdit *lineEdit_20;
     QPushButton *DiaBut;
-    QPushButton *savefootpedal;
     QLabel *label;
     QLabel *Select_2;
     QPushButton *pushButton;
@@ -373,10 +372,11 @@ public:
 "    width: 9px; /* Diameter of the circular chunk */\n"
 "    height: 9px; /* Diameter of the circular chunk */\n"
 "    border-radius: 4px; /* Half of the width/height to make it circular */\n"
-"    margin: 2px; /* Space between chunks */\n"
+"    margin: 4px; /* Space between chunks */\n"
 "}\n"
 ""));
         progressBar->setValue(0);
+        progressBar->setTextVisible(false);
         tabWidget->addTab(Diathermy, QString());
         DiaPowMax->raise();
         lineEdit_6->raise();
@@ -521,6 +521,7 @@ public:
 "}\n"
 ""));
         progressBar_5->setValue(0);
+        progressBar_5->setTextVisible(false);
         progressBar_6 = new QProgressBar(tab_6);
         progressBar_6->setObjectName(QString::fromUtf8("progressBar_6"));
         progressBar_6->setGeometry(QRect(50, 190, 701, 41));
@@ -541,6 +542,7 @@ public:
 "}\n"
 ""));
         progressBar_6->setValue(0);
+        progressBar_6->setTextVisible(false);
         progressBar_7 = new QProgressBar(tab_6);
         progressBar_7->setObjectName(QString::fromUtf8("progressBar_7"));
         progressBar_7->setGeometry(QRect(50, 310, 701, 41));
@@ -561,6 +563,7 @@ public:
 "}\n"
 ""));
         progressBar_7->setValue(0);
+        progressBar_7->setTextVisible(false);
         tabWidget_2->addTab(tab_6, QString());
         tab_7 = new QWidget();
         tab_7->setObjectName(QString::fromUtf8("tab_7"));
@@ -679,6 +682,7 @@ public:
 "}\n"
 ""));
         progressBar_8->setValue(0);
+        progressBar_8->setTextVisible(false);
         progressBar_9 = new QProgressBar(tab_7);
         progressBar_9->setObjectName(QString::fromUtf8("progressBar_9"));
         progressBar_9->setGeometry(QRect(50, 190, 701, 41));
@@ -699,6 +703,7 @@ public:
 "}\n"
 ""));
         progressBar_9->setValue(0);
+        progressBar_9->setTextVisible(false);
         progressBar_10 = new QProgressBar(tab_7);
         progressBar_10->setObjectName(QString::fromUtf8("progressBar_10"));
         progressBar_10->setGeometry(QRect(50, 310, 701, 41));
@@ -719,6 +724,7 @@ public:
 "}\n"
 ""));
         progressBar_10->setValue(0);
+        progressBar_10->setTextVisible(false);
         tabWidget_2->addTab(tab_7, QString());
         tab_8 = new QWidget();
         tab_8->setObjectName(QString::fromUtf8("tab_8"));
@@ -840,6 +846,7 @@ public:
 "}\n"
 ""));
         progressBar_11->setValue(0);
+        progressBar_11->setTextVisible(false);
         progressBar_12 = new QProgressBar(tab_8);
         progressBar_12->setObjectName(QString::fromUtf8("progressBar_12"));
         progressBar_12->setGeometry(QRect(50, 190, 701, 41));
@@ -860,6 +867,7 @@ public:
 "}\n"
 ""));
         progressBar_12->setValue(0);
+        progressBar_12->setTextVisible(false);
         progressBar_13 = new QProgressBar(tab_8);
         progressBar_13->setObjectName(QString::fromUtf8("progressBar_13"));
         progressBar_13->setGeometry(QRect(50, 310, 701, 41));
@@ -880,6 +888,7 @@ public:
 "}\n"
 ""));
         progressBar_13->setValue(0);
+        progressBar_13->setTextVisible(false);
         tabWidget_2->addTab(tab_8, QString());
         tab_9 = new QWidget();
         tab_9->setObjectName(QString::fromUtf8("tab_9"));
@@ -1001,6 +1010,7 @@ public:
 "}\n"
 ""));
         progressBar_2->setValue(0);
+        progressBar_2->setTextVisible(false);
         progressBar_3 = new QProgressBar(tab_9);
         progressBar_3->setObjectName(QString::fromUtf8("progressBar_3"));
         progressBar_3->setGeometry(QRect(50, 190, 701, 41));
@@ -1021,6 +1031,7 @@ public:
 "}\n"
 ""));
         progressBar_3->setValue(0);
+        progressBar_3->setTextVisible(false);
         progressBar_4 = new QProgressBar(tab_9);
         progressBar_4->setObjectName(QString::fromUtf8("progressBar_4"));
         progressBar_4->setGeometry(QRect(50, 310, 701, 41));
@@ -1041,6 +1052,7 @@ public:
 "}\n"
 ""));
         progressBar_4->setValue(0);
+        progressBar_4->setTextVisible(false);
         tabWidget_2->addTab(tab_9, QString());
         tabWidget->addTab(tab_2, QString());
         tabWidget_2->raise();
@@ -1182,6 +1194,7 @@ public:
 "}\n"
 ""));
         progressBar_14->setValue(0);
+        progressBar_14->setTextVisible(false);
         progressBar_15 = new QProgressBar(tab_3);
         progressBar_15->setObjectName(QString::fromUtf8("progressBar_15"));
         progressBar_15->setGeometry(QRect(50, 410, 701, 41));
@@ -1202,6 +1215,7 @@ public:
 "}\n"
 ""));
         progressBar_15->setValue(0);
+        progressBar_15->setTextVisible(false);
         progressBar_16 = new QProgressBar(tab_3);
         progressBar_16->setObjectName(QString::fromUtf8("progressBar_16"));
         progressBar_16->setGeometry(QRect(50, 210, 701, 41));
@@ -1222,6 +1236,7 @@ public:
 "}\n"
 ""));
         progressBar_16->setValue(0);
+        progressBar_16->setTextVisible(false);
         progressBar_17 = new QProgressBar(tab_3);
         progressBar_17->setObjectName(QString::fromUtf8("progressBar_17"));
         progressBar_17->setGeometry(QRect(50, 110, 701, 41));
@@ -1242,6 +1257,7 @@ public:
 "}\n"
 ""));
         progressBar_17->setValue(0);
+        progressBar_17->setTextVisible(false);
         tabWidget->addTab(tab_3, QString());
         AspMax_ia->raise();
         VacMax_ia->raise();
@@ -1360,6 +1376,7 @@ public:
 "}\n"
 ""));
         progressBar_19->setValue(0);
+        progressBar_19->setTextVisible(false);
         progressBar_20 = new QProgressBar(tab_4);
         progressBar_20->setObjectName(QString::fromUtf8("progressBar_20"));
         progressBar_20->setGeometry(QRect(60, 540, 701, 41));
@@ -1380,6 +1397,7 @@ public:
 "}\n"
 ""));
         progressBar_20->setValue(0);
+        progressBar_20->setTextVisible(false);
         progressBar_21 = new QProgressBar(tab_4);
         progressBar_21->setObjectName(QString::fromUtf8("progressBar_21"));
         progressBar_21->setGeometry(QRect(70, 120, 701, 41));
@@ -1400,6 +1418,7 @@ public:
 "}\n"
 ""));
         progressBar_21->setValue(0);
+        progressBar_21->setTextVisible(false);
         lineEdit_20 = new QLineEdit(tab_4);
         lineEdit_20->setObjectName(QString::fromUtf8("lineEdit_20"));
         lineEdit_20->setEnabled(true);
@@ -1435,12 +1454,6 @@ public:
 "border:none;\n"
 "font:bold;\n"
 "border:3px solid black;"));
-        savefootpedal = new QPushButton(doctor);
-        savefootpedal->setObjectName(QString::fromUtf8("savefootpedal"));
-        savefootpedal->setGeometry(QRect(120, 670, 111, 41));
-        savefootpedal->setStyleSheet(QString::fromUtf8("font:20pt \"Ubuntu\";\n"
-"background-color: rgb(255,255,255);\n"
-"border-radius:20px;"));
         label = new QLabel(doctor);
         label->setObjectName(QString::fromUtf8("label"));
         label->setGeometry(QRect(470, -10, 871, 51));
@@ -1499,7 +1512,6 @@ public:
         SelectSurgeon->raise();
         tabWidget->raise();
         DiaBut->raise();
-        savefootpedal->raise();
         label->raise();
         Select_2->raise();
         pushButton->raise();
@@ -1704,7 +1716,6 @@ public:
         lineEdit_20->setText(QString());
         tabWidget->setTabText(tabWidget->indexOf(tab_4), QCoreApplication::translate("doctor", "Page", nullptr));
         DiaBut->setText(QCoreApplication::translate("doctor", "DIA", nullptr));
-        savefootpedal->setText(QCoreApplication::translate("doctor", "SAVE", nullptr));
         label->setText(QString());
         Select_2->setText(QCoreApplication::translate("doctor", "Select Pump :", nullptr));
         pushButton->setText(QCoreApplication::translate("doctor", "Load All Surgeons", nullptr));

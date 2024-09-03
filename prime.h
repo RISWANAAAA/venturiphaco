@@ -40,8 +40,6 @@ public slots:
     void timer();
     void primetimer();
     void current(int tab);
-    void update();
-   void hp(int connected);
     void Start_Tune();
 
 private slots:

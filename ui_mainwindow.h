@@ -606,13 +606,13 @@ public:
         CutMode_vit->raise();
         us1vacdow_but->raise();
         us1powup_but->raise();
-        CutMode_vitCom->raise();
         label_23->raise();
         label_8->raise();
         us1flowdown_but->raise();
         lineEdit_56->raise();
         us1flowup_but->raise();
         textEdit_41->raise();
+        CutMode_vitCom->raise();
         tab_34 = new QWidget();
         tab_34->setObjectName(QString::fromUtf8("tab_34"));
         tab_34->setStyleSheet(QString::fromUtf8("\n"
@@ -2384,21 +2384,33 @@ public:
         IA2BUT = new QPushButton(centralwidget);
         IA2BUT->setObjectName(QString::fromUtf8("IA2BUT"));
         IA2BUT->setGeometry(QRect(430, 330, 81, 81));
-        IA2BUT->setStyleSheet(QString::fromUtf8("font:15pt \"Ubuntu\";\n"
+        IA2BUT->setStyleSheet(QString::fromUtf8("QPushButton{font:15pt \"Ubuntu\";\n"
 "image: url(:/images/glass.png);\n"
 "\n"
 "\n"
 "border-radius:40px;\n"
-"border:none;font-weight: bold;border:"));
+"border:none;font-weight: bold;border:\n"
+"}\n"
+"QPushButton:focus {\n"
+"    outline: none;\n"
+"    border: none;\n"
+"}\n"
+""));
         VITRECTOMYBUT = new QPushButton(centralwidget);
         VITRECTOMYBUT->setObjectName(QString::fromUtf8("VITRECTOMYBUT"));
         VITRECTOMYBUT->setGeometry(QRect(480, 230, 81, 81));
-        VITRECTOMYBUT->setStyleSheet(QString::fromUtf8("font:15pt \"Ubuntu\";\n"
+        VITRECTOMYBUT->setStyleSheet(QString::fromUtf8("QPushButton{font:15pt \"Ubuntu\";\n"
 "image: url(:/images/glass.png);\n"
 "\n"
 "\n"
 "border-radius:40px;\n"
-"border:none;font-weight: bold;border:"));
+"border:none;font-weight: bold;border:\n"
+"}\n"
+"QPushButton:focus {\n"
+"    outline: none;\n"
+"    border: none;\n"
+"}\n"
+""));
         label_6 = new QLabel(centralwidget);
         label_6->setObjectName(QString::fromUtf8("label_6"));
         label_6->setGeometry(QRect(540, 270, 61, 91));
@@ -2408,12 +2420,18 @@ public:
         ULTRASONICBUT1 = new QPushButton(centralwidget);
         ULTRASONICBUT1->setObjectName(QString::fromUtf8("ULTRASONICBUT1"));
         ULTRASONICBUT1->setGeometry(QRect(710, 240, 81, 81));
-        ULTRASONICBUT1->setStyleSheet(QString::fromUtf8("font:15pt \"Ubuntu\";\n"
+        ULTRASONICBUT1->setStyleSheet(QString::fromUtf8("QPushButton{font:15pt \"Ubuntu\";\n"
 "image: url(:/images/glass.png);\n"
 "\n"
 "\n"
 "border-radius:40px;\n"
-"border:none;font-weight: bold;border:"));
+"border:none;font-weight: bold;border:\n"
+"}\n"
+"QPushButton:focus {\n"
+"    outline: none;\n"
+"    border: none;\n"
+"}\n"
+""));
         label_3 = new QLabel(centralwidget);
         label_3->setObjectName(QString::fromUtf8("label_3"));
         label_3->setGeometry(QRect(670, 280, 61, 81));
@@ -2423,12 +2441,18 @@ public:
         ULTRASONICBUT3 = new QPushButton(centralwidget);
         ULTRASONICBUT3->setObjectName(QString::fromUtf8("ULTRASONICBUT3"));
         ULTRASONICBUT3->setGeometry(QRect(710, 440, 81, 81));
-        ULTRASONICBUT3->setStyleSheet(QString::fromUtf8("font:15pt \"Ubuntu\";\n"
+        ULTRASONICBUT3->setStyleSheet(QString::fromUtf8("QPushButton{font:15pt \"Ubuntu\";\n"
 "image: url(:/images/glass.png);\n"
 "\n"
 "\n"
 "border-radius:40px;\n"
-"border:none;font-weight: bold;border:"));
+"border:none;font-weight: bold;border:\n"
+"}\n"
+"QPushButton:focus {\n"
+"    outline: none;\n"
+"    border: none;\n"
+"}\n"
+""));
         label_5 = new QLabel(centralwidget);
         label_5->setObjectName(QString::fromUtf8("label_5"));
         label_5->setGeometry(QRect(510, 340, 51, 71));
@@ -2438,21 +2462,33 @@ public:
         IA1BUT = new QPushButton(centralwidget);
         IA1BUT->setObjectName(QString::fromUtf8("IA1BUT"));
         IA1BUT->setGeometry(QRect(470, 440, 81, 81));
-        IA1BUT->setStyleSheet(QString::fromUtf8("font:15pt \"Ubuntu\";\n"
+        IA1BUT->setStyleSheet(QString::fromUtf8("QPushButton{font:15pt \"Ubuntu\";\n"
 "image: url(:/images/glass.png);\n"
 "\n"
 "\n"
 "border-radius:40px;\n"
-"border:none;font-weight: bold;border:"));
+"border:none;font-weight: bold;border:\n"
+"}\n"
+"QPushButton:focus {\n"
+"    outline: none;\n"
+"    border: none;\n"
+"}\n"
+""));
         ULTRASONICBUT2 = new QPushButton(centralwidget);
         ULTRASONICBUT2->setObjectName(QString::fromUtf8("ULTRASONICBUT2"));
         ULTRASONICBUT2->setGeometry(QRect(750, 340, 81, 81));
-        ULTRASONICBUT2->setStyleSheet(QString::fromUtf8("font:15pt \"Ubuntu\";\n"
+        ULTRASONICBUT2->setStyleSheet(QString::fromUtf8("QPushButton{font:15pt \"Ubuntu\";\n"
 "image: url(:/images/glass.png);\n"
 "\n"
 "\n"
 "border-radius:40px;\n"
-"border:none;font-weight: bold;border:"));
+"border:none;font-weight: bold;border:\n"
+"}\n"
+"QPushButton:focus {\n"
+"    outline: none;\n"
+"    border: none;\n"
+"}\n"
+""));
         label_13 = new QLabel(centralwidget);
         label_13->setObjectName(QString::fromUtf8("label_13"));
         label_13->setGeometry(QRect(530, 420, 61, 71));
@@ -2468,21 +2504,33 @@ public:
         ULTRASONICBUT4 = new QPushButton(centralwidget);
         ULTRASONICBUT4->setObjectName(QString::fromUtf8("ULTRASONICBUT4"));
         ULTRASONICBUT4->setGeometry(QRect(600, 490, 81, 81));
-        ULTRASONICBUT4->setStyleSheet(QString::fromUtf8("font:15pt \"Ubuntu\";\n"
+        ULTRASONICBUT4->setStyleSheet(QString::fromUtf8("QPushButton{font:15pt \"Ubuntu\";\n"
 "image: url(:/images/glass.png);\n"
 "\n"
 "\n"
 "border-radius:40px;\n"
-"border:none;font-weight: bold;border:"));
+"border:none;font-weight: bold;border:\n"
+"}\n"
+"QPushButton:focus {\n"
+"    outline: none;\n"
+"    border: none;\n"
+"}\n"
+""));
         DIABUT = new QPushButton(centralwidget);
         DIABUT->setObjectName(QString::fromUtf8("DIABUT"));
         DIABUT->setGeometry(QRect(600, 190, 81, 81));
-        DIABUT->setStyleSheet(QString::fromUtf8("font:15pt \"Ubuntu\";\n"
+        DIABUT->setStyleSheet(QString::fromUtf8("QPushButton{font:15pt \"Ubuntu\";\n"
 "image: url(:/images/glass.png);\n"
 "\n"
 "\n"
 "border-radius:40px;\n"
-"border:none;font-weight: bold;border:"));
+"border:none;font-weight: bold;\n"
+"}\n"
+"QPushButton:focus {\n"
+"    outline: none;\n"
+"    border: none;\n"
+"}\n"
+""));
         label_11 = new QLabel(centralwidget);
         label_11->setObjectName(QString::fromUtf8("label_11"));
         label_11->setGeometry(QRect(620, 260, 41, 51));
@@ -2945,7 +2993,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(5);
+        tabWidget->setCurrentIndex(0);
         tabWidget_2->setCurrentIndex(0);
 
 

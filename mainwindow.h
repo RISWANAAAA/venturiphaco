@@ -22,9 +22,9 @@
 #include <QFileInfo>
 #include<QSqlQuery>
 #include<QSqlRecord>
-
+#include<QMap>
 #define SQLPATH "/home/amt-04/phacohigh.db"
-
+#define PATH "/home/phacohigh.db"
 class settings;
 class prime;
  class footpedal;
@@ -48,10 +48,7 @@ public:
 void push(const QString &surgeonName);
     void startPoint();
     bool eventFilter(QObject* object, QEvent* event);
-   // void push(const QString &surgeonName);
-
     void setRange(QLineEdit* lineEdit, int prevValue, int value, int maxValue);
-
     void click();
     void exportGPIO(int pin);
     void setGPIODirection(const QString &direction,int pin);
@@ -67,17 +64,16 @@ void push(const QString &surgeonName);
     int butname=0;
     int readGPIO(int gpio,int gpio1,int gpio2,int gpio3);
     void moveTab(int usIndex);
-      void moveTab1(int usIndex);
-      void moveTab2(int usIndex);
-      void moveTab3(int usIndex);
-
+    void moveTab1(int usIndex);
+    void moveTab2(int usIndex);
+    void moveTab3(int usIndex);
     struct SystemState {
            bool powerOn;
            bool powerOn1;
            bool powerOn2;
-           bool powerOn3;// Flag to track power state
-           bool powerOn4;// Flag to track power state
-           QString buttonState;    // To track button state
+           bool powerOn3;
+           bool powerOn4;
+           QString buttonState;
            QString button;
            //us2
            QString buttonstate1;
@@ -102,7 +98,7 @@ void push(const QString &surgeonName);
          QString pdmMode;
          QString vacmode;
     };
-      int pull();
+    int pull();
     struct SurgicalData {
         QString comboBoxValue;
         QString combo;
@@ -121,7 +117,6 @@ void push(const QString &surgeonName);
         QString ia1mode, ia2mode;
         QString vitmode, vitvacmode;
     }surgicalData;
-
     int Flow_LUT[42]={95,95,  //0
                     110,110,  //2
                     112,112,  //4
@@ -146,52 +141,46 @@ void push(const QString &surgeonName);
                     };
 void setTuneMode(bool isTuneEnabled);
 void enableButtons(bool powerOn);
-
+   void setLastSelectedValue();
 public slots:
-   void onPdmModeSelected();
-   void onPdmModeSelected1();
-   void onPdmModeSelected2();
-   void onPdmModeSelected3();
-
+   void onComboBoxIndexChanged(int index);
+ void onPdmModeSelected();
+ void onPdmModeSelected1();
+ void onPdmModeSelected2();
+ void onPdmModeSelected3();
  void userMessage(int value, int minValue, int maxValue);
  void updateLineedit(QLineEdit *lineEdit, int prevValue, int value, int maxValue);
  void on_clicked(const QString& digit);
  void on_clickedenter();
-
  void current(int tab);
  void updateline();
  void tabupdate(int index);
-void footpedalcheck();
-
-void updateElapsedTime();
-void updateProgressBar();
-void motoron(QLineEdit *lineEdit);
-void motoroff();
-void motorccwon();
-
-void increasebutton(QLineEdit *increaseline);
-void decreasebutton(QLineEdit *decreaseline);
-void vacbutton(QLineEdit *vacline);
-
-void powervit();
-void powercheck();
-void DIATHERMYBUT();
-void onMainLineEditTextChanged(const QString &dpowmax);
-void movePushButtonTopToBottom();
-void movePushButtonBottomToTop();
-void footreflux();
-void powerdeliverymethod();
-void continousirrigation(int gpioValue);
-void poweronoff(int gpio);
-void poweron();
-//void updateValues(const QString &surgeon, int tabIndex, const QStringList &values);
-void onCutMode_vitComChanged(int index);
-void onCutMode_vitComChanged1(int index);
-void onCutMode_vitComChanged2(int index);
-void onCutMode_vitComChanged3(int index);
-void receivecombo(const QString &text);
-void performpump(const QString &text);
-void receiveValues(
+ void footpedalcheck();
+ void updateElapsedTime();
+ void updateProgressBar();
+ void motoron(QLineEdit *lineEdit);
+ void motoroff();
+ void motorccwon();
+ int increasebutton(int input);
+ int decreasebutton(int  input);
+ void powervit();
+ void powercheck();
+ void DIATHERMYBUT();
+ void onMainLineEditTextChanged(const QString &dpowmax);
+ void movePushButtonTopToBottom();
+ void movePushButtonBottomToTop();
+ void footreflux();
+ void powerdeliverymethod();
+ void continousirrigation(bool on);
+ void poweronoff(int gpio);
+ void poweron();
+ void onCutMode_vitComChanged(int index);
+ void onCutMode_vitComChanged1(int index);
+ void onCutMode_vitComChanged2(int index);
+ void onCutMode_vitComChanged3(int index);
+ void receivecombo(const QString &text);
+ void performpump(const QString &text);
+ void receiveValues(
         const QString &comboBoxValue,
         const QString &combo,
         int dia,
@@ -211,109 +200,105 @@ void receiveValues(
     );
 
 
-//
 private slots:
-// void onComboBoxChanged(int index);
-void label43();
-void sensor2();
-void ULTRASONICBUT1();
+ void label43();
+ void sensor2();
+ void ULTRASONICBUT1();
+ void ULTRASONICBUT2();
 
-void ULTRASONICBUT2();
+ void ULTRASONICBUT4();
 
-void ULTRASONICBUT4();
+ void IRRIGATIONBUT1();
 
-void IRRIGATIONBUT1();
+ void IRRIGATIONBUT2();
 
-void IRRIGATIONBUT2();
+ void VITRECTOMYBUT();
 
-void VITRECTOMYBUT();
+ void diapowup();
 
+ void diapowdown();
 
-void diapowup();
+ void vitcutup();
 
-void diapowdown();
+ void vitcutdown();
 
-void vitcutup();
+ void vitvacup();
 
-void vitcutdown();
+ void vitvacdown();
 
-void vitvacup();
+ void vitflowup();
 
-void vitvacdown();
+ void vitflowdown();
 
-void vitflowup();
+ void ia2vacup();
 
-void vitflowdown();
+ void ia2vacdown();
 
-void ia2vacup();
+ void ia2flowup();
 
-void ia2vacdown();
+ void ia2flowdown();
 
-void ia2flowup();
+ void ia1vacup();
 
-void ia2flowdown();
+ void ia1vacdown();
 
-void ia1vacup();
+ void ia1flowup();
 
-void ia1vacdown();
+ void ia1flowdown();
 
-void ia1flowup();
+ void US1POWUP();
 
-void ia1flowdown();
+ void US1POWDOWN();
 
-void US1POWUP();
+ void US1VACDOWN();
 
-void US1POWDOWN();
+ void US1VACUP();
 
-void US1VACDOWN();
+ void US1FLOWDOWN();
 
-void US1VACUP();
+ void US1FLOWUP();
 
-void US1FLOWDOWN();
+ void us2powup();
 
-void US1FLOWUP();
+ void us2powdown();
 
-void us2powup();
+ void us2vacup();
 
-void us2powdown();
+ void us2vacdown();
 
-void us2vacup();
+ void us2flowup();
 
-void us2vacdown();
+ void us2flowdown();
 
-void us2flowup();
+ void ULTRASONICBUT3();
 
-void us2flowdown();
+ void us3powup();
 
-void ULTRASONICBUT3();
+ void us3powdown();
 
-void us3powup();
+ void us3vacup();
 
-void us3powdown();
+ void us3vacdown();
 
-void us3vacup();
+ void us3flowup();
 
-void us3vacdown();
-
-void us3flowup();
-
-void us3flowdown();
+ void us3flowdown();
 
 void us4powup();
 
-void us4powdown();
+ void us4powdown();
 
-void us4vacup();
+ void us4vacup();
 
-void us4vacdown();
+ void us4vacdown();
 
-void us4flowup();
+ void us4flowup();
 
-void us4flowdown();
+ void us4flowdown();
 
-void SETTINGSBUT();
+ void SETTINGSBUT();
 
-void BACKBUT();
+ void BACKBUT();
 
 
 void us1_linear_nonlinear();
@@ -360,14 +345,11 @@ void coldphaco1up_mode();
 
 void coldphaco1down_mode();
 
-
 void updatehandpieceStatus();
 
 void updatesensor();
 
-
-
-void onUpdateStatusTimeout(); // Slot to handle timer timeout
+void onUpdateStatusTimeout();
 
 void updateTimers();
 
@@ -405,10 +387,7 @@ void updateComboBox3(const QString &text);
 
 void updateComboBox4(const QString &text);
 
-//void onSurgeonChanged();
-
 void updateButtonSelection(int index);
-
 
 void on_CI4_2_clicked();
 
@@ -419,115 +398,106 @@ void onSurgeonSelectionChanged(const QString &surgeonName);
 signals:
     void sensorValueChanged(int value);
      void surgeonSelected(const QString &surgeonName);
+     void left_foot(const QString &value);
+     void right_foot(const QString &value);
+     void bottom_left(const QString &value);
+     void bottom_right(const QString &value);
 
 private:
     Ui::MainWindow *ui;
-    int gpioNumber = 960; // Change this to your actual GPIO number
-    int gpioNumber1=961;
-     QTimer  *statusUpdateTimer;
-       footpedal *foot;
-       doctor *in;
-    int value1=0;
-    int value2=0;
-    int pulse=0;
-    int ocupulse;
-    int ocuburst;
-    int singleburst=0;
-    int multiburst=0;
-    int coldphaco=0;
-    int coldphaco1=0;
-   int previousValue[7];
-    settings *s;
-
-    keypad *key;
-    QMessageBox *message;
-  QTimer timer2;
-    QTimer *timer;
-    footlib *lfoot;
-
-    hwhandler *handler;
-
-   QIntValidator *valid;
-   QMessageBox *messageline;
-    bool flag1=false;
-    bool on;
+int gpioNumber = 960;
+int gpioNumber1=961;
+QTimer  *statusUpdateTimer;
+footpedal *foot;
+doctor *in;
+int value1=0;
+int value2=0;
+int pulse=0;
+int ocupulse;
+int ocuburst;
+int singleburst=0;
+int multiburst=0;
+int coldphaco=0;
+int coldphaco1=0;
+int previousValue[7];
+settings *s;
+keypad *key;
+QMessageBox *message;
+QTimer timer2;
+QTimer *timer;
+footlib *lfoot;
+hwhandler *handler;
+QIntValidator *valid;
+QMessageBox *messageline;
+bool flag1=false;
+bool on;
 int getvalue(int input);
 int currentButtonIndex;
-
-       // QElapsedTimer *timer8;
-      //  Reset *r;
-        qint64 elap=0;
-        QElapsedTimer timer5;
-
-           float effectiveTime ;
-
-             QTime startTime;
-             QTimer *sensortimer;
-             //QTimer updateTimer;
-             QTimer *footime;
-             QTimer *protimer;
-             QTimer *timer43;
-             QTimer *footsensor;
-             QTimer *timermsg;
-             bool cius1;
-             bool cius2;
-             bool cius3;
-             bool cius4;
-             bool civit;
-             bool ci_ia1;
-             bool ci_ia2;
-             bool cidia;
-             bool overallci;
-
-
-             QString us1;
-             QString us2;
-             QString us3;
-             QString us4;
-             QString ia1;
-             QString ia2;
-             QString vit;
-             QString vus1;
-             QString vus2;
-             QString vus3;
-             QString vus4;
-             QString vvit;
-             QTimer *footpedaltimer;
-              int currentProgressBar=1;
-              bool us1powon=false;
-              bool us2powon;
-              bool us3powon;
-              bool us4powon;
-              bool vitpowon;
-              int dir;
-              QTimer *powtimer;
-              QTimer *surtimer;
-              int currentValue;
-              int maxValue;
-              //int lvalue;
-              Vaccum *vac;
-              int roundToNearest60(int value);
-              QElapsedTimer currentTimer;
-              QTimer *updateTimer;
-              qint64 elapsedTimeUS1, elapsedTimeUS2, elapsedTimeUS3, elapsedTimeUS4;
-              int currentButton;
-          void updateLabel();
-          void switchTimer(int button);
-           int counter=0;
+qint64 elap=0;
+QElapsedTimer timer5;
+float effectiveTime ;
+QTime startTime;
+QTimer *sensortimer;
+QTimer *footime;
+QTimer *protimer;
+QTimer *timer43;
+QTimer *footsensor;
+QTimer *timermsg;
+bool cius1;
+bool cius2;
+bool cius3;
+bool cius4;
+bool civit;
+bool ci_ia1;
+bool ci_ia2;
+bool cidia;
+bool overallci;
+QString us1;
+QString us2;
+QString us3;
+QString us4;
+QString ia1;
+QString ia2;
+QString vit;
+QString vus1;
+QString vus2;
+QString vus3;
+QString vus4;
+QString vvit;
+QTimer *footpedaltimer;
+int currentProgressBar=1;
+bool us1powon=false;
+bool us2powon;
+bool us3powon;
+bool us4powon;
+bool vitpowon;
+int dir;
+QTimer *powtimer;
+QTimer *surtimer;
+int currentValue;
+int maxValue;
+Vaccum *vac;
+int roundToNearest60(int value);
+QElapsedTimer currentTimer;
+QTimer *updateTimer;
+qint64 elapsedTimeUS1, elapsedTimeUS2, elapsedTimeUS3, elapsedTimeUS4;
+int currentButton;
+void updateLabel();
+void switchTimer(int button);
+int counter=0;
 bool powerOn1;
 QMap<QString, QMap<int, QStringList>> surgeonData;
 void updateTabsBasedOnComboBox(const QString &text);
 QSqlDatabase db;
-
- void connectToDatabase();
-
- void populateSurgeonList();
- void handleDataSaved();
- //void initializeSurgeonSelection();
- QString getLastUpdatedSurgeon();
-  bool isTuneEnabled;
-  int buttonforgpio;  // Track the current active button
-  QPushButton* buttons[7];  // Array to store the 7 buttons
-    int currentbut;   // Track the current button index
+void connectToDatabase();
+void populateSurgeonList();
+void handleDataSaved();
+QString getLastUpdatedSurgeon();
+bool isTuneEnabled;
+int buttonforgpio;
+QPushButton* buttons[8];
+int currentbut;
+QMap<QLineEdit*, int> lastValidValues;
+QMap<QLineEdit*, int> lastValidValues1;
 };
 #endif // MAINWINDOW_H

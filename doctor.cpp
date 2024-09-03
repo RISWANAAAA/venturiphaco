@@ -9,23 +9,20 @@ doctor::doctor(QWidget *parent) :
     ui(new Ui::doctor)
 {
     ui->setupUi(this);
-    ui->lineEdit_20->setVisible(true);  // Ensure it is visible
-    ui->lineEdit_20->setEnabled(true);  // Ensure it is enabled
-    ui->lineEdit_20->setText("40");
-    ui->lineEdit_20->raise();
-
-    move(0,0);
+   setLastSelectedValue();
+   move(0,0);
     timer=new QTimer;
     messagebox=new QMessageBox(this);
     QString tabStyle = "QTabBar::tab:selected { background-color: black; color: #ffffff; }";
     ui->tabWidget_2->setStyleSheet(tabStyle);
          connect(ui->tabWidget_2, &QTabWidget::currentChanged, this, &doctor::clickedtab);
           clickedtab(ui->tabWidget_2->currentIndex());
+          connect(ui->SelectSurgeon, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &doctor::onComboBoxIndexChanged);
 
-
+connect(ui->SelectSurgeon,&QComboBox::currentTextChanged,this,&doctor::onSurgeonSelectionChanged);
     message=new QMessageBox(this);
     QSqlDatabase mydb = QSqlDatabase::addDatabase("QSQLITE");
-       mydb.setDatabaseName(PATH1);
+       mydb.setDatabaseName(PATH);
        mydb.open();
     surgeonid=ui->SelectSurgeon->currentText();
 
@@ -38,13 +35,10 @@ doctor::doctor(QWidget *parent) :
                         QString tabStyle1 = "QTabBar::tab:selected { background-color: black; color: #ffffff; }";
                          ui-> tabWidget->setStyleSheet(tabStyle1);
 
-    //p=new prime;
-    //p=new prime;
     key=new keypad;
     connect(key,&keypad::textsignal,this,&doctor::on_clicked);
     connect(key,&keypad::entersignal,this,&doctor::on_clickedenter);
-    //connect(ui->pushButton,&QPushButton::clicked,this,&doctor::savesettings);
-     //connect(ui->SelectSurgeon, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &doctor::current);
+
     connect(ui->comboBox,&QComboBox::currentTextChanged, this, &doctor::pumpvalue);
      ui->lineEdit_6->setText("100");
   ui->lineEdit_2->setText("40");
@@ -56,10 +50,6 @@ doctor::doctor(QWidget *parent) :
   ui->lineEdit_12->setText("40");
   ui->lineEdit->setText("100");
   ui->lineEdit_19->setText("500");
-
-  ui->lineEdit_2->setText("22");
-  ui->lineEdit_3->setText("200");
-  ui->lineEdit_4->setText("60");
 
   // Set default values to UI elements
   ui->lineEdit_8->setText("22");
@@ -144,7 +134,7 @@ doctor::doctor(QWidget *parent) :
 
     connect(ui->tabWidget, &QTabWidget::currentChanged, this, &doctor::click);
      click(ui->tabWidget->currentIndex());
-
+     onSurgeonSelectionChanged(ui->SelectSurgeon->currentText());
 }
 
 doctor::~doctor()
@@ -154,16 +144,6 @@ doctor::~doctor()
 
 void doctor::userMessage(int value, int minValue, int maxValue)
 {
-
-        QString msg( "Value must be between " + QString::number(minValue) + " and " + QString::number(maxValue));
-    if(value>=maxValue){
-        message->setText(msg);
-        message->show();
-        timer->start(1000);
-
-
-    }
-
 }
 
 bool doctor::eventFilter(QObject *object, QEvent *event)
@@ -515,15 +495,11 @@ void doctor::on_clicked(const QString& digit)
         int value = (ui->lineEdit_6->text()+digit).toInt();
 if(value ==0){
     ui->lineEdit_6->setText(QString::number(5));
-    ui->progressBar->setValue(5);
+
     return;
 }
         setRange(ui->lineEdit_6, prevValue, value, 100);
         ui->progressBar->setValue(value);
-       // increasebutton(ui->lineEdit_6);
-
-
-
     }
     //phaco
      if(ui->lineEdit_2->focusWidget()) {
@@ -537,8 +513,8 @@ if(value ==0){
             return;
         }
         setRange(ui->lineEdit_2, prevValue, value1, 40);
-
         ui->progressBar_5->setValue(value1);
+
     }
     if(ui->lineEdit_3->focusWidget()) {
         ui->lineEdit_2->clearFocus();
@@ -551,8 +527,9 @@ if(value ==0){
             return;
         }
         setRange(ui->lineEdit_3, prevValue, value2, 500);
-
         ui->progressBar_6->setValue(value2);
+
+
     }
      if(ui->lineEdit_4->focusWidget()) {
         ui->lineEdit_2->clearFocus();
@@ -565,8 +542,9 @@ if(value ==0){
             return;
         }
         setRange(ui->lineEdit_4, prevValue, value3, 100);
-
         ui->progressBar_7->setValue(value3);
+
+
     }
      //quad
      if(ui->lineEdit_8->focusWidget()) {
@@ -577,13 +555,12 @@ if(value ==0){
         int value1 = (ui->lineEdit_8->text()+digit).toInt();
         if(value1 == 0){
             ui->lineEdit_8->setText(QString::number(2));
-            ui->progressBar_8->setValue(5);
             return;
 
         }
         setRange(ui->lineEdit_8, prevValue, value1, 40);
-
         ui->progressBar_8->setValue(value1);
+
     }
     if(ui->lineEdit_10->focusWidget()) {
         ui->lineEdit_9->clearFocus();
@@ -596,8 +573,9 @@ if(value ==0){
             return;
         }
         setRange(ui->lineEdit_10, prevValue, value2, 100);
+        ui->progressBar_9->setValue(value2);
 
-        ui->progressBar_10->setValue(value2);
+
     }
      if(ui->lineEdit_9->focusWidget()) {
         ui->lineEdit_10->clearFocus();
@@ -610,8 +588,9 @@ if(value ==0){
             return;
         }
         setRange(ui->lineEdit_9, prevValue, value3, 500);
+          ui->progressBar_10->setValue(value3);
 
-        ui->progressBar_9->setValue(value3);
+
     }
      //chop
 
@@ -626,8 +605,8 @@ if(value ==0){
             return;
         }
         setRange(ui->lineEdit_13, prevValue, value1, 40);
+          ui->progressBar_11->setValue(value1);
 
-        ui->progressBar_11->setValue(value1);
     }
     if(ui->lineEdit_14->focusWidget()) {
         ui->lineEdit_13->clearFocus();
@@ -640,8 +619,8 @@ if(value ==0){
             return;
         }
         setRange(ui->lineEdit_14, prevValue, value2, 500);
+          ui->progressBar_12->setValue(value2);
 
-        ui->progressBar_12->setValue(value2);
     }
      if(ui->lineEdit_15->focusWidget()) {
         ui->lineEdit_13->clearFocus();
@@ -654,8 +633,8 @@ if(value ==0){
             return;
         }
         setRange(ui->lineEdit_15, prevValue, value3, 100);
+          ui->progressBar_13->setValue(value3);
 
-        ui->progressBar_13->setValue(value3);
     }
      //sculpt
      if(ui->lineEdit_16->focusWidget()) {
@@ -669,8 +648,8 @@ if(value ==0){
             return;
         }
         setRange(ui->lineEdit_16, prevValue, value1, 40);
+          ui->progressBar_2->setValue(value1);
 
-        ui->progressBar_2->setValue(value1);
     }
     if(ui->lineEdit_18->focusWidget()) {
         ui->lineEdit_16->clearFocus();
@@ -683,8 +662,7 @@ if(value ==0){
             return;
         }
         setRange(ui->lineEdit_18, prevValue, value2, 100);
-
-        ui->progressBar_4->setValue(value2);
+  ui->progressBar_3->setValue(value2);
     }
      if(ui->lineEdit_17->focusWidget()) {
         ui->lineEdit_16->clearFocus();
@@ -697,8 +675,7 @@ if(value ==0){
             return;
         }
         setRange(ui->lineEdit_17, prevValue, value3, 500);
-
-        ui->progressBar_3->setValue(value3);
+  ui->progressBar_4->setValue(value3);
 
       }
 
@@ -718,7 +695,8 @@ if(value ==0){
         }
         setRange(ui->lineEdit_5, prevValue, value4, 40);
 
-        ui->progressBar_17->setValue(value4);
+
+
     }
    if(ui->lineEdit_7->focusWidget()) {
         ui->lineEdit_5->clearFocus();
@@ -733,7 +711,7 @@ if(value ==0){
         }
         setRange(ui->lineEdit_7, prevValue, value5, 500);
 
-        ui->progressBar_16->setValue(value5);
+
     }
      if(ui->lineEdit_12->focusWidget()) {
         ui->lineEdit_5->clearFocus();
@@ -748,7 +726,6 @@ if(value ==0){
         }
         setRange(ui->lineEdit_12, prevValue, value6, 40);
 
-        ui->progressBar_15->setValue(value6);
     }
     if(ui->lineEdit_11->focusWidget()) {
         ui->lineEdit_7->clearFocus();
@@ -762,9 +739,7 @@ if(value ==0){
             return;
         }
         setRange(ui->lineEdit_11, prevValue, value7, 500);
-        //userMessage(value,5,500);
-       // vacbutton(ui->lineEdit_11);
-        ui->progressBar_14->setValue(value7);
+
     }
     //vitrectomy
     if(ui->lineEdit->focusWidget()) {
@@ -779,9 +754,7 @@ if(value ==0){
             return;
         }
         setRange(ui->lineEdit, prevValue, value8, 960);
-        ui->progressBar_21->setValue(value8);
-        //userMessage(value,60,960);
-        //powervit();
+
     }
      if(ui->lineEdit_19->focusWidget()) {
         ui->lineEdit->clearFocus();
@@ -794,7 +767,7 @@ if(value ==0){
             return;
         }
         setRange(ui->lineEdit_19, prevValue, value9, 500);
-        ui->progressBar_19->setValue(value9);
+
     }
     if(ui->lineEdit_20->focusWidget()) {
         ui->lineEdit->clearFocus();
@@ -808,7 +781,7 @@ if(value ==0){
         }
 
         setRange(ui->lineEdit_20, prevValue, value, 40);
-        ui->progressBar_20->setValue(value);
+
 
     }
 }
@@ -835,7 +808,7 @@ void doctor::on_clickedenter()
     QList<QLineEdit*> lineEdits = {
         ui->lineEdit_3, ui->lineEdit_4, ui->lineEdit_10, ui->lineEdit_9,
         ui->lineEdit_14, ui->lineEdit_15, ui->lineEdit_17, ui->lineEdit_18,
-        ui->lineEdit_11, ui->lineEdit_7, ui->lineEdit_19
+        ui->lineEdit_11, ui->lineEdit_7, ui->lineEdit_19,ui->lineEdit_6
     };
 
     for (QLineEdit* lineEdit : lineEdits) {
@@ -908,124 +881,27 @@ int doctor::decreasebutton(int input)
 
 void doctor::currentcombobox2(const QString &text)
 {
-    QString right = text;
-       QString surgeonid = ui->SelectSurgeon->currentText();
-       QSqlDatabase mydb = QSqlDatabase::addDatabase("QSQLITE");
-       mydb.setDatabaseName(PATH1);
-       if (!mydb.open()) {
-           qDebug() << "Error: Unable to open database";
-           return;
-       }
-
-       QSqlQuery query;
-       query.prepare("UPDATE phacohigh SET footright = :right WHERE surgeon = :surgeon");
-       query.bindValue(":right", right);
-       query.bindValue(":surgeon", surgeonid);
-
-       if (!query.exec()) {
-         //  qDebug() << "Error: Unable to update database -" << query.lastError();
-           return;
-       }else{
-           qDebug()<<"saved successfully";
-           emit rightfoot(right);
-
-       }
-
-       mydb.close();
-       qDebug() << "RightFoot value updated:" << right;
 }
 
 void doctor::currentcombobox3(const QString &text)
 {
-    QString bleft = text;
-        QString surgeonid = ui->SelectSurgeon->currentText();
-        QSqlDatabase mydb = QSqlDatabase::addDatabase("QSQLITE");
-        mydb.setDatabaseName(PATH1);
-        if (!mydb.open()) {
-            qDebug() << "Error: Unable to open database";
-            return;
-        }
 
-        QSqlQuery query;
-        query.prepare("UPDATE phacohigh SET footbleft = :bleft WHERE surgeon = :surgeon");
-        query.bindValue(":bleft", bleft);
-        query.bindValue(":surgeon", surgeonid);
-
-        if (!query.exec()) {
-          //  qDebug() << "Error: Unable to update database -" << query.lastError();
-            return;
-        }else{
-            qDebug()<<"saved";
-            emit bottomleft(bleft);
-
-        }
-
-        mydb.close();
-        qDebug() << "BottomLFoot value updated:" << bleft;
 }
 
 void doctor::currentcombobox4(const QString &text)
 {
-    QString bright = text;
-        QString surgeonid = ui->SelectSurgeon->currentText();
-        QSqlDatabase mydb = QSqlDatabase::addDatabase("QSQLITE");
-        mydb.setDatabaseName(PATH1);
-        if (!mydb.open()) {
-            qDebug() << "Error: Unable to open database";
-            return;
-        }
 
-        QSqlQuery query;
-        query.prepare("UPDATE phacohigh SET footbright = :bright WHERE surgeon = :surgeon");
-        query.bindValue(":bright", bright);
-        query.bindValue(":surgeon", surgeonid);
-
-        if (!query.exec()) {
-           // qDebug() << "Error: Unable to update database -" << query.lastError();
-            return;
-        }else{
-            qDebug()<<"saved";
-            emit bottomright(bright);
-        }
-
-        mydb.close();
-        qDebug() << "BottomRFoot value updated:" << bright;
 }
 
 
 void doctor::currentcombobox1(const QString &text)
 {
-    QString left = text;
-       QString surgeonid = ui->SelectSurgeon->currentText();
-       QSqlDatabase mydb = QSqlDatabase::addDatabase("QSQLITE");
-       mydb.setDatabaseName(PATH1);
-       if (!mydb.open()) {
-           qDebug() << "Error: Unable to open database";
-           return;
-       }
-
-       QSqlQuery query;
-       query.prepare("UPDATE phacohigh SET footleft = :left WHERE surgeon = :surgeon");
-       query.bindValue(":left", left);
-       query.bindValue(":surgeon", surgeonid);
-
-       if (!query.exec()) {
-           //qDebug() << "Error: Unable to update database -" << query.lastError();
-           return;
-       }else{
-           qDebug()<<"saved successfully";
-           emit leftfoot(left);
-       }
-
-       mydb.close();
-       qDebug() << "LeftFoot value updated:" << left;
 }
 
 
 void doctor::DiathermyBut()
 {
-    int powmax = ui->lineEdit_6->text().toInt(); // Get power max value from lineEdit
-    QString surgeonid = ui->SelectSurgeon->currentText(); // Get selected surgeon
+
     ui->tabWidget->setCurrentIndex(0);
 }
 
@@ -1049,10 +925,7 @@ void doctor::VitrectomyBut()
 }
 void doctor::savesettings()
 {
-    emit currentcombobox1(ui->LeftFoot->currentText());
-    emit currentcombobox2(ui->RightFoot->currentText());
-    emit currentcombobox3(ui->BottomLFoot->currentText());
-    emit currentcombobox4(ui->BottomRFoot->currentText());
+
 
 }
 void doctor::BackBut()
@@ -1065,109 +938,15 @@ void doctor::PhacoSaveBut()
 }
 
 
-
 void doctor::IASaveBut()
 {
-    // Open a SQLite database connection
-    QSqlDatabase mydb = QSqlDatabase::addDatabase("QSQLITE");
-    mydb.setDatabaseName(PATH1); // Use the correct path for your database
 
-    if (!mydb.open()) {
-        qDebug() << "Error: Unable to open database";
-        QMessageBox::warning(nullptr, "Error", "Unable to open database");
-        return;
-    }
-
-    // Retrieve input values from the UI
-    QString ia1aspmax = ui->lineEdit_5->text();
-    QString ia1vacmax = ui->lineEdit_7->text();
-    QString ia2aspmax = ui->lineEdit_12->text();
-    QString ia2vacmax = ui->lineEdit_11->text();
-    //QString coraspmode = ui->AspMode_iacom->currentText();
-    QString corvacmode = ui->VacMode1_iacom->currentText();
-    //QString polaspmode = ui->AspMode2_iacom->currentText();
-    QString polvacmode = ui->VacMode2_iacom->currentText();
-    QString surgeonid = ui->SelectSurgeon->currentText();
-
-    // Prepare and execute the first query
-//    QSqlQuery query;
-//    query.prepare("UPDATE phacohigh SET ia1aspmax = :ia1aspmax, ia1vacmax = :ia1vacmax, ia2aspmax = :ia2aspmax, ia2vacmax = :ia2vacmax WHERE surgeon = :surgeonid");
-//    query.bindValue(":ia1aspmax", ia1aspmax);
-//    query.bindValue(":ia1vacmax", ia1vacmax);
-//    query.bindValue(":ia2aspmax", ia2aspmax);
-//    query.bindValue(":ia2vacmax", ia2vacmax);
-//    query.bindValue(":surgeonid", surgeonid);
-
-//    if (!query.exec()) {
-//        qDebug() << "Error: Unable to update phacohigh (aspiration/vacuum) -" << query.lastError().text();
-//        QMessageBox::warning(nullptr, "Error", "Failed to save aspiration and vacuum data");
-//        mydb.close();
-//        return;
-//    }
-
-    // Prepare and execute the second query
-    QSqlQuery query2;
-//    query2.prepare("UPDATE phacohigh SET cortexaspmode = :coraspmode, cortextvacmode = :corvacmode, polishaspmode = :polaspmode, polishvacmode = :polvacmode WHERE surgeon = :surgeonid");
-//    query2.bindValue(":coraspmode", coraspmode);
-//    query2.bindValue(":corvacmode", corvacmode);
-//    query2.bindValue(":polaspmode", polaspmode);
-//    query2.bindValue(":polvacmode", polvacmode);
-//    query2.bindValue(":surgeonid", surgeonid);
-
-    if (!query2.exec()) {
-        qDebug() << "Error: Unable to update phacohigh (modes) -" << query2.lastError().text();
-        QMessageBox::warning(nullptr, "Error", "Failed to save mode data");
-        mydb.close();
-        return;
-    }
-
-    // Notify the user of a successful save
-    QMessageBox::information(nullptr, "Info", "Saved Successfully");
-    mydb.close();
 }
 
 
 void doctor::VitSaveBut()
 {
-    // Open a SQLite database connection
-    QSqlDatabase mydb = QSqlDatabase::addDatabase("QSQLITE");
-    mydb.setDatabaseName(PATH1); // Use the correct path for your database
 
-    if (!mydb.open()) {
-        qDebug() << "Error: Unable to open database -" << mydb.lastError().text();
-        QMessageBox::warning(nullptr, "Error", "Unable to open database");
-        return;
-    }
-
-    // Retrieve input values from the UI
-    QString surgeonid = ui->SelectSurgeon->currentText();
-    QString vcutmax = ui->lineEdit->text();
-    QString vvacmax = ui->lineEdit_19->text();
-    QString vcutmode = ui->CutMode_vitCom->currentText();
-    QString vvacmode = ui->VacMode_VitCom->currentText();
-
-
-    // Prepare the SQL query
-    QSqlQuery query;
-//    query.prepare("UPDATE phacohigh SET vitcutmax = :vcutmax, vitvacmax = :vvacmax, vitcutmode = :vcutmode, vitvacmode = :vvacmode, vitaspmax = :vitaspmax WHERE surgeon = :surgeonid");
-//    query.bindValue(":vcutmax", vcutmax);
-//    query.bindValue(":vvacmax", vvacmax);
-//    query.bindValue(":vcutmode", vcutmode);
-//    query.bindValue(":vvacmode", vvacmode);
-//    query.bindValue(":vitaspmax", vitaspmax);
-//    query.bindValue(":surgeonid", surgeonid);
-
-    // Execute the query and handle errors
-    if (!query.exec()) {
-        qDebug() << "Error: Unable to update data -" << query.lastError().text();
-        QMessageBox::warning(nullptr, "Error", "Failed to save vitreous data");
-        mydb.close(); // Ensure the database is closed before returning
-        return;
-    }
-
-    // Notify the user of a successful save
-    QMessageBox::information(nullptr, "Info", "Saved Successfully");
-    mydb.close();
 }
 
 
@@ -1361,7 +1140,7 @@ QString b_right=ui->BottomRFoot->currentText();
 
     // Open database connection with a unique name
     QSqlDatabase mydb = QSqlDatabase::addDatabase("QSQLITE", "unique_connection_name");
-    mydb.setDatabaseName(PATH1);
+    mydb.setDatabaseName(PATH);
 
     // Check if the QSQLITE driver is available
     QStringList drivers = QSqlDatabase::drivers();
@@ -1373,7 +1152,7 @@ QString b_right=ui->BottomRFoot->currentText();
     }
 
     if (!mydb.open()) {
-        qDebug() << "Error: Unable to open database with path:" << PATH1;
+        qDebug() << "Error: Unable to open database with path:" << PATH;
         return;
     }
 
@@ -1529,8 +1308,282 @@ void doctor::on_SaveDiaBut_clicked()
    on_pushButton_clicked();
    this->close();
 }
-
-void doctor::on_savefootpedal_clicked()
+void doctor::handleDataSaved()
 {
 
+}
+void doctor::onComboBoxIndexChanged(int index)
+{
+    QSqlDatabase db = QSqlDatabase::database();  // Retrieve existing connection
+
+    if (!db.isValid()) {
+        db = QSqlDatabase::addDatabase("QSQLITE");
+        db.setDatabaseName(PATH);
+
+        if (!db.open()) {
+            qDebug() << "Error: connection with database failed:";
+            return;
+        }
+    }
+
+    QSqlQuery query(db);
+
+    // Step 1: Update the last selected index
+    query.prepare("UPDATE phacohigh SET lastupdate = :index");
+    query.bindValue(":index", index);
+    //query.bindValue(":id", 1); // Replace 1 with the actual identifier value if needed
+
+    if (!query.exec()) {
+        qDebug() << "Error updating last selected index:";
+        return;
+    } else {
+        qDebug() << "Last selected index updated to" << index;
+    }
+
+
+    db.close();
+    QSqlDatabase::removeDatabase(QSqlDatabase::defaultConnection);
+}
+void doctor::setLastSelectedValue()
+{
+    // Check if the database connection is already available
+    QSqlDatabase db = QSqlDatabase::database();  // Retrieve existing connection, if any
+
+    if (!db.isValid()) {
+        db = QSqlDatabase::addDatabase("QSQLITE");
+        db.setDatabaseName(PATH);
+
+        if (!db.open()) {
+            qDebug() << "Error: connection with database failed:";
+            return;
+        }
+    }
+
+    // Prepare and execute the query
+    QSqlQuery query(db);
+    query.prepare("SELECT lastupdate FROM phacohigh LIMIT 1");
+
+    if (!query.exec()) {
+        qDebug() << "Error retrieving last index:";
+        db.close();
+        QSqlDatabase::removeDatabase(QSqlDatabase::defaultConnection);
+        return;
+    }
+
+    // Check if we got a result
+    if (query.next()) {
+        int lastIndex = query.value(0).toInt();
+        ui->SelectSurgeon->setCurrentIndex(lastIndex);
+
+        qDebug() << "Last selected index set to" << lastIndex;
+    } else {
+        qDebug() << "No index found in the database. Verify the data in the table.";
+    }
+
+    db.close();
+    QSqlDatabase::removeDatabase(QSqlDatabase::defaultConnection);
+}
+
+
+
+
+
+
+void doctor::connectToDatabase()
+{
+
+
+
+
+}
+void doctor::populateSurgeonList()
+{
+
+}
+
+void doctor::onSurgeonSelectionChanged(const QString &surgeonName)
+{
+
+    qDebug() << "Attempting to fetch data for surgeon:" << surgeonName;
+
+    // Check and display available drivers
+    qDebug() << "Available SQL drivers:" << QSqlDatabase::drivers();
+
+    if (!db.isValid()) {
+        db = QSqlDatabase::addDatabase("QSQLITE");
+        db.setDatabaseName(PATH); // Ensure PATH is correctly set
+    }
+
+    if (!db.isOpen()) {
+        if (!db.open()) {
+            qDebug() << "Failed to open database. Error:" << db.lastError().text();
+            return;
+        } else {
+            qDebug() << "Database connection opened successfully.";
+        }
+    } else {
+        qDebug() << "Database is already open.";
+    }
+
+    // Prepare a single query to fetch all required data
+    QSqlQuery query(db);
+    query.prepare(
+          "SELECT diapowmax, pump, Epinaspmax, Epinvacmax, Epinpowmax, "
+          "quadpowmax, quadvacmax, quadaspmax, Quadvacmode, Quadpowermethod, Quadpowmode, "
+          "caspmax, cvacmax, cpowmax, Chopvacmode, Choppowermethod, Choppowmode, "
+          "saspmax, svacmax, spowmax, Sculptvacmode, Sculptpowermethod, Sculptpowmode, "
+          "cortexaspmode, cortexvacmode, polishaspmode, polishvacmode, "
+          "ia1aspmax, ia1vacmax, ia2aspmax, ia2vacmax, "
+          "vitcutmax, vitvacmax, vitaspmax, vitcutmode, vitvacmode, "
+          "Epinpowermethod, Epinpowmode, Epinvacmode, "
+          "footleft, footright, footbottomleft, footbottomright "
+          "FROM phacohigh "
+          "WHERE surgeon = :surgeon"
+      );
+    query.bindValue(":surgeon", surgeonName);
+
+    // Execute the query
+    if (!query.exec()) {
+        qDebug() << "Failed to execute query. Error:" << query.lastError().text();
+        return;
+    }
+
+    // Check if data is available and update the UI
+    if (query.next()) {
+        // Retrieve the values from the query result
+        int phacoPowerMax = query.value("diapowmax").toInt();
+        ui->progressBar->setValue(phacoPowerMax);
+        QString pump = query.value("pump").toString();
+
+        // US1 (Epinucleus) parameters
+        int us1power = query.value("Epinpowmax").toInt();
+        int us1vacmax = query.value("Epinvacmax").toInt();
+        int us1flowmax = query.value("Epinaspmax").toInt();
+        QString us1mode = query.value("Epinpowmode").toString();
+        QString us1vacmode = query.value("Epinvacmode").toString();
+        QString us1powermethod = query.value("Epinpowermethod").toString();
+        ui->progressBar_5->setValue(us1flowmax);
+        ui->progressBar_6->setValue(us1vacmax);
+        ui->progressBar_7->setValue(us1power);
+        // US2 (Quadrant) parameters
+        int us2power = query.value("quadpowmax").toInt();
+        int us2vacmax = query.value("quadvacmax").toInt();
+        int us2aspmax = query.value("quadaspmax").toInt();
+        QString us2mode = query.value("Quadpowmode").toString();
+        QString us2vacmode = query.value("Quadvacmode").toString();
+        QString us2powermethod = query.value("Quadpowermethod").toString();
+        ui->progressBar_8->setValue(us2aspmax);
+        ui->progressBar_9->setValue(us2vacmax);
+        ui->progressBar_10->setValue(us2power);
+        // US3 (Chop) parameters
+        int us3power = query.value("cpowmax").toInt();
+        int us3vacmax = query.value("cvacmax").toInt();
+        int us3aspmax = query.value("caspmax").toInt();
+        QString us3mode = query.value("Choppowmode").toString();
+        QString us3vacmode = query.value("Chopvacmode").toString();
+        QString us3powermethod = query.value("Choppowermethod").toString();
+        ui->progressBar_11->setValue(us3aspmax);
+        ui->progressBar_12->setValue(us3vacmax);
+        ui->progressBar_13->setValue(us3power);
+        // US4 (Sculpt) parameters
+        int us4power = query.value("spowmax").toInt();
+        int us4vacmax = query.value("svacmax").toInt();
+        int us4aspmax = query.value("saspmax").toInt();
+        QString us4mode = query.value("Sculptpowmode").toString();
+        QString us4vacmode = query.value("Sculptvacmode").toString();
+        QString us4powermethod = query.value("Sculptpowermethod").toString();
+        ui->progressBar_2->setValue(us4aspmax);
+        ui->progressBar_3->setValue(us4vacmax);
+        ui->progressBar_4->setValue(us4power);
+        // IA (Irrigation/Aspiration) parameters
+        int ia1vacmax = query.value("ia1vacmax").toInt();
+        int ia1aspmax = query.value("ia1aspmax").toInt();
+        int ia2vacmax = query.value("ia2vacmax").toInt();
+        int ia2aspmax = query.value("ia2aspmax").toInt();
+        QString ia1mode = query.value("cortexvacmode").toString();
+        QString ia2mode = query.value("polishvacmode").toString();
+        ui->progressBar_14->setValue(ia1vacmax);
+        ui->progressBar_15->setValue(ia1aspmax);
+        ui->progressBar_16->setValue(ia2aspmax);
+        ui->progressBar_17->setValue(ia2vacmax);
+        // Vitrectomy parameters
+        int vitcutmax = query.value("vitcutmax").toInt();
+        int vitvacmax = query.value("vitvacmax").toInt();
+        int vitaspmax = query.value("vitaspmax").toInt();
+        QString vitcutmode = query.value("vitcutmode").toString();
+        QString vitvacmode = query.value("vitvacmode").toString();
+        ui->progressBar_19->setValue(vitvacmax);
+        ui->progressBar_20->setValue(vitaspmax);
+        ui->progressBar_21->setValue(vitcutmax);
+        // Update UI with foot pedal data
+
+            ui->LeftFoot->setCurrentText(query.value("footleft").toString());
+            ui->RightFoot->setCurrentText(query.value("footright").toString());
+            ui->BottomLFoot->setCurrentText(query.value("footbottomleft").toString());
+            ui->BottomRFoot->setCurrentText(query.value("footbottomright").toString());
+
+        // Debugging output to verify fetched values
+        qDebug() << "Pump value retrieved:" << pump;
+        qDebug() << "US1 Epinucleus - Power:" << us1power << "Vacuum:" << us1vacmax << "Flow:" << us1flowmax;
+        qDebug() << "US2 Quadrant - Power:" << us2power << "Vacuum:" << us2vacmax << "Aspiration:" << us2aspmax;
+        qDebug() << "US3 Chop - Power:" << us3power << "Vacuum:" << us3vacmax << "Aspiration:" << us3aspmax;
+        qDebug() << "US4 Sculpt - Power:" << us4power << "Vacuum:" << us4vacmax << "Aspiration:" << us4aspmax;
+
+        // Update UI components with the retrieved values
+        ui->lineEdit_6->setText(QString::number(phacoPowerMax));
+       ui->comboBox->setCurrentText(pump);
+        // Update US1 UI components
+        ui->lineEdit_4->setText(QString::number(us1power));  // Power
+        ui->lineEdit_3->setText(QString::number(us1vacmax)); // Vacuum
+        ui->lineEdit_2->setText(QString::number(us1flowmax)); // Flow
+        ui->PowMode_phaco->setText(us1mode);
+        ui->VacMode_vit->setText(us1vacmode);
+        ui->PowMethodCom_phaco->setCurrentText(us1powermethod);
+
+        // Update US2 UI components
+        ui->lineEdit_10->setText(QString::number(us2power)); // Power
+        ui->lineEdit_9->setText(QString::number(us2vacmax)); // Vacuum
+        ui->lineEdit_8->setText(QString::number(us2aspmax)); // Aspiration
+        ui->PowMode_phaco_2->setText(us2mode);
+        ui->VacMode_phaco_2->setText(us2vacmode);
+        ui->PowMethodCom_phaco_2->setCurrentText(us2powermethod);
+
+        // Update US3 UI components
+        ui->lineEdit_15->setText(QString::number(us3power)); // Power
+        ui->lineEdit_14->setText(QString::number(us3vacmax)); // Vacuum
+        ui->lineEdit_13->setText(QString::number(us3aspmax)); // Aspiration
+        ui->PowMode_phaco_3->setText(us3mode);
+        ui->VacMode_phaco_3->setText(us3vacmode);
+        ui->PowMethodCom_phaco_3->setCurrentText(us3powermethod);
+
+        // Update US4 UI components
+        ui->lineEdit_16->setText(QString::number(us4power)); // Power
+        ui->lineEdit_17->setText(QString::number(us4vacmax)); // Vacuum
+        ui->lineEdit_18->setText(QString::number(us4aspmax)); // Aspiration
+        ui->PowMode_phaco_4->setText(us4mode);   // Changed from us1mode to us4mode
+        ui->VacMode_phaco_4->setText(us4vacmode);   // Changed from us1vacmode to us4vacmode
+        ui->PowMethodCom_phaco_4->setCurrentText(us4powermethod);
+
+        // Update IA1 and IA2 UI components
+        ui->lineEdit_7->setText(QString::number(ia1vacmax));
+        ui->lineEdit_5->setText(QString::number(ia1aspmax));
+        ui->lineEdit_11->setText(QString::number(ia2vacmax));
+        ui->lineEdit_12->setText(QString::number(ia2aspmax));
+        ui->VacMode1_iacom->setCurrentText(ia1mode);
+        ui->VacMode2_iacom->setCurrentText(ia2mode);
+
+        // Update Vitrectomy UI components
+        ui->lineEdit->setText(QString::number(vitcutmax));
+        ui->lineEdit_20->setText(QString::number(vitaspmax));
+        ui->lineEdit_19->setText(QString::number(vitvacmax));
+        ui->CutMode_vitCom->setCurrentText(vitcutmode);
+        ui->VacMode_VitCom->setCurrentText(vitvacmode);
+         emit leftfoot(ui->LeftFoot->currentText());
+        emit rightfoot(ui->RightFoot->currentText());
+        emit bottomleft(ui->BottomLFoot->currentText());
+        emit bottomright(ui->BottomRFoot->currentText());
+
+    } else {
+        qDebug() << "No data found for surgeon:" << surgeonName;
+    }
 }

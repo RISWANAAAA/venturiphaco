@@ -189,8 +189,14 @@ QPushButton:focus {
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">font: 75 20pt &quot;Ubuntu Mono&quot;;
+      <string notr="true">QCheckBox::indicator {
+    width: 30px;
+    height: 30px;
+}
+QCheckBox {
+    font-size: 30px;
 
+}
 </string>
      </property>
      <property name="text">
@@ -207,8 +213,14 @@ QPushButton:focus {
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">font: 75 20pt &quot;Ubuntu Mono&quot;;
+      <string notr="true">QCheckBox::indicator {
+    width: 30px;
+    height: 30px;
+}
+QCheckBox {
+    font-size: 30px;
 
+}
 </string>
      </property>
      <property name="text">
@@ -225,8 +237,14 @@ QPushButton:focus {
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">font: 75 20pt &quot;Ubuntu Mono&quot;;
+      <string notr="true">QCheckBox::indicator {
+    width: 30px;
+    height: 30px;
+}
+QCheckBox {
+    font-size: 30px;
 
+}
 </string>
      </property>
      <property name="text">
@@ -243,7 +261,14 @@ QPushButton:focus {
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">font: 75 20pt &quot;Ubuntu Mono&quot;;
+      <string notr="true">QCheckBox::indicator {
+    width: 30px;
+    height: 30px;
+}
+QCheckBox {
+    font-size: 30px;
+
+}
 </string>
      </property>
      <property name="text">

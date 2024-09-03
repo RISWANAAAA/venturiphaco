@@ -17,7 +17,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    another.cpp \
     display.cpp \
     doctor.cpp \
     footpedal.cpp \
@@ -31,7 +30,6 @@ SOURCES += \
     settings.cpp
 
 HEADERS += \
-    another.h \
     display.h \
     doctor.h \
     footlib.h \
@@ -47,7 +45,6 @@ HEADERS += \
     vaccum.h
 
 FORMS += \
-    another.ui \
     display.ui \
     doctor.ui \
     footpedal.ui \

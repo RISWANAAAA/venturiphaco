@@ -13,9 +13,7 @@ class QLineEdit;
 
 #include<QtSql/QSqlDatabase>
 #include <QtSql/QSqlQuery>
-//#define PATH "/home/phaco.db"
-#define PATH1 "/home/phacohigh.db"
-
+#define PATH "/home/phacohigh.db"
 namespace Ui {
 class doctor;
 }
@@ -33,10 +31,12 @@ public:
 
     void setRange(QLineEdit* lineEdit, int prevValue, int value, int maxValue);
     void userMessage(int value, int minValue, int maxValue);
-   // void click();
-
+void connectToDatabase();
+void populateSurgeonList();
+void onSurgeonSelectionChanged(const QString &surgeonName);
+void setLastSelectedValue();
 public slots:
-
+   void onComboBoxIndexChanged(int index);
     void on_clicked(const QString& digit);
     void on_clickedenter();
     void clickedtab(int tab1);
@@ -97,10 +97,8 @@ private slots:
   void pumpvalue();
 
   void on_SaveDiaBut_clicked();
+  void handleDataSaved();
 
-
-
-  void on_savefootpedal_clicked();
 
 signals:
 
@@ -144,6 +142,7 @@ signals:
                  );
 
 
+
 private:
     Ui::doctor *ui;
     //prime *p;
@@ -158,7 +157,7 @@ private:
     QMap<QString, QMap<int, QStringList>> surgeonData;
     QMap<QLineEdit*, int> lastValidValues;  // Declare the QMap as a member variable
     QMap<QLineEdit*, int> lastValidValues1;  // Declare the QMap as a member variable
-
+QSqlDatabase db;
 
 
 

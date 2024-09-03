@@ -15,29 +15,24 @@ MainWindow::MainWindow(QWidget *parent)
     , elapsedTimeUS4(0)
     , butname(-1)
     ,isTuneEnabled(false)
-      ,powerOn1(false)
-   ,overallci(false)
+    ,powerOn1(false)
+    ,overallci(false)
 {
     ui->setupUi(this);
-   // resize(800,600);
-    //move(0,0);
-
     vac=new Vaccum;
     handler=new hwhandler;
-
- connectToDatabase();
- populateSurgeonList();
-
     ui->CutMode_vit->hide();
     ui->CutMode_vitCom->hide();
     ui->tabWidget_2->hide();
-     foot=new footpedal;
+   foot=new footpedal;
    in=new doctor;
    ui->dial_2->setStyleSheet("");
    ui->dial_2->setStyle(QStyleFactory::create("Fusion"));
    ui->dial_2->setStyleSheet("background-color: rgb(26, 95, 180);");
    ui->dial_2->setRange(0, 4096);
-   // Initialize the buttons array
+
+   setLastSelectedValue();
+     buttons[0] = ui->DIABUT;
      buttons[1] = ui->ULTRASONICBUT1;
      buttons[2] = ui->ULTRASONICBUT2;
      buttons[3] = ui->ULTRASONICBUT3;
@@ -45,24 +40,15 @@ MainWindow::MainWindow(QWidget *parent)
      buttons[5] = ui->IA1BUT;
      buttons[6] = ui->IA2BUT;
      buttons[7] = ui->VITRECTOMYBUT;
-     buttons[0] = ui->DIABUT;
 
-     // Initialize buttonforgpio to start from the first button
      buttonforgpio = 0;
-//     for (int i = 0; i < 7; ++i) {
-//           buttons[i] = new QPushButton(QString("Button %1").arg(i + 1), this);
-//           // Set button positions, etc.
-//       }
-     // Set the initial button as selected
      buttons[buttonforgpio]->setChecked(true);
      QTimer *readgpio=new QTimer;
-     //connect(readgpio,&QTimer::timeout,this,&MainWindow::readGPIO);
+   //  connect(readgpio,&QTimer::timeout,this,&MainWindow::readGPIO);
      readgpio->start(100);
     updateTimer = new QTimer(this);
     connect(updateTimer, &QTimer::timeout, this, &MainWindow::updateTimers);
-
   connect(ui->CI5_5,&QPushButton::clicked,this,&MainWindow::on_CI4_2_clicked);
-
     updateTimer->start(1000); // Update every 100 milliseconds
   ui->tabWidget->setCurrentIndex(7);
 
@@ -79,38 +65,28 @@ MainWindow::MainWindow(QWidget *parent)
        connect(in,&doctor::sendValues,this,&MainWindow::receiveValues);
        QTimer *timerdia=new QTimer;
 
-  messageline=new QMessageBox;
   for (int i = 0; i < 7; ++i) {
        previousValue[i] = -1;
    }
-
-
     s=new settings;
-    //r=new Reset;
-  //  p=new prime;
     key=new keypad;
     timer = new QTimer;
-    timermsg=new QTimer;
-    message = new QMessageBox;
-    footsensor=new QTimer;
+ footsensor=new QTimer;
     lfoot=new footlib;
     protimer=new QTimer;
-
-        // Set the initial state of pushButton_9
-
     QTimer *timerfoot = new QTimer;
     timer43=new QTimer;
     QTimer *ftime=new QTimer;
-
-  //  connect(ui->comboBox_4, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &MainWindow::push);
-
     connect(timerfoot, &QTimer::timeout, this, &MainWindow::updatesensor);
        timerfoot->start(100); // 100 milliseconds interval
        sensortimer = new QTimer(this);
        connect(sensortimer, SIGNAL(timeout()), this, SLOT(sensor2()));
        sensortimer->start(100); // Update labels every 1000 milliseconds (1 second)
     ui->lineEdit_57->setText("100");
-
+ connect(this,&MainWindow::left_foot,foot,&footpedal::combobox1);
+ connect(this,&MainWindow::right_foot,foot,&footpedal::combobox2);
+ connect(this,&MainWindow::bottom_left,foot,&footpedal::combobox3);
+ connect(this,&MainWindow::bottom_right,foot,&footpedal::combobox4);
     exportGPIO(960);
     setGPIODirection("in",960);
     exportGPIO(961);
@@ -121,6 +97,7 @@ MainWindow::MainWindow(QWidget *parent)
       setGPIODirection("in",963);
       exportGPIO(964);
       setGPIODirection("in",964);
+      //last selected value
 
     // Update status initially
     updatehandpieceStatus();
@@ -170,21 +147,7 @@ ui->vitpowdown_but->setEnabled(false);
    ui->lineEdit_72->setText("40");
    //dia
   ui->lineEdit_74->setText("100");
-//timmer for usermessage
-    connect(timer,&QTimer::timeout,[=]()
-    {
-        message->close();
 
-        timer->stop();
-
-    });
-    //itmer for updateline edit
-    connect(timermsg, &QTimer::timeout, [=]()
-    {
-        messageline->hide(); // Initially hide the message line
-         timermsg->stop();
-
-    });
 
 
   // keypad connetion
@@ -201,7 +164,7 @@ ui->vitpowdown_but->setEnabled(false);
 connect(foot,&footpedal::powerdm,this,&MainWindow::onPdmModeSelected1);
 connect(foot,&footpedal::powerdm,this,&MainWindow::onPdmModeSelected2);
 connect(foot,&footpedal::powerdm,this,&MainWindow::onPdmModeSelected3);
-connect(this,&MainWindow::surgeonSelected,foot,&footpedal::updateFootpedalComboBoxes);
+//connect(this,&MainWindow::surgeonSelected,foot,&footpedal::updateFootpedalComboBoxes);
 //tabwidget current index selected
     ui->tabWidget->setTabText(6, "VITRECTOMY");
     QString tabStyle = "QTabBar::tab:selected { background-color: black; color: #ffffff; }";
@@ -258,8 +221,7 @@ connect(this,&MainWindow::surgeonSelected,foot,&footpedal::updateFootpedalComboB
      ui->lineEdit_74->installEventFilter(this);
      ui->lineEdit_57->setMaxLength(3);
 
-
-     connect(ui->comboBox_4, &QComboBox::currentTextChanged, this, &MainWindow::onSurgeonSelectionChanged);
+    connect(ui->comboBox_4, &QComboBox::currentTextChanged, this, &MainWindow::push);
      connect(ui->comboBox,&QComboBox::currentTextChanged,this,&MainWindow::performpump);
      connect(ui->CutMode_vitCom, QOverload<const QString &>::of(&QComboBox::currentTextChanged), this, &MainWindow::updateTabsBasedOnComboBox);
       connect(ui->CutMode_vitCom_2, QOverload<const QString &>::of(&QComboBox::currentTextChanged), this, &MainWindow::updateTabsBasedOnComboBox);
@@ -367,10 +329,8 @@ connect(this,&MainWindow::surgeonSelected,foot,&footpedal::updateFootpedalComboB
       ia1_linear_nonlinear();
       ia2_linear_nonlinear();
       vit_linear_nonlinear();
+      push(ui->comboBox_4->currentText());
 
-
-//  push("Surgeon 1");
-      onSurgeonSelectionChanged("Surgeon 1");
 }
 //pushbutton pushbutton
 void MainWindow::click()
@@ -394,28 +354,50 @@ MainWindow::~MainWindow()
 }
 void MainWindow::userMessage(int value, int minValue, int maxValue)
 {
-    QString msg( "Value must be between " + QString::number(minValue) + " and " + QString::number(maxValue));
-    if(value > maxValue)
-    {
-        message->setText(msg);
-        message->show();
 
-    }
-timer->start(3000);
 }
 void MainWindow::updateLineedit(QLineEdit *lineEdit, int prevValue, int value, int maxValue) {
-    if (value > maxValue) {
-         lineEdit->setText(QString::number(prevValue));
-         messageline->setText(QString("Value must be between 0 and %1.").arg(maxValue));
-         messageline->show();
-         timermsg->start(3000); // Start the timer for 3000ms
-     } else {
-         lineEdit->setText(QString::number(value));
-         if (messageline->isVisible()) {
-             messageline->close();  // Close the message if it is open
-                 // Stop the timer if it is running
-         }
-     }
+
+    // Check if the entered value is greater than the maximum allowed value
+       if (value > maxValue) {
+           // Revert to the previous value if it exceeds maxValue
+           lineEdit->setText(QString::number(prevValue));
+
+           // Display the error message in messageline (optional)
+           messageline->setText(QString("Value must be between %1 and %2.").arg(prevValue).arg(maxValue));
+           messageline->show();
+
+           // Show a QMessageBox with the range information
+           QMessageBox *msgBox = new QMessageBox(
+               QMessageBox::Warning,
+               "Invalid Input",
+               QString("Value must be between %1 and %2.").arg(prevValue).arg(maxValue),
+               QMessageBox::Ok,  // Ok button to close the message box
+               nullptr           // Parent widget
+           );
+           msgBox->show();
+
+           // Use QTimer to automatically close the message box after 1000 ms (1 second)
+           QTimer::singleShot(1000, msgBox, [msgBox]() {
+               msgBox->hide();  // Hide the message box
+               delete msgBox;   // Delete the message box to free memory
+           });
+
+           // Start or restart the timer to hide the message after 3000 ms
+           timermsg->start(3000);
+       } else {
+           // Set the new value since it is within the allowed range
+           lineEdit->setText(QString::number(value));
+
+           // If the message line is visible, hide it and stop the timer
+           if (messageline->isVisible()) {
+               messageline->close();  // Close the message
+               timermsg->stop();      // Stop the timer if it's running
+           }
+
+           // Update the previous valid value
+           prevValue = value;
+       }
 }
 
 //keypad settings
@@ -709,11 +691,7 @@ bool MainWindow::eventFilter(QObject* object, QEvent* event)
               key->move(280,320);
               key->show();
               ui->lineEdit_74->setFocus();
-//              ui->lineEdit_57->clearFocus();
-//              ui->lineEdit_55->clearFocus();
               ui->lineEdit_74->setText("");
-
-
           } else if ( k->button() == Qt::RightButton ) {
           }
     }
@@ -733,10 +711,6 @@ void MainWindow::on_clicked(const QString& digit)
           ui->lineEdit_57->setText(QString::number(5));
           return;}
           setRange(ui->lineEdit_57, prevValue, value, 100);
-         updateLineedit(ui->lineEdit_57, prevValue, value, 100);
-         increasebutton(ui->lineEdit_57);
-
-
   }
   if(ui->lineEdit_55->focusWidget()) {
       ui->lineEdit_56->clearFocus();
@@ -748,8 +722,8 @@ void MainWindow::on_clicked(const QString& digit)
           ui->lineEdit_55->setText(QString::number(5));
           return;}
       setRange(ui->lineEdit_55, prevValue, value, 500);
-      updateLineedit(ui->lineEdit_55, prevValue, value, 500);
-      vacbutton(ui->lineEdit_55);
+
+
   }
   if(ui->lineEdit_56->focusWidget()) {
       ui->lineEdit_55->clearFocus();
@@ -761,8 +735,7 @@ void MainWindow::on_clicked(const QString& digit)
           ui->lineEdit_56->setText(QString::number(2));
           return;}
       setRange(ui->lineEdit_56, prevValue, value, 40);
-   updateLineedit(ui->lineEdit_56, prevValue, value, 40);
-   decreasebutton(ui->lineEdit_56);
+
   }
   //ULTRASONIC 2
    if(ui->lineEdit_58->focusWidget()) {
@@ -775,8 +748,7 @@ void MainWindow::on_clicked(const QString& digit)
           ui->lineEdit_58->setText(QString::number(5));
           return;}
       setRange(ui->lineEdit_58, prevValue, value, 100);
-     updateLineedit(ui->lineEdit_58, prevValue, value, 100);
-     increasebutton(ui->lineEdit_58);
+
   }
    if(ui->lineEdit_60->focusWidget()) {
       ui->lineEdit_58->clearFocus();
@@ -788,8 +760,7 @@ void MainWindow::on_clicked(const QString& digit)
           ui->lineEdit_60->setText(QString::number(5));
           return;}
       setRange(ui->lineEdit_60, prevValue, value, 500);
-      updateLineedit(ui->lineEdit_60, prevValue, value, 500);
-      vacbutton(ui->lineEdit_60);
+
   }
    if(ui->lineEdit_59->focusWidget()) {
       ui->lineEdit_58->clearFocus();
@@ -801,8 +772,7 @@ void MainWindow::on_clicked(const QString& digit)
           ui->lineEdit_59->setText(QString::number(2));
           return;}
       setRange(ui->lineEdit_59, prevValue, value, 40);
-      updateLineedit(ui->lineEdit_59, prevValue, value, 40);
-      decreasebutton(ui->lineEdit_59);
+
   }
   //ULTRASONIC 3
    if(ui->lineEdit_61->focusWidget()) {
@@ -815,9 +785,6 @@ void MainWindow::on_clicked(const QString& digit)
           ui->lineEdit_61->setText(QString::number(5));
           return;}
       setRange(ui->lineEdit_61, prevValue, value, 100);
-      updateLineedit(ui->lineEdit_61, prevValue, value, 100);
-     // userMessage(value2,5,100);
-      increasebutton(ui->lineEdit_61);
 
   }
   if(ui->lineEdit_63->focusWidget()) {
@@ -830,9 +797,6 @@ void MainWindow::on_clicked(const QString& digit)
           ui->lineEdit_63->setText(QString::number(5));
           return;}
       setRange(ui->lineEdit_63, prevValue, value, 500);
-       updateLineedit(ui->lineEdit_63, prevValue, value, 500);
-    //  userMessage(value2,5,500);
-       vacbutton(ui->lineEdit_63);
 
   }
  else if(ui->lineEdit_62->focusWidget()) {
@@ -845,9 +809,7 @@ void MainWindow::on_clicked(const QString& digit)
           ui->lineEdit_62->setText(QString::number(2));
           return;}
       setRange(ui->lineEdit_62, prevValue, value, 40);
-       updateLineedit(ui->lineEdit_62, prevValue, value, 40);
-     // userMessage(value,2,40);
-       decreasebutton(ui->lineEdit_62);
+
   }
   //ULTRASONIC 4
    if(ui->lineEdit_64->focusWidget()) {
@@ -860,9 +822,8 @@ void MainWindow::on_clicked(const QString& digit)
           ui->lineEdit_64->setText(QString::number(5));
           return;}
       setRange(ui->lineEdit_64, prevValue, value, 100);
-       updateLineedit(ui->lineEdit_64, prevValue, value, 100);
-     // userMessage(value,5,100);
-       increasebutton(ui->lineEdit_64);
+
+
 
   }
   if(ui->lineEdit_66->focusWidget()) {
@@ -875,9 +836,7 @@ void MainWindow::on_clicked(const QString& digit)
           ui->lineEdit_66->setText(QString::number(5));
           return;}
       setRange(ui->lineEdit_66, prevValue, value, 500);
-       updateLineedit(ui->lineEdit_66, prevValue, value, 500);
-     // userMessage(value,5,500);
-       vacbutton(ui->lineEdit_66);
+
   }
   if(ui->lineEdit_65->focusWidget()) {
       ui->lineEdit_64->clearFocus();
@@ -889,9 +848,7 @@ void MainWindow::on_clicked(const QString& digit)
           ui->lineEdit_65->setText(QString::number(2));
           return;}
       setRange(ui->lineEdit_65, prevValue, value, 40);
-       updateLineedit(ui->lineEdit_65, prevValue, value, 40);
-     // userMessage(value,2,40);
-       decreasebutton(ui->lineEdit_65);
+
    }
   //IRRIGATION/ASPIRATION 1
   if(ui->lineEdit_70->focusWidget()) {
@@ -904,9 +861,7 @@ void MainWindow::on_clicked(const QString& digit)
           ui->lineEdit_70->setText(QString::number(5));
           return;}
       setRange(ui->lineEdit_70, prevValue, value, 500);
-       updateLineedit(ui->lineEdit_70, prevValue, value, 500);
-   //   userMessage(value,5,500);
-       vacbutton(ui->lineEdit_70);
+
   }
   if(ui->lineEdit_69->focusWidget()) {
       ui->lineEdit_70->clearFocus();
@@ -918,9 +873,7 @@ void MainWindow::on_clicked(const QString& digit)
           ui->lineEdit_69->setText(QString::number(2));
           return;}
       setRange(ui->lineEdit_69, prevValue, value, 40);
-       updateLineedit(ui->lineEdit_69, prevValue, value, 40);
-     // userMessage(value,2,40);
-       decreasebutton(ui->lineEdit_69);
+
   }
   //IRRIGATION/ASPIRATION 2
    if(ui->lineEdit_68->focusWidget()) {
@@ -933,9 +886,7 @@ void MainWindow::on_clicked(const QString& digit)
           ui->lineEdit_68->setText(QString::number(5));
           return;}
       setRange(ui->lineEdit_68, prevValue, value, 500);
-       updateLineedit(ui->lineEdit_68, prevValue, value, 500);
-    //  userMessage(value,5,500);
-       vacbutton(ui->lineEdit_68);
+
 
   }
    if(ui->lineEdit_67->focusWidget()) {
@@ -948,9 +899,8 @@ void MainWindow::on_clicked(const QString& digit)
           ui->lineEdit_67->setText(QString::number(2));
           return;}
       setRange(ui->lineEdit_67, prevValue, value, 40);
-       updateLineedit(ui->lineEdit_67, prevValue, value, 40);
-   //   userMessage(value,2,40);
-          decreasebutton(ui->lineEdit_67);
+
+
   }
   //VITRECTOMY
    if(ui->lineEdit_71->focusWidget()) {
@@ -963,7 +913,6 @@ void MainWindow::on_clicked(const QString& digit)
           ui->lineEdit_71->setText(QString::number(5));
           return;}
       setRange(ui->lineEdit_71, prevValue, value, 960);
-       updateLineedit(ui->lineEdit_71, prevValue, value, 960);
 
   }
    if(ui->lineEdit_73->focusWidget()) {
@@ -976,9 +925,7 @@ void MainWindow::on_clicked(const QString& digit)
           ui->lineEdit_73->setText(QString::number(5));
           return;}
       setRange(ui->lineEdit_73, prevValue, value, 500);
-       updateLineedit(ui->lineEdit_73, prevValue, value, 500);
-       vacbutton(ui->lineEdit_73);
-    //  userMessage(value,5,500);
+
 
   }
   if(ui->lineEdit_72->focusWidget()) {
@@ -991,9 +938,6 @@ void MainWindow::on_clicked(const QString& digit)
           ui->lineEdit_72->setText(QString::number(2));
           return;}
       setRange(ui->lineEdit_72, prevValue, value, 40);
-       updateLineedit(ui->lineEdit_72, prevValue, value, 40);
-       decreasebutton(ui->lineEdit_72);
-    //  userMessage(value,2,40);
 
   }
   //DIATHERMY
@@ -1006,17 +950,71 @@ void MainWindow::on_clicked(const QString& digit)
           ui->lineEdit_74->setText(QString::number(5));
           return;}
           setRange(ui->lineEdit_74, prevValue, value, 100);
-          updateLineedit(ui->lineEdit_74, prevValue, value, 100);
-          increasebutton(ui->lineEdit_74);
+
       }
 
 }
 void MainWindow::on_clickedenter()
 {
    key->hide();
-   int  input=ui->lineEdit_71->text().toInt();
-   int output=getvalue(input);
-   ui->lineEdit_71->setText(QString::number(output));
+   // Maintain previous value for lineEdit
+   QString text = ui->lineEdit_72->text().trimmed();
+   if (!text.isEmpty()) {
+       int input = text.toInt();
+       int output = getvalue(input);  // Process the input to get the desired output
+       ui->lineEdit_72->setText(QString::number(output));
+       lastValidValues[ui->lineEdit_72] = output;  // Store the processed output as the last valid value
+   } else {
+       // Restore the last valid value if input is empty
+       if (lastValidValues.contains(ui->lineEdit_72)) {
+           ui->lineEdit_72->setText(QString::number(lastValidValues[ui->lineEdit_72]));
+       }
+   }
+
+   // Process other QLineEdits for power and vacuum
+   QList<QLineEdit*> lineEdits = {
+       ui->lineEdit_57, ui->lineEdit_55, ui->lineEdit_58, ui->lineEdit_60,
+       ui->lineEdit_61, ui->lineEdit_63, ui->lineEdit_64, ui->lineEdit_66,
+       ui->lineEdit_70, ui->lineEdit_68, ui->lineEdit_73,ui->lineEdit_74
+   };
+
+   for (QLineEdit* lineEdit : lineEdits) {
+       QString currentText = lineEdit->text().trimmed();
+
+       if (!currentText.isEmpty()) {
+           int input = currentText.toInt();
+           int output = increasebutton(input);  // Process the input to get the desired output
+           lineEdit->setText(QString::number(output));
+           lastValidValues[lineEdit] = output;  // Update the last valid value
+       } else {
+           // Restore the last valid value if input is empty
+           if (lastValidValues.contains(lineEdit)) {
+               lineEdit->setText(QString::number(lastValidValues[lineEdit]));
+           }
+       }
+   }
+
+   // Process other QLineEdits for flow rate
+   QList<QLineEdit*> lineEdits1 = {
+       ui->lineEdit_56, ui->lineEdit_59, ui->lineEdit_62,
+       ui->lineEdit_65, ui->lineEdit_69, ui->lineEdit_67, ui->lineEdit_72
+   };
+
+   for (QLineEdit* lineEdit1 : lineEdits1) {
+       QString currentText1 = lineEdit1->text().trimmed();
+
+       if (!currentText1.isEmpty()) {
+           int input1 = currentText1.toInt();
+           int output1 = decreasebutton(input1);  // Process the input to get the desired output
+           lineEdit1->setText(QString::number(output1));
+           lastValidValues1[lineEdit1] = output1;  // Update the last valid value
+       } else {
+           // Restore the last valid value if input is empty
+           if (lastValidValues1.contains(lineEdit1)) {
+               lineEdit1->setText(QString::number(lastValidValues1[lineEdit1]));
+           }
+       }
+   }
 
 }
 void MainWindow::ULTRASONICBUT1()
@@ -1120,14 +1118,12 @@ void MainWindow::diapowup()
 {
     int value=ui->lineEdit_74->text().toInt();
     value=value+5;
-   //  userMessage(value,5,100);
+
     if(value > 100)
     {
         value=100;
 
     }
-   // ui->progressBar_21->setValue(value);
-   //  int roundedValue = std::round(lvalue / 5.0) * 5;
     ui->lineEdit_74->setText(QString::number(value));
 
 }
@@ -1140,8 +1136,6 @@ void MainWindow::diapowdown()
     {
         value=5;
     }
-   // ui->progressBar_21->setValue(value);
-  //   int roundedValue1 = std::round(lvalue / 5.0) * 5;
     ui->lineEdit_74->setText(QString::number(value));
 
 }
@@ -1150,14 +1144,12 @@ void MainWindow::vitcutup()
 {
    int value=ui->lineEdit_71->text().toInt();
     value=value+60;
-     // userMessage(value,60,960);
-    if(value > 960)
+     if(value > 960)
     {
         value=960;
     }
-   // ui->progressBar_19->setValue(value);
     ui->lineEdit_71->setText(QString::number(value));
-    //(value,60,960);
+
 
 }
 
@@ -1169,7 +1161,6 @@ void MainWindow::vitcutdown()
     {
         value=60;
     }
-   // ui->progressBar_19->setValue(value);
     ui->lineEdit_71->setText(QString::number(value));
 
 }
@@ -1178,12 +1169,12 @@ void MainWindow::vitvacup()
 {
     int value=ui->lineEdit_73->text().toInt();
     value=value+5;
-     // userMessage(value,5,500);
+
     if(value > 500)
     {
         value=500;
     }
-   // ui->progressBar_18->setValue(value);
+
     ui->lineEdit_73->setText(QString::number(value));
 
 }
@@ -1196,7 +1187,7 @@ void MainWindow::vitvacdown()
     {
         value=5;
     }
-   // ui->progressBar_18->setValue(value);
+
     ui->lineEdit_73->setText(QString::number(value));
 }
 
@@ -1204,12 +1195,11 @@ void MainWindow::vitflowup()
 {
    int value=ui->lineEdit_72->text().toInt();
     value=value+2;
-      //userMessage(value,2,40);
+
     if(value > 40)
     {
         value=40;
     }
-   // ui->progressBar_13->setValue(value);
     ui->lineEdit_72->setText(QString::number(value));
 
 
@@ -1223,7 +1213,6 @@ void MainWindow::vitflowdown()
     {
         value=2;
     }
-  //  ui->progressBar_13->setValue(value);
     ui->lineEdit_72->setText(QString::number(value));
 
 }
@@ -1232,12 +1221,10 @@ void MainWindow::ia2vacup()
 {
    int  value=ui->lineEdit_68->text().toInt();
     value=value+5;
-   // userMessage(value,5,500);
     if(value > 500)
     {
         value=500;
     }
-  //  ui->progressBar_17->setValue(value);
     ui->lineEdit_68->setText(QString::number(value));
 
 
@@ -1251,7 +1238,6 @@ void MainWindow::ia2vacdown()
     {
         value=5;
     }
-    //ui->progressBar_17->setValue(value);
     ui->lineEdit_68->setText(QString::number(value));
 
 }
@@ -1260,13 +1246,10 @@ void MainWindow::ia2flowup()
 {
   int value=ui->lineEdit_67->text().toInt();
     value=value+2;
-   //userMessage(value,2,40);
-
     if(value > 40)
     {
         value=40;
     }
-    //ui->progressBar_16->setValue(value);
     ui->lineEdit_67->setText(QString::number(value));
 
 }
@@ -1279,7 +1262,6 @@ void MainWindow::ia2flowdown()
     {
         value=2;
     }
-   // ui->progressBar_16->setValue(value);
     ui->lineEdit_67->setText(QString::number(value));
 }
 
@@ -1287,12 +1269,10 @@ void MainWindow::ia1vacup()
 {
    int value=ui->lineEdit_70->text().toInt();
     value=value+5;
-     // userMessage(value,5,500);
     if(value > 500)
     {
         value=500;
     }
-    //ui->progressBar_15->setValue(value);
     ui->lineEdit_70->setText(QString::number(value));
 }
 
@@ -1304,7 +1284,6 @@ void MainWindow::ia1vacdown()
     {
         value=5;
     }
-    //ui->progressBar_15->setValue(value);
     ui->lineEdit_70->setText(QString::number(value));
 }
 
@@ -1312,12 +1291,10 @@ void MainWindow::ia1flowup()
 {
    int value=ui->lineEdit_69->text().toInt();
     value=value+2;
-   // userMessage(value,2,40);
     if(value > 40)
     {
         value=40;
     }
-   // ui->progressBar_14->setValue(value);
     ui->lineEdit_69->setText(QString::number(value));
 }
 
@@ -1329,7 +1306,6 @@ void MainWindow::ia1flowdown()
     {
         value=2;
     }
-   // ui->progressBar_14->setValue(value);
     ui->lineEdit_69->setText(QString::number(value));
 }
 
@@ -1337,14 +1313,10 @@ void MainWindow::US1POWUP()
 {
    int value=ui->lineEdit_57->text().toInt();
     value=value+5;
-  //  userMessage(value,5,100);
-
     if(value > 100)
     {
         value=100;
     }
-
-
     ui->lineEdit_57->setText(QString::number(value));
 }
 
@@ -1356,26 +1328,19 @@ void MainWindow::US1POWDOWN()
     {
         value=5;
     }
-
     ui->lineEdit_57->setText(QString::number(value));
 }
 
 void MainWindow::US1VACUP()
 {
-  // int act=v->stabilize();
-   //ui->progressBar_2->setValue(act);
-  // ui->label_3->setNum(act);
     int value=ui->lineEdit_55->text().toInt();
     value=value+5;
-    // userMessage(value,5,500);
-    if(value > 500)
+      if(value > 500)
     {
         value=500;
     }
-    // ui->progressBar_2->setValue(value);
-    ui->lineEdit_55->setText(QString::number(value));
-   // userMessage(value, 5, 500);
-}
+      ui->lineEdit_55->setText(QString::number(value));
+ }
 
 void MainWindow::US1VACDOWN()
 {
@@ -1386,7 +1351,7 @@ void MainWindow::US1VACDOWN()
     {
         value=5;
     }
-     //ui->progressBar_2->setValue(value);
+
     ui->lineEdit_55->setText(QString::number(value));
 }
 
@@ -1394,15 +1359,13 @@ void MainWindow::US1FLOWUP()
 {
    int value=ui->lineEdit_56->text().toInt();
     value=value+2;
-    // userMessage(value,2,40);
-    if(value > 40)
+       if(value > 40)
     {
         value=40;
     }
-    // ui->progressBar_3->setValue(value);
+
     ui->lineEdit_56->setText(QString::number(value));
-    //userMessage(value,2,40);
-}
+   }
 
 void MainWindow::US1FLOWDOWN()
 {
@@ -1421,14 +1384,13 @@ void MainWindow::us2powup()
 {
    int value=ui->lineEdit_58->text().toInt();
     value=value+5;
-     //userMessage(value,5,100);
+
     if(value > 100)
     {
         value=100;
     }
-    // ui->progressBar_6->setValue(value);
+
     ui->lineEdit_58->setText(QString::number(value));
-  //  userMessage(value,5,100);
 
 }
 
@@ -1440,7 +1402,7 @@ void MainWindow::us2powdown()
     {
         value=5;
     }
-    // ui->progressBar_6->setValue(value);
+
     ui->lineEdit_58->setText(QString::number(value));
 
 
@@ -1450,14 +1412,14 @@ void MainWindow::us2vacup()
 {
    int value=ui->lineEdit_60->text().toInt();
     value=value+5;
-    // userMessage(value,5,500);
+
     if(value > 500)
     {
         value=500;
     }
-    // ui->progressBar_5->setValue(value);
+
     ui->lineEdit_60->setText(QString::number(value));
-    //(value,5,500);
+
 
 }
 
@@ -1469,7 +1431,7 @@ void MainWindow::us2vacdown()
     {
         value=5;
     }
-    // ui->progressBar_5->setValue(value);
+
     ui->lineEdit_60->setText(QString::number(value));
 
 }
@@ -1478,12 +1440,12 @@ void MainWindow::us2flowup()
 {
   int  value=ui->lineEdit_59->text().toInt();
     value=value+2;
-   //  (value,2,40);
+
     if(value > 40)
     {
         value=40;
     }
-   //  ui->progressBar_4->setValue(value);
+
     ui->lineEdit_59->setText(QString::number(value));
 
 }
@@ -1496,7 +1458,7 @@ void MainWindow::us2flowdown()
     {
         value=2;
     }
-    // ui->progressBar_4->setValue(value);
+
     ui->lineEdit_59->setText(QString::number(value));
 }
 
@@ -1505,14 +1467,14 @@ void MainWindow::us3powup()
 {
    int value=ui->lineEdit_61->text().toInt();
     value=value+5;
-     //(value,5,100);
+
     if(value > 100)
     {
         value=100;
     }
-    // ui->progressBar_9->setValue(value);
+
     ui->lineEdit_61->setText(QString::number(value));
-   // userMessage(value,5,100);
+
 }
 
 void MainWindow::us3powdown()
@@ -1523,7 +1485,7 @@ void MainWindow::us3powdown()
     {
         value=5;
     }
-   // ui->progressBar_9->setValue(value);
+
     ui->lineEdit_61->setText(QString::number(value));
 }
 
@@ -1531,12 +1493,12 @@ void MainWindow::us3vacup()
 {
    int value=ui->lineEdit_63->text().toInt();
     value=value+5;
-   //  userMessage(value,5,500);
+
     if(value > 500)
     {
         value=500;
     }
-   // ui->progressBar_8->setValue(value);
+
     ui->lineEdit_63->setText(QString::number(value));
     }
 
@@ -1548,7 +1510,7 @@ void MainWindow::us3vacdown()
     {
         value=5;
     }
-   // ui->progressBar_8->setValue(value);
+
     ui->lineEdit_63->setText(QString::number(value));
 }
 
@@ -1556,14 +1518,11 @@ void MainWindow::us3flowup()
 {
    int value=ui->lineEdit_62->text().toInt();
     value=value+2;
-  //   userMessage(value,2,40);
     if(value > 40)
     {
         value=40;
     }
-   // ui->progressBar_7->setValue(value);
     ui->lineEdit_62->setText(QString::number(value));
-   // userMessage(value,2,40);
 }
 
 void MainWindow::us3flowdown()
@@ -1574,7 +1533,6 @@ void MainWindow::us3flowdown()
     {
         value=2;
     }
-   // ui->progressBar_7->setValue(value);
     ui->lineEdit_62->setText(QString::number(value));
 }
 
@@ -1582,14 +1540,11 @@ void MainWindow::us4powup()
 {
    int value=ui->lineEdit_64->text().toInt();
     value=value+5;
-    // userMessage(value,5,100);
     if(value > 100)
     {
         value=100;
     }
-   // ui->progressBar_12->setValue(value);
     ui->lineEdit_64->setText(QString::number(value));
-   // userMessage(value,5,100);
 }
 
 void MainWindow::us4powdown()
@@ -1600,7 +1555,6 @@ void MainWindow::us4powdown()
     {
         value=5;
     }
-  //  ui->progressBar_12->setValue(value);
     ui->lineEdit_64->setText(QString::number(value));
 }
 
@@ -1608,12 +1562,10 @@ void MainWindow::us4vacup()
 {
    int value=ui->lineEdit_66->text().toInt();
     value=value+5;
-    // userMessage(value,5,500);
     if(value > 500)
     {
         value=500;
     }
- //   ui->progressBar_11->setValue(value);
     ui->lineEdit_66->setText(QString::number(value));
 
 }
@@ -1626,7 +1578,6 @@ void MainWindow::us4vacdown()
     {
         value=5;
     }
-  //  ui->progressBar_11->setValue(value);
     ui->lineEdit_66->setText(QString::number(value));
 }
 
@@ -1634,12 +1585,10 @@ void MainWindow::us4flowup()
 {
    int value=ui->lineEdit_65->text().toInt();
     value=value+2;
-   //  userMessage(value,2,40);
     if(value > 40)
     {
         value=40;
     }
-  //  ui->progressBar_10->setValue(value);
     ui->lineEdit_65->setText(QString::number(value));
 
 }
@@ -1652,12 +1601,10 @@ void MainWindow::us4flowdown()
     {
         value=2;
     }
-   // ui->progressBar_10->setValue(value);
     ui->lineEdit_65->setText(QString::number(value));
 }
 void MainWindow::SETTINGSBUT()
 {
-    //this->close();
 
 
 }
@@ -1982,7 +1929,6 @@ void MainWindow::footpedalcheck()
                 ui->pushButton_42->setText("1");
                 ui->dial_2->setValue(range);
                 handler->dia_on();
-                //handler->diathermy(pow); // Assuming handler is correctly initialized
                 handler->dia_count(pow);
 
                 ui->CI5_5->setStyleSheet(styleSheet3);
@@ -1994,6 +1940,7 @@ void MainWindow::footpedalcheck()
     }
   //us1
     case 1: {
+        //they will not run
         int pow1 = ui->lineEdit_57->text().toInt(); // Get the power value from the line edit
         bool flag1 = true;
 
@@ -3747,50 +3694,35 @@ void MainWindow::motorccwon()
     handler->write_motor(0x01,0x02,40);
 }
 //roundoff value
-void MainWindow::increasebutton(QLineEdit *increaseline)
-{
 
-      int value =increaseline->text().toInt();
-      if(value>=10){
-      if (value % 2 == 0) {
-               // If the number is even, round it up to the next multiple of 5
-               value = (value + 4) / 5 * 5;
-           } else {
-               // If the number is odd, increment it to make it even
-                value = ((value + 4) / 5) * 5;
-           }
+int MainWindow::increasebutton(int input)
+{
+    if (input < 10) {
+          // For single-digit values, set it to 5
+          return 5;
+      } else {
+          int remainder = input % 5; // Calculate the remainder when dividing by 5
+
+          if (remainder == 0 || remainder == 1) {
+              // Round down to the nearest multiple of 5
+              return (input / 5) * 5;
+          } else {
+              // Round up to the next multiple of 5
+              return ((input / 5) + 1) * 5;
+          }
       }
-          increaseline->setText(QString::number(value));
-}
+  }
 
-void MainWindow::decreasebutton(QLineEdit *decreaseline)
+
+int MainWindow::decreasebutton(int input)
 {
-
-      int value1 = decreaseline->text().toInt();
-      if(value1>=10){
-      if (value1 % 2 != 0) {
-
-               value1++;
-           }
+    if (input % 2 != 0) {
+          input++;  // Increment if odd to make it even
       }
-      decreaseline->setText(QString::number(value1));
+      return input;
 }
 
-void MainWindow::vacbutton(QLineEdit *vacline)
-{
-    int val =vacline->text().toInt();
-    if(val>=99){
-    if (val % 2 == 0) {
-             // If the number is even, round it up to the next multiple of 5
-             val = (val + 3) / 5 * 5;
-         } else {
-             // If the number is odd, increment it to make it even
-              val = ((val + 3) / 5) * 5;
-         }}
 
-        vacline->setText(QString::number(val));
-
-}
 
 
 
@@ -3878,22 +3810,22 @@ void MainWindow::label43()
         ui->label_99->setNum(pro6);
         if(vac3 == pro6){
 
-//            if(mode2 == "Ocupulse"){
-//              handler->pdm_mode(OCUPULSE);
-//              ocupulseup_mode();
-//              ocupulsedown_mode();
-//            }
-//            else if(mode2=="Ocuburst"){
-//                handler->pdm_mode(OCUBURST);
-//                ocuburstup_mode();
-//                ocuburstdown_mode();
-//            }
-//            else if(mode2 == "Multi burst"){
-//                handler->pdm_mode(MULTI_BURST);
-//                multiburstup_mode();
-//                multiburstdown_mode();
+            if(mode2 == "Ocupulse"){
+              handler->pdm_mode(OCUPULSE);
+              ocupulseup_mode();
+              ocupulsedown_mode();
+            }
+            else if(mode2=="Ocuburst"){
+                handler->pdm_mode(OCUBURST);
+                ocuburstup_mode();
+                ocuburstdown_mode();
+            }
+            else if(mode2 == "Multi burst"){
+                handler->pdm_mode(MULTI_BURST);
+                multiburstup_mode();
+                multiburstdown_mode();
 
-//            }
+            }
              motoroff();
                handler->speaker_on(pro5,0,0,1);
         }
@@ -3905,22 +3837,22 @@ void MainWindow::label43()
         ui->label_93->setNum(pro7);
         if(vac2 == pro7){
 
-//            if(mode2 == "Ocupulse"){
-//              handler->pdm_mode(OCUPULSE);
-//              ocupulseup_mode();
-//              ocupulsedown_mode();
-//            }
-//            else if(mode2=="Ocuburst"){
-//                handler->pdm_mode(OCUBURST);
-//                ocuburstup_mode();
-//                ocuburstdown_mode();
-//            }
-//            else if(mode2 == "Multi burst"){
-//                handler->pdm_mode(MULTI_BURST);
-//                multiburstup_mode();
-//                multiburstdown_mode();
+            if(mode2 == "Ocupulse"){
+              handler->pdm_mode(OCUPULSE);
+              ocupulseup_mode();
+              ocupulsedown_mode();
+            }
+            else if(mode2=="Ocuburst"){
+                handler->pdm_mode(OCUBURST);
+                ocuburstup_mode();
+                ocuburstdown_mode();
+            }
+            else if(mode2 == "Multi burst"){
+                handler->pdm_mode(MULTI_BURST);
+                multiburstup_mode();
+                multiburstdown_mode();
 
-//            }
+            }
              motoroff();
                handler->speaker_on(pro7,0,0,1);
         }
@@ -4213,34 +4145,7 @@ void MainWindow::settings_action(int index)
 }
 void MainWindow::updateButtonSelection(int index)
 {
-//    currentButtonIndex = index;
 
-//    // Deselect all buttons
-//    ui->DIABUT->setChecked(false);
-//    ui->ULTRASONICBUT1->setChecked(false);
-//    ui->ULTRASONICBUT2->setChecked(false);
-//    ui->ULTRASONICBUT3->setChecked(false);
-//    ui->ULTRASONICBUT4->setChecked(false);
-//    ui->IA1BUT->setChecked(false);
-//    ui->IA2BUT->setChecked(false);
-//    ui->VITRECTOMYBUT->setChecked(false);
-
-//    // Select the current button
-//    switch (index)
-//    {
-//        case 0: ui->DIABUT->setChecked(true); break;
-//        case 1: ui->ULTRASONICBUT1->setChecked(true); break;
-//        case 2: ui->ULTRASONICBUT2->setChecked(true); break;
-//        case 3: ui->ULTRASONICBUT3->setChecked(true); break;
-//        case 4: ui->ULTRASONICBUT4->setChecked(true); break;
-//          case 5: ui->IA1BUT->setChecked(true); break;
-//          case 6: ui->IA2BUT->setChecked(true); break;
-//          case 7: ui->VITRECTOMYBUT->setChecked(true); break;
-//        default: return; // Guard against invalid indices
-//    }
-
-//    // Change the tab in the tab widget
-//    ui->tabWidget->setCurrentIndex(index);
 }
 int MainWindow::readGPIO(int gpio,int gpio1,int gpio2,int gpio3) {
     // Define file paths for GPIO 961 and 962
@@ -4291,45 +4196,18 @@ int MainWindow::readGPIO(int gpio,int gpio1,int gpio2,int gpio3) {
 
 void MainWindow::movePushButtonTopToBottom()
 {
-    // Check if the current button index is valid
-    if (buttonforgpio < 0 || buttonforgpio >= 8) {
-        qDebug() << "Error: Invalid button index" << buttonforgpio;
-        return; // Return early if the index is invalid
-    }
-
-    // Deselect the current button
-    if (buttons[buttonforgpio] != nullptr) {
-        buttons[buttonforgpio]->setChecked(false);
+    if (currentButtonIndex < 7) {
+        ++currentButtonIndex;  // Move to the next button
     } else {
-        qDebug() << "Error: Null pointer for button at index" << buttonforgpio;
-        return; // Return early if the button is null
+        currentButtonIndex = 0;  // Wrap around to the first button when at the bottom
     }
 
-    // Move to the next button in sequence
-    buttonforgpio = (buttonforgpio + 1) % 8;
+    // Set focus to the current button
+    buttons[currentButtonIndex]->setFocus();
 
-    // If the index reaches 7 (last button), check the GPIO pin
-    if (buttonforgpio == 7) {
-        int gpioValue = readGPIO(961,962,963,964); // Replace with your GPIO reading function
+    // Update the tab widget to show the tab corresponding to the current button index
+    ui->tabWidget->setCurrentIndex(currentButtonIndex);
 
-        if (gpioValue == 0) {
-            // If GPIO pin is 0, reset to the 0th index
-            buttonforgpio = 0;
-        }
-    }
-
-    // Select the next button
-    if (buttons[buttonforgpio] != nullptr) {
-        buttons[buttonforgpio]->setChecked(true);
-    } else {
-        qDebug() << "Error: Null pointer for button at index" << buttonforgpio;
-        return; // Return early if the button is null
-    }
-
-    // Optionally switch the tab if buttons are linked to tabs
-    ui->tabWidget->setCurrentIndex(buttonforgpio);
-
-    qDebug() << "Moved to button:" << buttonforgpio + 1;
 }
 
 void MainWindow::movePushButtonBottomToTop()
@@ -4337,7 +4215,7 @@ void MainWindow::movePushButtonBottomToTop()
     if (currentButtonIndex > 0) {
             --currentButtonIndex;
         } else {
-            currentButtonIndex = 6;
+            currentButtonIndex = 7;
         }
         buttons[currentButtonIndex]->setFocus();
         ui->tabWidget->setCurrentIndex(currentButtonIndex);
@@ -4523,8 +4401,10 @@ void MainWindow::powerdeliverymethod()
 
 }
 
-void MainWindow::continousirrigation(int gpioValue)
-{ qDebug() << "connected to MainWindow, continuous irrigation function called, GPIO value:" << gpioValue;
+void MainWindow::continousirrigation(bool on)
+{
+
+    qDebug() << "connected to MainWindow, continuous irrigation function called, GPIO value:" << on;
 
     QString styleSheetOn = "QPushButton {"
                            "font: 20pt Ubuntu;"
@@ -4545,7 +4425,7 @@ void MainWindow::continousirrigation(int gpioValue)
                             "font-weight: bold;"
                             "}";
 
-    if (gpioValue == 0) {
+    if (on) {
         if (!overallci) {
             // Turn on Continuous Irrigation
             ui->CI5_5->setStyleSheet(styleSheetOn);
@@ -4589,7 +4469,6 @@ void MainWindow::poweron()
 }
 void MainWindow::onMainLineEditTextChanged(const QString &dpowmax) {
 
- //ui->lineEdit_74->setText(dpowmax);
 }
 
 
@@ -4852,18 +4731,11 @@ ui->vitpowdown_but->setEnabled(true);
 void MainWindow::doctorwindow_show()
 {
 
-
 }
-
-
 void MainWindow::footpedalwindow_show()
 {
     foot->show();
 }
-
-
-
-
 void MainWindow::updateComboBox1(const QString &text) {
 
 }
@@ -4892,29 +4764,21 @@ void MainWindow::onCutMode_vitComChanged(int index) {
     qDebug() << "All ComboBox Items:" << allItems;
 int us1mode=1;
 
-  //  updateTabsBasedOnComboBox(modeText);
 }
 
 void MainWindow::onCutMode_vitComChanged1(int index) {
     QString currentText = ui->CutMode_vitCom_2->currentText();
-
-    //updateTabsBasedOnComboBox(currentText);
 }
 
 void MainWindow::onCutMode_vitComChanged2(int index) {
     QString currentText = ui->CutMode_vitCom_3->currentText();
 
-
-    //updateTabsBasedOnComboBox(currentText);
 }
 
 void MainWindow::onCutMode_vitComChanged3(int index) {
     QString currentText = ui->CutMode_vitCom_4->currentText();
 
-  //updateTabsBasedOnComboBox(currentText);
 }
-
-
 
 void MainWindow::updateTabsBasedOnComboBox(const QString &selected) {
     qDebug() << "Selected Mode as Text:" << selected;
@@ -5267,309 +5131,158 @@ void MainWindow::receiveValues(const QString &comboBoxValue,const QString &combo
 void MainWindow::on_SETTINGS_BUT_2_clicked()
 {
     in->show();
-
-    connect(in, &doctor::sendleftfootvalues, foot, &footpedal::combobox1);
-
-    connect(in, &doctor::sendrightfootvalues, foot, &footpedal::combobox2);
-
-    connect(in, &doctor::sendbleftfootvalues, foot, &footpedal::combobox3);
-
-    connect(in, &doctor::sendbrightfootvalues, foot, &footpedal::combobox4);
-
     in->exec(); // Open as a modal dialog to wait for user input
 }
 void MainWindow::handleDataSaved()
 {
-    QString currentSurgeon = ui->comboBox_4->currentText();
-    if (!currentSurgeon.isEmpty()) {
-        onSurgeonSelectionChanged(currentSurgeon); // Refresh data for the currently selected surgeon
+
+}
+void MainWindow::onComboBoxIndexChanged(int index)
+{
+    QSqlDatabase db = QSqlDatabase::database();  // Retrieve existing connection
+
+    if (!db.isValid()) {
+        db = QSqlDatabase::addDatabase("QSQLITE");
+        db.setDatabaseName(PATH);
+
+        if (!db.open()) {
+            qDebug() << "Error: connection with database failed:";
+            return;
+        }
     }
+
+    QSqlQuery query(db);
+
+    // Step 1: Update the last selected index
+    query.prepare("UPDATE phacohigh SET lastupdate = :index");
+    query.bindValue(":index", index);
+    //query.bindValue(":id", 1); // Replace 1 with the actual identifier value if needed
+
+    if (!query.exec()) {
+        qDebug() << "Error updating last selected index:";
+        return;
+    } else {
+        qDebug() << "Last selected index updated to" << index;
+    }
+
+
+    db.close();
+    QSqlDatabase::removeDatabase(QSqlDatabase::defaultConnection);
+}
+void MainWindow::setLastSelectedValue()
+{
+    // Check if the database connection is already available
+    QSqlDatabase db = QSqlDatabase::database();  // Retrieve existing connection, if any
+
+    if (!db.isValid()) {
+        db = QSqlDatabase::addDatabase("QSQLITE");
+        db.setDatabaseName(PATH);
+
+        if (!db.open()) {
+            qDebug() << "Error: connection with database failed:";
+            return;
+        }
+    }
+
+    // Prepare and execute the query
+    QSqlQuery query(db);
+    query.prepare("SELECT lastupdate FROM phacohigh LIMIT 1");
+    if (!query.exec()) {
+        qDebug() << "Error retrieving last index:";
+        db.close();
+        QSqlDatabase::removeDatabase(QSqlDatabase::defaultConnection);
+        return;
+    }
+
+    if (query.next()) {
+           int lastIndex = query.value(0).toInt();
+
+           if (lastIndex >= 0 && lastIndex <= 4) {  // Ensure index is within valid range
+               ui->comboBox_4->setCurrentIndex(lastIndex);
+               QString surgeonName = ui->comboBox_4->currentText();
+   foot->updateFootpedalComboBoxes(surgeonName);
+               qDebug() << "Last selected surgeon index set to" << lastIndex << "corresponding to surgeon:" << surgeonName;
+
+                // push(ui->comboBox_4->currentText());
+           }else {
+        qDebug() << "No index found in the database. Verify the data in the table.";
+    }
+
+    db.close();
+    QSqlDatabase::removeDatabase(QSqlDatabase::defaultConnection);
+}
 }
 
 void MainWindow::connectToDatabase()
 {
 
 
-       QString connectionName = SQLPATH;
 
-       if (QSqlDatabase::contains(connectionName)) {
-           db = QSqlDatabase::database(connectionName);
-       } else {
-           db = QSqlDatabase::addDatabase("QSQLITE", connectionName);
-           db.setDatabaseName("phacohigh.db");  // Use the correct path to your SQLite file
-
-       }
-
-       if (!db.open()) {
-           qDebug() << "Database connection failed:" << db.lastError().text();
-       } else {
-           qDebug() << "Database connected successfully.";
-       }
 
 }
 void MainWindow::populateSurgeonList()
 {
-    qDebug() << "Attempting to populate surgeon list.";
-    if (!db.isOpen()) {
-        qDebug() << "Database is not open. State:" << db.isOpenError();
-        return;
-    }
 
-    QSqlQuery query(db);
-
-    // Query to get the list of distinct surgeons
-    if (!query.prepare("SELECT DISTINCT surgeon FROM phacohigh")) {
-        qDebug() << "Query preparation failed:" << query.lastError().text();
-        return;
-    }
-
-    if (!query.exec()) {
-        qDebug() << "Failed to execute surgeon fetch query:" << query.lastError().text();
-        return;
-    }
-
-    // Clear the combo box before populating
-    ui->comboBox_4->clear();
-
-    // Populate the combo box with surgeons
-    while (query.next()) {
-        QString surgeon = query.value(0).toString();
-        ui->comboBox_4->addItem(surgeon);
-    }
-
-    // Check if there are any surgeons added
-    if (ui->comboBox_4->count() == 0) {
-        qDebug() << "No surgeons found in the database.";
-        return;
-    }
-
-    // Finish the first query
-    query.finish();
-
-    // Query to get the last updated surgeon
-    if (!query.prepare("SELECT lastupdate FROM phacohigh LIMIT 1")) {
-        qDebug() << "Query preparation for last update failed:" << query.lastError().text();
-        return;
-    }
-
-    if (!query.exec()) {
-        qDebug() << "Failed to fetch last updated surgeon:" << query.lastError().text();
-        return;
-    }
-
-    // Retrieve the last updated surgeon
-    QString lastUpdatedSurgeon;
-    if (query.next()) {
-        lastUpdatedSurgeon = query.value(0).toString();
-    } else {
-        qDebug() << "No last updated surgeon found.";
-    }
-
-    // Find the index of the last updated surgeon
-    int index = ui->comboBox_4->findText(lastUpdatedSurgeon);
-
-    if (index != -1) {
-        ui->comboBox_4->setCurrentIndex(index);
-    } else if (ui->comboBox_4->count() > 0) {
-        // Default to the first item if the last updated surgeon is not found
-        ui->comboBox_4->setCurrentIndex(0);
-    }
-
-    qDebug() << "Surgeon list populated and last updated surgeon set.";
 }
 
 void MainWindow::onSurgeonSelectionChanged(const QString &surgeonName)
 {
-    qDebug() << "Attempting to fetch data for surgeon:" << surgeonName;
 
-    // Check if the database is open
-    if (!db.isOpen()) {
-        qDebug() << "Database is not open. Error state:" << db.isOpenError();
-        return;
-    }
-
-    // Prepare a single query to fetch all required data
-    QSqlQuery query(db);
-    query.prepare(
-        "SELECT diapowmax, pump, Epinaspmax, Epinvacmax, Epinpowmax, "
-        "quadpowmax, quadvacmax, quadaspmax, Quadvacmode, Quadpowermethod, Quadpowmode, "
-        "caspmax, cvacmax, cpowmax, Chopvacmode, Choppowermethod, Choppowmode, "
-        "saspmax, svacmax, spowmax, Sculptvacmode, Sculptpowermethod, Sculptpowmode, "
-        "cortexaspmode, cortexvacmode, polishaspmode, polishvacmode, "
-        "ia1aspmax, ia1vacmax, ia2aspmax, ia2vacmax, "
-        "vitcutmax, vitvacmax, vitaspmax, vitcutmode, vitvacmode, "
-        "Epinpowermethod, Epinpowmode, Epinvacmode "
-        "FROM phacohigh "
-        "WHERE surgeon = :surgeon"
-    );
-    query.bindValue(":surgeon", surgeonName);
-
-    // Execute the query
-    if (!query.exec()) {
-        qDebug() << "Failed to fetch data for surgeon:" << query.lastError().text();
-        return;
-    }
-
-    // Check if data is available and update the UI
-    if (query.next()) {
-        // Retrieve the values from the query result
-        int phacoPowerMax = query.value("diapowmax").toInt();
-        QString pump = query.value("pump").toString();
-
-        // US1 (Epinucleus) parameters
-        int us1power = query.value("Epinpowmax").toInt();
-        int us1vacmax = query.value("Epinvacmax").toInt();
-        int us1flowmax = query.value("Epinaspmax").toInt();
-        QString us1mode = query.value("Epinpowmode").toString();
-        QString us1vacmode = query.value("Epinvacmode").toString();
-        QString us1powermethod = query.value("Epinpowermethod").toString();
-
-        // US2 (Quadrant) parameters
-        int us2power = query.value("quadpowmax").toInt();
-        int us2vacmax = query.value("quadvacmax").toInt();
-        int us2aspmax = query.value("quadaspmax").toInt();
-        QString us2mode = query.value("Quadpowmode").toString();
-        QString us2vacmode = query.value("Quadvacmode").toString();
-        QString us2powermethod = query.value("Quadpowermethod").toString();
-
-        // US3 (Chop) parameters
-        int us3power = query.value("cpowmax").toInt();
-        int us3vacmax = query.value("cvacmax").toInt();
-        int us3aspmax = query.value("caspmax").toInt();
-        QString us3mode = query.value("Choppowmode").toString();
-        QString us3vacmode = query.value("Chopvacmode").toString();
-        QString us3powermethod = query.value("Choppowermethod").toString();
-
-        // US4 (Sculpt) parameters
-        int us4power = query.value("spowmax").toInt();
-        int us4vacmax = query.value("svacmax").toInt();
-        int us4aspmax = query.value("saspmax").toInt();
-        QString us4mode = query.value("Sculptpowmode").toString();
-        QString us4vacmode = query.value("Sculptvacmode").toString();
-        QString us4powermethod = query.value("Sculptpowermethod").toString();
-
-        // IA (Irrigation/Aspiration) parameters
-        int ia1vacmax = query.value("ia1vacmax").toInt();
-        int ia1aspmax = query.value("ia1aspmax").toInt();
-        int ia2vacmax = query.value("ia2vacmax").toInt();
-        int ia2aspmax = query.value("ia2aspmax").toInt();
-        QString ia1mode = query.value("cortexvacmode").toString();
-        QString ia2mode = query.value("polishvacmode").toString();
-
-        // Vitrectomy parameters
-        int vitcutmax = query.value("vitcutmax").toInt();
-        int vitvacmax = query.value("vitvacmax").toInt();
-        int vitaspmax = query.value("vitaspmax").toInt();
-        QString vitcutmode = query.value("vitcutmode").toString();
-        QString vitvacmode = query.value("vitvacmode").toString();
-
-        // Debugging output to verify fetched values
-        qDebug() << "Pump value retrieved:" << pump;
-        qDebug() << "US1 Epinucleus - Power:" << us1power << "Vacuum:" << us1vacmax << "Flow:" << us1flowmax;
-        qDebug() << "US2 Quadrant - Power:" << us2power << "Vacuum:" << us2vacmax << "Aspiration:" << us2aspmax;
-        qDebug() << "US3 Chop - Power:" << us3power << "Vacuum:" << us3vacmax << "Aspiration:" << us3aspmax;
-        qDebug() << "US4 Sculpt - Power:" << us4power << "Vacuum:" << us4vacmax << "Aspiration:" << us4aspmax;
-
-        // Update UI components with the retrieved values
-        ui->lineEdit_74->setText(QString::number(phacoPowerMax));
-        ui->comboBox->setCurrentText(pump);
-        // Update US1 UI components
-        ui->lineEdit_57->setText(QString::number(us1power));  // Power
-        ui->lineEdit_55->setText(QString::number(us1vacmax)); // Vacuum
-        ui->lineEdit_56->setText(QString::number(us1flowmax)); // Flow
-        ui->us1mode->setText(us1mode);
-        ui->us1vacmode->setText(us1vacmode);
-        ui->CutMode_vitCom->setCurrentText(us1powermethod);
-
-        // Update US2 UI components
-        ui->lineEdit_58->setText(QString::number(us2power)); // Power
-        ui->lineEdit_60->setText(QString::number(us2vacmax)); // Vacuum
-        ui->lineEdit_59->setText(QString::number(us2aspmax)); // Aspiration
-        ui->us2mode->setText(us2mode);
-        ui->us2vacmode->setText(us2vacmode);
-        ui->CutMode_vitCom_2->setCurrentText(us2powermethod);
-
-        // Update US3 UI components
-        ui->lineEdit_61->setText(QString::number(us3power)); // Power
-        ui->lineEdit_63->setText(QString::number(us3vacmax)); // Vacuum
-        ui->lineEdit_62->setText(QString::number(us3aspmax)); // Aspiration
-        ui->us3mode->setText(us3mode);
-        ui->us3vacmode->setText(us3vacmode);
-        ui->CutMode_vitCom_3->setCurrentText(us3powermethod);
-
-        // Update US4 UI components
-        ui->lineEdit_64->setText(QString::number(us4power)); // Power
-        ui->lineEdit_66->setText(QString::number(us4vacmax)); // Vacuum
-        ui->lineEdit_65->setText(QString::number(us4aspmax)); // Aspiration
-        ui->us4mode->setText(us4mode);   // Changed from us1mode to us4mode
-        ui->us4vacmode->setText(us4vacmode);   // Changed from us1vacmode to us4vacmode
-        ui->CutMode_vitCom_4->setCurrentText(us4powermethod);
-
-        // Update IA1 and IA2 UI components
-        ui->lineEdit_70->setText(QString::number(ia1vacmax));
-        ui->lineEdit_69->setText(QString::number(ia1aspmax));
-        ui->lineEdit_68->setText(QString::number(ia2vacmax));
-        ui->lineEdit_67->setText(QString::number(ia2aspmax));
-        ui->ia1mode->setText(ia1mode);
-        ui->ia2mode->setText(ia2mode);
-
-        // Update Vitrectomy UI components
-        ui->lineEdit_71->setText(QString::number(vitcutmax));
-        ui->lineEdit_72->setText(QString::number(vitaspmax));
-        ui->lineEdit_73->setText(QString::number(vitvacmax));
-        ui->vitmode->setText(vitcutmode);
-        ui->vitvacmode->setText(vitvacmode);
-    } else {
-        qDebug() << "No data found for surgeon:" << surgeonName;
-    }
 }
 int MainWindow::pull() {
-    QSqlQuery query("SELECT lastselected FROM database ORDER BY surgeon DESC LIMIT 1");
-    if (query.next()) {
-        qDebug()<<"pull"<<query.value(0).toInt();
-        return query.value(0).toInt();
-    }
-    return -1; // Return a default value if no entry is found
+
 }
 
 void MainWindow::push(const QString &surgeonName) {
     qDebug() << "Attempting to fetch data for surgeon:" << surgeonName;
 
-    // Check if the database is open
+    // Check and display available drivers
+    qDebug() << "Available SQL drivers:" << QSqlDatabase::drivers();
+
+    if (!db.isValid()) {
+        db = QSqlDatabase::addDatabase("QSQLITE");
+        db.setDatabaseName(PATH); // Ensure PATH is correctly set
+    }
+
     if (!db.isOpen()) {
-        qDebug() << "Database is not open. Error state:" << db.isOpenError();
-        return;
+        if (!db.open()) {
+            qDebug() << "Failed to open database. Error:" << db.lastError().text();
+            return;
+        } else {
+            qDebug() << "Database connection opened successfully.";
+        }
+    } else {
+        qDebug() << "Database is already open.";
     }
 
     // Prepare a single query to fetch all required data
     QSqlQuery query(db);
     query.prepare(
-        "SELECT diapowmax, pump, Epinaspmax, Epinvacmax, Epinpowmax, "
-        "quadpowmax, quadvacmax, quadaspmax, Quadvacmode, Quadpowermethod, Quadpowmode, "
-        "caspmax, cvacmax, cpowmax, Chopvacmode, Choppowermethod, Choppowmode, "
-        "saspmax, svacmax, spowmax, Sculptvacmode, Sculptpowermethod, Sculptpowmode, "
-        "cortexaspmode, cortexvacmode, polishaspmode, polishvacmode, "
-        "ia1aspmax, ia1vacmax, ia2aspmax, ia2vacmax, "
-        "vitcutmax, vitvacmax, vitaspmax, vitcutmode, vitvacmode, "
-        "Epinpowermethod, Epinpowmode, Epinvacmode "
-        "FROM phacohigh "
-        "WHERE surgeon = :surgeon"
-    );
+          "SELECT diapowmax, pump, Epinaspmax, Epinvacmax, Epinpowmax, "
+          "quadpowmax, quadvacmax, quadaspmax, Quadvacmode, Quadpowermethod, Quadpowmode, "
+          "caspmax, cvacmax, cpowmax, Chopvacmode, Choppowermethod, Choppowmode, "
+          "saspmax, svacmax, spowmax, Sculptvacmode, Sculptpowermethod, Sculptpowmode, "
+          "cortexaspmode, cortexvacmode, polishaspmode, polishvacmode, "
+          "ia1aspmax, ia1vacmax, ia2aspmax, ia2vacmax, "
+          "vitcutmax, vitvacmax, vitaspmax, vitcutmode, vitvacmode, "
+          "Epinpowermethod, Epinpowmode, Epinvacmode, "
+          "footleft, footright, footbottomleft, footbottomright "
+          "FROM phacohigh "
+          "WHERE surgeon = :surgeon"
+      );
     query.bindValue(":surgeon", surgeonName);
 
     // Execute the query
     if (!query.exec()) {
-        qDebug() << "Failed to fetch data for surgeon:" << query.lastError().text();
+        qDebug() << "Failed to execute query. Error:" << query.lastError().text();
         return;
     }
+
+    // Process the results
     if (query.next()) {
-            // Process the data as needed...
-            // Emit the signal to update the footpedal class
-            emit surgeonSelected(surgeonName);
-          foot->setSurgeonName(surgeonName);
-        }
-    // Check if data is available and update the UI
-    if (query.next()) {
+
+
+
         // Retrieve the values from the query result
         int phacoPowerMax = query.value("diapowmax").toInt();
         QString pump = query.value("pump").toString();
@@ -5620,6 +5333,10 @@ void MainWindow::push(const QString &surgeonName) {
         int vitaspmax = query.value("vitaspmax").toInt();
         QString vitcutmode = query.value("vitcutmode").toString();
         QString vitvacmode = query.value("vitvacmode").toString();
+        QString footleft = query.value("footleft").toString();
+        QString footright = query.value("footright").toString();
+        QString footbleft = query.value("footbottomleft").toString();
+        QString footbright = query.value("footbottomright").toString();
 
         // Debugging output to verify fetched values
         qDebug() << "Pump value retrieved:" << pump;
@@ -5639,7 +5356,6 @@ void MainWindow::push(const QString &surgeonName) {
         ui->us1vacmode->setText(us1vacmode);
         ui->CutMode_vitCom->setCurrentText(us1powermethod);
 
-
         // Update US2 UI components
         ui->lineEdit_58->setText(QString::number(us2power)); // Power
         ui->lineEdit_60->setText(QString::number(us2vacmax)); // Vacuum
@@ -5647,7 +5363,6 @@ void MainWindow::push(const QString &surgeonName) {
         ui->us2mode->setText(us2mode);
         ui->us2vacmode->setText(us2vacmode);
         ui->CutMode_vitCom_2->setCurrentText(us2powermethod);
-
 
         // Update US3 UI components
         ui->lineEdit_61->setText(QString::number(us3power)); // Power
@@ -5657,31 +5372,42 @@ void MainWindow::push(const QString &surgeonName) {
         ui->us3vacmode->setText(us3vacmode);
         ui->CutMode_vitCom_3->setCurrentText(us3powermethod);
 
-
         // Update US4 UI components
         ui->lineEdit_64->setText(QString::number(us4power)); // Power
         ui->lineEdit_66->setText(QString::number(us4vacmax)); // Vacuum
         ui->lineEdit_65->setText(QString::number(us4aspmax)); // Aspiration
-        ui->us4mode->setText(us4mode);   // Changed from us1mode to us4mode
-        ui->us4vacmode->setText(us4vacmode);   // Changed from us1vacmode to us4vacmode
+        ui->us4mode->setText(us4mode);
+        ui->us4vacmode->setText(us4vacmode);
         ui->CutMode_vitCom_4->setCurrentText(us4powermethod);
 
-        // Update IA1 and IA2 UI components
-        ui->lineEdit_70->setText(QString::number(ia1vacmax));
-        ui->lineEdit_69->setText(QString::number(ia1aspmax));
-        ui->lineEdit_68->setText(QString::number(ia2vacmax));
-        ui->lineEdit_67->setText(QString::number(ia2aspmax));
+        // Update IA UI components
+        ui->lineEdit_67->setText(QString::number(ia1vacmax)); // IA1 Vacuum
+        ui->lineEdit_69->setText(QString::number(ia1aspmax)); // IA1 Aspiration
+        ui->lineEdit_70->setText(QString::number(ia2vacmax)); // IA2 Vacuum
+        ui->lineEdit_68->setText(QString::number(ia2aspmax)); // IA2 Aspiration
         ui->ia1mode->setText(ia1mode);
         ui->ia2mode->setText(ia2mode);
 
         // Update Vitrectomy UI components
-        ui->lineEdit_71->setText(QString::number(vitcutmax));
-        ui->lineEdit_72->setText(QString::number(vitvacmax));
-        ui->lineEdit_73->setText(QString::number(vitaspmax));
+        ui->lineEdit_71->setText(QString::number(vitcutmax)); // Vitrectomy Cut Max
+        ui->lineEdit_73->setText(QString::number(vitvacmax)); // Vitrectomy Vacuum Max
+        ui->lineEdit_72->setText(QString::number(vitaspmax)); // Vitrectomy Aspiration Max
         ui->vitmode->setText(vitcutmode);
         ui->vitvacmode->setText(vitvacmode);
+
+        emit left_foot(footleft);
+        emit right_foot(footright);
+        emit bottom_left(footbleft);
+        emit bottom_right(footbright);
     } else {
         qDebug() << "No data found for surgeon:" << surgeonName;
     }
-
 }
+
+
+
+
+
+
+
+

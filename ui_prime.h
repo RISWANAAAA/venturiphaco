@@ -149,25 +149,50 @@ public:
         start_check_2 = new QCheckBox(tab_6);
         start_check_2->setObjectName(QString::fromUtf8("start_check_2"));
         start_check_2->setGeometry(QRect(110, 160, 721, 51));
-        start_check_2->setStyleSheet(QString::fromUtf8("font: 75 20pt \"Ubuntu Mono\";\n"
+        start_check_2->setStyleSheet(QString::fromUtf8("QCheckBox::indicator {\n"
+"    width: 30px;\n"
+"    height: 30px;\n"
+"}\n"
+"QCheckBox {\n"
+"    font-size: 30px;\n"
 "\n"
+"}\n"
 ""));
         wait_Check_2 = new QCheckBox(tab_6);
         wait_Check_2->setObjectName(QString::fromUtf8("wait_Check_2"));
         wait_Check_2->setGeometry(QRect(110, 260, 751, 71));
-        wait_Check_2->setStyleSheet(QString::fromUtf8("font: 75 20pt \"Ubuntu Mono\";\n"
+        wait_Check_2->setStyleSheet(QString::fromUtf8("QCheckBox::indicator {\n"
+"    width: 30px;\n"
+"    height: 30px;\n"
+"}\n"
+"QCheckBox {\n"
+"    font-size: 30px;\n"
 "\n"
+"}\n"
 ""));
         motor_Check_2 = new QCheckBox(tab_6);
         motor_Check_2->setObjectName(QString::fromUtf8("motor_Check_2"));
         motor_Check_2->setGeometry(QRect(110, 70, 381, 61));
-        motor_Check_2->setStyleSheet(QString::fromUtf8("font: 75 20pt \"Ubuntu Mono\";\n"
+        motor_Check_2->setStyleSheet(QString::fromUtf8("QCheckBox::indicator {\n"
+"    width: 30px;\n"
+"    height: 30px;\n"
+"}\n"
+"QCheckBox {\n"
+"    font-size: 30px;\n"
 "\n"
+"}\n"
 ""));
         done_Check_2 = new QCheckBox(tab_6);
         done_Check_2->setObjectName(QString::fromUtf8("done_Check_2"));
         done_Check_2->setGeometry(QRect(110, 370, 321, 41));
-        done_Check_2->setStyleSheet(QString::fromUtf8("font: 75 20pt \"Ubuntu Mono\";\n"
+        done_Check_2->setStyleSheet(QString::fromUtf8("QCheckBox::indicator {\n"
+"    width: 30px;\n"
+"    height: 30px;\n"
+"}\n"
+"QCheckBox {\n"
+"    font-size: 30px;\n"
+"\n"
+"}\n"
 ""));
         progressBar_2 = new QProgressBar(tab_6);
         progressBar_2->setObjectName(QString::fromUtf8("progressBar_2"));

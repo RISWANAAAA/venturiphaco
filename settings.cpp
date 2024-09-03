@@ -30,11 +30,6 @@ void settings::Back()
     this->close();
 }
 
-//void settings::Logs()
-//{
-//     QMessageBox::information(nullptr,"info","No Surgery Logs detected");
-//}
-
 void settings::General()
 {
     g->show();

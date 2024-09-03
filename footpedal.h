@@ -8,7 +8,6 @@
 #include "doctor.h"
 #include"mainwindow.h"
 
-#define PATH "phaco1.db"
 
 class doctor;
 class MainWindow;
@@ -36,6 +35,7 @@ public:
           void readInitialGPIOValues();
           void change_settings();
             void performAction(const QString &action, int gpioNumber);
+            void initializeGPIO();
 public slots:
             void combobox1(const QString &text);
             void combobox2(const QString &text);
@@ -50,9 +50,9 @@ signals:
     void moveTopToBottom(int value);    // Signal for moving pushbutton from top to bottom
     void moveBottomToTop(int value);    // Signal for moving pushbutton from bottom to top
     void performReflux(int value);      // Signal for performing reflux action
-    void togglePower(int value);        // Signal for toggling power on/off
+    void togglePower(bool on);        // Signal for toggling power on/off
 
-    void continous_irrigation(int value);
+    void continous_irrigation(bool on);
     void powerdm(int value1);
 
 private slots:

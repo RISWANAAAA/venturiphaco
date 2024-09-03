@@ -153,18 +153,6 @@ void prime::current(int tab)
         ui->clean_but->setStyleSheet(styleSheet);
     }
 }
-
-
-void prime::update()
-{
-
-}
-
-void prime::hp(int connected)
-{
-
-}
-
 void prime::exportGPIO(int pin)
 {
     QFile file("/sys/class/gpio/export");
@@ -172,10 +160,7 @@ void prime::exportGPIO(int pin)
         QTextStream stream(&file);
         stream << pin;
         file.close();
-      //  qDebug() << "GPIO" << gpioNumber << "exported.";
-    }/* else {
-      //  qDebug() << "Failed to export GPIO" << gpioNumber;
-    }*/
+    }
 }
 
 void prime::setGPIODirection(const QString &direction,int pin)
@@ -185,10 +170,8 @@ void prime::setGPIODirection(const QString &direction,int pin)
         QTextStream stream(&file);
         stream << direction;
         file.close();
-       // qDebug() << "GPIO" << gpioNumber << "set to" << direction;
-    } /*else {
-        qDebug() << "Failed to set direction for GPIO" << gpioNumber;
-    }*/
+
+    }
 }
 
 int prime::readGPIOValue(int pin)
@@ -199,18 +182,10 @@ int prime::readGPIOValue(int pin)
         int value;
         stream >> value;
         file.close();
-        //qDebug() << "Read value from GPIO" << gpioNumber << ":" << value;
+
         return value;
-    } /*else {
-        qDebug() << "Failed to read value from GPIO" << gpioNumber;
-        return -1;
-    }*/
+    }
 }
-
-
-
-
-
 
 void prime::updatehandpieceStatus()
 {
@@ -245,20 +220,8 @@ void prime::updatehandpieceStatus()
    else
    {
        ui->label->setStyleSheet(styleSheet5);
-
-      //  qDebug()<<"handpiece off"<<status;
        ui->Start_tune_2->setEnabled(false);
-//       QMessageBox* msgBox = new QMessageBox(QMessageBox::Information, "Info", "Tune is not completed");
 
-//       // Set the message box to show
-//       msgBox->show();
-
-//       // Create a QTimer to close the message box after 500 ms
-//       QTimer::singleShot(700, msgBox, [msgBox]() {
-//           msgBox->hide();  // Hide the message box
-//           delete msgBox;   // Delete the message box to free memory
-
-//   });
    }
 }
 
@@ -366,9 +329,7 @@ void prime::Tune()
     ui->tabWidget->setCurrentIndex(1);
 
     click();
-
 }
-
 void prime::Clean()
 {
 
@@ -388,17 +349,7 @@ void prime::Start_Tune()
 
         ui->progressBar_2->setValue(0);
         timer1->start(500); // Update every 100 ms
-
-
-
 }
-
-
-
-
-
-
-
 void prime::on_start_prime_but_2_clicked()
 {
     ui->start_check_2->setChecked(false);
@@ -445,19 +396,25 @@ void prime::on_pushButton_5_clicked()
 
 void prime::on_pushButton_6_clicked()
 {
-    QMessageBox msgBox;
+    QMessageBox msgBox(this);
     msgBox.setWindowTitle("Info");
     msgBox.setText("Tune is not completed. Do you want to continue?");
     msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
     msgBox.setDefaultButton(QMessageBox::No);
 
-    int ret = msgBox.exec(); // Get the user's choice
+    // Set the stylesheet to change the background color
+    msgBox.setStyleSheet("QMessageBox { background-color: #f0f0f0; }"); // Change the color code as needed
 
-    if (ret == QMessageBox::Yes) {
+    // Display the message box
+    QMessageBox::StandardButton reply = static_cast<QMessageBox::StandardButton>(msgBox.exec());
+
+    // Check the user's response
+    if (reply == QMessageBox::Yes) {
         m->show();
         m->setTuneMode(false);
-         m->DIATHERMYBUT();
-    } else {
+        m->DIATHERMYBUT();
+    }
+   else {
         // Handle the case where "No" is clicked (optional)
     }
  // m->show();

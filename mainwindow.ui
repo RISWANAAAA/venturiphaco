@@ -54,7 +54,7 @@ background-color: rgb(18, 78, 102);
 background-color:rgb(64, 142, 198);</string>
     </property>
     <property name="currentIndex">
-     <number>5</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab_33">
      <property name="styleSheet">
@@ -730,13 +730,13 @@ background-color:transparent;</string>
      <zorder>CutMode_vit</zorder>
      <zorder>us1vacdow_but</zorder>
      <zorder>us1powup_but</zorder>
-     <zorder>CutMode_vitCom</zorder>
      <zorder>label_23</zorder>
      <zorder>label_8</zorder>
      <zorder>us1flowdown_but</zorder>
      <zorder>lineEdit_56</zorder>
      <zorder>us1flowup_but</zorder>
      <zorder>textEdit_41</zorder>
+     <zorder>CutMode_vitCom</zorder>
     </widget>
     <widget class="QWidget" name="tab_34">
      <property name="styleSheet">
@@ -4248,12 +4248,18 @@ border:none;</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font:15pt &quot;Ubuntu&quot;;
+     <string notr="true">QPushButton{font:15pt &quot;Ubuntu&quot;;
 image: url(:/images/glass.png);
 
 
 border-radius:40px;
-border:none;font-weight: bold;border:</string>
+border:none;font-weight: bold;border:
+}
+QPushButton:focus {
+    outline: none;
+    border: none;
+}
+</string>
     </property>
     <property name="text">
      <string>I/A 2</string>
@@ -4269,12 +4275,18 @@ border:none;font-weight: bold;border:</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font:15pt &quot;Ubuntu&quot;;
+     <string notr="true">QPushButton{font:15pt &quot;Ubuntu&quot;;
 image: url(:/images/glass.png);
 
 
 border-radius:40px;
-border:none;font-weight: bold;border:</string>
+border:none;font-weight: bold;border:
+}
+QPushButton:focus {
+    outline: none;
+    border: none;
+}
+</string>
     </property>
     <property name="text">
      <string>VIT</string>
@@ -4308,12 +4320,18 @@ border:none;</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font:15pt &quot;Ubuntu&quot;;
+     <string notr="true">QPushButton{font:15pt &quot;Ubuntu&quot;;
 image: url(:/images/glass.png);
 
 
 border-radius:40px;
-border:none;font-weight: bold;border:</string>
+border:none;font-weight: bold;border:
+}
+QPushButton:focus {
+    outline: none;
+    border: none;
+}
+</string>
     </property>
     <property name="text">
      <string>U/S1</string>
@@ -4347,12 +4365,18 @@ border:none;</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font:15pt &quot;Ubuntu&quot;;
+     <string notr="true">QPushButton{font:15pt &quot;Ubuntu&quot;;
 image: url(:/images/glass.png);
 
 
 border-radius:40px;
-border:none;font-weight: bold;border:</string>
+border:none;font-weight: bold;border:
+}
+QPushButton:focus {
+    outline: none;
+    border: none;
+}
+</string>
     </property>
     <property name="text">
      <string>U/S3</string>
@@ -4386,12 +4410,18 @@ border:none;</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font:15pt &quot;Ubuntu&quot;;
+     <string notr="true">QPushButton{font:15pt &quot;Ubuntu&quot;;
 image: url(:/images/glass.png);
 
 
 border-radius:40px;
-border:none;font-weight: bold;border:</string>
+border:none;font-weight: bold;border:
+}
+QPushButton:focus {
+    outline: none;
+    border: none;
+}
+</string>
     </property>
     <property name="text">
      <string>I/A 1</string>
@@ -4407,12 +4437,18 @@ border:none;font-weight: bold;border:</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font:15pt &quot;Ubuntu&quot;;
+     <string notr="true">QPushButton{font:15pt &quot;Ubuntu&quot;;
 image: url(:/images/glass.png);
 
 
 border-radius:40px;
-border:none;font-weight: bold;border:</string>
+border:none;font-weight: bold;border:
+}
+QPushButton:focus {
+    outline: none;
+    border: none;
+}
+</string>
     </property>
     <property name="text">
      <string>U/S2</string>
@@ -4464,12 +4500,18 @@ border:none;</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font:15pt &quot;Ubuntu&quot;;
+     <string notr="true">QPushButton{font:15pt &quot;Ubuntu&quot;;
 image: url(:/images/glass.png);
 
 
 border-radius:40px;
-border:none;font-weight: bold;border:</string>
+border:none;font-weight: bold;border:
+}
+QPushButton:focus {
+    outline: none;
+    border: none;
+}
+</string>
     </property>
     <property name="text">
      <string>U/S4</string>
@@ -4485,12 +4527,18 @@ border:none;font-weight: bold;border:</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font:15pt &quot;Ubuntu&quot;;
+     <string notr="true">QPushButton{font:15pt &quot;Ubuntu&quot;;
 image: url(:/images/glass.png);
 
 
 border-radius:40px;
-border:none;font-weight: bold;border:</string>
+border:none;font-weight: bold;
+}
+QPushButton:focus {
+    outline: none;
+    border: none;
+}
+</string>
     </property>
     <property name="text">
      <string>DIA</string>
