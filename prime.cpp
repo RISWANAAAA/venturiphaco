@@ -396,16 +396,19 @@ void prime::on_pushButton_5_clicked()
 
 void prime::on_pushButton_6_clicked()
 {
-    QMessageBox msgBox(this);
-    msgBox.setWindowTitle("Info");
-    msgBox.setText("Tune is not completed. Do you want to continue?");
-    msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
-    msgBox.setDefaultButton(QMessageBox::No);
+    QMessageBox msgBox;
+    msgBox.setWindowTitle("Info"); // Title of the message box
+    msgBox.setText("Tune is not completed. Do you want to continue?"); // Question to ask
+    msgBox.setIcon(QMessageBox::Question); // Set icon to question mark
+    msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No); // Yes and No buttons
+    msgBox.setDefaultButton(QMessageBox::No); // Default button
 
-    // Set the stylesheet to change the background color
-    msgBox.setStyleSheet("QMessageBox { background-color: #f0f0f0; }"); // Change the color code as needed
+    // Apply stylesheet to change background color to gray
+    msgBox.setStyleSheet("QMessageBox { background-color: gray; color: white; }"
+                         "QPushButton { background-color: #444; color: white; border: 1px solid #666;width:91;height:51 }"
+                         "QPushButton:hover { background-color: #666; }");
 
-    // Display the message box
+    // Show the message box and get the user's response
     QMessageBox::StandardButton reply = static_cast<QMessageBox::StandardButton>(msgBox.exec());
 
     // Check the user's response
@@ -414,7 +417,8 @@ void prime::on_pushButton_6_clicked()
         m->setTuneMode(false);
         m->DIATHERMYBUT();
     }
-   else {
+
+    else {
         // Handle the case where "No" is clicked (optional)
     }
  // m->show();

@@ -9,37 +9,35 @@ doctor::doctor(QWidget *parent) :
     ui(new Ui::doctor)
 {
     ui->setupUi(this);
+    //last surgeon update
    setLastSelectedValue();
    move(0,0);
-    timer=new QTimer;
-    messagebox=new QMessageBox(this);
+
     QString tabStyle = "QTabBar::tab:selected { background-color: black; color: #ffffff; }";
     ui->tabWidget_2->setStyleSheet(tabStyle);
          connect(ui->tabWidget_2, &QTabWidget::currentChanged, this, &doctor::clickedtab);
           clickedtab(ui->tabWidget_2->currentIndex());
-          connect(ui->SelectSurgeon, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &doctor::onComboBoxIndexChanged);
-
+//index updated based on the surgeon
+connect(ui->SelectSurgeon, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &doctor::onComboBoxIndexChanged);
+//select surgeon on combo box changed
 connect(ui->SelectSurgeon,&QComboBox::currentTextChanged,this,&doctor::onSurgeonSelectionChanged);
-    message=new QMessageBox(this);
+
+    //databasepath
     QSqlDatabase mydb = QSqlDatabase::addDatabase("QSQLITE");
        mydb.setDatabaseName(PATH);
        mydb.open();
+       //current surgeon
     surgeonid=ui->SelectSurgeon->currentText();
 
-                        connect(timer,&QTimer::timeout,[=]()
-                        {
-                            timer->stop();
-                            message->close();
-
-                        });
-                        QString tabStyle1 = "QTabBar::tab:selected { background-color: black; color: #ffffff; }";
-                         ui-> tabWidget->setStyleSheet(tabStyle1);
+    QString tabStyle1 = "QTabBar::tab:selected { background-color: black; color: #ffffff; }";
+     ui-> tabWidget->setStyleSheet(tabStyle1);
 
     key=new keypad;
     connect(key,&keypad::textsignal,this,&doctor::on_clicked);
     connect(key,&keypad::entersignal,this,&doctor::on_clickedenter);
-
+    //pump selection
     connect(ui->comboBox,&QComboBox::currentTextChanged, this, &doctor::pumpvalue);
+    //lineEdit preset values
      ui->lineEdit_6->setText("100");
   ui->lineEdit_2->setText("40");
   ui->lineEdit_3->setText("500");
@@ -97,7 +95,7 @@ connect(ui->SelectSurgeon,&QComboBox::currentTextChanged,this,&doctor::onSurgeon
     ui->lineEdit->installEventFilter(this);
     ui->lineEdit_19->installEventFilter(this);
     ui->lineEdit_20->installEventFilter(this);
-
+//PROGRESSBAR SETTINGS
   ui->progressBar->setRange(5,100);
   ui->progressBar_5->setRange(2,40);
   ui->progressBar_6->setRange(5,500);
@@ -140,10 +138,6 @@ connect(ui->SelectSurgeon,&QComboBox::currentTextChanged,this,&doctor::onSurgeon
 doctor::~doctor()
 {
     delete ui;
-}
-
-void doctor::userMessage(int value, int minValue, int maxValue)
-{
 }
 
 bool doctor::eventFilter(QObject *object, QEvent *event)
@@ -694,6 +688,7 @@ if(value ==0){
             return;
         }
         setRange(ui->lineEdit_5, prevValue, value4, 40);
+        ui->progressBar_15->setValue(value4);
 
 
 
@@ -710,6 +705,7 @@ if(value ==0){
             return;
         }
         setRange(ui->lineEdit_7, prevValue, value5, 500);
+        ui->progressBar_14->setValue(value5);
 
 
     }
@@ -725,6 +721,7 @@ if(value ==0){
             return;
         }
         setRange(ui->lineEdit_12, prevValue, value6, 40);
+        ui->progressBar_16->setValue(value6);
 
     }
     if(ui->lineEdit_11->focusWidget()) {
@@ -739,6 +736,7 @@ if(value ==0){
             return;
         }
         setRange(ui->lineEdit_11, prevValue, value7, 500);
+        ui->progressBar_17->setValue(value7);
 
     }
     //vitrectomy
@@ -754,6 +752,7 @@ if(value ==0){
             return;
         }
         setRange(ui->lineEdit, prevValue, value8, 960);
+        ui->progressBar_21->setValue(value8);
 
     }
      if(ui->lineEdit_19->focusWidget()) {
@@ -767,6 +766,7 @@ if(value ==0){
             return;
         }
         setRange(ui->lineEdit_19, prevValue, value9, 500);
+        ui->progressBar_19->setValue(value9);
 
     }
     if(ui->lineEdit_20->focusWidget()) {
@@ -781,6 +781,7 @@ if(value ==0){
         }
 
         setRange(ui->lineEdit_20, prevValue, value, 40);
+        ui->progressBar_20->setValue(value);
 
 
     }
@@ -879,25 +880,6 @@ int doctor::decreasebutton(int input)
 }
 
 
-void doctor::currentcombobox2(const QString &text)
-{
-}
-
-void doctor::currentcombobox3(const QString &text)
-{
-
-}
-
-void doctor::currentcombobox4(const QString &text)
-{
-
-}
-
-
-void doctor::currentcombobox1(const QString &text)
-{
-}
-
 
 void doctor::DiathermyBut()
 {
@@ -923,32 +905,11 @@ void doctor::VitrectomyBut()
 
 
 }
-void doctor::savesettings()
-{
 
-
-}
 void doctor::BackBut()
 {
     this->close();
 }
-
-void doctor::PhacoSaveBut()
-{
-}
-
-
-void doctor::IASaveBut()
-{
-
-}
-
-
-void doctor::VitSaveBut()
-{
-
-}
-
 
 
 void doctor::click(int tab)
@@ -1047,10 +1008,6 @@ void doctor::clickedtab(int tab1)
     }
 
 }
-
-
-
-
 
 void doctor::on_EpinBut_phaco_clicked()
 {
@@ -1223,8 +1180,8 @@ QString b_right=ui->BottomRFoot->currentText();
     query.bindValue(":cortexvacmode", ui->VacModeCom_phaco_4->currentText());
     query.bindValue(":polishaspmode", ui->PowMethodCom_phaco_4->currentText());
     query.bindValue(":polishvacmode", ui->VacModeCom_phaco_4->currentText());
-    query.bindValue(":ia1aspmax", ui->lineEdit_7->text().toInt());
-    query.bindValue(":ia1vacmax", ui->lineEdit_5->text().toInt());
+    query.bindValue(":ia1aspmax", ui->lineEdit_5->text().toInt());
+    query.bindValue(":ia1vacmax", ui->lineEdit_7->text().toInt());
     query.bindValue(":ia2aspmax", ui->lineEdit_12->text().toInt());
     query.bindValue(":ia2vacmax", ui->lineEdit_11->text().toInt());
     query.bindValue(":vitcutmax", ui->lineEdit->text().toInt());
@@ -1385,22 +1342,6 @@ void doctor::setLastSelectedValue()
 }
 
 
-
-
-
-
-void doctor::connectToDatabase()
-{
-
-
-
-
-}
-void doctor::populateSurgeonList()
-{
-
-}
-
 void doctor::onSurgeonSelectionChanged(const QString &surgeonName)
 {
 
@@ -1502,10 +1443,10 @@ void doctor::onSurgeonSelectionChanged(const QString &surgeonName)
         int ia2aspmax = query.value("ia2aspmax").toInt();
         QString ia1mode = query.value("cortexvacmode").toString();
         QString ia2mode = query.value("polishvacmode").toString();
-        ui->progressBar_14->setValue(ia1vacmax);
-        ui->progressBar_15->setValue(ia1aspmax);
-        ui->progressBar_16->setValue(ia2aspmax);
-        ui->progressBar_17->setValue(ia2vacmax);
+        ui->progressBar_14->setValue(ia1aspmax);
+        ui->progressBar_15->setValue(ia1vacmax);
+        ui->progressBar_16->setValue(ia2vacmax);
+        ui->progressBar_17->setValue(ia2aspmax);
         // Vitrectomy parameters
         int vitcutmax = query.value("vitcutmax").toInt();
         int vitvacmax = query.value("vitvacmax").toInt();

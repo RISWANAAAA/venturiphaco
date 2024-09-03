@@ -2,18 +2,14 @@
 #define DOCTOR_H
 
 #include <QDialog>
-#include <QtDebug>
-#include "prime.h"
 #include"keypad.h"
 #include"mainwindow.h"
 #include<QMessageBox>
-
-class QLineEdit;
-
-
 #include<QtSql/QSqlDatabase>
 #include <QtSql/QSqlQuery>
 #define PATH "/home/phacohigh.db"
+
+class QLineEdit;
 namespace Ui {
 class doctor;
 }
@@ -27,37 +23,21 @@ public:
     ~doctor();
     bool eventFilter(QObject* object, QEvent* event);
     QString surgeonid;
-
-
     void setRange(QLineEdit* lineEdit, int prevValue, int value, int maxValue);
-    void userMessage(int value, int minValue, int maxValue);
-void connectToDatabase();
-void populateSurgeonList();
-void onSurgeonSelectionChanged(const QString &surgeonName);
-void setLastSelectedValue();
+   void onSurgeonSelectionChanged(const QString &surgeonName);
+   void setLastSelectedValue();
+
 public slots:
+
+
+
    void onComboBoxIndexChanged(int index);
     void on_clicked(const QString& digit);
     void on_clickedenter();
     void clickedtab(int tab1);
-    void PhacoSaveBut();
-
-
-
-    void IASaveBut();
-
-    void VitSaveBut();
     void click(int tab);
     int increasebutton(int input);
     int decreasebutton(int input);
-
-
-    void currentcombobox1(const QString &text);
-    void currentcombobox2(const QString &text);
-    void currentcombobox3(const QString &text);
-    void currentcombobox4(const QString &text);
-
-
 
 private slots:
     void DiathermyBut();
@@ -70,33 +50,20 @@ private slots:
 
     void BackBut();
 
-    void savesettings();
-
-
-
-    //void on_pushButton_5_clicked();
-
-
-
-
-
     void on_QuadBut_phaco_clicked();
 
     void on_ChopBut_phaco_clicked();
 
     void on_ScupltBut_phaco_clicked();
 
+    void on_EpinBut_phaco_clicked();
 
+    void on_pushButton_clicked();
 
-
-  void on_EpinBut_phaco_clicked();
-
-
-
-  void on_pushButton_clicked();
-  void pumpvalue();
+    void pumpvalue();
 
   void on_SaveDiaBut_clicked();
+
   void handleDataSaved();
 
 
@@ -106,7 +73,6 @@ signals:
   void sendrightfootvalues(const QString &text2);
   void sendbleftfootvalues(const QString &text3);
   void sendbrightfootvalues(const QString &text4);
-              //footpedal combo box;
               void leftfoot(const QString &value);
               void rightfoot(const QString &value);
               void bottomleft(const QString &value);
@@ -145,21 +111,13 @@ signals:
 
 private:
     Ui::doctor *ui;
-    //prime *p;
     int value =0;
     keypad *key;
     int getvalue(int input);
-
-
-    QMessageBox *message;
-    QMessageBox *messagebox;
-    QTimer *timer;
     QMap<QString, QMap<int, QStringList>> surgeonData;
     QMap<QLineEdit*, int> lastValidValues;  // Declare the QMap as a member variable
     QMap<QLineEdit*, int> lastValidValues1;  // Declare the QMap as a member variable
-QSqlDatabase db;
-
-
+    QSqlDatabase db;
 
 };
 

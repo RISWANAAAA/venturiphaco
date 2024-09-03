@@ -6,6 +6,8 @@
 #include<cmath>
 #include<QStyleFactory>
 #include<QSqlError>
+#include<QProcess>
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -18,20 +20,28 @@ MainWindow::MainWindow(QWidget *parent)
     ,powerOn1(false)
     ,overallci(false)
 {
-    ui->setupUi(this);
+    ui->setupUi(this);//class initialisation
     vac=new Vaccum;
     handler=new hwhandler;
+    foot=new footpedal;
+    in=new doctor;
+    s=new settings;
+    key=new keypad;
+    timer = new QTimer;
+    footsensor=new QTimer;
+    lfoot=new footlib;
+
     ui->CutMode_vit->hide();
     ui->CutMode_vitCom->hide();
     ui->tabWidget_2->hide();
-   foot=new footpedal;
-   in=new doctor;
+  //dial update
    ui->dial_2->setStyleSheet("");
    ui->dial_2->setStyle(QStyleFactory::create("Fusion"));
    ui->dial_2->setStyleSheet("background-color: rgb(26, 95, 180);");
    ui->dial_2->setRange(0, 4096);
-
+//last value updated
    setLastSelectedValue();
+//button index for gpio pins
      buttons[0] = ui->DIABUT;
      buttons[1] = ui->ULTRASONICBUT1;
      buttons[2] = ui->ULTRASONICBUT2;
@@ -43,80 +53,73 @@ MainWindow::MainWindow(QWidget *parent)
 
      buttonforgpio = 0;
      buttons[buttonforgpio]->setChecked(true);
+//read gpio values
      QTimer *readgpio=new QTimer;
    //  connect(readgpio,&QTimer::timeout,this,&MainWindow::readGPIO);
      readgpio->start(100);
+//elapsed timer
     updateTimer = new QTimer(this);
     connect(updateTimer, &QTimer::timeout, this, &MainWindow::updateTimers);
-  connect(ui->CI5_5,&QPushButton::clicked,this,&MainWindow::on_CI4_2_clicked);
     updateTimer->start(1000); // Update every 100 milliseconds
+    //connection pushbutton to manual button
+  connect(ui->CI5_5,&QPushButton::clicked,this,&MainWindow::on_CI4_2_clicked);
+//tabwidget setting
   ui->tabWidget->setCurrentIndex(7);
-
+//power onoff
   power.powerOn=false;
- // power.buttonState="OFF";
   power.powerOn1=false;
- // power.buttonstate1="OFF";
   power.powerOn2=false;
   power.buttonstate2="OFF";
   power.powerOn3=false;
   power.buttonstate3="OFF";
   power.powerOn4=false;
   power.buttonstate4="OFF";
+//connection for send values from the doctor window and receive values from the mainwindow
        connect(in,&doctor::sendValues,this,&MainWindow::receiveValues);
-       QTimer *timerdia=new QTimer;
 
-  for (int i = 0; i < 7; ++i) {
-       previousValue[i] = -1;
-   }
-    s=new settings;
-    key=new keypad;
-    timer = new QTimer;
- footsensor=new QTimer;
-    lfoot=new footlib;
+//footpedalcheck
     protimer=new QTimer;
+    connect(protimer,&QTimer::timeout,this,&MainWindow::footpedalcheck);
+    protimer->start(500);
+//update sensor for nonlinear
     QTimer *timerfoot = new QTimer;
-    timer43=new QTimer;
-    QTimer *ftime=new QTimer;
     connect(timerfoot, &QTimer::timeout, this, &MainWindow::updatesensor);
-       timerfoot->start(100); // 100 milliseconds interval
+    timerfoot->start(100); // 100 milliseconds interval
+//update sensor for linear
        sensortimer = new QTimer(this);
        connect(sensortimer, SIGNAL(timeout()), this, SLOT(sensor2()));
        sensortimer->start(100); // Update labels every 1000 milliseconds (1 second)
-    ui->lineEdit_57->setText("100");
- connect(this,&MainWindow::left_foot,foot,&footpedal::combobox1);
- connect(this,&MainWindow::right_foot,foot,&footpedal::combobox2);
- connect(this,&MainWindow::bottom_left,foot,&footpedal::combobox3);
- connect(this,&MainWindow::bottom_right,foot,&footpedal::combobox4);
+
+//update footpedal value from doctor window to mainwindow and mainwindow to footpedal screen
+      connect(this,&MainWindow::left_foot,foot,&footpedal::combobox1);
+      connect(this,&MainWindow::right_foot,foot,&footpedal::combobox2);
+      connect(this,&MainWindow::bottom_left,foot,&footpedal::combobox3);
+      connect(this,&MainWindow::bottom_right,foot,&footpedal::combobox4);
+
+//update gpio pins and in and out
     exportGPIO(960);
     setGPIODirection("in",960);
-    exportGPIO(961);
-      setGPIODirection("in",961);
-      exportGPIO(962);
-      setGPIODirection("in",962);
-      exportGPIO(963);
-      setGPIODirection("in",963);
-      exportGPIO(964);
-      setGPIODirection("in",964);
-      //last selected value
-
-    // Update status initially
+//handpiece status
     updatehandpieceStatus();
-  ui->us1powup_but->setEnabled(false);
-  ui->us1powdown_but->setEnabled(false);
-ui->us2powup_but->setEnabled(false);
-ui->us2powdown_but->setEnabled(false);
-ui->us3powup_but->setEnabled(false);
-ui->us3powdown_but->setEnabled(false);
-ui->us4powup_but->setEnabled(false);
-ui->us4powdown_but->setEnabled(false);
-ui->vitpowup_but->setEnabled(false);
-ui->vitpowdown_but->setEnabled(false);
 
-    // Setup a timer to periodically update the status
+//updatebutton status if  power on means then only increase and decrease button working
+    ui->us1powup_but->setEnabled(false);
+    ui->us1powdown_but->setEnabled(false);
+    ui->us2powup_but->setEnabled(false);
+    ui->us2powdown_but->setEnabled(false);
+    ui->us3powup_but->setEnabled(false);
+    ui->us3powdown_but->setEnabled(false);
+    ui->us4powup_but->setEnabled(false);
+    ui->us4powdown_but->setEnabled(false);
+    ui->vitpowup_but->setEnabled(false);
+    ui->vitpowdown_but->setEnabled(false);
+
+//update handpiece status when handpiece is connected or not
     statusUpdateTimer = new QTimer(this);
-    connect(statusUpdateTimer, &QTimer::timeout, this, &MainWindow::onUpdateStatusTimeout);
+    connect(statusUpdateTimer, &QTimer::timeout, this, &MainWindow::updatehandpieceStatus);
     statusUpdateTimer->start(500); // Update every second
-    //lineedit value givennnnn
+
+//settext value in line edit like preset
 //us1
    ui->lineEdit_57->setText("100");
    ui->lineEdit_55->setText("500");
@@ -148,13 +151,10 @@ ui->vitpowdown_but->setEnabled(false);
    //dia
   ui->lineEdit_74->setText("100");
 
-
-
   // keypad connetion
     connect(key,&keypad::textsignal,this,&MainWindow::on_clicked);
     connect(key,&keypad::entersignal,this,&MainWindow::on_clickedenter);
-    connect(protimer,&QTimer::timeout,this,&MainWindow::footpedalcheck);
-    protimer->start(500);
+ //footpedal connection receive value from the footpedal and updateing
     connect(foot, &footpedal::moveTopToBottom, this, &MainWindow::movePushButtonTopToBottom);
     connect(foot, &footpedal::moveBottomToTop, this, &MainWindow::movePushButtonBottomToTop);
    connect(foot,&footpedal::performReflux,this,&MainWindow::footreflux);
@@ -164,7 +164,7 @@ ui->vitpowdown_but->setEnabled(false);
 connect(foot,&footpedal::powerdm,this,&MainWindow::onPdmModeSelected1);
 connect(foot,&footpedal::powerdm,this,&MainWindow::onPdmModeSelected2);
 connect(foot,&footpedal::powerdm,this,&MainWindow::onPdmModeSelected3);
-//connect(this,&MainWindow::surgeonSelected,foot,&footpedal::updateFootpedalComboBoxes);
+
 //tabwidget current index selected
     ui->tabWidget->setTabText(6, "VITRECTOMY");
     QString tabStyle = "QTabBar::tab:selected { background-color: black; color: #ffffff; }";
@@ -176,12 +176,12 @@ connect(foot,&footpedal::powerdm,this,&MainWindow::onPdmModeSelected3);
     ui->tabWidget->setTabText(3, "ULTRASONIC 4");
     ui->tabWidget->setTabText(4, "IRRIGATION ASPIRATION 1");
     ui->tabWidget->setTabText(5, "IRRIGATION ASPIRATION 2");
-
     ui->tabWidget->setTabText(7, "DIATHERMY");
-    //ui->ULTRASONICBUT1->setStyleSheet(styleSheet);
+
+//stylesheet
            QFont font("Ubuntu", 20, QFont::Bold);
 
-               // Set the font for the QPushButton
+// Set the font for the QPushButton
      ui->ULTRASONICBUT1->setFont(font);
      ui->ULTRASONICBUT2->setFont(font);
      ui->ULTRASONICBUT3->setFont(font);
@@ -221,20 +221,25 @@ connect(foot,&footpedal::powerdm,this,&MainWindow::onPdmModeSelected3);
      ui->lineEdit_74->installEventFilter(this);
      ui->lineEdit_57->setMaxLength(3);
 
+   //select surgeon which is updated
     connect(ui->comboBox_4, &QComboBox::currentTextChanged, this, &MainWindow::push);
+
+    //pump update
      connect(ui->comboBox,&QComboBox::currentTextChanged,this,&MainWindow::performpump);
+
+   //method combo box updated
      connect(ui->CutMode_vitCom, QOverload<const QString &>::of(&QComboBox::currentTextChanged), this, &MainWindow::updateTabsBasedOnComboBox);
       connect(ui->CutMode_vitCom_2, QOverload<const QString &>::of(&QComboBox::currentTextChanged), this, &MainWindow::updateTabsBasedOnComboBox);
       connect(ui->CutMode_vitCom_3, QOverload<const QString &>::of(&QComboBox::currentTextChanged), this, &MainWindow::updateTabsBasedOnComboBox);
     connect(ui->CutMode_vitCom_4, QOverload<const QString &>::of(&QComboBox::currentTextChanged), this, &MainWindow::updateTabsBasedOnComboBox);
    int currenttab=7;
 
+   //stylesheet tab
      connect(ui->tabWidget, &QTabWidget::currentChanged, this, &MainWindow::current);
+     current(currenttab);
 
-          current(currenttab);
 
-
-     //name chnage connection
+     //name change connection
        connect(ui->ULTRASONICBUT1,&QPushButton::clicked,this,&MainWindow::ULTRASONICBUT1);
        connect(ui->ULTRASONICBUT2,&QPushButton::clicked,this,&MainWindow::ULTRASONICBUT2);
        connect(ui->ULTRASONICBUT3,&QPushButton::clicked,this,&MainWindow::ULTRASONICBUT3);
@@ -250,7 +255,7 @@ connect(foot,&footpedal::powerdm,this,&MainWindow::onPdmModeSelected3);
        connect(ui->us1flowdown_but,&QPushButton::clicked,this,&MainWindow::US1FLOWDOWN);
        connect(ui->us1flowup_but,&QPushButton::clicked,this,&MainWindow::US1FLOWUP);
        connect(ui->BACKBUT,&QPushButton::clicked,this,&MainWindow::BACKBUT);
-       connect(ui->SETTINGS_BUT_4,&QPushButton::clicked,this,&MainWindow::SETTINGSBUT);
+
        //us2
        connect(ui->us2powup_but,&QPushButton::clicked,this,&MainWindow::us2powup);
        connect(ui->us2powdown_but,&QPushButton::clicked,this,&MainWindow::us2powdown);
@@ -304,8 +309,8 @@ connect(foot,&footpedal::powerdm,this,&MainWindow::onPdmModeSelected3);
       connect(ui->vitmode,&QPushButton::clicked,this,&MainWindow::vit_linear_nonlinear);
 
       //window
-      //connect(ui->doctor,&QPushButton::clicked,this,&MainWindow::doctorwindow_show);
       connect(ui->SETTINGS_BUT_3,&QPushButton::clicked,this,&MainWindow::footpedalwindow_show);
+
       //pdm mode
       connect(ui->pulseup_but,&QPushButton::clicked,this,&MainWindow::pulseup_mode);
       connect(ui->pulsedown_but,&QPushButton::clicked,this,&MainWindow::pulsedown_mode);
@@ -321,7 +326,7 @@ connect(foot,&footpedal::powerdm,this,&MainWindow::onPdmModeSelected3);
       connect(ui->coldphacodown_but,&QPushButton::clicked,this,&MainWindow::coldphacodown_mode);
       connect(ui->coldphaco1up_but,&QPushButton::clicked,this,&MainWindow::coldphaco1up_mode);
       connect(ui->coldphaco1up_but,&QPushButton::clicked,this,&MainWindow::coldphaco1down_mode);
-
+//update mode linear or nonlinear
       us1_linear_nonlinear();
       us2_linear_nonlinear();
       us3_linear_nonlinear();
@@ -329,16 +334,12 @@ connect(foot,&footpedal::powerdm,this,&MainWindow::onPdmModeSelected3);
       ia1_linear_nonlinear();
       ia2_linear_nonlinear();
       vit_linear_nonlinear();
+//
       push(ui->comboBox_4->currentText());
 
 }
-//pushbutton pushbutton
-void MainWindow::click()
-{
 
-}
 //elapsed time
-
 void MainWindow::updateElapsedTime()
 {
     if (timer5.isValid()) {
@@ -352,10 +353,8 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
-void MainWindow::userMessage(int value, int minValue, int maxValue)
-{
 
-}
+//updateline edit when enter max value
 void MainWindow::updateLineedit(QLineEdit *lineEdit, int prevValue, int value, int maxValue) {
 
     // Check if the entered value is greater than the maximum allowed value
@@ -711,6 +710,7 @@ void MainWindow::on_clicked(const QString& digit)
           ui->lineEdit_57->setText(QString::number(5));
           return;}
           setRange(ui->lineEdit_57, prevValue, value, 100);
+          updateLineedit(ui->lineEdit_57,prevValue,value,100);
   }
   if(ui->lineEdit_55->focusWidget()) {
       ui->lineEdit_56->clearFocus();
@@ -722,6 +722,7 @@ void MainWindow::on_clicked(const QString& digit)
           ui->lineEdit_55->setText(QString::number(5));
           return;}
       setRange(ui->lineEdit_55, prevValue, value, 500);
+      updateLineedit(ui->lineEdit_55,prevValue,value,500);
 
 
   }
@@ -735,6 +736,7 @@ void MainWindow::on_clicked(const QString& digit)
           ui->lineEdit_56->setText(QString::number(2));
           return;}
       setRange(ui->lineEdit_56, prevValue, value, 40);
+      updateLineedit(ui->lineEdit_56,prevValue,value,40);
 
   }
   //ULTRASONIC 2
@@ -748,6 +750,7 @@ void MainWindow::on_clicked(const QString& digit)
           ui->lineEdit_58->setText(QString::number(5));
           return;}
       setRange(ui->lineEdit_58, prevValue, value, 100);
+      updateLineedit(ui->lineEdit_58,prevValue,value,100);
 
   }
    if(ui->lineEdit_60->focusWidget()) {
@@ -760,6 +763,7 @@ void MainWindow::on_clicked(const QString& digit)
           ui->lineEdit_60->setText(QString::number(5));
           return;}
       setRange(ui->lineEdit_60, prevValue, value, 500);
+      updateLineedit(ui->lineEdit_60,prevValue,value,500);
 
   }
    if(ui->lineEdit_59->focusWidget()) {
@@ -772,6 +776,7 @@ void MainWindow::on_clicked(const QString& digit)
           ui->lineEdit_59->setText(QString::number(2));
           return;}
       setRange(ui->lineEdit_59, prevValue, value, 40);
+      updateLineedit(ui->lineEdit_59,prevValue,value,40);
 
   }
   //ULTRASONIC 3
@@ -954,6 +959,7 @@ void MainWindow::on_clicked(const QString& digit)
       }
 
 }
+//when enter button is clicked they value is modified
 void MainWindow::on_clickedenter()
 {
    key->hide();
@@ -1017,6 +1023,7 @@ void MainWindow::on_clickedenter()
    }
 
 }
+
 void MainWindow::ULTRASONICBUT1()
 {
     ui->tabWidget->setCurrentIndex(0);
@@ -1045,7 +1052,6 @@ void MainWindow::ULTRASONICBUT2()
 void MainWindow::ULTRASONICBUT3()
 {
     ui->tabWidget->setCurrentIndex(2);
-      click();
       QString currentText = ui->CutMode_vitCom_3->currentText();
 
       updateTabsBasedOnComboBox(currentText);
@@ -1093,9 +1099,6 @@ void MainWindow::IRRIGATIONBUT2()
 void MainWindow::VITRECTOMYBUT()
 {
     ui->tabWidget->setCurrentIndex(6);
-   // ui->label_11->setText("VITRECTOMY");
-   click();
-
     butname=7;
     handler->buzz();
 
@@ -1109,10 +1112,8 @@ void MainWindow::DIATHERMYBUT()
     ui->tabWidget_2->hide();
     butname=0;
 
-    click();
     current(7);
- //changeButtonColor(7);
-//dia();
+
 }
 void MainWindow::diapowup()
 {
@@ -1603,11 +1604,7 @@ void MainWindow::us4flowdown()
     }
     ui->lineEdit_65->setText(QString::number(value));
 }
-void MainWindow::SETTINGSBUT()
-{
 
-
-}
 void MainWindow::setRange(QLineEdit* lineEdit, int prevValue, int value, int maxValue)
 {
    if(value > maxValue)
@@ -1683,14 +1680,14 @@ void MainWindow::current(int tab)
     ui->label_13->hide();
     ui->label_5->hide();
     ui->label_6->hide();
- ui->elapsed_time->hide();
- ui->label_32->hide();
+    ui->elapsed_time->hide();
+    ui->label_32->hide();
     switch (tab) {
         case 0:
             ui->ULTRASONICBUT1->setStyleSheet(styleSheet);
             ui->label_3->show();
- ui->elapsed_time->show();
- ui->label_32->show();
+            ui->elapsed_time->show();
+            ui->label_32->show();
             break;
         case 1:
             ui->ULTRASONICBUT2->setStyleSheet(styleSheet);
@@ -1706,16 +1703,13 @@ void MainWindow::current(int tab)
             break;
         case 3:
             ui->ULTRASONICBUT4->setStyleSheet(styleSheet);
-               ui->elapsed_time->show();
-               ui->label_12->show();
-                ui->label_32->show();
+            ui->elapsed_time->show();
+            ui->label_12->show();
+            ui->label_32->show();
             break;
         case 4:
             ui->IA1BUT->setStyleSheet(styleSheet4);
-
             ui->label_13->show();
-
-
             break;
         case 5:
             ui->IA2BUT->setStyleSheet(styleSheet4);
@@ -1724,13 +1718,10 @@ void MainWindow::current(int tab)
         case 6:
             ui->VITRECTOMYBUT->setStyleSheet(styleSheet);
             ui->label_6->show();
-
             break;
         case 7:
             ui->DIABUT->setStyleSheet(styleSheet);
             ui->label_11->show();
-
-           // footpedalcheck();
             break;
         default:
             break;
@@ -1739,9 +1730,7 @@ void MainWindow::current(int tab)
 
 }
 
-void MainWindow::updateline() {
-
-}
+//if tune is completed then only
 void MainWindow::setTuneMode(bool tuneEnabled) {
     QString styleSheet4 = "QLabel {"
                "image: url(:/images/unlocked.png);"
@@ -1750,9 +1739,8 @@ void MainWindow::setTuneMode(bool tuneEnabled) {
 
                                      "}";
     isTuneEnabled = tuneEnabled;  // Set the flag based on the argument
-
-    // Enable or disable the US buttons based on the flag
- //   ui->ULTRASONICBUT1->setEnabled(isTuneEnabled);    // us1
+ // Enable or disable the US buttons based on the flag
+ //ui->ULTRASONICBUT1->setEnabled(isTuneEnabled);    // us1
     ui->label_16->setStyleSheet(styleSheet4);
     ui->label_17->setStyleSheet(styleSheet4);
     ui->label_18->setStyleSheet(styleSheet4);
@@ -1766,7 +1754,7 @@ void MainWindow::setTuneMode(bool tuneEnabled) {
     ui->IA2BUT->setEnabled(true);  // ia2
     ui->VITRECTOMYBUT->setEnabled(true);  // vit
 }
-
+//power on off button when power is on off
 void MainWindow::enableButtons(bool powerOn)
 {
     // Style sheets for ON and OFF states
@@ -1930,7 +1918,7 @@ void MainWindow::footpedalcheck()
                 ui->dial_2->setValue(range);
                 handler->dia_on();
                 handler->dia_count(pow);
-
+                footpedalbeep();
                 ui->CI5_5->setStyleSheet(styleSheet3);
                 handler->pinchvalve_on();
                 handler->safetyvent_on();
@@ -1968,11 +1956,10 @@ if(!overallci){
 } else if (range >= 100 & range < 1332) {
 ui->pushButton_42->setText("1");
 ui->dial_2->setValue(range);
-
 handler->pinchvalve_on();
 handler->safetyvent_on();
 ui->CI5_5->setStyleSheet(styleSheet3);
-
+footpedalbeep();
 motoroff();
 ui->label_7->setText("0");
 ui->label_8->setText("0");
@@ -1991,7 +1978,7 @@ flag1 = true; // Reset flag
                 handler->pinchvalve_on();
                    handler->safetyvent_on();
 
-
+                footpedalbeep();
                 if (text == "Peristatic") {
                                 motoron(ui->lineEdit_56);
                                  sensor2();
@@ -2011,6 +1998,7 @@ flag1 = true; // Reset flag
                 flag1 = true; // Reset flag
             } else if (range >= 2664 && range < 4096) {
                 ui->pushButton_42->setText("3");
+                footpedalbeep();
                    updateTabsBasedOnComboBox(powerdelivered);
                    ui->dial_2->setValue(range);
                                  handler->pinchvalve_on();
@@ -2066,6 +2054,7 @@ if(!overallci){
                 flag1 = true; // Reset flag
             } else if (range >= 100 && range < 1332) {
                 ui->pushButton_42->setText("1");
+                footpedalbeep();
   ui->dial_2->setValue(range);
                 handler->pinchvalve_on();
                    handler->safetyvent_on();
@@ -2084,6 +2073,7 @@ if(!overallci){
                 flag1 = true; // Reset flag
             } else if (range >= 1332 && range < 2664) {
                 ui->pushButton_42->setText("2");
+                footpedalbeep();
                  ui->dial_2->setValue(range);
                 handler->pinchvalve_on();
                    handler->safetyvent_on();
@@ -2108,6 +2098,7 @@ if(!overallci){
                 flag1 = true; // Reset flag
             } else if (range >= 2664 && range <= 4096) {
                 ui->pushButton_42->setText("3");
+                footpedalbeep();
                  ui->dial_2->setValue(range);
                   handler->pinchvalve_on();
                      handler->safetyvent_on();
@@ -2174,6 +2165,7 @@ if(!overallci){
                 flag2 = true; // Reset flag
             } else if (range >= 100 && range <1332) {
                 ui->pushButton_42->setText("1");
+                footpedalbeep();
                   ui->dial_2->setValue(range);
     ui->CI5_5->setStyleSheet(styleSheet3);
 
@@ -2193,6 +2185,7 @@ if(!overallci){
                 flag2 = true; // Reset flag
             } else if (range >= 1332 && range < 2664) {
                 ui->pushButton_42->setText("2");
+                footpedalbeep();
                   ui->dial_2->setValue(range);
                   ui->CI5_5->setStyleSheet(styleSheet3);
 
@@ -2217,6 +2210,7 @@ if(!overallci){
                 flag2 = true; // Reset flag
             } else if (range >= 2664 && range < 4096) {
                 ui->pushButton_42->setText("3");
+                footpedalbeep();
                   ui->dial_2->setValue(range);
          ui->CI5_5->setStyleSheet(styleSheet3);
                 handler->pinchvalve_on();
@@ -2269,6 +2263,7 @@ if(!overallci){
                 flag2 = true; // Reset flag
             } else if (range >= 100 && range < 1332) {
                 ui->pushButton_42->setText("1");
+                footpedalbeep();
                   ui->dial_2->setValue(range);
                  ui->CI5_5->setStyleSheet(styleSheet3);
 
@@ -2288,6 +2283,7 @@ if(!overallci){
                 flag2 = true; // Reset flag
             } else if (range >= 1332 && range < 2664) {
                 ui->pushButton_42->setText("2");
+                footpedalbeep();
                   ui->dial_2->setValue(range);
                   ui->CI5_5->setStyleSheet(styleSheet3);
 
@@ -2311,6 +2307,7 @@ if(!overallci){
                 flag2 = true; // Reset flag
             } else if (range >= 2664 && range <= 4096) {
                 ui->pushButton_42->setText("3");
+                footpedalbeep();
                   ui->dial_2->setValue(range);
                 ui->CI5_5->setStyleSheet(styleSheet3);
 
@@ -2377,6 +2374,7 @@ if(!overallci){
                 flag3 = true; // Reset flag
             } else if (range >= 100 && range < 1332) {
                 ui->pushButton_42->setText("1");
+                footpedalbeep();
                   ui->dial_2->setValue(range);
                    ui->CI5_5->setStyleSheet(styleSheet3);
                    handler->safetyvent_on();
@@ -2395,6 +2393,7 @@ if(!overallci){
                 flag3 = true; // Reset flag
             } else if (range >= 1332 && range < 2664) {
                 ui->pushButton_42->setText("2");
+                footpedalbeep();
                   ui->dial_2->setValue(range);
 
                   ui->CI5_5->setStyleSheet(styleSheet3);
@@ -2420,6 +2419,7 @@ if(!overallci){
                 flag3 = true; // Reset flag
             } else if (range >= 2664 && range < 4096) {
                 ui->pushButton_42->setText("3");
+                footpedalbeep();
                   ui->dial_2->setValue(range);
                 ui->CI5_5->setStyleSheet(styleSheet3);
                 handler->safetyvent_on();
@@ -2469,6 +2469,7 @@ if(!overallci){
                 flag3 = true; // Reset flag
             } else if (range >= 100 && range < 1332) {
                 ui->pushButton_42->setText("1");
+                footpedalbeep();
                   ui->dial_2->setValue(range);
                  ui->CI5_5->setStyleSheet(styleSheet3);
                 handler->safetyvent_on();
@@ -2487,6 +2488,7 @@ if(!overallci){
                 flag3 = true; // Reset flag
             } else if (range >= 1332 && range < 2664) {
                 ui->pushButton_42->setText("2");
+                footpedalbeep();
                   ui->dial_2->setValue(range);
         ui->CI5_5->setStyleSheet(styleSheet3);
                 handler->safetyvent_on();
@@ -2510,6 +2512,7 @@ if(!overallci){
                 flag3 = true; // Reset flag
             } else if (range >= 2664 && range <= 4096) {
                 ui->pushButton_42->setText("3");
+                footpedalbeep();
                   ui->dial_2->setValue(range);
                  ui->CI5_5->setStyleSheet(styleSheet3);
                 handler->safetyvent_on();
@@ -2521,7 +2524,7 @@ if(!overallci){
                     handler->phaco_power(pow3);
                     updateTabsBasedOnComboBox(powerdelivered_2);
                     power.powerOn2 = true;
-                    updateline();
+
                 }
                 if (power.powerOn2) {
                ui->CI5_5->setStyleSheet(styleSheet3);         // Dynamically calculate power output based on range for SURGEON mode
@@ -2575,6 +2578,7 @@ if(!overallci){
                 }
             } else if (range >= 100 && range < 1332) {
                 ui->pushButton_42->setText("1");
+                footpedalbeep();
                   ui->dial_2->setValue(range);
                 ui->CI5_5->setStyleSheet(styleSheet3);
                 handler->safetyvent_on();
@@ -2594,6 +2598,7 @@ if(!overallci){
                 }
             } else if (range >= 1332 && range < 2664) {
                 ui->pushButton_42->setText("2");
+                footpedalbeep();
                   ui->dial_2->setValue(range);
              ui->CI5_5->setStyleSheet(styleSheet3);
                 handler->safetyvent_on();
@@ -2618,6 +2623,7 @@ if(!overallci){
                 }
             } else if (range >= 2664 && range < 4096) {
                 ui->pushButton_42->setText("3");
+                footpedalbeep();
                   ui->dial_2->setValue(range);
                 ui->CI5_5->setStyleSheet(styleSheet3);
                 handler->safetyvent_on();
@@ -2669,6 +2675,7 @@ if(!overallci){
                 }
             } else if (range >= 100 && range < 1332) {
                 ui->pushButton_42->setText("1");
+                footpedalbeep();
                   ui->dial_2->setValue(range);
 
                  ui->CI5_5->setStyleSheet(styleSheet3);
@@ -2689,6 +2696,7 @@ if(!overallci){
                 }
             } else if (range >= 1332 && range < 2664) {
                 ui->pushButton_42->setText("2");
+                footpedalbeep();
                   ui->dial_2->setValue(range);
 
                 handler->safetyvent_on();
@@ -2715,6 +2723,7 @@ if(!overallci){
                 }
             } else if (range >= 2664 && range <= 4096) {
                 ui->pushButton_42->setText("3");
+                footpedalbeep();
                   ui->dial_2->setValue(range);
 
                 handler->safetyvent_on();
@@ -2727,7 +2736,7 @@ if(!overallci){
                     handler->fs_count(range);
                     handler->phaco_power(pow4);
                    updateTabsBasedOnComboBox(powerdeliverd_3);
-                    updateline();
+
                     power.powerOn3 = true;
                 }
                 if (power.powerOn3) {
@@ -2756,9 +2765,6 @@ if(!overallci){
         // ia1
         case 5:
         {
-
-        //int val=v->convert(0xD7);
-       // int value6=ui->lineEdit_71->text().toInt();
   bool flag5=true;
         if(flag5){
              if(ia1==" PANEL"){//surgeon
@@ -2774,17 +2780,17 @@ if(!overallci){
             }
             if(range>=100 && range<1332){
                 ui->pushButton_42->setText("1");
+                footpedalbeep();
                   ui->dial_2->setValue(range);
 
   handler->safetyvent_on();
   handler->pinchvalve_on();
                   motoroff();
-
-
             }
              if(range>=1332 && range <4096){
             //    qDebug()<<"fs"<<range;
                   ui->pushButton_42->setText("2");
+                  footpedalbeep();
                     ui->dial_2->setValue(range);
       ui->CI5_5->setStyleSheet(styleSheet3);
                   handler->safetyvent_on();
@@ -2796,7 +2802,6 @@ if(!overallci){
                      motoroff();
                      sensor2();
                  }
-
         }
 
            }
@@ -2814,6 +2819,7 @@ if(!overallci){
                  }
                  if(range>=100 && range<1332){
                      ui->pushButton_42->setText("1");
+                     footpedalbeep();
                        ui->dial_2->setValue(range);
                      ui->CI5_5->setStyleSheet(styleSheet3);
                      handler->safetyvent_on();
@@ -2823,6 +2829,7 @@ if(!overallci){
                  else if(range>=2664 && range <4096){
                     // qDebug()<<"fs"<<range;
                        ui->pushButton_42->setText("2");
+                       footpedalbeep();
                          ui->dial_2->setValue(range);
       ui->CI5_5->setStyleSheet(styleSheet3);
                        handler->safetyvent_on();
@@ -2836,7 +2843,6 @@ if(!overallci){
                        }
              }
                  }
-
 }
     }
          break;
@@ -2844,8 +2850,6 @@ if(!overallci){
         // ia2
         case 6:
         {
-
-        //int value6=ui->lineEdit_71->text().toInt();
   bool flag6=true;
 
         if(flag6){
@@ -2863,6 +2867,7 @@ if(!overallci){
             }
             if(range>=100 && range<1332){
                 ui->pushButton_42->setText("1");
+                footpedalbeep();
                   ui->dial_2->setValue(range);
          ui->CI5_5->setStyleSheet(styleSheet3);
                 handler->safetyvent_on();
@@ -2871,6 +2876,7 @@ if(!overallci){
             }
             else if(range>=1332 && range <4096){
                 ui->pushButton_42->setText("2");
+                footpedalbeep();
                   ui->dial_2->setValue(range);
        ui->CI5_5->setStyleSheet(styleSheet3);
                 handler->safetyvent_on();
@@ -2900,6 +2906,7 @@ if(!overallci){
                 }
                 if(range>=100 && range<1332){
                     ui->pushButton_42->setText("1");
+                    footpedalbeep();
                       ui->dial_2->setValue(range);
                  ui->CI5_5->setStyleSheet(styleSheet3);
                     handler->safetyvent_on();
@@ -2908,6 +2915,7 @@ if(!overallci){
                 }
                 else if(range>=1332 && range <4096){
                     ui->pushButton_42->setText("2");
+                    footpedalbeep();
                       ui->dial_2->setValue(range);
                   ui->CI5_5->setStyleSheet(styleSheet3);
                     handler->safetyvent_on();
@@ -2952,6 +2960,7 @@ if(!overallci){
                     }
                 } else if (range >= 100 && range < 1332) {
                     ui->pushButton_42->setText("1");
+                    footpedalbeep();
                       ui->dial_2->setValue(range);
   ui->CI5_5->setStyleSheet(styleSheet3);
 handler->safetyvent_on();
@@ -2966,6 +2975,7 @@ handler->pinchvalve_on();
                     }
                 } else if (range >= 1332 && range < 2664) {
                     ui->pushButton_42->setText("2");
+                    footpedalbeep();
                       ui->dial_2->setValue(range);
            ui->CI5_5->setStyleSheet(styleSheet3);
                     handler->safetyvent_on();
@@ -2986,6 +2996,7 @@ handler->pinchvalve_on();
                     }
                 } else if (range >= 2664 && range < 4096) {
                     ui->pushButton_42->setText("3");
+                    footpedalbeep();
                       ui->dial_2->setValue(range);
                  ui->CI5_5->setStyleSheet(styleSheet3);
                     handler->safetyvent_on();
@@ -3031,6 +3042,7 @@ handler->pinchvalve_on();
                     }
                 } else if (range >= 100 && range < 1332) {
                     ui->pushButton_42->setText("1");
+                    footpedalbeep();
                       ui->dial_2->setValue(range);
                   ui->CI5_5->setStyleSheet(styleSheet3);
                     handler->safetyvent_on();
@@ -3044,6 +3056,7 @@ handler->pinchvalve_on();
                     }
                 } else if (range >= 1332 && range < 2664) {
                     ui->pushButton_42->setText("2");
+                    footpedalbeep();
                       ui->dial_2->setValue(range);
                     ui->CI5_5->setStyleSheet(styleSheet3);
                     handler->safetyvent_on();
@@ -3058,6 +3071,7 @@ handler->pinchvalve_on();
                     }
                 } else if (range >= 2664 && range < 4096) {
                     ui->pushButton_42->setText("3");
+                    footpedalbeep();
                       ui->dial_2->setValue(range);
                      ui->CI5_5->setStyleSheet(styleSheet3);
                     handler->safetyvent_on();
@@ -3065,7 +3079,7 @@ handler->pinchvalve_on();
                     if (power.buttonstate4 == "ON" && !power.powerOn4) {
                         handler->vit_on(pow7);
                         handler->vit_ontime(30);
-                        updateline();
+
                         power.powerOn4 = true;
                     }
                     if (power.powerOn4) {
@@ -3094,7 +3108,7 @@ handler->pinchvalve_on();
     updateLabel();
 
 }
-
+//us1 non linear and linear
 void MainWindow::us1_linear_nonlinear()
 {
      // ui->us1mode->setText("SURGEON");
@@ -3590,7 +3604,6 @@ int MainWindow::readGPIOValue(int pin)
     }
 }
 
-
 int MainWindow::readGPIOValue1()
 {
     QFile file(QString("/sys/class/gpio/gpio%1/value").arg(gpioNumber1));
@@ -3603,9 +3616,6 @@ int MainWindow::readGPIOValue1()
         return value;
     }
 }
-
-
-
 
 void MainWindow::updatehandpieceStatus()
 {
@@ -3721,10 +3731,6 @@ int MainWindow::decreasebutton(int input)
       }
       return input;
 }
-
-
-
-
 
 
 //NON LINEAR
@@ -3944,22 +3950,22 @@ void MainWindow::sensor2()
         ui->label_104->setText(QString::number(pro4));
         if(vac4 == pro4){
 
-//            if(mode3 == "Ocupulse"){
-//              handler->pdm_mode(OCUPULSE);
-//              ocupulseup_mode();
-//              ocupulsedown_mode();
-//            }
-//            else if(mode3=="Ocuburst"){
-//                handler->pdm_mode(OCUBURST);
-//                ocuburstup_mode();
-//                ocuburstdown_mode();
-//            }
-//            else if(mode3 == "Multi burst"){
-//                handler->pdm_mode(MULTI_BURST);
-//                multiburstup_mode();
-//                multiburstdown_mode();
+            if(mode3 == "Ocupulse"){
+              handler->pdm_mode(OCUPULSE);
+              ocupulseup_mode();
+              ocupulsedown_mode();
+            }
+            else if(mode3=="Ocuburst"){
+                handler->pdm_mode(OCUBURST);
+                ocuburstup_mode();
+                ocuburstdown_mode();
+            }
+            else if(mode3 == "Multi burst"){
+                handler->pdm_mode(MULTI_BURST);
+                multiburstup_mode();
+                multiburstdown_mode();
 
-//            }
+            }
              motoroff();
                handler->speaker_on(pro4,0,0,1);
         }
@@ -3971,22 +3977,22 @@ void MainWindow::sensor2()
         ui->label_99->setText(QString::number(pro5));
         if(vac3 == pro5){
 
-//            if(mode3 == "Ocupulse"){
-//              handler->pdm_mode(OCUPULSE);
-//              ocupulseup_mode();
-//              ocupulsedown_mode();
-//            }
-//            else if(mode3=="Ocuburst"){
-//                handler->pdm_mode(OCUBURST);
-//                ocuburstup_mode();
-//                ocuburstdown_mode();
-//            }
-//            else if(mode3 == "Multi burst"){
-//                handler->pdm_mode(MULTI_BURST);
-//                multiburstup_mode();
-//                multiburstdown_mode();
+            if(mode3 == "Ocupulse"){
+              handler->pdm_mode(OCUPULSE);
+              ocupulseup_mode();
+              ocupulsedown_mode();
+            }
+            else if(mode3=="Ocuburst"){
+                handler->pdm_mode(OCUBURST);
+                ocuburstup_mode();
+                ocuburstdown_mode();
+            }
+            else if(mode3 == "Multi burst"){
+                handler->pdm_mode(MULTI_BURST);
+                multiburstup_mode();
+                multiburstdown_mode();
 
-//            }
+            }
              motoroff();
                handler->speaker_on(pro5,0,0,1);
         }
@@ -4054,12 +4060,7 @@ void MainWindow::sensor2()
         }
     }
 
-
-
     }
-
-
-
 
 void MainWindow::powervit()
 {
@@ -4106,8 +4107,6 @@ void MainWindow::savesettings()
 {
       QMessageBox::information(this, "Settings", "Foot pedal settings have been updated.");
 }
-
-
 void MainWindow::settings_action(int index)
 {
     //decrement
@@ -4143,55 +4142,7 @@ void MainWindow::settings_action(int index)
          counter++;
     }
 }
-void MainWindow::updateButtonSelection(int index)
-{
 
-}
-int MainWindow::readGPIO(int gpio,int gpio1,int gpio2,int gpio3) {
-    // Define file paths for GPIO 961 and 962
-    QString gpio961Path = "/sys/class/gpio/gpio961/value";
-    QString gpio962Path = "/sys/class/gpio/gpio962/value";
-
-    // Read GPIO 961
-    QFile gpioFile961(gpio961Path);
-    if (!gpioFile961.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        qDebug() << "Error: Unable to read GPIO 961 value";
-        return -1; // Return an error value
-    }
-
-    QTextStream in961(&gpioFile961);
-    QString gpioValueStr961 = in961.readLine().trimmed();
-    gpioFile961.close();
-
-    bool ok961;
-    int gpioValue961 = gpioValueStr961.toInt(&ok961);
-    if (!ok961) {
-        qDebug() << "Error: Invalid GPIO 961 value" << gpioValueStr961;
-        return -1; // Return an error value
-    }
-
-    // Read GPIO 962
-    QFile gpioFile962(gpio962Path);
-    if (!gpioFile962.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        qDebug() << "Error: Unable to read GPIO 962 value";
-        return -1; // Return an error value
-    }
-
-    QTextStream in962(&gpioFile962);
-    QString gpioValueStr962 = in962.readLine().trimmed();
-    gpioFile962.close();
-
-    bool ok962;
-    int gpioValue962 = gpioValueStr962.toInt(&ok962);
-    if (!ok962) {
-        qDebug() << "Error: Invalid GPIO 962 value" << gpioValueStr962;
-        return -1; // Return an error value
-    }
-
-    // Combine or return the GPIO values as needed
-    // Example: Return combined value (bitwise OR), or handle each separately.
-    return (gpioValue961 << 1) | gpioValue962;
-}
 
 
 void MainWindow::movePushButtonTopToBottom()
@@ -4209,7 +4160,6 @@ void MainWindow::movePushButtonTopToBottom()
     ui->tabWidget->setCurrentIndex(currentButtonIndex);
 
 }
-
 void MainWindow::movePushButtonBottomToTop()
 {
     if (currentButtonIndex > 0) {
@@ -4220,8 +4170,6 @@ void MainWindow::movePushButtonBottomToTop()
         buttons[currentButtonIndex]->setFocus();
         ui->tabWidget->setCurrentIndex(currentButtonIndex);
 }
-
-
 void MainWindow::onPdmModeSelected() {
     // Example logic for handling mode selection
     int usIndex = 1; // Default index for Continuous
@@ -4239,8 +4187,6 @@ void MainWindow::onPdmModeSelected3(){
         int index=4;
         moveTab3(index);
 }
-
-
 void MainWindow::moveTab(int usIndex) {
     if (!ui->tabWidget_2) {
         qDebug() << "tabWidget_2 is null!";
@@ -4383,8 +4329,6 @@ void MainWindow::moveTab3(int usIndex) {
     qDebug() << "Moved to tab index:" << currentIndex << " and updated combo box for usIndex:" << usIndex;
 }
 
-
-
 void MainWindow::footreflux()
 {
     bool flag=!flag;
@@ -4396,10 +4340,6 @@ void MainWindow::footreflux()
     }
 }
 
-void MainWindow::powerdeliverymethod()
-{
-
-}
 
 void MainWindow::continousirrigation(bool on)
 {
@@ -4462,15 +4402,6 @@ void MainWindow::poweronoff(int gpio)
        }
 
 }
-
-void MainWindow::poweron()
-{
-
-}
-void MainWindow::onMainLineEditTextChanged(const QString &dpowmax) {
-
-}
-
 
 void MainWindow::on_us1onoff_clicked()
 {
@@ -4736,21 +4667,7 @@ void MainWindow::footpedalwindow_show()
 {
     foot->show();
 }
-void MainWindow::updateComboBox1(const QString &text) {
 
-}
-
-void MainWindow::updateComboBox2(const QString &text) {
-
-}
-
-void MainWindow::updateComboBox3(const QString &text) {
-
-}
-
-void MainWindow::updateComboBox4(const QString &text) {
-
-}
 void MainWindow::onCutMode_vitComChanged(int index) {
     QString modeText = ui->CutMode_vitCom->currentText();
     qDebug() << "Selected Mode as Text:" << modeText;
@@ -4882,8 +4799,6 @@ int MainWindow::getvalue(int input)
         return ((input-1)/60+1)*60;
     }
 }
-
-
 
 void MainWindow::on_CI4_2_clicked()
 {
@@ -5127,16 +5042,12 @@ void MainWindow::receiveValues(const QString &comboBoxValue,const QString &combo
 
 }
 
-
 void MainWindow::on_SETTINGS_BUT_2_clicked()
 {
     in->show();
     in->exec(); // Open as a modal dialog to wait for user input
 }
-void MainWindow::handleDataSaved()
-{
 
-}
 void MainWindow::onComboBoxIndexChanged(int index)
 {
     QSqlDatabase db = QSqlDatabase::database();  // Retrieve existing connection
@@ -5211,26 +5122,6 @@ void MainWindow::setLastSelectedValue()
     db.close();
     QSqlDatabase::removeDatabase(QSqlDatabase::defaultConnection);
 }
-}
-
-void MainWindow::connectToDatabase()
-{
-
-
-
-
-}
-void MainWindow::populateSurgeonList()
-{
-
-}
-
-void MainWindow::onSurgeonSelectionChanged(const QString &surgeonName)
-{
-
-}
-int MainWindow::pull() {
-
 }
 
 void MainWindow::push(const QString &surgeonName) {
@@ -5403,7 +5294,15 @@ void MainWindow::push(const QString &surgeonName) {
         qDebug() << "No data found for surgeon:" << surgeonName;
     }
 }
+void MainWindow::footpedalbeep()
+{
+    QProcess p;
+    QString path = "/usr/bin/beep";
 
+    p.setProgram(path);
+    p.start();
+    p.waitForFinished();
+}
 
 
 

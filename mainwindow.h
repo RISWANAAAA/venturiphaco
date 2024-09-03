@@ -49,7 +49,6 @@ void push(const QString &surgeonName);
     void startPoint();
     bool eventFilter(QObject* object, QEvent* event);
     void setRange(QLineEdit* lineEdit, int prevValue, int value, int maxValue);
-    void click();
     void exportGPIO(int pin);
     void setGPIODirection(const QString &direction,int pin);
     int readGPIOValue(int pin);
@@ -98,7 +97,6 @@ void push(const QString &surgeonName);
          QString pdmMode;
          QString vacmode;
     };
-    int pull();
     struct SurgicalData {
         QString comboBoxValue;
         QString combo;
@@ -143,17 +141,15 @@ void setTuneMode(bool isTuneEnabled);
 void enableButtons(bool powerOn);
    void setLastSelectedValue();
 public slots:
-   void onComboBoxIndexChanged(int index);
+ void onComboBoxIndexChanged(int index);
  void onPdmModeSelected();
  void onPdmModeSelected1();
  void onPdmModeSelected2();
  void onPdmModeSelected3();
- void userMessage(int value, int minValue, int maxValue);
  void updateLineedit(QLineEdit *lineEdit, int prevValue, int value, int maxValue);
  void on_clicked(const QString& digit);
  void on_clickedenter();
  void current(int tab);
- void updateline();
  void tabupdate(int index);
  void footpedalcheck();
  void updateElapsedTime();
@@ -166,14 +162,12 @@ public slots:
  void powervit();
  void powercheck();
  void DIATHERMYBUT();
- void onMainLineEditTextChanged(const QString &dpowmax);
  void movePushButtonTopToBottom();
  void movePushButtonBottomToTop();
  void footreflux();
- void powerdeliverymethod();
  void continousirrigation(bool on);
  void poweronoff(int gpio);
- void poweron();
+
  void onCutMode_vitComChanged(int index);
  void onCutMode_vitComChanged1(int index);
  void onCutMode_vitComChanged2(int index);
@@ -296,8 +290,6 @@ void us4powup();
 
  void us4flowdown();
 
- void SETTINGSBUT();
-
  void BACKBUT();
 
 
@@ -379,20 +371,10 @@ void on_vitvacmode_clicked();
 
 void on_us4vacmode_clicked();
 
-void updateComboBox1(const QString &text);
-
-void updateComboBox2(const QString &text);
-
-void updateComboBox3(const QString &text);
-
-void updateComboBox4(const QString &text);
-
-void updateButtonSelection(int index);
-
 void on_CI4_2_clicked();
 
 void on_SETTINGS_BUT_2_clicked();
-void onSurgeonSelectionChanged(const QString &surgeonName);
+
 
 
 signals:
@@ -489,9 +471,6 @@ bool powerOn1;
 QMap<QString, QMap<int, QStringList>> surgeonData;
 void updateTabsBasedOnComboBox(const QString &text);
 QSqlDatabase db;
-void connectToDatabase();
-void populateSurgeonList();
-void handleDataSaved();
 QString getLastUpdatedSurgeon();
 bool isTuneEnabled;
 int buttonforgpio;
