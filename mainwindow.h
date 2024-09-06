@@ -23,6 +23,7 @@
 #include<QSqlQuery>
 #include<QSqlRecord>
 #include<QMap>
+#include<QComboBox>
 #define SQLPATH "/home/amt-04/phacohigh.db"
 #define PATH "/home/phacohigh.db"
 class settings;
@@ -45,6 +46,8 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    void footpedalbeep();
+
 void push(const QString &surgeonName);
     void startPoint();
     bool eventFilter(QObject* object, QEvent* event);
@@ -142,10 +145,10 @@ void enableButtons(bool powerOn);
    void setLastSelectedValue();
 public slots:
  void onComboBoxIndexChanged(int index);
- void onPdmModeSelected();
- void onPdmModeSelected1();
- void onPdmModeSelected2();
- void onPdmModeSelected3();
+ void onPdmModeSelected(int gpio);
+ void onPdmModeSelected1(int gpio);
+ void onPdmModeSelected2(int gpio);
+ void onPdmModeSelected3(int gpio);
  void updateLineedit(QLineEdit *lineEdit, int prevValue, int value, int maxValue);
  void on_clicked(const QString& digit);
  void on_clickedenter();
@@ -162,10 +165,10 @@ public slots:
  void powervit();
  void powercheck();
  void DIATHERMYBUT();
- void movePushButtonTopToBottom();
- void movePushButtonBottomToTop();
- void footreflux();
- void continousirrigation(bool on);
+ void movePushButtonTopToBottom(int gpio);
+ void movePushButtonBottomToTop(int gpio);
+ void footreflux(int gpio);
+ void continousirrigation(int value);
  void poweronoff(int gpio);
 
  void onCutMode_vitComChanged(int index);
@@ -195,6 +198,7 @@ public slots:
 
 
 private slots:
+
  void label43();
  void sensor2();
  void ULTRASONICBUT1();
@@ -357,7 +361,7 @@ void on_us4onoff_clicked();
 
 void on_vitonoff_clicked();
 
-void doctorwindow_show();
+void doctorwindow_show(QString Sugroenname);
 
 void footpedalwindow_show();
 
@@ -376,7 +380,6 @@ void on_CI4_2_clicked();
 void on_SETTINGS_BUT_2_clicked();
 
 
-
 signals:
     void sensorValueChanged(int value);
      void surgeonSelected(const QString &surgeonName);
@@ -384,9 +387,11 @@ signals:
      void right_foot(const QString &value);
      void bottom_left(const QString &value);
      void bottom_right(const QString &value);
-
+ void con_irrigation(bool on); // Signal to handle Continuous Irrigation state
+ void sendsurgeon(const QString &value);
 private:
     Ui::MainWindow *ui;
+     bool previousGpioState; // Track the previous GPIO state
 int gpioNumber = 960;
 int gpioNumber1=961;
 QTimer  *statusUpdateTimer;
@@ -470,6 +475,7 @@ int counter=0;
 bool powerOn1;
 QMap<QString, QMap<int, QStringList>> surgeonData;
 void updateTabsBasedOnComboBox(const QString &text);
+
 QSqlDatabase db;
 QString getLastUpdatedSurgeon();
 bool isTuneEnabled;
@@ -478,5 +484,11 @@ QPushButton* buttons[8];
 int currentbut;
 QMap<QLineEdit*, int> lastValidValues;
 QMap<QLineEdit*, int> lastValidValues1;
+bool con=1;
+bool us1PdmMode = false;
+bool us2PdmMode = false;
+bool us3PdmMode = false;
+bool us4PdmMode = false;
+
 };
 #endif // MAINWINDOW_H

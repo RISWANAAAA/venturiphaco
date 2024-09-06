@@ -2,35 +2,48 @@
 #include "ui_footpedal.h"
 #include <QMessageBox>
 #include <QDebug>
-#include <QSqlError>
-#include <QTimer>
+#include<QSqlError>
 
 footpedal::footpedal(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::footpedal),
-    d1(new doctor)
+    ui(new Ui::footpedal)
 {
     ui->setupUi(this);
-    move(0, 0);
+    move(0,0);
+    d1 = new doctor;
 
     // Export and set direction of GPIOs
-    initializeGPIO();
+    exportGPIO(961);
+        exportGPIO(962);
+        exportGPIO(963);
+        exportGPIO(964);
 
+        setGPIODirection(961, "in");
+        setGPIODirection(962, "in");
+        setGPIODirection(963, "in");
+        setGPIODirection(964, "in");
+
+        qDebug() << "GPIO 961 direction set to in";
+        qDebug() << "GPIO 962 direction set to in";
+        qDebug() << "GPIO 963 direction set to in";
+        qDebug() << "GPIO 964 direction set to in";
+
+        readInitialGPIOValues(); // Read initial values
     // Set up connections
     setupConnections();
+    qDebug() << "readInitialGPIOValues function entered.";
+
 
     connect(ui->backbut, &QPushButton::clicked, this, &footpedal::Back);
     connect(ui->savebut, &QPushButton::clicked, this, &footpedal::on_pushButton_clicked);
-
-    QTimer *timer = new QTimer(this);
-    connect(timer, &QTimer::timeout, this, &footpedal::readInitialGPIOValues);
-    timer->start(350);
+    QTimer *timer=new QTimer;
+    connect(timer,&QTimer::timeout,this,&footpedal::readInitialGPIOValues);
+    timer->start(100);
 }
 
 footpedal::~footpedal()
 {
     delete ui;
-    delete d1;
 }
 
 void footpedal::Back()
@@ -40,18 +53,18 @@ void footpedal::Back()
 
 void footpedal::setupConnections()
 {
-    connect(ui->left_footcom, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &footpedal::storeComboBoxSelection);
-    connect(ui->right_footcom, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &footpedal::storeComboBoxSelection);
-    connect(ui->bleft_footcom, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &footpedal::storeComboBoxSelection);
-    connect(ui->bright_footcom, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &footpedal::storeComboBoxSelection);
+    connect(ui->left_footcom, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &footpedal::storeComboBoxSelection);
+    connect(ui->right_footcom, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &footpedal::storeComboBoxSelection);
+    connect(ui->bleft_footcom, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &footpedal::storeComboBoxSelection);
+    connect(ui->bright_footcom, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &footpedal::storeComboBoxSelection);
 }
-
 void footpedal::storeComboBoxSelection(int index)
 {
     QComboBox *comboBox = qobject_cast<QComboBox *>(sender());
     if (comboBox)
     {
         QString action = comboBox->itemText(index);
+
         if (comboBox == ui->left_footcom) {
             leftFootcomAction = action;
         } else if (comboBox == ui->right_footcom) {
@@ -66,60 +79,423 @@ void footpedal::storeComboBoxSelection(int index)
 
 void footpedal::readInitialGPIOValues()
 {
-    qDebug() << "Reading GPIO values...";
-
     int value1 = readGPIOValue(961);
     int value2 = readGPIOValue(962);
     int value3 = readGPIOValue(963);
     int value4 = readGPIOValue(964);
 
-    qDebug() << "GPIO Values:"
-             << "GPIO 961:" << value1
-             << "GPIO 962:" << value2
-             << "GPIO 963:" << value3
-             << "GPIO 964:" << value4;
+       if (leftFootcomAction == "Continuous Irrigation" ) {
+          if (value1 == 1 && flag1 == 0 && state1 == 0) {
+               state1 = 1;           }
+           if (value1 == 0 && flag1 == 0 && state1 == 1) {
+               flag1 = 1;
+               state1 = 2;
+               emit continous_irrigation(0);
+           }
+          if (value1 == 1 && flag1 == 1 && state1 == 2) {
+               state1 = 3;
+       }
+      if (value1 == 0 && flag1 == 1 && state1 == 3) {
+               emit continous_irrigation(1);
+               flag1 = 0;
+               state1 = 0;       }
 
-    performAction(leftFootcomAction, value1);
-    performAction(rightFootcomAction, value2);
-    performAction(bleftFootcomAction, value3);
-    performAction(brightFootcomAction, value4);
-}
+}else if (leftFootcomAction == "Power ON/OFF") {
+           if (value1 == 1 && flag1 == 0 && state1 == 0) {
+                state1 = 1;           }
+            if (value1 == 0 && flag1 == 0 && state1 == 1) {
+                flag1 = 1;
+                state1 = 2;
+                emit togglePower(0);
+            }
+           if (value1 == 1 && flag1 == 1 && state1 == 2) {
+                state1 = 3;
+        }
+       if (value1 == 0 && flag1 == 1 && state1 == 3) {
+                emit togglePower(1);
+                flag1 = 0;
+                state1 = 0;       }
+    }
+       else if (leftFootcomAction == "Increment") {
+           if (value1 == 1 && flag1 == 0 && state1 == 0) {
+                state1 = 1;           }
+            if (value1 == 0 && flag1 == 0 && state1 == 1) {
+                flag1 = 1;
+                state1 = 2;
+                emit moveTopToBottom(value1);
+            }
+           if (value1 == 1 && flag1 == 1 && state1 == 2) {
+                state1 = 3;
+        }
+       if (value1 == 0 && flag1 == 1 && state1 == 3) {
+               emit moveTopToBottom(value1);
+                flag1 = 0;
+                state1 = 0;       }
+    } else if (leftFootcomAction == "Decrement") {
 
-void footpedal::performAction(const QString &action, int gpioValue)
-{
-    if (action == "Increment") {
-        qDebug() << "Increment action for GPIO with value" << gpioValue;
-        emit moveTopToBottom(gpioValue);
-    } else if (action == "Decrement") {
-        qDebug() << "Decrement action for GPIO with value" << gpioValue;
-        emit moveBottomToTop(gpioValue);
-    } else if (action == "Reflux") {
-        qDebug() << "Reflux action for GPIO with value" << gpioValue;
-        emit performReflux(gpioValue);
-    } else if (action == "Power ON/OFF") {
-        qDebug() << "Power action for GPIO with value" << gpioValue;
-        emit togglePower(gpioValue);
-    } else if (action == "PDM") {
-        qDebug() << "PDM action for GPIO with value" << gpioValue;
-        emit powerdm(gpioValue);
-    } else if (action == "Continuous Irrigation") {
-        qDebug() << "Continuous Irrigation action for GPIO with value" << gpioValue;
-        emit continous_irrigation(gpioValue == 0);
+           if (value1 == 1 && flag1 == 0 && state1 == 0) {
+                state1 = 1;           }
+            if (value1 == 0 && flag1 == 0 && state1 == 1) {
+                flag1 = 1;
+                state1 = 2;
+                emit moveBottomToTop(value1);
+            }
+           if (value1 == 1 && flag1 == 1 && state1 == 2) {
+                state1 = 3;
+        }
+       if (value1 == 0 && flag1 == 1 && state1 == 3) {
+               emit moveBottomToTop(value1);
+                flag1 = 0;
+                state1 = 0;       }
+    } else if (leftFootcomAction == "PDM") {
+           if (value1 == 1 && flag1 == 0 && state1 == 0) {
+                state1 = 1;           }
+            if (value1 == 0 && flag1 == 0 && state1 == 1) {
+                flag1 = 1;
+                state1 = 2;
+                emit powerdm(value1);
+                 emit powerdm1(value1);
+                 emit powerdm2(value1);
+                 emit powerdm3(value1);
+
+
+            }
+           if (value1 == 1 && flag1 == 1 && state1 == 2) {
+                state1 = 3;
+        }
+       if (value1 == 0 && flag1 == 1 && state1 == 3) {
+               emit powerdm(value1);
+            emit powerdm1(value1);
+            emit powerdm2(value1);
+            emit powerdm3(value1);
+                flag1 = 0;
+                state1 = 0;       }
+    } else if(leftFootcomAction == "Reflux"){
+           if (value1 == 1 && flag1 == 0 && state1 == 0) {
+                state1 = 1;           }
+            if (value1 == 0 && flag1 == 0 && state1 == 1) {
+                flag1 = 1;
+                state1 = 2;
+                emit performReflux(value1);
+            }
+           if (value1 == 1 && flag1 == 1 && state1 == 2) {
+                state1 = 3;
+        }
+       if (value1 == 0 && flag1 == 1 && state1 == 3) {
+               emit performReflux(value1);
+                flag1 = 0;
+                state1 = 0;       }
+
+       }
+ //-------------------------------------------------
+    //bottom right
+    if (brightFootcomAction == "Continuous Irrigation") {//continuous
+
+        if (value2 == 1 && flag2 == 0 && state2 == 0) {
+             state2 = 1;           }
+         if (value2 == 0 && flag2 == 0 && state2 == 1) {
+             flag2 = 1;
+             state2 = 2;
+             emit continous_irrigation(0);
+         }
+        if (value2 == 1 && flag2 == 1 && state2 == 2) {
+             state2 = 3;
+     }
+    if (value2 == 0 && flag2 == 1 && state2 == 3) {
+             emit continous_irrigation(1);
+             flag2 = 0;
+             state2 = 0;       }
+    }
+    else if (brightFootcomAction == "Power ON/OFF") {//power onoff
+        if (value2 == 1 && flag2 == 0 && state2 == 0) {
+             state2 = 1;           }
+         if (value2 == 0 && flag2 == 0 && state2 == 1) {
+             flag2 = 1;
+             state2 = 2;
+             emit togglePower(0);
+         }
+        if (value2 == 1 && flag2 == 1 && state2 == 2) {
+             state2 = 3;
+     }
+    if (value2 == 0 && flag2 == 1 && state2 == 3) {
+             emit togglePower(1);
+             flag2 = 0;
+             state2 = 0;
     }
 }
+    else if (brightFootcomAction == "Increment") {
+        if (value2 == 1 && flag2 == 0 && state2 == 0) {
+             state2 = 1;           }
+         if (value2 == 0 && flag2 == 0 && state2 == 1) {
+             flag2 = 1;
+             state2 = 2;
+             emit moveTopToBottom(value2);
+         }
+        if (value2 == 1 && flag2 == 1 && state2 == 2) {
+             state2 = 3;
+     }
+    if (value2 == 0 && flag2 == 1 && state2 == 3) {
+            emit moveTopToBottom(value2);
+             flag2 = 0;
+             state2 = 0;       }
+    }
+    else if (brightFootcomAction == "Decrement") {
 
-void footpedal::initializeGPIO()
-{
-    const QList<int> gpioPins = {961, 962, 963, 964};
+        if (value2 == 1 && flag2 == 0 && state2 == 0) {
+             state2 = 1;           }
+         if (value2 == 0 && flag2 == 0 && state2 == 1) {
+             flag2 = 1;
+             state2 = 2;
+             emit moveBottomToTop(value2);
+         }
+        if (value2 == 1 && flag2 == 1 && state2 == 2) {
+             state2 = 3;
+     }
+    if (value2 == 0 && flag2 == 1 && state2 == 3) {
+            emit moveBottomToTop(value2);
+             flag2 = 0;
+             state2 = 0;       }
+    }
+    else if (brightFootcomAction == "PDM") {
+        if (value2 == 1 && flag2 == 0 && state2 == 0) {
+             state2 = 1;           }
+         if (value2 == 0 && flag2 == 0 && state2 == 1) {
+             flag2 = 1;
+             state2 = 2;
+       emit powerdm(value2);
+             emit powerdm1(value2);
+             emit powerdm2(value2);
+             powerdm3(value2);
+         }
+        if (value2 == 1 && flag2 == 1 && state2 == 2) {
+             state2 = 3;
+     }
+    if (value2 == 0 && flag2 == 1 && state2 == 3) {
+        emit powerdm(value2);
+              emit powerdm1(value2);
+              emit powerdm2(value2);
+              powerdm3(value2);
+             flag2 = 0;
+             state2 = 0;       }
+    }
+    else if(brightFootcomAction == "Reflux"){
+        if (value2 == 1 && flag2 == 0 && state2 == 0) {
+             state2 = 1;           }
+         if (value2 == 0 && flag2 == 0 && state2 == 1) {
+             flag2 = 1;
+             state2 = 2;
+             emit performReflux(value2);
+         }
+        if (value2 == 1 && flag2 == 1 && state2 == 2) {
+             state2 = 3;
+     }
+    if (value2 == 0 && flag2 == 1 && state2 == 3) {
+            emit performReflux(value2);
+             flag2 = 0;
+             state2 = 0;       }
+    }
+//------------------------------------------------------------
+    //topright
 
-    for (int gpioNumber : gpioPins) {
-        exportGPIO(gpioNumber);
-        setGPIODirection(gpioNumber, "in");
-        qDebug() << "GPIO" << gpioNumber << "direction set to in";
+    if (rightFootcomAction == "Continuous Irrigation") {
+        if (value3 == 1 && flag3 == 0 && state3 == 0) {
+             state3 = 1;           }
+         if (value3 == 0 && flag3 == 0 && state3 == 1) {
+             flag3 = 1;
+             state3 = 2;
+             emit continous_irrigation(0);
+         }
+        if (value3 == 1 && flag3 == 1 && state3 == 2) {
+             state3 = 3;
+     }
+    if (value3 == 0 && flag3 == 1 && state3 == 3) {
+             emit continous_irrigation(1);
+             flag3 = 0;
+             state3 = 0;       }
+    } else if (rightFootcomAction == "Power ON/OFF") {
+        if (value3 == 1 && flag3 == 0 && state3 == 0) {
+             state3 = 1;           }
+         if (value3 == 0 && flag3 == 0 && state3 == 1) {
+             flag3 = 1;
+             state3 = 2;
+             emit togglePower(0);
+         }
+        if (value3 == 1 && flag3 == 1 && state3 == 2) {
+             state3 = 3;
+     }
+    if (value3 == 0 && flag3 == 1 && state3 == 3) {
+             emit togglePower(1);
+             flag3 = 0;
+             state3 = 0;       }
+    } else if (rightFootcomAction == "Increment") {
+        if (value3 == 1 && flag3 == 0 && state3 == 0) {
+             state3 = 1;           }
+         if (value3 == 0 && flag3 == 0 && state3 == 1) {
+             flag3 = 1;
+             state3 = 2;
+             emit moveTopToBottom(value3);
+         }
+        if (value3 == 1 && flag3 == 1 && state3 == 2) {
+             state3 = 3;
+     }
+    if (value3 == 0 && flag3 == 1 && state3 == 3) {
+            emit moveTopToBottom(value3);
+             flag3 = 0;
+             state3 = 0;       }
+    } else if (rightFootcomAction == "Decrement") {
+        if (value3 == 1 && flag3 == 0 && state3 == 0) {
+             state3 = 1;           }
+         if (value3 == 0 && flag3 == 0 && state3 == 1) {
+             flag3 = 1;
+             state3 = 2;
+             emit moveBottomToTop(value3);
+         }
+        if (value3 == 1 && flag3 == 1 && state3 == 2) {
+             state3 = 3;
+     }
+    if (value3 == 0 && flag3 == 1 && state3 == 3) {
+            emit moveBottomToTop(value3);
+             flag3 = 0;
+             state3 = 0;       }
+    } else if (rightFootcomAction == "PDM") {
+        if (value3 == 1 && flag3 == 0 && state3 == 0) {
+             state3 = 1;           }
+         if (value3 == 0 && flag3 == 0 && state3 == 1) {
+             flag3 = 1;
+             state3 = 2;
+             emit powerdm(value3);
+             emit powerdm1(value3);
+             emit powerdm2(value3);
+             emit powerdm3(value3);
+         }
+        if (value3 == 1 && flag3 == 1 && state3 == 2) {
+             state3 = 3;
+     }
+    if (value3 == 0 && flag3 == 1 && state3 == 3) {
+        emit powerdm(value3);
+        emit powerdm1(value3);
+        emit powerdm2(value3);
+        emit powerdm3(value3);
+             flag3 = 0;
+             state3 = 0;       }
+    }else if(rightFootcomAction == "Reflux"){
+        if (value3 == 1 && flag3 == 0 && state3 == 0) {
+             state3 = 1;           }
+         if (value3 == 0 && flag3 == 0 && state3 == 1) {
+             flag3 = 1;
+             state3 = 2;
+             emit performReflux(value3);
+         }
+        if (value3 == 1 && flag3 == 1 && state3 == 2) {
+             state3 = 3;
+     }
+    if (value3 == 0 && flag3 == 1 && state3 == 3) {
+            emit performReflux(value3);
+             flag3 = 0;
+             state3 = 0;       }
+    }
+//---------------------------------------------------------------
+    //bottom right
+    if (bleftFootcomAction == "Continuous Irrigation") {
+        if (value4 == 1 && flag4 == 0 && state4 == 0) {
+             state4 = 1;           }
+         if (value4 == 0 && flag4 == 0 && state4 == 1) {
+             flag4 = 1;
+             state4 = 2;
+             emit continous_irrigation(0);
+         }
+        if (value4 == 1 && flag4 == 1 && state4 == 2) {
+             state4 = 3;
+     }
+    if (value4 == 0 && flag4 == 1 && state4 == 3) {
+             emit continous_irrigation(1);
+             flag4 = 0;
+             state4 = 0;       }
+    } else if (bleftFootcomAction == "Power ON/OFF") {
+        if (value4 == 1 && flag4 == 0 && state4 == 0) {
+             state4 = 1;           }
+         if (value4 == 0 && flag4 == 0 && state4 == 1) {
+             flag4 = 1;
+             state4 = 2;
+             emit togglePower(0);
+         }
+        if (value4 == 1 && flag4 == 1 && state4 == 2) {
+             state4 = 3;
+     }
+    if (value4 == 0 && flag4 == 1 && state4 == 3) {
+             emit togglePower(1);
+             flag4 = 0;
+             state4 = 0;       }
+    } else if (bleftFootcomAction == "Increment") {
+        if (value4 == 1 && flag4 == 0 && state4 == 0) {
+             state4 = 1;           }
+         if (value4 == 0 && flag4 == 0 && state4 == 1) {
+             flag4 = 1;
+             state4 = 2;
+             emit moveTopToBottom(value4);
+         }
+        if (value4 == 1 && flag4 == 1 && state4 == 2) {
+             state4 = 3;
+     }
+    if (value4 == 0 && flag4 == 1 && state4 == 3) {
+            emit moveTopToBottom(value4);
+             flag4 = 0;
+             state4 = 0;       }
+    } else if (bleftFootcomAction == "Decrement") {
+        if (value4 == 1 && flag4 == 0 && state4 == 0) {
+             state4 = 1;           }
+         if (value4 == 0 && flag4 == 0 && state4 == 1) {
+             flag4 = 1;
+             state4 = 2;
+             emit moveBottomToTop(value4);
+         }
+        if (value4 == 1 && flag4 == 1 && state4 == 2) {
+             state4 = 3;
+     }
+    if (value4 == 0 && flag4 == 1 && state4 == 3) {
+            emit moveBottomToTop(value4);
+             flag4 = 0;
+             state4 = 0;       }
+    } else if (bleftFootcomAction == "PDM") {
+        if (value4 == 1 && flag4 == 0 && state4 == 0) {
+             state4 = 1;           }
+         if (value4 == 0 && flag4 == 0 && state4 == 1) {
+             flag4 = 1;
+             state4 = 2;
+             emit powerdm(value4);
+             emit powerdm1(value4);
+             emit powerdm2(value4);
+             emit powerdm3(value4);
+         }
+        if (value4 == 1 && flag4 == 1 && state4 == 2) {
+             state4 = 3;
+     }
+    if (value4 == 0 && flag4 == 1 && state4 == 3) {
+            emit moveBottomToTop(value4);
+             flag4 = 0;
+             state4 = 0;       }
+    }else if(bleftFootcomAction == "Reflux"){
+        if (value4 == 1 && flag4 == 0 && state4 == 0) {
+             state4 = 1;           }
+         if (value4 == 0 && flag4 == 0 && state4 == 1) {
+             flag4 = 1;
+             state4 = 2;
+             emit performReflux(value4);
+         }
+        if (value4 == 1 && flag4 == 1 && state4 == 2) {
+             state4 = 3;
+     }
+    if (value4 == 0 && flag4 == 1 && state4 == 3) {
+            emit performReflux(value4);
+             flag4 = 0;
+             state4 = 0;       }
     }
 
-  readInitialGPIOValues();
+
 }
+
+
+
 
 void footpedal::exportGPIO(int gpioNumber)
 {
@@ -164,8 +540,8 @@ int footpedal::readGPIOValue(int gpioNumber)
     return -1;
 }
 
-void footpedal::updateFootpedalComboBoxes(const QString &surgeonName)
-{
+
+void footpedal::updateFootpedalComboBoxes(const QString &surgeonName) {
     QSqlQuery query(db);
     query.prepare(
         "SELECT footleft, footright, footbottomleft, footbottomright "
@@ -174,27 +550,51 @@ void footpedal::updateFootpedalComboBoxes(const QString &surgeonName)
     );
     query.bindValue(":surgeon", surgeonName);
 
+  //  qDebug() << "Selected surgeon in footpedal and fetching data for surgeon:" << surgeonName;
+
     if (!query.exec()) {
-        qDebug() << "Failed to fetch footpedal data for surgeon:" << query.lastError().text();
+     //   qDebug() << "Failed to fetch footpedal data for surgeon:" << query.lastError().text();
         return;
     }
 
     if (query.next()) {
-        ui->left_footcom->setCurrentText(query.value("footleft").toString());
-        ui->right_footcom->setCurrentText(query.value("footright").toString());
-        ui->bleft_footcom->setCurrentText(query.value("footbottomleft").toString());
-        ui->bright_footcom->setCurrentText(query.value("footbottomright").toString());
+        // Retrieve values from the query result
+        QString footLeftValue = query.value("footleft").toString();
+        QString footRightValue = query.value("footright").toString();
+        QString footBLeftValue = query.value("footbottomleft").toString();
+        QString footNRightValue = query.value("footbottomright").toString();
+
+//        // Debug output to check retrieved values
+//        qDebug() << "Foot pedal values retrieved:"
+//                 << "footleft:" << footLeftValue
+//                 << "footright:" << footRightValue
+//                 << "footbleft:" << footBLeftValue
+//                 << "footnright:" << footNRightValue;
+
+        // Set the retrieved values to the combo boxes
+        ui->left_footcom->setCurrentText(footLeftValue);
+        ui->right_footcom->setCurrentText(footRightValue);
+        ui->bleft_footcom->setCurrentText(footBLeftValue);
+        ui->bright_footcom->setCurrentText(footNRightValue);
+
+//        // Debug output to confirm the values were set correctly
+//        qDebug() << "ComboBox values set:"
+//                 << "left_footcom:" << ui->left_footcom->currentText()
+//                 << "right_footcom:" << ui->right_footcom->currentText()
+//                 << "bleft_footcom:" << ui->bleft_footcom->currentText()
+//                 << "bright_footcom:" << ui->bright_footcom->currentText();
     }
 }
 
+
 void footpedal::combobox1(const QString &text)
 {
-    ui->left_footcom->setCurrentText(text);
+  ui->left_footcom->setCurrentText(text);
 }
 
 void footpedal::combobox2(const QString &text)
 {
-    ui->right_footcom->setCurrentText(text);
+   ui->right_footcom->setCurrentText(text);
 }
 
 void footpedal::combobox3(const QString &text)
@@ -206,37 +606,43 @@ void footpedal::combobox4(const QString &text)
 {
     ui->bright_footcom->setCurrentText(text);
 }
-
-void footpedal::setSurgeonName(const QString &name)
+void footpedal::updateFootpedalComboBoxes1(const QString &surgeonName)
 {
-   // currentSurgeonName = name;
+    currentSurgeonName = surgeonName;  // Assign the passed surgeonName to currentSurgeonName
+       qDebug() << "Updated currentSurgeonName to:" << currentSurgeonName;
 }
 
 void footpedal::on_pushButton_clicked()
 {
-    if (currentSurgeonName.isEmpty()) {
-        qDebug() << "Surgeon name is not set. Cannot save footpedal settings.";
-        return;
-    }
+    QString footLeftValue = ui->left_footcom->currentText();
+    QString footRightValue = ui->right_footcom->currentText();
+    QString footBLeftValue = ui->bleft_footcom->currentText();
+    QString footNRightValue = ui->bright_footcom->currentText();
+
+    qDebug() << "Saving footpedal settings for surgeon:" << currentSurgeonName;
+    qDebug() << "footleft:" << footLeftValue << "footright:" << footRightValue;
+    qDebug() << "footbleft:" << footBLeftValue << "footnright:" << footNRightValue;
 
     QSqlQuery query(db);
     query.prepare(
         "UPDATE phacohigh "
         "SET footleft = :footleft, "
         "footright = :footright, "
-        "footbottomleft = :footbottomleft, "
-        "footbottomright = :footbottomright "
+        "footbottomleft = :footbleft, "
+        "footbottomright = :footnright "
         "WHERE surgeon = :surgeon"
     );
-    query.bindValue(":footleft", ui->left_footcom->currentText());
-    query.bindValue(":footright", ui->right_footcom->currentText());
-    query.bindValue(":footbottomleft", ui->bleft_footcom->currentText());
-    query.bindValue(":footbottomright", ui->bright_footcom->currentText());
+    query.bindValue(":footleft", footLeftValue);
+    query.bindValue(":footright", footRightValue);
+    query.bindValue(":footbleft", footBLeftValue);
+    query.bindValue(":footnright", footNRightValue);
     query.bindValue(":surgeon", currentSurgeonName);
 
     if (!query.exec()) {
-        qDebug() << "Failed to update footpedal settings:" << query.lastError().text();
-    } else {
-        qDebug() << "Footpedal settings updated successfully.";
+//        qDebug() << "Failed to update footpedal data for surgeon:" << query.lastError().text();
+        return;
     }
+
+//    qDebug() << "Footpedal settings saved successfully for surgeon:" << currentSurgeonName;
+    readInitialGPIOValues();  // Continue with the next operations
 }

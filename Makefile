@@ -1193,23 +1193,8 @@ moc_doctor.cpp: doctor.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/qfiledevice.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtGui/qvector2d.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtGui/qtouchdevice.h \
-		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/QtDebug \
-		prime.h \
-		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/QWidget \
-		mainwindow.h \
-		settings.h \
-		general.h \
-		display.h \
-		footpedal.h \
-		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql/QSqlDatabase \
-		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql/qsqldatabase.h \
-		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql/qtsqlglobal.h \
-		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql/qtsql-config.h \
-		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql/QSqlQuery \
-		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql/qsqlquery.h \
-		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/QDebug \
-		doctor.h \
 		keypad.h \
+		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/QWidget \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtGui/QMouseEvent \
 		hwhandler.h \
 		ltc2614.h \
@@ -1279,6 +1264,7 @@ moc_doctor.cpp: doctor.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/bits/mman-linux.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/bits/mman-shared.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/bits/mman_ext.h \
+		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/QDebug \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/QFile \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/QCoreApplication \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/qcoreapplication.h \
@@ -1293,6 +1279,18 @@ moc_doctor.cpp: doctor.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtGui/qtextformat.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtGui/qpen.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtGui/qtextoption.h \
+		mainwindow.h \
+		settings.h \
+		general.h \
+		display.h \
+		footpedal.h \
+		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql/QSqlDatabase \
+		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql/qsqldatabase.h \
+		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql/qtsqlglobal.h \
+		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql/qtsql-config.h \
+		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql/QSqlQuery \
+		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql/qsqlquery.h \
+		doctor.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/QMessageBox \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/qmessagebox.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/QMainWindow \
@@ -1332,6 +1330,8 @@ moc_doctor.cpp: doctor.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql/QSqlRecord \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql/qsqlrecord.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/QMap \
+		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/QComboBox \
+		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/qcombobox.h \
 		moc_predefs.h \
 		../../xsdk-2023.1/sysroots/x86_64-petalinux-linux/usr/bin/moc
 	/home/amt-04/xsdk-2023.1/sysroots/x86_64-petalinux-linux/usr/bin/moc $(DEFINES) --include /home/amt-04/QtWorkspace/phacoupdate/moc_predefs.h -I/home/amt-04/xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -I/home/amt-04/QtWorkspace/phacoupdate -I/home/amt-04/QtWorkspace/phacoupdate -I/home/amt-04/QtWorkspace/phacoupdate -I/home/amt-04/QtWorkspace/phacoupdate -I/home/amt-04/xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include -I/home/amt-04/xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets -I/home/amt-04/xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtGui -I/home/amt-04/xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql -I/home/amt-04/xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11 -I/usr/include/c++/11/backward -I/usr/lib/gcc/x86_64-linux-gnu/11/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include doctor.h -o moc_doctor.cpp
@@ -1539,15 +1539,8 @@ moc_footpedal.cpp: footpedal.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql/qsqlquery.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/QDebug \
 		doctor.h \
-		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/QtDebug \
-		prime.h \
-		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/QWidget \
-		mainwindow.h \
-		settings.h \
-		general.h \
-		display.h \
-		footpedal.h \
 		keypad.h \
+		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/QWidget \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtGui/QMouseEvent \
 		hwhandler.h \
 		ltc2614.h \
@@ -1631,6 +1624,11 @@ moc_footpedal.cpp: footpedal.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtGui/qtextformat.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtGui/qpen.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtGui/qtextoption.h \
+		mainwindow.h \
+		settings.h \
+		general.h \
+		display.h \
+		footpedal.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/QMainWindow \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/qmainwindow.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/qtabwidget.h \
@@ -1670,6 +1668,8 @@ moc_footpedal.cpp: footpedal.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql/QSqlRecord \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql/qsqlrecord.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/QMap \
+		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/QComboBox \
+		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/qcombobox.h \
 		moc_predefs.h \
 		../../xsdk-2023.1/sysroots/x86_64-petalinux-linux/usr/bin/moc
 	/home/amt-04/xsdk-2023.1/sysroots/x86_64-petalinux-linux/usr/bin/moc $(DEFINES) --include /home/amt-04/QtWorkspace/phacoupdate/moc_predefs.h -I/home/amt-04/xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -I/home/amt-04/QtWorkspace/phacoupdate -I/home/amt-04/QtWorkspace/phacoupdate -I/home/amt-04/QtWorkspace/phacoupdate -I/home/amt-04/QtWorkspace/phacoupdate -I/home/amt-04/xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include -I/home/amt-04/xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets -I/home/amt-04/xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtGui -I/home/amt-04/xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql -I/home/amt-04/xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11 -I/usr/include/c++/11/backward -I/usr/lib/gcc/x86_64-linux-gnu/11/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include footpedal.h -o moc_footpedal.cpp
@@ -3019,11 +3019,8 @@ moc_mainwindow.cpp: mainwindow.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql/qsqlquery.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/QDebug \
 		doctor.h \
-		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/QtDebug \
-		prime.h \
-		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/QWidget \
-		mainwindow.h \
 		keypad.h \
+		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/QWidget \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtGui/QMouseEvent \
 		hwhandler.h \
 		ltc2614.h \
@@ -3107,6 +3104,7 @@ moc_mainwindow.cpp: mainwindow.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtGui/qtextformat.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtGui/qpen.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtGui/qtextoption.h \
+		mainwindow.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/QMainWindow \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/qmainwindow.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/qtabwidget.h \
@@ -3146,6 +3144,8 @@ moc_mainwindow.cpp: mainwindow.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql/QSqlRecord \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql/qsqlrecord.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/QMap \
+		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/QComboBox \
+		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/qcombobox.h \
 		moc_predefs.h \
 		../../xsdk-2023.1/sysroots/x86_64-petalinux-linux/usr/bin/moc
 	/home/amt-04/xsdk-2023.1/sysroots/x86_64-petalinux-linux/usr/bin/moc $(DEFINES) --include /home/amt-04/QtWorkspace/phacoupdate/moc_predefs.h -I/home/amt-04/xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -I/home/amt-04/QtWorkspace/phacoupdate -I/home/amt-04/QtWorkspace/phacoupdate -I/home/amt-04/QtWorkspace/phacoupdate -I/home/amt-04/QtWorkspace/phacoupdate -I/home/amt-04/xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include -I/home/amt-04/xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets -I/home/amt-04/xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtGui -I/home/amt-04/xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql -I/home/amt-04/xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11 -I/usr/include/c++/11/backward -I/usr/lib/gcc/x86_64-linux-gnu/11/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include mainwindow.h -o moc_mainwindow.cpp
@@ -3359,11 +3359,8 @@ moc_prime.cpp: prime.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql/qsqlquery.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/QDebug \
 		doctor.h \
-		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/QtDebug \
-		prime.h \
-		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/QTimer \
-		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/qtimer.h \
-		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/qbasictimer.h \
+		keypad.h \
+		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtGui/QMouseEvent \
 		hwhandler.h \
 		ltc2614.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/QObject \
@@ -3413,6 +3410,9 @@ moc_prime.cpp: prime.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/linux/const.h \
 		vaccum.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/QVector \
+		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/QTimer \
+		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/qtimer.h \
+		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/qbasictimer.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/QThread \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/qthread.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/qdeadlinetimer.h \
@@ -3443,8 +3443,6 @@ moc_prime.cpp: prime.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtGui/qtextformat.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtGui/qpen.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtGui/qtextoption.h \
-		keypad.h \
-		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtGui/QMouseEvent \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/QMessageBox \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/qmessagebox.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/QMainWindow \
@@ -3484,6 +3482,8 @@ moc_prime.cpp: prime.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql/QSqlRecord \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql/qsqlrecord.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/QMap \
+		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/QComboBox \
+		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/qcombobox.h \
 		moc_predefs.h \
 		../../xsdk-2023.1/sysroots/x86_64-petalinux-linux/usr/bin/moc
 	/home/amt-04/xsdk-2023.1/sysroots/x86_64-petalinux-linux/usr/bin/moc $(DEFINES) --include /home/amt-04/QtWorkspace/phacoupdate/moc_predefs.h -I/home/amt-04/xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -I/home/amt-04/QtWorkspace/phacoupdate -I/home/amt-04/QtWorkspace/phacoupdate -I/home/amt-04/QtWorkspace/phacoupdate -I/home/amt-04/QtWorkspace/phacoupdate -I/home/amt-04/xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include -I/home/amt-04/xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets -I/home/amt-04/xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtGui -I/home/amt-04/xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql -I/home/amt-04/xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11 -I/usr/include/c++/11/backward -I/usr/lib/gcc/x86_64-linux-gnu/11/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include prime.h -o moc_prime.cpp
@@ -3694,12 +3694,8 @@ moc_settings.cpp: settings.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql/qsqlquery.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/QDebug \
 		doctor.h \
-		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/QtDebug \
-		prime.h \
-		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/QWidget \
-		mainwindow.h \
-		settings.h \
 		keypad.h \
+		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/QWidget \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtGui/QMouseEvent \
 		hwhandler.h \
 		ltc2614.h \
@@ -3783,6 +3779,8 @@ moc_settings.cpp: settings.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtGui/qtextformat.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtGui/qpen.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtGui/qtextoption.h \
+		mainwindow.h \
+		settings.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/QMainWindow \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/qmainwindow.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/qtabwidget.h \
@@ -3822,6 +3820,8 @@ moc_settings.cpp: settings.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql/QSqlRecord \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql/qsqlrecord.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/QMap \
+		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/QComboBox \
+		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/qcombobox.h \
 		moc_predefs.h \
 		../../xsdk-2023.1/sysroots/x86_64-petalinux-linux/usr/bin/moc
 	/home/amt-04/xsdk-2023.1/sysroots/x86_64-petalinux-linux/usr/bin/moc $(DEFINES) --include /home/amt-04/QtWorkspace/phacoupdate/moc_predefs.h -I/home/amt-04/xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -I/home/amt-04/QtWorkspace/phacoupdate -I/home/amt-04/QtWorkspace/phacoupdate -I/home/amt-04/QtWorkspace/phacoupdate -I/home/amt-04/QtWorkspace/phacoupdate -I/home/amt-04/xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include -I/home/amt-04/xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets -I/home/amt-04/xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtGui -I/home/amt-04/xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql -I/home/amt-04/xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11 -I/usr/include/c++/11/backward -I/usr/lib/gcc/x86_64-linux-gnu/11/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include settings.h -o moc_settings.cpp
@@ -4409,22 +4409,8 @@ doctor.o: doctor.cpp doctor.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/qfiledevice.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtGui/qvector2d.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtGui/qtouchdevice.h \
-		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/QtDebug \
-		prime.h \
-		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/QWidget \
-		mainwindow.h \
-		settings.h \
-		general.h \
-		display.h \
-		footpedal.h \
-		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql/QSqlDatabase \
-		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql/qsqldatabase.h \
-		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql/qtsqlglobal.h \
-		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql/qtsql-config.h \
-		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql/QSqlQuery \
-		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql/qsqlquery.h \
-		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/QDebug \
 		keypad.h \
+		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/QWidget \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtGui/QMouseEvent \
 		hwhandler.h \
 		ltc2614.h \
@@ -4494,6 +4480,7 @@ doctor.o: doctor.cpp doctor.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/bits/mman-linux.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/bits/mman-shared.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/bits/mman_ext.h \
+		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/QDebug \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/QFile \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/QCoreApplication \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/qcoreapplication.h \
@@ -4508,6 +4495,17 @@ doctor.o: doctor.cpp doctor.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtGui/qtextformat.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtGui/qpen.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtGui/qtextoption.h \
+		mainwindow.h \
+		settings.h \
+		general.h \
+		display.h \
+		footpedal.h \
+		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql/QSqlDatabase \
+		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql/qsqldatabase.h \
+		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql/qtsqlglobal.h \
+		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql/qtsql-config.h \
+		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql/QSqlQuery \
+		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql/qsqlquery.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/QMainWindow \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/qmainwindow.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/qtabwidget.h \
@@ -4547,6 +4545,8 @@ doctor.o: doctor.cpp doctor.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql/QSqlRecord \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql/qsqlrecord.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/QMap \
+		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/QComboBox \
+		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/qcombobox.h \
 		ui_doctor.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql/QSqlError \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql/qsqlerror.h
@@ -4755,14 +4755,8 @@ footpedal.o: footpedal.cpp footpedal.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql/qsqlquery.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/QDebug \
 		doctor.h \
-		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/QtDebug \
-		prime.h \
-		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/QWidget \
-		mainwindow.h \
-		settings.h \
-		general.h \
-		display.h \
 		keypad.h \
+		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/QWidget \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtGui/QMouseEvent \
 		hwhandler.h \
 		ltc2614.h \
@@ -4846,6 +4840,10 @@ footpedal.o: footpedal.cpp footpedal.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtGui/qtextformat.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtGui/qpen.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtGui/qtextoption.h \
+		mainwindow.h \
+		settings.h \
+		general.h \
+		display.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/QMainWindow \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/qmainwindow.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/qtabwidget.h \
@@ -4885,6 +4883,8 @@ footpedal.o: footpedal.cpp footpedal.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql/QSqlRecord \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql/qsqlrecord.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/QMap \
+		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/QComboBox \
+		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/qcombobox.h \
 		ui_footpedal.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql/QSqlError \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql/qsqlerror.h
@@ -5984,7 +5984,6 @@ main.o: main.cpp prime.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql/qsqlquery.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/QDebug \
 		doctor.h \
-		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/QtDebug \
 		keypad.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtGui/QMouseEvent \
 		hwhandler.h \
@@ -6108,6 +6107,8 @@ main.o: main.cpp prime.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql/QSqlRecord \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql/qsqlrecord.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/QMap \
+		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/QComboBox \
+		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/qcombobox.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/QApplication \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/qapplication.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/qdesktopwidget.h \
@@ -6322,12 +6323,9 @@ mainwindow.o: mainwindow.cpp mainwindow.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql/qsqlquery.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/QDebug \
 		doctor.h \
-		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/QtDebug \
-		prime.h \
+		keypad.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/QWidget \
-		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/QTimer \
-		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/qtimer.h \
-		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/qbasictimer.h \
+		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtGui/QMouseEvent \
 		hwhandler.h \
 		ltc2614.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/QObject \
@@ -6377,6 +6375,9 @@ mainwindow.o: mainwindow.cpp mainwindow.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/linux/const.h \
 		vaccum.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/QVector \
+		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/QTimer \
+		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/qtimer.h \
+		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/qbasictimer.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/QThread \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/qthread.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/qdeadlinetimer.h \
@@ -6407,8 +6408,6 @@ mainwindow.o: mainwindow.cpp mainwindow.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtGui/qtextformat.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtGui/qpen.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtGui/qtextoption.h \
-		keypad.h \
-		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtGui/QMouseEvent \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/QMessageBox \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/qmessagebox.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/QMainWindow \
@@ -6448,11 +6447,15 @@ mainwindow.o: mainwindow.cpp mainwindow.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql/QSqlRecord \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql/qsqlrecord.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/QMap \
+		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/QComboBox \
+		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/qcombobox.h \
 		ui_mainwindow.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/QStyleFactory \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/qstylefactory.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql/QSqlError \
-		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql/qsqlerror.h
+		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql/qsqlerror.h \
+		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/QProcess \
+		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/qprocess.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o mainwindow.cpp
 
 prime.o: prime.cpp prime.h \
@@ -6664,7 +6667,6 @@ prime.o: prime.cpp prime.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql/qsqlquery.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/QDebug \
 		doctor.h \
-		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/QtDebug \
 		keypad.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtGui/QMouseEvent \
 		hwhandler.h \
@@ -6788,6 +6790,8 @@ prime.o: prime.cpp prime.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql/QSqlRecord \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql/qsqlrecord.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/QMap \
+		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/QComboBox \
+		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/qcombobox.h \
 		ui_prime.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtGui/QImage \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/QIODevice
@@ -6999,11 +7003,8 @@ settings.o: settings.cpp settings.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql/qsqlquery.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/QDebug \
 		doctor.h \
-		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/QtDebug \
-		prime.h \
-		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/QWidget \
-		mainwindow.h \
 		keypad.h \
+		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/QWidget \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtGui/QMouseEvent \
 		hwhandler.h \
 		ltc2614.h \
@@ -7087,6 +7088,7 @@ settings.o: settings.cpp settings.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtGui/qtextformat.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtGui/qpen.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtGui/qtextoption.h \
+		mainwindow.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/QMainWindow \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/qmainwindow.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/qtabwidget.h \
@@ -7126,6 +7128,8 @@ settings.o: settings.cpp settings.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql/QSqlRecord \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql/qsqlrecord.h \
 		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/QMap \
+		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/QComboBox \
+		../../xsdk-2023.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/qcombobox.h \
 		ui_settings.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o settings.o settings.cpp
 

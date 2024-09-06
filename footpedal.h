@@ -24,6 +24,15 @@ class footpedal : public QDialog
 public:
     explicit footpedal(QWidget *parent = nullptr);
     ~footpedal();
+    // Example state and flag initialization (if they are not already initialized)
+        int state1=0 ;  // State for GPIO 961
+       bool flag1 = 0;   // Flag for GPIO 961
+       int state2=0 ;  // State for GPIO 962
+      bool flag2= 0;   // Flag for GPIO 962
+      int state3=0 ;  // State for GPIO 963
+     bool flag3= 0;   // Flag for GPIO 963
+     int state4=0 ;  // State for GPIO 964
+    bool flag4 = 0;   // Flag for GPIO 964
 
     void createAndSetupComboBoxes();
         void setupConnections();
@@ -33,9 +42,8 @@ public:
           void writeGPIOValue(int gpioNumber, int value);
           int readGPIOValue(int gpioNumber);
           void readInitialGPIOValues();
-          void change_settings();
-            void performAction(const QString &action, int gpioNumber);
-            void initializeGPIO();
+          void initializeGPIO();
+
 public slots:
             void combobox1(const QString &text);
             void combobox2(const QString &text);
@@ -44,7 +52,7 @@ public slots:
             void storeComboBoxSelection(int index);
 
             void updateFootpedalComboBoxes(const QString &surgeonName);
-            void setSurgeonName(const QString &name);
+            void updateFootpedalComboBoxes1(const QString &surgeonName);
 
 signals:
     void moveTopToBottom(int value);    // Signal for moving pushbutton from top to bottom
@@ -52,8 +60,12 @@ signals:
     void performReflux(int value);      // Signal for performing reflux action
     void togglePower(bool on);        // Signal for toggling power on/off
 
-    void continous_irrigation(bool on);
+    void continous_irrigation(int value);
     void powerdm(int value1);
+    void powerdm1(int value1);
+    void powerdm2(int value1);
+    void powerdm3(int value1);
+
 
 private slots:
     void Back();
@@ -79,6 +91,8 @@ private:
            QString bleftFootcomAction;
            QString brightFootcomAction;
            QSqlDatabase db;
+           bool flagcon;
+
 
 
 };

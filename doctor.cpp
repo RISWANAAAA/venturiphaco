@@ -1101,15 +1101,15 @@ QString b_right=ui->BottomRFoot->currentText();
 
     // Check if the QSQLITE driver is available
     QStringList drivers = QSqlDatabase::drivers();
-    qDebug() << "Available drivers:" << drivers;
+//    qDebug() << "Available drivers:" << drivers;
 
     if (!drivers.contains("QSQLITE")) {
-        qDebug() << "Error: QSQLITE driver not available!";
+//        qDebug() << "Error: QSQLITE driver not available!";
         return;
     }
 
     if (!mydb.open()) {
-        qDebug() << "Error: Unable to open database with path:" << PATH;
+//        qDebug() << "Error: Unable to open database with path:" << PATH;
         return;
     }
 
@@ -1126,13 +1126,13 @@ QString b_right=ui->BottomRFoot->currentText();
 
     // Execute the query
     if (!query.exec()) {
-        qDebug() << "Error executing SELECT query: " << query.lastError().text();
+//        qDebug() << "Error executing SELECT query: " << query.lastError().text();
         return;
     }
 
     // Check if any rows are fetched
     if (!query.next()) {
-        qDebug() << "No rows fetched for surgeon:" << surgeon;
+//        qDebug() << "No rows fetched for surgeon:" << surgeon;
         return;
     }
 
@@ -1199,13 +1199,13 @@ QString b_right=ui->BottomRFoot->currentText();
     query.bindValue(":surgeon", surgeon);
 
     // Debug: Log the update query and bound values
-    qDebug() << "Executing update query for surgeon:" << surgeon;
+//    qDebug() << "Executing update query for surgeon:" << surgeon;
 
     // Execute the update query
     if (!query.exec()) {
-        qDebug() << "Error executing UPDATE query: " << query.lastError().text();
+//        qDebug() << "Error executing UPDATE query: " << query.lastError().text();
     } else {
-        qDebug() << "Data updated successfully.";
+//        qDebug() << "Data updated successfully.";
         QMessageBox* msgBox = new QMessageBox(QMessageBox::Information, "Info", "Surgeon is updated");
 
         // Set the message box to show
@@ -1232,13 +1232,13 @@ emit sendValues(
     ia1mode, ia2mode, vitmode, vitvacmode
 );
 emit sendleftfootvalues(ui->LeftFoot->currentText());
-    qDebug()<<"footleft is"<<footleft;
+//    qDebug()<<"footleft is"<<footleft;
     emit sendrightfootvalues(ui->RightFoot->currentText());
-      qDebug()<<"footright is"<<footright;
+//      qDebug()<<"footright is"<<footright;
     emit sendbleftfootvalues(ui->BottomLFoot->currentText());
-    qDebug()<<"footbottom left is"<<b_left;
+//    qDebug()<<"footbottom left is"<<b_left;
     emit sendbrightfootvalues(ui->BottomRFoot->currentText());
-    qDebug()<<"footbottom right is"<<b_right;
+//    qDebug()<<"footbottom right is"<<b_right;
     this->close();
 }
 
@@ -1321,7 +1321,7 @@ void doctor::setLastSelectedValue()
     query.prepare("SELECT lastupdate FROM phacohigh LIMIT 1");
 
     if (!query.exec()) {
-        qDebug() << "Error retrieving last index:";
+//        qDebug() << "Error retrieving last index:";
         db.close();
         QSqlDatabase::removeDatabase(QSqlDatabase::defaultConnection);
         return;
@@ -1332,9 +1332,9 @@ void doctor::setLastSelectedValue()
         int lastIndex = query.value(0).toInt();
         ui->SelectSurgeon->setCurrentIndex(lastIndex);
 
-        qDebug() << "Last selected index set to" << lastIndex;
+//        qDebug() << "Last selected index set to" << lastIndex;
     } else {
-        qDebug() << "No index found in the database. Verify the data in the table.";
+//        qDebug() << "No index found in the database. Verify the data in the table.";
     }
 
     db.close();
@@ -1345,10 +1345,10 @@ void doctor::setLastSelectedValue()
 void doctor::onSurgeonSelectionChanged(const QString &surgeonName)
 {
 
-    qDebug() << "Attempting to fetch data for surgeon:" << surgeonName;
+//    qDebug() << "Attempting to fetch data for surgeon:" << surgeonName;
 
     // Check and display available drivers
-    qDebug() << "Available SQL drivers:" << QSqlDatabase::drivers();
+//    qDebug() << "Available SQL drivers:" << QSqlDatabase::drivers();
 
     if (!db.isValid()) {
         db = QSqlDatabase::addDatabase("QSQLITE");
@@ -1357,13 +1357,13 @@ void doctor::onSurgeonSelectionChanged(const QString &surgeonName)
 
     if (!db.isOpen()) {
         if (!db.open()) {
-            qDebug() << "Failed to open database. Error:" << db.lastError().text();
+//            qDebug() << "Failed to open database. Error:" << db.lastError().text();
             return;
         } else {
-            qDebug() << "Database connection opened successfully.";
+//            qDebug() << "Database connection opened successfully.";
         }
     } else {
-        qDebug() << "Database is already open.";
+//        qDebug() << "Database is already open.";
     }
 
     // Prepare a single query to fetch all required data
@@ -1463,12 +1463,12 @@ void doctor::onSurgeonSelectionChanged(const QString &surgeonName)
             ui->BottomLFoot->setCurrentText(query.value("footbottomleft").toString());
             ui->BottomRFoot->setCurrentText(query.value("footbottomright").toString());
 
-        // Debugging output to verify fetched values
-        qDebug() << "Pump value retrieved:" << pump;
-        qDebug() << "US1 Epinucleus - Power:" << us1power << "Vacuum:" << us1vacmax << "Flow:" << us1flowmax;
-        qDebug() << "US2 Quadrant - Power:" << us2power << "Vacuum:" << us2vacmax << "Aspiration:" << us2aspmax;
-        qDebug() << "US3 Chop - Power:" << us3power << "Vacuum:" << us3vacmax << "Aspiration:" << us3aspmax;
-        qDebug() << "US4 Sculpt - Power:" << us4power << "Vacuum:" << us4vacmax << "Aspiration:" << us4aspmax;
+//        // Debugging output to verify fetched values
+//        qDebug() << "Pump value retrieved:" << pump;
+//        qDebug() << "US1 Epinucleus - Power:" << us1power << "Vacuum:" << us1vacmax << "Flow:" << us1flowmax;
+//        qDebug() << "US2 Quadrant - Power:" << us2power << "Vacuum:" << us2vacmax << "Aspiration:" << us2aspmax;
+//        qDebug() << "US3 Chop - Power:" << us3power << "Vacuum:" << us3vacmax << "Aspiration:" << us3aspmax;
+//        qDebug() << "US4 Sculpt - Power:" << us4power << "Vacuum:" << us4vacmax << "Aspiration:" << us4aspmax;
 
         // Update UI components with the retrieved values
         ui->lineEdit_6->setText(QString::number(phacoPowerMax));
