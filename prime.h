@@ -34,7 +34,7 @@ public:
     void done();
     void motoron();
     void motoroff();
-    bool checkChamberFill();
+
 
 public slots:
     void timer();

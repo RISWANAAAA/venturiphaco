@@ -25,7 +25,8 @@
 #include <QTime>
 #include <QLineEdit>
 
-#define XPAR_AXI_COMBINED_BASEADDR 0x43C20000;
+#define XPAR_AXI_COMBINED_BASEADDR 	0x43C20000;
+#define SPEAKER_BASEADDR		0x43C30000
 #define MAP_SIZE 4096UL
 #define MAP_MASK (MAP_SIZE - 1)
 
@@ -153,3 +154,4 @@ private:
 
 };
 #endif // HWHANDLER_H
+

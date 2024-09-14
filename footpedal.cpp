@@ -13,7 +13,7 @@ footpedal::footpedal(QWidget *parent) :
     d1 = new doctor;
 
     // Export and set direction of GPIOs
-    exportGPIO(961);
+        exportGPIO(961);
         exportGPIO(962);
         exportGPIO(963);
         exportGPIO(964);
@@ -22,17 +22,11 @@ footpedal::footpedal(QWidget *parent) :
         setGPIODirection(962, "in");
         setGPIODirection(963, "in");
         setGPIODirection(964, "in");
-
-        qDebug() << "GPIO 961 direction set to in";
-        qDebug() << "GPIO 962 direction set to in";
-        qDebug() << "GPIO 963 direction set to in";
-        qDebug() << "GPIO 964 direction set to in";
-
+        //calling
         readInitialGPIOValues(); // Read initial values
     // Set up connections
     setupConnections();
     qDebug() << "readInitialGPIOValues function entered.";
-
 
     connect(ui->backbut, &QPushButton::clicked, this, &footpedal::Back);
     connect(ui->savebut, &QPushButton::clicked, this, &footpedal::on_pushButton_clicked);
@@ -84,6 +78,7 @@ void footpedal::readInitialGPIOValues()
     int value3 = readGPIOValue(963);
     int value4 = readGPIOValue(964);
 
+
        if (leftFootcomAction == "Continuous Irrigation" ) {
           if (value1 == 1 && flag1 == 0 && state1 == 0) {
                state1 = 1;           }
@@ -116,7 +111,7 @@ void footpedal::readInitialGPIOValues()
                 flag1 = 0;
                 state1 = 0;       }
     }
-       else if (leftFootcomAction == "Increment") {
+else if (leftFootcomAction == "Increment") {
            if (value1 == 1 && flag1 == 0 && state1 == 0) {
                 state1 = 1;           }
             if (value1 == 0 && flag1 == 0 && state1 == 1) {
@@ -223,7 +218,7 @@ void footpedal::readInitialGPIOValues()
              state2 = 0;
     }
 }
-    else if (brightFootcomAction == "Increment") {
+ else if (brightFootcomAction == "Increment") {
         if (value2 == 1 && flag2 == 0 && state2 == 0) {
              state2 = 1;           }
          if (value2 == 0 && flag2 == 0 && state2 == 1) {
@@ -577,12 +572,12 @@ void footpedal::updateFootpedalComboBoxes(const QString &surgeonName) {
         ui->bleft_footcom->setCurrentText(footBLeftValue);
         ui->bright_footcom->setCurrentText(footNRightValue);
 
-//        // Debug output to confirm the values were set correctly
-//        qDebug() << "ComboBox values set:"
-//                 << "left_footcom:" << ui->left_footcom->currentText()
-//                 << "right_footcom:" << ui->right_footcom->currentText()
-//                 << "bleft_footcom:" << ui->bleft_footcom->currentText()
-//                 << "bright_footcom:" << ui->bright_footcom->currentText();
+        // Debug output to confirm the values were set correctly
+        qDebug() << "ComboBox values set:"
+                 << "left_footcom:" << ui->left_footcom->currentText()
+                 << "right_footcom:" << ui->right_footcom->currentText()
+                 << "bleft_footcom:" << ui->bleft_footcom->currentText()
+                 << "bright_footcom:" << ui->bright_footcom->currentText();
     }
 }
 

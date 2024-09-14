@@ -35,12 +35,12 @@ border-radius:20px;
    </property>
    <item>
     <property name="text">
-     <string>Increment</string>
+     <string>Decrement</string>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>Decrement</string>
+     <string>Increment</string>
     </property>
    </item>
    <item>

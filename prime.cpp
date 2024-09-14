@@ -39,7 +39,7 @@ prime::prime(QWidget *parent) :
                 "    font-size: 16px; /* Set the font size */"
                 "    border-radius: 10px; /* Set the border radius */"
                 "}";
-//ui->tabWidget->setStyleSheet(styleSheet3);
+
 
      ui-> tabWidget->setStyleSheet(tabStyle);
     ui->tabWidget->setTabText(0 ,"     PRIME        ");
@@ -71,10 +71,10 @@ prime::prime(QWidget *parent) :
       ui->clean_but->setStyleSheet(styleSheet);
 
   });
-
+  //timerssss
     timer1=new QTimer;
+     pretimer=new QTimer;
     connect(timer1, &QTimer::timeout, this, &prime::timer);
-    pretimer=new QTimer;
     connect(pretimer,&QTimer::timeout,this,&prime::primetimer);
 
       ui->progressBar_2->setRange(0, 100);
@@ -233,17 +233,14 @@ void prime::start_irrigation()
     qDebug() << "Irrigation started";
     ui->start_check_2->setChecked(true);
      pretimer->start(290);
-    // Move to the next step after starting irrigation
     QTimer::singleShot(15000, this, &prime::champer_Filled);
 }
 void prime::motoron()
 {
 
     hand->write_motor(0x01,0x03,40);
-    qDebug() << "Motor started";
     ui->motor_Check_2->setChecked(true);
     pretimer->start(290);
-
     QTimer::singleShot(15000, this, &prime::start_irrigation);
 }
 
@@ -253,66 +250,45 @@ void prime::motoroff()
 }
 void prime::champer_Filled()
 {
-
-    qDebug() << "Chamber Filled";
     ui->wait_Check_2->setChecked(true);
     pretimer->start(290);
-
-    // Finish the prime process
     QTimer::singleShot(15000, this, &prime::done);
 }
-bool prime::checkChamberFill()
-{
-}
+
 void prime::done()
 {
-    qDebug() << "Prime process done";
     ui->done_Check_2->setChecked(true);
     pretimer->start(290);
-  //  ui->progressBar_2->setValue(100);
-
- hand->safetyvent_off();
- hand->pinchvalve_off();
+    hand->safetyvent_off();
+    hand->pinchvalve_off();
     motoroff();
+    on_pushButton_5_clicked();
 
 }
-
-
 void prime::onUpdateStatusTimeout(){
     updatehandpieceStatus();
 }
-
-
-
 void prime::timer(){
     int value = ui->progressBar->value();
        if (value < 100) {
            ui->progressBar->setValue(value + 1);
-     // hand->freq_count(2500);
-
-        } else {
+      }
+       else {
             timer1->stop();
             m->show();
             m->setTuneMode(true);
-            m->DIATHERMYBUT(); // Show the main window after progress is complete
+            m->DIATHERMYBUT();
         }
-
-
-
 }
-
 void prime::primetimer()
 {
     int value = ui->progressBar_2->value();
        if (value < 100) {
            ui->progressBar_2->setValue(value + 1);
-     // hand->freq_count(2500);
-
-        }
+    }
        else {
-                   pretimer->stop();
-                 // Show the main window after progress is complete
-               }
+            pretimer->stop();
+             }
 }
 void prime::Prime()
 {
@@ -346,7 +322,6 @@ void prime::Start_Tune()
    hand->freq_count(2500);
    hand->phaco_on();
    hand->phaco_power(80);
-
         ui->progressBar_2->setValue(0);
         timer1->start(500); // Update every 100 ms
 }
@@ -360,7 +335,7 @@ void prime::on_start_prime_but_2_clicked()
 
  motoron();
  start_irrigation();
- ui->Tune_but->show();
+
 }
 
 void prime::on_begin_clean_but_2_clicked()
@@ -373,7 +348,6 @@ void prime::on_begin_clean_but_2_clicked()
     motoron();
     hand->pinchvalve_on();
     pretimer->stop();
-
 
 }
 
@@ -391,7 +365,6 @@ void prime::on_pushButton_5_clicked()
 
    Tune();
     ui->Tune_but->setStyleSheet(styleSheet);
-
 }
 
 void prime::on_pushButton_6_clicked()
@@ -418,10 +391,7 @@ void prime::on_pushButton_6_clicked()
         m->DIATHERMYBUT();
     }
 
-    else {
-        // Handle the case where "No" is clicked (optional)
-    }
- // m->show();
+
 
 }
 
@@ -439,4 +409,3 @@ void prime::on_pushButton_8_clicked()
     ui->prime1_but->setStyleSheet(styleSheet);
 
 }
-

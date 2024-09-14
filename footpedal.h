@@ -73,25 +73,25 @@ private slots:
 
 private:
     Ui::footpedal *ui;
-     QString currentSurgeonName;
-    QString left;
-    QString right;
-    QString bleft;
-    QString bright;
-    doctor *d1;
-    int pinTopLeft;
-       int pinTopRight;
-       int pinBottomLeft;
-       int pinBottomRight;
-       int index;
-        int gpioNumber;
-        MainWindow *m;
-        QString leftFootcomAction;
-           QString rightFootcomAction;
-           QString bleftFootcomAction;
-           QString brightFootcomAction;
-           QSqlDatabase db;
-           bool flagcon;
+QString currentSurgeonName;
+QString left;
+QString right;
+QString bleft;
+QString bright;
+doctor *d1;
+int pinTopLeft;
+int pinTopRight;
+int pinBottomLeft;
+int pinBottomRight;
+int index;
+int gpioNumber;
+MainWindow *m;
+QString leftFootcomAction;
+QString rightFootcomAction;
+QString bleftFootcomAction;
+QString brightFootcomAction;
+QSqlDatabase db;
+bool flagcon;
 
 
 

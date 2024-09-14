@@ -49,18 +49,17 @@ public:
     void footpedalbeep();
 
 void push(const QString &surgeonName);
-    void startPoint();
+void updateButtonsForTab(int tabIndex);
+void changesvaluesql();
+
     bool eventFilter(QObject* object, QEvent* event);
     void setRange(QLineEdit* lineEdit, int prevValue, int value, int maxValue);
     void exportGPIO(int pin);
     void setGPIODirection(const QString &direction,int pin);
     int readGPIOValue(int pin);
-    int readGPIOValue1();
     void updateStatus();
     void printAllRows();
-    void handlePowerOnOff();
     void handlePDM();
-    void savesettings();
     int range=0;
     int rec;
     int butname=0;
@@ -162,10 +161,8 @@ public slots:
  void motorccwon();
  int increasebutton(int input);
  int decreasebutton(int  input);
- void powervit();
- void powercheck();
  void DIATHERMYBUT();
- void movePushButtonTopToBottom(int gpio);
+ void moved(int gpio);
  void movePushButtonBottomToTop(int gpio);
  void footreflux(int gpio);
  void continousirrigation(int value);
@@ -349,8 +346,6 @@ void onUpdateStatusTimeout();
 
 void updateTimers();
 
-void settings_action(int index);
-
 void on_us1onoff_clicked();
 
 void on_us2onoff_clicked();
@@ -379,57 +374,58 @@ void on_CI4_2_clicked();
 
 void on_SETTINGS_BUT_2_clicked();
 
-
 signals:
-    void sensorValueChanged(int value);
+     void sensorValueChanged(int value);
      void surgeonSelected(const QString &surgeonName);
      void left_foot(const QString &value);
      void right_foot(const QString &value);
      void bottom_left(const QString &value);
      void bottom_right(const QString &value);
- void con_irrigation(bool on); // Signal to handle Continuous Irrigation state
- void sendsurgeon(const QString &value);
+     void con_irrigation(bool on); // Signal to handle Continuous Irrigation state
+     void sendsurgeon(const QString &value);
 private:
     Ui::MainWindow *ui;
-     bool previousGpioState; // Track the previous GPIO state
-int gpioNumber = 960;
-int gpioNumber1=961;
-QTimer  *statusUpdateTimer;
-footpedal *foot;
-doctor *in;
-int value1=0;
-int value2=0;
-int pulse=0;
-int ocupulse;
-int ocuburst;
-int singleburst=0;
-int multiburst=0;
-int coldphaco=0;
-int coldphaco1=0;
-int previousValue[7];
-settings *s;
-keypad *key;
-QMessageBox *message;
-QTimer timer2;
-QTimer *timer;
-footlib *lfoot;
-hwhandler *handler;
-QIntValidator *valid;
-QMessageBox *messageline;
-bool flag1=false;
-bool on;
+    //instance
+    settings *s;
+    keypad *key;
+    footpedal *foot;
+    doctor *in;
+    footlib *lfoot;
+    hwhandler *handler;
+    Vaccum *vac;
+
+
 int getvalue(int input);
 int currentButtonIndex;
-qint64 elap=0;
+int maxValue;
+int currentButton;
+int counter=0;
+int currentbut;
+int pulse;
+int ocupulse;
+int ocuburst;
+int singleburst;
+int multiburst;
+int coldphaco;
+int coldphaco1;
+int gpioNumber = 960;
+
+QMessageBox *message;
+QMessageBox *messageline;
+
+QTimer  *statusUpdateTimer;
 QElapsedTimer timer5;
-float effectiveTime ;
-QTime startTime;
 QTimer *sensortimer;
 QTimer *footime;
 QTimer *protimer;
-QTimer *timer43;
 QTimer *footsensor;
 QTimer *timermsg;
+QTime currentTimer;
+QTimer *updateTimer;
+
+
+bool flag1=false;
+bool on;
 bool cius1;
 bool cius2;
 bool cius3;
@@ -439,6 +435,20 @@ bool ci_ia1;
 bool ci_ia2;
 bool cidia;
 bool overallci;
+bool us1powon=false;
+bool us2powon;
+bool us3powon;
+bool us4powon;
+bool vitpowon;
+bool con=1;
+bool us1PdmMode = false;
+bool us2PdmMode = false;
+bool us3PdmMode = false;
+bool us4PdmMode = false;
+bool powerOn1;
+bool isTuneEnabled;
+
+
 QString us1;
 QString us2;
 QString us3;
@@ -451,44 +461,24 @@ QString vus2;
 QString vus3;
 QString vus4;
 QString vvit;
-QTimer *footpedaltimer;
-int currentProgressBar=1;
-bool us1powon=false;
-bool us2powon;
-bool us3powon;
-bool us4powon;
-bool vitpowon;
-int dir;
-QTimer *powtimer;
-QTimer *surtimer;
-int currentValue;
-int maxValue;
-Vaccum *vac;
-int roundToNearest60(int value);
-QElapsedTimer currentTimer;
-QTimer *updateTimer;
-qint64 elapsedTimeUS1, elapsedTimeUS2, elapsedTimeUS3, elapsedTimeUS4;
-int currentButton;
-void updateLabel();
-void switchTimer(int button);
-int counter=0;
-bool powerOn1;
-QMap<QString, QMap<int, QStringList>> surgeonData;
-void updateTabsBasedOnComboBox(const QString &text);
 
-QSqlDatabase db;
-QString getLastUpdatedSurgeon();
-bool isTuneEnabled;
-int buttonforgpio;
-QPushButton* buttons[8];
-int currentbut;
+
+qint64 elap=0;
+qint64 elapsedTimeUS1;
+qint64 elapsedTimeUS2;
+qint64 elapsedTimeUS3;
+qint64 elapsedTimeUS4;
+
+
+
+QMap<QString, QMap<int, QStringList>> surgeonData;
 QMap<QLineEdit*, int> lastValidValues;
 QMap<QLineEdit*, int> lastValidValues1;
-bool con=1;
-bool us1PdmMode = false;
-bool us2PdmMode = false;
-bool us3PdmMode = false;
-bool us4PdmMode = false;
+
+QSqlDatabase db;
+
+void updateLabel();
+void updateTabsBasedOnComboBox(const QString &text);
 
 };
 #endif // MAINWINDOW_H
