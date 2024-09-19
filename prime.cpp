@@ -18,7 +18,6 @@ prime::prime(QWidget *parent) :
     set=new settings;
     hand=new hwhandler;
     ui->progressBar_2->setRange(0,100);
-    //hand->freq_count(2500);
     QString styleSheet = "QPushButton {"
                          "    font-family: Ubuntu;"
                          "    font-size: 20pt;"
@@ -293,7 +292,6 @@ void prime::primetimer()
 void prime::Prime()
 {
 
-
     ui->tabWidget->setCurrentIndex(0);
   click();
    timer1->stop();
@@ -371,7 +369,7 @@ void prime::on_pushButton_6_clicked()
 {
     QMessageBox msgBox;
     msgBox.setWindowTitle("Info"); // Title of the message box
-    msgBox.setText("Tune is not completed. Do you want to continue?"); // Question to ask
+    msgBox.setText("Tune is not completed. Do you want to continue?");
     msgBox.setIcon(QMessageBox::Question); // Set icon to question mark
     msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No); // Yes and No buttons
     msgBox.setDefaultButton(QMessageBox::No); // Default button
