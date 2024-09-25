@@ -328,6 +328,11 @@ MainWindow::MainWindow(QWidget *parent)
       ia1_linear_nonlinear();
       ia2_linear_nonlinear();
       vit_linear_nonlinear();
+      on_us1vacmode_clicked();
+      on_us2vacmode_clicked();
+      on_us3vacmode_clicked();
+      on_us4vacmode_clicked();
+      on_vitvacmode_clicked();
 //reterive value frm the sql;
       push(ui->comboBox_4->currentText());
 
@@ -341,6 +346,7 @@ MainWindow::MainWindow(QWidget *parent)
          connect(ui->CutMode_vitCom_3, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &MainWindow::updateButtonsForTab);
 
          connect(ui->CutMode_vitCom_4, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &MainWindow::updateButtonsForTab);
+
 
          connect(ui->us1mode,&QPushButton::clicked,this,&MainWindow::updateButtonsForTab);
          connect(ui->us1vacmode,&QPushButton::clicked,this,&MainWindow::updateButtonsForTab);
@@ -1036,7 +1042,7 @@ void MainWindow::ULTRASONICBUT1()
 {
     ui->tabWidget->setCurrentIndex(0);
     QString currentText = ui->CutMode_vitCom->currentText();
-    updateTabsBasedOnComboBox(currentText);
+    updateTabsBasedOnComboBox(ui->CutMode_vitCom->currentText());
     ui->CutMode_vit->show();
     ui->CutMode_vitCom->show();
     ui->tabWidget_2->show();
@@ -1768,14 +1774,14 @@ void MainWindow::setTuneMode(bool tuneEnabled) {
                                      "}";
     isTuneEnabled = tuneEnabled;  // Set the flag based on the argument
  // Enable or disable the US buttons based on the flag
- //ui->ULTRASONICBUT1->setEnabled(isTuneEnabled);    // us1
+ ui->ULTRASONICBUT1->setEnabled(isTuneEnabled);    // us1
     ui->label_16->setStyleSheet(styleSheet4);
     ui->label_17->setStyleSheet(styleSheet4);
     ui->label_18->setStyleSheet(styleSheet4);
     ui->label_27->setStyleSheet(styleSheet4);
-    //ui->ULTRASONICBUT2->setEnabled(isTuneEnabled);  // us2
-    //ui->ULTRASONICBUT3->setEnabled(isTuneEnabled);  // us3
-   // ui->ULTRASONICBUT4->setEnabled(isTuneEnabled);  // us4
+    ui->ULTRASONICBUT2->setEnabled(isTuneEnabled);  // us2
+    ui->ULTRASONICBUT3->setEnabled(isTuneEnabled);  // us3
+    ui->ULTRASONICBUT4->setEnabled(isTuneEnabled);  // us4
 
     // These buttons are always enabled
     ui->IA1BUT->setEnabled(true);  // ia1
@@ -2007,10 +2013,10 @@ flag1 = true; // Reset flag
                    handler->safetyvent_on();
 
                 footpedalbeep();
-                if (text == "Peristatic") {
+                if (text == "Peristaltic") {
                                 motoron(ui->lineEdit_56);
                                  sensor2();
-                            } else {
+                            } else if(text == "Venturi") {
                                 motoroff();
                                  sensor2();
                             }
@@ -2027,17 +2033,17 @@ flag1 = true; // Reset flag
             } else if (range >= 2664 && range < 4096) {
                 ui->pushButton_42->setText("3");
                 footpedalbeep();
-                   updateTabsBasedOnComboBox(powerdelivered);
+
                    ui->dial_2->setValue(range);
                                  handler->pinchvalve_on();
                                     handler->safetyvent_on();
                                   ui->CI5_5->setStyleSheet(styleSheet3);
 
 
-                if (text == "Peristatic") {
+                if (text == "Peristaltic") {
                                 motoron(ui->lineEdit_56);
                                  sensor2();
-                            } else {
+                            } else if(text == "Venturi"){
                                 motoroff();
                                 sensor2();
                             }
@@ -2049,7 +2055,7 @@ flag1 = true; // Reset flag
                    handler->freq_count(2500);
                    handler->phaco_on();
                    handler->phaco_power(pow1);
-
+ updateTabsBasedOnComboBox(ui->CutMode_vitCom->currentText());
                 }
                 if (power.powerOn) {
                     // Dynamically calculate power output based on range for PANEL mode
@@ -2108,10 +2114,10 @@ if(!overallci){
                 ui->CI5_5->setStyleSheet(styleSheet3);
 
 
-                  if (text == "Peristatic") {
+                  if (text == "Peristaltic") {
                                   motoron(ui->lineEdit_56);
                                    updatesensor();
-                              } else {
+                              } else if(text =="Venturi") {
                                   motoroff();
                                    updatesensor();
                               }
@@ -2131,11 +2137,11 @@ if(!overallci){
                   handler->pinchvalve_on();
                      handler->safetyvent_on();
                ui->CI5_5->setStyleSheet(styleSheet3);
-                updateTabsBasedOnComboBox(powerdelivered);
-                if (text == "Peristatic") {
+
+                if (text == "Peristaltic") {
                                 motoron(ui->lineEdit_56);
                                   updatesensor();
-                            } else {
+                            } else if(text == "Venturi") {
                                 motoroff();
                                   updatesensor();
                             }
@@ -2143,6 +2149,7 @@ if(!overallci){
 
                 if (power.buttonState == "ON" && !power.powerOn) {
                     power.powerOn = true;
+ updateTabsBasedOnComboBox(ui->CutMode_vitCom->currentText());
 
                     handler->fs_count(range);
                  handler->freq_count(2500);
@@ -2221,7 +2228,7 @@ if(!overallci){
                 handler->safetyvent_on();
 
 
-                if (text == "Peristatic") {
+                if (text == "Peristaltic") {
                                 motoron(ui->lineEdit_59);
                                 sensor2();
                             } else {
@@ -2259,7 +2266,7 @@ if(!overallci){
                 }
 
 
-                if (text == "Peristatic") {
+                if (text == "Peristaltic") {
                                 motoron(ui->lineEdit_59);
                                 sensor2();
                             } else {
@@ -2317,7 +2324,7 @@ if(!overallci){
 
                 handler->pinchvalve_on();
                 handler->safetyvent_on();
-                if (text == "Peristatic") {
+                if (text == "Peristaltic") {
                                 motoron(ui->lineEdit_59);
                                 updatesensor();
                             } else {
@@ -2358,7 +2365,7 @@ if(!overallci){
                     ui->label_92->setText(QString::number(progress5));
                 }
 
-                if (text == "Peristatic") {
+                if (text == "Peristaltic") {
                                 motoron(ui->lineEdit_59);
                                 updatesensor();
                             } else {
@@ -2428,7 +2435,7 @@ if(!overallci){
                 handler->safetyvent_on();
                 handler->pinchvalve_on();
 
-                if (text == "Peristatic") {
+                if (text == "Peristaltic") {
                                 motoron(ui->lineEdit_62);
                               sensor2();
                             } else {
@@ -2521,7 +2528,7 @@ if(!overallci){
         ui->CI5_5->setStyleSheet(styleSheet3);
                 handler->safetyvent_on();
                handler->pinchvalve_on();
-               if (text == "Peristatic") {
+               if (text == "Peristaltic") {
                                motoron(ui->lineEdit_62);
                       updatesensor();
                            } else {
@@ -2561,7 +2568,7 @@ if(!overallci){
                     ui->label_98->setText(QString::number(progress9));
                 }
 
-                if (text == "Peristatic") {
+                if (text == "Peristaltic") {
                                 motoron(ui->lineEdit_62);
                             updatesensor();
                             } else {
@@ -2634,7 +2641,7 @@ if(!overallci){
 
                 handler->phaco_off();
                 ui->label_105->setText("0");
-                if (text == "Peristatic") {
+                if (text == "Peristaltic") {
                                 motoron(ui->lineEdit_65);
                               sensor2();
                             } else {
@@ -2673,7 +2680,7 @@ if(!overallci){
                     ui->label_105->setText(QString::number(static_cast<int>(progress14)));
                 }
 
-                if (text == "Peristatic") {
+                if (text == "Peristaltic") {
                                 motoron(ui->lineEdit_65);
                               sensor2();
                             } else {
@@ -2734,7 +2741,7 @@ if(!overallci){
 
                 handler->phaco_off();
                 ui->label_105->setText("0");
-                if (text == "Peristatic") {
+                if (text == "Peristaltic") {
                                 motoron(ui->lineEdit_65);
                         updatesensor();
                             } else {
@@ -2773,7 +2780,7 @@ if(!overallci){
                     int progress12 = std::min(progress11, pow4);
                     ui->label_105->setText(QString::number(progress12));
                 }
-                if (text == "Peristatic") {
+                if (text == "Peristaltic") {
                                 motoron(ui->lineEdit_62);
                               updatesensor();
                             } else {
@@ -2804,7 +2811,7 @@ if(!overallci){
                     handler->pinchvalve_off();
                     handler->safetyvent_off();
                 }
-
+motoroff();
             }
             if(range>=100 && range<1332){
                 ui->pushButton_42->setText("1");
@@ -2823,11 +2830,8 @@ if(!overallci){
       ui->CI5_5->setStyleSheet(styleSheet3);
                   handler->safetyvent_on();
                   handler->pinchvalve_on();
-                 if(text == "Peristatic"){
+                 if(text == "Peristaltic"){
                      motoron(ui->lineEdit_69);
-                     sensor2();
-                 }else{
-                     motoroff();
                      sensor2();
                  }
         }
@@ -2862,12 +2866,9 @@ if(!overallci){
       ui->CI5_5->setStyleSheet(styleSheet3);
                        handler->safetyvent_on();
                        handler->pinchvalve_on();
-                       if(text == "Peristatic"){
+                       if(text == "Peristaltic"){
                            motoron(ui->lineEdit_69);
                            updatesensor();
-                       }else{
-                           motoroff();
-                          updatesensor();
                        }
              }
                  }
@@ -2909,7 +2910,7 @@ if(!overallci){
        ui->CI5_5->setStyleSheet(styleSheet3);
                 handler->safetyvent_on();
                 handler->pinchvalve_on();
-                if(text == "Peristatic"){
+                if(text == "Peristaltic"){
                     motoron(ui->lineEdit_67);
                     sensor2();
                 }else{
@@ -2948,7 +2949,7 @@ if(!overallci){
                   ui->CI5_5->setStyleSheet(styleSheet3);
                     handler->safetyvent_on();
                     handler->pinchvalve_on();
-                    if(text == "Peristatic"){
+                    if(text == "Peristaltic"){
                         motoron(ui->lineEdit_67);
                         updatesensor();
                     }else{
@@ -3011,7 +3012,7 @@ handler->pinchvalve_on();
 
                     handler->vit_off();
                     ui->label_119->setText("0");
-                    if(text == "Peristatic"){
+                    if(text == "Peristaltic"){
                         motoron(ui->lineEdit_72);
                        sensor2();
                     }else{
@@ -3041,7 +3042,7 @@ handler->pinchvalve_on();
                     }
 
 
-                    if(text == "Peristatic"){
+                    if(text == "Peristaltic"){
                         motoron(ui->lineEdit_72);
                        sensor2();
                     }else{
@@ -3116,7 +3117,7 @@ handler->pinchvalve_on();
                         ui->label_119->setText(QString::number(progress25));
                     }
 
-                    if(text == "Peristatic"){
+                    if(text == "Peristaltic"){
                         motoron(ui->lineEdit_72);
                     updatesensor();
                     }else{
@@ -3562,6 +3563,7 @@ void MainWindow::coldphacoup_mode()
     }
     ui->lineEdit_80->setText(QString::number(coldphaco));
     handler->cold_pulse(coldphaco);
+    handler->pdm_mode(COLD_PHACO);
 }
 
 void MainWindow::coldphacodown_mode()
@@ -3573,6 +3575,7 @@ void MainWindow::coldphacodown_mode()
     }
     ui->lineEdit_80->setText(QString::number(coldphaco));
     handler->cold_pulse(coldphaco);
+     handler->pdm_mode(COLD_PHACO);
 }
 
 void MainWindow::coldphaco1up_mode()
@@ -3584,6 +3587,7 @@ void MainWindow::coldphaco1up_mode()
     }
     ui->lineEdit_81->setText(QString::number(coldphaco1));
     handler->cold_pulse(coldphaco1);
+     handler->pdm_mode(COLD_PHACO);
 }
 
 void MainWindow::coldphaco1down_mode()
@@ -3595,6 +3599,7 @@ void MainWindow::coldphaco1down_mode()
     }
     ui->lineEdit_81->setText(QString::number(coldphaco1));
     handler->cold_pulse(coldphaco1);
+     handler->pdm_mode(COLD_PHACO);
 }
 
 
@@ -3665,19 +3670,27 @@ void MainWindow::updatehandpieceStatus()
                                      "}";
    if(status==0)
    {
-   ui->label_28->setStyleSheet(styleSheet4);
+   ui->pushButton->setStyleSheet(styleSheet4);
    ui->label_16->setStyleSheet(styleSheet7);
    ui->label_17->setStyleSheet(styleSheet7);
    ui->label_18->setStyleSheet(styleSheet7);
    ui->label_27->setStyleSheet(styleSheet7);
+   ui->ULTRASONICBUT1->setEnabled(true);
+   ui->ULTRASONICBUT2->setEnabled(true);
+   ui->ULTRASONICBUT3->setEnabled(true);
+   ui->ULTRASONICBUT4->setEnabled(true);
    }
    else if(status==1)
    {
-     ui->label_28->setStyleSheet(styleSheet5);
+     ui->pushButton->setStyleSheet(styleSheet5);
       ui->label_16->setStyleSheet(styleSheet6);
       ui->label_17->setStyleSheet(styleSheet6);
       ui->label_18->setStyleSheet(styleSheet6);
       ui->label_27->setStyleSheet(styleSheet6);
+      ui->ULTRASONICBUT1->setEnabled(false);
+      ui->ULTRASONICBUT2->setEnabled(false);
+      ui->ULTRASONICBUT3->setEnabled(false);
+      ui->ULTRASONICBUT4->setEnabled(false);
 
    }
 }
@@ -3687,7 +3700,6 @@ void MainWindow::onUpdateStatusTimeout(){
 
 void MainWindow::updatesensor()
 {
-    //footpedal();
     label43();
 }
 void MainWindow::updateProgressBar() {
@@ -3758,7 +3770,7 @@ void MainWindow::label43()
            //ia1
     if (sensor > 0 && sensor < 4096) {
       //  int pro = sensor * vac5 / 4096+50;
-        int pro=sensor*580/4096;
+        int pro=sensor*500/4096;
         int pro1=std::min(vac5,pro);
         ui->label_113->setNum(pro1);
         //motoron(ui->lineEdit_4);
@@ -3768,8 +3780,8 @@ void MainWindow::label43()
    }
     }
     //ia2
-    if (sensor > 0 && sensor < 4096) {
-        int pro1 = sensor * 580 / 4096;
+    else if (sensor > 0 && sensor < 4096) {
+        int pro1 = sensor * 500 / 4096;
        int pro2=std::min(vac6,pro1);
         ui->label_109->setNum(pro2);
         if(vac6 == pro2){
@@ -3778,22 +3790,22 @@ void MainWindow::label43()
         }
     }
     //vit
-    if (sensor > 0 && sensor < 4096) {
-        int pro3 = sensor * 580 / 4096;
+    else if (sensor > 0 && sensor < 4096) {
+        int pro3 = sensor * 500 / 4096;
        int pro4=std::min(vac7,pro3);
         ui->label_118->setNum(pro4);
-        if(vac7 == pro3){
+        if(vac7 == pro4){
             motoroff();
              handler->speaker_on(pro3,0,0,1);
         }
     }
     //us4
-    if (sensor > 0 && sensor < 4096) {
-        int pro4 = sensor * 580 / 4096;
+    else if (sensor > 0 && sensor < 4096) {
+        int pro4 = sensor * 500 / 4096;
        int pro5=std::min(vac4,pro4);
         ui->label_104->setNum(pro5);
         if(vac4 ==pro5){
-
+ motoroff();
           if(mode3 == "Ocupulse"){
               handler->fs_count(3000);
               handler->freq_count(2500);
@@ -3816,12 +3828,12 @@ void MainWindow::label43()
      }
     }
     //us3
-    if (sensor > 0 && sensor < 4096) {
-        int pro5 = sensor * 580 / 4096;
+    else if (sensor > 0 && sensor < 4096) {
+        int pro5 = sensor * 500 / 4096;
         int pro6=std::min(vac3,pro5);
         ui->label_99->setNum(pro6);
         if(vac3 == pro6){
-
+ motoroff();
             if(mode2 == "Ocupulse"){
               handler->pdm_mode(OCUPULSE);
               ocupulseup_mode();
@@ -3843,12 +3855,12 @@ void MainWindow::label43()
         }
     }
     //us2
-    if (sensor > 0 && sensor < 4096) {
-        int pro6 = sensor * 580 / 4096;
+    else if (sensor > 0 && sensor < 4096) {
+        int pro6 = sensor * 500 / 4096;
        int pro7=std::min(vac2,pro6);
         ui->label_93->setNum(pro7);
         if(vac2 == pro7){
-
+ motoroff();
             if(mode2 == "Ocupulse"){
               handler->pdm_mode(OCUPULSE);
               ocupulseup_mode();
@@ -3870,12 +3882,12 @@ void MainWindow::label43()
         }
     }
     //us1
-    if (sensor > 0 && sensor < 4096) {
-        int pro7 = sensor * 580 / 4096;
+    else if (sensor > 0 && sensor < 4096) {
+        int pro7 = sensor * 500 / 4096;
         int pro8=std::min(vac1,pro7);
         ui->label_8->setNum(pro8);
         if(vac1 ==  pro8){
-
+ motoroff();
             if(mode3 == "Ocupulse"){
                 handler->freq_count(2500);
                 handler->fs_count(3000);
@@ -3898,9 +3910,10 @@ void MainWindow::label43()
                 multiburstdown_mode();
 
             }
-             motoroff();
+
                handler->speaker_on(pro8,0,0,1);
-        }
+
+    }
     }
 
 
@@ -3923,7 +3936,7 @@ void MainWindow::sensor2()
            QString mode3=ui->CutMode_vitCom_4->currentText();
     if (sensor > 0 && sensor < 4096) {
       //  int pro = sensor * vac5 / 4096+50;
-        float pro=sensor*580/4096;
+        float pro=sensor*500/4096;
        ui->label_113->setText(QString::number(static_cast<int>(pro)));
 
         if(vac5==pro){
@@ -3932,7 +3945,7 @@ void MainWindow::sensor2()
     }
     }
     if (sensor > 0 && sensor < 4096) {
-        int pro1 = sensor * 580 / 4096;
+        int pro1 = sensor * 500 / 4096;
         pro1=std::min(vac6,pro1);
         ui->label_109->setText(QString::number(pro1));
         if(vac6 == pro1){
@@ -3941,7 +3954,7 @@ void MainWindow::sensor2()
         }
     }
     if (sensor > 0 && sensor < 4096) {
-        int pro3 = sensor * 580 / 4096;
+        int pro3 = sensor * 500 / 4096;
         pro3=std::min(vac7,pro3);
         ui->label_118->setText(QString::number(pro3));
         if(vac7 == pro3){
@@ -3951,11 +3964,11 @@ void MainWindow::sensor2()
     }
     //us4
     if (sensor > 0 && sensor < 4096) {
-        int pro4 = sensor * 580 / 4096;
+        int pro4 = sensor * 500 / 4096;
         pro4=std::min(vac4,pro4);
         ui->label_104->setText(QString::number(pro4));
         if(vac4 == pro4){
-
+    motoroff();
             if(mode3 == "Ocupulse"){
               handler->pdm_mode(OCUPULSE);
               ocupulseup_mode();
@@ -3972,17 +3985,17 @@ void MainWindow::sensor2()
                 multiburstdown_mode();
 
             }
-             motoroff();
+
                handler->speaker_on(pro4,0,0,1);
         }
     }
     //us3
     if (sensor > 0 && sensor < 4096) {
-        int pro5 = sensor * 580 / 4096;
+        int pro5 = sensor * 500 / 4096;
         pro5=std::min(vac3,pro5);
         ui->label_99->setText(QString::number(pro5));
         if(vac3 == pro5){
-
+    motoroff();
             if(mode3 == "Ocupulse"){
               handler->pdm_mode(OCUPULSE);
               ocupulseup_mode();
@@ -3999,16 +4012,17 @@ void MainWindow::sensor2()
                 multiburstdown_mode();
 
             }
-             motoroff();
+
                handler->speaker_on(pro5,0,0,1);
         }
     }
     //us2
     if (sensor > 0 && sensor < 4096) {
-        int pro6 = sensor * 580 / 4096;
+        int pro6 = sensor * 500 / 4096;
         pro6=std::min(vac2,pro6);
         ui->label_93->setText(QString::number(pro6));
         if(vac2==pro6){
+            motoroff();
 
             if(mode3 == "Ocupulse"){
               handler->pdm_mode(OCUPULSE);
@@ -4026,18 +4040,17 @@ void MainWindow::sensor2()
                 multiburstdown_mode();
 
             }
-             motoroff();
              handler->speaker_on(pro6,0,0,1);
 
         }
     }
     //us1
     if (sensor > 0 && sensor < 4096) {
-        int pro7 = sensor * 580 / 4096;
+        int pro7 = sensor * 500 / 4096;
         pro7=std::min(vac1,pro7);
         ui->label_8->setText(QString::number(pro7));
         if(vac1 == pro7){
-
+            motoroff();
             if(mode3 == "Ocupulse"){
                 handler->freq_count(2500);
                 handler->fs_count(3000);
@@ -4060,10 +4073,10 @@ void MainWindow::sensor2()
                 multiburstdown_mode();
 
             }
-             motoroff();
              handler->speaker_on(pro7,0,0,1);
 
-        }
+
+    }
     }
 
     }
@@ -4140,11 +4153,11 @@ void MainWindow::changesvaluesql()
                   "WHERE surgeon = :surgeon");
 
     // Binding values from UI elements to the query
-    query.bindValue(":Quadvacmode", ui->us2vacmode->text());
+  query.bindValue(":Quadvacmode", ui->us2vacmode->text());
     query.bindValue(":Quadpowermethod", ui->CutMode_vitCom_2->currentText());
-    query.bindValue(":Quadpowmode", ui->us2mode->text());
+  query.bindValue(":Quadpowmode", ui->us2mode->text());
 
-    query.bindValue(":Chopvacmode", ui->us3vacmode->text());
+   query.bindValue(":Chopvacmode", ui->us3vacmode->text());
     query.bindValue(":Choppowermethod", ui->CutMode_vitCom_3->currentText());
     query.bindValue(":Choppowmode", ui->us3mode->text());
 
@@ -4216,24 +4229,32 @@ void MainWindow::movePushButtonBottomToTop(int gpio) {
 void MainWindow::onPdmModeSelected(int gpio) {
     if (gpio == 0 && us1PdmMode) {
         moveTab(1);  // Only move tabs if us1 is in PDM mode
+        int index=ui->CutMode_vitCom->currentIndex();
+        onCutMode_vitComChanged(index);
     }
 }
 
 void MainWindow::onPdmModeSelected1(int gpio) {
     if (gpio == 0 && us2PdmMode) {
         moveTab1(2);  // Only move tabs if us2 is in PDM mode
+        int index1=ui->CutMode_vitCom_2->currentIndex();
+        onCutMode_vitComChanged1(index1);
     }
 }
 
 void MainWindow::onPdmModeSelected2(int gpio) {
     if (gpio == 0 && us3PdmMode) {
         moveTab2(3);  // Only move tabs if us3 is in PDM mode
+        int index=ui->CutMode_vitCom_3->currentIndex();
+        onCutMode_vitComChanged2(index);
     }
 }
 
 void MainWindow::onPdmModeSelected3(int gpio) {
     if (gpio == 0 && us4PdmMode) {
         moveTab3(4);  // Only move tabs if us4 is in PDM mode
+        int index=ui->CutMode_vitCom_4->currentIndex();
+        onCutMode_vitComChanged3(index);
     }
 }
 
@@ -4266,7 +4287,9 @@ void MainWindow::moveTab(int usIndex) {
        if (usIndex == 1) {
            if (ui->CutMode_vitCom) {
                ui->CutMode_vitCom->setCurrentIndex(currentIndex);
-               ui->tabWidget_2->setCurrentIndex(currentIndex);
+
+onCutMode_vitComChanged(ui->CutMode_vitCom->currentIndex());
+ui->tabWidget_2->setCurrentIndex(currentIndex);
 
            }
 
@@ -4306,7 +4329,8 @@ void MainWindow::moveTab1(int usIndex) {
    if (usIndex == 2) {
         if (ui->CutMode_vitCom_2) {
             ui->CutMode_vitCom_2->setCurrentIndex(currentIndex);
-             ui->tabWidget_2->setCurrentIndex(currentIndex);
+onCutMode_vitComChanged1(ui->CutMode_vitCom_2->currentIndex());
+ui->tabWidget_2->setCurrentIndex(currentIndex);
         }
     }
 
@@ -4342,6 +4366,7 @@ void MainWindow::moveTab2(int usIndex) {
    if (usIndex == 3) {
         if (ui->CutMode_vitCom_3) {
             ui->CutMode_vitCom_3->setCurrentIndex(currentIndex);
+onCutMode_vitComChanged2(ui->CutMode_vitCom_3->currentIndex());
              ui->tabWidget_2->setCurrentIndex(currentIndex);
         }
     }
@@ -4377,6 +4402,8 @@ void MainWindow::moveTab3(int usIndex) {
    if (usIndex == 4) {
         if (ui->CutMode_vitCom_4) {
             ui->CutMode_vitCom_4->setCurrentIndex(currentIndex);
+    onCutMode_vitComChanged3(ui->CutMode_vitCom_4->currentIndex());
+
             ui->tabWidget_2->setCurrentIndex(currentIndex);
 
         }
@@ -4724,34 +4751,30 @@ void MainWindow::doctorwindow_show(QString Surgeonname)
 }
 void MainWindow::footpedalwindow_show()
 {
-    foot->show();
+    //foot->show();
 }
 
 void MainWindow::onCutMode_vitComChanged(int index) {
     QString modeText = ui->CutMode_vitCom->currentText();
-    qDebug() << "Selected Mode as Text:" << modeText;
-
-//    // Print current index and all items for further inspection
-//    qDebug() << "Current Index:" << index;
-    QStringList allItems;
-    for (int i = 0; i < ui->CutMode_vitCom->count(); ++i) {
-        allItems << ui->CutMode_vitCom->itemText(i);
-    }
+    updateTabsBasedOnComboBox(modeText);
 
 
 }
 
 void MainWindow::onCutMode_vitComChanged1(int index) {
     QString currentText = ui->CutMode_vitCom_2->currentText();
+    updateTabsBasedOnComboBox(currentText);
 }
 
 void MainWindow::onCutMode_vitComChanged2(int index) {
     QString currentText = ui->CutMode_vitCom_3->currentText();
+    updateTabsBasedOnComboBox(currentText);
 
 }
 
 void MainWindow::onCutMode_vitComChanged3(int index) {
     QString currentText = ui->CutMode_vitCom_4->currentText();
+    updateTabsBasedOnComboBox(currentText);
 
 }
 
@@ -4765,84 +4788,75 @@ void MainWindow::updateTabsBasedOnComboBox(const QString &selected) {
     if (selected == "Continuous") {
         handler->pdm_mode(CONTINOUS);
         ui->tabWidget_2->setCurrentIndex(0);
+        ui->comboBox->setCurrentText("Continuous");  // Update combo box text
         modeFound = true;
-//        qDebug() << "Continuous mode selected";
 
     } else if (selected == "Pulse") {
-           ui->tabWidget_2->setCurrentIndex(1);
-handler->pdm_mode(PULSE_MODE);
+        handler->pdm_mode(PULSE_MODE);
         pulseup_mode();
         pulsedown_mode();
-
+        ui->tabWidget_2->setCurrentIndex(1);
+        ui->comboBox->setCurrentText("Pulse");  // Update combo box text
         modeFound = true;
-//        qDebug() << "Pulse mode selected";
-
 
     } else if (selected == "Ocupulse") {
-handler->pdm_mode(CONTINOUS);
+        handler->pdm_mode(CONTINOUS);
         ocupulseup_mode();
         ocupulsedown_mode();
         ui->tabWidget_2->setCurrentIndex(2);
+        ui->comboBox->setCurrentText("Ocupulse");  // Update combo box text
         modeFound = true;
-//        qDebug() << "Ocupulse mode selected";
-
 
     } else if (selected == "Ocuburst") {
-                ui->tabWidget_2->setCurrentIndex(3);
-handler->pdm_mode(CONTINOUS);
+        handler->pdm_mode(CONTINOUS);
         ocuburstup_mode();
         ocuburstdown_mode();
-
+        ui->tabWidget_2->setCurrentIndex(3);
+        ui->comboBox->setCurrentText("Ocuburst");  // Update combo box text
         modeFound = true;
-//        qDebug() << "Ocuburst mode selected";
-
 
     } else if (selected == "Single burst") {
-         ui->tabWidget_2->setCurrentIndex(4);
-handler->pdm_mode(SINGLE_BURST);
+        handler->pdm_mode(SINGLE_BURST);
         singleburstup_mode();
         singleburstdown_mode();
-
+        ui->tabWidget_2->setCurrentIndex(4);
+        ui->comboBox->setCurrentText("Single burst");  // Update combo box text
         modeFound = true;
-//        qDebug() << "Single burst mode selected";
-
 
     } else if (selected == "Multi burst") {
-           ui->tabWidget_2->setCurrentIndex(5);
-handler->pdm_mode(CONTINOUS);
+        handler->pdm_mode(CONTINOUS);
         multiburstup_mode();
         multiburstdown_mode();
-
+        ui->tabWidget_2->setCurrentIndex(5);
+        ui->comboBox->setCurrentText("Multi burst");  // Update combo box text
         modeFound = true;
 
     } else if (selected == "Cold phaco") {
-          ui->tabWidget_2->setCurrentIndex(6);
-handler->pdm_mode(6);
+        handler->pdm_mode(COLD_PHACO);
         coldphacoup_mode();
         coldphacodown_mode();
         coldphaco1up_mode();
         coldphaco1down_mode();
-
+        ui->tabWidget_2->setCurrentIndex(6);
+        ui->comboBox->setCurrentText("Cold phaco");  // Update combo box text
         modeFound = true;
-//        qDebug() << "Cold phaco mode selected";
-
     }
 
     if (!modeFound) {
-//        qDebug() << "Unknown mode selected!";
+        qDebug() << "Unknown mode selected!";
     }
 
     // Print to the debug output
-//    qDebug() << "Mode is working: " << selected;
+    qDebug() << "Mode is working: " << selected;
 
     // Update multiple line edits with the selected value
-   ui->lineEdit_75->setText("15");
-   ui->lineEdit_76->setText("15");
-   ui->lineEdit_77->setText("400");
-   ui->lineEdit_78->setText("400");
-   ui->lineEdit_79->setText("400");
-   ui->lineEdit_80->setText("40");
-   ui->lineEdit_81->setText("15");
+    ui->lineEdit_75->setText("15");
+    ui->lineEdit_76->setText("15");
+    ui->lineEdit_77->setText("400");
+    ui->lineEdit_78->setText("400");
+    ui->lineEdit_79->setText("400");
+    ui->lineEdit_80->setText("40");
+    ui->lineEdit_81->setText("15");
 }
 
 
@@ -4900,7 +4914,7 @@ ui->comboBox->setCurrentText(text);
 void MainWindow::performpump(const QString &text)
 {
   QString value=ui->comboBox->currentText();
-    if(value == "Peristatic"){
+    if(value == "Peristaltic"){
 // ui->pushButton->setStyleSheet("background-color:green;");
         //us1
         ui->label_87->show();
@@ -4917,7 +4931,6 @@ void MainWindow::performpump(const QString &text)
         ui->us2flowdown_but->show();
 
         ui->textEdit_44->show();
-          motoroff();
         //us3
          ui->label_96->show();
         ui->lineEdit_62->show();
@@ -5093,6 +5106,7 @@ void MainWindow::receiveValues(const QString &comboBoxValue,const QString &combo
       ui->lineEdit_71->setText(QString::number(surgicalData.vitcut));
       ui->lineEdit_73->setText(QString::number(surgicalData.vitvac));
       ui->lineEdit_72->setText(QString::number(surgicalData.vitasp));
+      qDebug()<<surgicalData.ia1asp<<surgicalData.ia2asp<<surgicalData.ia1vac<<surgicalData.ia2vac<<"these are sended from the doctor windiow";
 
 
 }
@@ -5204,7 +5218,7 @@ emit sendsurgeon(surgeonName);
     // Prepare a single query to fetch all required data
     QSqlQuery query(db);
     query.prepare(
-          "SELECT diapowmax, pump, Epinaspmax, Epinvacmax, Epinpowmax, "
+          "SELECT diapowmax, pump, Epinaspmax, Epinvacmax, Epinpowmax, Poweonoff, "
           "quadpowmax, quadvacmax, quadaspmax, Quadvacmode, Quadpowermethod, Quadpowmode, "
           "caspmax, cvacmax, cpowmax, Chopvacmode, Choppowermethod, Choppowmode, "
           "saspmax, svacmax, spowmax, Sculptvacmode, Sculptpowermethod, Sculptpowmode, "
@@ -5232,7 +5246,7 @@ emit sendsurgeon(surgeonName);
         // Retrieve the values from the query result
         int phacoPowerMax = query.value("diapowmax").toInt();
         QString pump = query.value("pump").toString();
-
+        QString onoff = query.value("Poweonoff").toString();
         // US1 (Epinucleus) parameters
         int us1power = query.value("Epinpowmax").toInt();
         int us1vacmax = query.value("Epinvacmax").toInt();
@@ -5294,7 +5308,7 @@ emit sendsurgeon(surgeonName);
         ui->us1mode->setText(us1mode);
         ui->us1vacmode->setText(us1vacmode);
         ui->CutMode_vitCom->setCurrentText(us1powermethod);
-
+       ui->us1onoff->setText(onoff);
         // Update US2 UI components
         ui->lineEdit_58->setText(QString::number(us2power)); // Power
         ui->lineEdit_60->setText(QString::number(us2vacmax)); // Vacuum
@@ -5302,7 +5316,7 @@ emit sendsurgeon(surgeonName);
         ui->us2mode->setText(us2mode);
         ui->us2vacmode->setText(us2vacmode);
         ui->CutMode_vitCom_2->setCurrentText(us2powermethod);
-
+  ui->us2onoff->setText(onoff);
         // Update US3 UI components
         ui->lineEdit_61->setText(QString::number(us3power)); // Power
         ui->lineEdit_63->setText(QString::number(us3vacmax)); // Vacuum
@@ -5318,26 +5332,36 @@ emit sendsurgeon(surgeonName);
         ui->us4mode->setText(us4mode);
         ui->us4vacmode->setText(us4vacmode);
         ui->CutMode_vitCom_4->setCurrentText(us4powermethod);
-
+    ui->us3onoff->setText(onoff);
         // Update IA UI components
         ui->lineEdit_67->setText(QString::number(ia1vacmax)); // IA1 Vacuum
-        ui->lineEdit_69->setText(QString::number(ia1aspmax)); // IA1 Aspiration
+        ui->lineEdit_69->setText(QString::number(ia2aspmax)); // IA1 Aspiration
         ui->lineEdit_70->setText(QString::number(ia2vacmax)); // IA2 Vacuum
-        ui->lineEdit_68->setText(QString::number(ia2aspmax)); // IA2 Aspiration
+        ui->lineEdit_68->setText(QString::number(ia1aspmax)); // IA2 Aspiration
         ui->ia1mode->setText(ia1mode);
         ui->ia2mode->setText(ia2mode);
-
+ ui->us4onoff->setText(onoff);
         // Update Vitrectomy UI components
         ui->lineEdit_71->setText(QString::number(vitcutmax)); // Vitrectomy Cut Max
         ui->lineEdit_73->setText(QString::number(vitvacmax)); // Vitrectomy Vacuum Max
         ui->lineEdit_72->setText(QString::number(vitaspmax)); // Vitrectomy Aspiration Max
         ui->vitmode->setText(vitcutmode);
         ui->vitvacmode->setText(vitvacmode);
-
-        emit left_foot(footleft);
+        ui->us1mode->update();
+        ui->us1vacmode->update();
+        ui->us2mode->update();
+        ui->us2vacmode->update();
+        ui->us3mode->update();
+        ui->us3vacmode->update();
+        ui->us4mode->update();
+        ui->us4vacmode->update();
+        ui->vitmode->update();
+        ui->vitvacmode->update();
+          emit left_foot(footleft);
         emit right_foot(footright);
         emit bottom_left(footbleft);
         emit bottom_right(footbright);
+        qDebug()<<ia1aspmax<<ia1vacmax<<ia2aspmax<<ia2vacmax<<"these are retereived from the sql";
     } else {
         qDebug() << "No data found for surgeon:" << surgeonName;
     }
@@ -5351,10 +5375,13 @@ void MainWindow::footpedalbeep()
     p.start();
     p.waitForFinished();
 }
+void MainWindow::on_pushButton_42_clicked()
+{
+    foot->show();
 
+}
 
-
-
-
-
-
+void MainWindow::on_pushButton_clicked()
+{
+    this->close();
+}

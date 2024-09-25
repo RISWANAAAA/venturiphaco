@@ -1231,6 +1231,7 @@ emit sendValues(
     us4powmode, us4vacmode, us4powermethod,
     ia1mode, ia2mode, vitmode, vitvacmode
 );
+    qDebug()<<ia2asp<<ia1asp<<ia1vac<<ia2vac<<"these are sended to mainwindow1111111111111";
 emit sendleftfootvalues(ui->LeftFoot->currentText());
 //    qDebug()<<"footleft is"<<footleft;
     emit sendrightfootvalues(ui->RightFoot->currentText());
@@ -1437,8 +1438,8 @@ void doctor::onSurgeonSelectionChanged(const QString &surgeonName)
         ui->progressBar_3->setValue(us4vacmax);
         ui->progressBar_4->setValue(us4power);
         // IA (Irrigation/Aspiration) parameters
-        int ia1vacmax = query.value("ia1vacmax").toInt();
-        int ia1aspmax = query.value("ia1aspmax").toInt();
+        int ia1vacmax = query.value("ia1aspmax").toInt();
+        int ia1aspmax = query.value("ia1vacmax").toInt();
         int ia2vacmax = query.value("ia2vacmax").toInt();
         int ia2aspmax = query.value("ia2aspmax").toInt();
         QString ia1mode = query.value("cortexvacmode").toString();
@@ -1523,6 +1524,7 @@ void doctor::onSurgeonSelectionChanged(const QString &surgeonName)
         emit rightfoot(ui->RightFoot->currentText());
         emit bottomleft(ui->BottomLFoot->currentText());
         emit bottomright(ui->BottomRFoot->currentText());
+        qDebug()<<ia1aspmax<<ia2aspmax<<ia1vacmax<<ia2vacmax<<"these are sended to mainwindow";
 
     } else {
         qDebug() << "No data found for surgeon:" << surgeonName;

@@ -7,6 +7,7 @@
 #include "doctor.h"
 #include "settings.h"
 #include"hwhandler.h"
+#include"tuning.h"
 class MainWindow;
 class doctor;
 class settings;
@@ -23,11 +24,8 @@ public:
     explicit prime(QWidget *parent = nullptr);
     ~prime();
     void click();
-    void exportGPIO(int pin);
-    void setGPIODirection(const QString &direction,int pin);
-    int readGPIOValue(int pin);
+
     void onUpdateStatusTimeout();
-    void updatehandpieceStatus();
     void start_irrigation();
 
     void champer_Filled();
@@ -70,6 +68,7 @@ private:
     Ui::prime *ui;
 //    int hp=0;
     MainWindow *m;
+    tuning *tune;
     QTimer *timer1;
     QTimer *pretimer;
     int value=0;

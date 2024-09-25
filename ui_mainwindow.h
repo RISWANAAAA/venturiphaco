@@ -251,8 +251,8 @@ public:
     QLabel *label_30;
     QLabel *label_31;
     QLabel *label_32;
-    QLabel *label_28;
     QPushButton *SETTINGS_BUT_3;
+    QPushButton *pushButton;
     QStatusBar *statusbar;
 
     void setupUi(QMainWindow *MainWindow)
@@ -1347,7 +1347,7 @@ public:
         lineEdit_65->setAlignment(Qt::AlignCenter);
         us4flowdown_but = new QPushButton(tab_36);
         us4flowdown_but->setObjectName(QString::fromUtf8("us4flowdown_but"));
-        us4flowdown_but->setGeometry(QRect(360, 590, 91, 61));
+        us4flowdown_but->setGeometry(QRect(350, 580, 91, 61));
         us4flowdown_but->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "    image: url(:/images/darrow.png);\n"
 "    background-color: transparent;\n"
@@ -1638,7 +1638,7 @@ public:
 ""));
         ia2flowdown_but = new QPushButton(tab_38);
         ia2flowdown_but->setObjectName(QString::fromUtf8("ia2flowdown_but"));
-        ia2flowdown_but->setGeometry(QRect(360, 590, 91, 61));
+        ia2flowdown_but->setGeometry(QRect(330, 580, 91, 61));
         ia2flowdown_but->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "    image: url(:/images/darrow.png);\n"
 "    background-color: transparent;\n"
@@ -1798,18 +1798,18 @@ public:
         label_114->setAlignment(Qt::AlignCenter);
         tabWidget->addTab(tab_38, QString());
         label_112->raise();
-        ia2flowup_but->raise();
-        ia2flowdown_but->raise();
         lineEdit_69->raise();
         label_111->raise();
         lineEdit_70->raise();
-        ia2vacup_but->raise();
-        ia2vacdown_but->raise();
-        label_113->raise();
         ia2mode->raise();
         label_114->raise();
         textEdit_56->raise();
         textEdit_55->raise();
+        ia2flowdown_but->raise();
+        ia2flowup_but->raise();
+        ia2vacdown_but->raise();
+        ia2vacup_but->raise();
+        label_113->raise();
         tab_37 = new QWidget();
         tab_37->setObjectName(QString::fromUtf8("tab_37"));
         tab_37->setStyleSheet(QString::fromUtf8("\n"
@@ -1819,7 +1819,7 @@ public:
 ""));
         ia1flowdown_but = new QPushButton(tab_37);
         ia1flowdown_but->setObjectName(QString::fromUtf8("ia1flowdown_but"));
-        ia1flowdown_but->setGeometry(QRect(360, 590, 91, 61));
+        ia1flowdown_but->setGeometry(QRect(320, 590, 91, 61));
         ia1flowdown_but->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "    image: url(:/images/darrow.png);\n"
 "    background-color: transparent;\n"
@@ -1993,16 +1993,16 @@ public:
         label_108->raise();
         lineEdit_67->raise();
         label_107->raise();
-        ia1vacdown_but->raise();
         textEdit_54->raise();
-        ia1vacup_but->raise();
         lineEdit_68->raise();
         label_109->raise();
         ia1mode->raise();
-        ia1flowdown_but->raise();
-        ia1flowup_but->raise();
         label_110->raise();
         textEdit_53->raise();
+        ia1flowdown_but->raise();
+        ia1flowup_but->raise();
+        ia1vacdown_but->raise();
+        ia1vacup_but->raise();
         tab_39 = new QWidget();
         tab_39->setObjectName(QString::fromUtf8("tab_39"));
         tab_39->setStyleSheet(QString::fromUtf8("\n"
@@ -2930,27 +2930,28 @@ public:
 "\n"
 "\n"
 ""));
-        label_28 = new QLabel(centralwidget);
-        label_28->setObjectName(QString::fromUtf8("label_28"));
-        label_28->setGeometry(QRect(660, 610, 141, 61));
-        label_28->setStyleSheet(QString::fromUtf8("image: url(:/images/handpiece1.png);\n"
-"background-color:Red;\n"
-"border:3px solid black;\n"
-"border-radius:20px;"));
         SETTINGS_BUT_3 = new QPushButton(centralwidget);
         SETTINGS_BUT_3->setObjectName(QString::fromUtf8("SETTINGS_BUT_3"));
-        SETTINGS_BUT_3->setGeometry(QRect(820, 580, 81, 101));
+        SETTINGS_BUT_3->setGeometry(QRect(590, 330, 81, 101));
         SETTINGS_BUT_3->setStyleSheet(QString::fromUtf8("QPushButton{\n"
 "image: url(:/images/footimg.png);\n"
-"background-color:black;\n"
-"border:4px solid black;\n"
-"border-radius:30px;\n"
+"background-color:transparent;\n"
+"border:none;\n"
+"\n"
 "}\n"
 "QPushButton:focus {\n"
 "    outline: none;\n"
 "    border: none;\n"
 "}"));
+        pushButton = new QPushButton(centralwidget);
+        pushButton->setObjectName(QString::fromUtf8("pushButton"));
+        pushButton->setGeometry(QRect(658, 604, 211, 71));
+        pushButton->setStyleSheet(QString::fromUtf8("image: url(:/images/handpiece1.png);\n"
+"background-color:Red;\n"
+"border:3px solid black;\n"
+"border-radius:20px;"));
         MainWindow->setCentralWidget(centralwidget);
+        SETTINGS_BUT_3->raise();
         comboBox->raise();
         label->raise();
         tabWidget->raise();
@@ -2991,8 +2992,7 @@ public:
         label_32->raise();
         label_17->raise();
         BACKBUT->raise();
-        label_28->raise();
-        SETTINGS_BUT_3->raise();
+        pushButton->raise();
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
         MainWindow->setStatusBar(statusbar);
@@ -3345,8 +3345,8 @@ public:
         label_30->setText(QString());
         label_31->setText(QString());
         label_32->setText(QString());
-        label_28->setText(QString());
         SETTINGS_BUT_3->setText(QString());
+        pushButton->setText(QString());
     } // retranslateUi
 
 };

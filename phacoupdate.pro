@@ -27,7 +27,8 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     prime.cpp \
-    settings.cpp
+    settings.cpp \
+    tuning.cpp
 
 HEADERS += \
     display.h \
@@ -42,6 +43,7 @@ HEADERS += \
     mainwindow.h \
     prime.h \
     settings.h \
+    tuning.h \
     vaccum.h
 
 FORMS += \
@@ -53,7 +55,8 @@ FORMS += \
     learner.ui \
     mainwindow.ui \
     prime.ui \
-    settings.ui
+    settings.ui \
+    tuning.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

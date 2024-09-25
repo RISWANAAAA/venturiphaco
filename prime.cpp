@@ -17,6 +17,7 @@ prime::prime(QWidget *parent) :
     sur=new doctor;
     set=new settings;
     hand=new hwhandler;
+    tune=new tuning;
     ui->progressBar_2->setRange(0,100);
     QString styleSheet = "QPushButton {"
                          "    font-family: Ubuntu;"
@@ -48,7 +49,7 @@ prime::prime(QWidget *parent) :
 
 
     statusUpdateTimer = new QTimer(this);
-    connect(statusUpdateTimer, &QTimer::timeout, this, &prime::onUpdateStatusTimeout);
+    //connect(statusUpdateTimer, &QTimer::timeout, this, &prime::onUpdateStatusTimeout);
     statusUpdateTimer->start(500); // Update every second
 
 
@@ -78,7 +79,8 @@ prime::prime(QWidget *parent) :
 
       ui->progressBar_2->setRange(0, 100);
      current(ui->tabWidget->currentIndex());
-
+     Tune();
+     ui->tabWidget->insertTab(1,tune,"TUNE");
 
 
 }
@@ -152,77 +154,7 @@ void prime::current(int tab)
         ui->clean_but->setStyleSheet(styleSheet);
     }
 }
-void prime::exportGPIO(int pin)
-{
-    QFile file("/sys/class/gpio/export");
-    if (file.open(QIODevice::WriteOnly)) {
-        QTextStream stream(&file);
-        stream << pin;
-        file.close();
-    }
-}
 
-void prime::setGPIODirection(const QString &direction,int pin)
-{
-    QFile file(QString("/sys/class/gpio/gpio%1/direction").arg(pin));
-    if (file.open(QIODevice::WriteOnly)) {
-        QTextStream stream(&file);
-        stream << direction;
-        file.close();
-
-    }
-}
-
-int prime::readGPIOValue(int pin)
-{
-    QFile file(QString("/sys/class/gpio/gpio%1/value").arg(pin));
-    if (file.open(QIODevice::ReadOnly)) {
-        QTextStream stream(&file);
-        int value;
-        stream >> value;
-        file.close();
-
-        return value;
-    }
-}
-
-void prime::updatehandpieceStatus()
-{
-    int status = readGPIOValue(960);
-
-
-    QString styleSheet4 = "QLabel {"
-          "image: url(:/images/connected.png);"
-            "border:none;"
-
-
- "}";
-
-    QString styleSheet5 = "QLabel {"
-
-            "image: url(:/images/notconnected.png);"
-
-         "border:none;"
-
-                                     "}";
-
-   if(status==0)
-   {
-       ui->label->setStyleSheet(styleSheet4);
-
-      // qDebug()<<"handpiece on"<<status;
-       ui->Start_tune_2->setEnabled(true);
-
-
-
-   }
-   else
-   {
-       ui->label->setStyleSheet(styleSheet5);
-       ui->Start_tune_2->setEnabled(false);
-
-   }
-}
 
 
 void prime::start_irrigation()
@@ -265,7 +197,6 @@ void prime::done()
 
 }
 void prime::onUpdateStatusTimeout(){
-    updatehandpieceStatus();
 }
 void prime::timer(){
     int value = ui->progressBar->value();
@@ -274,9 +205,7 @@ void prime::timer(){
       }
        else {
             timer1->stop();
-            m->show();
-            m->setTuneMode(true);
-            m->DIATHERMYBUT();
+
         }
 }
 void prime::primetimer()
@@ -293,6 +222,7 @@ void prime::Prime()
 {
 
     ui->tabWidget->setCurrentIndex(0);
+    ui->prime1_but->raise();
   click();
    timer1->stop();
 }
@@ -301,6 +231,7 @@ void prime::Tune()
 {
 
     ui->tabWidget->setCurrentIndex(1);
+    ui->Tune_but->raise();
 
     click();
 }
@@ -308,7 +239,7 @@ void prime::Clean()
 {
 
     ui->tabWidget->setCurrentIndex(2);
-
+ ui->clean_but->raise();
     click();
    timer1->stop();
 }
@@ -317,11 +248,7 @@ void prime::Clean()
 void prime::Start_Tune()
 {
 
-   hand->freq_count(2500);
-   hand->phaco_on();
-   hand->phaco_power(80);
-        ui->progressBar_2->setValue(0);
-        timer1->start(500); // Update every 100 ms
+
 }
 void prime::on_start_prime_but_2_clicked()
 {

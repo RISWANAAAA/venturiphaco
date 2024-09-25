@@ -2223,8 +2223,8 @@ border-radius:20px;border:2px solid black;</string>
      <widget class="QPushButton" name="us4flowdown_but">
       <property name="geometry">
        <rect>
-        <x>360</x>
-        <y>590</y>
+        <x>350</x>
+        <y>580</y>
         <width>91</width>
         <height>61</height>
        </rect>
@@ -2803,8 +2803,8 @@ QPushButton:focus {
      <widget class="QPushButton" name="ia2flowdown_but">
       <property name="geometry">
        <rect>
-        <x>360</x>
-        <y>590</y>
+        <x>330</x>
+        <y>580</y>
         <width>91</width>
         <height>61</height>
        </rect>
@@ -3121,18 +3121,18 @@ color: rgb(255, 255, 255);</string>
       </property>
      </widget>
      <zorder>label_112</zorder>
-     <zorder>ia2flowup_but</zorder>
-     <zorder>ia2flowdown_but</zorder>
      <zorder>lineEdit_69</zorder>
      <zorder>label_111</zorder>
      <zorder>lineEdit_70</zorder>
-     <zorder>ia2vacup_but</zorder>
-     <zorder>ia2vacdown_but</zorder>
-     <zorder>label_113</zorder>
      <zorder>ia2mode</zorder>
      <zorder>label_114</zorder>
      <zorder>textEdit_56</zorder>
      <zorder>textEdit_55</zorder>
+     <zorder>ia2flowdown_but</zorder>
+     <zorder>ia2flowup_but</zorder>
+     <zorder>ia2vacdown_but</zorder>
+     <zorder>ia2vacup_but</zorder>
+     <zorder>label_113</zorder>
     </widget>
     <widget class="QWidget" name="tab_37">
      <property name="styleSheet">
@@ -3148,7 +3148,7 @@ background-color: rgb(18, 78, 102);
      <widget class="QPushButton" name="ia1flowdown_but">
       <property name="geometry">
        <rect>
-        <x>360</x>
+        <x>320</x>
         <y>590</y>
         <width>91</width>
         <height>61</height>
@@ -3492,16 +3492,16 @@ color: rgb(255, 255, 255);</string>
      <zorder>label_108</zorder>
      <zorder>lineEdit_67</zorder>
      <zorder>label_107</zorder>
-     <zorder>ia1vacdown_but</zorder>
      <zorder>textEdit_54</zorder>
-     <zorder>ia1vacup_but</zorder>
      <zorder>lineEdit_68</zorder>
      <zorder>label_109</zorder>
      <zorder>ia1mode</zorder>
-     <zorder>ia1flowdown_but</zorder>
-     <zorder>ia1flowup_but</zorder>
      <zorder>label_110</zorder>
      <zorder>textEdit_53</zorder>
+     <zorder>ia1flowdown_but</zorder>
+     <zorder>ia1flowup_but</zorder>
+     <zorder>ia1vacdown_but</zorder>
+     <zorder>ia1vacup_but</zorder>
     </widget>
     <widget class="QWidget" name="tab_39">
      <property name="styleSheet">
@@ -5546,13 +5546,38 @@ background-color:transparent;
      <string/>
     </property>
    </widget>
-   <widget class="QLabel" name="label_28">
+   <widget class="QPushButton" name="SETTINGS_BUT_3">
     <property name="geometry">
      <rect>
-      <x>660</x>
-      <y>610</y>
-      <width>141</width>
-      <height>61</height>
+      <x>590</x>
+      <y>330</y>
+      <width>81</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+image: url(:/images/footimg.png);
+background-color:transparent;
+border:none;
+
+}
+QPushButton:focus {
+    outline: none;
+    border: none;
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>658</x>
+      <y>604</y>
+      <width>211</width>
+      <height>71</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -5565,31 +5590,7 @@ border-radius:20px;</string>
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="SETTINGS_BUT_3">
-    <property name="geometry">
-     <rect>
-      <x>820</x>
-      <y>580</y>
-      <width>81</width>
-      <height>101</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPushButton{
-image: url(:/images/footimg.png);
-background-color:black;
-border:4px solid black;
-border-radius:30px;
-}
-QPushButton:focus {
-    outline: none;
-    border: none;
-}</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
+   <zorder>SETTINGS_BUT_3</zorder>
    <zorder>comboBox</zorder>
    <zorder>label</zorder>
    <zorder>tabWidget</zorder>
@@ -5630,8 +5631,7 @@ QPushButton:focus {
    <zorder>label_32</zorder>
    <zorder>label_17</zorder>
    <zorder>BACKBUT</zorder>
-   <zorder>label_28</zorder>
-   <zorder>SETTINGS_BUT_3</zorder>
+   <zorder>pushButton</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>

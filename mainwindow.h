@@ -374,6 +374,10 @@ void on_CI4_2_clicked();
 
 void on_SETTINGS_BUT_2_clicked();
 
+void on_pushButton_42_clicked();
+
+void on_pushButton_clicked();
+
 signals:
      void sensorValueChanged(int value);
      void surgeonSelected(const QString &surgeonName);

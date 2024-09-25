@@ -75,5 +75,9 @@
         <file>panel.png</file>
         <file>surgeonbutton.png</file>
         <file>panelbutton.png</file>
+        <file>hp3.png</file>
+        <file>handdddd.png</file>
+        <file>nonconnected.png</file>
+        <file>handpieceimg.png</file>
     </qresource>
 </RCC>
