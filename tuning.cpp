@@ -285,7 +285,8 @@ void tuning::circularporgressbar()
         hand->freq_count(2500);
         hand->phaco_on();
         hand->phaco_power(80);
-
+  int db_feed=vacSensor->convert(0XA7);
+ qDebug()<<"the drive board feedbak is"<<db_feed;
         // Start the timers
         timer->start(500); // circle progressbarrrr
         timer1->start(10); // another circle

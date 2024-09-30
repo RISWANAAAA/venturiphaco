@@ -108,6 +108,7 @@ void prime::click()
    ui->prime1_but->setStyleSheet(styleSheet);
    ui->Tune_but->setStyleSheet(styleSheet);
    ui->clean_but->setStyleSheet(styleSheet);
+   ui->label->show();
 
 
 }
