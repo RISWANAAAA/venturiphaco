@@ -23,6 +23,7 @@ public:
     QPushButton *pushButton;
     QLabel *label;
     QLabel *label_2;
+    QPushButton *pushButton_2;
 
     void setupUi(QDialog *tuning)
     {
@@ -31,18 +32,27 @@ public:
         tuning->resize(861, 711);
         pushButton = new QPushButton(tuning);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        pushButton->setGeometry(QRect(310, 350, 231, 61));
-        pushButton->setStyleSheet(QString::fromUtf8("background-color:transparent;\n"
+        pushButton->setGeometry(QRect(170, 280, 561, 141));
+        pushButton->setStyleSheet(QString::fromUtf8("QPushButton{background-color:transparent;\n"
 "image: url(:/images/handpiece1.png);\n"
-"border:none;"));
+"border:none;}\n"
+"QPushButton:focus {\n"
+"    outline: none;\n"
+"    border: none;\n"
+"}"));
         label = new QLabel(tuning);
         label->setObjectName(QString::fromUtf8("label"));
-        label->setGeometry(QRect(380, 300, 91, 141));
+        label->setGeometry(QRect(400, 270, 131, 141));
         label->setStyleSheet(QString::fromUtf8("background-color: rgb(15, 114, 130);"));
         label_2 = new QLabel(tuning);
         label_2->setObjectName(QString::fromUtf8("label_2"));
-        label_2->setGeometry(QRect(500, 360, 51, 41));
-        label_2->setStyleSheet(QString::fromUtf8("image: url(:/images/nonconnected.png);\n"
+        label_2->setGeometry(QRect(150, 340, 141, 131));
+        label_2->setStyleSheet(QString::fromUtf8("background-color:transparent;\n"
+""));
+        pushButton_2 = new QPushButton(tuning);
+        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
+        pushButton_2->setGeometry(QRect(690, 570, 151, 121));
+        pushButton_2->setStyleSheet(QString::fromUtf8("image: url(:/images/nextarrow.png);\n"
 "background-color:transparent;\n"
 "border:none;"));
 
@@ -57,6 +67,7 @@ public:
         pushButton->setText(QString());
         label->setText(QString());
         label_2->setText(QString());
+        pushButton_2->setText(QString());
     } // retranslateUi
 
 };

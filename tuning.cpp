@@ -11,31 +11,18 @@ tuning::tuning(QWidget *parent) :
     timer = new QTimer(this);
     hand=new hwhandler;
     handpiece=new QTimer;
+    vacSensor=new Vaccum;
     exportGPIO(960);
     setGPIODirection("in",960);
     readGPIOValue(960);
+    connect(handpiece,&QTimer::timeout,this,&tuning::updatehandpieceStatus);
+    handpiece->start(10);
      ui->label->hide();
-      ui->label->setStyleSheet("font-size: 70px; font-weight: bold; color: #00050B; background-color: transparent;");
-      connect(handpiece,&QTimer::timeout,this,&tuning::updatehandpieceStatus);
-      handpiece->start(100);
-    connect(timer, &QTimer::timeout, [=]() {
-        if (m_value < 100) {
-            m_value++;
-            ui->label->setText(QString::number(m_value));
-            ui->label->move(360,180);
-        } else {
-            ui->pushButton->show();
-            ui->pushButton->setText("Tune is completed");
-            main->show();
-            main->setTuneMode(true);
-            main->DIATHERMYBUT();
-            timer1->stop();// Stop the timer when reaching 100
-            isRunning = false;         // Update running status
-        }
-        update(); // Repaint the circular progress
-    });
-    currentCircle = 0; // Initialize to start with the first circle
-timer1=new QTimer;
+     ui->label->setText(QString::number(m_value));
+      ui->label->setStyleSheet("font-size: 90px; font-weight: bold; color: white; background-color: transparent;");
+      ui->pushButton->show();
+    currentCircle = 0;
+    timer1=new QTimer;
     connect(timer1, &QTimer::timeout, this, &tuning::updateCircle);
 }
 
@@ -102,9 +89,7 @@ void tuning::updatehandpieceStatus()
    if(status==0)
    {
        ui->label_2->setStyleSheet(styleSheet4);
-//       ui->label->setStyleSheet("background-color:transparent;");
-
-      // qDebug()<<"handpiece on"<<status;
+     //  qDebug()<<status;
        ui->pushButton->setEnabled(true);
 
 
@@ -112,9 +97,9 @@ void tuning::updatehandpieceStatus()
    }
    else
    {
+     //   qDebug()<<status;
        ui->label_2->setStyleSheet(styleSheet5);
        ui->pushButton->setEnabled(false);
-   //      ui->label->setStyleSheet("background-color:transparent;");
 
    }
 }
@@ -128,21 +113,15 @@ void tuning::resizeEvent(QResizeEvent *event)
 void tuning::paintEvent(QPaintEvent *event)
 {
 
-    // Start painting
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing);
-
-    // Set the background color
-    painter.fillRect(rect(), QColor("#DEDDDA")); // Replace with your color
-
+   painter.fillRect(rect(), QColor("#124E66")); // Replace with your color
     // Ensure we handle the event properly
     if (!event) return; // Check for a valid event
-
     // Define the circle parameters
     int width = qMin(this->width(), this->height());
     QPoint center = rect().center();
     int radius = 200;
-
     // Calculate active lines based on progress
     int totalLines = 80;
     int activeLines = (m_value * totalLines) / 100;
@@ -182,8 +161,8 @@ void tuning::paintEvent1(QPaintEvent *event)
     int totalLines = 60; // Total number of lines for a full circle
 
     // Define a base center for positioning all circles
-    int baseOffsetX = 40; // Base horizontal position (center of circles)
-    int baseOffsetY = 421; // Base vertical position (center of circles)
+    int baseOffsetX = 430; // Base horizontal position (center of circles)
+    int baseOffsetY = 340; // Base vertical position (center of circles)
 
     // Define colors for each circle
     QColor colors[14] = {
@@ -223,7 +202,6 @@ void tuning::paintEvent1(QPaintEvent *event)
 
             // Set the pen for bold lines
             QPen pen;
-            pen.setWidth(5); // Set the width for bold lines
 
             // Set the color for the entire circle if it is fully completed, else gray
             if (fullCircle) {
@@ -241,6 +219,7 @@ void tuning::paintEvent1(QPaintEvent *event)
             painter.drawLine(x1, y1, x2, y2); // Draw the line
         }
     }
+
 }
 void tuning::updateCircle()
 {
@@ -252,40 +231,79 @@ void tuning::updateCircle()
     update(); // Repaint the widget to reflect changes
 }
 
+
+// Slot for handling the button click
 void tuning::on_pushButton_clicked()
 {
-    // Start the timer if it's not running
-    circleColor = (isRunning) ? QColor("#C0C0C0") : QColor("#C0C0C0");
+    ui->pushButton->move(170,280);
+    ui->label_2->move(150,340);
 
-    // Reset progress if already at 100 or if it's not running
-      if (m_value >= 100 || !isRunning) {
-          m_value = 0; // Reset progress
-          ui->label->setText(QString::number(m_value)); // Update label
-      }
-      hand->freq_count(2500);
-      hand->phaco_on();
-      hand->phaco_power(80);
-      // Start the timer if not running
-      timer->start(500); // Update every 100 milliseconds
-      // Start the timer automatically with an interval of 1 second
-      timer1->start(1000);
-      isRunning = true; // Set the running status
-      ui->pushButton->hide();
-      ui->label->show();
-      connect(timer, &QTimer::timeout, this, &tuning::updateProgress);
-
+    circularporgressbar();
 }
+//update the circle which is reach 100 they moves mainwindowF
 void tuning::updateProgress()
 {
     // Increment the progress value
-    m_value += 10; // Or however you want to increase the value
-
-    // Update the label with the new value
+    m_value += 1;
     ui->label->setText(QString::number(m_value));
+    ui->label->move(400, 270); // Move label if necessary
 
     // Check if m_value has reached or exceeded 100
     if (m_value >= 100) {
-        m_value = 0; // Reset the value back to 0
-        ui->label->setText(QString::number(m_value)); // Update label with 0
+        // Reset m_value to 0
+        m_value = 0;
+        // Stop the timers and reset UI elements
+        timer->stop();
+        timer1->stop();
+        ui->label->setText(QString::number(m_value));
+        main->show();
+        main->DIATHERMYBUT();
+        main->setTuneMode();
+        main->changebuttonstyle();
+        ui->pushButton->move(170,280);
+        ui->pushButton->resize(541,141);
+        isRunning = false;
+        ui->label_2->move(150,340);
+        ui->label_2->resize(141,131);
+        ui->label->hide();
     }
+
+
+}
+//circle progress bar updating
+void tuning::circularporgressbar()
+{
+
+    // Reset progress to 0 and update the label
+    m_value = 0;
+    ui->label->setText(QString::number(m_value)); // Update label to show 0
+    ui->label->show(); // Show the label
+
+    // Start the timer if it's not running
+    if (!isRunning) {
+        // Start the device functions
+        hand->freq_count(2500);
+        hand->phaco_on();
+        hand->phaco_power(80);
+
+        // Start the timers
+        timer->start(500); // circle progressbarrrr
+        timer1->start(10); // another circle
+        isRunning = true; // Set the running status
+
+        ui->pushButton->move(150,260);
+        ui->pushButton->resize(271,171);
+        ui->label_2->move(550,300); // Hide label_2 if necessary
+        ui->label_2->resize(81,61);
+        connect(timer, &QTimer::timeout, this, &tuning::updateProgress);
+    }
+
+    update();
+}
+
+void tuning::on_pushButton_2_clicked()
+{
+    main->show();
+
+
 }

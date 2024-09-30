@@ -40,10 +40,10 @@ public slots:
     void current(int tab);
     void Start_Tune();
 
+    void Tune();
 private slots:
     void Prime();
 
-    void Tune();
 
     void Clean();
 
@@ -63,6 +63,10 @@ private slots:
     void on_pushButton_6_clicked();
 
     void on_pushButton_8_clicked();
+
+    void on_Tune_but_clicked();
+
+    void on_pushButton_clicked();
 
 private:
     Ui::prime *ui;

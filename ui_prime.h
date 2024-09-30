@@ -37,13 +37,6 @@ public:
     QCheckBox *done_Check_2;
     QProgressBar *progressBar_2;
     QPushButton *pushButton_5;
-    QWidget *tab_7;
-    QLabel *handpice_img_2;
-    QPushButton *Start_tune_2;
-    QLabel *initial_lab_2;
-    QLabel *label;
-    QPushButton *pushButton_6;
-    QProgressBar *progressBar;
     QWidget *tab_8;
     QLabel *warning_lab_2;
     QTextEdit *Instruction_lab_2;
@@ -64,16 +57,17 @@ public:
 ""));
         clean_but = new QPushButton(prime);
         clean_but->setObjectName(QString::fromUtf8("clean_but"));
-        clean_but->setGeometry(QRect(70, 370, 281, 201));
-        clean_but->setStyleSheet(QString::fromUtf8("QPushButton{\n"
-"font:20pt \"Ubuntu\";\n"
-"background-color:transparent;\n"
-"image: url(:/images/g1094.png);\n"
-"border-radius:20px;\n"
-"border:none;\n"
-"font:bold;\n"
+        clean_but->setGeometry(QRect(20, 390, 391, 291));
+        clean_but->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"    font: 40pt \"Ubuntu\";\n"
+"    background-color: transparent;\n"
+"    border-radius: 20px;\n"
+"	image: url(:/images/unselectedbutton.png);\n"
+"    border: none;\n"
+"    font-weight: bold;\n"
 "color:white;\n"
 "}\n"
+"\n"
 "QPushButton:focus {\n"
 "    outline: none;\n"
 "    border: none;\n"
@@ -81,16 +75,17 @@ public:
 ""));
         Tune_but = new QPushButton(prime);
         Tune_but->setObjectName(QString::fromUtf8("Tune_but"));
-        Tune_but->setGeometry(QRect(70, 280, 281, 201));
-        Tune_but->setStyleSheet(QString::fromUtf8("QPushButton{\n"
-"font:20pt \"Ubuntu\";\n"
-"background-color:transparent;\n"
-"image: url(:/images/g1094.png);\n"
-"border-radius:20px;\n"
-"border:none;\n"
-"font:bold;\n"
+        Tune_but->setGeometry(QRect(20, 210, 391, 291));
+        Tune_but->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"    font: 40pt \"Ubuntu\";\n"
+"    background-color: transparent;\n"
+"    border-radius: 20px;\n"
+"	image: url(:/images/unselectedbutton.png);\n"
+"    border: none;\n"
+"    font-weight: bold;\n"
 "color:white;\n"
 "}\n"
+"\n"
 "QPushButton:focus {\n"
 "    outline: none;\n"
 "    border: none;\n"
@@ -98,12 +93,12 @@ public:
 ""));
         prime1_but = new QPushButton(prime);
         prime1_but->setObjectName(QString::fromUtf8("prime1_but"));
-        prime1_but->setGeometry(QRect(70, 190, 281, 201));
+        prime1_but->setGeometry(QRect(20, 30, 391, 291));
         prime1_but->setStyleSheet(QString::fromUtf8("QPushButton {\n"
-"    font: 20pt \"Ubuntu\";\n"
+"    font: 40pt \"Ubuntu\";\n"
 "    background-color: transparent;\n"
-"    image: url(:/images/g3042.png);\n"
 "    border-radius: 20px;\n"
+"	image: url(:/images/unselectedbutton.png);\n"
 "    border: none;\n"
 "    font-weight: bold;\n"
 "color:white;\n"
@@ -120,7 +115,8 @@ public:
         tabWidget->setStyleSheet(QString::fromUtf8(""));
         tab_6 = new QWidget();
         tab_6->setObjectName(QString::fromUtf8("tab_6"));
-        tab_6->setStyleSheet(QString::fromUtf8("background-color: rgb(222, 221, 218);\n"
+        tab_6->setStyleSheet(QString::fromUtf8("\n"
+"background-color: rgb(18, 78, 102);\n"
 "\n"
 "\n"
 ""));
@@ -214,73 +210,10 @@ public:
 "}\n"
 ""));
         tabWidget->addTab(tab_6, QString());
-        tab_7 = new QWidget();
-        tab_7->setObjectName(QString::fromUtf8("tab_7"));
-        tab_7->setStyleSheet(QString::fromUtf8("background-color: rgb(222, 221, 218);\n"
-"\n"
-""));
-        handpice_img_2 = new QLabel(tab_7);
-        handpice_img_2->setObjectName(QString::fromUtf8("handpice_img_2"));
-        handpice_img_2->setGeometry(QRect(-110, -60, 1250, 501));
-        handpice_img_2->setSizeIncrement(QSize(1, 1));
-        handpice_img_2->setStyleSheet(QString::fromUtf8("image: url(:/images/handpieceimg.png);\n"
-"border:none;\n"
-"background-color:transparent;"));
-        Start_tune_2 = new QPushButton(tab_7);
-        Start_tune_2->setObjectName(QString::fromUtf8("Start_tune_2"));
-        Start_tune_2->setGeometry(QRect(220, 510, 401, 161));
-        Start_tune_2->setStyleSheet(QString::fromUtf8("QPushButton {\n"
-"    font: 22pt \"Ubuntu\";\n"
-"    image: url(:/images/g4210.png);\n"
-"    background-color: transparent;\n"
-"    color: rgb(255, 255, 255);\n"
-"    border-radius: 20px;\n"
-"    border: none;\n"
-"    font-weight: bold;\n"
-"}\n"
-"\n"
-"QPushButton:focus {\n"
-"    outline: none;\n"
-"    border: none;\n"
-"}\n"
-""));
-        initial_lab_2 = new QLabel(tab_7);
-        initial_lab_2->setObjectName(QString::fromUtf8("initial_lab_2"));
-        initial_lab_2->setGeometry(QRect(20, 430, 31, 31));
-        initial_lab_2->setStyleSheet(QString::fromUtf8("background-color:transparent;\n"
-""));
-        label = new QLabel(tab_7);
-        label->setObjectName(QString::fromUtf8("label"));
-        label->setGeometry(QRect(210, 180, 201, 181));
-        label->setStyleSheet(QString::fromUtf8("background-color:transparent;\n"
-""));
-        pushButton_6 = new QPushButton(tab_7);
-        pushButton_6->setObjectName(QString::fromUtf8("pushButton_6"));
-        pushButton_6->setGeometry(QRect(680, 530, 171, 151));
-        pushButton_6->setStyleSheet(QString::fromUtf8("QPushButton{\n"
-"image: url(:/images/nextimg.png);\n"
-"background-color:transparent;\n"
-"border:none;\n"
-"}\n"
-"QPushButton:focus {\n"
-"    outline: none;\n"
-"    border: none;\n"
-"}\n"
-""));
-        progressBar = new QProgressBar(tab_7);
-        progressBar->setObjectName(QString::fromUtf8("progressBar"));
-        progressBar->setGeometry(QRect(40, 420, 781, 61));
-        progressBar->setValue(0);
-        tabWidget->addTab(tab_7, QString());
-        handpice_img_2->raise();
-        Start_tune_2->raise();
-        initial_lab_2->raise();
-        pushButton_6->raise();
-        progressBar->raise();
-        label->raise();
         tab_8 = new QWidget();
         tab_8->setObjectName(QString::fromUtf8("tab_8"));
-        tab_8->setStyleSheet(QString::fromUtf8("background-color: rgb(222, 221, 218);\n"
+        tab_8->setStyleSheet(QString::fromUtf8("\n"
+"background-color: rgb(18, 78, 102);\n"
 "\n"
 "\n"
 ""));
@@ -345,7 +278,7 @@ public:
 
         retranslateUi(prime);
 
-        tabWidget->setCurrentIndex(1);
+        tabWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(prime);
@@ -365,12 +298,6 @@ public:
         done_Check_2->setText(QCoreApplication::translate("prime", "Done", nullptr));
         pushButton_5->setText(QString());
         tabWidget->setTabText(tabWidget->indexOf(tab_6), QCoreApplication::translate("prime", "Tab 1", nullptr));
-        handpice_img_2->setText(QString());
-        Start_tune_2->setText(QCoreApplication::translate("prime", "START TUNING ", nullptr));
-        initial_lab_2->setText(QCoreApplication::translate("prime", "0", nullptr));
-        label->setText(QString());
-        pushButton_6->setText(QString());
-        tabWidget->setTabText(tabWidget->indexOf(tab_7), QCoreApplication::translate("prime", "Tab 2", nullptr));
         warning_lab_2->setText(QCoreApplication::translate("prime", "   BEFORE CLEANING", nullptr));
         Instruction_lab_2->setHtml(QCoreApplication::translate("prime", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"

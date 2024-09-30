@@ -192,7 +192,6 @@ public:
     QLabel *label_6;
     QPushButton *ULTRASONICBUT1;
     QLabel *label_3;
-    QPushButton *ULTRASONICBUT3;
     QLabel *label_5;
     QPushButton *IA1BUT;
     QPushButton *ULTRASONICBUT2;
@@ -202,10 +201,7 @@ public:
     QPushButton *DIABUT;
     QLabel *label_11;
     QLabel *label_15;
-    QLabel *label_2;
     QLabel *label_10;
-    QPushButton *pushButton_42;
-    QDial *dial_2;
     QTabWidget *tabWidget_2;
     QWidget *tab_41;
     QWidget *tab_42;
@@ -243,7 +239,6 @@ public:
     QLabel *label_9;
     QLabel *label_16;
     QLabel *label_17;
-    QLabel *label_18;
     QLabel *label_27;
     QLabel *label_29;
     QComboBox *comboBox_4;
@@ -253,6 +248,12 @@ public:
     QLabel *label_32;
     QPushButton *SETTINGS_BUT_3;
     QPushButton *pushButton;
+    QDial *dial_2;
+    QPushButton *pushButton_42;
+    QPushButton *ULTRASONICBUT3;
+    QLabel *label_2;
+    QLabel *label_18;
+    QLabel *label_19;
     QStatusBar *statusbar;
 
     void setupUi(QMainWindow *MainWindow)
@@ -531,8 +532,8 @@ public:
         label_88 = new QLabel(tab_33);
         label_88->setObjectName(QString::fromUtf8("label_88"));
         label_88->setGeometry(QRect(830, 10, 231, 51));
-        label_88->setStyleSheet(QString::fromUtf8("background-color: rgb(25, 52, 27);\n"
-"border:3px solid black;\n"
+        label_88->setStyleSheet(QString::fromUtf8("border:3px solid black;\n"
+"background-color: rgb(99, 69, 44);\n"
 "border-radius:20px;\n"
 "\n"
 "font:20pt \"Ubuntu\";\n"
@@ -580,8 +581,8 @@ public:
         CutMode_vitCom->setGeometry(QRect(1010, 330, 221, 61));
         CutMode_vitCom->setStyleSheet(QString::fromUtf8("border-radius:20px;\n"
 "color: rgb(255, 255, 255);\n"
-"background-color: rgb(25, 52, 27);\n"
-"font:20pt \"Ubuntu\";"));
+"font:20pt \"Ubuntu\";\n"
+"background-color: rgb(99, 69, 44);"));
         label_23 = new QLabel(tab_33);
         label_23->setObjectName(QString::fromUtf8("label_23"));
         label_23->setGeometry(QRect(980, 280, 67, 17));
@@ -867,15 +868,15 @@ public:
 "color: rgb(0, 0, 0);"));
         label_94 = new QLabel(tab_34);
         label_94->setObjectName(QString::fromUtf8("label_94"));
-        label_94->setGeometry(QRect(830, 10, 241, 51));
+        label_94->setGeometry(QRect(830, 10, 231, 51));
         label_94->setStyleSheet(QString::fromUtf8("font:20pt \"Ubuntu\";\n"
 "\n"
 "border-radius:20px;\n"
 "\n"
 "border:none;font-weight: bold;border:3px solid black;\n"
 "\n"
-"background-color: rgb(25, 52, 27);\n"
-"color: rgb(255, 255, 255);"));
+"color: rgb(255, 255, 255);\n"
+"background-color: rgb(99, 69, 44);"));
         label_94->setAlignment(Qt::AlignCenter);
         label_123 = new QLabel(tab_34);
         label_123->setObjectName(QString::fromUtf8("label_123"));
@@ -910,11 +911,10 @@ public:
         CutMode_vitCom_2->setGeometry(QRect(1010, 330, 221, 61));
         CutMode_vitCom_2->setStyleSheet(QString::fromUtf8("border-radius:20px;\n"
 "color: rgb(255, 255, 255);\n"
-"background-color: rgb(25, 52, 27);\n"
-"font:20pt \"Ubuntu\";"));
+"background-color: rgb(99, 69, 44);font:20pt \"Ubuntu\";"));
         CutMode_vit_2 = new QLabel(tab_34);
         CutMode_vit_2->setObjectName(QString::fromUtf8("CutMode_vit_2"));
-        CutMode_vit_2->setGeometry(QRect(940, 340, 181, 31));
+        CutMode_vit_2->setGeometry(QRect(940, 340, 61, 31));
         CutMode_vit_2->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 15pt \"Ubuntu Condensed\";\n"
 "font:bold;"));
         label_24 = new QLabel(tab_34);
@@ -1058,15 +1058,14 @@ public:
 "color: rgb(0, 0, 0);"));
         label_100 = new QLabel(tab_35);
         label_100->setObjectName(QString::fromUtf8("label_100"));
-        label_100->setGeometry(QRect(830, 10, 171, 51));
+        label_100->setGeometry(QRect(830, 10, 231, 51));
         label_100->setStyleSheet(QString::fromUtf8("font:20pt \"Ubuntu\";\n"
 "\n"
 "border-radius:20px;\n"
 "\n"
 "border:none;font-weight: bold;border:3px solid black;\n"
 "\n"
-"background-color: rgb(25, 52, 27);\n"
-"color: rgb(255, 255, 255);"));
+"background-color: rgb(99, 69, 44);color: rgb(255, 255, 255);"));
         label_100->setAlignment(Qt::AlignCenter);
         CutMode_vitCom_3 = new QComboBox(tab_35);
         CutMode_vitCom_3->addItem(QString());
@@ -1081,8 +1080,7 @@ public:
         CutMode_vitCom_3->setStyleSheet(QString::fromUtf8("border-radius:20px;\n"
 "color: rgb(255, 255, 255);\n"
 "\n"
-"background-color: rgb(25, 52, 27);\n"
-"font:20pt \"Ubuntu\";"));
+"background-color: rgb(99, 69, 44);font:20pt \"Ubuntu\";"));
         label_99 = new QLabel(tab_35);
         label_99->setObjectName(QString::fromUtf8("label_99"));
         label_99->setGeometry(QRect(420, 120, 91, 91));
@@ -1248,7 +1246,7 @@ public:
         label_98->setAlignment(Qt::AlignCenter);
         CutMode_vit_3 = new QLabel(tab_35);
         CutMode_vit_3->setObjectName(QString::fromUtf8("CutMode_vit_3"));
-        CutMode_vit_3->setGeometry(QRect(950, 340, 181, 31));
+        CutMode_vit_3->setGeometry(QRect(930, 340, 71, 31));
         CutMode_vit_3->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 15pt \"Ubuntu Condensed\";\n"
 "font:bold;"));
         label_25 = new QLabel(tab_35);
@@ -1554,15 +1552,14 @@ public:
 "color: rgb(0, 0, 0);"));
         label_106 = new QLabel(tab_36);
         label_106->setObjectName(QString::fromUtf8("label_106"));
-        label_106->setGeometry(QRect(860, 10, 201, 41));
+        label_106->setGeometry(QRect(860, 10, 231, 51));
         label_106->setStyleSheet(QString::fromUtf8("font:20pt \"Ubuntu\";\n"
 "\n"
 "border-radius:20px;\n"
 "\n"
 "border:none;font-weight: bold;border:3px solid black;\n"
 "\n"
-"background-color: rgb(25, 52, 27);\n"
-"color: rgb(255, 255, 255);"));
+"background-color: rgb(99, 69, 44);color: rgb(255, 255, 255);"));
         label_106->setAlignment(Qt::AlignCenter);
         CutMode_vitCom_4 = new QComboBox(tab_36);
         CutMode_vitCom_4->addItem(QString());
@@ -1577,11 +1574,10 @@ public:
         CutMode_vitCom_4->setStyleSheet(QString::fromUtf8("border-radius:20px;\n"
 "color: rgb(255, 255, 255);\n"
 "\n"
-"background-color: rgb(25, 52, 27);\n"
-"font:20pt \"Ubuntu\";"));
+"background-color: rgb(99, 69, 44);font:20pt \"Ubuntu\";"));
         CutMode_vit_4 = new QLabel(tab_36);
         CutMode_vit_4->setObjectName(QString::fromUtf8("CutMode_vit_4"));
-        CutMode_vit_4->setGeometry(QRect(950, 340, 181, 31));
+        CutMode_vit_4->setGeometry(QRect(920, 340, 81, 31));
         CutMode_vit_4->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 15pt \"Ubuntu Condensed\";\n"
 "font:bold;"));
         label_26 = new QLabel(tab_36);
@@ -1793,8 +1789,8 @@ public:
 "\n"
 "border:none;font-weight: bold;border:3px solid black;\n"
 "\n"
-"background-color: rgb(25, 52, 27);\n"
-"color: rgb(255, 255, 255);"));
+"color: rgb(255, 255, 255);\n"
+"background-color: rgb(99, 69, 44);"));
         label_114->setAlignment(Qt::AlignCenter);
         tabWidget->addTab(tab_38, QString());
         label_112->raise();
@@ -1819,7 +1815,7 @@ public:
 ""));
         ia1flowdown_but = new QPushButton(tab_37);
         ia1flowdown_but->setObjectName(QString::fromUtf8("ia1flowdown_but"));
-        ia1flowdown_but->setGeometry(QRect(320, 590, 91, 61));
+        ia1flowdown_but->setGeometry(QRect(360, 590, 91, 61));
         ia1flowdown_but->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "    image: url(:/images/darrow.png);\n"
 "    background-color: transparent;\n"
@@ -1833,7 +1829,7 @@ public:
 ""));
         lineEdit_67 = new QLineEdit(tab_37);
         lineEdit_67->setObjectName(QString::fromUtf8("lineEdit_67"));
-        lineEdit_67->setGeometry(QRect(190, 590, 101, 61));
+        lineEdit_67->setGeometry(QRect(220, 590, 101, 61));
         lineEdit_67->setStyleSheet(QString::fromUtf8("font:20pt \"Ubuntu\";\n"
 "background-color: rgb(255,255,255);\n"
 "border-radius:20px;border:2px solid black;"));
@@ -1979,15 +1975,14 @@ public:
 "border:none;"));
         label_110 = new QLabel(tab_37);
         label_110->setObjectName(QString::fromUtf8("label_110"));
-        label_110->setGeometry(QRect(820, 120, 201, 51));
+        label_110->setGeometry(QRect(820, 120, 231, 51));
         label_110->setStyleSheet(QString::fromUtf8("font:20pt \"Ubuntu\";\n"
 "\n"
 "border-radius:20px;\n"
 "\n"
 "border:none;font-weight: bold;border:3px solid black;\n"
 "\n"
-"background-color: rgb(25, 52, 27);\n"
-"color: rgb(255, 255, 255);"));
+"background-color: rgb(99, 69, 44);color: rgb(255, 255, 255);"));
         label_110->setAlignment(Qt::AlignCenter);
         tabWidget->addTab(tab_37, QString());
         label_108->raise();
@@ -2371,16 +2366,16 @@ public:
         textEdit_60->raise();
         label_14 = new QLabel(centralwidget);
         label_14->setObjectName(QString::fromUtf8("label_14"));
-        label_14->setGeometry(QRect(670, 410, 61, 81));
-        label_14->setStyleSheet(QString::fromUtf8("image: url(:/images/rightdown.png);\n"
-"background-color:transparent;\n"
-"border:none;"));
+        label_14->setGeometry(QRect(680, 400, 61, 81));
+        label_14->setStyleSheet(QString::fromUtf8("background-color:transparent;\n"
+"border:none;\n"
+"image: url(:/images/downcross.png);"));
         label_12 = new QLabel(centralwidget);
         label_12->setObjectName(QString::fromUtf8("label_12"));
-        label_12->setGeometry(QRect(610, 430, 41, 81));
-        label_12->setStyleSheet(QString::fromUtf8("image: url(:/images/downarrow.png);\n"
-"background-color:transparent;\n"
-"border:none;"));
+        label_12->setGeometry(QRect(600, 450, 61, 71));
+        label_12->setStyleSheet(QString::fromUtf8("background-color:transparent;\n"
+"border:none;\n"
+"image: url(:/images/downarrow.png);"));
         IA2BUT = new QPushButton(centralwidget);
         IA2BUT->setObjectName(QString::fromUtf8("IA2BUT"));
         IA2BUT->setGeometry(QRect(430, 330, 81, 81));
@@ -2413,9 +2408,9 @@ public:
 ""));
         label_6 = new QLabel(centralwidget);
         label_6->setObjectName(QString::fromUtf8("label_6"));
-        label_6->setGeometry(QRect(540, 270, 61, 91));
-        label_6->setStyleSheet(QString::fromUtf8("image: url(:/images/leftside.png);\n"
-"background-color:transparent;\n"
+        label_6->setGeometry(QRect(530, 280, 61, 71));
+        label_6->setStyleSheet(QString::fromUtf8("background-color:transparent;\n"
+"image: url(:/images/leftcross.png);\n"
 "border:none;"));
         ULTRASONICBUT1 = new QPushButton(centralwidget);
         ULTRASONICBUT1->setObjectName(QString::fromUtf8("ULTRASONICBUT1"));
@@ -2434,30 +2429,15 @@ public:
 ""));
         label_3 = new QLabel(centralwidget);
         label_3->setObjectName(QString::fromUtf8("label_3"));
-        label_3->setGeometry(QRect(670, 280, 61, 81));
-        label_3->setStyleSheet(QString::fromUtf8("image: url(:/images/upcrossr.png);\n"
-"background-color:transparent;\n"
-"border:none;"));
-        ULTRASONICBUT3 = new QPushButton(centralwidget);
-        ULTRASONICBUT3->setObjectName(QString::fromUtf8("ULTRASONICBUT3"));
-        ULTRASONICBUT3->setGeometry(QRect(710, 440, 81, 81));
-        ULTRASONICBUT3->setStyleSheet(QString::fromUtf8("QPushButton{font:15pt \"Ubuntu\";\n"
-"image: url(:/images/glass.png);\n"
-"\n"
-"\n"
-"border-radius:40px;\n"
-"border:none;font-weight: bold;border:\n"
-"}\n"
-"QPushButton:focus {\n"
-"    outline: none;\n"
-"    border: none;\n"
-"}\n"
-""));
+        label_3->setGeometry(QRect(670, 280, 61, 71));
+        label_3->setStyleSheet(QString::fromUtf8("background-color:transparent;\n"
+"border:none;\n"
+"image: url(:/images/upcrossr.png);"));
         label_5 = new QLabel(centralwidget);
         label_5->setObjectName(QString::fromUtf8("label_5"));
-        label_5->setGeometry(QRect(500, 330, 61, 81));
-        label_5->setStyleSheet(QString::fromUtf8("image: url(:/images/left.png);\n"
-"background-color:transparent;\n"
+        label_5->setGeometry(QRect(500, 340, 61, 71));
+        label_5->setStyleSheet(QString::fromUtf8("background-color:transparent;\n"
+"image: url(:/images/left.png);\n"
 "border:none;"));
         IA1BUT = new QPushButton(centralwidget);
         IA1BUT->setObjectName(QString::fromUtf8("IA1BUT"));
@@ -2491,19 +2471,19 @@ public:
 ""));
         label_13 = new QLabel(centralwidget);
         label_13->setObjectName(QString::fromUtf8("label_13"));
-        label_13->setGeometry(QRect(530, 410, 61, 71));
-        label_13->setStyleSheet(QString::fromUtf8("image: url(:/images/leftdown.png);\n"
-"background-color:transparent;\n"
-"border:none;"));
+        label_13->setGeometry(QRect(520, 410, 61, 71));
+        label_13->setStyleSheet(QString::fromUtf8("background-color:transparent;\n"
+"border:none;\n"
+"image: url(:/images/leftdown.png);"));
         label_4 = new QLabel(centralwidget);
         label_4->setObjectName(QString::fromUtf8("label_4"));
-        label_4->setGeometry(QRect(700, 340, 61, 81));
-        label_4->setStyleSheet(QString::fromUtf8("image: url(:/images/straightr.png);\n"
-"background-color:transparent;\n"
-"border:none;"));
+        label_4->setGeometry(QRect(700, 350, 61, 71));
+        label_4->setStyleSheet(QString::fromUtf8("background-color:transparent;\n"
+"border:none;\n"
+"image: url(:/images/straightr.png);"));
         ULTRASONICBUT4 = new QPushButton(centralwidget);
         ULTRASONICBUT4->setObjectName(QString::fromUtf8("ULTRASONICBUT4"));
-        ULTRASONICBUT4->setGeometry(QRect(590, 490, 81, 81));
+        ULTRASONICBUT4->setGeometry(QRect(600, 500, 81, 81));
         ULTRASONICBUT4->setStyleSheet(QString::fromUtf8("QPushButton{font:15pt \"Ubuntu\";\n"
 "image: url(:/images/glass.png);\n"
 "\n"
@@ -2518,7 +2498,7 @@ public:
 ""));
         DIABUT = new QPushButton(centralwidget);
         DIABUT->setObjectName(QString::fromUtf8("DIABUT"));
-        DIABUT->setGeometry(QRect(600, 190, 81, 81));
+        DIABUT->setGeometry(QRect(590, 180, 81, 81));
         DIABUT->setStyleSheet(QString::fromUtf8("QPushButton{font:15pt \"Ubuntu\";\n"
 "image: url(:/images/glass.png);\n"
 "\n"
@@ -2533,10 +2513,10 @@ public:
 ""));
         label_11 = new QLabel(centralwidget);
         label_11->setObjectName(QString::fromUtf8("label_11"));
-        label_11->setGeometry(QRect(620, 270, 41, 51));
-        label_11->setStyleSheet(QString::fromUtf8("image: url(:/images/uparrow.png);\n"
-"background-color:transparent;\n"
-"border:none;"));
+        label_11->setGeometry(QRect(580, 250, 111, 71));
+        label_11->setStyleSheet(QString::fromUtf8("background-color:transparent;\n"
+"border:none;\n"
+"image: url(:/images/uparrow.png);"));
         label_15 = new QLabel(centralwidget);
         label_15->setObjectName(QString::fromUtf8("label_15"));
         label_15->setGeometry(QRect(-720, 400, 191, 71));
@@ -2544,13 +2524,6 @@ public:
 "background-color: rgb(192, 28, 40);\n"
 "border:4px solid black;\n"
 "border-radius:20px;"));
-        label_2 = new QLabel(centralwidget);
-        label_2->setObjectName(QString::fromUtf8("label_2"));
-        label_2->setGeometry(QRect(390, 160, 451, 451));
-        label_2->setStyleSheet(QString::fromUtf8("border-radius:170px;\n"
-"image: url(:/images/EYE.png);\n"
-"background-color:transparent;\n"
-""));
         label_10 = new QLabel(centralwidget);
         label_10->setObjectName(QString::fromUtf8("label_10"));
         label_10->setGeometry(QRect(0, -40, 1401, 51));
@@ -2559,31 +2532,6 @@ public:
 "\n"
 "\n"
 ""));
-        pushButton_42 = new QPushButton(centralwidget);
-        pushButton_42->setObjectName(QString::fromUtf8("pushButton_42"));
-        pushButton_42->setGeometry(QRect(590, 340, 81, 71));
-        pushButton_42->setLayoutDirection(Qt::LeftToRight);
-        pushButton_42->setStyleSheet(QString::fromUtf8("font:50pt \"Ubuntu\";\n"
-"\n"
-"color: rgb(255, 255, 255);\n"
-"background-color:transparent;\n"
-"border:none;\n"
-"font-weight: bold;\n"
-""));
-        dial_2 = new QDial(centralwidget);
-        dial_2->setObjectName(QString::fromUtf8("dial_2"));
-        dial_2->setEnabled(false);
-        dial_2->setGeometry(QRect(520, 300, 221, 161));
-        dial_2->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);\n"
-"\n"
-"image: url(:/images/close.png);\n"
-""));
-        dial_2->setSliderPosition(0);
-        dial_2->setInvertedAppearance(false);
-        dial_2->setInvertedControls(false);
-        dial_2->setWrapping(false);
-        dial_2->setNotchTarget(0.000000000000000);
-        dial_2->setNotchesVisible(true);
         tabWidget_2 = new QTabWidget(centralwidget);
         tabWidget_2->setObjectName(QString::fromUtf8("tabWidget_2"));
         tabWidget_2->setGeometry(QRect(920, 400, 331, 261));
@@ -2846,18 +2794,13 @@ public:
 ""));
         label_16 = new QLabel(centralwidget);
         label_16->setObjectName(QString::fromUtf8("label_16"));
-        label_16->setGeometry(QRect(740, 300, 41, 31));
+        label_16->setGeometry(QRect(760, 300, 41, 31));
         label_16->setStyleSheet(QString::fromUtf8("image: url(:/images/locked.png);\n"
 "background-color:transparent;"));
         label_17 = new QLabel(centralwidget);
         label_17->setObjectName(QString::fromUtf8("label_17"));
-        label_17->setGeometry(QRect(740, 390, 41, 31));
+        label_17->setGeometry(QRect(750, 400, 41, 31));
         label_17->setStyleSheet(QString::fromUtf8("image: url(:/images/locked.png);\n"
-"background-color:transparent;"));
-        label_18 = new QLabel(centralwidget);
-        label_18->setObjectName(QString::fromUtf8("label_18"));
-        label_18->setGeometry(QRect(690, 490, 41, 31));
-        label_18->setStyleSheet(QString::fromUtf8("image: url(:/images/locked.png);\n"
 "background-color:transparent;"));
         label_27 = new QLabel(centralwidget);
         label_27->setObjectName(QString::fromUtf8("label_27"));
@@ -2945,14 +2888,72 @@ public:
 "}"));
         pushButton = new QPushButton(centralwidget);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        pushButton->setGeometry(QRect(658, 604, 211, 71));
+        pushButton->setGeometry(QRect(658, 604, 181, 71));
         pushButton->setStyleSheet(QString::fromUtf8("image: url(:/images/handpiece1.png);\n"
 "background-color:Red;\n"
 "border:3px solid black;\n"
 "border-radius:20px;"));
+        dial_2 = new QDial(centralwidget);
+        dial_2->setObjectName(QString::fromUtf8("dial_2"));
+        dial_2->setEnabled(false);
+        dial_2->setGeometry(QRect(520, 300, 221, 161));
+        dial_2->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);\n"
+"\n"
+"image: url(:/images/close.png);\n"
+""));
+        dial_2->setSliderPosition(0);
+        dial_2->setInvertedAppearance(false);
+        dial_2->setInvertedControls(false);
+        dial_2->setWrapping(false);
+        dial_2->setNotchTarget(0.000000000000000);
+        dial_2->setNotchesVisible(true);
+        pushButton_42 = new QPushButton(centralwidget);
+        pushButton_42->setObjectName(QString::fromUtf8("pushButton_42"));
+        pushButton_42->setGeometry(QRect(590, 340, 81, 71));
+        pushButton_42->setLayoutDirection(Qt::LeftToRight);
+        pushButton_42->setStyleSheet(QString::fromUtf8("font:50pt \"Ubuntu\";\n"
+"\n"
+"color: rgb(255, 255, 255);\n"
+"background-color:transparent;\n"
+"border:none;\n"
+"font-weight: bold;\n"
+""));
+        ULTRASONICBUT3 = new QPushButton(centralwidget);
+        ULTRASONICBUT3->setObjectName(QString::fromUtf8("ULTRASONICBUT3"));
+        ULTRASONICBUT3->setGeometry(QRect(720, 440, 81, 81));
+        ULTRASONICBUT3->setStyleSheet(QString::fromUtf8("QPushButton{font:15pt \"Ubuntu\";\n"
+"image: url(:/images/glass.png);\n"
+"\n"
+"\n"
+"border-radius:40px;\n"
+"border:none;font-weight: bold;border:\n"
+"}\n"
+"QPushButton:focus {\n"
+"    outline: none;\n"
+"    border: none;\n"
+"}\n"
+""));
+        label_2 = new QLabel(centralwidget);
+        label_2->setObjectName(QString::fromUtf8("label_2"));
+        label_2->setGeometry(QRect(390, 160, 451, 451));
+        label_2->setStyleSheet(QString::fromUtf8("border-radius:170px;\n"
+"image: url(:/images/EYE.png);\n"
+"background-color:transparent;\n"
+""));
+        label_18 = new QLabel(centralwidget);
+        label_18->setObjectName(QString::fromUtf8("label_18"));
+        label_18->setGeometry(QRect(710, 500, 41, 31));
+        label_18->setStyleSheet(QString::fromUtf8("image: url(:/images/locked.png);\n"
+"background-color:transparent;"));
+        label_19 = new QLabel(centralwidget);
+        label_19->setObjectName(QString::fromUtf8("label_19"));
+        label_19->setGeometry(QRect(820, 620, 61, 41));
+        label_19->setStyleSheet(QString::fromUtf8("background-color:transparent;\n"
+"border:none;\n"
+"image: url(:/images/singletick.png);"));
         MainWindow->setCentralWidget(centralwidget);
-        SETTINGS_BUT_3->raise();
         comboBox->raise();
+        SETTINGS_BUT_3->raise();
         label->raise();
         tabWidget->raise();
         tabWidget_2->raise();
@@ -2964,42 +2965,43 @@ public:
         label_30->raise();
         label_31->raise();
         label_29->raise();
-        label_2->raise();
-        label_6->raise();
-        label_12->raise();
-        label_13->raise();
         label_9->raise();
-        ULTRASONICBUT4->raise();
         label_10->raise();
-        label_15->raise();
-        label_27->raise();
+        label_32->raise();
+        BACKBUT->raise();
+        label_2->raise();
+        IA1BUT->raise();
+        ULTRASONICBUT4->raise();
         ULTRASONICBUT3->raise();
+        ULTRASONICBUT2->raise();
         ULTRASONICBUT1->raise();
         IA2BUT->raise();
-        label_16->raise();
         VITRECTOMYBUT->raise();
-        label_5->raise();
-        ULTRASONICBUT2->raise();
-        label_18->raise();
-        label_3->raise();
-        label_14->raise();
-        label_4->raise();
-        label_11->raise();
-        IA1BUT->raise();
         DIABUT->raise();
-        dial_2->raise();
         pushButton_42->raise();
-        label_32->raise();
-        label_17->raise();
-        BACKBUT->raise();
+        label_4->raise();
+        label_13->raise();
+        label_3->raise();
+        label_6->raise();
+        label_12->raise();
+        label_14->raise();
+        label_15->raise();
+        label_5->raise();
+        label_11->raise();
+        dial_2->raise();
         pushButton->raise();
+        label_19->raise();
+        label_16->raise();
+        label_17->raise();
+        label_18->raise();
+        label_27->raise();
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
         MainWindow->setStatusBar(statusbar);
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(4);
         tabWidget_2->setCurrentIndex(0);
 
 
@@ -3281,7 +3283,6 @@ public:
         label_6->setText(QString());
         ULTRASONICBUT1->setText(QCoreApplication::translate("MainWindow", "U/S1", nullptr));
         label_3->setText(QString());
-        ULTRASONICBUT3->setText(QCoreApplication::translate("MainWindow", "U/S3", nullptr));
         label_5->setText(QString());
         IA1BUT->setText(QCoreApplication::translate("MainWindow", "I/A 1", nullptr));
         ULTRASONICBUT2->setText(QCoreApplication::translate("MainWindow", "U/S2", nullptr));
@@ -3291,9 +3292,7 @@ public:
         DIABUT->setText(QCoreApplication::translate("MainWindow", "DIA", nullptr));
         label_11->setText(QString());
         label_15->setText(QString());
-        label_2->setText(QString());
         label_10->setText(QString());
-        pushButton_42->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
         tabWidget_2->setTabText(tabWidget_2->indexOf(tab_41), QCoreApplication::translate("MainWindow", "Page", nullptr));
         lineEdit_75->setText(QCoreApplication::translate("MainWindow", "15", nullptr));
         pulseup_but->setText(QString());
@@ -3326,13 +3325,12 @@ public:
         CI5_5->setText(QString());
         SETTINGS_BUT_2->setText(QString());
         elapsed_time->setText(QCoreApplication::translate("MainWindow", "23.65 sec", nullptr));
-        comboBox->setItemText(0, QCoreApplication::translate("MainWindow", "Peristatic", nullptr));
+        comboBox->setItemText(0, QCoreApplication::translate("MainWindow", "Peristaltic", nullptr));
         comboBox->setItemText(1, QCoreApplication::translate("MainWindow", "Venturi", nullptr));
 
         label_9->setText(QString());
         label_16->setText(QString());
         label_17->setText(QString());
-        label_18->setText(QString());
         label_27->setText(QString());
         label_29->setText(QString());
         comboBox_4->setItemText(0, QCoreApplication::translate("MainWindow", "Surgeon 1", nullptr));
@@ -3347,6 +3345,11 @@ public:
         label_32->setText(QString());
         SETTINGS_BUT_3->setText(QString());
         pushButton->setText(QString());
+        pushButton_42->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
+        ULTRASONICBUT3->setText(QCoreApplication::translate("MainWindow", "U/S3", nullptr));
+        label_2->setText(QString());
+        label_18->setText(QString());
+        label_19->setText(QString());
     } // retranslateUi
 
 };

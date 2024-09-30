@@ -124,98 +124,98 @@ QT_MOC_LITERAL(88, 998, 7), // "ia1mode"
 QT_MOC_LITERAL(89, 1006, 7), // "ia2mode"
 QT_MOC_LITERAL(90, 1014, 7), // "vitmode"
 QT_MOC_LITERAL(91, 1022, 10), // "vitvacmode"
-QT_MOC_LITERAL(92, 1033, 7), // "label43"
-QT_MOC_LITERAL(93, 1041, 7), // "sensor2"
-QT_MOC_LITERAL(94, 1049, 14), // "ULTRASONICBUT1"
-QT_MOC_LITERAL(95, 1064, 14), // "ULTRASONICBUT2"
-QT_MOC_LITERAL(96, 1079, 14), // "ULTRASONICBUT4"
-QT_MOC_LITERAL(97, 1094, 14), // "IRRIGATIONBUT1"
-QT_MOC_LITERAL(98, 1109, 14), // "IRRIGATIONBUT2"
-QT_MOC_LITERAL(99, 1124, 13), // "VITRECTOMYBUT"
-QT_MOC_LITERAL(100, 1138, 8), // "diapowup"
-QT_MOC_LITERAL(101, 1147, 10), // "diapowdown"
-QT_MOC_LITERAL(102, 1158, 8), // "vitcutup"
-QT_MOC_LITERAL(103, 1167, 10), // "vitcutdown"
-QT_MOC_LITERAL(104, 1178, 8), // "vitvacup"
-QT_MOC_LITERAL(105, 1187, 10), // "vitvacdown"
-QT_MOC_LITERAL(106, 1198, 9), // "vitflowup"
-QT_MOC_LITERAL(107, 1208, 11), // "vitflowdown"
-QT_MOC_LITERAL(108, 1220, 8), // "ia2vacup"
-QT_MOC_LITERAL(109, 1229, 10), // "ia2vacdown"
-QT_MOC_LITERAL(110, 1240, 9), // "ia2flowup"
-QT_MOC_LITERAL(111, 1250, 11), // "ia2flowdown"
-QT_MOC_LITERAL(112, 1262, 8), // "ia1vacup"
-QT_MOC_LITERAL(113, 1271, 10), // "ia1vacdown"
-QT_MOC_LITERAL(114, 1282, 9), // "ia1flowup"
-QT_MOC_LITERAL(115, 1292, 11), // "ia1flowdown"
-QT_MOC_LITERAL(116, 1304, 8), // "US1POWUP"
-QT_MOC_LITERAL(117, 1313, 10), // "US1POWDOWN"
-QT_MOC_LITERAL(118, 1324, 10), // "US1VACDOWN"
-QT_MOC_LITERAL(119, 1335, 8), // "US1VACUP"
-QT_MOC_LITERAL(120, 1344, 11), // "US1FLOWDOWN"
-QT_MOC_LITERAL(121, 1356, 9), // "US1FLOWUP"
-QT_MOC_LITERAL(122, 1366, 8), // "us2powup"
-QT_MOC_LITERAL(123, 1375, 10), // "us2powdown"
-QT_MOC_LITERAL(124, 1386, 8), // "us2vacup"
-QT_MOC_LITERAL(125, 1395, 10), // "us2vacdown"
-QT_MOC_LITERAL(126, 1406, 9), // "us2flowup"
-QT_MOC_LITERAL(127, 1416, 11), // "us2flowdown"
-QT_MOC_LITERAL(128, 1428, 14), // "ULTRASONICBUT3"
-QT_MOC_LITERAL(129, 1443, 8), // "us3powup"
-QT_MOC_LITERAL(130, 1452, 10), // "us3powdown"
-QT_MOC_LITERAL(131, 1463, 8), // "us3vacup"
-QT_MOC_LITERAL(132, 1472, 10), // "us3vacdown"
-QT_MOC_LITERAL(133, 1483, 9), // "us3flowup"
-QT_MOC_LITERAL(134, 1493, 11), // "us3flowdown"
-QT_MOC_LITERAL(135, 1505, 8), // "us4powup"
-QT_MOC_LITERAL(136, 1514, 10), // "us4powdown"
-QT_MOC_LITERAL(137, 1525, 8), // "us4vacup"
-QT_MOC_LITERAL(138, 1534, 10), // "us4vacdown"
-QT_MOC_LITERAL(139, 1545, 9), // "us4flowup"
-QT_MOC_LITERAL(140, 1555, 11), // "us4flowdown"
-QT_MOC_LITERAL(141, 1567, 7), // "BACKBUT"
-QT_MOC_LITERAL(142, 1575, 20), // "us1_linear_nonlinear"
-QT_MOC_LITERAL(143, 1596, 20), // "us2_linear_nonlinear"
-QT_MOC_LITERAL(144, 1617, 20), // "us3_linear_nonlinear"
-QT_MOC_LITERAL(145, 1638, 20), // "us4_linear_nonlinear"
-QT_MOC_LITERAL(146, 1659, 20), // "ia1_linear_nonlinear"
-QT_MOC_LITERAL(147, 1680, 20), // "ia2_linear_nonlinear"
-QT_MOC_LITERAL(148, 1701, 20), // "vit_linear_nonlinear"
-QT_MOC_LITERAL(149, 1722, 12), // "pulseup_mode"
-QT_MOC_LITERAL(150, 1735, 14), // "pulsedown_mode"
-QT_MOC_LITERAL(151, 1750, 15), // "ocuburstup_mode"
-QT_MOC_LITERAL(152, 1766, 17), // "ocuburstdown_mode"
-QT_MOC_LITERAL(153, 1784, 18), // "singleburstup_mode"
-QT_MOC_LITERAL(154, 1803, 20), // "singleburstdown_mode"
-QT_MOC_LITERAL(155, 1824, 17), // "multiburstup_mode"
-QT_MOC_LITERAL(156, 1842, 19), // "multiburstdown_mode"
-QT_MOC_LITERAL(157, 1862, 15), // "ocupulseup_mode"
-QT_MOC_LITERAL(158, 1878, 17), // "ocupulsedown_mode"
-QT_MOC_LITERAL(159, 1896, 16), // "coldphacoup_mode"
-QT_MOC_LITERAL(160, 1913, 18), // "coldphacodown_mode"
-QT_MOC_LITERAL(161, 1932, 17), // "coldphaco1up_mode"
-QT_MOC_LITERAL(162, 1950, 19), // "coldphaco1down_mode"
-QT_MOC_LITERAL(163, 1970, 21), // "updatehandpieceStatus"
-QT_MOC_LITERAL(164, 1992, 12), // "updatesensor"
-QT_MOC_LITERAL(165, 2005, 21), // "onUpdateStatusTimeout"
-QT_MOC_LITERAL(166, 2027, 12), // "updateTimers"
-QT_MOC_LITERAL(167, 2040, 19), // "on_us1onoff_clicked"
-QT_MOC_LITERAL(168, 2060, 19), // "on_us2onoff_clicked"
-QT_MOC_LITERAL(169, 2080, 19), // "on_us3onoff_clicked"
-QT_MOC_LITERAL(170, 2100, 19), // "on_us4onoff_clicked"
-QT_MOC_LITERAL(171, 2120, 19), // "on_vitonoff_clicked"
-QT_MOC_LITERAL(172, 2140, 17), // "doctorwindow_show"
-QT_MOC_LITERAL(173, 2158, 11), // "Sugroenname"
-QT_MOC_LITERAL(174, 2170, 20), // "footpedalwindow_show"
-QT_MOC_LITERAL(175, 2191, 21), // "on_us1vacmode_clicked"
-QT_MOC_LITERAL(176, 2213, 21), // "on_us2vacmode_clicked"
-QT_MOC_LITERAL(177, 2235, 21), // "on_us3vacmode_clicked"
-QT_MOC_LITERAL(178, 2257, 21), // "on_vitvacmode_clicked"
-QT_MOC_LITERAL(179, 2279, 21), // "on_us4vacmode_clicked"
-QT_MOC_LITERAL(180, 2301, 16), // "on_CI4_2_clicked"
-QT_MOC_LITERAL(181, 2318, 25), // "on_SETTINGS_BUT_2_clicked"
-QT_MOC_LITERAL(182, 2344, 24), // "on_pushButton_42_clicked"
-QT_MOC_LITERAL(183, 2369, 21) // "on_pushButton_clicked"
+QT_MOC_LITERAL(92, 1033, 21), // "on_pushButton_clicked"
+QT_MOC_LITERAL(93, 1055, 7), // "label43"
+QT_MOC_LITERAL(94, 1063, 7), // "sensor2"
+QT_MOC_LITERAL(95, 1071, 14), // "ULTRASONICBUT1"
+QT_MOC_LITERAL(96, 1086, 14), // "ULTRASONICBUT2"
+QT_MOC_LITERAL(97, 1101, 14), // "ULTRASONICBUT4"
+QT_MOC_LITERAL(98, 1116, 14), // "IRRIGATIONBUT1"
+QT_MOC_LITERAL(99, 1131, 14), // "IRRIGATIONBUT2"
+QT_MOC_LITERAL(100, 1146, 13), // "VITRECTOMYBUT"
+QT_MOC_LITERAL(101, 1160, 8), // "diapowup"
+QT_MOC_LITERAL(102, 1169, 10), // "diapowdown"
+QT_MOC_LITERAL(103, 1180, 8), // "vitcutup"
+QT_MOC_LITERAL(104, 1189, 10), // "vitcutdown"
+QT_MOC_LITERAL(105, 1200, 8), // "vitvacup"
+QT_MOC_LITERAL(106, 1209, 10), // "vitvacdown"
+QT_MOC_LITERAL(107, 1220, 9), // "vitflowup"
+QT_MOC_LITERAL(108, 1230, 11), // "vitflowdown"
+QT_MOC_LITERAL(109, 1242, 8), // "ia2vacup"
+QT_MOC_LITERAL(110, 1251, 10), // "ia2vacdown"
+QT_MOC_LITERAL(111, 1262, 9), // "ia2flowup"
+QT_MOC_LITERAL(112, 1272, 11), // "ia2flowdown"
+QT_MOC_LITERAL(113, 1284, 8), // "ia1vacup"
+QT_MOC_LITERAL(114, 1293, 10), // "ia1vacdown"
+QT_MOC_LITERAL(115, 1304, 9), // "ia1flowup"
+QT_MOC_LITERAL(116, 1314, 11), // "ia1flowdown"
+QT_MOC_LITERAL(117, 1326, 8), // "US1POWUP"
+QT_MOC_LITERAL(118, 1335, 10), // "US1POWDOWN"
+QT_MOC_LITERAL(119, 1346, 10), // "US1VACDOWN"
+QT_MOC_LITERAL(120, 1357, 8), // "US1VACUP"
+QT_MOC_LITERAL(121, 1366, 11), // "US1FLOWDOWN"
+QT_MOC_LITERAL(122, 1378, 9), // "US1FLOWUP"
+QT_MOC_LITERAL(123, 1388, 8), // "us2powup"
+QT_MOC_LITERAL(124, 1397, 10), // "us2powdown"
+QT_MOC_LITERAL(125, 1408, 8), // "us2vacup"
+QT_MOC_LITERAL(126, 1417, 10), // "us2vacdown"
+QT_MOC_LITERAL(127, 1428, 9), // "us2flowup"
+QT_MOC_LITERAL(128, 1438, 11), // "us2flowdown"
+QT_MOC_LITERAL(129, 1450, 14), // "ULTRASONICBUT3"
+QT_MOC_LITERAL(130, 1465, 8), // "us3powup"
+QT_MOC_LITERAL(131, 1474, 10), // "us3powdown"
+QT_MOC_LITERAL(132, 1485, 8), // "us3vacup"
+QT_MOC_LITERAL(133, 1494, 10), // "us3vacdown"
+QT_MOC_LITERAL(134, 1505, 9), // "us3flowup"
+QT_MOC_LITERAL(135, 1515, 11), // "us3flowdown"
+QT_MOC_LITERAL(136, 1527, 8), // "us4powup"
+QT_MOC_LITERAL(137, 1536, 10), // "us4powdown"
+QT_MOC_LITERAL(138, 1547, 8), // "us4vacup"
+QT_MOC_LITERAL(139, 1556, 10), // "us4vacdown"
+QT_MOC_LITERAL(140, 1567, 9), // "us4flowup"
+QT_MOC_LITERAL(141, 1577, 11), // "us4flowdown"
+QT_MOC_LITERAL(142, 1589, 7), // "BACKBUT"
+QT_MOC_LITERAL(143, 1597, 20), // "us1_linear_nonlinear"
+QT_MOC_LITERAL(144, 1618, 20), // "us2_linear_nonlinear"
+QT_MOC_LITERAL(145, 1639, 20), // "us3_linear_nonlinear"
+QT_MOC_LITERAL(146, 1660, 20), // "us4_linear_nonlinear"
+QT_MOC_LITERAL(147, 1681, 20), // "ia1_linear_nonlinear"
+QT_MOC_LITERAL(148, 1702, 20), // "ia2_linear_nonlinear"
+QT_MOC_LITERAL(149, 1723, 20), // "vit_linear_nonlinear"
+QT_MOC_LITERAL(150, 1744, 12), // "pulseup_mode"
+QT_MOC_LITERAL(151, 1757, 14), // "pulsedown_mode"
+QT_MOC_LITERAL(152, 1772, 15), // "ocuburstup_mode"
+QT_MOC_LITERAL(153, 1788, 17), // "ocuburstdown_mode"
+QT_MOC_LITERAL(154, 1806, 18), // "singleburstup_mode"
+QT_MOC_LITERAL(155, 1825, 20), // "singleburstdown_mode"
+QT_MOC_LITERAL(156, 1846, 17), // "multiburstup_mode"
+QT_MOC_LITERAL(157, 1864, 19), // "multiburstdown_mode"
+QT_MOC_LITERAL(158, 1884, 15), // "ocupulseup_mode"
+QT_MOC_LITERAL(159, 1900, 17), // "ocupulsedown_mode"
+QT_MOC_LITERAL(160, 1918, 16), // "coldphacoup_mode"
+QT_MOC_LITERAL(161, 1935, 18), // "coldphacodown_mode"
+QT_MOC_LITERAL(162, 1954, 17), // "coldphaco1up_mode"
+QT_MOC_LITERAL(163, 1972, 19), // "coldphaco1down_mode"
+QT_MOC_LITERAL(164, 1992, 21), // "updatehandpieceStatus"
+QT_MOC_LITERAL(165, 2014, 12), // "updatesensor"
+QT_MOC_LITERAL(166, 2027, 21), // "onUpdateStatusTimeout"
+QT_MOC_LITERAL(167, 2049, 12), // "updateTimers"
+QT_MOC_LITERAL(168, 2062, 19), // "on_us1onoff_clicked"
+QT_MOC_LITERAL(169, 2082, 19), // "on_us2onoff_clicked"
+QT_MOC_LITERAL(170, 2102, 19), // "on_us3onoff_clicked"
+QT_MOC_LITERAL(171, 2122, 19), // "on_us4onoff_clicked"
+QT_MOC_LITERAL(172, 2142, 19), // "on_vitonoff_clicked"
+QT_MOC_LITERAL(173, 2162, 17), // "doctorwindow_show"
+QT_MOC_LITERAL(174, 2180, 11), // "Sugroenname"
+QT_MOC_LITERAL(175, 2192, 20), // "footpedalwindow_show"
+QT_MOC_LITERAL(176, 2213, 21), // "on_us1vacmode_clicked"
+QT_MOC_LITERAL(177, 2235, 21), // "on_us2vacmode_clicked"
+QT_MOC_LITERAL(178, 2257, 21), // "on_us3vacmode_clicked"
+QT_MOC_LITERAL(179, 2279, 21), // "on_vitvacmode_clicked"
+QT_MOC_LITERAL(180, 2301, 21), // "on_us4vacmode_clicked"
+QT_MOC_LITERAL(181, 2323, 16), // "on_CI4_2_clicked"
+QT_MOC_LITERAL(182, 2340, 25), // "on_SETTINGS_BUT_2_clicked"
+QT_MOC_LITERAL(183, 2366, 24) // "on_pushButton_42_clicked"
 
     },
     "MainWindow\0sensorValueChanged\0\0value\0"
@@ -248,13 +248,13 @@ QT_MOC_LITERAL(183, 2369, 21) // "on_pushButton_clicked"
     "us3powmode\0us3vacmode\0us3powermethod\0"
     "us4powmode\0us4vacmode\0us4powermethod\0"
     "ia1mode\0ia2mode\0vitmode\0vitvacmode\0"
-    "label43\0sensor2\0ULTRASONICBUT1\0"
-    "ULTRASONICBUT2\0ULTRASONICBUT4\0"
-    "IRRIGATIONBUT1\0IRRIGATIONBUT2\0"
-    "VITRECTOMYBUT\0diapowup\0diapowdown\0"
-    "vitcutup\0vitcutdown\0vitvacup\0vitvacdown\0"
-    "vitflowup\0vitflowdown\0ia2vacup\0"
-    "ia2vacdown\0ia2flowup\0ia2flowdown\0"
+    "on_pushButton_clicked\0label43\0sensor2\0"
+    "ULTRASONICBUT1\0ULTRASONICBUT2\0"
+    "ULTRASONICBUT4\0IRRIGATIONBUT1\0"
+    "IRRIGATIONBUT2\0VITRECTOMYBUT\0diapowup\0"
+    "diapowdown\0vitcutup\0vitcutdown\0vitvacup\0"
+    "vitvacdown\0vitflowup\0vitflowdown\0"
+    "ia2vacup\0ia2vacdown\0ia2flowup\0ia2flowdown\0"
     "ia1vacup\0ia1vacdown\0ia1flowup\0ia1flowdown\0"
     "US1POWUP\0US1POWDOWN\0US1VACDOWN\0US1VACUP\0"
     "US1FLOWDOWN\0US1FLOWUP\0us2powup\0"
@@ -283,7 +283,7 @@ QT_MOC_LITERAL(183, 2369, 21) // "on_pushButton_clicked"
     "on_us2vacmode_clicked\0on_us3vacmode_clicked\0"
     "on_vitvacmode_clicked\0on_us4vacmode_clicked\0"
     "on_CI4_2_clicked\0on_SETTINGS_BUT_2_clicked\0"
-    "on_pushButton_42_clicked\0on_pushButton_clicked"
+    "on_pushButton_42_clicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -342,7 +342,7 @@ static const uint qt_meta_data_MainWindow[] = {
       50,    1,  764,    2, 0x0a /* Public */,
       52,    1,  767,    2, 0x0a /* Public */,
       53,   38,  770,    2, 0x0a /* Public */,
-      92,    0,  847,    2, 0x08 /* Private */,
+      92,    0,  847,    2, 0x0a /* Public */,
       93,    0,  848,    2, 0x08 /* Private */,
       94,    0,  849,    2, 0x08 /* Private */,
       95,    0,  850,    2, 0x08 /* Private */,
@@ -422,8 +422,8 @@ static const uint qt_meta_data_MainWindow[] = {
      169,    0,  924,    2, 0x08 /* Private */,
      170,    0,  925,    2, 0x08 /* Private */,
      171,    0,  926,    2, 0x08 /* Private */,
-     172,    1,  927,    2, 0x08 /* Private */,
-     174,    0,  930,    2, 0x08 /* Private */,
+     172,    0,  927,    2, 0x08 /* Private */,
+     173,    1,  928,    2, 0x08 /* Private */,
      175,    0,  931,    2, 0x08 /* Private */,
      176,    0,  932,    2, 0x08 /* Private */,
      177,    0,  933,    2, 0x08 /* Private */,
@@ -556,8 +556,8 @@ static const uint qt_meta_data_MainWindow[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QString,  173,
     QMetaType::Void,
+    QMetaType::Void, QMetaType::QString,  174,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -618,97 +618,97 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 36: _t->receivecombo((*reinterpret_cast< const QString(*)>(_a[1]))); break;
         case 37: _t->performpump((*reinterpret_cast< const QString(*)>(_a[1]))); break;
         case 38: _t->receiveValues((*reinterpret_cast< const QString(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2])),(*reinterpret_cast< int(*)>(_a[3])),(*reinterpret_cast< int(*)>(_a[4])),(*reinterpret_cast< int(*)>(_a[5])),(*reinterpret_cast< int(*)>(_a[6])),(*reinterpret_cast< int(*)>(_a[7])),(*reinterpret_cast< int(*)>(_a[8])),(*reinterpret_cast< int(*)>(_a[9])),(*reinterpret_cast< int(*)>(_a[10])),(*reinterpret_cast< int(*)>(_a[11])),(*reinterpret_cast< int(*)>(_a[12])),(*reinterpret_cast< int(*)>(_a[13])),(*reinterpret_cast< int(*)>(_a[14])),(*reinterpret_cast< int(*)>(_a[15])),(*reinterpret_cast< int(*)>(_a[16])),(*reinterpret_cast< int(*)>(_a[17])),(*reinterpret_cast< int(*)>(_a[18])),(*reinterpret_cast< int(*)>(_a[19])),(*reinterpret_cast< int(*)>(_a[20])),(*reinterpret_cast< int(*)>(_a[21])),(*reinterpret_cast< int(*)>(_a[22])),(*reinterpret_cast< const QString(*)>(_a[23])),(*reinterpret_cast< const QString(*)>(_a[24])),(*reinterpret_cast< const QString(*)>(_a[25])),(*reinterpret_cast< const QString(*)>(_a[26])),(*reinterpret_cast< const QString(*)>(_a[27])),(*reinterpret_cast< const QString(*)>(_a[28])),(*reinterpret_cast< const QString(*)>(_a[29])),(*reinterpret_cast< const QString(*)>(_a[30])),(*reinterpret_cast< const QString(*)>(_a[31])),(*reinterpret_cast< const QString(*)>(_a[32])),(*reinterpret_cast< const QString(*)>(_a[33])),(*reinterpret_cast< const QString(*)>(_a[34])),(*reinterpret_cast< const QString(*)>(_a[35])),(*reinterpret_cast< const QString(*)>(_a[36])),(*reinterpret_cast< const QString(*)>(_a[37])),(*reinterpret_cast< const QString(*)>(_a[38]))); break;
-        case 39: _t->label43(); break;
-        case 40: _t->sensor2(); break;
-        case 41: _t->ULTRASONICBUT1(); break;
-        case 42: _t->ULTRASONICBUT2(); break;
-        case 43: _t->ULTRASONICBUT4(); break;
-        case 44: _t->IRRIGATIONBUT1(); break;
-        case 45: _t->IRRIGATIONBUT2(); break;
-        case 46: _t->VITRECTOMYBUT(); break;
-        case 47: _t->diapowup(); break;
-        case 48: _t->diapowdown(); break;
-        case 49: _t->vitcutup(); break;
-        case 50: _t->vitcutdown(); break;
-        case 51: _t->vitvacup(); break;
-        case 52: _t->vitvacdown(); break;
-        case 53: _t->vitflowup(); break;
-        case 54: _t->vitflowdown(); break;
-        case 55: _t->ia2vacup(); break;
-        case 56: _t->ia2vacdown(); break;
-        case 57: _t->ia2flowup(); break;
-        case 58: _t->ia2flowdown(); break;
-        case 59: _t->ia1vacup(); break;
-        case 60: _t->ia1vacdown(); break;
-        case 61: _t->ia1flowup(); break;
-        case 62: _t->ia1flowdown(); break;
-        case 63: _t->US1POWUP(); break;
-        case 64: _t->US1POWDOWN(); break;
-        case 65: _t->US1VACDOWN(); break;
-        case 66: _t->US1VACUP(); break;
-        case 67: _t->US1FLOWDOWN(); break;
-        case 68: _t->US1FLOWUP(); break;
-        case 69: _t->us2powup(); break;
-        case 70: _t->us2powdown(); break;
-        case 71: _t->us2vacup(); break;
-        case 72: _t->us2vacdown(); break;
-        case 73: _t->us2flowup(); break;
-        case 74: _t->us2flowdown(); break;
-        case 75: _t->ULTRASONICBUT3(); break;
-        case 76: _t->us3powup(); break;
-        case 77: _t->us3powdown(); break;
-        case 78: _t->us3vacup(); break;
-        case 79: _t->us3vacdown(); break;
-        case 80: _t->us3flowup(); break;
-        case 81: _t->us3flowdown(); break;
-        case 82: _t->us4powup(); break;
-        case 83: _t->us4powdown(); break;
-        case 84: _t->us4vacup(); break;
-        case 85: _t->us4vacdown(); break;
-        case 86: _t->us4flowup(); break;
-        case 87: _t->us4flowdown(); break;
-        case 88: _t->BACKBUT(); break;
-        case 89: _t->us1_linear_nonlinear(); break;
-        case 90: _t->us2_linear_nonlinear(); break;
-        case 91: _t->us3_linear_nonlinear(); break;
-        case 92: _t->us4_linear_nonlinear(); break;
-        case 93: _t->ia1_linear_nonlinear(); break;
-        case 94: _t->ia2_linear_nonlinear(); break;
-        case 95: _t->vit_linear_nonlinear(); break;
-        case 96: _t->pulseup_mode(); break;
-        case 97: _t->pulsedown_mode(); break;
-        case 98: _t->ocuburstup_mode(); break;
-        case 99: _t->ocuburstdown_mode(); break;
-        case 100: _t->singleburstup_mode(); break;
-        case 101: _t->singleburstdown_mode(); break;
-        case 102: _t->multiburstup_mode(); break;
-        case 103: _t->multiburstdown_mode(); break;
-        case 104: _t->ocupulseup_mode(); break;
-        case 105: _t->ocupulsedown_mode(); break;
-        case 106: _t->coldphacoup_mode(); break;
-        case 107: _t->coldphacodown_mode(); break;
-        case 108: _t->coldphaco1up_mode(); break;
-        case 109: _t->coldphaco1down_mode(); break;
-        case 110: _t->updatehandpieceStatus(); break;
-        case 111: _t->updatesensor(); break;
-        case 112: _t->onUpdateStatusTimeout(); break;
-        case 113: _t->updateTimers(); break;
-        case 114: _t->on_us1onoff_clicked(); break;
-        case 115: _t->on_us2onoff_clicked(); break;
-        case 116: _t->on_us3onoff_clicked(); break;
-        case 117: _t->on_us4onoff_clicked(); break;
-        case 118: _t->on_vitonoff_clicked(); break;
-        case 119: _t->doctorwindow_show((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 120: _t->footpedalwindow_show(); break;
-        case 121: _t->on_us1vacmode_clicked(); break;
-        case 122: _t->on_us2vacmode_clicked(); break;
-        case 123: _t->on_us3vacmode_clicked(); break;
-        case 124: _t->on_vitvacmode_clicked(); break;
-        case 125: _t->on_us4vacmode_clicked(); break;
-        case 126: _t->on_CI4_2_clicked(); break;
-        case 127: _t->on_SETTINGS_BUT_2_clicked(); break;
-        case 128: _t->on_pushButton_42_clicked(); break;
-        case 129: _t->on_pushButton_clicked(); break;
+        case 39: _t->on_pushButton_clicked(); break;
+        case 40: _t->label43(); break;
+        case 41: _t->sensor2(); break;
+        case 42: _t->ULTRASONICBUT1(); break;
+        case 43: _t->ULTRASONICBUT2(); break;
+        case 44: _t->ULTRASONICBUT4(); break;
+        case 45: _t->IRRIGATIONBUT1(); break;
+        case 46: _t->IRRIGATIONBUT2(); break;
+        case 47: _t->VITRECTOMYBUT(); break;
+        case 48: _t->diapowup(); break;
+        case 49: _t->diapowdown(); break;
+        case 50: _t->vitcutup(); break;
+        case 51: _t->vitcutdown(); break;
+        case 52: _t->vitvacup(); break;
+        case 53: _t->vitvacdown(); break;
+        case 54: _t->vitflowup(); break;
+        case 55: _t->vitflowdown(); break;
+        case 56: _t->ia2vacup(); break;
+        case 57: _t->ia2vacdown(); break;
+        case 58: _t->ia2flowup(); break;
+        case 59: _t->ia2flowdown(); break;
+        case 60: _t->ia1vacup(); break;
+        case 61: _t->ia1vacdown(); break;
+        case 62: _t->ia1flowup(); break;
+        case 63: _t->ia1flowdown(); break;
+        case 64: _t->US1POWUP(); break;
+        case 65: _t->US1POWDOWN(); break;
+        case 66: _t->US1VACDOWN(); break;
+        case 67: _t->US1VACUP(); break;
+        case 68: _t->US1FLOWDOWN(); break;
+        case 69: _t->US1FLOWUP(); break;
+        case 70: _t->us2powup(); break;
+        case 71: _t->us2powdown(); break;
+        case 72: _t->us2vacup(); break;
+        case 73: _t->us2vacdown(); break;
+        case 74: _t->us2flowup(); break;
+        case 75: _t->us2flowdown(); break;
+        case 76: _t->ULTRASONICBUT3(); break;
+        case 77: _t->us3powup(); break;
+        case 78: _t->us3powdown(); break;
+        case 79: _t->us3vacup(); break;
+        case 80: _t->us3vacdown(); break;
+        case 81: _t->us3flowup(); break;
+        case 82: _t->us3flowdown(); break;
+        case 83: _t->us4powup(); break;
+        case 84: _t->us4powdown(); break;
+        case 85: _t->us4vacup(); break;
+        case 86: _t->us4vacdown(); break;
+        case 87: _t->us4flowup(); break;
+        case 88: _t->us4flowdown(); break;
+        case 89: _t->BACKBUT(); break;
+        case 90: _t->us1_linear_nonlinear(); break;
+        case 91: _t->us2_linear_nonlinear(); break;
+        case 92: _t->us3_linear_nonlinear(); break;
+        case 93: _t->us4_linear_nonlinear(); break;
+        case 94: _t->ia1_linear_nonlinear(); break;
+        case 95: _t->ia2_linear_nonlinear(); break;
+        case 96: _t->vit_linear_nonlinear(); break;
+        case 97: _t->pulseup_mode(); break;
+        case 98: _t->pulsedown_mode(); break;
+        case 99: _t->ocuburstup_mode(); break;
+        case 100: _t->ocuburstdown_mode(); break;
+        case 101: _t->singleburstup_mode(); break;
+        case 102: _t->singleburstdown_mode(); break;
+        case 103: _t->multiburstup_mode(); break;
+        case 104: _t->multiburstdown_mode(); break;
+        case 105: _t->ocupulseup_mode(); break;
+        case 106: _t->ocupulsedown_mode(); break;
+        case 107: _t->coldphacoup_mode(); break;
+        case 108: _t->coldphacodown_mode(); break;
+        case 109: _t->coldphaco1up_mode(); break;
+        case 110: _t->coldphaco1down_mode(); break;
+        case 111: _t->updatehandpieceStatus(); break;
+        case 112: _t->updatesensor(); break;
+        case 113: _t->onUpdateStatusTimeout(); break;
+        case 114: _t->updateTimers(); break;
+        case 115: _t->on_us1onoff_clicked(); break;
+        case 116: _t->on_us2onoff_clicked(); break;
+        case 117: _t->on_us3onoff_clicked(); break;
+        case 118: _t->on_us4onoff_clicked(); break;
+        case 119: _t->on_vitonoff_clicked(); break;
+        case 120: _t->doctorwindow_show((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 121: _t->footpedalwindow_show(); break;
+        case 122: _t->on_us1vacmode_clicked(); break;
+        case 123: _t->on_us2vacmode_clicked(); break;
+        case 124: _t->on_us3vacmode_clicked(); break;
+        case 125: _t->on_vitvacmode_clicked(); break;
+        case 126: _t->on_us4vacmode_clicked(); break;
+        case 127: _t->on_CI4_2_clicked(); break;
+        case 128: _t->on_SETTINGS_BUT_2_clicked(); break;
+        case 129: _t->on_pushButton_42_clicked(); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {

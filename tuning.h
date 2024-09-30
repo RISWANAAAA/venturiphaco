@@ -7,6 +7,7 @@
 #include<QtMath>
 #include"mainwindow.h"
 #include"hwhandler.h"
+#include"vaccum.h"
 namespace Ui {
 class tuning;
 }
@@ -27,6 +28,10 @@ public:
     int readGPIOValue(int pin);
     void updatehandpieceStatus();
     void updateProgress();
+void resetState();
+void circularporgressbar();
+public slots:
+void on_pushButton_clicked();
 
 protected:
     // Override paintEvent to draw the circular progress bar
@@ -34,12 +39,14 @@ protected:
     void paintEvent1(QPaintEvent *event);
 
 private slots:
-    void on_pushButton_clicked();
 
+    void on_pushButton_2_clicked();
+signals:
+    void sendvisibleisgnale(bool status);
 private:
     Ui::tuning *ui;
-    int m_value; // Holds the current value of the progress (0 to 100)
-    int m_value1; // Holds the current value of the progress (0 to 100)
+    int m_value=0; // Holds the current value of the progress (0 to 100)
+    int m_value1=0; // Holds the current value of the progress (0 to 100)
     int currentCircle;
     QTimer *timer;
      bool isRunning=false;
@@ -48,6 +55,9 @@ private:
       MainWindow *main;
       hwhandler *hand;
       QTimer *handpiece;
+      Vaccum *vacSensor;
+      bool powerState;
+        bool tuneCompleted = false;
 };
 
 #endif // TUNING_H

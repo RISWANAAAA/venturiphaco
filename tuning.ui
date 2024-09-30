@@ -16,16 +16,20 @@
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>310</x>
-     <y>350</y>
-     <width>231</width>
-     <height>61</height>
+     <x>170</x>
+     <y>280</y>
+     <width>561</width>
+     <height>141</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color:transparent;
+    <string notr="true">QPushButton{background-color:transparent;
 image: url(:/images/handpiece1.png);
-border:none;</string>
+border:none;}
+QPushButton:focus {
+    outline: none;
+    border: none;
+}</string>
    </property>
    <property name="text">
     <string/>
@@ -34,9 +38,9 @@ border:none;</string>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>380</x>
-     <y>300</y>
-     <width>91</width>
+     <x>400</x>
+     <y>270</y>
+     <width>131</width>
      <height>141</height>
     </rect>
    </property>
@@ -50,14 +54,31 @@ border:none;</string>
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>500</x>
-     <y>360</y>
-     <width>51</width>
-     <height>41</height>
+     <x>150</x>
+     <y>340</y>
+     <width>141</width>
+     <height>131</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">image: url(:/images/nonconnected.png);
+    <string notr="true">background-color:transparent;
+</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_2">
+   <property name="geometry">
+    <rect>
+     <x>690</x>
+     <y>570</y>
+     <width>151</width>
+     <height>121</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">image: url(:/images/nextarrow.png);
 background-color:transparent;
 border:none;</string>
    </property>

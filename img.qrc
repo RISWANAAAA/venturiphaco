@@ -79,5 +79,20 @@
         <file>handdddd.png</file>
         <file>nonconnected.png</file>
         <file>handpieceimg.png</file>
+        <file>selectedbut.png</file>
+        <file>unselectedbut.png</file>
+        <file>butsel.png</file>
+        <file>sidebut.png</file>
+        <file>downbut.png</file>
+        <file>downleft.png</file>
+        <file>downright.png</file>
+        <file>leftbut.png</file>
+        <file>rightside.png</file>
+        <file>upbut.png</file>
+        <file>leftsidebut.png</file>
+        <file>selectedbutton.png</file>
+        <file>unselectedbutton.png</file>
+        <file>doubled.png</file>
+        <file>singletick.png</file>
     </qresource>
 </RCC>

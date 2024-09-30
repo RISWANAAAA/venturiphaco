@@ -31,6 +31,7 @@ MainWindow::MainWindow(QWidget *parent)
     key=new keypad;
     footsensor=new QTimer;
     lfoot=new footlib;
+    ui->label_32->hide();
 
     ui->CutMode_vit->hide();
     ui->CutMode_vitCom->hide();
@@ -85,7 +86,10 @@ MainWindow::MainWindow(QWidget *parent)
 
 //connection for send values from the doctor window and receive values from the mainwindow
        connect(in,&doctor::sendValues,this,&MainWindow::receiveValues);
-
+       QString styleSheet5 = "QLabel {"
+                  "image: url(:/images/locked.png);"
+                   "background-color:transparent;"
+                                        "}";
 //update footpedal value from doctor window to mainwindow and mainwindow to footpedal screen
       connect(this,&MainWindow::left_foot,foot,&footpedal::combobox1);
       connect(this,&MainWindow::right_foot,foot,&footpedal::combobox2);
@@ -156,7 +160,8 @@ MainWindow::MainWindow(QWidget *parent)
   connect(foot,&footpedal::powerdm1,this,&MainWindow::onPdmModeSelected1);
   connect(foot,&footpedal::powerdm2,this,&MainWindow::onPdmModeSelected2);
   connect(foot,&footpedal::powerdm3,this,&MainWindow::onPdmModeSelected3);
-
+  connect(in,&doctor::pumpsignal,this,&MainWindow::performpump);
+  connect(ui->comboBox,&QComboBox::currentTextChanged,this,&MainWindow::performpump);
 
 //tabwidget current index selected
     ui->tabWidget->setTabText(6, "VITRECTOMY");
@@ -271,16 +276,20 @@ MainWindow::MainWindow(QWidget *parent)
        connect(ui->us4vacdown_but,&QPushButton::clicked,this,&MainWindow::us4vacdown);
        connect(ui->us4flowup_but,&QPushButton::clicked,this,&MainWindow::us4flowup);
        connect(ui->us4flowdown_but,&QPushButton::clicked,this,&MainWindow::us4flowdown);
-       //ia
-       connect(ui->ia1vacup_but,&QPushButton::clicked,this,&MainWindow::ia1vacup);
-       connect(ui->ia1vacdown_but,&QPushButton::clicked,this,&MainWindow::ia1vacdown);
-       connect(ui->ia1flowup_but,&QPushButton::clicked,this,&MainWindow::ia1flowup);
-       connect(ui->ia1flowdown_but,&QPushButton::clicked,this,&MainWindow::ia1flowdown);
+       //ia1
+       connect(ui->ia2vacup_but,&QPushButton::clicked,this,&MainWindow::ia1vacup);
+       connect(ui->ia2vacdown_but,&QPushButton::clicked,this,&MainWindow::ia1vacdown);
+       connect(ui->ia2flowup_but,&QPushButton::clicked,this,&MainWindow::ia1flowup);
+       connect(ui->ia2flowdown_but,&QPushButton::clicked,this,&MainWindow::ia1flowdown);
+       ui->ia1flowup_but->isEnabled();
+       ui->ia1flowdown_but->isEnabled();
+       ui->ia1vacup_but->isEnabled();
+       ui->ia1vacdown_but->isEnabled();
        //ia2
-       connect(ui->ia2vacup_but,&QPushButton::clicked,this,&MainWindow::ia2vacup);
-       connect(ui->ia2vacdown_but,&QPushButton::clicked,this,&MainWindow::ia2vacdown);
-       connect(ui->ia2flowup_but,&QPushButton::clicked,this,&MainWindow::ia2flowup);
-       connect(ui->ia2flowdown_but,&QPushButton::clicked,this,&MainWindow::ia2flowdown);
+       connect(ui->ia1vacup_but,&QPushButton::clicked,this,&MainWindow::ia2vacup);
+       connect(ui->ia1vacdown_but,&QPushButton::clicked,this,&MainWindow::ia2vacdown);
+       connect(ui->ia1flowup_but,&QPushButton::clicked,this,&MainWindow::ia2flowup);
+       connect(ui->ia1flowdown_but,&QPushButton::clicked,this,&MainWindow::ia2flowdown);
        //vit
        connect(ui->vitpowup_but,&QPushButton::clicked,this,&MainWindow::vitcutup);
        connect(ui->vitpowdown_but,&QPushButton::clicked,this,&MainWindow::vitcutdown);
@@ -335,36 +344,17 @@ MainWindow::MainWindow(QWidget *parent)
       on_vitvacmode_clicked();
 //reterive value frm the sql;
       push(ui->comboBox_4->currentText());
-
-//change values confirmation msg
-         connect(ui->comboBox_4, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &MainWindow::updateButtonsForTab);
-
-         connect(ui->CutMode_vitCom, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &MainWindow::updateButtonsForTab);
-
-         connect(ui->CutMode_vitCom_2, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &MainWindow::updateButtonsForTab);
-
-         connect(ui->CutMode_vitCom_3, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &MainWindow::updateButtonsForTab);
-
-         connect(ui->CutMode_vitCom_4, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &MainWindow::updateButtonsForTab);
+      changesvaluesql();
 
 
-         connect(ui->us1mode,&QPushButton::clicked,this,&MainWindow::updateButtonsForTab);
-         connect(ui->us1vacmode,&QPushButton::clicked,this,&MainWindow::updateButtonsForTab);
-
-         connect(ui->us2mode,&QPushButton::clicked,this,&MainWindow::updateButtonsForTab);
-         connect(ui->us2vacmode,&QPushButton::clicked,this,&MainWindow::updateButtonsForTab);
-
-         connect(ui->us3mode,&QPushButton::clicked,this,&MainWindow::updateButtonsForTab);
-         connect(ui->us3vacmode,&QPushButton::clicked,this,&MainWindow::updateButtonsForTab);
-
-         connect(ui->us4mode,&QPushButton::clicked,this,&MainWindow::updateButtonsForTab);
-         connect(ui->us4vacmode,&QPushButton::clicked,this,&MainWindow::updateButtonsForTab);
-
-         connect(ui->ia1mode,&QPushButton::clicked,this,&MainWindow::updateButtonsForTab);
-         connect(ui->ia2mode,&QPushButton::clicked,this,&MainWindow::updateButtonsForTab);
-
-         connect(ui->vitmode,&QPushButton::clicked,this,&MainWindow::updateButtonsForTab);
-         connect(ui->vitvacmode,&QPushButton::clicked,this,&MainWindow::updateButtonsForTab);
+ui->ULTRASONICBUT1->setEnabled(false);
+ui->ULTRASONICBUT2->setEnabled(false);
+ui->ULTRASONICBUT3->setEnabled(false);
+ui->ULTRASONICBUT4->setEnabled(false);
+ui->label_16->setStyleSheet(styleSheet5);
+ui->label_17->setStyleSheet(styleSheet5);
+ui->label_18->setStyleSheet(styleSheet5);
+ui->label_27->setStyleSheet(styleSheet5);
 }
 
 //elapsed time
@@ -1659,9 +1649,9 @@ void MainWindow::current(int tab)
 {
     QString styleSheet = "QPushButton {"
                          "    font-family: Ubuntu;"
-                         "    font-size: 13pt;"
+                         "    font-size: 15pt;"
                          "    background-color: transparent;"
-            "image: url(:/images/glass.png);"
+            "image: url(:/images/butsel.png);"
             "height:81;"
             "width:81;"
                          "    color: white;"
@@ -1669,7 +1659,7 @@ void MainWindow::current(int tab)
                          "}";
     QString styleSheet1 = "QPushButton {"
                           "    font-family: Ubuntu;"
-                          "    font-size: 13pt;"
+                          "    font-size: 15pt;"
                           "    background-color: transparent;"
             "image: url(:/images/glass.png);"
             "height:81;"
@@ -1677,6 +1667,7 @@ void MainWindow::current(int tab)
                           "    color: black;"
                           "    border-radius: 40px;"
                           "}";
+    //locked and unlocked
     QString styleSheet3 = "QPushButton {"
                           "    font-family: Ubuntu;"
                           "    font-size: 13pt;"
@@ -1765,28 +1756,33 @@ void MainWindow::current(int tab)
 }
 
 //if tune is completed then only
-void MainWindow::setTuneMode(bool tuneEnabled) {
+void MainWindow::setTuneMode() {
     QString styleSheet4 = "QLabel {"
                "image: url(:/images/unlocked.png);"
 
                 "background-color:transparent;"
 
                                      "}";
-    isTuneEnabled = tuneEnabled;  // Set the flag based on the argument
+    QString styleSheet5 = "QLabel {"
+               "image: url(:/images/locked.png);"
+
+                "background-color:transparent;"
+
+                                     "}";
+
+// Set the flag based on the argument
  // Enable or disable the US buttons based on the flag
- ui->ULTRASONICBUT1->setEnabled(isTuneEnabled);    // us1
+ ui->ULTRASONICBUT1->setEnabled(true);    // us1
     ui->label_16->setStyleSheet(styleSheet4);
     ui->label_17->setStyleSheet(styleSheet4);
     ui->label_18->setStyleSheet(styleSheet4);
     ui->label_27->setStyleSheet(styleSheet4);
-    ui->ULTRASONICBUT2->setEnabled(isTuneEnabled);  // us2
-    ui->ULTRASONICBUT3->setEnabled(isTuneEnabled);  // us3
-    ui->ULTRASONICBUT4->setEnabled(isTuneEnabled);  // us4
+    ui->ULTRASONICBUT2->setEnabled(true);  // us2
+    ui->ULTRASONICBUT3->setEnabled(true);  // us3
+    ui->ULTRASONICBUT4->setEnabled(true);  // us4
+    ui->label_19->setStyleSheet("image: url(:/images/doubled.png); background-color:transparent;border:none;");
 
-    // These buttons are always enabled
-    ui->IA1BUT->setEnabled(true);  // ia1
-    ui->IA2BUT->setEnabled(true);  // ia2
-    ui->VITRECTOMYBUT->setEnabled(true);  // vit
+
 }
 //power on off button when power is on off
 void MainWindow::enableButtons(bool powerOn)
@@ -1919,11 +1915,24 @@ void MainWindow::footpedalcheck()
            " border-radius:30px;font-weight: bold;"
                                  "}";
     int range = lfoot->convert(0x97);
+    int vacsensor=vac->convert(0XD7);
     QString text=ui->comboBox->currentText();
   QString powerdelivered=ui->CutMode_vitCom->currentText();
   QString powerdelivered_1=ui->CutMode_vitCom_2->currentText();
   QString powerdelivered_2=ui->CutMode_vitCom_3->currentText();
   QString powerdeliverd_3=ui->CutMode_vitCom_4->currentText();
+  QString us1=ui->us1mode->text();
+  QString ia1=ui->ia1mode->text();
+  QString ia2=ui->ia2mode->text();
+  QString vus1=ui->us1vacmode->text();
+  QString us2=ui->us2mode->text();
+  QString vus2=ui->us2vacmode->text();
+  QString us3=ui->us3mode->text();
+  QString vus3=ui->us3vacmode->text();
+  QString us4=ui->us4mode->text();
+  QString vus4=ui->us4vacmode->text();
+  QString vit=ui->vitmode->text();
+  QString vvac=ui->vitvacmode->text();
     switch(butname)
     {
 
@@ -1964,9 +1973,9 @@ void MainWindow::footpedalcheck()
     case 1: {
         //they will not run
         int pow1 = ui->lineEdit_57->text().toInt(); // Get the power value from the line edit
-        bool flag1 = true;
+        bool flag1 = false;
 
-        if (us1 == "PANEL" || vus1 == "PANEL") {
+        if (us1 == "Panel" || vus1 == "Panel") {
             if (range>0 && range <100) {
                 ui->pushButton_42->setText("0");
                 ui->dial_2->setValue(range);
@@ -2056,6 +2065,8 @@ flag1 = true; // Reset flag
                    handler->phaco_on();
                    handler->phaco_power(pow1);
  updateTabsBasedOnComboBox(ui->CutMode_vitCom->currentText());
+ elapsedTimeUS1 += elapsed;
+ message = "Effective time for US1: " + QString::number(elapsedTimeUS1 / 1000.0, 'f', 2) + " s";
                 }
                 if (power.powerOn) {
                     // Dynamically calculate power output based on range for PANEL mode
@@ -2064,7 +2075,7 @@ flag1 = true; // Reset flag
                 }
 
             }
-        } else if (us1 == "SURGEON" || vus1 == "SURGEON") {
+        } else if (us1 == "Surgeon" || vus1 == "Surgeon") {
             if (range >0 && range <100) {
                 ui->pushButton_42->setText("0");
                    ui->dial_2->setValue(range);
@@ -2155,6 +2166,8 @@ if(!overallci){
                  handler->freq_count(2500);
   handler->phaco_on();
                  handler->phaco_power(pow1);
+                 elapsedTimeUS1 += elapsed;
+                 message = "Effective time for US1: " + QString::number(elapsedTimeUS1 / 1000.0, 'f', 2) + " s";
 
                 }
                 if (power.powerOn) {
@@ -2166,8 +2179,7 @@ if(!overallci){
             }
         }
 
-        elapsedTimeUS1 += elapsed;
-        message = "Effective time for US1: " + QString::number(elapsedTimeUS1 / 1000.0, 'f', 2) + " s";
+
         break;
     }
 
@@ -2177,7 +2189,7 @@ if(!overallci){
         int pow2 = ui->lineEdit_58->text().toInt(); // Get the power value from the line edit
         bool flag2 = true;
 
-        if (us2 == "PANEL" || vus2 == "PANEL") {
+        if (us2 == "Panel" || vus2 == "Panel") {
             if (range >= 0 && range<100) {
                 ui->pushButton_42->setText("0");
                   ui->dial_2->setValue(range);
@@ -2258,6 +2270,8 @@ if(!overallci){
                     handler->phaco_power(pow2);
 
                     power.powerOn1 = true;
+                    elapsedTimeUS2 += elapsed;
+                    message = "Effective time for US2: " + QString::number(elapsedTimeUS2 / 1000.0, 'f', 2) + " s";
                 }
                 if (power.powerOn1) {
                     // Dynamically calculate power output based on range for PANEL mode
@@ -2274,7 +2288,7 @@ if(!overallci){
                                  sensor2();
                             }
             }
-        } else if (us2 == "SURGEON" || vus2 == "SURGEON") {
+        } else if (us2 == "Surgeon" || vus2 == "Surgeon") {//panel
             if (range >= 0 && range < 100) {
                 ui->pushButton_42->setText("0");
                   ui->dial_2->setValue(range);
@@ -2356,6 +2370,8 @@ if(!overallci){
                     handler->phaco_power(pow2);
 
                     power.powerOn1 = true;
+                    elapsedTimeUS2 += elapsed;
+                    message = "Effective time for US2: " + QString::number(elapsedTimeUS2 / 1000.0, 'f', 2) + " s";
 
                 }
                 if (power.powerOn1) {
@@ -2375,8 +2391,7 @@ if(!overallci){
             }
         }
 
-        elapsedTimeUS2 += elapsed;
-        message = "Effective time for US2: " + QString::number(elapsedTimeUS2 / 1000.0, 'f', 2) + " s";
+
         break;
     }
         //us 3
@@ -2385,7 +2400,7 @@ if(!overallci){
         int pow3 = ui->lineEdit_61->text().toInt(); // Get the power value from the line edit
         bool flag3 = true;
 
-        if (us3 == "PANEL" || vus3 == "PANEL") {
+        if (us3 == "Panel" || vus3 == "Panel") {
             if (range >= 0 && range < 100) {
                 ui->pushButton_42->setText("0");
                   ui->dial_2->setValue(range);
@@ -2459,6 +2474,8 @@ if(!overallci){
                 ui->CI5_5->setStyleSheet(styleSheet3);
                 handler->safetyvent_on();
                 handler->pinchvalve_on();
+                elapsedTimeUS3 += elapsed;
+                message = "Effective time for US3: " + QString::number(elapsedTimeUS3 / 1000.0, 'f', 2) + " s";
 
                 if (power.buttonstate2 == "ON" && !power.powerOn2) {
                     handler->freq_count(2500);
@@ -2479,7 +2496,7 @@ if(!overallci){
                 sensor2();
 
             }
-        } else if (us3 == "SURGEON" || vus3 == "SURGEON") {
+        } else if (us3 == "Surgeon" || vus3 == "Surgeon") {
             if (range >= 0 && range < 100) {
                 ui->pushButton_42->setText("0");
                   ui->dial_2->setValue(range);
@@ -2559,6 +2576,8 @@ if(!overallci){
                     handler->phaco_power(pow3);
                     updateTabsBasedOnComboBox(powerdelivered_2);
                     power.powerOn2 = true;
+                    elapsedTimeUS3 += elapsed;
+                    message = "Effective time for US3: " + QString::number(elapsedTimeUS3 / 1000.0, 'f', 2) + " s";
 
                 }
                 if (power.powerOn2) {
@@ -2580,8 +2599,7 @@ if(!overallci){
             }
         }
 
-        elapsedTimeUS3 += elapsed;
-        message = "Effective time for US3: " + QString::number(elapsedTimeUS3 / 1000.0, 'f', 2) + " s";
+
         break;
     }
 
@@ -2589,7 +2607,7 @@ if(!overallci){
     case 4: {
         int pow4 = ui->lineEdit_64->text().toInt(); // Get the power value from the line edit
 
-        if (us4 == "PANEL" || vus4 == "PANEL") { // surgeon
+        if (us4 == "Panel" || vus4 == "Panel") { // surgeon
             if (range >= 0 && range < 100) {
                 ui->pushButton_42->setText("0");
                   ui->dial_2->setValue(range);
@@ -2673,6 +2691,8 @@ if(!overallci){
                     handler->pdm_mode(1);
               updateTabsBasedOnComboBox(powerdeliverd_3);
                     power.powerOn3 = true;
+                    elapsedTimeUS4 += elapsed;
+                    message = "Effective time for US4: " + QString::number(elapsedTimeUS4 / 1000.0, 'f', 2) + " s";
                 }
                 if (power.powerOn3) {
                     // Dynamically calculate power output based on range for PANEL mode
@@ -2690,7 +2710,7 @@ if(!overallci){
 
 
             }
-        } else if (us4 == "SURGEON" || vus4 == "SURGEON") {
+        } else if (us4 == "Surgeon" || vus4 == "Surgeon") {
             if (range >= 0 && range < 100) {
                 ui->pushButton_42->setText("0");
                   ui->dial_2->setValue(range);
@@ -2771,7 +2791,8 @@ if(!overallci){
                     handler->fs_count(range);
                     handler->phaco_power(pow4);
                    updateTabsBasedOnComboBox(powerdeliverd_3);
-
+                   elapsedTimeUS4 += elapsed;
+                   message = "Effective time for US4: " + QString::number(elapsedTimeUS4 / 1000.0, 'f', 2) + " s";
                     power.powerOn3 = true;
                 }
                 if (power.powerOn3) {
@@ -2781,7 +2802,6 @@ if(!overallci){
                     ui->label_105->setText(QString::number(progress12));
                 }
                 if (text == "Peristaltic") {
-                                motoron(ui->lineEdit_62);
                               updatesensor();
                             } else {
                                 motoroff();
@@ -2792,8 +2812,7 @@ if(!overallci){
             }
         }
 
-        elapsedTimeUS4 += elapsed;
-        message = "Effective time for US4: " + QString::number(elapsedTimeUS4 / 1000.0, 'f', 2) + " s";
+
         break;
     }
 
@@ -2802,7 +2821,7 @@ if(!overallci){
         {
   bool flag5=true;
         if(flag5){
-             if(ia1==" PANEL"){//surgeon
+             if(ia1=="Panel"){//surgeon
             if(range>=0 && range<100){
                 ui->pushButton_42->setText("0");
                   ui->dial_2->setValue(range);
@@ -2830,15 +2849,20 @@ motoroff();
       ui->CI5_5->setStyleSheet(styleSheet3);
                   handler->safetyvent_on();
                   handler->pinchvalve_on();
-                 if(text == "Peristaltic"){
-                     motoron(ui->lineEdit_69);
-                     sensor2();
-                 }
+               int cali=vacsensor*500/4096;
+               int preset=ui->lineEdit_70->text().toInt();
+               int actual=std::min(cali,preset);
+               ui->label_109->setText(QString::number(actual));
+               if(actual<preset){
+                   motoron(ui->lineEdit_69);
+               }else{
+                   motoroff();
+               }
         }
 
            }
              else{
-                 if(ia1 == "SURGEON"){
+                 if(ia1 == "Surgeon"){
                  if(range>=0 && range<100){
                      ui->pushButton_42->setText("0");
                        ui->dial_2->setValue(range);
@@ -2866,9 +2890,14 @@ motoroff();
       ui->CI5_5->setStyleSheet(styleSheet3);
                        handler->safetyvent_on();
                        handler->pinchvalve_on();
-                       if(text == "Peristaltic"){
+                       int cali=vacsensor*500/4096;
+                       int preset=ui->lineEdit_70->text().toInt();
+                       int actual=std::min(cali,preset);
+                       ui->label_109->setText(QString::number(actual));
+                       if(actual<preset){
                            motoron(ui->lineEdit_69);
-                           updatesensor();
+                       }else{
+                           motoroff();
                        }
              }
                  }
@@ -2882,7 +2911,7 @@ motoroff();
   bool flag6=true;
 
         if(flag6){
-            if(ia2 == "PANEL"){//surgeon
+            if(ia2 == "Panel"){//surgeon
             if(range>=0 && range<100){
                 ui->pushButton_42->setText("0");
                   ui->dial_2->setValue(range);
@@ -2911,7 +2940,6 @@ motoroff();
                 handler->safetyvent_on();
                 handler->pinchvalve_on();
                 if(text == "Peristaltic"){
-                    motoron(ui->lineEdit_67);
                     sensor2();
                 }else{
                     motoroff();
@@ -2921,7 +2949,7 @@ motoroff();
 
             }
             else{
-                if(ia2 == "SURGEON"){
+                if(ia2 == "Surgeon"){
                 if(range>=0 && range<100){
                     ui->pushButton_42->setText("0");
                       ui->dial_2->setValue(range);
@@ -2931,7 +2959,7 @@ motoroff();
                         handler->safetyvent_off();
                     }
                       motoroff();
-                   // label43();
+
                 }
                 if(range>=100 && range<1332){
                     ui->pushButton_42->setText("1");
@@ -2940,7 +2968,7 @@ motoroff();
                  ui->CI5_5->setStyleSheet(styleSheet3);
                     handler->safetyvent_on();
                     handler->pinchvalve_on();
-                     // motoroff();
+                      motoroff();
                 }
                 else if(range>=1332 && range <4096){
                     ui->pushButton_42->setText("2");
@@ -2950,7 +2978,6 @@ motoroff();
                     handler->safetyvent_on();
                     handler->pinchvalve_on();
                     if(text == "Peristaltic"){
-                        motoron(ui->lineEdit_67);
                         updatesensor();
                     }else{
                         motoroff();
@@ -2968,7 +2995,7 @@ motoroff();
 
         bool flag7 = true;
         if (flag7) {
-            if (vit == "PANEL" || vvit == "PANEL") {
+            if (vit == "Panel" || vvit == "Panel") {
                 if (range >= 0 && range < 100) {
                     ui->pushButton_42->setText("0");
                       ui->dial_2->setValue(range);
@@ -3051,7 +3078,7 @@ handler->pinchvalve_on();
                     }
 
                 }
-            } else if (vit == "SURGEON" || vvit == "SURGEON") {
+            } else if (vit == "Surgeon" || vvit == "Surgeon") {
                 if (range >= 0 && range < 100) {
                     ui->pushButton_42->setText("0");
                       ui->dial_2->setValue(range);
@@ -3143,18 +3170,19 @@ void MainWindow::us1_linear_nonlinear()
      // ui->us1mode->setText("SURGEON");
      us1=ui->us1mode->text();
 
-       if(us1 == "SURGEON" )
+       if(us1 == "Surgeon" )
        {
            ui->us1mode->setStyleSheet("font:15pt;image: url(:/images/panelbutton.png);background-color:transparent;border:none");
-            ui->us1mode->setText("PANEL");
+            ui->us1mode->setText("Panel");
 
              footpedalcheck();
 
+
        }
-       else if(us1 == "PANEL" )
+       else if(us1 == "Panel" )
        {
            ui->us1mode->setStyleSheet("font:15pt;image: url(:/images/panelbutton.png);background-color:transparent;border:none");
-           ui->us1mode->setText("SURGEON");
+           ui->us1mode->setText("Surgeon");
 
 
      footpedalcheck();
@@ -3164,19 +3192,19 @@ void MainWindow::us1_linear_nonlinear()
 void MainWindow::on_us1vacmode_clicked()
 {
     vus1 = ui->us1vacmode->text();
-       if(vus1== "SURGEON")
+       if(vus1== "Surgeon")
        {
 
             ui->us1vacmode->setStyleSheet("font:15pt;image: url(:/images/panelbutton.png);background-color:transparent;border:none");
-            ui->us1vacmode->setText("PANEL");
+            ui->us1vacmode->setText("Panel");
 
              footpedalcheck();
        }
-       else if(vus1=="PANEL")
+       else if(vus1=="Panel")
        {
 
            ui->us1vacmode->setStyleSheet("font:15pt;image: url(:/images/panelbutton.png);background-color:transparent;border:none");
-           ui->us1vacmode->setText("SURGEON");
+           ui->us1vacmode->setText("Surgeon");
          //  int pow2=ui->lineEdit_58->text().toInt();
      footpedalcheck();
 }
@@ -3189,19 +3217,19 @@ void MainWindow::us2_linear_nonlinear()
     us2 = ui->us2mode->text();
 
 
-       if(us2 == "SURGEON" )
+       if(us2 == "Surgeon" )
        {
 
             ui->us2mode->setStyleSheet("font:15pt;image: url(:/images/panelbutton.png);background-color:transparent;border:none");
-             ui->us2mode->setText("PANEL");
+             ui->us2mode->setText("Panel");
 
 
               footpedalcheck();
                }
-       else if(us2 == "PANEL")
+       else if(us2 == "Panel")
        {
             ui->us2mode->setStyleSheet("font:15pt;image: url(:/images/panelbutton.png);background-color:transparent;border:none");
-           ui->us2mode->setText("SURGEON");
+           ui->us2mode->setText("Surgeon");
 
          footpedalcheck();
        }
@@ -3210,18 +3238,18 @@ void MainWindow::us2_linear_nonlinear()
 void MainWindow::on_us2vacmode_clicked()
 {
     vus2=ui->us2vacmode->text();
-    if(vus2 == "SURGEON")
+    if(vus2 == "Surgeon")
     {
 
       ui->us2vacmode->setStyleSheet("font:15pt;image: url(:/images/panelbutton.png);background-color:transparent;border:none");
-          ui->us2vacmode->setText("PANEL");
+          ui->us2vacmode->setText("Panel");
 
            footpedalcheck();
             }
-    else if(vus2 == "PANEL")
+    else if(vus2 == "Panel")
     {
 
-        ui->us2vacmode->setText("SURGEON");
+        ui->us2vacmode->setText("Surgeon");
          ui->us2vacmode->setStyleSheet("font:15pt;image: url(:/images/panelbutton.png);background-color:transparent;border:none");
       footpedalcheck();
     }
@@ -3233,17 +3261,17 @@ void MainWindow::us3_linear_nonlinear()
     us3 = ui->us3mode->text();
 
 
-       if(us3 == "SURGEON")
+       if(us3 == "Surgeon")
        {
             ui->us3mode->setStyleSheet("font:15pt;image: url(:/images/panelbutton.png);background-color:transparent;border:none");
-             ui->us3mode->setText("PANEL");
+             ui->us3mode->setText("Panel");
 
               footpedalcheck();
        }
-       else if(us3 == "PANEL")
+       else if(us3 == "Panel")
        {
              ui->us3mode->setStyleSheet("font:15pt;image: url(:/images/panelbutton.png);background-color:transparent;border:none");
-           ui->us3mode->setText("SURGEON");
+           ui->us3mode->setText("Surgeon");
 
            footpedalcheck();
        }
@@ -3252,17 +3280,17 @@ void MainWindow::us3_linear_nonlinear()
 void MainWindow::on_us3vacmode_clicked()
 {
      vus3=ui->us3vacmode->text();
-     if(vus3 =="SURGEON")
+     if(vus3 =="Surgeon")
      {
 
-           ui->us3vacmode->setText("PANEL");
+           ui->us3vacmode->setText("Panel");
             ui->us3vacmode->setStyleSheet("font:15pt;image: url(:/images/panelbutton.png);background-color:transparent;border:none");
             footpedalcheck();
      }
-     else if(vus3 == "PANEL")
+     else if(vus3 == "Panel")
      {
 
-         ui->us3vacmode->setText("SURGEON");
+         ui->us3vacmode->setText("Surgeon");
          ui->us3vacmode->setStyleSheet("font:15pt;image: url(:/images/panelbutton.png);background-color:transparent;border:none");
          footpedalcheck();
      }
@@ -3273,17 +3301,17 @@ void MainWindow::us4_linear_nonlinear()
 {
     us4 = ui->us4mode->text();
 
-       if(us4 == "SURGEON")
+       if(us4 == "Surgeon")
        {
 
             ui->us4mode->setStyleSheet("font:15pt;image: url(:/images/panelbutton.png);background-color:transparent;border:none");
-             ui->us4mode->setText("PANEL");
+             ui->us4mode->setText("Panel");
 
              footpedalcheck();
                 }
-       else if(us4 == "PANEL")
+       else if(us4 == "Panel")
        {
-           ui->us4mode->setText("SURGEON");
+           ui->us4mode->setText("Surgeon");
               ui->us4mode->setStyleSheet("font:15pt;image: url(:/images/panelbutton.png);background-color:transparent;border:none");
 
 
@@ -3295,18 +3323,18 @@ void MainWindow::us4_linear_nonlinear()
 void MainWindow::on_us4vacmode_clicked()
 {
     vus4=ui->us4vacmode->text();
-    if(vus4 == "SURGEON")
+    if(vus4 == "Surgeon")
     {
 
 
-          ui->us4vacmode->setText("PANEL");
+          ui->us4vacmode->setText("Panel");
            ui->us4vacmode->setStyleSheet("font:15pt;image: url(:/images/panelbutton.png);background-color:transparent;border:none");
           footpedalcheck();
              }
-    else if(vus4 == "PANEL")
+    else if(vus4 == "Panel")
     {
 
-           ui->us4vacmode->setText("SURGEON");
+           ui->us4vacmode->setText("Surgeon");
             ui->us4vacmode->setStyleSheet("font:15pt;image: url(:/images/panelbutton.png);background-color:transparent;border:none");
             footpedalcheck();
     }
@@ -3319,17 +3347,17 @@ void MainWindow::ia1_linear_nonlinear()
 {
     ia1= ui->ia1mode->text();
 
-       if(ia1== "SURGEON")
+       if(ia1== "Surgeon")
        {
 
             ui->ia1mode->setStyleSheet("font:15pt;image: url(:/images/panelbutton.png);background-color:transparent;border:none");
-             ui->ia1mode->setText("PANEL");
+             ui->ia1mode->setText("Panel");
             footpedalcheck();
                }
-       else if(ia1 == "PANEL")
+       else if(ia1 == "Panel")
        {
             ui->ia1mode->setStyleSheet("font:15pt;image: url(:/images/panelbutton.png);background-color:transparent;border:none");
-           ui->ia1mode->setText("SURGEON");
+           ui->ia1mode->setText("Surgeon");
            footpedalcheck();
                }
    }
@@ -3337,15 +3365,15 @@ void MainWindow::ia2_linear_nonlinear()
 {
     ia2 = ui->ia2mode->text();
 
-       if(ia2 == "SURGEON")
+       if(ia2 == "Surgeon")
        {
-           ui->ia2mode->setText("PANEL");
+           ui->ia2mode->setText("Panel");
             ui->ia2mode->setStyleSheet("font:15pt;image: url(:/images/panelbutton.png);background-color:transparent;border:none");
              footpedalcheck();
                 }
-       else if(ia2 == "PANEL")
+       else if(ia2 == "Panel")
        {
-           ui->ia2mode->setText("SURGEON");
+           ui->ia2mode->setText("Surgeon");
             ui->ia2mode->setStyleSheet("font:15pt;image: url(:/images/panelbutton.png);background-color:transparent;border:none");
  footpedalcheck();
        }
@@ -3356,18 +3384,18 @@ void MainWindow::vit_linear_nonlinear()
     vit = ui->vitmode->text();
 
 
-       if(vit == "SURGEON" )
+       if(vit == "Surgeon" )
        {
 
            ui->vitmode->setStyleSheet("font:15pt;image: url(:/images/panelbutton.png);background-color:transparent;border:none");
-            ui->vitmode->setText("PANEL");
+            ui->vitmode->setText("Panel");
 
             footpedalcheck();
                }
-       else if(vit == "PANEL")
+       else if(vit == "Panel")
        {
               ui->vitmode->setStyleSheet("font:15pt;image: url(:/images/panelbutton.png);background-color:transparent;border:none");
-           ui->vitmode->setText("SURGEON");
+           ui->vitmode->setText("Surgeon");
 
            footpedalcheck();
               }
@@ -3376,18 +3404,18 @@ void MainWindow::on_vitvacmode_clicked()
 {
       vvit=ui->vitvacmode->text();
 
-      if(vvit =="SURGEON")
+      if(vvit =="Surgeon")
       {
 
 
-           ui->vitvacmode->setText("PANEL");
+           ui->vitvacmode->setText("Panel");
            ui->vitvacmode->setStyleSheet("font:15pt;image: url(:/images/panelbutton.png);background-color:transparent;border:none");
            footpedalcheck();
               }
-      else if(vvit == "PANEL")
+      else if(vvit == "Panel")
       {
 
-          ui->vitvacmode->setText("SURGEON");
+          ui->vitvacmode->setText("Surgeon");
           ui->vitvacmode->setStyleSheet("font:15pt;image: url(:/images/panelbutton.png);background-color:transparent;border:none");
           footpedalcheck();
              }
@@ -3641,7 +3669,7 @@ void MainWindow::updatehandpieceStatus()
     int status = readGPIOValue(960);
 
 
-    QString styleSheet4 = "QLabel {"
+    QString styleSheet4 = "QPushButton {"
                 "image: url(:/images/handpiece1.png);"
             "background-color:green;"
 
@@ -3650,7 +3678,7 @@ void MainWindow::updatehandpieceStatus()
                                      "}";
 
 
-    QString styleSheet5 = "QLabel {"
+    QString styleSheet5 = "QPushButton {"
                 "image: url(:/images/handpiece1.png);"
 
              "background-color: rgb(192, 28, 40);"
@@ -3671,26 +3699,12 @@ void MainWindow::updatehandpieceStatus()
    if(status==0)
    {
    ui->pushButton->setStyleSheet(styleSheet4);
-   ui->label_16->setStyleSheet(styleSheet7);
-   ui->label_17->setStyleSheet(styleSheet7);
-   ui->label_18->setStyleSheet(styleSheet7);
-   ui->label_27->setStyleSheet(styleSheet7);
-   ui->ULTRASONICBUT1->setEnabled(true);
-   ui->ULTRASONICBUT2->setEnabled(true);
-   ui->ULTRASONICBUT3->setEnabled(true);
-   ui->ULTRASONICBUT4->setEnabled(true);
+
+
    }
    else if(status==1)
    {
      ui->pushButton->setStyleSheet(styleSheet5);
-      ui->label_16->setStyleSheet(styleSheet6);
-      ui->label_17->setStyleSheet(styleSheet6);
-      ui->label_18->setStyleSheet(styleSheet6);
-      ui->label_27->setStyleSheet(styleSheet6);
-      ui->ULTRASONICBUT1->setEnabled(false);
-      ui->ULTRASONICBUT2->setEnabled(false);
-      ui->ULTRASONICBUT3->setEnabled(false);
-      ui->ULTRASONICBUT4->setEnabled(false);
 
    }
 }
@@ -3755,169 +3769,182 @@ int MainWindow::decreasebutton(int input)
 //NON LINEAR
 void MainWindow::label43()
 {
-    int sensor = vac->convert(0xD7);
-     int vac1=ui->lineEdit_55->text().toInt();
-      int vac2=ui->lineEdit_60->text().toInt();
-       int vac3=ui->lineEdit_63->text().toInt();
-        int vac4=ui->lineEdit_66->text().toInt();
-         int vac5=ui->lineEdit_70->text().toInt();
-          int vac6=ui->lineEdit_68->text().toInt();
-           int vac7=ui->lineEdit_73->text().toInt();
-           QString mode=ui->CutMode_vitCom->currentText();
-           QString mode1=ui->CutMode_vitCom_2->currentText();
-           QString mode2=ui->CutMode_vitCom_3->currentText();
-           QString mode3=ui->CutMode_vitCom_4->currentText();
-           //ia1
+    int sensor = vac->convert(0xD7);  // Read sensor value from hardware
+    int vac1 = ui->lineEdit_55->text().toInt(); // Preset values from line edits
+    int vac2 = ui->lineEdit_60->text().toInt();
+    int vac3 = ui->lineEdit_63->text().toInt();
+    int vac4 = ui->lineEdit_66->text().toInt();
+    int vac5 = ui->lineEdit_70->text().toInt();
+    int vac6 = ui->lineEdit_68->text().toInt();
+    int vac7 = ui->lineEdit_73->text().toInt();
+
+    QString mode = ui->CutMode_vitCom->currentText();
+    QString mode1 = ui->CutMode_vitCom_2->currentText();
+    QString mode2 = ui->CutMode_vitCom_3->currentText();
+    QString mode3 = ui->CutMode_vitCom_4->currentText();
+
+    // Process IA1 (vac5)
     if (sensor > 0 && sensor < 4096) {
-      //  int pro = sensor * vac5 / 4096+50;
-        int pro=sensor*500/4096;
-        int pro1=std::min(vac5,pro);
+        int pro = sensor * 500 / 4096; // Calculate proportional value
+        int pro1 = std::min(vac5, pro); // Use the smaller of the two values
         ui->label_113->setNum(pro1);
-        //motoron(ui->lineEdit_4);
-        if(vac5==pro1){
-         motoroff();
-         handler->speaker_on(pro1,0,0,1);
-   }
+        if (vac5 == pro) {  // If preset value is reached
+            motoroff();      // Turn off the motor
+            handler->speaker_on(pro1, 0, 0, 1);
+        }
     }
-    //ia2
+
+    // Process IA2 (vac6)
     else if (sensor > 0 && sensor < 4096) {
         int pro1 = sensor * 500 / 4096;
-       int pro2=std::min(vac6,pro1);
+        int pro2 = std::min(vac6, pro1);
         ui->label_109->setNum(pro2);
-        if(vac6 == pro2){
+
+        if (vac6 == pro1) {
             motoroff();
-             handler->speaker_on(pro2,0,0,1);
+            handler->speaker_on(pro2, 0, 0, 1);
         }
     }
-    //vit
+
+    // Process VIT (vac7)
     else if (sensor > 0 && sensor < 4096) {
         int pro3 = sensor * 500 / 4096;
-       int pro4=std::min(vac7,pro3);
+        int pro4 = std::min(vac7, pro3);
         ui->label_118->setNum(pro4);
-        if(vac7 == pro4){
+
+        if (vac7 == pro3) {
             motoroff();
-             handler->speaker_on(pro3,0,0,1);
+            handler->speaker_on(pro3, 0, 0, 1);
         }
     }
-    //us4
+
+    // Process US4 (vac4)
     else if (sensor > 0 && sensor < 4096) {
         int pro4 = sensor * 500 / 4096;
-       int pro5=std::min(vac4,pro4);
+        int pro5 = std::min(vac4, pro4);
         ui->label_104->setNum(pro5);
-        if(vac4 ==pro5){
- motoroff();
-          if(mode3 == "Ocupulse"){
-              handler->fs_count(3000);
-              handler->freq_count(2500);
-            handler->pdm_mode(PULSE_MODE);
 
-          }
-          else if(mode3=="Ocuburst"){
-              handler->pdm_mode(OCUBURST);
-              handler->fs_count(3000);
-              handler->freq_count(2500);
-          }
-          else if(mode3 == "Multi burst"){
-              handler->pdm_mode(MULTI_BURST);
-              handler->fs_count(3000);
-              handler->freq_count(2500);
+        if (vac4 == pro4) {
+            motoroff();
 
-          }
-           motoroff();
-           handler->speaker_on(pro5,0,0,1);
-     }
+            // Additional actions based on mode3
+            if (mode3 == "Ocupulse") {
+                handler->fs_count(3000);
+                handler->freq_count(2500);
+                handler->pdm_mode(PULSE_MODE);
+            }
+            else if (mode3 == "Ocuburst") {
+                handler->pdm_mode(OCUBURST);
+                handler->fs_count(3000);
+                handler->freq_count(2500);
+            }
+            else if (mode3 == "Multi burst") {
+                handler->pdm_mode(MULTI_BURST);
+                handler->fs_count(3000);
+                handler->freq_count(2500);
+            }
+
+            handler->speaker_on(pro5, 0, 0, 1);
+        }
     }
-    //us3
+
+    // Process US3 (vac3)
     else if (sensor > 0 && sensor < 4096) {
         int pro5 = sensor * 500 / 4096;
-        int pro6=std::min(vac3,pro5);
+        int pro6 = std::min(vac3, pro5);
         ui->label_99->setNum(pro6);
-        if(vac3 == pro6){
- motoroff();
-            if(mode2 == "Ocupulse"){
-              handler->pdm_mode(OCUPULSE);
-              ocupulseup_mode();
-              ocupulsedown_mode();
+
+        if (vac3 == pro5) {
+            motoroff();
+
+            // Additional actions based on mode2
+            if (mode2 == "Ocupulse") {
+                handler->pdm_mode(OCUPULSE);
+                ocupulseup_mode();
+                ocupulsedown_mode();
             }
-            else if(mode2=="Ocuburst"){
+            else if (mode2 == "Ocuburst") {
                 handler->pdm_mode(OCUBURST);
                 ocuburstup_mode();
                 ocuburstdown_mode();
             }
-            else if(mode2 == "Multi burst"){
+            else if (mode2 == "Multi burst") {
                 handler->pdm_mode(MULTI_BURST);
                 multiburstup_mode();
                 multiburstdown_mode();
-
             }
-             motoroff();
-               handler->speaker_on(pro5,0,0,1);
+
+            handler->speaker_on(pro5, 0, 0, 1);
         }
     }
-    //us2
+
+    // Process US2 (vac2)
     else if (sensor > 0 && sensor < 4096) {
         int pro6 = sensor * 500 / 4096;
-       int pro7=std::min(vac2,pro6);
+        int pro7 = std::min(vac2, pro6);
         ui->label_93->setNum(pro7);
-        if(vac2 == pro7){
- motoroff();
-            if(mode2 == "Ocupulse"){
-              handler->pdm_mode(OCUPULSE);
-              ocupulseup_mode();
-              ocupulsedown_mode();
+
+        if (vac2 == pro6) {
+            motoroff();
+
+            // Additional actions based on mode1
+            if (mode1 == "Ocupulse") {
+                handler->pdm_mode(OCUPULSE);
+                ocupulseup_mode();
+                ocupulsedown_mode();
             }
-            else if(mode2=="Ocuburst"){
+            else if (mode1 == "Ocuburst") {
                 handler->pdm_mode(OCUBURST);
                 ocuburstup_mode();
                 ocuburstdown_mode();
             }
-            else if(mode2 == "Multi burst"){
+            else if (mode1 == "Multi burst") {
                 handler->pdm_mode(MULTI_BURST);
                 multiburstup_mode();
                 multiburstdown_mode();
-
             }
-             motoroff();
-               handler->speaker_on(pro7,0,0,1);
+
+            handler->speaker_on(pro7, 0, 0, 1);
         }
     }
-    //us1
+
+    // Process US1 (vac1)
     else if (sensor > 0 && sensor < 4096) {
         int pro7 = sensor * 500 / 4096;
-        int pro8=std::min(vac1,pro7);
+        int pro8 = std::min(vac1, pro7);
         ui->label_8->setNum(pro8);
-        if(vac1 ==  pro8){
- motoroff();
-            if(mode3 == "Ocupulse"){
+
+        if (vac1 == pro7) {
+            motoroff();
+
+            // Additional actions based on mode
+            if (mode == "Ocupulse") {
                 handler->freq_count(2500);
                 handler->fs_count(3000);
-            handler->pdm_mode(PULSE_MODE);
-              ocupulseup_mode();
-              ocupulsedown_mode();
+                handler->pdm_mode(PULSE_MODE);
+                ocupulseup_mode();
+                ocupulsedown_mode();
             }
-            else if(mode3=="Ocuburst"){
+            else if (mode == "Ocuburst") {
                 handler->freq_count(2500);
                 handler->fs_count(3000);
                 handler->pdm_mode(PULSE_MODE);
                 ocuburstup_mode();
                 ocuburstdown_mode();
             }
-            else if(mode3 == "Multi burst"){
+            else if (mode == "Multi burst") {
                 handler->freq_count(2500);
                 handler->fs_count(3000);
                 handler->pdm_mode(PULSE_MODE);
                 multiburstup_mode();
                 multiburstdown_mode();
-
             }
 
-               handler->speaker_on(pro8,0,0,1);
-
+            handler->speaker_on(pro8, 0, 0, 1);
+        }
     }
-    }
-
-
 }
+
 
 void MainWindow::sensor2()
 {
@@ -3947,6 +3974,7 @@ void MainWindow::sensor2()
     if (sensor > 0 && sensor < 4096) {
         int pro1 = sensor * 500 / 4096;
         pro1=std::min(vac6,pro1);
+
         ui->label_109->setText(QString::number(pro1));
         if(vac6 == pro1){
             motoroff();
@@ -3958,7 +3986,7 @@ void MainWindow::sensor2()
         pro3=std::min(vac7,pro3);
         ui->label_118->setText(QString::number(pro3));
         if(vac7 == pro3){
-            motoroff();
+           motoroff();
               handler->speaker_on(pro3,0,0,1);
         }
     }
@@ -3968,7 +3996,7 @@ void MainWindow::sensor2()
         pro4=std::min(vac4,pro4);
         ui->label_104->setText(QString::number(pro4));
         if(vac4 == pro4){
-    motoroff();
+   motoroff();
             if(mode3 == "Ocupulse"){
               handler->pdm_mode(OCUPULSE);
               ocupulseup_mode();
@@ -4022,7 +4050,7 @@ void MainWindow::sensor2()
         pro6=std::min(vac2,pro6);
         ui->label_93->setText(QString::number(pro6));
         if(vac2==pro6){
-            motoroff();
+           motoroff();
 
             if(mode3 == "Ocupulse"){
               handler->pdm_mode(OCUPULSE);
@@ -4111,25 +4139,6 @@ void MainWindow::updateLabel()
     ui->elapsed_time->setText(QString::number(totalTime / 1000.0, 'f', 2) + " s");
 }
 
-void MainWindow::updateButtonsForTab(int tabIndex) {
-    QMessageBox msgBox;
-    msgBox.setWindowTitle("Info"); // Title of the message box
-    msgBox.setText("Do You Want To Change The Mode?"); // Question to ask
-    msgBox.setIcon(QMessageBox::Question); // Set icon to question mark
-    msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No); // Yes and No buttons
-    msgBox.setDefaultButton(QMessageBox::No); // Default button
-
-    // Apply stylesheet to change background color to gray
-    msgBox.setStyleSheet("QMessageBox { background-color:  rgb(25, 52, 27); color:rgb(255, 255, 255); }"
-                         "QPushButton { background-color: #444; color: white; border: 1px solid #666;width:91;height:51 }"
-                         "QPushButton:hover { background-color: #666; }");
-
-    // Show the message box and get the user's response
-    QMessageBox::StandardButton reply = static_cast<QMessageBox::StandardButton>(msgBox.exec());
-    if (reply == QMessageBox::Yes) {
-   changesvaluesql();
-    }
-}
 void MainWindow::changesvaluesql()
 {
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
@@ -4184,6 +4193,11 @@ void MainWindow::changesvaluesql()
     }
 
     db.close(); // Close the database connection
+}
+
+void MainWindow::changebuttonstyle()
+{
+    ui->label_19->show();
 }
 
 void MainWindow::moved(int gpio)
@@ -4788,48 +4802,58 @@ void MainWindow::updateTabsBasedOnComboBox(const QString &selected) {
     if (selected == "Continuous") {
         handler->pdm_mode(CONTINOUS);
         ui->tabWidget_2->setCurrentIndex(0);
-        ui->comboBox->setCurrentText("Continuous");  // Update combo box text
+      //  ui->comboBox->setCurrentText("Continuous");  // Update combo box text
         modeFound = true;
+        ui->label_32->hide();
 
     } else if (selected == "Pulse") {
         handler->pdm_mode(PULSE_MODE);
         pulseup_mode();
         pulsedown_mode();
         ui->tabWidget_2->setCurrentIndex(1);
-        ui->comboBox->setCurrentText("Pulse");  // Update combo box text
+     //   ui->comboBox->setCurrentText("Pulse");  // Update combo box text
         modeFound = true;
+        ui->label_32->show();
 
     } else if (selected == "Ocupulse") {
         handler->pdm_mode(CONTINOUS);
         ocupulseup_mode();
         ocupulsedown_mode();
         ui->tabWidget_2->setCurrentIndex(2);
-        ui->comboBox->setCurrentText("Ocupulse");  // Update combo box text
+       // ui->comboBox->setCurrentText("Ocupulse");  // Update combo box text
         modeFound = true;
+        ui->label_32->show();
+
 
     } else if (selected == "Ocuburst") {
         handler->pdm_mode(CONTINOUS);
         ocuburstup_mode();
         ocuburstdown_mode();
         ui->tabWidget_2->setCurrentIndex(3);
-        ui->comboBox->setCurrentText("Ocuburst");  // Update combo box text
+    //    ui->comboBox->setCurrentText("Ocuburst");  // Update combo box text
         modeFound = true;
+        ui->label_32->show();
+
 
     } else if (selected == "Single burst") {
         handler->pdm_mode(SINGLE_BURST);
         singleburstup_mode();
         singleburstdown_mode();
         ui->tabWidget_2->setCurrentIndex(4);
-        ui->comboBox->setCurrentText("Single burst");  // Update combo box text
+        //ui->comboBox->setCurrentText("Single burst");  // Update combo box text
         modeFound = true;
+        ui->label_32->show();
+
 
     } else if (selected == "Multi burst") {
         handler->pdm_mode(CONTINOUS);
         multiburstup_mode();
         multiburstdown_mode();
         ui->tabWidget_2->setCurrentIndex(5);
-        ui->comboBox->setCurrentText("Multi burst");  // Update combo box text
+       // ui->comboBox->setCurrentText("Multi burst");  // Update combo box text
         modeFound = true;
+        ui->label_32->show();
+
 
     } else if (selected == "Cold phaco") {
         handler->pdm_mode(COLD_PHACO);
@@ -4838,8 +4862,10 @@ void MainWindow::updateTabsBasedOnComboBox(const QString &selected) {
         coldphaco1up_mode();
         coldphaco1down_mode();
         ui->tabWidget_2->setCurrentIndex(6);
-        ui->comboBox->setCurrentText("Cold phaco");  // Update combo box text
+    //    ui->comboBox->setCurrentText("Cold phaco");  // Update combo box text
         modeFound = true;
+        ui->label_32->show();
+
     }
 
     if (!modeFound) {
@@ -4913,6 +4939,8 @@ ui->comboBox->setCurrentText(text);
 
 void MainWindow::performpump(const QString &text)
 {
+ui->comboBox->setCurrentText(text);
+qDebug()<<"the combo box current text is"<<text;
   QString value=ui->comboBox->currentText();
     if(value == "Peristaltic"){
 // ui->pushButton->setStyleSheet("background-color:green;");
@@ -4970,9 +4998,10 @@ void MainWindow::performpump(const QString &text)
         ui->vitflowdown_but->show();
 
         ui->textEdit_58->show();
+      
 
     }
-    else{
+    else if(value == "Venturi"){
        // ui->pushButton_2->setStyleSheet("background-color:green;");
         //us1
         ui->label_87->hide();
@@ -5218,7 +5247,7 @@ emit sendsurgeon(surgeonName);
     // Prepare a single query to fetch all required data
     QSqlQuery query(db);
     query.prepare(
-          "SELECT diapowmax, pump, Epinaspmax, Epinvacmax, Epinpowmax, Poweonoff, "
+          "SELECT diapowmax, pump, Epinaspmax, Epinvacmax, Epinpowmax, "
           "quadpowmax, quadvacmax, quadaspmax, Quadvacmode, Quadpowermethod, Quadpowmode, "
           "caspmax, cvacmax, cpowmax, Chopvacmode, Choppowermethod, Choppowmode, "
           "saspmax, svacmax, spowmax, Sculptvacmode, Sculptpowermethod, Sculptpowmode, "
@@ -5300,7 +5329,7 @@ emit sendsurgeon(surgeonName);
 
         // Update UI components with the retrieved values
         ui->lineEdit_74->setText(QString::number(phacoPowerMax));
-        ui->comboBox->setCurrentText(pump);
+       ui->comboBox->setCurrentText(pump);
         // Update US1 UI components
         ui->lineEdit_57->setText(QString::number(us1power));  // Power
         ui->lineEdit_55->setText(QString::number(us1vacmax)); // Vacuum
@@ -5308,7 +5337,6 @@ emit sendsurgeon(surgeonName);
         ui->us1mode->setText(us1mode);
         ui->us1vacmode->setText(us1vacmode);
         ui->CutMode_vitCom->setCurrentText(us1powermethod);
-       ui->us1onoff->setText(onoff);
         // Update US2 UI components
         ui->lineEdit_58->setText(QString::number(us2power)); // Power
         ui->lineEdit_60->setText(QString::number(us2vacmax)); // Vacuum
@@ -5316,7 +5344,6 @@ emit sendsurgeon(surgeonName);
         ui->us2mode->setText(us2mode);
         ui->us2vacmode->setText(us2vacmode);
         ui->CutMode_vitCom_2->setCurrentText(us2powermethod);
-  ui->us2onoff->setText(onoff);
         // Update US3 UI components
         ui->lineEdit_61->setText(QString::number(us3power)); // Power
         ui->lineEdit_63->setText(QString::number(us3vacmax)); // Vacuum
@@ -5332,7 +5359,6 @@ emit sendsurgeon(surgeonName);
         ui->us4mode->setText(us4mode);
         ui->us4vacmode->setText(us4vacmode);
         ui->CutMode_vitCom_4->setCurrentText(us4powermethod);
-    ui->us3onoff->setText(onoff);
         // Update IA UI components
         ui->lineEdit_67->setText(QString::number(ia1vacmax)); // IA1 Vacuum
         ui->lineEdit_69->setText(QString::number(ia2aspmax)); // IA1 Aspiration
@@ -5340,7 +5366,6 @@ emit sendsurgeon(surgeonName);
         ui->lineEdit_68->setText(QString::number(ia1aspmax)); // IA2 Aspiration
         ui->ia1mode->setText(ia1mode);
         ui->ia2mode->setText(ia2mode);
- ui->us4onoff->setText(onoff);
         // Update Vitrectomy UI components
         ui->lineEdit_71->setText(QString::number(vitcutmax)); // Vitrectomy Cut Max
         ui->lineEdit_73->setText(QString::number(vitvacmax)); // Vitrectomy Vacuum Max
@@ -5361,7 +5386,9 @@ emit sendsurgeon(surgeonName);
         emit right_foot(footright);
         emit bottom_left(footbleft);
         emit bottom_right(footbright);
-        qDebug()<<ia1aspmax<<ia1vacmax<<ia2aspmax<<ia2vacmax<<"these are retereived from the sql";
+        qDebug()<<"pump is reterived from the sql"<<pump;
+        performpump(pump);
+                qDebug()<<ia1aspmax<<ia1vacmax<<ia2aspmax<<ia2vacmax<<"these are retereived from the sql";
     } else {
         qDebug() << "No data found for surgeon:" << surgeonName;
     }
@@ -5384,4 +5411,7 @@ void MainWindow::on_pushButton_42_clicked()
 void MainWindow::on_pushButton_clicked()
 {
     this->close();
+
+
 }
+

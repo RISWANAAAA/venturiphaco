@@ -24,8 +24,10 @@
 #include<QSqlRecord>
 #include<QMap>
 #include<QComboBox>
+
 #define SQLPATH "/home/amt-04/phacohigh.db"
 #define PATH "/home/phacohigh.db"
+
 class settings;
 class prime;
  class footpedal;
@@ -49,8 +51,8 @@ public:
     void footpedalbeep();
 
 void push(const QString &surgeonName);
-void updateButtonsForTab(int tabIndex);
 void changesvaluesql();
+void changebuttonstyle();
 
     bool eventFilter(QObject* object, QEvent* event);
     void setRange(QLineEdit* lineEdit, int prevValue, int value, int maxValue);
@@ -139,7 +141,7 @@ void changesvaluesql();
                     290,290, //38
                     299,299  //40
                     };
-void setTuneMode(bool isTuneEnabled);
+void setTuneMode();
 void enableButtons(bool powerOn);
    void setLastSelectedValue();
 public slots:
@@ -193,6 +195,7 @@ public slots:
         const QString &vitmode, const QString &vitvacmode
     );
 
+ void on_pushButton_clicked();
 
 private slots:
 
@@ -376,7 +379,7 @@ void on_SETTINGS_BUT_2_clicked();
 
 void on_pushButton_42_clicked();
 
-void on_pushButton_clicked();
+
 
 signals:
      void sensorValueChanged(int value);
@@ -387,6 +390,7 @@ signals:
      void bottom_right(const QString &value);
      void con_irrigation(bool on); // Signal to handle Continuous Irrigation state
      void sendsurgeon(const QString &value);
+
 private:
     Ui::MainWindow *ui;
     //instance
@@ -397,6 +401,7 @@ private:
     footlib *lfoot;
     hwhandler *handler;
     Vaccum *vac;
+
 
 
 int getvalue(int input);
@@ -451,6 +456,9 @@ bool us3PdmMode = false;
 bool us4PdmMode = false;
 bool powerOn1;
 bool isTuneEnabled;
+bool us1linear=false;
+bool ia1vaclinear=false;
+bool ia2vaclinear=false;
 
 
 QString us1;

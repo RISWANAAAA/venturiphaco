@@ -1524,6 +1524,7 @@ void doctor::onSurgeonSelectionChanged(const QString &surgeonName)
         emit rightfoot(ui->RightFoot->currentText());
         emit bottomleft(ui->BottomLFoot->currentText());
         emit bottomright(ui->BottomRFoot->currentText());
+        emit pumpsignal(pump);
         qDebug()<<ia1aspmax<<ia2aspmax<<ia1vacmax<<ia2vacmax<<"these are sended to mainwindow";
 
     } else {
