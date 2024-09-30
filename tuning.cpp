@@ -18,9 +18,8 @@ tuning::tuning(QWidget *parent) :
     connect(handpiece,&QTimer::timeout,this,&tuning::updatehandpieceStatus);
     handpiece->start(10);
      ui->Value_lab->hide();
-     ui->Value_lab->setText(QString::number(m_value));
-      ui->Value_lab->setStyleSheet("font-size: 90px; font-weight: bold; color: white; background-color: transparent;");
-      ui->But_Tune->show();
+    ui->Value_lab->setStyleSheet("font-size: 90px; font-weight: bold; color: white; background-color: transparent;");
+    ui->But_Tune->show();
     currentCircle = 0;
     timer1=new QTimer;
     connect(timer1, &QTimer::timeout, this, &tuning::updateCircle);
@@ -250,27 +249,31 @@ void tuning::updateProgress()
     m_value = 0; // Reset value
     ui->Value_lab->setText(QString::number(m_value)); // Update label to show 0
       ui->Value_lab->move(400, 270); // Move label if necessary
-    update();
+
     ui->Value_lab->show(); // Show the label
+    update();
     ui->But_Tune->move(170, 280); // Move button back to starting position
     ui->But_Tune->resize(541, 141); // Resize button back to original size
     ui->Handpiece_lab->move(150,340);
-           ui->Handpiece_lab->resize(141,131);
-           ui->Value_lab->hide();
-    timer1->stop();
+    ui->Handpiece_lab->resize(141,131);
+   // timer1->stop();
 
 }
 // Circular progress bar updating
 int tuning::Tune_Phaco()
 {
+
+
   updateProgress();
     // Start the timer if it's not running
     if (!isRunning) {
         isRunning = true; // Set the running status
+        ui->Value_lab->show();
+        timer1->start(1);
+
         ui->But_Tune->move(150, 260);
         ui->But_Tune->resize(271, 171);
-        timer1->start(100);
-
+m_value=0;
         // Loop until m_value reaches 100
         for (m_value; m_value <= 100; m_value++) {
             ui->Value_lab->setText(QString::number(m_value)); // Update label with current value
@@ -280,16 +283,18 @@ int tuning::Tune_Phaco()
                 hand->phaco_power(80);
             update(); // Update the UI
             QCoreApplication::processEvents(); // Process events
-            usleep(10000); // Sleep for a while to create the effect
+            usleep(100000); // Sleep for a while to create the effect
         }
 
 updateProgress();
-        isRunning = false;
+
+isRunning=false;
 main->show();
 main->DIATHERMYBUT();
 main->setTuneMode();
 
     }
+    return 0;
 }
 
 void tuning::on_But_Next_clicked()

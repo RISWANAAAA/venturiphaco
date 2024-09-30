@@ -1772,6 +1772,7 @@ void MainWindow::setTuneMode() {
 
 // Set the flag based on the argument
  // Enable or disable the US buttons based on the flag
+   // QMessageBox::information(nullptr,"Info","Tune is completed");
  ui->ULTRASONICBUT1->setEnabled(true);    // us1
     ui->label_16->setStyleSheet(styleSheet4);
     ui->label_17->setStyleSheet(styleSheet4);
