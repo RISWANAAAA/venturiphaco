@@ -29,7 +29,7 @@ public:
     void updatehandpieceStatus();
     void updateProgress();
 void resetState();
-void circularporgressbar();
+int Tune_Phaco();
 public slots:
 void on_pushButton_clicked();
 
@@ -40,7 +40,8 @@ protected:
 
 private slots:
 
-    void on_pushButton_2_clicked();
+    void on_But_Next_clicked();
+
 signals:
     void sendvisibleisgnale(bool status);
 private:

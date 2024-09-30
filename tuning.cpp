@@ -17,13 +17,14 @@ tuning::tuning(QWidget *parent) :
     readGPIOValue(960);
     connect(handpiece,&QTimer::timeout,this,&tuning::updatehandpieceStatus);
     handpiece->start(10);
-     ui->label->hide();
-     ui->label->setText(QString::number(m_value));
-      ui->label->setStyleSheet("font-size: 90px; font-weight: bold; color: white; background-color: transparent;");
-      ui->pushButton->show();
+     ui->Handpiece_lab->hide();
+     ui->Handpiece_lab->setText(QString::number(m_value));
+      ui->Handpiece_lab->setStyleSheet("font-size: 90px; font-weight: bold; color: white; background-color: transparent;");
+      ui->But_Tune->show();
     currentCircle = 0;
     timer1=new QTimer;
     connect(timer1, &QTimer::timeout, this, &tuning::updateCircle);
+    connect(ui->But_Tune,&QPushButton::clicked,this,&tuning::on_pushButton_clicked);
 }
 
 tuning::~tuning()
@@ -88,9 +89,9 @@ void tuning::updatehandpieceStatus()
 
    if(status==0)
    {
-       ui->label_2->setStyleSheet(styleSheet4);
+       ui->Handpiece_lab->setStyleSheet(styleSheet4);
      //  qDebug()<<status;
-       ui->pushButton->setEnabled(true);
+       ui->But_Tune->setEnabled(true);
 
 
 
@@ -98,8 +99,8 @@ void tuning::updatehandpieceStatus()
    else
    {
      //   qDebug()<<status;
-       ui->label_2->setStyleSheet(styleSheet5);
-       ui->pushButton->setEnabled(false);
+       ui->Handpiece_lab->setStyleSheet(styleSheet5);
+       ui->But_Tune->setEnabled(false);
 
    }
 }
@@ -123,7 +124,7 @@ void tuning::paintEvent(QPaintEvent *event)
     QPoint center = rect().center();
     int radius = 200;
     // Calculate active lines based on progress
-    int totalLines = 80;
+    int totalLines = 100;
     int activeLines = (m_value * totalLines) / 100;
     double angleStep = 360.0 / totalLines;
 
@@ -232,79 +233,137 @@ void tuning::updateCircle()
 }
 
 
+//// Slot for handling the button click
+//void tuning::on_pushButton_clicked()
+//{
+//    ui->pushButton->move(170,280);
+//    ui->label_2->move(150,340);
+
+//Tune_Phaco();
+//}
+////update the circle which is reach 100 they moves mainwindowF
+//void tuning::updateProgress()
+//{
+//    // Increment the progress value
+//    m_value += 1;
+//    ui->label->setText(QString::number(m_value));
+//    ui->label->move(400, 270); // Move label if necessary
+
+//    // Check if m_value has reached or exceeded 100
+//    if (m_value >= 100) {
+//        // Reset m_value to 0
+//        m_value = 0;
+//        // Stop the timers and reset UI elements
+//        timer1->stop();
+//        ui->label->setText(QString::number(m_value));
+//        main->show();
+//        main->DIATHERMYBUT();
+//        main->setTuneMode();
+//        main->changebuttonstyle();
+//        ui->pushButton->move(170,280);
+//        ui->pushButton->resize(541,141);
+//        isRunning = false;
+//        ui->label_2->move(150,340);
+//        ui->label_2->resize(141,131);
+//        ui->label->hide();
+//    }
+
+
+//}
+////circle progress bar updating
+//int tuning::Tune_Phaco()
+//{
+
+//    // Reset progress to 0 and update the label
+//    m_value = 0;
+//    ui->label->setText(QString::number(m_value)); // Update label to show 0
+//    ui->label->show(); // Show the label
+
+//    // Start the timer if it's not running
+//    if (!isRunning) {
+
+//    for(m_value;m_value<100;m_value++){
+//    ui->label->setText(QString::number(m_value));
+//    // Start the device functions
+//    int db_feed=vacSensor->convert(0XA7);
+//    hand->freq_count(2500);
+//    hand->phaco_on();
+//    hand->phaco_power(80);
+
+//    update();
+//    QCoreApplication::processEvents();
+//    usleep(100000);
+//}
+//        // Start the timers
+//        timer1->start(10); // another circle
+//        isRunning = true; // Set the running status
+
+//        ui->pushButton->move(150,260);
+//        ui->pushButton->resize(271,171);
+//        ui->label_2->move(550,300); // Hide label_2 if necessary
+//        ui->label_2->resize(81,61);
+//    }
+//    updateProgress();
+
+//    //update();
+//}
+
 // Slot for handling the button click
 void tuning::on_pushButton_clicked()
 {
-    ui->pushButton->move(170,280);
-    ui->label_2->move(150,340);
+    if (!isRunning) { // Only start if the progress is not currently running
+           ui->But_Tune->move(170, 280);
+           ui->Handpiece_lab->move(150,340);
 
-    circularporgressbar();
+Tune_Phaco();
+    }
 }
-//update the circle which is reach 100 they moves mainwindowF
+
+// Update the circle which reaches 100 and then moves to MainWindow
 void tuning::updateProgress()
 {
-    // Increment the progress value
-    m_value += 1;
-    ui->label->setText(QString::number(m_value));
-    ui->label->move(400, 270); // Move label if necessary
-
-    // Check if m_value has reached or exceeded 100
-    if (m_value >= 100) {
-        // Reset m_value to 0
-        m_value = 0;
-        // Stop the timers and reset UI elements
-        timer1->stop();
-        ui->label->setText(QString::number(m_value));
-        main->show();
-        main->DIATHERMYBUT();
-        main->setTuneMode();
-        main->changebuttonstyle();
-        ui->pushButton->move(170,280);
-        ui->pushButton->resize(541,141);
-        isRunning = false;
-        ui->label_2->move(150,340);
-        ui->label_2->resize(141,131);
-        ui->label->hide();
-    }
-
+    m_value = 0; // Reset value
+    ui->Value_lab->setText(QString::number(m_value)); // Update label to show 0
+      ui->Value_lab->move(400, 270); // Move label if necessary
+    update();
+    ui->Value_lab->show(); // Show the label
+    ui->But_Tune->move(170, 280); // Move button back to starting position
+    ui->But_Tune->resize(541, 141); // Resize button back to original size
+    ui->Handpiece_lab->move(150,340);
+           ui->Handpiece_lab->resize(141,131);
+           ui->Value_lab->hide();
+    timer1->stop();
 
 }
-//circle progress bar updating
-void tuning::circularporgressbar()
+// Circular progress bar updating
+int tuning::Tune_Phaco()
 {
-
-    // Reset progress to 0 and update the label
-    m_value = 0;
-    ui->label->setText(QString::number(m_value)); // Update label to show 0
-    ui->label->show(); // Show the label
-
+  updateProgress();
     // Start the timer if it's not running
     if (!isRunning) {
-        // Start the device functions
-        hand->freq_count(2500);
-        hand->phaco_on();
-        hand->phaco_power(80);
-  int db_feed=vacSensor->convert(0XA7);
-for(m_value;m_value<100;m_value++){
-    ui->label->setText(QString::number(m_value));
-    update();
-}
-        // Start the timers
-        timer1->start(10); // another circle
         isRunning = true; // Set the running status
+        ui->But_Tune->move(150, 260);
+        ui->But_Tune->resize(271, 171);
+        timer1->start(100);
 
-        ui->pushButton->move(150,260);
-        ui->pushButton->resize(271,171);
-        ui->label_2->move(550,300); // Hide label_2 if necessary
-        ui->label_2->resize(81,61);
+        // Loop until m_value reaches 100
+        for (m_value; m_value <= 100; m_value++) {
+            ui->Value_lab->setText(QString::number(m_value)); // Update label with current value
+            update(); // Update the UI
+            QCoreApplication::processEvents(); // Process events
+            usleep(100000); // Sleep for a while to create the effect
+        }
+
+updateProgress();
+        isRunning = false;
+main->show();
+main->DIATHERMYBUT();
+main->setTuneMode();
+
     }
-
-    //update();
 }
 
-void tuning::on_pushButton_2_clicked()
+void tuning::on_But_Next_clicked()
 {
     main->show();
-
-
 }
