@@ -109,6 +109,8 @@ void prime::click()
    ui->Tune_but->setStyleSheet(styleSheet);
    ui->clean_but->setStyleSheet(styleSheet);
    ui->label->show();
+   ui->label_2->show();
+   ui->label_3->show();
 
 
 }
@@ -140,19 +142,43 @@ void prime::current(int tab)
                           "    outline: none;"
                           "    border: none;"
                           "}";
+    QString style="QLabel{"
+                  "image: url(:/images/prime.png);"
+            "background-color:transparent;"
+                  "border:none;"
+                  "}";
+    QString style1="QLabel{"
+                  "image: url(:/images/wifi.png);"
+            "background-color:transparent;"
+                  "border:none;"
+                  "}";
+
+    QString style2="QLabel{"
+                  "image: url(:/images/clean.png);"
+            "background-color:transparent;"
+                  "border:none;"
+                  "}";
+
 
     // Reset all buttons to the default style
     ui->prime1_but->setStyleSheet(styleSheet1);
     ui->Tune_but->setStyleSheet(styleSheet1);
     ui->clean_but->setStyleSheet(styleSheet1);
+    ui->label->setStyleSheet(style);
+    ui->label_2->setStyleSheet(style1);
+    ui->label_3->setStyleSheet(style2);
 
     // Set the style for the current tab
     if (tab == 0) {
         ui->prime1_but->setStyleSheet(styleSheet);
+         ui->label->setStyleSheet(style);
     } else if (tab == 1) {
         ui->Tune_but->setStyleSheet(styleSheet);
+         ui->label_2->setStyleSheet(style1);
     } else if (tab == 2) {
         ui->clean_but->setStyleSheet(styleSheet);
+        ui->label_3->setStyleSheet(style2);
+
     }
 }
 

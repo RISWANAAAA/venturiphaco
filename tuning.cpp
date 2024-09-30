@@ -253,7 +253,6 @@ void tuning::updateProgress()
         // Reset m_value to 0
         m_value = 0;
         // Stop the timers and reset UI elements
-        timer->stop();
         timer1->stop();
         ui->label->setText(QString::number(m_value));
         main->show();
@@ -286,9 +285,11 @@ void tuning::circularporgressbar()
         hand->phaco_on();
         hand->phaco_power(80);
   int db_feed=vacSensor->convert(0XA7);
- qDebug()<<"the drive board feedbak is"<<db_feed;
+for(m_value;m_value<100;m_value++){
+    ui->label->setText(QString::number(m_value));
+    update();
+}
         // Start the timers
-        timer->start(500); // circle progressbarrrr
         timer1->start(10); // another circle
         isRunning = true; // Set the running status
 
@@ -296,10 +297,9 @@ void tuning::circularporgressbar()
         ui->pushButton->resize(271,171);
         ui->label_2->move(550,300); // Hide label_2 if necessary
         ui->label_2->resize(81,61);
-        connect(timer, &QTimer::timeout, this, &tuning::updateProgress);
     }
 
-    update();
+    //update();
 }
 
 void tuning::on_pushButton_2_clicked()
