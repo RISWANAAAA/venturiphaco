@@ -17,9 +17,9 @@ tuning::tuning(QWidget *parent) :
     readGPIOValue(960);
     connect(handpiece,&QTimer::timeout,this,&tuning::updatehandpieceStatus);
     handpiece->start(10);
-     ui->Handpiece_lab->hide();
-     ui->Handpiece_lab->setText(QString::number(m_value));
-      ui->Handpiece_lab->setStyleSheet("font-size: 90px; font-weight: bold; color: white; background-color: transparent;");
+     ui->Value_lab->hide();
+     ui->Value_lab->setText(QString::number(m_value));
+      ui->Value_lab->setStyleSheet("font-size: 90px; font-weight: bold; color: white; background-color: transparent;");
       ui->But_Tune->show();
     currentCircle = 0;
     timer1=new QTimer;
@@ -233,81 +233,6 @@ void tuning::updateCircle()
 }
 
 
-//// Slot for handling the button click
-//void tuning::on_pushButton_clicked()
-//{
-//    ui->pushButton->move(170,280);
-//    ui->label_2->move(150,340);
-
-//Tune_Phaco();
-//}
-////update the circle which is reach 100 they moves mainwindowF
-//void tuning::updateProgress()
-//{
-//    // Increment the progress value
-//    m_value += 1;
-//    ui->label->setText(QString::number(m_value));
-//    ui->label->move(400, 270); // Move label if necessary
-
-//    // Check if m_value has reached or exceeded 100
-//    if (m_value >= 100) {
-//        // Reset m_value to 0
-//        m_value = 0;
-//        // Stop the timers and reset UI elements
-//        timer1->stop();
-//        ui->label->setText(QString::number(m_value));
-//        main->show();
-//        main->DIATHERMYBUT();
-//        main->setTuneMode();
-//        main->changebuttonstyle();
-//        ui->pushButton->move(170,280);
-//        ui->pushButton->resize(541,141);
-//        isRunning = false;
-//        ui->label_2->move(150,340);
-//        ui->label_2->resize(141,131);
-//        ui->label->hide();
-//    }
-
-
-//}
-////circle progress bar updating
-//int tuning::Tune_Phaco()
-//{
-
-//    // Reset progress to 0 and update the label
-//    m_value = 0;
-//    ui->label->setText(QString::number(m_value)); // Update label to show 0
-//    ui->label->show(); // Show the label
-
-//    // Start the timer if it's not running
-//    if (!isRunning) {
-
-//    for(m_value;m_value<100;m_value++){
-//    ui->label->setText(QString::number(m_value));
-//    // Start the device functions
-//    int db_feed=vacSensor->convert(0XA7);
-//    hand->freq_count(2500);
-//    hand->phaco_on();
-//    hand->phaco_power(80);
-
-//    update();
-//    QCoreApplication::processEvents();
-//    usleep(100000);
-//}
-//        // Start the timers
-//        timer1->start(10); // another circle
-//        isRunning = true; // Set the running status
-
-//        ui->pushButton->move(150,260);
-//        ui->pushButton->resize(271,171);
-//        ui->label_2->move(550,300); // Hide label_2 if necessary
-//        ui->label_2->resize(81,61);
-//    }
-//    updateProgress();
-
-//    //update();
-//}
-
 // Slot for handling the button click
 void tuning::on_pushButton_clicked()
 {
@@ -349,9 +274,13 @@ int tuning::Tune_Phaco()
         // Loop until m_value reaches 100
         for (m_value; m_value <= 100; m_value++) {
             ui->Value_lab->setText(QString::number(m_value)); // Update label with current value
+            int db_feed=vacSensor->convert(0XA7);
+               hand->freq_count(2500);
+                hand->phaco_on();
+                hand->phaco_power(80);
             update(); // Update the UI
             QCoreApplication::processEvents(); // Process events
-            usleep(100000); // Sleep for a while to create the effect
+            usleep(10000); // Sleep for a while to create the effect
         }
 
 updateProgress();
