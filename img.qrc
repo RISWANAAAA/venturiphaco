@@ -94,5 +94,8 @@
         <file>unselectedbutton.png</file>
         <file>doubled.png</file>
         <file>singletick.png</file>
+        <file>clean.png</file>
+        <file>prime.png</file>
+        <file>wifi.png</file>
     </qresource>
 </RCC>
