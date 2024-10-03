@@ -30,6 +30,7 @@ public:
     void updateProgress();
 void resetState();
 int Tune_Phaco();
+int ADC_value();
 public slots:
 void on_pushButton_clicked();
 
@@ -41,6 +42,10 @@ protected:
 private slots:
 
     void on_But_Next_clicked();
+
+    void on_But_Handpiece_clicked();
+
+    void on_But_value_clicked();
 
 signals:
     void sendvisibleisgnale(bool status);

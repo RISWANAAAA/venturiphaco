@@ -97,5 +97,6 @@
         <file>clean.png</file>
         <file>prime.png</file>
         <file>wifi.png</file>
+        <file>selectedbut1.png</file>
     </qresource>
 </RCC>

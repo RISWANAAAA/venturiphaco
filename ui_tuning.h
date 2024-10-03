@@ -12,7 +12,6 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QDialog>
-#include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
 
 QT_BEGIN_NAMESPACE
@@ -21,9 +20,9 @@ class Ui_tuning
 {
 public:
     QPushButton *But_Tune;
-    QLabel *Value_lab;
-    QLabel *Handpiece_lab;
     QPushButton *But_Next;
+    QPushButton *But_Handpiece;
+    QPushButton *But_value;
 
     void setupUi(QDialog *tuning)
     {
@@ -40,21 +39,24 @@ public:
 "    outline: none;\n"
 "    border: none;\n"
 "}"));
-        Value_lab = new QLabel(tuning);
-        Value_lab->setObjectName(QString::fromUtf8("Value_lab"));
-        Value_lab->setGeometry(QRect(400, 270, 131, 141));
-        Value_lab->setStyleSheet(QString::fromUtf8("background-color: rgb(15, 114, 130);"));
-        Handpiece_lab = new QLabel(tuning);
-        Handpiece_lab->setObjectName(QString::fromUtf8("Handpiece_lab"));
-        Handpiece_lab->setGeometry(QRect(150, 340, 141, 131));
-        Handpiece_lab->setStyleSheet(QString::fromUtf8("background-color:transparent;\n"
-""));
         But_Next = new QPushButton(tuning);
         But_Next->setObjectName(QString::fromUtf8("But_Next"));
         But_Next->setGeometry(QRect(690, 570, 151, 121));
         But_Next->setStyleSheet(QString::fromUtf8("image: url(:/images/nextarrow.png);\n"
 "background-color:transparent;\n"
 "border:none;"));
+        But_Handpiece = new QPushButton(tuning);
+        But_Handpiece->setObjectName(QString::fromUtf8("But_Handpiece"));
+        But_Handpiece->setGeometry(QRect(150, 340, 141, 131));
+        But_Handpiece->setStyleSheet(QString::fromUtf8("background-color:transparent;\n"
+"border:none;"));
+        But_value = new QPushButton(tuning);
+        But_value->setObjectName(QString::fromUtf8("But_value"));
+        But_value->setGeometry(QRect(370, 270, 131, 141));
+        But_Handpiece->raise();
+        But_Tune->raise();
+        But_Next->raise();
+        But_value->raise();
 
         retranslateUi(tuning);
 
@@ -65,9 +67,9 @@ public:
     {
         tuning->setWindowTitle(QCoreApplication::translate("tuning", "Dialog", nullptr));
         But_Tune->setText(QString());
-        Value_lab->setText(QString());
-        Handpiece_lab->setText(QString());
         But_Next->setText(QString());
+        But_Handpiece->setText(QString());
+        But_value->setText(QCoreApplication::translate("tuning", "PushButton", nullptr));
     } // retranslateUi
 
 };

@@ -34,6 +34,7 @@ prime::prime(QWidget *parent) :
 
 
     QString tabStyle = "QTabBar::tab:selected { background-color: black; color: #ffffff; border-radius:50px}";
+ui->tabWidget->setStyleSheet("QTabWidget::pane { border: 0; }");
     QString styleSheet3 =
                 "QTabBar::tab {"
                 "    font-size: 16px; /* Set the font size */"

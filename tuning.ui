@@ -35,39 +35,6 @@ QPushButton:focus {
     <string/>
    </property>
   </widget>
-  <widget class="QLabel" name="Value_lab">
-   <property name="geometry">
-    <rect>
-     <x>400</x>
-     <y>270</y>
-     <width>131</width>
-     <height>141</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: rgb(15, 114, 130);</string>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
-  <widget class="QLabel" name="Handpiece_lab">
-   <property name="geometry">
-    <rect>
-     <x>150</x>
-     <y>340</y>
-     <width>141</width>
-     <height>131</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color:transparent;
-</string>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
   <widget class="QPushButton" name="But_Next">
    <property name="geometry">
     <rect>
@@ -86,6 +53,40 @@ border:none;</string>
     <string/>
    </property>
   </widget>
+  <widget class="QPushButton" name="But_Handpiece">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>340</y>
+     <width>141</width>
+     <height>131</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color:transparent;
+border:none;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="But_value">
+   <property name="geometry">
+    <rect>
+     <x>370</x>
+     <y>270</y>
+     <width>131</width>
+     <height>141</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>PushButton</string>
+   </property>
+  </widget>
+  <zorder>But_Handpiece</zorder>
+  <zorder>But_Tune</zorder>
+  <zorder>But_Next</zorder>
+  <zorder>But_value</zorder>
  </widget>
  <resources/>
  <connections/>
