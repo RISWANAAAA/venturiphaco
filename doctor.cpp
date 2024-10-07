@@ -12,7 +12,7 @@ doctor::doctor(QWidget *parent) :
     //last surgeon update
    setLastSelectedValue();
    move(0,0);
-
+  cFoot=new footswitch;
     QString tabStyle = "QTabBar::tab:selected { background-color: black; color: #ffffff; }";
     ui->tabWidget_2->setStyleSheet(tabStyle);
          connect(ui->tabWidget_2, &QTabWidget::currentChanged, this, &doctor::clickedtab);
@@ -27,7 +27,6 @@ connect(ui->SelectSurgeon,&QComboBox::currentTextChanged,this,&doctor::onSurgeon
        mydb.setDatabaseName(PATH);
        mydb.open();
        //current surgeon
-    surgeonid=ui->SelectSurgeon->currentText();
 
     QString tabStyle1 = "QTabBar::tab:selected { background-color: black; color: #ffffff; }";
      ui-> tabWidget->setStyleSheet(tabStyle1);
@@ -133,11 +132,21 @@ connect(ui->SelectSurgeon,&QComboBox::currentTextChanged,this,&doctor::onSurgeon
     connect(ui->tabWidget, &QTabWidget::currentChanged, this, &doctor::click);
      click(ui->tabWidget->currentIndex());
      onSurgeonSelectionChanged(ui->SelectSurgeon->currentText());
+     QString text=ui->SelectSurgeon->currentText();
+     emit surgeonNamefoot(text);
+     connect(this,&doctor::surgeonNamefoot,cFoot,&footswitch::SurgeonFoot);
+     connect(cFoot,&footswitch::sendvaltomain,this,&doctor::receivingvalueffs);
+     //connecting combobox from footswitch to doctor window
+     connect(cFoot,&footswitch::topleft,this,&doctor::receivetopleft);
+     connect(cFoot,&footswitch::topright,this,&doctor::receivetopright);
+     connect(cFoot,&footswitch::bottomleft,this,&doctor::receivebottomleft);
+     connect(cFoot,&footswitch::bottomright,this,&doctor::receivetopright);
 }
 
 doctor::~doctor()
 {
     delete ui;
+    db.close();
 }
 
 bool doctor::eventFilter(QObject *object, QEvent *event)
@@ -1101,15 +1110,15 @@ QString b_right=ui->BottomRFoot->currentText();
 
     // Check if the QSQLITE driver is available
     QStringList drivers = QSqlDatabase::drivers();
-//    qDebug() << "Available drivers:" << drivers;
+//    //qDebug() << "Available drivers:" << drivers;
 
     if (!drivers.contains("QSQLITE")) {
-//        qDebug() << "Error: QSQLITE driver not available!";
+//        //qDebug() << "Error: QSQLITE driver not available!";
         return;
     }
 
     if (!mydb.open()) {
-//        qDebug() << "Error: Unable to open database with path:" << PATH;
+//        //qDebug() << "Error: Unable to open database with path:" << PATH;
         return;
     }
 
@@ -1122,17 +1131,17 @@ QString b_right=ui->BottomRFoot->currentText();
     query.bindValue(":surgeon", surgeon);
 
     // Debug: Log the query and bound values
-    qDebug() << "Executing query: SELECT * FROM phacohigh WHERE surgeon =" << surgeon;
+    //qDebug() << "Executing query: SELECT * FROM phacohigh WHERE surgeon =" << surgeon;
 
     // Execute the query
     if (!query.exec()) {
-//        qDebug() << "Error executing SELECT query: " << query.lastError().text();
+//        //qDebug() << "Error executing SELECT query: " << query.lastError().text();
         return;
     }
 
     // Check if any rows are fetched
     if (!query.next()) {
-//        qDebug() << "No rows fetched for surgeon:" << surgeon;
+//        //qDebug() << "No rows fetched for surgeon:" << surgeon;
         return;
     }
 
@@ -1199,13 +1208,13 @@ QString b_right=ui->BottomRFoot->currentText();
     query.bindValue(":surgeon", surgeon);
 
     // Debug: Log the update query and bound values
-//    qDebug() << "Executing update query for surgeon:" << surgeon;
+//    //qDebug() << "Executing update query for surgeon:" << surgeon;
 
     // Execute the update query
     if (!query.exec()) {
-//        qDebug() << "Error executing UPDATE query: " << query.lastError().text();
+//        //qDebug() << "Error executing UPDATE query: " << query.lastError().text();
     } else {
-//        qDebug() << "Data updated successfully.";
+//        //qDebug() << "Data updated successfully.";
         QMessageBox* msgBox = new QMessageBox(QMessageBox::Information, "Info", "Surgeon is updated");
 
         // Set the message box to show
@@ -1219,7 +1228,6 @@ QString b_right=ui->BottomRFoot->currentText();
     });
     }
 
-
 emit sendValues(
     value,value1, dia, us1pow, us1vac, us1asp,
     us2pow, us2vac, us2asp, us3pow, us3vac, us3asp,
@@ -1231,16 +1239,18 @@ emit sendValues(
     us4powmode, us4vacmode, us4powermethod,
     ia1mode, ia2mode, vitmode, vitvacmode
 );
-    qDebug()<<ia2asp<<ia1asp<<ia1vac<<ia2vac<<"these are sended to mainwindow1111111111111";
+    //qDebug()<<ia2asp<<ia1asp<<ia1vac<<ia2vac<<"these are sended to mainwindow1111111111111";
 emit sendleftfootvalues(ui->LeftFoot->currentText());
-//    qDebug()<<"footleft is"<<footleft;
+//    //qDebug()<<"footleft is"<<footleft;
     emit sendrightfootvalues(ui->RightFoot->currentText());
-//      qDebug()<<"footright is"<<footright;
+//      //qDebug()<<"footright is"<<footright;
     emit sendbleftfootvalues(ui->BottomLFoot->currentText());
-//    qDebug()<<"footbottom left is"<<b_left;
+//    //qDebug()<<"footbottom left is"<<b_left;
     emit sendbrightfootvalues(ui->BottomRFoot->currentText());
-//    qDebug()<<"footbottom right is"<<b_right;
+//    //qDebug()<<"footbottom right is"<<b_right;
     this->close();
+    db.close();
+    QSqlDatabase::removeDatabase(PATH);
 }
 
 void doctor::pumpvalue()
@@ -1272,47 +1282,54 @@ void doctor::handleDataSaved()
 }
 void doctor::onComboBoxIndexChanged(int index)
 {
-    QSqlDatabase db = QSqlDatabase::database();  // Retrieve existing connection
+    // Close and remove the existing connection
+    QSqlDatabase db = QSqlDatabase::database();  // Get the default connection
+    db.close();  // Close the connection
+    QSqlDatabase::removeDatabase(QSqlDatabase::defaultConnection);
 
-    if (!db.isValid()) {
+
+    // Step 2: Check if the connection is open and valid
+    if (!db.isValid() || !db.isOpen()) {
         db = QSqlDatabase::addDatabase("QSQLITE");
         db.setDatabaseName(PATH);
 
         if (!db.open()) {
-            qDebug() << "Error: connection with database failed:";
+            //qDebug() << "Error: connection with database failed:";
             return;
         }
     }
 
+    // Step 3: Prepare and execute the SQL query to update the last selected index
     QSqlQuery query(db);
-
-    // Step 1: Update the last selected index
     query.prepare("UPDATE phacohigh SET lastupdate = :index");
     query.bindValue(":index", index);
-    //query.bindValue(":id", 1); // Replace 1 with the actual identifier value if needed
-
+    //qDebug() << "Updating last selected index to" << index;
+    QString text=ui->SelectSurgeon->itemText(index);
+    QString send=ui->SelectSurgeon->currentText();
+    emit surgeonNamefoot(send);
     if (!query.exec()) {
-        qDebug() << "Error updating last selected index:";
-        return;
+        //qDebug() << "Error updating last selected index:" << query.lastError();
     } else {
-        qDebug() << "Last selected index updated to" << index;
+        //qDebug() << "Last selected index updated to" << index;
     }
 
-
     db.close();
-    QSqlDatabase::removeDatabase(QSqlDatabase::defaultConnection);
+    QSqlDatabase::removeDatabase(PATH);
 }
+
 void doctor::setLastSelectedValue()
 {
-    // Check if the database connection is already available
-    QSqlDatabase db = QSqlDatabase::database();  // Retrieve existing connection, if any
+    // Close and remove the existing connection
+    QSqlDatabase db = QSqlDatabase::database();  // Get the default connection
+    db.close();  // Close the connection
+    QSqlDatabase::removeDatabase(QSqlDatabase::defaultConnection);
 
     if (!db.isValid()) {
         db = QSqlDatabase::addDatabase("QSQLITE");
         db.setDatabaseName(PATH);
 
         if (!db.open()) {
-            qDebug() << "Error: connection with database failed:";
+            //qDebug() << "Error: connection with database failed:";
             return;
         }
     }
@@ -1322,7 +1339,7 @@ void doctor::setLastSelectedValue()
     query.prepare("SELECT lastupdate FROM phacohigh LIMIT 1");
 
     if (!query.exec()) {
-//        qDebug() << "Error retrieving last index:";
+//        //qDebug() << "Error retrieving last index:";
         db.close();
         QSqlDatabase::removeDatabase(QSqlDatabase::defaultConnection);
         return;
@@ -1332,24 +1349,38 @@ void doctor::setLastSelectedValue()
     if (query.next()) {
         int lastIndex = query.value(0).toInt();
         ui->SelectSurgeon->setCurrentIndex(lastIndex);
-
-//        qDebug() << "Last selected index set to" << lastIndex;
+        QString text=ui->SelectSurgeon->currentText();
+        emit surgeonNamefoot(text);
+//        //qDebug() << "Last selected index set to" << lastIndex;
     } else {
-//        qDebug() << "No index found in the database. Verify the data in the table.";
+//        //qDebug() << "No index found in the database. Verify the data in the table.";
     }
-
+    if (query.isActive()) {
+        query.finish();  // Finish or close the query before closing the database
+    }
     db.close();
-    QSqlDatabase::removeDatabase(QSqlDatabase::defaultConnection);
+    QSqlDatabase::removeDatabase(PATH);
+}
+
+void doctor::receivingvalueffs(int &val0, int &val1,int &val2,int &val3)
+{
+    //qDebug()<<"receivedddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd";
+  int fpzero=val0;
+  int fpone=val1;
+  int fptwo=val2;
+  int fpthree=val3;
+  transmitval(fpzero,fpone,fptwo,fpthree);
+  //qDebug()<<"values are transmitted";
 }
 
 
 void doctor::onSurgeonSelectionChanged(const QString &surgeonName)
 {
 
-//    qDebug() << "Attempting to fetch data for surgeon:" << surgeonName;
-
-    // Check and display available drivers
-//    qDebug() << "Available SQL drivers:" << QSqlDatabase::drivers();
+    // Close and remove the existing connection
+    QSqlDatabase db = QSqlDatabase::database();  // Get the default connection
+    db.close();  // Close the connection
+    QSqlDatabase::removeDatabase(QSqlDatabase::defaultConnection);
 
     if (!db.isValid()) {
         db = QSqlDatabase::addDatabase("QSQLITE");
@@ -1358,13 +1389,13 @@ void doctor::onSurgeonSelectionChanged(const QString &surgeonName)
 
     if (!db.isOpen()) {
         if (!db.open()) {
-//            qDebug() << "Failed to open database. Error:" << db.lastError().text();
+//            //qDebug() << "Failed to open database. Error:" << db.lastError().text();
             return;
         } else {
-//            qDebug() << "Database connection opened successfully.";
+//            //qDebug() << "Database connection opened successfully.";
         }
     } else {
-//        qDebug() << "Database is already open.";
+//        //qDebug() << "Database is already open.";
     }
 
     // Prepare a single query to fetch all required data
@@ -1378,7 +1409,8 @@ void doctor::onSurgeonSelectionChanged(const QString &surgeonName)
           "ia1aspmax, ia1vacmax, ia2aspmax, ia2vacmax, "
           "vitcutmax, vitvacmax, vitaspmax, vitcutmode, vitvacmode, "
           "Epinpowermethod, Epinpowmode, Epinvacmode, "
-          "footleft, footright, footbottomleft, footbottomright "
+          "footleft, footright, footbottomleft, footbottomright, "
+          "fzero, fone, ftwo, fthree "
           "FROM phacohigh "
           "WHERE surgeon = :surgeon"
       );
@@ -1386,7 +1418,7 @@ void doctor::onSurgeonSelectionChanged(const QString &surgeonName)
 
     // Execute the query
     if (!query.exec()) {
-        qDebug() << "Failed to execute query. Error:" << query.lastError().text();
+        ////qDebug() << "Failed to execute query. Error:" << query.lastError().text();
         return;
     }
 
@@ -1458,18 +1490,14 @@ void doctor::onSurgeonSelectionChanged(const QString &surgeonName)
         ui->progressBar_20->setValue(vitaspmax);
         ui->progressBar_21->setValue(vitcutmax);
         // Update UI with foot pedal data
-
+      int footpedalzero = query.value("fzero").toInt();
+      int footpedalone = query.value("fone").toInt();
+      int footpedaltwo = query.value("ftwo").toInt();
+      int footpedalthree = query.value("fthree").toInt();
             ui->LeftFoot->setCurrentText(query.value("footleft").toString());
             ui->RightFoot->setCurrentText(query.value("footright").toString());
             ui->BottomLFoot->setCurrentText(query.value("footbottomleft").toString());
             ui->BottomRFoot->setCurrentText(query.value("footbottomright").toString());
-
-//        // Debugging output to verify fetched values
-//        qDebug() << "Pump value retrieved:" << pump;
-//        qDebug() << "US1 Epinucleus - Power:" << us1power << "Vacuum:" << us1vacmax << "Flow:" << us1flowmax;
-//        qDebug() << "US2 Quadrant - Power:" << us2power << "Vacuum:" << us2vacmax << "Aspiration:" << us2aspmax;
-//        qDebug() << "US3 Chop - Power:" << us3power << "Vacuum:" << us3vacmax << "Aspiration:" << us3aspmax;
-//        qDebug() << "US4 Sculpt - Power:" << us4power << "Vacuum:" << us4vacmax << "Aspiration:" << us4aspmax;
 
         // Update UI components with the retrieved values
         ui->lineEdit_6->setText(QString::number(phacoPowerMax));
@@ -1520,14 +1548,49 @@ void doctor::onSurgeonSelectionChanged(const QString &surgeonName)
         ui->lineEdit_19->setText(QString::number(vitvacmax));
         ui->CutMode_vitCom->setCurrentText(vitcutmode);
         ui->VacMode_VitCom->setCurrentText(vitvacmode);
+
          emit leftfoot(ui->LeftFoot->currentText());
         emit rightfoot(ui->RightFoot->currentText());
         emit bottomleft(ui->BottomLFoot->currentText());
         emit bottomright(ui->BottomRFoot->currentText());
         emit pumpsignal(pump);
-        qDebug()<<ia1aspmax<<ia2aspmax<<ia1vacmax<<ia2vacmax<<"these are sended to mainwindow";
+      cFoot->receivelineEditval(footpedalzero,footpedalone,footpedaltwo,footpedalthree);
 
+
+        if (query.isActive()) {
+            query.finish();  // Finish or close the query before closing the database
+        }
     } else {
-        qDebug() << "No data found for surgeon:" << surgeonName;
+        //qDebug() << "No data found for surgeon:" << surgeonName;
     }
+    db.close();
+    QSqlDatabase::removeDatabase(PATH);
+}
+
+void doctor::on_pushButton_2_clicked()
+{
+    cFoot->show();
+    QString text=ui->SelectSurgeon->currentText();
+    emit surgeonNamefoot(text);
+
+}
+
+void doctor::receivetopleft(const QString &text)
+{
+    ui->LeftFoot->setCurrentText(text);
+}
+
+void doctor::receivebottomleft(const QString &text)
+{
+   ui->BottomLFoot->setCurrentText(text);
+}
+
+void doctor::receivetopright(const QString &text)
+{
+    ui->RightFoot->setCurrentText(text);
+}
+
+void doctor::receivebottomright(const QString &text)
+{
+    ui->BottomRFoot->setCurrentText(text);
 }

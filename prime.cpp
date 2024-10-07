@@ -23,7 +23,7 @@ prime::prime(QWidget *parent) :
                          "    font-family: Ubuntu;"
                          "    font-size: 40pt;"
                          "    background-color: transparent;"
-                         "    image: url(:/images/selectedbutton.png);"
+                         "    image: url(:/images/selectedbut1.png);"
                          "    color: white;"
                          "    border-radius: 20px;" // Adjust the radius as needed
                          "}"
@@ -34,7 +34,8 @@ prime::prime(QWidget *parent) :
 
 
     QString tabStyle = "QTabBar::tab:selected { background-color: black; color: #ffffff; border-radius:50px}";
-ui->tabWidget->setStyleSheet("QTabWidget::pane { border: 0; }");
+    ui->tabWidget->tabBar()->hide();
+    ui->tabWidget->setStyleSheet("QTabWidget::pane { border: 0; }");
     QString styleSheet3 =
                 "QTabBar::tab {"
                 "    font-size: 16px; /* Set the font size */"
@@ -120,7 +121,7 @@ void prime::current(int tab)
     QString styleSheet = "QPushButton {"
                          "    font-family: Ubuntu;"
                          "    font-size: 40pt;"
-                         "    image: url(:/images/selectedbutton.png);"
+                         "    image: url(:/images/selectedbut1.png);"
                          "    background-color: transparent;"
                          "    color: white;"
                          //"    border-radius: 20px;" // Uncomment if needed
@@ -346,7 +347,7 @@ void prime::on_pushButton_5_clicked()
                                  "    font-size: 40pt;"
                                  "    background-color: transparent;"
                                  "color:black;"
-     "  image: url(:/images/selectedbutton.png);"
+     "  image: url(:/images/selectedbut1.png);"
                                  "    border-radius: 20px;"
    // Adjust the radius as needed
                                  "}";

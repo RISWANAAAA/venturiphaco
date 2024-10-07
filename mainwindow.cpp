@@ -86,6 +86,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 //connection for send values from the doctor window and receive values from the mainwindow
        connect(in,&doctor::sendValues,this,&MainWindow::receiveValues);
+       connect(in,&doctor::transmitval,this,&MainWindow::footpedalvalues);
        QString styleSheet5 = "QLabel {"
                   "image: url(:/images/locked.png);"
                    "background-color:transparent;"
@@ -370,6 +371,7 @@ void MainWindow::updateElapsedTime()
 MainWindow::~MainWindow()
 {
     delete ui;
+    db.close();
 }
 
 //updateline edit when enter max value
@@ -1043,7 +1045,18 @@ void MainWindow::ULTRASONICBUT1()
        us3PdmMode = false;
        us4PdmMode = false;
 
- }
+}
+
+void MainWindow::footpedalvalues(int value1, int value2, int value3, int value4)
+{
+    nfpzero=(int)(value1/100.0)*4096;
+    nfpone=(int)(value2/100.0)*4096;
+    nfptwo=(int)(value3/100.0)*4096;
+    nfpthree=(int)(value4/100.0)*4096;
+    //qDebug()<<nfpzero<<nfpone<<nfptwo<<nfpthree;
+
+
+}
 
 
 void MainWindow::ULTRASONICBUT2()
@@ -1343,6 +1356,8 @@ void MainWindow::US1POWUP()
         value=100;
     }
     ui->lineEdit_57->setText(QString::number(value));
+    handler->phaco_power(value);
+
 }
 
 void MainWindow::US1POWDOWN()
@@ -1354,6 +1369,7 @@ void MainWindow::US1POWDOWN()
         value=5;
     }
     ui->lineEdit_57->setText(QString::number(value));
+    handler->phaco_power(value);
 }
 
 void MainWindow::US1VACUP()
@@ -1934,6 +1950,7 @@ void MainWindow::footpedalcheck()
   QString vus4=ui->us4vacmode->text();
   QString vit=ui->vitmode->text();
   QString vvac=ui->vitvacmode->text();
+  //qDebug()<<nfpzero<<nfpone<<nfptwo<<nfpthree<<"there is calibration value";
     switch(butname)
     {
 
@@ -1944,7 +1961,7 @@ void MainWindow::footpedalcheck()
         bool flag = true; // Ensure flag is correctly set
 
         if (flag) {
-            if (range >= 0 && range < 800) {
+            if (range>0 && range<nfpzero) {
                 ui->pushButton_42->setText("0");
                 ui->dial_2->setValue(range);
                  handler->dia_off();
@@ -1956,7 +1973,7 @@ void MainWindow::footpedalcheck()
                  }
 
             }
-            else if (range >= 800 && range < 4094)
+            else if (range>=nfpzero && range<nfpthree)
              {
                 ui->pushButton_42->setText("1");
                 ui->dial_2->setValue(range);
@@ -1977,7 +1994,7 @@ void MainWindow::footpedalcheck()
         bool flag1 = false;
 
         if (us1 == "Panel" || vus1 == "Panel") {
-            if (range>0 && range <100) {
+            if (range>0 && range<nfpzero) {
                 ui->pushButton_42->setText("0");
                 ui->dial_2->setValue(range);
 if(!overallci){
@@ -1997,7 +2014,7 @@ if(!overallci){
                    power.powerOn= false;
                 }
                 flag1 = true; // Reset flag
-} else if (range >= 100 & range < 1332) {
+} else if (range >= nfpzero & range < nfpzero+nfpone) {
 ui->pushButton_42->setText("1");
 ui->dial_2->setValue(range);
 handler->pinchvalve_on();
@@ -2015,7 +2032,8 @@ handler->fs_count(0);
 power.powerOn = false;
 }
 flag1 = true; // Reset flag
-            } else if (range >= 1332 && range < 2664) {
+            }
+            else if (range >=(nfpone+nfpzero) && range < (nfpzero+nfpone+nfptwo)) {
                 ui->pushButton_42->setText("2");
                    ui->dial_2->setValue(range);
                  ui->CI5_5->setStyleSheet(styleSheet3);
@@ -2040,7 +2058,8 @@ flag1 = true; // Reset flag
                    power.powerOn = false;
                 }
                 flag1 = true; // Reset flag
-            } else if (range >= 2664 && range < 4096) {
+            }
+            else if (range >=(nfpzero+nfpone+nfptwo) && range < (nfpzero+nfpone+nfptwo+nfpthree)) {
                 ui->pushButton_42->setText("3");
                 footpedalbeep();
 
@@ -2064,20 +2083,21 @@ flag1 = true; // Reset flag
                    handler->fs_count(range);
                    handler->freq_count(2500);
                    handler->phaco_on();
-                   handler->phaco_power(pow1);
  updateTabsBasedOnComboBox(ui->CutMode_vitCom->currentText());
  elapsedTimeUS1 += elapsed;
  message = "Effective time for US1: " + QString::number(elapsedTimeUS1 / 1000.0, 'f', 2) + " s";
                 }
                 if (power.powerOn) {
-                    // Dynamically calculate power output based on range for PANEL mode
-                    float progress4 = ((range - 2664.0) / (4096 - 2664.0)) * pow1;
-                    ui->label_7->setText(QString::number(static_cast<int>(progress4)));
+                   int progress=ui->lineEdit_57->text().toInt();
+                   ui->label_7->setText(QString::number(progress));
+                   handler->phaco_power(progress);
+
                 }
 
             }
-        } else if (us1 == "Surgeon" || vus1 == "Surgeon") {
-            if (range >0 && range <100) {
+        }
+        else if (us1 == "Surgeon" || vus1 == "Surgeon") {
+            if (range>0 && range<nfpzero) {
                 ui->pushButton_42->setText("0");
                    ui->dial_2->setValue(range);
 
@@ -2098,7 +2118,8 @@ if(!overallci){
                     power.powerOn = false;
                 }
                 flag1 = true; // Reset flag
-            } else if (range >= 100 && range < 1332) {
+            }
+            else if (range >= nfpzero && range < (nfpzero+nfpone)) {
                 ui->pushButton_42->setText("1");
                 footpedalbeep();
   ui->dial_2->setValue(range);
@@ -2117,7 +2138,8 @@ if(!overallci){
                     power.powerOn = false;
                 }
                 flag1 = true; // Reset flag
-            } else if (range >= 1332 && range < 2664) {
+            }
+            else if (range>=(nfpzero+nfpone)&& range< (nfpzero+nfpone+nfptwo)) {
                 ui->pushButton_42->setText("2");
                 footpedalbeep();
                  ui->dial_2->setValue(range);
@@ -2142,44 +2164,63 @@ if(!overallci){
                     power.powerOn = false;
                 }
                 flag1 = true; // Reset flag
-            } else if (range >= 2664 && range <= 4096) {
+            }
+            else if (range >= (nfpzero + nfpone + nfptwo) && range <= (nfpzero + nfpone + nfptwo + nfpthree)) {
+                // Set the button and styles, and trigger certain actions
                 ui->pushButton_42->setText("3");
                 footpedalbeep();
-                 ui->dial_2->setValue(range);
-                  handler->pinchvalve_on();
-                     handler->safetyvent_on();
-               ui->CI5_5->setStyleSheet(styleSheet3);
+                ui->dial_2->setValue(range);
+                handler->pinchvalve_on();
+                handler->safetyvent_on();
+                ui->CI5_5->setStyleSheet(styleSheet3);
 
+                // Motor logic based on the text value
                 if (text == "Peristaltic") {
-                                motoron(ui->lineEdit_56);
-                                  updatesensor();
-                            } else if(text == "Venturi") {
-                                motoroff();
-                                  updatesensor();
-                            }
-
-
-                if (power.buttonState == "ON" && !power.powerOn) {
-                    power.powerOn = true;
- updateTabsBasedOnComboBox(ui->CutMode_vitCom->currentText());
-
-                    handler->fs_count(range);
-                 handler->freq_count(2500);
-  handler->phaco_on();
-                 handler->phaco_power(pow1);
-                 elapsedTimeUS1 += elapsed;
-                 message = "Effective time for US1: " + QString::number(elapsedTimeUS1 / 1000.0, 'f', 2) + " s";
-
+                    motoron(ui->lineEdit_56);
+                    updatesensor();
+                } else if (text == "Venturi") {
+                    motoroff();
+                    updatesensor();
                 }
+
+                // Check if the power button state is "ON" but power isn't already on
+                if (power.buttonState == "ON" && !power.powerOn) {
+                    power.powerOn = true;  // Power is now on
+                    updateTabsBasedOnComboBox(ui->CutMode_vitCom->currentText());
+
+                    // Trigger relevant handlers
+                    handler->fs_count(range);
+                    handler->freq_count(2500);
+                    handler->phaco_on();
+                    float denominator = (4096 - nfpzero + nfpone + nfptwo);
+
+                    // Calculate the step size for progress4, assuming range-related adjustment is needed
+                    float progressStep = ((range - nfpzero + nfpone + nfptwo) / denominator);
+
+                    // Loop from 0 to pow1
+                    for (int i = 0; i <= pow1; ++i) {
+                        // Calculate the current progress4 value
+                        float progress4 = i * progressStep;
+
+                        // Round and convert progress4 to integer for display and handler
+                        int fullProgress = static_cast<int>(std::round(progress4));
+
+                        // Update the label and pass the progress to the handler
+                        ui->label_7->setText(QString::number(fullProgress));
+                        handler->phaco_power(fullProgress);
+                    // Keep track of elapsed time
+                    elapsedTimeUS1 += elapsed;
+                    message = "Effective time for US1: " + QString::number(elapsedTimeUS1 / 1000.0, 'f', 2) + " s";
+                }
+
+                // If power is on, start reading from 0 to pow1
                 if (power.powerOn) {
 
-                    int powervalue = range*pow1/4096;
-                    ui->label_7->setText(QString::number(powervalue));
+
+                    }
                 }
-
             }
-        }
-
+}
 
         break;
     }
@@ -3755,7 +3796,7 @@ void MainWindow::motoron(QLineEdit *lineEdit)
 {
     int linevalue=lineEdit->text().toInt();
     handler->write_motor(0x01,0x03,linevalue);
-    qDebug()<<"motor working";
+    //qDebug()<<"motor working";
 }
 
 void MainWindow::motoroff()
@@ -4176,7 +4217,7 @@ void MainWindow::changesvaluesql()
     db.setDatabaseName(PATH);
 
     if (!db.open()) {
-        qDebug() << "SQL database failed to open";
+        //qDebug() << "SQL database failed to open";
         return;
     }
 
@@ -4218,9 +4259,9 @@ void MainWindow::changesvaluesql()
 
     // Execute the query and check for errors
     if (!query.exec()) {
-        qDebug() << "Update failed: " << query.lastError();
+        //qDebug() << "Update failed: " << query.lastError();
     } else {
-        qDebug() << "Update successful";
+        //qDebug() << "Update successful";
     }
 
     db.close(); // Close the database connection
@@ -4305,7 +4346,7 @@ void MainWindow::onPdmModeSelected3(int gpio) {
 
 void MainWindow::moveTab(int usIndex) {
     if (!ui->tabWidget_2) {
-           qDebug() << "tabWidget_2 is null!";
+           //qDebug() << "tabWidget_2 is null!";
            return;
        }
 
@@ -4313,7 +4354,7 @@ void MainWindow::moveTab(int usIndex) {
        int tabCount = ui->tabWidget_2->count();
 
        if (tabCount == 0) {
-           qDebug() << "No tabs available!";
+           //qDebug() << "No tabs available!";
            return;
        }
 
@@ -4323,7 +4364,7 @@ void MainWindow::moveTab(int usIndex) {
        } else if (usIndex == 3 || usIndex == 4) {
            currentIndex = (currentIndex - 1 + tabCount) % tabCount;
        } else {
-           qDebug() << "Invalid usIndex value:" << usIndex;
+           //qDebug() << "Invalid usIndex value:" << usIndex;
            return;
        }
 
@@ -4340,13 +4381,13 @@ ui->tabWidget_2->setCurrentIndex(currentIndex);
 
        }
 
-       qDebug() << "Moved to tab index:" << currentIndex << " and updated combo box for usIndex:" << usIndex;
+       //qDebug() << "Moved to tab index:" << currentIndex << " and updated combo box for usIndex:" << usIndex;
 
 }
 
 void MainWindow::moveTab1(int usIndex) {
     if (!ui->tabWidget_2) {
-        qDebug() << "tabWidget_2 is null!";
+        //qDebug() << "tabWidget_2 is null!";
         return;
     }
 
@@ -4354,7 +4395,7 @@ void MainWindow::moveTab1(int usIndex) {
     int tabCount = ui->tabWidget_2->count();
 
     if (tabCount == 0) {
-        qDebug() << "No tabs available!";
+        //qDebug() << "No tabs available!";
         return;
     }
 
@@ -4364,7 +4405,7 @@ void MainWindow::moveTab1(int usIndex) {
     } else if (usIndex == 3 || usIndex == 4) {
         currentIndex = (currentIndex - 1 + tabCount) % tabCount;
     } else {
-        qDebug() << "Invalid usIndex value:" << usIndex;
+        //qDebug() << "Invalid usIndex value:" << usIndex;
         return;
     }
 
@@ -4379,11 +4420,11 @@ ui->tabWidget_2->setCurrentIndex(currentIndex);
         }
     }
 
-    qDebug() << "Moved to tab index:" << currentIndex << " and updated combo box for usIndex:" << usIndex;
+    //qDebug() << "Moved to tab index:" << currentIndex << " and updated combo box for usIndex:" << usIndex;
 }
 void MainWindow::moveTab2(int usIndex) {
     if (!ui->tabWidget_2) {
-        qDebug() << "tabWidget_2 is null!";
+        //qDebug() << "tabWidget_2 is null!";
         return;
     }
 
@@ -4391,7 +4432,7 @@ void MainWindow::moveTab2(int usIndex) {
     int tabCount = ui->tabWidget_2->count();
 
     if (tabCount == 0) {
-        qDebug() << "No tabs available!";
+        //qDebug() << "No tabs available!";
         return;
     }
 
@@ -4401,7 +4442,7 @@ void MainWindow::moveTab2(int usIndex) {
     } else if (usIndex == 3 || usIndex == 4) {
         currentIndex = (currentIndex - 1 + tabCount) % tabCount;
     } else {
-        qDebug() << "Invalid usIndex value:" << usIndex;
+        //qDebug() << "Invalid usIndex value:" << usIndex;
         return;
     }
 
@@ -4416,11 +4457,11 @@ onCutMode_vitComChanged2(ui->CutMode_vitCom_3->currentIndex());
         }
     }
 
-    qDebug() << "Moved to tab index:" << currentIndex << " and updated combo box for usIndex:" << usIndex;
+    //qDebug() << "Moved to tab index:" << currentIndex << " and updated combo box for usIndex:" << usIndex;
 }
 void MainWindow::moveTab3(int usIndex) {
     if (!ui->tabWidget_2) {
-        qDebug() << "tabWidget_2 is null!";
+        //qDebug() << "tabWidget_2 is null!";
         return;
     }
 
@@ -4428,7 +4469,7 @@ void MainWindow::moveTab3(int usIndex) {
     int tabCount = ui->tabWidget_2->count();
 
     if (tabCount == 0) {
-        qDebug() << "No tabs available!";
+        //qDebug() << "No tabs available!";
         return;
     }
 
@@ -4438,7 +4479,7 @@ void MainWindow::moveTab3(int usIndex) {
     } else if (usIndex == 3 || usIndex == 4) {
         currentIndex = (currentIndex - 1 + tabCount) % tabCount;
     } else {
-        qDebug() << "Invalid usIndex value:" << usIndex;
+        //qDebug() << "Invalid usIndex value:" << usIndex;
         return;
     }
 
@@ -4454,7 +4495,7 @@ void MainWindow::moveTab3(int usIndex) {
         }
     }
 
-    qDebug() << "Moved to tab index:" << currentIndex << " and updated combo box for usIndex:" << usIndex;
+    //qDebug() << "Moved to tab index:" << currentIndex << " and updated combo box for usIndex:" << usIndex;
 }
 // Member variable to keep track of the active combo box
 
@@ -4501,7 +4542,7 @@ void MainWindow::continousirrigation(int value) {
             overallci = true;
             handler->pinchvalve_on();
             handler->safetyvent_on();
-            qDebug() << "Continuous Irrigation turned ON, button color set to green.";
+            //qDebug() << "Continuous Irrigation turned ON, button color set to green.";
             con=1;
         }
     } else {
@@ -4512,7 +4553,7 @@ void MainWindow::continousirrigation(int value) {
             overallci = false;
             handler->pinchvalve_off();
             handler->safetyvent_off();
-            qDebug() << "Continuous Irrigation turned OFF, button color set to red.";
+            //qDebug() << "Continuous Irrigation turned OFF, button color set to red.";
             con=0;
         }
     }
@@ -4598,9 +4639,9 @@ void MainWindow::on_us2onoff_clicked()
     int range = lfoot->convert(0x97);
 
     // Debugging statements
-//    qDebug() << "Button text: " << text;
+//    //qDebug() << "Button text: " << text;
 
-//    qDebug() << "Foot pedal range value: " << range;
+//    //qDebug() << "Foot pedal range value: " << range;
 
     QString styleSheet1 = "QPushButton {"
                           " font:20pt Ubuntu;"
@@ -4619,11 +4660,11 @@ void MainWindow::on_us2onoff_clicked()
                           "}";
 
     power.buttonstate1 = text;
-    qDebug() << "Initial button state: " << power.buttonstate1;
+    //qDebug() << "Initial button state: " << power.buttonstate1;
 
     // Simplify condition for testing
     if (power.buttonstate1 == "OFF" && (range > 0)) {
-//        qDebug() << "Condition met to turn ON power (Simplified)";
+//        //qDebug() << "Condition met to turn ON power (Simplified)";
 
         ui->us2onoff->setStyleSheet(styleSheet1);
         ui->us2onoff->setText("ON");
@@ -4824,7 +4865,7 @@ void MainWindow::onCutMode_vitComChanged3(int index) {
 }
 
 void MainWindow::updateTabsBasedOnComboBox(const QString &selected) {
-    qDebug() << "Selected Mode as Text:" << selected;
+    //qDebug() << "Selected Mode as Text:" << selected;
 
     // Default action: Log unknown mode
     bool modeFound = false;
@@ -4900,11 +4941,11 @@ void MainWindow::updateTabsBasedOnComboBox(const QString &selected) {
     }
 
     if (!modeFound) {
-        qDebug() << "Unknown mode selected!";
+        //qDebug() << "Unknown mode selected!";
     }
 
     // Print to the debug output
-    qDebug() << "Mode is working: " << selected;
+    //qDebug() << "Mode is working: " << selected;
 
     // Update multiple line edits with the selected value
     ui->lineEdit_75->setText("15");
@@ -4971,7 +5012,7 @@ ui->comboBox->setCurrentText(text);
 void MainWindow::performpump(const QString &text)
 {
 ui->comboBox->setCurrentText(text);
-qDebug()<<"the combo box current text is"<<text;
+//qDebug()<<"the combo box current text is"<<text;
   QString value=ui->comboBox->currentText();
     if(value == "Peristaltic"){
 // ui->pushButton->setStyleSheet("background-color:green;");
@@ -5166,7 +5207,7 @@ void MainWindow::receiveValues(const QString &comboBoxValue,const QString &combo
       ui->lineEdit_71->setText(QString::number(surgicalData.vitcut));
       ui->lineEdit_73->setText(QString::number(surgicalData.vitvac));
       ui->lineEdit_72->setText(QString::number(surgicalData.vitasp));
-      qDebug()<<surgicalData.ia1asp<<surgicalData.ia2asp<<surgicalData.ia1vac<<surgicalData.ia2vac<<"these are sended from the doctor windiow";
+      //qDebug()<<surgicalData.ia1asp<<surgicalData.ia2asp<<surgicalData.ia1vac<<surgicalData.ia2vac<<"these are sended from the doctor windiow";
 
 
 }
@@ -5179,14 +5220,14 @@ void MainWindow::on_SETTINGS_BUT_2_clicked()
 
 void MainWindow::onComboBoxIndexChanged(int index)
 {
-    QSqlDatabase db = QSqlDatabase::database();  // Retrieve existing connection
+
 
     if (!db.isValid()) {
         db = QSqlDatabase::addDatabase("QSQLITE");
         db.setDatabaseName(PATH);
 
         if (!db.open()) {
-            qDebug() << "Error: connection with database failed:";
+            //qDebug() << "Error: connection with database failed:";
             return;
         }
     }
@@ -5196,10 +5237,9 @@ void MainWindow::onComboBoxIndexChanged(int index)
     // Step 1: Update the last selected index
     query.prepare("UPDATE phacohigh SET lastupdate = :index");
     query.bindValue(":index", index);
-    //query.bindValue(":id", 1); // Replace 1 with the actual identifier value if needed
 
     if (!query.exec()) {
-//        qDebug() << "Error updating last selected index:";
+//        //qDebug() << "Error updating last selected index:";
         return;
     } else {
 //        qDebug() << "Last selected index updated to" << index;
@@ -5211,8 +5251,6 @@ void MainWindow::onComboBoxIndexChanged(int index)
 }
 void MainWindow::setLastSelectedValue()
 {
-    // Check if the database connection is already available
-    QSqlDatabase db = QSqlDatabase::database();  // Retrieve existing connection, if any
 
     if (!db.isValid()) {
         db = QSqlDatabase::addDatabase("QSQLITE");
@@ -5254,7 +5292,8 @@ void MainWindow::setLastSelectedValue()
 }
 
 void MainWindow::push(const QString &surgeonName) {
-   qDebug() << "Attempting to fetch data for surgeon:" << surgeonName;
+
+   //qDebug() << "Attempting to fetch data for surgeon:" << surgeonName;
 emit sendsurgeon(surgeonName);
     // Check and display available drivers
 //    qDebug() << "Available SQL drivers:" << QSqlDatabase::drivers();
@@ -5266,7 +5305,7 @@ emit sendsurgeon(surgeonName);
 
     if (!db.isOpen()) {
         if (!db.open()) {
-//            qDebug() << "Failed to open database. Error:" << db.lastError().text();
+//            //qDebug() << "Failed to open database. Error:" << db.lastError().text();
             return;
         } else {
 //            qDebug() << "Database connection opened successfully.";
@@ -5286,7 +5325,8 @@ emit sendsurgeon(surgeonName);
           "ia1aspmax, ia1vacmax, ia2aspmax, ia2vacmax, "
           "vitcutmax, vitvacmax, vitaspmax, vitcutmode, vitvacmode, "
           "Epinpowermethod, Epinpowmode, Epinvacmode, "
-          "footleft, footright, footbottomleft, footbottomright "
+          "footleft, footright, footbottomleft, footbottomright, "
+          "fzero, fone, ftwo, fthree "
           "FROM phacohigh "
           "WHERE surgeon = :surgeon"
       );
@@ -5413,16 +5453,28 @@ emit sendsurgeon(surgeonName);
         ui->us4vacmode->update();
         ui->vitmode->update();
         ui->vitvacmode->update();
+        int nfpo = query.value("fzero").toInt();
+        int nfp1 = query.value("fone").toInt();
+        int nfp2 = query.value("ftwo").toInt();
+        int nfp3 = query.value("fthree").toInt();
+        //qDebug()<<nfpo<<nfp1<<nfp2<<nfp3<<"that is the sql value before calibration";
+        nfpzero = (nfpo / 100.0) * 4096;
+        nfpone=(nfp1/100.0)*4096;
+        nfptwo=(nfp2/100.0)*4096;
+        nfpthree=(nfp3/100.0)*4096;
+        //qDebug()<<nfpzero<<nfpone<<nfptwo<<nfpthree<<"that is sql value";
           emit left_foot(footleft);
         emit right_foot(footright);
         emit bottom_left(footbleft);
         emit bottom_right(footbright);
-        qDebug()<<"pump is reterived from the sql"<<pump;
+        //qDebug()<<"pump is reterived from the sql"<<pump;
         performpump(pump);
-                qDebug()<<ia1aspmax<<ia1vacmax<<ia2aspmax<<ia2vacmax<<"these are retereived from the sql";
+                //qDebug()<<ia1aspmax<<ia1vacmax<<ia2aspmax<<ia2vacmax<<"these are retereived from the sql";
     } else {
-        qDebug() << "No data found for surgeon:" << surgeonName;
+        //qDebug() << "No data found for surgeon:" << surgeonName;
     }
+    db.close();
+    QSqlDatabase::removeDatabase("PATH");
 }
 void MainWindow::footpedalbeep()
 {

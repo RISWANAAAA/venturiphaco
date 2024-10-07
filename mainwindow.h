@@ -196,12 +196,13 @@ public slots:
     );
 
  void on_pushButton_clicked();
+ void ULTRASONICBUT1();
+ void footpedalvalues(int value1,int value2,int value3,int value4);
 
 private slots:
 
  void label43();
  void sensor2();
- void ULTRASONICBUT1();
  void ULTRASONICBUT2();
 
  void ULTRASONICBUT4();
@@ -418,6 +419,10 @@ int multiburst;
 int coldphaco;
 int coldphaco1;
 int gpioNumber = 960;
+int nfpzero;
+int nfpone;
+int nfptwo;
+int nfpthree;
 
 QMessageBox *message;
 QMessageBox *messageline;

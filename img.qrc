@@ -98,5 +98,7 @@
         <file>prime.png</file>
         <file>wifi.png</file>
         <file>selectedbut1.png</file>
+        <file>circle.png</file>
+        <file>savebutton.png</file>
     </qresource>
 </RCC>

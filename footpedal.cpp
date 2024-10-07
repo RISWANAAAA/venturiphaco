@@ -1,7 +1,7 @@
 #include "footpedal.h"
 #include "ui_footpedal.h"
 #include <QMessageBox>
-#include <QDebug>
+#include<QDebug>
 #include<QSqlError>
 
 footpedal::footpedal(QWidget *parent) :
@@ -26,7 +26,7 @@ footpedal::footpedal(QWidget *parent) :
         readInitialGPIOValues(); // Read initial values
     // Set up connections
     setupConnections();
-    qDebug() << "readInitialGPIOValues function entered.";
+    //qDebug() << "readInitialGPIOValues function entered.";
 
     connect(ui->backbut, &QPushButton::clicked, this, &footpedal::Back);
     connect(ui->savebut, &QPushButton::clicked, this, &footpedal::on_pushButton_clicked);
@@ -38,6 +38,7 @@ footpedal::footpedal(QWidget *parent) :
 footpedal::~footpedal()
 {
     delete ui;
+db.close();
 }
 
 void footpedal::Back()
@@ -537,6 +538,9 @@ int footpedal::readGPIOValue(int gpioNumber)
 
 
 void footpedal::updateFootpedalComboBoxes(const QString &surgeonName) {
+    QSqlDatabase db = QSqlDatabase::database();  // Get the default connection
+    db.close();  // Close the connection
+    QSqlDatabase::removeDatabase(QSqlDatabase::defaultConnection);
     QSqlQuery query(db);
     query.prepare(
         "SELECT footleft, footright, footbottomleft, footbottomright "
@@ -545,10 +549,10 @@ void footpedal::updateFootpedalComboBoxes(const QString &surgeonName) {
     );
     query.bindValue(":surgeon", surgeonName);
 
-  //  qDebug() << "Selected surgeon in footpedal and fetching data for surgeon:" << surgeonName;
+  //  //qDebug() << "Selected surgeon in footpedal and fetching data for surgeon:" << surgeonName;
 
     if (!query.exec()) {
-     //   qDebug() << "Failed to fetch footpedal data for surgeon:" << query.lastError().text();
+     //   //qDebug() << "Failed to fetch footpedal data for surgeon:" << query.lastError().text();
         return;
     }
 
@@ -560,7 +564,7 @@ void footpedal::updateFootpedalComboBoxes(const QString &surgeonName) {
         QString footNRightValue = query.value("footbottomright").toString();
 
 //        // Debug output to check retrieved values
-//        qDebug() << "Foot pedal values retrieved:"
+//        //qDebug() << "Foot pedal values retrieved:"
 //                 << "footleft:" << footLeftValue
 //                 << "footright:" << footRightValue
 //                 << "footbleft:" << footBLeftValue
@@ -573,12 +577,14 @@ void footpedal::updateFootpedalComboBoxes(const QString &surgeonName) {
         ui->bright_footcom->setCurrentText(footNRightValue);
 
         // Debug output to confirm the values were set correctly
-        qDebug() << "ComboBox values set:"
-                 << "left_footcom:" << ui->left_footcom->currentText()
-                 << "right_footcom:" << ui->right_footcom->currentText()
-                 << "bleft_footcom:" << ui->bleft_footcom->currentText()
-                 << "bright_footcom:" << ui->bright_footcom->currentText();
+        //qDebug() << "ComboBox values set:"
+                 //<< "left_footcom:" << ui->left_footcom->currentText()
+                // << "right_footcom:" << ui->right_footcom->currentText()
+               //  << "bleft_footcom:" << ui->bleft_footcom->currentText()
+               //  << "bright_footcom:" << ui->bright_footcom->currentText();
     }
+    db.close();
+    db.removeDatabase(PATH);
 }
 
 
@@ -604,19 +610,20 @@ void footpedal::combobox4(const QString &text)
 void footpedal::updateFootpedalComboBoxes1(const QString &surgeonName)
 {
     currentSurgeonName = surgeonName;  // Assign the passed surgeonName to currentSurgeonName
-       qDebug() << "Updated currentSurgeonName to:" << currentSurgeonName;
+       //qDebug() << "Updated currentSurgeonName to:" << currentSurgeonName;
 }
 
 void footpedal::on_pushButton_clicked()
 {
+
     QString footLeftValue = ui->left_footcom->currentText();
     QString footRightValue = ui->right_footcom->currentText();
     QString footBLeftValue = ui->bleft_footcom->currentText();
     QString footNRightValue = ui->bright_footcom->currentText();
 
-    qDebug() << "Saving footpedal settings for surgeon:" << currentSurgeonName;
-    qDebug() << "footleft:" << footLeftValue << "footright:" << footRightValue;
-    qDebug() << "footbleft:" << footBLeftValue << "footnright:" << footNRightValue;
+    //qDebug() << "Saving footpedal settings for surgeon:" << currentSurgeonName;
+    //qDebug() << "footleft:" << footLeftValue << "footright:" << footRightValue;
+    //qDebug() << "footbleft:" << footBLeftValue << "footnright:" << footNRightValue;
 
     QSqlQuery query(db);
     query.prepare(
@@ -634,10 +641,10 @@ void footpedal::on_pushButton_clicked()
     query.bindValue(":surgeon", currentSurgeonName);
 
     if (!query.exec()) {
-//        qDebug() << "Failed to update footpedal data for surgeon:" << query.lastError().text();
+//        //qDebug() << "Failed to update footpedal data for surgeon:" << query.lastError().text();
         return;
     }
 
-//    qDebug() << "Footpedal settings saved successfully for surgeon:" << currentSurgeonName;
+//    //qDebug() << "Footpedal settings saved successfully for surgeon:" << currentSurgeonName;
     readInitialGPIOValues();  // Continue with the next operations
 }

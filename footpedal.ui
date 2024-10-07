@@ -14,7 +14,7 @@
    <string>Dialog</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color:rgb(83, 104, 120);</string>
+   <string notr="true">background-color: rgb(4, 118, 151);</string>
   </property>
   <widget class="QComboBox" name="right_footcom">
    <property name="geometry">

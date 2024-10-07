@@ -8,7 +8,7 @@
 #include<QtSql/QSqlDatabase>
 #include <QtSql/QSqlQuery>
 #define PATH "/home/phacohigh.db"
-
+#include"footswitch.h"
 class QLineEdit;
 namespace Ui {
 class doctor;
@@ -26,6 +26,7 @@ public:
     void setRange(QLineEdit* lineEdit, int prevValue, int value, int maxValue);
    void onSurgeonSelectionChanged(const QString &surgeonName);
    void setLastSelectedValue();
+   void receivingvalueffs(int &val0,int &val1,int &val2,int &val3);
 
 public slots:
 
@@ -67,6 +68,12 @@ private slots:
   void handleDataSaved();
 
 
+  void on_pushButton_2_clicked();
+  void receivetopleft(const QString &text);
+  void receivebottomleft(const QString &text);
+  void receivetopright(const QString &text);
+  void receivebottomright(const QString &text);
+
 signals:
 
   void sendleftfootvalues(const QString &text1);
@@ -106,6 +113,9 @@ signals:
                      const QString &vitmode,
                      const QString &vitvacmode
                  );
+              void surgeonNamefoot(const QString &surgeon);
+             void transmitval(int fpzero,int fpone,int fptwo,int fpthree);
+
 
 
 
@@ -118,6 +128,8 @@ private:
     QMap<QLineEdit*, int> lastValidValues;  // Declare the QMap as a member variable
     QMap<QLineEdit*, int> lastValidValues1;  // Declare the QMap as a member variable
     QSqlDatabase db;
+    footswitch *cFoot;
+
 
 };
 

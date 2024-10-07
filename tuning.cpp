@@ -67,28 +67,30 @@ int tuning::readGPIOValue(int pin)
 void tuning::updatehandpieceStatus()
 {
     int status = readGPIOValue(960);
-    QString styleSheet4 = "QLabel {"
+    QString styleSheet4 = "QPushButton {"
           "image: url(:/images/connected.png);"
             "border:none;"
             "background-color:transparent;"
  "}";
-    QString styleSheet5 = "QLabel {"
+    QString styleSheet5 = "QPushButton {"
             "image: url(:/images/notconnected.png);"
          "border:none;"
             "background-color:transparent;"
                                      "}";
    if(status==0)
    {
-       ui->But_value->setStyleSheet(styleSheet4);
+       ui->But_Handpiece->setStyleSheet(styleSheet4);
        ui->But_Tune->setEnabled(true);
        ui->But_Tune->setEnabled(true);
+      // ui->But_Next->hide();
    }
    else
    {
      //   qDebug()<<status;
-       ui->But_value->setStyleSheet(styleSheet5);
+       ui->But_Handpiece->setStyleSheet(styleSheet5);
        ui->But_Tune->setEnabled(false);
        ui->But_Tune->setEnabled(false);
+     //  ui->But_Next->show();
 
    }
 }
@@ -161,7 +163,7 @@ void tuning::paintEvent1(QPaintEvent *event)
         QColor("#C0C0C0"), QColor("#33FF57") // The last color will always be green
     };
 int calibration=4096/14;
-   int fullCircle=m_value/calibration;
+   int fullCircle=m_value*14.0/calibration;
 
     // Draw each circle based on the currentCircle index (from inner to outer)
     for (int j = 0; j <= 14; ++j) {
@@ -188,10 +190,8 @@ int calibration=4096/14;
             int y1 = center.y() + (radius - 10) * qSin(radAngle);
             int x2 = center.x() + radius * qCos(radAngle);
             int y2 = center.y() + radius * qSin(radAngle);
-
             // Set the pen for bold lines
             QPen pen;
-
             // Set the color for the entire circle if it is fully completed, else gray
             if (fullCircle) {
                 pen.setColor(colors[j % 14]); // Assign color based on circle index
@@ -210,91 +210,7 @@ int calibration=4096/14;
     }
 
 }
-//void tuning::paintEvent1(QPaintEvent *event)
-//{
-//    Q_UNUSED(event); // Unused event parameter
 
-//    QPainter painter(this);
-//    painter.setRenderHint(QPainter::Antialiasing);
-
-//    // Define radii for each circle (smallest first for inner to outer drawing)
-//    int radii[14] = {30, 50, 70, 90, 110, 130, 150, 170, 190, 210, 230, 250, 270, 290}; // Radii from smallest to largest
-//    int totalLines = 60; // Total number of lines for a full circle
-
-//    // Define a base center for positioning all circles
-//    int baseOffsetX = 400; // Base horizontal position (center of circles)
-//    int baseOffsetY = 300; // Base vertical position (center of circles)
-
-//    // Define colors for each circle
-//    QColor colors[14] = {
-//        QColor("#C0C0C0"), QColor("#C0C0C0"), QColor("#C0C0C0"), QColor("#C0C0C0"),
-//        QColor("#C0C0C0"), QColor("#C0C0C0"), QColor("#C0C0C0"), QColor("#C0C0C0"),
-//        QColor("#C0C0C0"), QColor("#C0C0C0"), QColor("#C0C0C0"), QColor("#C0C0C0"),
-//        QColor("#C0C0C0"), QColor("#33FF57") // The last color will always be green
-//    };
-
-//    // Simulate ADC value (replace this with the actual ADC value you receive)
-//    int adcValue =ADC_value(); // For example, let's say we received 580
-
-//    // Each circle represents a range of 4096 / 14 = 292 ADC units
-//    int calibration = 4096 / 14;
-
-//    // Calculate how many full circles and the fraction of the next circle to fill
-//    int fullCircles = adcValue /calibration;  // Number of full circles to fill
-//    int remainder = adcValue % calibration;    // Remaining portion for the next circle
-//double voltage = (adcValue / 4096.0) * 5.0;
-//qDebug()<<"voltage is"<<voltage;
-//    // For each circle, decide how much to fill
-//    for (int j = 0; j < 14; ++j) {
-//        int radius = radii[j]; // Current circle radius (starting from inner, moving to outer)
-
-//        // Calculate the number of lines to fill for the current circle
-//        int linesToFill = totalLines; // Default to a full circle
-
-//        // If the current circle is the partially filled one (remainder), calculate how many lines to fill
-//        if (j == fullCircles) {
-//            linesToFill = (remainder *totalLines) / calibration; // Partially filled circle
-//        }
-
-//        // If the current circle is beyond the full circles and the partial circle, don't draw anything
-//        if (j > fullCircles) {
-//            break; // Stop drawing, as the remaining circles should be empty
-//        }
-
-//        // Define the angle step for each line (360 degrees divided by total lines)
-//        double angleStep = 360.0 / totalLines;
-
-//        // Center for all circles is the same
-//        QPoint center(baseOffsetX, baseOffsetY); // Common center for all circles
-
-//        // Draw the line shapes around the full circle
-//        for (int i = 0; i < linesToFill; ++i) { // Only draw up to `linesToFill` lines
-//            // Calculate the angle for the current line, starting from 0 degrees
-//            double angle = angleStep * i;
-
-//            // Convert angle to radians for trigonometric functions
-//            double radAngle = qDegreesToRadians(angle);
-//            int x1 = center.x() + (radius - 10) * qCos(radAngle);
-//            int y1 = center.y() + (radius - 10) * qSin(radAngle);
-//            int x2 = center.x() + radius * qCos(radAngle);
-//            int y2 = center.y() + radius * qSin(radAngle);
-
-//            // Set the pen for bold lines
-//            QPen pen;
-
-//            // Set the color for the current circle
-//            pen.setColor(colors[j]); // Assign color based on circle index
-
-//            // Ensure the last circle is always green
-//            if (j == 13) {
-//                pen.setColor(QColor("#33FF57")); // Always green for the last circle
-//            }
-
-//            painter.setPen(pen); // Apply the pen settings
-//            painter.drawLine(x1, y1, x2, y2); // Draw the line
-//        }
-//    }
-//}
 int tuning::ADC_value(){
     int value=vacSensor->convert(0XA7);
     return value;
@@ -362,9 +278,7 @@ void tuning::updateProgress()
 // Circular progress bar updating
 int tuning::Tune_Phaco()
 {
-
-
-  updateProgress();
+                                       updateProgress();
     // Start the timer if it's not running
     if (!isRunning) {
         isRunning = true; // Set the running status
@@ -383,14 +297,12 @@ int tuning::Tune_Phaco()
                 hand->phaco_power(80);
             update(); // Update the UI
             QCoreApplication::processEvents(); // Process events
-            usleep(1000000); // Sleep for a while to create the effect
+            usleep(1000); // Sleep for a while to create the effect
         }
-
 updateProgress();
-
 isRunning=false;
 main->show();
-main->DIATHERMYBUT();
+main->ULTRASONICBUT1();
 main->setTuneMode();
 
     }

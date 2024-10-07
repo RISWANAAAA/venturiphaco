@@ -20,6 +20,7 @@ SOURCES += \
     display.cpp \
     doctor.cpp \
     footpedal.cpp \
+    footswitch.cpp \
     general.cpp \
     keypad.cpp \
     learner.cpp \
@@ -35,6 +36,7 @@ HEADERS += \
     doctor.h \
     footlib.h \
     footpedal.h \
+    footswitch.h \
     general.h \
     hwhandler.h \
     keypad.h \
@@ -50,6 +52,7 @@ FORMS += \
     display.ui \
     doctor.ui \
     footpedal.ui \
+    footswitch.ui \
     general.ui \
     keypad.ui \
     learner.ui \
