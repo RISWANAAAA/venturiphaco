@@ -411,7 +411,7 @@ bool MainWindow::eventFilter(QObject* object, QEvent* event)
       if(object == ui->lineEdit_57 && event->type() == QEvent::MouseButtonPress) {
         QMouseEvent *k = static_cast<QMouseEvent *> (event);
         if( k->button() == Qt::LeftButton ) {
-            key->resize(481,301);
+            key->resize(292,241);
             key->move(280,320);
             key->show();
             ui->lineEdit_57->setFocus();
@@ -425,7 +425,7 @@ bool MainWindow::eventFilter(QObject* object, QEvent* event)
       if(object == ui->lineEdit_55 && event->type() == QEvent::MouseButtonPress) {
         QMouseEvent *k = static_cast<QMouseEvent *> (event);
         if( k->button() == Qt::LeftButton ) {
-            key->resize(481,301);
+            key->resize(292,241);
             key->move(280,320);
             key->show();
             ui->lineEdit_55->setFocus();
@@ -440,7 +440,7 @@ bool MainWindow::eventFilter(QObject* object, QEvent* event)
       if(object == ui->lineEdit_56 && event->type() == QEvent::MouseButtonPress) {
         QMouseEvent *k = static_cast<QMouseEvent *> (event);
         if( k->button() == Qt::LeftButton ) {
-            key->resize(481,301);
+            key->resize(292,241);
             key->move(280,320);
             key->show();
             ui->lineEdit_56->setFocus();
@@ -454,7 +454,7 @@ bool MainWindow::eventFilter(QObject* object, QEvent* event)
       if(object == ui->lineEdit_58 && event->type() == QEvent::MouseButtonPress) {
         QMouseEvent *k = static_cast<QMouseEvent *> (event);
         if( k->button() == Qt::LeftButton ) {
-            key->resize(481,301);
+            key->resize(292,241);
             key->move(280,320);
             key->show();
             ui->lineEdit_58->setFocus();
@@ -468,7 +468,7 @@ bool MainWindow::eventFilter(QObject* object, QEvent* event)
       if(object == ui->lineEdit_60&& event->type() == QEvent::MouseButtonPress) {
         QMouseEvent *k = static_cast<QMouseEvent *> (event);
         if( k->button() == Qt::LeftButton ) {
-            key->resize(481,301);
+            key->resize(292,241);
             key->move(280,320);
             key->show();
             ui->lineEdit_60->setFocus();
@@ -483,7 +483,7 @@ bool MainWindow::eventFilter(QObject* object, QEvent* event)
       if(object == ui->lineEdit_59 && event->type() == QEvent::MouseButtonPress) {
         QMouseEvent *k = static_cast<QMouseEvent *> (event);
         if( k->button() == Qt::LeftButton ) {
-            key->resize(481,301);
+            key->resize(292,241);
             key->move(280,320);
             key->show();
             ui->lineEdit_59->setFocus();
@@ -498,7 +498,7 @@ bool MainWindow::eventFilter(QObject* object, QEvent* event)
       if(object == ui->lineEdit_61&& event->type() == QEvent::MouseButtonPress) {
         QMouseEvent *k = static_cast<QMouseEvent *> (event);
         if( k->button() == Qt::LeftButton ) {
-            key->resize(481,301);
+            key->resize(292,241);
             key->move(280,320);
             key->show();
             ui->lineEdit_61->setFocus();
@@ -512,7 +512,7 @@ bool MainWindow::eventFilter(QObject* object, QEvent* event)
       if(object == ui->lineEdit_63 && event->type() == QEvent::MouseButtonPress) {
         QMouseEvent *k = static_cast<QMouseEvent *> (event);
         if( k->button() == Qt::LeftButton ) {
-            key->resize(481,301);
+            key->resize(292,241);
             key->move(280,320);
             key->show();
             ui->lineEdit_63->setFocus();
@@ -527,7 +527,7 @@ bool MainWindow::eventFilter(QObject* object, QEvent* event)
       if(object == ui->lineEdit_62 && event->type() == QEvent::MouseButtonPress) {
         QMouseEvent *k = static_cast<QMouseEvent *> (event);
         if( k->button() == Qt::LeftButton ) {
-            key->resize(481,301);
+            key->resize(292,241);
             key->move(280,320);
             key->show();
             ui->lineEdit_62->setFocus();
@@ -542,7 +542,7 @@ bool MainWindow::eventFilter(QObject* object, QEvent* event)
         if(object == ui->lineEdit_64 && event->type() == QEvent::MouseButtonPress) {
           QMouseEvent *k = static_cast<QMouseEvent *> (event);
           if( k->button() == Qt::LeftButton ) {
-              key->resize(481,301);
+              key->resize(292,241);
               key->move(280,320);
               key->show();
               ui->lineEdit_64->setFocus();
@@ -556,7 +556,7 @@ bool MainWindow::eventFilter(QObject* object, QEvent* event)
         if(object == ui->lineEdit_66 && event->type() == QEvent::MouseButtonPress) {
           QMouseEvent *k = static_cast<QMouseEvent *> (event);
           if( k->button() == Qt::LeftButton ) {
-              key->resize(481,301);
+              key->resize(292,241);
               key->move(280,320);
               key->show();
               ui->lineEdit_66->setFocus();
@@ -571,7 +571,7 @@ bool MainWindow::eventFilter(QObject* object, QEvent* event)
         if(object == ui->lineEdit_65 && event->type() == QEvent::MouseButtonPress) {
           QMouseEvent *k = static_cast<QMouseEvent *> (event);
           if( k->button() == Qt::LeftButton ) {
-              key->resize(481,301);
+              key->resize(292,241);
               key->move(280,320);
               key->show();
               ui->lineEdit_65->setFocus();
@@ -586,7 +586,7 @@ bool MainWindow::eventFilter(QObject* object, QEvent* event)
         if(object == ui->lineEdit_70 && event->type() == QEvent::MouseButtonPress) {
           QMouseEvent *k = static_cast<QMouseEvent *> (event);
           if( k->button() == Qt::LeftButton ) {
-              key->resize(481,301);
+              key->resize(292,241);
               key->move(280,320);
               key->show();
               ui->lineEdit_70->setFocus();
@@ -600,7 +600,7 @@ bool MainWindow::eventFilter(QObject* object, QEvent* event)
         if(object == ui->lineEdit_69 && event->type() == QEvent::MouseButtonPress) {
           QMouseEvent *k = static_cast<QMouseEvent *> (event);
           if( k->button() == Qt::LeftButton ) {
-              key->resize(481,301);
+              key->resize(292,241);
               key->move(280,320);
               key->show();
               ui->lineEdit_69->setFocus();
@@ -615,7 +615,7 @@ bool MainWindow::eventFilter(QObject* object, QEvent* event)
         if(object == ui->lineEdit_68 && event->type() == QEvent::MouseButtonPress) {
           QMouseEvent *k = static_cast<QMouseEvent *> (event);
           if( k->button() == Qt::LeftButton ) {
-              key->resize(481,301);
+              key->resize(292,241);
               key->move(280,320);
               key->show();
               ui->lineEdit_68->setFocus();
@@ -629,7 +629,7 @@ bool MainWindow::eventFilter(QObject* object, QEvent* event)
         if(object == ui->lineEdit_67 && event->type() == QEvent::MouseButtonPress) {
           QMouseEvent *k = static_cast<QMouseEvent *> (event);
           if( k->button() == Qt::LeftButton ) {
-              key->resize(481,301);
+              key->resize(292,241);
               key->move(280,320);
               key->show();
               ui->lineEdit_67->setFocus();
@@ -646,7 +646,7 @@ bool MainWindow::eventFilter(QObject* object, QEvent* event)
           QMouseEvent *k = static_cast<QMouseEvent *> (event);
           if( k->button() == Qt::LeftButton ) {
               key->close();
-              key->resize(481,301);
+              key->resize(292,241);
               key->move(280,320);
               key->show();
               ui->lineEdit_71->setFocus();
@@ -661,7 +661,7 @@ bool MainWindow::eventFilter(QObject* object, QEvent* event)
           QMouseEvent *k = static_cast<QMouseEvent *> (event);
           if( k->button() == Qt::LeftButton ) {
                key->close();
-              key->resize(481,301);
+              key->resize(292,241);
               key->move(280,320);
               key->show();
               ui->lineEdit_73->setFocus();
@@ -676,7 +676,7 @@ bool MainWindow::eventFilter(QObject* object, QEvent* event)
           QMouseEvent *k = static_cast<QMouseEvent *> (event);
           if( k->button() == Qt::LeftButton ) {
                key->close();
-              key->resize(481,301);
+              key->resize(292,241);
               key->move(280,320);
               key->show();
               ui->lineEdit_72->setFocus();
@@ -692,7 +692,7 @@ bool MainWindow::eventFilter(QObject* object, QEvent* event)
           QMouseEvent *k = static_cast<QMouseEvent *> (event);
           if( k->button() == Qt::LeftButton ) {
               key->close();
-              key->resize(481,301);
+              key->resize(292,241);
               key->move(280,320);
               key->show();
               ui->lineEdit_74->setFocus();
@@ -716,7 +716,7 @@ void MainWindow::on_clicked(const QString& digit)
           ui->lineEdit_57->setText(QString::number(5));
           return;}
           setRange(ui->lineEdit_57, prevValue, value, 100);
-          updateLineedit(ui->lineEdit_57,prevValue,value,100);
+         // updateLineedit(ui->lineEdit_57,prevValue,value,100);
   }
   if(ui->lineEdit_55->focusWidget()) {
       ui->lineEdit_56->clearFocus();
@@ -728,7 +728,7 @@ void MainWindow::on_clicked(const QString& digit)
           ui->lineEdit_55->setText(QString::number(5));
           return;}
       setRange(ui->lineEdit_55, prevValue, value, 500);
-      updateLineedit(ui->lineEdit_55,prevValue,value,500);
+    //  updateLineedit(ui->lineEdit_55,prevValue,value,500);
 
 
   }
@@ -742,7 +742,7 @@ void MainWindow::on_clicked(const QString& digit)
           ui->lineEdit_56->setText(QString::number(2));
           return;}
       setRange(ui->lineEdit_56, prevValue, value, 40);
-      updateLineedit(ui->lineEdit_56,prevValue,value,40);
+     // updateLineedit(ui->lineEdit_56,prevValue,value,40);
 
   }
   //ULTRASONIC 2
@@ -756,7 +756,7 @@ void MainWindow::on_clicked(const QString& digit)
           ui->lineEdit_58->setText(QString::number(5));
           return;}
       setRange(ui->lineEdit_58, prevValue, value, 100);
-      updateLineedit(ui->lineEdit_58,prevValue,value,100);
+    //  updateLineedit(ui->lineEdit_58,prevValue,value,100);
 
   }
    if(ui->lineEdit_60->focusWidget()) {
@@ -769,7 +769,7 @@ void MainWindow::on_clicked(const QString& digit)
           ui->lineEdit_60->setText(QString::number(5));
           return;}
       setRange(ui->lineEdit_60, prevValue, value, 500);
-      updateLineedit(ui->lineEdit_60,prevValue,value,500);
+     // updateLineedit(ui->lineEdit_60,prevValue,value,500);
 
   }
    if(ui->lineEdit_59->focusWidget()) {
@@ -782,7 +782,7 @@ void MainWindow::on_clicked(const QString& digit)
           ui->lineEdit_59->setText(QString::number(2));
           return;}
       setRange(ui->lineEdit_59, prevValue, value, 40);
-      updateLineedit(ui->lineEdit_59,prevValue,value,40);
+     // updateLineedit(ui->lineEdit_59,prevValue,value,40);
 
   }
   //ULTRASONIC 3
@@ -1432,6 +1432,7 @@ void MainWindow::us2powup()
     }
 
     ui->lineEdit_58->setText(QString::number(value));
+    handler->phaco_power(value);
 
 }
 
@@ -1445,6 +1446,8 @@ void MainWindow::us2powdown()
     }
 
     ui->lineEdit_58->setText(QString::number(value));
+    handler->phaco_power(value);
+
 
 
 }
@@ -1515,6 +1518,7 @@ void MainWindow::us3powup()
     }
 
     ui->lineEdit_61->setText(QString::number(value));
+    handler->phaco_power(value);
 
 }
 
@@ -1528,6 +1532,8 @@ void MainWindow::us3powdown()
     }
 
     ui->lineEdit_61->setText(QString::number(value));
+    handler->phaco_power(value);
+
 }
 
 void MainWindow::us3vacup()
@@ -1586,6 +1592,8 @@ void MainWindow::us4powup()
         value=100;
     }
     ui->lineEdit_64->setText(QString::number(value));
+    handler->phaco_power(value);
+
 }
 
 void MainWindow::us4powdown()
@@ -1597,6 +1605,8 @@ void MainWindow::us4powdown()
         value=5;
     }
     ui->lineEdit_64->setText(QString::number(value));
+    handler->phaco_power(value);
+
 }
 
 void MainWindow::us4vacup()
@@ -1933,6 +1943,7 @@ void MainWindow::footpedalcheck()
                                  "}";
     int range = lfoot->convert(0x97);
     int vacsensor=vac->convert(0XD7);
+    //qDebug()<<vacsensor;
     QString text=ui->comboBox->currentText();
   QString powerdelivered=ui->CutMode_vitCom->currentText();
   QString powerdelivered_1=ui->CutMode_vitCom_2->currentText();
@@ -1970,7 +1981,12 @@ void MainWindow::footpedalcheck()
 
                      handler->pinchvalve_off();
                      handler->safetyvent_off();
-                 }
+                 }if(ventondia==false){
+                     handler->safetyvent_on();
+                                      QThread::msleep(1200);
+                                      handler->safetyvent_off();
+                                      ventondia=true;}
+
 
             }
             else if (range>=nfpzero && range<nfpthree)
@@ -1984,6 +2000,13 @@ void MainWindow::footpedalcheck()
                 handler->pinchvalve_on();
                 handler->safetyvent_on();
             }
+            if(ventondia==false){
+                                 handler->safetyvent_on();
+                                                  QThread::msleep(1200);
+                                                  handler->safetyvent_off();
+                                                  ventondia=true;}
+
+
         }
         break;
     }
@@ -1991,6 +2014,7 @@ void MainWindow::footpedalcheck()
     case 1: {
         //they will not run
         int pow1 = ui->lineEdit_57->text().toInt(); // Get the power value from the line edit
+        int vacline=ui->lineEdit_55->text().toInt();
         bool flag1 = false;
 
         if (us1 == "Panel" || vus1 == "Panel") {
@@ -2000,8 +2024,12 @@ void MainWindow::footpedalcheck()
 if(!overallci){
    ui->CI5_5->setStyleSheet(styleSheet4);
     handler->pinchvalve_off();
-    handler->safetyvent_off();
-}
+}if(ventonus1==false){
+    handler->safetyvent_on();
+                     QThread::msleep(1200);
+                     handler->safetyvent_off();
+                     ventonus1=true;}
+
     motoroff();
 
                 ui->label_7->setText("0");
@@ -2018,7 +2046,13 @@ if(!overallci){
 ui->pushButton_42->setText("1");
 ui->dial_2->setValue(range);
 handler->pinchvalve_on();
-handler->safetyvent_on();
+if(ventonus2==false){
+    handler->safetyvent_on();
+                     QThread::msleep(1200);
+                     handler->safetyvent_off();
+                     ventonus1=true;
+}
+
 ui->CI5_5->setStyleSheet(styleSheet3);
 footpedalbeep();
 motoroff();
@@ -2035,21 +2069,22 @@ flag1 = true; // Reset flag
             }
             else if (range >=(nfpone+nfpzero) && range < (nfpzero+nfpone+nfptwo)) {
                 ui->pushButton_42->setText("2");
+                ventonus1=false;
                    ui->dial_2->setValue(range);
                  ui->CI5_5->setStyleSheet(styleSheet3);
                 handler->pinchvalve_on();
-                   handler->safetyvent_on();
-
+                   handler->safetyvent_off();
                 footpedalbeep();
-                if (text == "Peristaltic") {
-                                motoron(ui->lineEdit_56);
-                                 sensor2();
-                            } else if(text == "Venturi") {
-                                motoroff();
-                                 sensor2();
-                            }
+                int vac=vacsensor*0.18;
+                ui->label_8->setText(QString::number(static_cast<int>(vac)));
+                if(vac>=vacline){
+                    motoroff();
+                    break;
+                }else{
+                    motoron(ui->lineEdit_56);
+                }
 
-                ui->label_8->setText("0");
+                ui->label_7->setText("0");
                 if (power.powerOn) {
                     handler->freq_count(0);
                     handler->phaco_off();
@@ -2062,20 +2097,20 @@ flag1 = true; // Reset flag
             else if (range >=(nfpzero+nfpone+nfptwo) && range < (nfpzero+nfpone+nfptwo+nfpthree)) {
                 ui->pushButton_42->setText("3");
                 footpedalbeep();
-
+ ventonus1=false;
                    ui->dial_2->setValue(range);
                                  handler->pinchvalve_on();
-                                    handler->safetyvent_on();
+                                    handler->safetyvent_off();
                                   ui->CI5_5->setStyleSheet(styleSheet3);
+                                  int vac=vacsensor*0.18;
+                                  ui->label_8->setText(QString::number(static_cast<int>(vac)));
+                                  if(vac>=vacline){
+                                      motoroff();
+                                      break;
+                                  }else{
+                                      motoron(ui->lineEdit_56);
+                                  }
 
-
-                if (text == "Peristaltic") {
-                                motoron(ui->lineEdit_56);
-                                 sensor2();
-                            } else if(text == "Venturi"){
-                                motoroff();
-                                sensor2();
-                            }
 
                 if (power.buttonState == "ON" && !power.powerOn) {
 
@@ -2104,10 +2139,15 @@ flag1 = true; // Reset flag
 if(!overallci){
     ui->CI5_5->setStyleSheet(styleSheet4);
    handler->pinchvalve_off();
-   handler->safetyvent_off();}
+  }
+if(ventonus1==false){
+    handler->safetyvent_on();
+                     QThread::msleep(1200);
+                     handler->safetyvent_off();
+                     ventonus1=true;}
 
-                ui->label_7->setText("0");
-                ui->label_8->setText("0");
+
+
                 motoroff();
 
                 if (power.powerOn) {
@@ -2117,6 +2157,8 @@ if(!overallci){
 
                     power.powerOn = false;
                 }
+                ui->label_8->setText("0");
+                ui->label_7->setText("0");
                 flag1 = true; // Reset flag
             }
             else if (range >= nfpzero && range < (nfpzero+nfpone)) {
@@ -2124,7 +2166,12 @@ if(!overallci){
                 footpedalbeep();
   ui->dial_2->setValue(range);
                 handler->pinchvalve_on();
-                   handler->safetyvent_on();
+                if(ventonus1==false){
+                    handler->safetyvent_on();
+                                     QThread::msleep(1200);
+                                     handler->safetyvent_off();
+                                     ventonus1=true;}
+
                  ui->CI5_5->setStyleSheet(styleSheet3);
 
                 motoroff();
@@ -2137,25 +2184,56 @@ if(!overallci){
 
                     power.powerOn = false;
                 }
+
+
                 flag1 = true; // Reset flag
             }
-            else if (range>=(nfpzero+nfpone)&& range< (nfpzero+nfpone+nfptwo)) {
+            else if (range >= (nfpzero + nfpone) && range < (nfpzero + nfpone + nfptwo)) {
+                qDebug() << range << "that is footpedal value is retrieved from the second window";
+
+                // Update UI elements based on the foot pedal input
                 ui->pushButton_42->setText("2");
-                footpedalbeep();
-                 ui->dial_2->setValue(range);
+                footpedalbeep();  // Trigger foot pedal beep
+                ui->dial_2->setValue(range);  // Update the dial value
+ventonus1=false;
+                // Trigger hardware actions
                 handler->pinchvalve_on();
-                   handler->safetyvent_on();
-                ui->CI5_5->setStyleSheet(styleSheet3);
+                handler->safetyvent_off();
+                ui->CI5_5->setStyleSheet(styleSheet3);  // Update button style
 
+                // Calculate the division and calibration values
+                int divi = ((nfpzero + nfpone + nfptwo) - (nfpone + nfpzero));
+                qDebug() << nfpzero + nfptwo + nfpone << "is" << nfpone + nfpzero;
+                qDebug() << "The divide is " << divi;
 
-                  if (text == "Peristaltic") {
-                                  motoron(ui->lineEdit_56);
-                                   updatesensor();
-                              } else if(text =="Venturi") {
-                                  motoroff();
-                                   updatesensor();
-                              }
-                ui->label_8->setText("0");
+                int calibration = range - (nfpzero + nfpone);
+                qDebug() << range << "that is the range";
+                qDebug() << "The calibration" << calibration;
+
+                // Calculate final preset vacuum value
+                double final = static_cast<double>(vacline) / divi; // Use double for precision
+                qDebug() << "us1preset value is" << vacline;
+                qDebug() << "The final value is" << final;
+
+                int presetvac = static_cast<int>(calibration * final); // Cast result to int
+                qDebug() << "The preset vac value is after calibration" << presetvac;
+
+                // Read the vacuum sensor value and apply calibration
+                int profile123 = vac->convert(0XD7) * 0.1894;
+                qDebug() << "The vac sensor after calibration is" << profile123;
+
+                // Motor control logic
+                if (profile123 < presetvac) {
+                    ui->label_8->setText(QString::number(static_cast<int>(profile123))); // Update UI with current vacuum
+                    qDebug() << "The vacuum is read from the vacuum" << profile123 << "the preset is updated" << presetvac;
+                    motoron(ui->lineEdit_56);  // Turn the motor on
+                }
+                else if (profile123 >= presetvac) {
+                    motoroff();  // Turn the motor off
+                    qDebug() << "Motor turned off as vacuum reached the preset value.";
+                }
+            }
+
                 if (power.powerOn) {
                     handler->freq_count(0);
                     handler->phaco_off();
@@ -2166,24 +2244,56 @@ if(!overallci){
                 flag1 = true; // Reset flag
             }
             else if (range >= (nfpzero + nfpone + nfptwo) && range <= (nfpzero + nfpone + nfptwo + nfpthree)) {
-                // Set the button and styles, and trigger certain actions
+                qDebug() << nfpzero << nfpone << nfptwo << nfpthree << "These are range from the footswitch count preset";
+
+                // Set button text and apply styles
                 ui->pushButton_42->setText("3");
-                footpedalbeep();
-                ui->dial_2->setValue(range);
+                footpedalbeep();  // Trigger foot pedal beep
+                ui->dial_2->setValue(range);  // Set the dial value
+ventonus1=false;
+                // Trigger hardware actions
                 handler->pinchvalve_on();
-                handler->safetyvent_on();
+                handler->safetyvent_off();
+
+                // Set the style for CI5_5 button
                 ui->CI5_5->setStyleSheet(styleSheet3);
 
-                // Motor logic based on the text value
-                if (text == "Peristaltic") {
-                    motoron(ui->lineEdit_56);
-                    updatesensor();
-                } else if (text == "Venturi") {
-                    motoroff();
-                    updatesensor();
-                }
+                // Calculate division value
+                int divi = nfpthree;
+                qDebug() << "Dividing by:" << divi;
 
-                // Check if the power button state is "ON" but power isn't already on
+                // Calibrate based on range difference
+                int calibration = range - (nfpzero + nfpone + nfptwo);
+                qDebug() << "Calibration value:" << calibration;
+
+                // Calculate the final vacuum value using double precision
+                double final = static_cast<double>(vacline) / divi;
+                qDebug() << "Vacline value:" << vacline;
+                qDebug() << "Final calibration factor:" << final;
+
+                // Calculate preset vacuum based on calibration
+                int presetvac = static_cast<int>(calibration * final);  // Convert result to integer
+                qDebug() << "Preset vacuum value after calibration:" << presetvac;
+
+                // Calculate the actual vacuum sensor value (profile123)
+                int profile123 = static_cast<int>(vacsensor * 0.18);  // Adjust the vacuum sensor value
+                qDebug() << "Vac sensor after calibration:" << profile123;
+
+                // Motor control based on vacuum pressure
+                if (profile123 < presetvac) {
+                    // Vacuum is below the target, keep motor running
+                    ui->label_8->setText(QString::number(profile123));  // Update UI with current vacuum sensor value
+                    qDebug() << "Vacuum is below the preset level. Motor running.";
+                    motoron(ui->lineEdit_56);  // Turn motor on
+                }
+                else if (profile123 >= presetvac) {
+                    // Vacuum reached or exceeded the target, stop motor
+                    qDebug() << "Vacuum has reached or exceeded the preset level. Motor stopping.";
+                    motoroff();  // Turn motor off
+                }
+            }
+
+                 // Check if the power button state is "ON" but power isn't already on
                 if (power.buttonState == "ON" && !power.powerOn) {
                     power.powerOn = true;  // Power is now on
                     updateTabsBasedOnComboBox(ui->CutMode_vitCom->currentText());
@@ -2192,22 +2302,7 @@ if(!overallci){
                     handler->fs_count(range);
                     handler->freq_count(2500);
                     handler->phaco_on();
-                    float denominator = (4096 - nfpzero + nfpone + nfptwo);
 
-                    // Calculate the step size for progress4, assuming range-related adjustment is needed
-                    float progressStep = ((range - nfpzero + nfpone + nfptwo) / denominator);
-
-                    // Loop from 0 to pow1
-                    for (int i = 0; i <= pow1; ++i) {
-                        // Calculate the current progress4 value
-                        float progress4 = i * progressStep;
-
-                        // Round and convert progress4 to integer for display and handler
-                        int fullProgress = static_cast<int>(std::round(progress4));
-
-                        // Update the label and pass the progress to the handler
-                        ui->label_7->setText(QString::number(fullProgress));
-                        handler->phaco_power(fullProgress);
                     // Keep track of elapsed time
                     elapsedTimeUS1 += elapsed;
                     message = "Effective time for US1: " + QString::number(elapsedTimeUS1 / 1000.0, 'f', 2) + " s";
@@ -2215,12 +2310,21 @@ if(!overallci){
 
                 // If power is on, start reading from 0 to pow1
                 if (power.powerOn) {
+                   int final=4096-(nfpzero+nfpone+nfptwo);
+                   int value=range-(nfpzero+nfpone+nfptwo);
+                   double actual = static_cast<double>(value) / static_cast<double>(final)*pow1;
+                     int rounded_value = static_cast<int>(std::round(actual));
+                   ui->label_7->setText(QString::number(rounded_value));
+                   handler->phaco_power(rounded_value);
+
+
+                   qDebug()<<final<<value<<actual<<pow1<<"these are calibration";
 
 
                     }
-                }
-            }
-}
+
+
+
 
         break;
     }
@@ -2238,8 +2342,14 @@ if(!overallci){
                 if(!overallci){
                      ui->CI5_5->setStyleSheet(styleSheet4);
                     handler->pinchvalve_off();
-                    handler->safetyvent_off();
+
                 }
+                if(ventonus2==false){
+                    handler->safetyvent_on();
+                                     QThread::msleep(1200);
+                                     handler->safetyvent_off();
+                                     ventonus2=true;}
+
 
                 motoroff();
                 ui->label_92->setText("0");
@@ -2259,8 +2369,12 @@ if(!overallci){
     ui->CI5_5->setStyleSheet(styleSheet3);
 
   handler->pinchvalve_on();
-  handler->safetyvent_on();
-                motoroff();
+  if(ventonus2==false){
+      handler->safetyvent_on();
+                       QThread::msleep(1200);
+                       handler->safetyvent_off();
+                       ventonus2=true;}
+                      motoroff();
                 handler->phaco_off();
                 ui->label_92->setText("0");
                 ui->label_93->setText("0");
@@ -2274,21 +2388,19 @@ if(!overallci){
                 flag2 = true; // Reset flag
             } else if (range >= 1332 && range < 2664) {
                 ui->pushButton_42->setText("2");
+                ventonus2=false;
                 footpedalbeep();
                   ui->dial_2->setValue(range);
                   ui->CI5_5->setStyleSheet(styleSheet3);
 
                 handler->pinchvalve_on();
-                handler->safetyvent_on();
+                handler->safetyvent_off();
 
 
-                if (text == "Peristaltic") {
+
                                 motoron(ui->lineEdit_59);
                                 sensor2();
-                            } else {
-                                motoroff();
-                                 sensor2();
-                            }
+
                 ui->label_92->setText("0");
                 if (power.powerOn1) {
                     handler->freq_count(0);
@@ -2299,11 +2411,12 @@ if(!overallci){
                 flag2 = true; // Reset flag
             } else if (range >= 2664 && range < 4096) {
                 ui->pushButton_42->setText("3");
+                ventonus2=false;
                 footpedalbeep();
                   ui->dial_2->setValue(range);
          ui->CI5_5->setStyleSheet(styleSheet3);
                 handler->pinchvalve_on();
-                handler->safetyvent_on();
+                handler->safetyvent_off();
                 if (power.buttonstate1 == "ON" && !power.powerOn1) {
                    updateTabsBasedOnComboBox(powerdelivered_1);
                     handler->freq_count(2500);
@@ -2322,13 +2435,10 @@ if(!overallci){
                 }
 
 
-                if (text == "Peristaltic") {
+
                                 motoron(ui->lineEdit_59);
                                 sensor2();
-                            } else {
-                                motoroff();
-                                 sensor2();
-                            }
+
             }
         } else if (us2 == "Surgeon" || vus2 == "Surgeon") {//panel
             if (range >= 0 && range < 100) {
@@ -2336,9 +2446,14 @@ if(!overallci){
                   ui->dial_2->setValue(range);
 if(!overallci){
     ui->CI5_5->setStyleSheet(styleSheet4);
-    handler->safetyvent_off();
     handler->pinchvalve_off();
 }
+if(ventonus2==false){
+    handler->safetyvent_on();
+                     QThread::msleep(1200);
+                     handler->safetyvent_off();
+                     ventonus2=true;}
+
                 motoroff();
 
                 handler->phaco_off();
@@ -2359,8 +2474,12 @@ if(!overallci){
                  ui->CI5_5->setStyleSheet(styleSheet3);
 
                 handler->pinchvalve_on();
-                handler->safetyvent_on();
-                motoroff();
+                if(ventonus2==false){
+                    handler->safetyvent_on();
+                                     QThread::msleep(1200);
+                                     handler->safetyvent_off();
+                                     ventonus2=true;}
+                                    motoroff();
                 handler->phaco_off();
                 ui->label_92->setText("0");
                 ui->label_93->setText("0");
@@ -2374,12 +2493,13 @@ if(!overallci){
                 flag2 = true; // Reset flag
             } else if (range >= 1332 && range < 2664) {
                 ui->pushButton_42->setText("2");
+
                 footpedalbeep();
                   ui->dial_2->setValue(range);
                   ui->CI5_5->setStyleSheet(styleSheet3);
 
                 handler->pinchvalve_on();
-                handler->safetyvent_on();
+                handler->safetyvent_off();
                 if (text == "Peristaltic") {
                                 motoron(ui->lineEdit_59);
                                 updatesensor();
@@ -2403,7 +2523,7 @@ if(!overallci){
                 ui->CI5_5->setStyleSheet(styleSheet3);
 
                 handler->pinchvalve_on();
-                handler->safetyvent_on();
+                handler->safetyvent_off();
                 if (power.buttonstate1 == "ON" && !power.powerOn1) {
                    updateTabsBasedOnComboBox(powerdelivered_1);
                     handler->freq_count(2500);
@@ -2449,8 +2569,13 @@ if(!overallci){
                 if(!overallci){
                      ui->CI5_5->setStyleSheet(styleSheet4);
                     handler->pinchvalve_off();
-                    handler->safetyvent_off();
                 }
+                if(ventonus3==false){
+                    handler->safetyvent_on();
+                                     QThread::msleep(1200);
+                                     handler->safetyvent_off();
+                                     ventonus3=true;}
+
                 motoroff();
 
                 handler->phaco_off();
@@ -2469,8 +2594,12 @@ if(!overallci){
                 footpedalbeep();
                   ui->dial_2->setValue(range);
                    ui->CI5_5->setStyleSheet(styleSheet3);
-                   handler->safetyvent_on();
-                   handler->pinchvalve_on();
+                   if(ventonus3==false){
+                       handler->safetyvent_on();
+                                        QThread::msleep(1200);
+                                        handler->safetyvent_off();
+                                        ventonus3=true;}
+                                          handler->pinchvalve_on();
                 motoroff();
                 handler->phaco_off();
                 ui->label_98->setText("0");
@@ -2487,9 +2616,9 @@ if(!overallci){
                 ui->pushButton_42->setText("2");
                 footpedalbeep();
                   ui->dial_2->setValue(range);
-
+ventonus3=false;
                   ui->CI5_5->setStyleSheet(styleSheet3);
-                handler->safetyvent_on();
+                handler->safetyvent_off();
                 handler->pinchvalve_on();
 
                 if (text == "Peristaltic") {
@@ -2511,10 +2640,11 @@ if(!overallci){
                 flag3 = true; // Reset flag
             } else if (range >= 2664 && range < 4096) {
                 ui->pushButton_42->setText("3");
+                ventonus3=false;
                 footpedalbeep();
                   ui->dial_2->setValue(range);
                 ui->CI5_5->setStyleSheet(styleSheet3);
-                handler->safetyvent_on();
+                handler->safetyvent_off();
                 handler->pinchvalve_on();
                 elapsedTimeUS3 += elapsed;
                 message = "Effective time for US3: " + QString::number(elapsedTimeUS3 / 1000.0, 'f', 2) + " s";
@@ -2545,8 +2675,12 @@ if(!overallci){
                 if(!overallci){
                    ui->CI5_5->setStyleSheet(styleSheet4);
                     handler->pinchvalve_off();
-                    handler->safetyvent_off();
                 }
+                if(ventonus3==false){
+                    handler->safetyvent_on();
+                                     QThread::msleep(1200);
+                                     handler->safetyvent_off();
+                                     ventonus3=true;}
                 motoroff();
 
                 handler->phaco_off();
@@ -2566,8 +2700,12 @@ if(!overallci){
                 footpedalbeep();
                   ui->dial_2->setValue(range);
                  ui->CI5_5->setStyleSheet(styleSheet3);
-                handler->safetyvent_on();
-                handler->pinchvalve_on();
+                 if(ventonus3==false){
+                     handler->safetyvent_on();
+                                      QThread::msleep(1200);
+                                      handler->safetyvent_off();
+                                      ventonus3=true;}
+                 handler->pinchvalve_on();
                 motoroff();
                 handler->phaco_off();
                 ui->label_98->setText("0");
@@ -2585,15 +2723,10 @@ if(!overallci){
                 footpedalbeep();
                   ui->dial_2->setValue(range);
         ui->CI5_5->setStyleSheet(styleSheet3);
-                handler->safetyvent_on();
+                handler->safetyvent_off();
+                ventonus3=false;
                handler->pinchvalve_on();
-               if (text == "Peristaltic") {
-                               motoron(ui->lineEdit_62);
-                      updatesensor();
-                           } else {
-                               motoroff();
-                     updatesensor();
-                           }
+
 
                 ui->label_98->setText("0");
                 if (power.powerOn2) {
@@ -2609,7 +2742,8 @@ if(!overallci){
                 footpedalbeep();
                   ui->dial_2->setValue(range);
                  ui->CI5_5->setStyleSheet(styleSheet3);
-                handler->safetyvent_on();
+                handler->safetyvent_off();
+                ventonus3=false;
                 handler->pinchvalve_on();
                 if (power.buttonstate2 == "ON" && !power.powerOn2) {
                     handler->freq_count(2500);
@@ -2628,14 +2762,6 @@ if(!overallci){
                     int progress9 = std::min(progress8, pow3);
                     ui->label_98->setText(QString::number(progress9));
                 }
-
-                if (text == "Peristaltic") {
-                                motoron(ui->lineEdit_62);
-                            updatesensor();
-                            } else {
-                                motoroff();
-                           updatesensor();
-                            }
 
 
             }
@@ -2656,8 +2782,13 @@ if(!overallci){
                 if(!overallci){
                  ui->CI5_5->setStyleSheet(styleSheet4);
                     handler->pinchvalve_off();
-                    handler->safetyvent_off();
                 }
+                if(ventonus4==false){
+                    handler->safetyvent_on();
+                                     QThread::msleep(1200);
+                                     handler->safetyvent_off();
+                                     ventonus4=true;}
+
                 //handler->pinchvalve_off();
                 motoroff();
                 handler->phaco_off();
@@ -2676,8 +2807,12 @@ if(!overallci){
                 footpedalbeep();
                   ui->dial_2->setValue(range);
                 ui->CI5_5->setStyleSheet(styleSheet3);
-                handler->safetyvent_on();
-                handler->pinchvalve_on();
+                if(ventonus4==false){
+                    handler->safetyvent_on();
+                                     QThread::msleep(1200);
+                                     handler->safetyvent_off();
+                                     ventonus4=true;}
+                                    handler->pinchvalve_on();
 
 
                 motoroff();
@@ -2696,18 +2831,15 @@ if(!overallci){
                 footpedalbeep();
                   ui->dial_2->setValue(range);
              ui->CI5_5->setStyleSheet(styleSheet3);
-                handler->safetyvent_on();
+                handler->safetyvent_off();
                 handler->pinchvalve_on();
-
+ventonus4=false;
                 handler->phaco_off();
                 ui->label_105->setText("0");
-                if (text == "Peristaltic") {
+
                                 motoron(ui->lineEdit_65);
                               sensor2();
-                            } else {
-                                motoroff();
-                               sensor2();
-                            }
+
 
                 if (power.powerOn3) {
                     handler->freq_count(0);
@@ -2719,9 +2851,10 @@ if(!overallci){
             } else if (range >= 2664 && range < 4096) {
                 ui->pushButton_42->setText("3");
                 footpedalbeep();
+                ventonus4=false;
                   ui->dial_2->setValue(range);
                 ui->CI5_5->setStyleSheet(styleSheet3);
-                handler->safetyvent_on();
+                handler->safetyvent_off();
                 handler->pinchvalve_on();
  ui->CI5_5->setStyleSheet(styleSheet3);
 
@@ -2742,13 +2875,9 @@ if(!overallci){
                     ui->label_105->setText(QString::number(static_cast<int>(progress14)));
                 }
 
-                if (text == "Peristaltic") {
                                 motoron(ui->lineEdit_65);
                               sensor2();
-                            } else {
-                                motoroff();
-                               sensor2();
-                            }
+
 
 
             }
@@ -2759,8 +2888,13 @@ if(!overallci){
                 if(!overallci){
                    ui->CI5_5->setStyleSheet(styleSheet4);
                     handler->pinchvalve_off();
-                    handler->safetyvent_off();
                 }
+                if(ventonus4==false){
+                    handler->safetyvent_on();
+                                     QThread::msleep(1200);
+                                     handler->safetyvent_off();
+                                     ventonus4=true;}
+
                 motoroff();
                 handler->phaco_off();
                 if (power.powerOn3) {
@@ -2776,8 +2910,12 @@ if(!overallci){
                   ui->dial_2->setValue(range);
 
                  ui->CI5_5->setStyleSheet(styleSheet3);
-                handler->safetyvent_on();
-                handler->pinchvalve_on();
+                 if(ventonus4==false){
+                     handler->safetyvent_on();
+                                      QThread::msleep(1200);
+                                      handler->safetyvent_off();
+                                      ventonus4=true;}
+                                     handler->pinchvalve_on();
 
 
                 motoroff();
@@ -2795,21 +2933,18 @@ if(!overallci){
                 ui->pushButton_42->setText("2");
                 footpedalbeep();
                   ui->dial_2->setValue(range);
-
-                handler->safetyvent_on();
+ventonus4=false;
+                handler->safetyvent_off();
                 handler->pinchvalve_on();
  ui->CI5_5->setStyleSheet(styleSheet3);
 
 
                 handler->phaco_off();
                 ui->label_105->setText("0");
-                if (text == "Peristaltic") {
+
                                 motoron(ui->lineEdit_65);
                         updatesensor();
-                            } else {
-                                motoroff();
-                   updatesensor();
-                            }
+
 
                 if (power.powerOn3) {
                     handler->freq_count(0);
@@ -2822,8 +2957,9 @@ if(!overallci){
                 ui->pushButton_42->setText("3");
                 footpedalbeep();
                   ui->dial_2->setValue(range);
+                  ventonus4=false;
 
-                handler->safetyvent_on();
+                handler->safetyvent_off();
                 handler->pinchvalve_on();
  ui->CI5_5->setStyleSheet(styleSheet3);
 
@@ -2843,12 +2979,8 @@ if(!overallci){
                     int progress12 = std::min(progress11, pow4);
                     ui->label_105->setText(QString::number(progress12));
                 }
-                if (text == "Peristaltic") {
+                motoron(ui->lineEdit_65);
                               updatesensor();
-                            } else {
-                                motoroff();
-                        updatesensor();
-                            }
 
 
             }
@@ -2860,122 +2992,141 @@ if(!overallci){
 
         // ia1
         case 5:
-        {
-  bool flag5=true;
-        if(flag5){
-             if(ia1=="Panel"){//surgeon
+    {
+bool flag6=true;
+int ia1preset=ui->lineEdit_70->text().toInt();
+
+    if(flag6){
+        if(ia1 == "Panel"){//surgeon
+        if(range>=0 && range<100){
+            ui->pushButton_42->setText("0");
+              ui->dial_2->setValue(range);
+            if(!overallci){
+        ui->CI5_5->setStyleSheet(styleSheet4);
+                handler->pinchvalve_off();
+            }
+            if(ventonia1==false){
+                handler->safetyvent_on();
+                                 QThread::msleep(1200);
+                                 handler->safetyvent_off();
+                                 ventonia1=true;}
+
+motoroff();
+ui->label_113->setText(QString::number(0));
+
+        }
+        if(range>=100 && range<1332){
+            ui->pushButton_42->setText("1");
+            footpedalbeep();
+              ui->dial_2->setValue(range);
+     ui->CI5_5->setStyleSheet(styleSheet3);
+     if(ventonia1==false){
+         handler->safetyvent_on();
+                          QThread::msleep(1200);
+                          handler->safetyvent_off();
+                          ventonia1=true;}
+                     handler->pinchvalve_on();
+             motoroff();
+             ui->label_113->setText(QString::number(0));
+
+        }
+        else if(range>=1332 && range <4096){
+            ui->pushButton_42->setText("2");
+            footpedalbeep();
+            ventonia1=false;
+              ui->dial_2->setValue(range);
+   ui->CI5_5->setStyleSheet(styleSheet3);
+            handler->safetyvent_on();
+            handler->pinchvalve_on();
+            int pro = vacsensor * 0.18;
+            ui->label_113->setText(QString::number(pro));
+            qDebug() << "vacuum sensor is" << pro;
+         for (int i = 0; i <= pro; i++) {
+                if (i >= ia1preset) {
+                    motoroff();
+                    qDebug() << "Motor turned off as pro reached ia1preset";
+                    break; // Exit the loop once the motor is turned off
+                }else{
+                      motoron(ui->lineEdit_69);
+                }
+            }
+        }
+
+        }
+        else{
+            if(ia1 == "Surgeon"){
             if(range>=0 && range<100){
                 ui->pushButton_42->setText("0");
                   ui->dial_2->setValue(range);
                 if(!overallci){
-               ui->CI5_5->setStyleSheet(styleSheet3);
+             ui->CI5_5->setStyleSheet(styleSheet4);
                     handler->pinchvalve_off();
-                    handler->safetyvent_off();
                 }
-motoroff();
+                if(ventonia1==false){
+                    handler->safetyvent_on();
+                                     QThread::msleep(1200);
+                                     handler->safetyvent_off();
+                                     ventonia1=true;}
+
+                  motoroff();
+                  ui->label_113->setText(QString::number(0));
+
+
             }
             if(range>=100 && range<1332){
                 ui->pushButton_42->setText("1");
                 footpedalbeep();
                   ui->dial_2->setValue(range);
-
-  handler->safetyvent_on();
-  handler->pinchvalve_on();
+             ui->CI5_5->setStyleSheet(styleSheet3);
+                handler->pinchvalve_on();
                   motoroff();
+                  ui->label_113->setText(QString::number(0));
+
             }
-             if(range>=1332 && range <4096){
-            //    qDebug()<<"fs"<<range;
-                  ui->pushButton_42->setText("2");
-                  footpedalbeep();
-                    ui->dial_2->setValue(range);
-      ui->CI5_5->setStyleSheet(styleSheet3);
-                  handler->safetyvent_on();
-                  handler->pinchvalve_on();
-                  int cali = vacsensor * 500 / 4096;  // Calculate the calibrated sensor value
-                  int preset = ui->lineEdit_70->text().toInt();  // Get the preset value from the line edit
-                  int hysteresis = 10;  // Define the hysteresis margin
-                  int actual = cali;
+            if(ventonia1==false){
+                handler->safetyvent_on();
+                                 QThread::msleep(1200);
+                                 handler->safetyvent_off();
+                                 ventonia1=true;}
 
-                  ui->label_109->setText(QString::number(actual));  // Update the label with the actual value
+            else if(range>=1332 && range <4096){
+                ui->pushButton_42->setText("2");
+                footpedalbeep();
+                  ui->dial_2->setValue(range);
+              ui->CI5_5->setStyleSheet(styleSheet3);
+                handler->safetyvent_on();
+                handler->pinchvalve_on();
+              int divi=(4092-1332);
+              qDebug()<<"the divide is "<<divi;
+              int calibration=range-1332;
+              qDebug()<<"the calibration"<<calibration;
+              // Use static_cast for more precise division
+               double final = static_cast<double>(ia1preset) / divi; // Use double for precision
+               qDebug() << "ia1preset value is" << ia1preset;
+               qDebug() << "The final value is" << final;
 
-                  // Track whether the motor is currently on or off
-                  static bool motorRunning = false;
+               // Calculate presetvac with casting
+               int presetvac = static_cast<int>(calibration * final); // Cast result to int
+               qDebug() << "The preset vac value is after calibration" << presetvac;
 
-                  if (motorRunning) {
-                      // If motor is running, we only turn it off if actual reaches the preset
-                      if (actual >= preset) {
-                          motoroff();  // Turn off the motor
-                          motorRunning = false;  // Update motor state
-                      }
-                  } else {
-                      // If motor is off, we only turn it on if actual is significantly below the preset
-                      if (actual <= (preset - hysteresis)) {
-                          motoron(ui->lineEdit_69);  // Turn on the motor
-                          motorRunning = true;  // Update motor state
-                      }
-                  }
+              int pro = vacsensor * 0.18;
+              qDebug()<<"the vac sensor is after calibration is"<<pro;
+              if(pro<presetvac){
 
-        }
+                    ui->label_113->setText(QString::number(static_cast<int>(pro)));
+                    qDebug()<<"the vaccum is read from the vaccum"<<pro;
+                    motoron(ui->lineEdit_69);
+              }else if(pro==presetvac){
+                  motoroff();
+              }
 
-           }
-             else{
-                 if(ia1 == "Surgeon"){
-                 if(range>=0 && range<100){
-                     ui->pushButton_42->setText("0");
-                       ui->dial_2->setValue(range);
-                     if(!overallci){
-                     ui->CI5_5->setStyleSheet(styleSheet4);
-                         handler->pinchvalve_off();
-                         handler->safetyvent_off();
-                     }
-                        motoroff();
-                 }
-                 if(range>=100 && range<1332){
-                     ui->pushButton_42->setText("1");
-                     footpedalbeep();
-                       ui->dial_2->setValue(range);
-                     ui->CI5_5->setStyleSheet(styleSheet3);
-                     handler->safetyvent_on();
-                     handler->pinchvalve_on();
-                    motoroff();
-                 }
-                 else if(range>=2664 && range <4096){
-                    // qDebug()<<"fs"<<range;
-                       ui->pushButton_42->setText("2");
-                       footpedalbeep();
-                         ui->dial_2->setValue(range);
-      ui->CI5_5->setStyleSheet(styleSheet3);
-                       handler->safetyvent_on();
-                       handler->pinchvalve_on();
-                       int cali = vacsensor * 500 / 4096;  // Calculate the calibrated sensor value
-                       int preset = ui->lineEdit_70->text().toInt();  // Get the preset value from the line edit
-                       int hysteresis = 10;  // Define the hysteresis margin
-                       int actual = cali;
 
-                       ui->label_109->setText(QString::number(actual));  // Update the label with the actual value
 
-                       // Track whether the motor is currently on or off
-                       static bool motorRunning = false;
 
-                       if (motorRunning) {
-                           // If motor is running, we only turn it off if actual reaches the preset
-                           if (actual >= preset) {
-                               motoroff();  // Turn off the motor
-                               motorRunning = false;  // Update motor state
-                           }
-                       } else {
-                           // If motor is off, we only turn it on if actual is significantly below the preset
-                           if (actual <= (preset - hysteresis)) {
-                               motoron(ui->lineEdit_69);  // Turn on the motor
-                               motorRunning = true;  // Update motor state
-                           }
-                       }
-
-             }
-                 }
-}
-    }
-         break;
+            }
+   }
+   }
+    }break;
     }
         // ia2
         case 6:
@@ -2990,8 +3141,13 @@ motoroff();
                 if(!overallci){
             ui->CI5_5->setStyleSheet(styleSheet4);
                     handler->pinchvalve_off();
-                    handler->safetyvent_off();
                 }
+                if(ventonia2==false){
+                    handler->safetyvent_on();
+                                     QThread::msleep(1200);
+                                     handler->safetyvent_off();
+                                     ventonia2=true;}
+
                //   motoron(ui->lineEdit_10);
  motoroff();
             }
@@ -3000,23 +3156,25 @@ motoroff();
                 footpedalbeep();
                   ui->dial_2->setValue(range);
          ui->CI5_5->setStyleSheet(styleSheet3);
-                handler->safetyvent_on();
                 handler->pinchvalve_on();
                  motoroff();
             }
+            if(ventonia2==false){
+                handler->safetyvent_on();
+                                 QThread::msleep(1200);
+                                 handler->safetyvent_off();
+                                 ventonia2=true;}
+
             else if(range>=1332 && range <4096){
                 ui->pushButton_42->setText("2");
+                ventonia2=false;
                 footpedalbeep();
                   ui->dial_2->setValue(range);
        ui->CI5_5->setStyleSheet(styleSheet3);
-                handler->safetyvent_on();
                 handler->pinchvalve_on();
-                if(text == "Peristaltic"){
+                motoron(ui->lineEdit_67);
                     sensor2();
-                }else{
-                    motoroff();
-                  sensor2();
-                }
+
             }
 
             }
@@ -3028,9 +3186,14 @@ motoroff();
                     if(!overallci){
                  ui->CI5_5->setStyleSheet(styleSheet4);
                         handler->pinchvalve_off();
-                        handler->safetyvent_off();
                     }
                       motoroff();
+                      if(ventonia2==false){
+                          handler->safetyvent_on();
+                                           QThread::msleep(1200);
+                                           handler->safetyvent_off();
+                                           ventonia2=true;}
+
 
                 }
                 if(range>=100 && range<1332){
@@ -3038,23 +3201,26 @@ motoroff();
                     footpedalbeep();
                       ui->dial_2->setValue(range);
                  ui->CI5_5->setStyleSheet(styleSheet3);
-                    handler->safetyvent_on();
                     handler->pinchvalve_on();
                       motoroff();
+                      if(ventonia2==false){
+                          handler->safetyvent_on();
+                                           QThread::msleep(1200);
+                                           handler->safetyvent_off();
+                                           ventonia2=true;}
+
                 }
                 else if(range>=1332 && range <4096){
                     ui->pushButton_42->setText("2");
+                    ventonia2=false;
                     footpedalbeep();
                       ui->dial_2->setValue(range);
                   ui->CI5_5->setStyleSheet(styleSheet3);
-                    handler->safetyvent_on();
+                    handler->safetyvent_off();
                     handler->pinchvalve_on();
-                    if(text == "Peristaltic"){
+                    motoron(ui->lineEdit_67);
                         updatesensor();
-                    }else{
-                        motoroff();
-                       updatesensor();
-                    }   }
+                      }
 
                 }
        }
@@ -3074,8 +3240,13 @@ motoroff();
 if(!overallci){
   ui->CI5_5->setStyleSheet(styleSheet4);
     handler->pinchvalve_off();
-    handler->safetyvent_off();
 }
+if(ventonvit==false){
+    handler->safetyvent_on();
+                     QThread::msleep(1200);
+                     handler->safetyvent_off();
+                     ventonvit=true;}
+
 
                     motoroff();
                     handler->vit_off();
@@ -3091,8 +3262,13 @@ if(!overallci){
                     footpedalbeep();
                       ui->dial_2->setValue(range);
   ui->CI5_5->setStyleSheet(styleSheet3);
-handler->safetyvent_on();
 handler->pinchvalve_on();
+if(ventonvit==false){
+    handler->safetyvent_on();
+                     QThread::msleep(1200);
+                     handler->safetyvent_off();
+                     ventonvit=true;}
+
                     motoroff();
                     handler->vit_off();
                     ui->label_119->setText("0");
@@ -3103,31 +3279,30 @@ handler->pinchvalve_on();
                     }
                 } else if (range >= 1332 && range < 2664) {
                     ui->pushButton_42->setText("2");
+                    ventonvit=false;
                     footpedalbeep();
                       ui->dial_2->setValue(range);
            ui->CI5_5->setStyleSheet(styleSheet3);
-                    handler->safetyvent_on();
+                    handler->safetyvent_off();
                     handler->pinchvalve_on();
 
                     handler->vit_off();
                     ui->label_119->setText("0");
-                    if(text == "Peristaltic"){
+
                         motoron(ui->lineEdit_72);
                        sensor2();
-                    }else{
-                        motoroff();
-                       sensor2();
-                    }
+
                     if (power.powerOn4) {
                        handler->vit_off();
                         power.powerOn4 = false;
                     }
                 } else if (range >= 2664 && range < 4096) {
                     ui->pushButton_42->setText("3");
+                    ventonvit=false;
                     footpedalbeep();
                       ui->dial_2->setValue(range);
                  ui->CI5_5->setStyleSheet(styleSheet3);
-                    handler->safetyvent_on();
+                    handler->safetyvent_off();
                     handler->pinchvalve_on();
                     if (power.buttonstate4 == "ON" && !power.powerOn4) {
                        handler->vit_on(pow7);
@@ -3141,13 +3316,10 @@ handler->pinchvalve_on();
                     }
 
 
-                    if(text == "Peristaltic"){
+
                         motoron(ui->lineEdit_72);
                        sensor2();
-                    }else{
-                        motoroff();
-                       sensor2();
-                    }
+
 
                 }
             } else if (vit == "Surgeon" || vvit == "Surgeon") {
@@ -3157,8 +3329,12 @@ handler->pinchvalve_on();
                     if(!overallci){
                           ui->CI5_5->setStyleSheet(styleSheet4);
                         handler->pinchvalve_off();
-                        handler->safetyvent_off();
                     }
+                    if(ventonvit==false){
+                        handler->safetyvent_on();
+                                         QThread::msleep(1200);
+                                         handler->safetyvent_off();
+                                         ventonvit=true;}
 
                     handler->vit_off();
                     motoroff();
@@ -3173,10 +3349,15 @@ handler->pinchvalve_on();
                     footpedalbeep();
                       ui->dial_2->setValue(range);
                   ui->CI5_5->setStyleSheet(styleSheet3);
-                    handler->safetyvent_on();
                     handler->pinchvalve_on();
                     motoroff();
                     handler->vit_off();
+                    if(ventonvit==false){
+                        handler->safetyvent_on();
+                                         QThread::msleep(1200);
+                                         handler->safetyvent_off();
+                                         ventonvit=true;}
+
                     ui->label_119->setText("0");
                     if (power.powerOn4) {
                      handler->vit_off();
@@ -3184,12 +3365,14 @@ handler->pinchvalve_on();
                     }
                 } else if (range >= 1332 && range < 2664) {
                     ui->pushButton_42->setText("2");
+                    ventonvit=false;
                     footpedalbeep();
                       ui->dial_2->setValue(range);
                     ui->CI5_5->setStyleSheet(styleSheet3);
-                    handler->safetyvent_on();
+                    handler->safetyvent_off();
                     handler->pinchvalve_on();
                     motoron(ui->lineEdit_72);
+                    updatesensor();
                     handler->vit_off();
                     ui->label_119->setText("0");
                     sensor2();
@@ -3199,10 +3382,11 @@ handler->pinchvalve_on();
                     }
                 } else if (range >= 2664 && range < 4096) {
                     ui->pushButton_42->setText("3");
+                    ventonvit=false;
                     footpedalbeep();
                       ui->dial_2->setValue(range);
                      ui->CI5_5->setStyleSheet(styleSheet3);
-                    handler->safetyvent_on();
+                    handler->safetyvent_off();
                     handler->pinchvalve_on();
                     if (power.buttonstate4 == "ON" && !power.powerOn4) {
                         handler->vit_on(pow7);
@@ -3216,13 +3400,10 @@ handler->pinchvalve_on();
                         ui->label_119->setText(QString::number(progress25));
                     }
 
-                    if(text == "Peristaltic"){
+
                         motoron(ui->lineEdit_72);
                     updatesensor();
-                    }else{
-                        motoroff();
-                      updatesensor();
-                    }
+
                   }
 
             }
@@ -3505,8 +3686,9 @@ void MainWindow::pulseup_mode()
     }
     ui->lineEdit_75->setText(QString::number(pulse));
     handler->freq_count(2500);
-    handler->fs_count(3000);
+    handler->fs_count(nfpzero+nfpone+nfptwo);
     handler->pulse_count(pulse);
+
   handler->pdm_mode(PULSE_MODE);
 }
 
@@ -3520,7 +3702,7 @@ void MainWindow::pulsedown_mode()
     }
     ui->lineEdit_75->setText(QString::number(pulse));
     handler->freq_count(2500);
-    handler->fs_count(3000);
+    handler->fs_count(nfpzero+nfpone+nfptwo);
     handler->pulse_count(pulse);
 handler->pdm_mode(PULSE_MODE);
 }
@@ -3535,7 +3717,7 @@ void MainWindow::ocuburstup_mode()
     }
     ui->lineEdit_76->setText(QString::number(ocuburst));
     handler->freq_count(2500);
-    handler->fs_count(3000);
+    handler->fs_count(nfpzero+nfpone+nfptwo);
     handler->burst_length(ocuburst);
     handler->burst_off_length(ocuburst);
     handler->pdm_mode(CONTINOUS);
@@ -3551,7 +3733,7 @@ void MainWindow::ocuburstdown_mode()
     }
     ui->lineEdit_76->setText(QString::number(ocuburst));
     handler->freq_count(2500);
-    handler->fs_count(3000);
+    handler->fs_count(nfpzero+nfpone+nfptwo);
     handler->burst_length(ocuburst);
     handler->burst_off_length(ocuburst);
      handler->pdm_mode(CONTINOUS);
@@ -3567,7 +3749,7 @@ void MainWindow::singleburstup_mode()
     }
     ui->lineEdit_77->setText(QString::number(singleburst));
     handler->freq_count(2500);
-    handler->fs_count(3000);
+    handler->fs_count(nfpzero+nfpone+nfptwo);
      handler->pdm_mode(SINGLE_BURST);
     handler->burst_length(singleburst);
     handler->burst_off_length(singleburst);
@@ -3583,7 +3765,7 @@ void MainWindow::singleburstdown_mode()
     }
     ui->lineEdit_77->setText(QString::number(singleburst));
     handler->freq_count(2500);
-    handler->fs_count(3000);
+    handler->fs_count(nfpzero+nfpone+nfptwo);
      handler->pdm_mode(SINGLE_BURST);
     handler->burst_length(singleburst);
     handler->burst_off_length(singleburst);
@@ -3598,7 +3780,7 @@ void MainWindow::multiburstup_mode()
         multiburst = 400;
     }
     ui->lineEdit_78->setText(QString::number(multiburst));
-    handler->fs_count(3000);
+    handler->fs_count(nfpzero+nfpone+nfptwo);
     handler->freq_count(2500);
     handler->pdm_mode(MULTI_BURST);
     handler->burst_length(multiburst);
@@ -3614,7 +3796,7 @@ void MainWindow::multiburstdown_mode()
         multiburst = 10;
     }
     ui->lineEdit_78->setText(QString::number(multiburst));
-    handler->fs_count(3000);
+    handler->fs_count(nfpzero+nfpone+nfptwo);
     handler->freq_count(2500);
     handler->pdm_mode(MULTI_BURST);
     handler->burst_length(multiburst);
@@ -3632,7 +3814,7 @@ void MainWindow::ocupulseup_mode()
     ui->lineEdit_79->setText(QString::number(ocupulse));
 
     handler->freq_count(2500);
-    handler->fs_count(3000);
+    handler->fs_count(nfpzero+nfpone+nfptwo);
     handler->pdm_mode(CONTINOUS);
     handler->pulse_count(ocupulse);
 
@@ -3648,7 +3830,7 @@ void MainWindow::ocupulsedown_mode()
     }
     ui->lineEdit_79->setText(QString::number(ocupulse));
     handler->freq_count(2500);
-    handler->fs_count(3000);
+    handler->fs_count(nfpzero+nfpone+nfptwo);
     handler->pdm_mode(CONTINOUS);
     handler->pulse_count(ocupulse);
 }
@@ -3855,34 +4037,30 @@ void MainWindow::label43()
     QString mode2 = ui->CutMode_vitCom_3->currentText();
     QString mode3 = ui->CutMode_vitCom_4->currentText();
 
-    // Process IA1 (vac5)
-    if (sensor > 0 && sensor < 4096) {
-        int pro = sensor * 500 / 4096; // Calculate proportional value
-        int pro1 = std::min(vac5, pro); // Use the smaller of the two values
-        ui->label_113->setNum(pro1);
-        if (vac5 == pro) {  // If preset value is reached
-            motoroff();      // Turn off the motor
-            handler->speaker_on(pro1, 0, 0, 1);
-        }
-    }
+//   //  Process IA1 (vac5)
+//    if (sensor > 0 && sensor < 4096) {
+//        int pro = sensor * vac5 / 4090; // Calculate proportional value
+//        ui->label_113->setNum(pro);
+//        if (vac5 == pro) {  // If preset value is reached
+//            motoroff();      // Turn off the motor
+//            handler->speaker_on(pro, 0, 0, 1);
+//        }
+//    }
 
     // Process IA2 (vac6)
-    else if (sensor > 0 && sensor < 4096) {
-        int pro1 = sensor * 500 / 4096;
-        int pro2 = std::min(vac6, pro1);
-        ui->label_109->setNum(pro2);
-
+     if (sensor > 0 && sensor < 4096) {
+        int pro1 = sensor * vac6 / 4096;
+        ui->label_109->setNum(pro1);
         if (vac6 == pro1) {
             motoroff();
-            handler->speaker_on(pro2, 0, 0, 1);
+            handler->speaker_on(pro1, 0, 0, 1);
         }
     }
 
     // Process VIT (vac7)
     else if (sensor > 0 && sensor < 4096) {
-        int pro3 = sensor * 500 / 4096;
-        int pro4 = std::min(vac7, pro3);
-        ui->label_118->setNum(pro4);
+        int pro3 = sensor * vac7 / 4096;
+        ui->label_118->setNum(pro3);
 
         if (vac7 == pro3) {
             motoroff();
@@ -3980,41 +4158,40 @@ void MainWindow::label43()
         }
     }
 
-    // Process US1 (vac1)
-    else if (sensor > 0 && sensor < 4096) {
-        int pro7 = sensor * 500 / 4096;
-        int pro8 = std::min(vac1, pro7);
-        ui->label_8->setNum(pro8);
+//    // Process US1 (vac1)
+//    else if (sensor > 0 && sensor < 4096) {
+//        int pro7 = sensor * vac1 / 4096;
+//        ui->label_8->setNum(pro7);
 
-        if (vac1 == pro7) {
-            motoroff();
+//        if (vac1 == pro7) {
+//            motoroff();
 
-            // Additional actions based on mode
-            if (mode == "Ocupulse") {
-                handler->freq_count(2500);
-                handler->fs_count(3000);
-                handler->pdm_mode(PULSE_MODE);
-                ocupulseup_mode();
-                ocupulsedown_mode();
-            }
-            else if (mode == "Ocuburst") {
-                handler->freq_count(2500);
-                handler->fs_count(3000);
-                handler->pdm_mode(PULSE_MODE);
-                ocuburstup_mode();
-                ocuburstdown_mode();
-            }
-            else if (mode == "Multi burst") {
-                handler->freq_count(2500);
-                handler->fs_count(3000);
-                handler->pdm_mode(PULSE_MODE);
-                multiburstup_mode();
-                multiburstdown_mode();
-            }
+//            // Additional actions based on mode
+//            if (mode == "Ocupulse") {
+//                handler->freq_count(2500);
+//                handler->fs_count(3000);
+//                handler->pdm_mode(PULSE_MODE);
+//                ocupulseup_mode();
+//                ocupulsedown_mode();
+//            }
+//            else if (mode == "Ocuburst") {
+//                handler->freq_count(2500);
+//                handler->fs_count(3000);
+//                handler->pdm_mode(PULSE_MODE);
+//                ocuburstup_mode();
+//                ocuburstdown_mode();
+//            }
+//            else if (mode == "Multi burst") {
+//                handler->freq_count(2500);
+//                handler->fs_count(3000);
+//                handler->pdm_mode(PULSE_MODE);
+//                multiburstup_mode();
+//                multiburstdown_mode();
+//            }
 
-            handler->speaker_on(pro8, 0, 0, 1);
-        }
-    }
+//            handler->speaker_on(pro7, 0, 0, 1);
+//        }
+//    }
 }
 
 
@@ -4033,20 +4210,17 @@ void MainWindow::sensor2()
            QString mode1=ui->CutMode_vitCom_2->currentText();
            QString mode2=ui->CutMode_vitCom_3->currentText();
            QString mode3=ui->CutMode_vitCom_4->currentText();
+//    if (sensor > 0 && sensor < 4096) {
+//      //  int pro = sensor * vac5 / 4096+50;
+//        double pro=sensor*vac5/4090;
+//       ui->label_113->setText(QString::number(static_cast<int>(pro)));
+//        if(vac5==pro){
+//        motoroff();
+//          handler->speaker_on(pro,0,0,1);
+//    }
+//    }
     if (sensor > 0 && sensor < 4096) {
-      //  int pro = sensor * vac5 / 4096+50;
-        float pro=sensor*500/4096;
-       ui->label_113->setText(QString::number(static_cast<int>(pro)));
-
-        if(vac5==pro){
-        motoroff();
-          handler->speaker_on(pro,0,0,1);
-    }
-    }
-    if (sensor > 0 && sensor < 4096) {
-        int pro1 = sensor * 500 / 4096;
-        pro1=std::min(vac6,pro1);
-
+        int pro1 = sensor * vac6 / 4096;
         ui->label_109->setText(QString::number(pro1));
         if(vac6 == pro1){
             motoroff();
@@ -4054,8 +4228,7 @@ void MainWindow::sensor2()
         }
     }
     if (sensor > 0 && sensor < 4096) {
-        int pro3 = sensor * 500 / 4096;
-        pro3=std::min(vac7,pro3);
+        int pro3 = sensor * vac7 / 4096;
         ui->label_118->setText(QString::number(pro3));
         if(vac7 == pro3){
            motoroff();
@@ -4145,39 +4318,38 @@ void MainWindow::sensor2()
         }
     }
     //us1
-    if (sensor > 0 && sensor < 4096) {
-        int pro7 = sensor * 500 / 4096;
-        pro7=std::min(vac1,pro7);
-        ui->label_8->setText(QString::number(pro7));
-        if(vac1 == pro7){
-            motoroff();
-            if(mode3 == "Ocupulse"){
-                handler->freq_count(2500);
-                handler->fs_count(3000);
-            handler->pdm_mode(PULSE_MODE);
-              ocupulseup_mode();
-              ocupulsedown_mode();
-            }
-            else if(mode3=="Ocuburst"){
-                handler->freq_count(2500);
-                handler->fs_count(3000);
-                handler->pdm_mode(PULSE_MODE);
-                ocuburstup_mode();
-                ocuburstdown_mode();
-            }
-            else if(mode3 == "Multi burst"){
-                handler->freq_count(2500);
-                handler->fs_count(3000);
-                 handler->pdm_mode(PULSE_MODE);
-                multiburstup_mode();
-                multiburstdown_mode();
+//    if (sensor > 0 && sensor < 4096) {
+//        int pro7 = sensor *vac1 / 4096;
+//        ui->label_8->setText(QString::number(pro7));
+//        if(vac1 == pro7){
+//            motoroff();
+//            if(mode3 == "Ocupulse"){
+//                handler->freq_count(2500);
+//                handler->fs_count(3000);
+//            handler->pdm_mode(PULSE_MODE);
+//              ocupulseup_mode();
+//              ocupulsedown_mode();
+//            }
+//            else if(mode3=="Ocuburst"){
+//                handler->freq_count(2500);
+//                handler->fs_count(3000);
+//                handler->pdm_mode(PULSE_MODE);
+//                ocuburstup_mode();
+//                ocuburstdown_mode();
+//            }
+//            else if(mode3 == "Multi burst"){
+//                handler->freq_count(2500);
+//                handler->fs_count(3000);
+//                 handler->pdm_mode(PULSE_MODE);
+//                multiburstup_mode();
+//                multiburstdown_mode();
 
-            }
-             handler->speaker_on(pro7,0,0,1);
+//            }
+//             handler->speaker_on(pro7,0,0,1);
 
 
-    }
-    }
+//    }
+//    }
 
     }
 

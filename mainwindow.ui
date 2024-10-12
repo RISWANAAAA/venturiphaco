@@ -54,7 +54,7 @@ background-color: rgb(18, 78, 102);
 background-color:rgb(64, 142, 198);</string>
     </property>
     <property name="currentIndex">
-     <number>4</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab_33">
      <property name="styleSheet">
@@ -609,9 +609,9 @@ font:bold;</string>
      <widget class="QLabel" name="label_8">
       <property name="geometry">
        <rect>
-        <x>420</x>
+        <x>410</x>
         <y>120</y>
-        <width>91</width>
+        <width>101</width>
         <height>91</height>
        </rect>
       </property>
@@ -731,12 +731,12 @@ background-color:transparent;</string>
      <zorder>us1vacdow_but</zorder>
      <zorder>us1powup_but</zorder>
      <zorder>label_23</zorder>
-     <zorder>label_8</zorder>
      <zorder>us1flowdown_but</zorder>
      <zorder>lineEdit_56</zorder>
      <zorder>us1flowup_but</zorder>
      <zorder>textEdit_41</zorder>
      <zorder>CutMode_vitCom</zorder>
+     <zorder>label_8</zorder>
     </widget>
     <widget class="QWidget" name="tab_34">
      <property name="styleSheet">

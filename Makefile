@@ -776,6 +776,7 @@ qrc_img.cpp: img.qrc \
 		irr.png \
 		rightarr.png \
 		button.png \
+		int.png \
 		locked.png \
 		surgeonbutton.png \
 		down1.png \

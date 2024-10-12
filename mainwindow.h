@@ -464,6 +464,14 @@ bool isTuneEnabled;
 bool us1linear=false;
 bool ia1vaclinear=false;
 bool ia2vaclinear=false;
+bool ventonus1=false;
+bool ventonus2=false;
+bool ventonus3=false;
+bool ventonus4=false;
+bool ventonia1=false;
+bool ventonia2=false;
+bool ventonvit=false;
+bool ventondia=false;
 
 
 QString us1;

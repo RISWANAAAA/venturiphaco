@@ -15,9 +15,7 @@ keypad::keypad(QWidget *parent) :
     connect(ui->pushButton_4, &QPushButton::clicked, this, &keypad::entertext);
     connect(ui->pushButton_5, &QPushButton::clicked, this, &keypad::entertext);
     connect(ui->pushButton_6, &QPushButton::clicked, this, &keypad::entertext);
-    connect(ui->pushButton_7, &QPushButton::clicked, this, &keypad::entertext);
     connect(ui->pushButton_8, &QPushButton::clicked, this, &keypad::entertext);
-    connect(ui->pushButton_9, &QPushButton::clicked, this, &keypad::entertext);
     connect(ui->pushButton_10, &QPushButton::clicked, this, &keypad::entertext);
     connect(ui->pushButton_11, &QPushButton::clicked, this, &keypad::enterenter);
      connect(ui->pushButton_12, &QPushButton::clicked, this, &keypad::entertext);
