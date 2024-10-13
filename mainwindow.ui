@@ -5086,7 +5086,7 @@ border:none;</string>
    <widget class="QPushButton" name="SETTINGS_BUT_4">
     <property name="geometry">
      <rect>
-      <x>520</x>
+      <x>110</x>
       <y>10</y>
       <width>51</width>
       <height>51</height>
@@ -5094,8 +5094,7 @@ border:none;</string>
     </property>
     <property name="styleSheet">
      <string notr="true">image: url(:/images/doctor.png);
-background-color:transparent;
-
+background-color: rgb(3, 58, 11);
 border-radius:30px;</string>
     </property>
     <property name="text">
@@ -5285,7 +5284,7 @@ background-color: rgb(18, 78, 102);
      <rect>
       <x>160</x>
       <y>10</y>
-      <width>461</width>
+      <width>341</width>
       <height>51</height>
      </rect>
     </property>

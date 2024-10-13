@@ -50,7 +50,7 @@ border:none;</string>
    <property name="styleSheet">
     <string notr="true">
 font:25pt &quot;Ubuntu&quot;;
-background-color: rgb(255,255,255);
+background-color:#FFB521;
 border-radius:20px;border:2px solid black;</string>
    </property>
    <property name="alignment">
@@ -69,7 +69,7 @@ border-radius:20px;border:2px solid black;</string>
    <property name="styleSheet">
     <string notr="true">
 font:25pt &quot;Ubuntu&quot;;
-background-color: rgb(255,255,255);
+background-color: #FF8103;
 border-radius:20px;border:2px solid black;</string>
    </property>
    <property name="alignment">
@@ -88,7 +88,7 @@ border-radius:20px;border:2px solid black;</string>
    <property name="styleSheet">
     <string notr="true">
 font:25pt &quot;Ubuntu&quot;;
-background-color: rgb(255,255,255);
+background-color: #a3842c;
 border-radius:20px;border:2px solid black;</string>
    </property>
    <property name="alignment">
@@ -107,7 +107,7 @@ border-radius:20px;border:2px solid black;</string>
    <property name="styleSheet">
     <string notr="true">
 font:25pt &quot;Ubuntu&quot;;
-background-color: rgb(255,255,255);
+background-color: #ffb8b1;
 border-radius:20px;border:2px solid black;</string>
    </property>
    <property name="alignment">
@@ -279,15 +279,15 @@ border:none;</string>
   <widget class="QPushButton" name="But_save">
    <property name="geometry">
     <rect>
-     <x>200</x>
-     <y>530</y>
-     <width>571</width>
-     <height>181</height>
+     <x>1020</x>
+     <y>570</y>
+     <width>211</width>
+     <height>151</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">border:none;
-image: url(:/images/savebutton.png);
+image: url(:/images/savebuttonimg.png);
 background-color:transparent;</string>
    </property>
    <property name="text">
@@ -576,6 +576,108 @@ background-color: rgb(0, 0, 0);</string>
     <string/>
    </property>
   </widget>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>950</x>
+     <y>40</y>
+     <width>241</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font:30px;background-color:transparent;
+color:white;
+border-radius:10px;</string>
+   </property>
+   <property name="text">
+    <string>0 Position</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_5">
+   <property name="geometry">
+    <rect>
+     <x>950</x>
+     <y>170</y>
+     <width>241</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font:30px;background-color:transparent;
+color:white;
+border-radius:10px;</string>
+   </property>
+   <property name="text">
+    <string>1 Position</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_6">
+   <property name="geometry">
+    <rect>
+     <x>950</x>
+     <y>310</y>
+     <width>241</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font:30px;background-color:transparent;
+color:white;
+border-radius:10px;</string>
+   </property>
+   <property name="text">
+    <string>2 Position</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_7">
+   <property name="geometry">
+    <rect>
+     <x>950</x>
+     <y>440</y>
+     <width>241</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font:30px;background-color:transparent;
+color:white;
+border-radius:10px;</string>
+   </property>
+   <property name="text">
+    <string>3 Position</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>10</y>
+     <width>141</width>
+     <height>101</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">image: url(:/images/backbuttonarrow.png);
+border:none;
+background-color:transparent;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
   <zorder>label_2</zorder>
   <zorder>label</zorder>
   <zorder>lineEdit</zorder>
@@ -601,6 +703,11 @@ background-color: rgb(0, 0, 0);</string>
   <zorder>Bottom_leftcom</zorder>
   <zorder>Bottom_rightcom</zorder>
   <zorder>label_3</zorder>
+  <zorder>label_4</zorder>
+  <zorder>label_5</zorder>
+  <zorder>label_6</zorder>
+  <zorder>label_7</zorder>
+  <zorder>pushButton</zorder>
  </widget>
  <resources/>
  <connections/>

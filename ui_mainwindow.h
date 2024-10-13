@@ -2743,10 +2743,9 @@ public:
         coldphaco1up_but->raise();
         SETTINGS_BUT_4 = new QPushButton(centralwidget);
         SETTINGS_BUT_4->setObjectName(QString::fromUtf8("SETTINGS_BUT_4"));
-        SETTINGS_BUT_4->setGeometry(QRect(520, 10, 51, 51));
+        SETTINGS_BUT_4->setGeometry(QRect(110, 10, 51, 51));
         SETTINGS_BUT_4->setStyleSheet(QString::fromUtf8("image: url(:/images/doctor.png);\n"
-"background-color:transparent;\n"
-"\n"
+"background-color: rgb(3, 58, 11);\n"
 "border-radius:30px;"));
         CI5_5 = new QPushButton(centralwidget);
         CI5_5->setObjectName(QString::fromUtf8("CI5_5"));
@@ -2822,7 +2821,7 @@ public:
         comboBox_4->addItem(QString());
         comboBox_4->addItem(QString());
         comboBox_4->setObjectName(QString::fromUtf8("comboBox_4"));
-        comboBox_4->setGeometry(QRect(160, 10, 461, 51));
+        comboBox_4->setGeometry(QRect(160, 10, 341, 51));
         comboBox_4->setStyleSheet(QString::fromUtf8("\n"
 "background-color: rgb(25, 52, 27);\n"
 "color: rgb(255, 255, 255);\n"
