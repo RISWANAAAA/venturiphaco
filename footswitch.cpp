@@ -303,16 +303,7 @@ void footswitch::on_But_footswitch_clicked()
     ui->But_bottomright->move(350,300);//5//ok
     setValues();
     }
-//    else{
-//        ui->label->move(250,40);
-//        ui->label->resize(431,641);
-//        ui->label_2->hide();
-//        ui->But_footswitch->move(420,180);//ok
-//        ui->But_topleft->move(328,164);//1
-//        ui->But_topright->move(540,170);//4//ok
-//        ui->But_bottomleft->move(340,300);//2
-//        ui->But_bottomright->move(540,300);//5//ok
-//    }
+
 
 }
 

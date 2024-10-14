@@ -165,27 +165,27 @@ public:
         But_topleft->setObjectName(QString::fromUtf8("But_topleft"));
         But_topleft->setGeometry(QRect(328, 164, 81, 101));
         But_topleft->setStyleSheet(QString::fromUtf8("border:none;\n"
-"background-color:transparent;"));
+"background-color: transparent;"));
         But_topright = new QPushButton(footswitch);
         But_topright->setObjectName(QString::fromUtf8("But_topright"));
         But_topright->setGeometry(QRect(540, 170, 61, 101));
         But_topright->setStyleSheet(QString::fromUtf8("border:none;\n"
-"background-color:transparent;"));
+"background-color: transparent;"));
         But_bottomleft = new QPushButton(footswitch);
         But_bottomleft->setObjectName(QString::fromUtf8("But_bottomleft"));
         But_bottomleft->setGeometry(QRect(340, 300, 61, 91));
         But_bottomleft->setStyleSheet(QString::fromUtf8("border:none;\n"
-"background-color:transparent;"));
+"background-color: transparent;"));
         But_bottomright = new QPushButton(footswitch);
         But_bottomright->setObjectName(QString::fromUtf8("But_bottomright"));
         But_bottomright->setGeometry(QRect(540, 300, 61, 91));
         But_bottomright->setStyleSheet(QString::fromUtf8("border:none;\n"
-"background-color:transparent;"));
+"background-color: transparent;"));
         But_footswitch = new QPushButton(footswitch);
         But_footswitch->setObjectName(QString::fromUtf8("But_footswitch"));
         But_footswitch->setGeometry(QRect(420, 180, 111, 231));
         But_footswitch->setStyleSheet(QString::fromUtf8("border:none;\n"
-"background-color:transparent;"));
+"background-color: transparent;"));
         LeftFoot_com = new QComboBox(footswitch);
         LeftFoot_com->addItem(QString());
         LeftFoot_com->addItem(QString());
@@ -329,7 +329,7 @@ public:
         But_topright->setText(QString());
         But_bottomleft->setText(QString());
         But_bottomright->setText(QString());
-        But_footswitch->setText(QCoreApplication::translate("footswitch", "3", nullptr));
+        But_footswitch->setText(QString());
         LeftFoot_com->setItemText(0, QCoreApplication::translate("footswitch", "Increment", nullptr));
         LeftFoot_com->setItemText(1, QCoreApplication::translate("footswitch", "Decrement", nullptr));
         LeftFoot_com->setItemText(2, QCoreApplication::translate("footswitch", "Reflux", nullptr));

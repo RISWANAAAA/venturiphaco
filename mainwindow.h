@@ -53,7 +53,7 @@ public:
 void push(const QString &surgeonName);
 void changesvaluesql();
 void changebuttonstyle();
-
+void speedofthelabe(QLabel *label);
     bool eventFilter(QObject* object, QEvent* event);
     void setRange(QLineEdit* lineEdit, int prevValue, int value, int maxValue);
     void exportGPIO(int pin);

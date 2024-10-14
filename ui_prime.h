@@ -296,6 +296,13 @@ public:
         label_3->setStyleSheet(QString::fromUtf8("image: url(:/images/clean.png);\n"
 "background-color:transparent;\n"
 "border:none;"));
+        clean_but->raise();
+        Tune_but->raise();
+        prime1_but->raise();
+        tabWidget->raise();
+        label_2->raise();
+        label_3->raise();
+        label->raise();
 
         retranslateUi(prime);
 

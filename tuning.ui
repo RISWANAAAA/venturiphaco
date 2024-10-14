@@ -83,10 +83,10 @@ border:none;</string>
     <string>PushButton</string>
    </property>
   </widget>
-  <zorder>But_Handpiece</zorder>
   <zorder>But_Tune</zorder>
   <zorder>But_Next</zorder>
   <zorder>But_value</zorder>
+  <zorder>But_Handpiece</zorder>
  </widget>
  <resources/>
  <connections/>

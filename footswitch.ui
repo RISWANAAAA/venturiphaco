@@ -305,7 +305,7 @@ background-color:transparent;</string>
    </property>
    <property name="styleSheet">
     <string notr="true">border:none;
-background-color:transparent;</string>
+background-color: transparent;</string>
    </property>
    <property name="text">
     <string/>
@@ -322,7 +322,7 @@ background-color:transparent;</string>
    </property>
    <property name="styleSheet">
     <string notr="true">border:none;
-background-color:transparent;</string>
+background-color: transparent;</string>
    </property>
    <property name="text">
     <string/>
@@ -339,7 +339,7 @@ background-color:transparent;</string>
    </property>
    <property name="styleSheet">
     <string notr="true">border:none;
-background-color:transparent;</string>
+background-color: transparent;</string>
    </property>
    <property name="text">
     <string/>
@@ -356,7 +356,7 @@ background-color:transparent;</string>
    </property>
    <property name="styleSheet">
     <string notr="true">border:none;
-background-color:transparent;</string>
+background-color: transparent;</string>
    </property>
    <property name="text">
     <string/>
@@ -373,10 +373,10 @@ background-color:transparent;</string>
    </property>
    <property name="styleSheet">
     <string notr="true">border:none;
-background-color:transparent;</string>
+background-color: transparent;</string>
    </property>
    <property name="text">
-    <string>3</string>
+    <string/>
    </property>
   </widget>
   <widget class="QComboBox" name="LeftFoot_com">

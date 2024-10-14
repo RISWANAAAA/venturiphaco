@@ -119,20 +119,20 @@ public:
         label->setStyleSheet(QString::fromUtf8("image: url(:/images/int.png);\n"
 "background-color:transparent;"));
         label->raise();
+        pushButton_11->raise();
+        pushButton_8->raise();
+        pushButton_10->raise();
         pushButton_12->raise();
-        pushButton_13->raise();
-        pushButton_15->raise();
         pushButton_3->raise();
         pushButton_5->raise();
-        pushButton_4->raise();
-        pushButton_16->raise();
-        pushButton_8->raise();
-        pushButton_11->raise();
-        pushButton_2->raise();
-        pushButton->raise();
-        pushButton_10->raise();
-        pushButton_6->raise();
         pushButton_14->raise();
+        pushButton_15->raise();
+        pushButton_2->raise();
+        pushButton_13->raise();
+        pushButton_4->raise();
+        pushButton->raise();
+        pushButton_16->raise();
+        pushButton_6->raise();
 
         retranslateUi(keypad);
 

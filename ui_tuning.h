@@ -53,10 +53,10 @@ public:
         But_value = new QPushButton(tuning);
         But_value->setObjectName(QString::fromUtf8("But_value"));
         But_value->setGeometry(QRect(370, 270, 131, 141));
-        But_Handpiece->raise();
         But_Tune->raise();
         But_Next->raise();
         But_value->raise();
+        But_Handpiece->raise();
 
         retranslateUi(tuning);
 

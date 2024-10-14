@@ -1903,6 +1903,17 @@ void MainWindow::tabupdate(int index)
 {
     ui->tabWidget_2->setCurrentIndex(index);
 }
+
+void MainWindow::speedofthelabe(QLabel *label)
+{
+    // Toggle label visibility and add a delay without freezing UI
+    label->setVisible(!label->isVisible()); // Toggle label visibility
+
+    QThread::msleep(10); // Sleep for 1000 ms (1 second)
+
+    // Process pending events in the event loop
+    QCoreApplication::processEvents();
+}
 // LINEAR
 //footpedallllllllllllllllllllllllllll
 void MainWindow::footpedalcheck()
@@ -2084,6 +2095,7 @@ flag1 = true; // Reset flag
 
                 if(vac>=vacline){
                     motoroff();
+                    speedofthelabe(ui->label_8);
                     break;
                 }else{
                     motoron(ui->lineEdit_56);
@@ -2113,6 +2125,7 @@ flag1 = true; // Reset flag
                                   ui->label_8->setText(QString::number(static_cast<int>(vac)));
                                   if(vac>=vacline){
                                       motoroff();
+                                      speedofthelabe(ui->label_8);
                                       break;
                                   }else{
                                       motoron(ui->lineEdit_56);
@@ -2130,11 +2143,14 @@ flag1 = true; // Reset flag
  message = "Effective time for US1: " + QString::number(elapsedTimeUS1 / 1000.0, 'f', 2) + " s";
                 }
                 if (power.powerOn) {
-                   int progress=ui->lineEdit_57->text().toInt();
-                   ui->label_7->setText(QString::number(progress));
-                   handler->phaco_power(progress);
-
+                    float progress4 = ((range - static_cast<float>(nfpone + nfptwo + nfpzero)) /
+                                       (4096.0 - static_cast<float>(nfpone + nfptwo + nfpzero))) * pow1;
+                    ui->label_7->setText(QString::number(static_cast<int>(progress4)));
+                    if(progress4==pow1){
+                        speedofthelabe(ui->label_8);
+                    }
                 }
+
 
             }
         }
@@ -2232,11 +2248,12 @@ ventonus1=false;
 
                 // Motor control logic
                 if (profile123 < presetvac) {
-                    ui->label_8->setText(QString::number(static_cast<int>(profile123))); // Update UI with current vacuum
+                    ui->label_8->setText(QString::number(static_cast<int>(profile123)));
                     qDebug() << "The vacuum is read from the vacuum" << profile123 << "the preset is updated" << presetvac;
                     motoron(ui->lineEdit_56);  // Turn the motor on
                 }
                 else if (profile123 >= presetvac) {
+                    speedofthelabe(ui->label_8);
                     motoroff();  // Turn the motor off
                     qDebug() << "Motor turned off as vacuum reached the preset value.";
                 }
@@ -2268,7 +2285,7 @@ ventonus1=false;
                 ui->CI5_5->setStyleSheet(styleSheet3);
 
                 // Calculate division value
-                int divi = nfpthree;
+                int divi = (nfpthree+nfptwo+nfpone+nfpzero)-(nfpone+nfpzero+nfptwo);
                 qDebug() << "Dividing by:" << divi;
 
                 // Calibrate based on range difference
@@ -2299,6 +2316,8 @@ ventonus1=false;
                     // Vacuum reached or exceeded the target, stop motor
                     qDebug() << "Vacuum has reached or exceeded the preset level. Motor stopping.";
                     motoroff();  // Turn motor off
+                    speedofthelabe(ui->label_8);
+
                 }
             }
 
@@ -2325,20 +2344,16 @@ ventonus1=false;
                      int rounded_value = static_cast<int>(std::round(actual));
                    ui->label_7->setText(QString::number(rounded_value));
                    handler->phaco_power(rounded_value);
-
+                   if(rounded_value==pow1){
+                       speedofthelabe(ui->label_7);
+                   }
 
                    qDebug()<<final<<value<<actual<<pow1<<"these are calibration";
 
-
                     }
-
-
-
 
         break;
     }
-
-
         // us2
     case 2: {
         int pow2 = ui->lineEdit_58->text().toInt(); // Get the power value from the line edit
