@@ -24,6 +24,7 @@ tuning::tuning(QWidget *parent) :
     timer1=new QTimer;
     connect(timer1, &QTimer::timeout, this, &tuning::updateCircle);
     connect(ui->But_Tune,&QPushButton::clicked,this,&tuning::on_pushButton_clicked);
+    connect(this,&tuning::activatemain,main,&MainWindow::disablefunction);
 }
 
 tuning::~tuning()
@@ -268,6 +269,7 @@ void tuning::updateProgress()
 
     ui->But_value->show(); // Show the label
     update();
+
     ui->But_Tune->move(170, 280); // Move button back to starting position
     ui->But_Tune->resize(541, 141); // Resize button back to original size
     ui->But_Handpiece->move(150,340);
@@ -287,20 +289,24 @@ int tuning::Tune_Phaco()
         ui->But_Tune->resize(271, 171);
         timer1->start(10);
 
+         qDebug()<<"hand freq sended";
         // Loop until m_value reaches 100
         for (m_value; m_value <= 100; m_value++) {
             ui->But_value->setText(QString::number(m_value)); // Update label with current value
             int db_feed=vacSensor->convert(0XA7);
 
-               hand->freq_count(2500);
-                hand->phaco_on();
-                hand->phaco_power(80);
+            hand->freq_count(2500);
+             hand->phaco_on();
+             hand->fs_count(1900);
+             hand->phaco_power(100);
+             hand->pdm_mode(1);
             update(); // Update the UI
             QCoreApplication::processEvents(); // Process events
-            usleep(1000); // Sleep for a while to create the effect
+            usleep(100000); // Sleep for a while to create the effect
         }
 updateProgress();
 isRunning=false;
+emit activatemain();
 main->show();
 main->ULTRASONICBUT1();
 main->setTuneMode();
@@ -311,5 +317,7 @@ main->setTuneMode();
 
 void tuning::on_But_Next_clicked()
 {
+    emit activatemain();
     main->show();
+    main->DIATHERMYBUT();
 }

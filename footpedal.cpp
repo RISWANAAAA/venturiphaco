@@ -538,9 +538,7 @@ int footpedal::readGPIOValue(int gpioNumber)
 
 
 void footpedal::updateFootpedalComboBoxes(const QString &surgeonName) {
-    QSqlDatabase db = QSqlDatabase::database();  // Get the default connection
-    db.close();  // Close the connection
-    QSqlDatabase::removeDatabase(QSqlDatabase::defaultConnection);
+
     QSqlQuery query(db);
     query.prepare(
         "SELECT footleft, footright, footbottomleft, footbottomright "

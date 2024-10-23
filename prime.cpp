@@ -52,7 +52,7 @@ prime::prime(QWidget *parent) :
 
     statusUpdateTimer = new QTimer(this);
     //connect(statusUpdateTimer, &QTimer::timeout, this, &prime::onUpdateStatusTimeout);
-    statusUpdateTimer->start(500); // Update every second
+   // statusUpdateTimer->start(500); // Update every second
 
 
    connect(ui->prime1_but,&QPushButton::clicked,this,&prime::Prime);

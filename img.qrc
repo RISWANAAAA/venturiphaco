@@ -103,5 +103,6 @@
         <file>int.png</file>
         <file>savebuttonimg.png</file>
         <file>footswitch.png</file>
+        <file>defaultbutton.png</file>
     </qresource>
 </RCC>

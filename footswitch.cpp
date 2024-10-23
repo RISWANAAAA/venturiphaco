@@ -11,7 +11,6 @@ footswitch::footswitch(QWidget *parent) :
     ui->setupUi(this);
     db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName(PATH);
-    db.setConnectOptions("PRAGMA busy_timeout = 5000"); // Set busy timeout
 
     if (!db.open()) {
         qWarning() << "Error: Could not open the database." << db.lastError().text();
@@ -131,7 +130,6 @@ void footswitch::receivelineEditval(int &val1, int &val2, int &val3,int &val4)
     ui->lineEdit_2->setText(QString::number(val2));
     ui->lineEdit_3->setText(QString::number(val3));
     ui->lineEdit_4->setText(QString::number(val4));
-    //qDebug()<<val1<<val2<<val3<<val4<<"values are received from the doctor window";
 
 
 }
@@ -146,19 +144,15 @@ void footswitch::on_But_save_clicked()
     // Ensure 'tex' is properly initialized
     if (surgeonName.isEmpty()) {
         qWarning() << "Error: Surgeon name 'tex' is not initialized.";
-        return;  // Exit if 'tex' is empty
+        return;
     }
-
-    // Check if the database connection already exists
     if (!db.isOpen()) {
         db = QSqlDatabase::addDatabase("QSQLITE", "myConnection"); // Unique connection name
         db.setDatabaseName(PATH);
 
         if (!db.open()) {
             qWarning() << "Error: Could not open the database." << db.lastError().text();
-            return;  // Exit if the database cannot be opened
-        } else {
-            //qDebug() << "Database opened successfully.";
+            return;
         }
     }
 
@@ -167,23 +161,16 @@ void footswitch::on_But_save_clicked()
         qWarning() << "Error preparing query:" << query.lastError();
         return;
     }
-
-
-    // Bind values to the query
     query.bindValue(":surgeonName", surgeonName);
     query.bindValue(":value1", value1);
     query.bindValue(":value2", value2);
     query.bindValue(":value3", value3);
     query.bindValue(":value4", value4);
-
-
-    // Execute the query directly without transactions
     if (!query.exec()) {
         qWarning() << "Error: Could not update data in the database:" << query.lastError();
     } else {
-        //qDebug() << "Data updated successfully for surgeon:" << surgeonName;
         sendvaltomain(value1,value2,value3,value4);
-        //qDebug()<<value1<<value2<<value3<<value4<<"sended to doctor window";
+
     }
     db.close();
     QSqlDatabase::removeDatabase(PATH);
@@ -209,7 +196,7 @@ void footswitch::on_But_zerodown_clicked()
 {
     int value=ui->lineEdit->text().toInt();
     value-=1;
-    if(value<5){
+    if(value<1){
         value=5;
         value--;
     }
@@ -291,16 +278,22 @@ void footswitch::on_But_footswitch_clicked()
 {
   showingpaint=!showingpaint;
     if(showingpaint){
-    ui->label->move(40,40);
-    ui->label->resize(431,641);
+    ui->label->setStyleSheet("border:none;background-color:transparent;image: url(:/images/footswitch.png);");
+    ui->label->move(-30,10);
+    ui->label->resize(531,731);
     ui->label_2->show();
     ui->label_2->move(400,350);
     ui->label_2->resize(71,61);
-    ui->But_footswitch->move(220,200);//ok
-    ui->But_topleft->move(140,170);//1
-    ui->But_topright->move(350,180);//4//ok
-    ui->But_bottomleft->move(150,290);//2
-    ui->But_bottomright->move(350,300);//5//ok
+    ui->But_footswitch->move(100,310);
+    ui->But_footswitch->resize(271,111);
+    ui->But_topleft->move(330,230);//ok
+    ui->But_topleft->resize(61,71);
+    ui->But_topright->move(330,440);
+    ui->But_topright->resize(61,71);
+    ui->But_bottomleft->move(200,230);//ok
+    ui->But_bottomleft->resize(61,71);
+    ui->But_bottomright->move(205,440);//ok
+    ui->But_bottomright->resize(61,71);
     setValues();
     }
 
@@ -344,4 +337,48 @@ void footswitch::on_But_bottomright_clicked()
          ui->LeftFoot_com->hidePopup();
           ui->Bottom_rightcom->showPopup();
           emit bottomright(ui->Bottom_rightcom->currentText());
+}
+
+void footswitch::on_But_save_2_clicked()
+{
+    // Check if the surgeon name is set
+    if (surgeonName.isEmpty()) {
+        qWarning() << "Error: Surgeon name 'tex' is not initialized.";
+        return;
+    }
+
+    // Open the database connection if it's not already open
+    if (!db.isOpen()) {
+        db = QSqlDatabase::addDatabase("QSQLITE", "myConnection"); // Unique connection name
+        db.setDatabaseName(PATH);
+
+        if (!db.open()) {
+            qWarning() << "Error: Could not open the database." << db.lastError().text();
+            return;
+        }
+    }
+
+    // Prepare the new values to be updated
+    int dfp0 = 0; // Replace with your actual new value
+    int dfp1 = 100; // Replace with your actual new value
+    int dfp2 = 1334; // Replace with your actual new value
+    int dfp3 = 2338; // Replace with your actual new value
+
+    // Prepare the UPDATE query to save the new values
+    QSqlQuery query(db);
+    query.prepare("UPDATE phacohigh SET dfp0 = :dfp0, dfp1 = :dfp1, dfp2 = :dfp2, dfp3 = :dfp3 WHERE surgeon = :surgeon");
+    query.bindValue(":dfp0", dfp0);  // Bind the new values
+    query.bindValue(":dfp1", dfp1);
+    query.bindValue(":dfp2", dfp2);
+    query.bindValue(":dfp3", dfp3);
+    query.bindValue(":surgeon", surgeonName);
+
+    // Execute the UPDATE query
+    if (!query.exec()) {
+        qWarning() << "Error: Could not execute UPDATE query." << query.lastError().text();
+        return;
+    }
+
+    // Emit the new values to MainWindow after the update
+    sendvaltomain(dfp0, dfp1, dfp2, dfp3);
 }

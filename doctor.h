@@ -114,7 +114,8 @@ signals:
                      const QString &vitvacmode
                  );
               void surgeonNamefoot(const QString &surgeon);
-             void transmitval(int fpzero,int fpone,int fptwo,int fpthree);
+             void transmitval(int &fpzero,int &fpone,int &fptwo,int &fpthree);
+             void activatemainwindow();
 
 
 

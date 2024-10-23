@@ -1248,8 +1248,12 @@ emit sendleftfootvalues(ui->LeftFoot->currentText());
 //    //qDebug()<<"footbottom left is"<<b_left;
     emit sendbrightfootvalues(ui->BottomRFoot->currentText());
 //    //qDebug()<<"footbottom right is"<<b_right;
+    //transmitval(fpzero,fpone,fptwo,fpthree);
+   emit activatemainwindow();
+     //qDebug()<<"values are transmitted"<<fpzero<<fpone<<fptwo<<fpthree;
     this->close();
     db.close();
+
     QSqlDatabase::removeDatabase(PATH);
 }
 
@@ -1364,13 +1368,11 @@ void doctor::setLastSelectedValue()
 
 void doctor::receivingvalueffs(int &val0, int &val1,int &val2,int &val3)
 {
-    //qDebug()<<"receivedddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd";
-  int fpzero=val0;
-  int fpone=val1;
+   int fpzero=val0;
+   int fpone=val1;
   int fptwo=val2;
   int fpthree=val3;
   transmitval(fpzero,fpone,fptwo,fpthree);
-  //qDebug()<<"values are transmitted";
 }
 
 
@@ -1555,6 +1557,7 @@ void doctor::onSurgeonSelectionChanged(const QString &surgeonName)
         emit bottomright(ui->BottomRFoot->currentText());
         emit pumpsignal(pump);
       cFoot->receivelineEditval(footpedalzero,footpedalone,footpedaltwo,footpedalthree);
+  emit activatemainwindow();
 
 
         if (query.isActive()) {

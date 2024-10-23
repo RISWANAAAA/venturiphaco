@@ -52,6 +52,8 @@ private slots:
 
     void on_But_bottomright_clicked();
 
+    void on_But_save_2_clicked();
+
 signals:
     void sendvaltomain(int &val0,int &val1,int &val2,int &val3);
     void topleft(const QString &left);

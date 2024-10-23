@@ -52,6 +52,7 @@ public:
     QLabel *label_6;
     QLabel *label_7;
     QPushButton *pushButton;
+    QPushButton *But_save_2;
 
     void setupUi(QDialog *footswitch)
     {
@@ -157,7 +158,7 @@ public:
 "border:none;"));
         But_save = new QPushButton(footswitch);
         But_save->setObjectName(QString::fromUtf8("But_save"));
-        But_save->setGeometry(QRect(1020, 570, 211, 151));
+        But_save->setGeometry(QRect(1070, 570, 211, 151));
         But_save->setStyleSheet(QString::fromUtf8("border:none;\n"
 "image: url(:/images/savebuttonimg.png);\n"
 "background-color:transparent;"));
@@ -272,8 +273,14 @@ public:
         pushButton = new QPushButton(footswitch);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
         pushButton->setGeometry(QRect(0, 10, 141, 101));
-        pushButton->setStyleSheet(QString::fromUtf8("image: url(:/images/backbuttonarrow.png);\n"
-"border:none;\n"
+        pushButton->setStyleSheet(QString::fromUtf8("border:none;\n"
+"image: url(:/images/settings.png);\n"
+"background-color:transparent;"));
+        But_save_2 = new QPushButton(footswitch);
+        But_save_2->setObjectName(QString::fromUtf8("But_save_2"));
+        But_save_2->setGeometry(QRect(890, 570, 211, 151));
+        But_save_2->setStyleSheet(QString::fromUtf8("border:none;\n"
+"image: url(:/images/defaultbutton.png);\n"
 "background-color:transparent;"));
         label_2->raise();
         label->raise();
@@ -305,6 +312,7 @@ public:
         label_6->raise();
         label_7->raise();
         pushButton->raise();
+        But_save_2->raise();
 
         retranslateUi(footswitch);
 
@@ -364,6 +372,7 @@ public:
         label_6->setText(QCoreApplication::translate("footswitch", "2 Position", nullptr));
         label_7->setText(QCoreApplication::translate("footswitch", "3 Position", nullptr));
         pushButton->setText(QString());
+        But_save_2->setText(QString());
     } // retranslateUi
 
 };

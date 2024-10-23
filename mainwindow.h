@@ -145,6 +145,10 @@ void setTuneMode();
 void enableButtons(bool powerOn);
    void setLastSelectedValue();
 public slots:
+   int readsensorvalue();
+   void footpedalvalues(int &value1,int &value2,int &value3,int &value4);
+   void disablefunction();
+
  void onComboBoxIndexChanged(int index);
  void onPdmModeSelected(int gpio);
  void onPdmModeSelected1(int gpio);
@@ -197,11 +201,8 @@ public slots:
 
  void on_pushButton_clicked();
  void ULTRASONICBUT1();
- void footpedalvalues(int value1,int value2,int value3,int value4);
-
 private slots:
 
- void label43();
  void sensor2();
  void ULTRASONICBUT2();
 
@@ -344,8 +345,7 @@ void coldphaco1down_mode();
 
 void updatehandpieceStatus();
 
-void updatesensor();
-
+void linearvaccum();
 void onUpdateStatusTimeout();
 
 void updateTimers();
@@ -382,6 +382,15 @@ void on_pushButton_42_clicked();
 
 
 
+
+void on_ocuburstdown_but_clicked();
+
+void on_ocuburstup_but_clicked();
+
+void on_ocupulsedown_but_clicked();
+
+void on_ocupulseup_but_clicked();
+
 signals:
      void sensorValueChanged(int value);
      void surgeonSelected(const QString &surgeonName);
@@ -391,7 +400,6 @@ signals:
      void bottom_right(const QString &value);
      void con_irrigation(bool on); // Signal to handle Continuous Irrigation state
      void sendsurgeon(const QString &value);
-
 private:
     Ui::MainWindow *ui;
     //instance
@@ -436,7 +444,8 @@ QTimer *footsensor;
 QTimer *timermsg;
 QTime currentTimer;
 QTimer *updateTimer;
-
+QTimer *Tacutalsensor;
+  QTimer *timerfoot;
 
 bool flag1=false;
 bool on;
@@ -449,11 +458,6 @@ bool ci_ia1;
 bool ci_ia2;
 bool cidia;
 bool overallci;
-bool us1powon=false;
-bool us2powon;
-bool us3powon;
-bool us4powon;
-bool vitpowon;
 bool con=1;
 bool us1PdmMode = false;
 bool us2PdmMode = false;
@@ -472,6 +476,20 @@ bool ventonia1=false;
 bool ventonia2=false;
 bool ventonvit=false;
 bool ventondia=false;
+bool overallpower=false;
+bool us1poweron;
+bool us2poweron;
+bool us3poweron;
+bool us4poweron;
+bool vitonoff=false;
+bool motoria1 = false;
+bool motoria2=false;
+bool motorus1=false;
+bool motorus2=false;
+bool motorus3=false;
+bool motorus4=false;
+bool motorvit = false;
+
 
 
 QString us1;

@@ -525,7 +525,7 @@ public:
         us1onoff = new QPushButton(tab_33);
         us1onoff->setObjectName(QString::fromUtf8("us1onoff"));
         us1onoff->setGeometry(QRect(1170, 140, 61, 61));
-        us1onoff->setStyleSheet(QString::fromUtf8("border:5px solid black;\n"
+        us1onoff->setStyleSheet(QString::fromUtf8("font:20pt;border:5px solid black;\n"
 "border-radius:30px;font-weight: bold;\n"
 "background-color: rgb(224, 27, 36);\n"
 "color: rgb(0, 0, 0);"));
@@ -578,7 +578,7 @@ public:
         CutMode_vitCom->addItem(QString());
         CutMode_vitCom->addItem(QString());
         CutMode_vitCom->setObjectName(QString::fromUtf8("CutMode_vitCom"));
-        CutMode_vitCom->setGeometry(QRect(1010, 330, 221, 61));
+        CutMode_vitCom->setGeometry(QRect(1010, 320, 221, 61));
         CutMode_vitCom->setStyleSheet(QString::fromUtf8("border-radius:20px;\n"
 "color: rgb(255, 255, 255);\n"
 "font:20pt \"Ubuntu\";\n"
@@ -2241,7 +2241,7 @@ public:
         vitonoff = new QPushButton(tab_39);
         vitonoff->setObjectName(QString::fromUtf8("vitonoff"));
         vitonoff->setGeometry(QRect(1180, 130, 61, 61));
-        vitonoff->setStyleSheet(QString::fromUtf8("border:5px solid black;\n"
+        vitonoff->setStyleSheet(QString::fromUtf8("font:20pt;border:5px solid black;\n"
 "border-radius:30px;font-weight: bold;\n"
 "background-color: rgb(224, 27, 36);\n"
 "color: rgb(0, 0, 0);"));
@@ -2267,6 +2267,7 @@ public:
 "\n"
 ""));
         tabWidget->addTab(tab_39, QString());
+        vitmode->raise();
         label_115->raise();
         label_122->raise();
         label_117->raise();
@@ -2283,7 +2284,6 @@ public:
         lineEdit_73->raise();
         label_118->raise();
         label_119->raise();
-        vitmode->raise();
         vitvacmode->raise();
         vitonoff->raise();
         vitpowup_but->raise();
@@ -2534,8 +2534,9 @@ public:
 ""));
         tabWidget_2 = new QTabWidget(centralwidget);
         tabWidget_2->setObjectName(QString::fromUtf8("tabWidget_2"));
-        tabWidget_2->setGeometry(QRect(920, 400, 331, 261));
-        tabWidget_2->setStyleSheet(QString::fromUtf8("\n"
+        tabWidget_2->setGeometry(QRect(930, 420, 311, 241));
+        tabWidget_2->setStyleSheet(QString::fromUtf8("border:none;\n"
+"border-radius:30px;\n"
 "background-color: rgb(83, 177, 242);\n"
 "\n"
 ""));
@@ -2603,6 +2604,9 @@ public:
 "border:2px solid black;"));
         lineEdit_77->setAlignment(Qt::AlignCenter);
         tabWidget_2->addTab(tab_44, QString());
+        lineEdit_77->raise();
+        ocuburstdown_but->raise();
+        ocuburstup_but->raise();
         tab_43 = new QWidget();
         tab_43->setObjectName(QString::fromUtf8("tab_43"));
         tab_43->setStyleSheet(QString::fromUtf8("\n"
@@ -2631,6 +2635,9 @@ public:
 "border:2px solid black;"));
         lineEdit_76->setAlignment(Qt::AlignCenter);
         tabWidget_2->addTab(tab_43, QString());
+        lineEdit_76->raise();
+        ocupulseup_but->raise();
+        ocupulsedown_but->raise();
         tab_45 = new QWidget();
         tab_45->setObjectName(QString::fromUtf8("tab_45"));
         tab_45->setStyleSheet(QString::fromUtf8("\n"
@@ -2659,6 +2666,9 @@ public:
 "border:2px solid black;"));
         lineEdit_78->setAlignment(Qt::AlignCenter);
         tabWidget_2->addTab(tab_45, QString());
+        lineEdit_78->raise();
+        singleburstup_but->raise();
+        singleburstdown_but->raise();
         tab_46 = new QWidget();
         tab_46->setObjectName(QString::fromUtf8("tab_46"));
         tab_46->setStyleSheet(QString::fromUtf8("\n"
@@ -2687,6 +2697,9 @@ public:
 "background-color:transparent;\n"
 "border:none;"));
         tabWidget_2->addTab(tab_46, QString());
+        lineEdit_79->raise();
+        multiburstdown_but->raise();
+        multiburstup_but->raise();
         tab_47 = new QWidget();
         tab_47->setObjectName(QString::fromUtf8("tab_47"));
         tab_47->setStyleSheet(QString::fromUtf8("\n"
@@ -2736,11 +2749,11 @@ public:
 "border:none;"));
         tabWidget_2->addTab(tab_47, QString());
         lineEdit_80->raise();
-        coldphacoup_but->raise();
+        lineEdit_81->raise();
         coldphacodown_but->raise();
         coldphaco1down_but->raise();
-        lineEdit_81->raise();
         coldphaco1up_but->raise();
+        coldphacoup_but->raise();
         SETTINGS_BUT_4 = new QPushButton(centralwidget);
         SETTINGS_BUT_4->setObjectName(QString::fromUtf8("SETTINGS_BUT_4"));
         SETTINGS_BUT_4->setGeometry(QRect(110, 10, 51, 51));
@@ -2853,7 +2866,7 @@ public:
 ""));
         label_32 = new QLabel(centralwidget);
         label_32->setObjectName(QString::fromUtf8("label_32"));
-        label_32->setGeometry(QRect(910, 420, 351, 261));
+        label_32->setGeometry(QRect(900, 390, 371, 311));
         label_32->setStyleSheet(QString::fromUtf8("border-radius:110px;\n"
 "\n"
 "\n"
@@ -2874,9 +2887,8 @@ public:
 ""));
         SETTINGS_BUT_3 = new QPushButton(centralwidget);
         SETTINGS_BUT_3->setObjectName(QString::fromUtf8("SETTINGS_BUT_3"));
-        SETTINGS_BUT_3->setGeometry(QRect(590, 330, 81, 101));
+        SETTINGS_BUT_3->setGeometry(QRect(580, 320, 111, 111));
         SETTINGS_BUT_3->setStyleSheet(QString::fromUtf8("QPushButton{\n"
-"image: url(:/images/footimg.png);\n"
 "background-color:transparent;\n"
 "border:none;\n"
 "\n"
@@ -2952,10 +2964,8 @@ public:
 "image: url(:/images/singletick.png);"));
         MainWindow->setCentralWidget(centralwidget);
         comboBox->raise();
-        SETTINGS_BUT_3->raise();
         label->raise();
         tabWidget->raise();
-        tabWidget_2->raise();
         CI5_5->raise();
         elapsed_time->raise();
         SETTINGS_BUT_2->raise();
@@ -2966,7 +2976,6 @@ public:
         label_29->raise();
         label_9->raise();
         label_10->raise();
-        label_32->raise();
         BACKBUT->raise();
         label_2->raise();
         IA1BUT->raise();
@@ -2977,7 +2986,6 @@ public:
         IA2BUT->raise();
         VITRECTOMYBUT->raise();
         DIABUT->raise();
-        pushButton_42->raise();
         label_4->raise();
         label_13->raise();
         label_3->raise();
@@ -2994,14 +3002,18 @@ public:
         label_17->raise();
         label_18->raise();
         label_27->raise();
+        label_32->raise();
+        tabWidget_2->raise();
+        SETTINGS_BUT_3->raise();
+        pushButton_42->raise();
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
         MainWindow->setStatusBar(statusbar);
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(0);
-        tabWidget_2->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(5);
+        tabWidget_2->setCurrentIndex(5);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -3299,11 +3311,11 @@ public:
         tabWidget_2->setTabText(tabWidget_2->indexOf(tab_42), QCoreApplication::translate("MainWindow", "Tab 1", nullptr));
         ocuburstup_but->setText(QString());
         ocuburstdown_but->setText(QString());
-        lineEdit_77->setText(QCoreApplication::translate("MainWindow", "400", nullptr));
+        lineEdit_77->setText(QCoreApplication::translate("MainWindow", "15", nullptr));
         tabWidget_2->setTabText(tabWidget_2->indexOf(tab_44), QCoreApplication::translate("MainWindow", "Page", nullptr));
         ocupulsedown_but->setText(QString());
         ocupulseup_but->setText(QString());
-        lineEdit_76->setText(QCoreApplication::translate("MainWindow", "15", nullptr));
+        lineEdit_76->setText(QCoreApplication::translate("MainWindow", "170", nullptr));
         tabWidget_2->setTabText(tabWidget_2->indexOf(tab_43), QCoreApplication::translate("MainWindow", "Page", nullptr));
         singleburstdown_but->setText(QString());
         singleburstup_but->setText(QString());

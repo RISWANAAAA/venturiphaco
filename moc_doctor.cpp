@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_doctor_t {
-    QByteArrayData data[93];
-    char stringdata0[1035];
+    QByteArrayData data[95];
+    char stringdata0[1059];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -90,41 +90,43 @@ QT_MOC_LITERAL(54, 500, 10), // "vitvacmode"
 QT_MOC_LITERAL(55, 511, 15), // "surgeonNamefoot"
 QT_MOC_LITERAL(56, 527, 7), // "surgeon"
 QT_MOC_LITERAL(57, 535, 11), // "transmitval"
-QT_MOC_LITERAL(58, 547, 6), // "fpzero"
-QT_MOC_LITERAL(59, 554, 5), // "fpone"
-QT_MOC_LITERAL(60, 560, 5), // "fptwo"
-QT_MOC_LITERAL(61, 566, 7), // "fpthree"
-QT_MOC_LITERAL(62, 574, 22), // "onComboBoxIndexChanged"
-QT_MOC_LITERAL(63, 597, 5), // "index"
-QT_MOC_LITERAL(64, 603, 10), // "on_clicked"
-QT_MOC_LITERAL(65, 614, 5), // "digit"
-QT_MOC_LITERAL(66, 620, 15), // "on_clickedenter"
-QT_MOC_LITERAL(67, 636, 10), // "clickedtab"
-QT_MOC_LITERAL(68, 647, 4), // "tab1"
-QT_MOC_LITERAL(69, 652, 5), // "click"
-QT_MOC_LITERAL(70, 658, 3), // "tab"
-QT_MOC_LITERAL(71, 662, 14), // "increasebutton"
-QT_MOC_LITERAL(72, 677, 5), // "input"
-QT_MOC_LITERAL(73, 683, 14), // "decreasebutton"
-QT_MOC_LITERAL(74, 698, 12), // "DiathermyBut"
-QT_MOC_LITERAL(75, 711, 8), // "PhacoBut"
-QT_MOC_LITERAL(76, 720, 23), // "IrrigationAspirationBut"
-QT_MOC_LITERAL(77, 744, 13), // "VitrectomyBut"
-QT_MOC_LITERAL(78, 758, 7), // "BackBut"
-QT_MOC_LITERAL(79, 766, 24), // "on_QuadBut_phaco_clicked"
-QT_MOC_LITERAL(80, 791, 24), // "on_ChopBut_phaco_clicked"
-QT_MOC_LITERAL(81, 816, 26), // "on_ScupltBut_phaco_clicked"
-QT_MOC_LITERAL(82, 843, 24), // "on_EpinBut_phaco_clicked"
-QT_MOC_LITERAL(83, 868, 21), // "on_pushButton_clicked"
-QT_MOC_LITERAL(84, 890, 9), // "pumpvalue"
-QT_MOC_LITERAL(85, 900, 21), // "on_SaveDiaBut_clicked"
-QT_MOC_LITERAL(86, 922, 15), // "handleDataSaved"
-QT_MOC_LITERAL(87, 938, 23), // "on_pushButton_2_clicked"
-QT_MOC_LITERAL(88, 962, 14), // "receivetopleft"
-QT_MOC_LITERAL(89, 977, 4), // "text"
-QT_MOC_LITERAL(90, 982, 17), // "receivebottomleft"
-QT_MOC_LITERAL(91, 1000, 15), // "receivetopright"
-QT_MOC_LITERAL(92, 1016, 18) // "receivebottomright"
+QT_MOC_LITERAL(58, 547, 4), // "int&"
+QT_MOC_LITERAL(59, 552, 6), // "fpzero"
+QT_MOC_LITERAL(60, 559, 5), // "fpone"
+QT_MOC_LITERAL(61, 565, 5), // "fptwo"
+QT_MOC_LITERAL(62, 571, 7), // "fpthree"
+QT_MOC_LITERAL(63, 579, 18), // "activatemainwindow"
+QT_MOC_LITERAL(64, 598, 22), // "onComboBoxIndexChanged"
+QT_MOC_LITERAL(65, 621, 5), // "index"
+QT_MOC_LITERAL(66, 627, 10), // "on_clicked"
+QT_MOC_LITERAL(67, 638, 5), // "digit"
+QT_MOC_LITERAL(68, 644, 15), // "on_clickedenter"
+QT_MOC_LITERAL(69, 660, 10), // "clickedtab"
+QT_MOC_LITERAL(70, 671, 4), // "tab1"
+QT_MOC_LITERAL(71, 676, 5), // "click"
+QT_MOC_LITERAL(72, 682, 3), // "tab"
+QT_MOC_LITERAL(73, 686, 14), // "increasebutton"
+QT_MOC_LITERAL(74, 701, 5), // "input"
+QT_MOC_LITERAL(75, 707, 14), // "decreasebutton"
+QT_MOC_LITERAL(76, 722, 12), // "DiathermyBut"
+QT_MOC_LITERAL(77, 735, 8), // "PhacoBut"
+QT_MOC_LITERAL(78, 744, 23), // "IrrigationAspirationBut"
+QT_MOC_LITERAL(79, 768, 13), // "VitrectomyBut"
+QT_MOC_LITERAL(80, 782, 7), // "BackBut"
+QT_MOC_LITERAL(81, 790, 24), // "on_QuadBut_phaco_clicked"
+QT_MOC_LITERAL(82, 815, 24), // "on_ChopBut_phaco_clicked"
+QT_MOC_LITERAL(83, 840, 26), // "on_ScupltBut_phaco_clicked"
+QT_MOC_LITERAL(84, 867, 24), // "on_EpinBut_phaco_clicked"
+QT_MOC_LITERAL(85, 892, 21), // "on_pushButton_clicked"
+QT_MOC_LITERAL(86, 914, 9), // "pumpvalue"
+QT_MOC_LITERAL(87, 924, 21), // "on_SaveDiaBut_clicked"
+QT_MOC_LITERAL(88, 946, 15), // "handleDataSaved"
+QT_MOC_LITERAL(89, 962, 23), // "on_pushButton_2_clicked"
+QT_MOC_LITERAL(90, 986, 14), // "receivetopleft"
+QT_MOC_LITERAL(91, 1001, 4), // "text"
+QT_MOC_LITERAL(92, 1006, 17), // "receivebottomleft"
+QT_MOC_LITERAL(93, 1024, 15), // "receivetopright"
+QT_MOC_LITERAL(94, 1040, 18) // "receivebottomright"
 
     },
     "doctor\0sendleftfootvalues\0\0text1\0"
@@ -142,13 +144,13 @@ QT_MOC_LITERAL(92, 1016, 18) // "receivebottomright"
     "us4powmode\0us4vacmode\0us4powermethod\0"
     "ia1mode\0ia2mode\0vitmode\0vitvacmode\0"
     "surgeonNamefoot\0surgeon\0transmitval\0"
-    "fpzero\0fpone\0fptwo\0fpthree\0"
-    "onComboBoxIndexChanged\0index\0on_clicked\0"
-    "digit\0on_clickedenter\0clickedtab\0tab1\0"
-    "click\0tab\0increasebutton\0input\0"
-    "decreasebutton\0DiathermyBut\0PhacoBut\0"
-    "IrrigationAspirationBut\0VitrectomyBut\0"
-    "BackBut\0on_QuadBut_phaco_clicked\0"
+    "int&\0fpzero\0fpone\0fptwo\0fpthree\0"
+    "activatemainwindow\0onComboBoxIndexChanged\0"
+    "index\0on_clicked\0digit\0on_clickedenter\0"
+    "clickedtab\0tab1\0click\0tab\0increasebutton\0"
+    "input\0decreasebutton\0DiathermyBut\0"
+    "PhacoBut\0IrrigationAspirationBut\0"
+    "VitrectomyBut\0BackBut\0on_QuadBut_phaco_clicked\0"
     "on_ChopBut_phaco_clicked\0"
     "on_ScupltBut_phaco_clicked\0"
     "on_EpinBut_phaco_clicked\0on_pushButton_clicked\0"
@@ -165,53 +167,54 @@ static const uint qt_meta_data_doctor[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-      37,   14, // methods
+      38,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-      12,       // signalCount
+      13,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    1,  199,    2, 0x06 /* Public */,
-       4,    1,  202,    2, 0x06 /* Public */,
-       6,    1,  205,    2, 0x06 /* Public */,
-       8,    1,  208,    2, 0x06 /* Public */,
-      10,    1,  211,    2, 0x06 /* Public */,
-      12,    1,  214,    2, 0x06 /* Public */,
-      13,    1,  217,    2, 0x06 /* Public */,
-      14,    1,  220,    2, 0x06 /* Public */,
-      15,    1,  223,    2, 0x06 /* Public */,
-      16,   38,  226,    2, 0x06 /* Public */,
-      55,    1,  303,    2, 0x06 /* Public */,
-      57,    4,  306,    2, 0x06 /* Public */,
+       1,    1,  204,    2, 0x06 /* Public */,
+       4,    1,  207,    2, 0x06 /* Public */,
+       6,    1,  210,    2, 0x06 /* Public */,
+       8,    1,  213,    2, 0x06 /* Public */,
+      10,    1,  216,    2, 0x06 /* Public */,
+      12,    1,  219,    2, 0x06 /* Public */,
+      13,    1,  222,    2, 0x06 /* Public */,
+      14,    1,  225,    2, 0x06 /* Public */,
+      15,    1,  228,    2, 0x06 /* Public */,
+      16,   38,  231,    2, 0x06 /* Public */,
+      55,    1,  308,    2, 0x06 /* Public */,
+      57,    4,  311,    2, 0x06 /* Public */,
+      63,    0,  320,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-      62,    1,  315,    2, 0x0a /* Public */,
-      64,    1,  318,    2, 0x0a /* Public */,
-      66,    0,  321,    2, 0x0a /* Public */,
-      67,    1,  322,    2, 0x0a /* Public */,
-      69,    1,  325,    2, 0x0a /* Public */,
-      71,    1,  328,    2, 0x0a /* Public */,
-      73,    1,  331,    2, 0x0a /* Public */,
-      74,    0,  334,    2, 0x08 /* Private */,
-      75,    0,  335,    2, 0x08 /* Private */,
-      76,    0,  336,    2, 0x08 /* Private */,
-      77,    0,  337,    2, 0x08 /* Private */,
-      78,    0,  338,    2, 0x08 /* Private */,
-      79,    0,  339,    2, 0x08 /* Private */,
-      80,    0,  340,    2, 0x08 /* Private */,
-      81,    0,  341,    2, 0x08 /* Private */,
-      82,    0,  342,    2, 0x08 /* Private */,
-      83,    0,  343,    2, 0x08 /* Private */,
-      84,    0,  344,    2, 0x08 /* Private */,
-      85,    0,  345,    2, 0x08 /* Private */,
-      86,    0,  346,    2, 0x08 /* Private */,
-      87,    0,  347,    2, 0x08 /* Private */,
-      88,    1,  348,    2, 0x08 /* Private */,
-      90,    1,  351,    2, 0x08 /* Private */,
-      91,    1,  354,    2, 0x08 /* Private */,
+      64,    1,  321,    2, 0x0a /* Public */,
+      66,    1,  324,    2, 0x0a /* Public */,
+      68,    0,  327,    2, 0x0a /* Public */,
+      69,    1,  328,    2, 0x0a /* Public */,
+      71,    1,  331,    2, 0x0a /* Public */,
+      73,    1,  334,    2, 0x0a /* Public */,
+      75,    1,  337,    2, 0x0a /* Public */,
+      76,    0,  340,    2, 0x08 /* Private */,
+      77,    0,  341,    2, 0x08 /* Private */,
+      78,    0,  342,    2, 0x08 /* Private */,
+      79,    0,  343,    2, 0x08 /* Private */,
+      80,    0,  344,    2, 0x08 /* Private */,
+      81,    0,  345,    2, 0x08 /* Private */,
+      82,    0,  346,    2, 0x08 /* Private */,
+      83,    0,  347,    2, 0x08 /* Private */,
+      84,    0,  348,    2, 0x08 /* Private */,
+      85,    0,  349,    2, 0x08 /* Private */,
+      86,    0,  350,    2, 0x08 /* Private */,
+      87,    0,  351,    2, 0x08 /* Private */,
+      88,    0,  352,    2, 0x08 /* Private */,
+      89,    0,  353,    2, 0x08 /* Private */,
+      90,    1,  354,    2, 0x08 /* Private */,
       92,    1,  357,    2, 0x08 /* Private */,
+      93,    1,  360,    2, 0x08 /* Private */,
+      94,    1,  363,    2, 0x08 /* Private */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::QString,    3,
@@ -225,16 +228,17 @@ static const uint qt_meta_data_doctor[] = {
     QMetaType::Void, QMetaType::QString,   11,
     QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString,   17,   18,   19,   20,   21,   22,   23,   24,   25,   26,   27,   28,   29,   30,   31,   32,   33,   34,   35,   36,   37,   38,   39,   40,   41,   42,   43,   44,   45,   46,   47,   48,   49,   50,   51,   52,   53,   54,
     QMetaType::Void, QMetaType::QString,   56,
-    QMetaType::Void, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::Int,   58,   59,   60,   61,
+    QMetaType::Void, 0x80000000 | 58, 0x80000000 | 58, 0x80000000 | 58, 0x80000000 | 58,   59,   60,   61,   62,
+    QMetaType::Void,
 
  // slots: parameters
-    QMetaType::Void, QMetaType::Int,   63,
-    QMetaType::Void, QMetaType::QString,   65,
+    QMetaType::Void, QMetaType::Int,   65,
+    QMetaType::Void, QMetaType::QString,   67,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Int,   68,
     QMetaType::Void, QMetaType::Int,   70,
-    QMetaType::Int, QMetaType::Int,   72,
-    QMetaType::Int, QMetaType::Int,   72,
+    QMetaType::Void, QMetaType::Int,   72,
+    QMetaType::Int, QMetaType::Int,   74,
+    QMetaType::Int, QMetaType::Int,   74,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -249,10 +253,10 @@ static const uint qt_meta_data_doctor[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QString,   89,
-    QMetaType::Void, QMetaType::QString,   89,
-    QMetaType::Void, QMetaType::QString,   89,
-    QMetaType::Void, QMetaType::QString,   89,
+    QMetaType::Void, QMetaType::QString,   91,
+    QMetaType::Void, QMetaType::QString,   91,
+    QMetaType::Void, QMetaType::QString,   91,
+    QMetaType::Void, QMetaType::QString,   91,
 
        0        // eod
 };
@@ -275,33 +279,34 @@ void doctor::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         case 9: _t->sendValues((*reinterpret_cast< const QString(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2])),(*reinterpret_cast< int(*)>(_a[3])),(*reinterpret_cast< int(*)>(_a[4])),(*reinterpret_cast< int(*)>(_a[5])),(*reinterpret_cast< int(*)>(_a[6])),(*reinterpret_cast< int(*)>(_a[7])),(*reinterpret_cast< int(*)>(_a[8])),(*reinterpret_cast< int(*)>(_a[9])),(*reinterpret_cast< int(*)>(_a[10])),(*reinterpret_cast< int(*)>(_a[11])),(*reinterpret_cast< int(*)>(_a[12])),(*reinterpret_cast< int(*)>(_a[13])),(*reinterpret_cast< int(*)>(_a[14])),(*reinterpret_cast< int(*)>(_a[15])),(*reinterpret_cast< int(*)>(_a[16])),(*reinterpret_cast< int(*)>(_a[17])),(*reinterpret_cast< int(*)>(_a[18])),(*reinterpret_cast< int(*)>(_a[19])),(*reinterpret_cast< int(*)>(_a[20])),(*reinterpret_cast< int(*)>(_a[21])),(*reinterpret_cast< int(*)>(_a[22])),(*reinterpret_cast< const QString(*)>(_a[23])),(*reinterpret_cast< const QString(*)>(_a[24])),(*reinterpret_cast< const QString(*)>(_a[25])),(*reinterpret_cast< const QString(*)>(_a[26])),(*reinterpret_cast< const QString(*)>(_a[27])),(*reinterpret_cast< const QString(*)>(_a[28])),(*reinterpret_cast< const QString(*)>(_a[29])),(*reinterpret_cast< const QString(*)>(_a[30])),(*reinterpret_cast< const QString(*)>(_a[31])),(*reinterpret_cast< const QString(*)>(_a[32])),(*reinterpret_cast< const QString(*)>(_a[33])),(*reinterpret_cast< const QString(*)>(_a[34])),(*reinterpret_cast< const QString(*)>(_a[35])),(*reinterpret_cast< const QString(*)>(_a[36])),(*reinterpret_cast< const QString(*)>(_a[37])),(*reinterpret_cast< const QString(*)>(_a[38]))); break;
         case 10: _t->surgeonNamefoot((*reinterpret_cast< const QString(*)>(_a[1]))); break;
         case 11: _t->transmitval((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< int(*)>(_a[3])),(*reinterpret_cast< int(*)>(_a[4]))); break;
-        case 12: _t->onComboBoxIndexChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 13: _t->on_clicked((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 14: _t->on_clickedenter(); break;
-        case 15: _t->clickedtab((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 16: _t->click((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 17: { int _r = _t->increasebutton((*reinterpret_cast< int(*)>(_a[1])));
+        case 12: _t->activatemainwindow(); break;
+        case 13: _t->onComboBoxIndexChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 14: _t->on_clicked((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 15: _t->on_clickedenter(); break;
+        case 16: _t->clickedtab((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 17: _t->click((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 18: { int _r = _t->increasebutton((*reinterpret_cast< int(*)>(_a[1])));
             if (_a[0]) *reinterpret_cast< int*>(_a[0]) = std::move(_r); }  break;
-        case 18: { int _r = _t->decreasebutton((*reinterpret_cast< int(*)>(_a[1])));
+        case 19: { int _r = _t->decreasebutton((*reinterpret_cast< int(*)>(_a[1])));
             if (_a[0]) *reinterpret_cast< int*>(_a[0]) = std::move(_r); }  break;
-        case 19: _t->DiathermyBut(); break;
-        case 20: _t->PhacoBut(); break;
-        case 21: _t->IrrigationAspirationBut(); break;
-        case 22: _t->VitrectomyBut(); break;
-        case 23: _t->BackBut(); break;
-        case 24: _t->on_QuadBut_phaco_clicked(); break;
-        case 25: _t->on_ChopBut_phaco_clicked(); break;
-        case 26: _t->on_ScupltBut_phaco_clicked(); break;
-        case 27: _t->on_EpinBut_phaco_clicked(); break;
-        case 28: _t->on_pushButton_clicked(); break;
-        case 29: _t->pumpvalue(); break;
-        case 30: _t->on_SaveDiaBut_clicked(); break;
-        case 31: _t->handleDataSaved(); break;
-        case 32: _t->on_pushButton_2_clicked(); break;
-        case 33: _t->receivetopleft((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 34: _t->receivebottomleft((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 35: _t->receivetopright((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 36: _t->receivebottomright((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 20: _t->DiathermyBut(); break;
+        case 21: _t->PhacoBut(); break;
+        case 22: _t->IrrigationAspirationBut(); break;
+        case 23: _t->VitrectomyBut(); break;
+        case 24: _t->BackBut(); break;
+        case 25: _t->on_QuadBut_phaco_clicked(); break;
+        case 26: _t->on_ChopBut_phaco_clicked(); break;
+        case 27: _t->on_ScupltBut_phaco_clicked(); break;
+        case 28: _t->on_EpinBut_phaco_clicked(); break;
+        case 29: _t->on_pushButton_clicked(); break;
+        case 30: _t->pumpvalue(); break;
+        case 31: _t->on_SaveDiaBut_clicked(); break;
+        case 32: _t->handleDataSaved(); break;
+        case 33: _t->on_pushButton_2_clicked(); break;
+        case 34: _t->receivetopleft((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 35: _t->receivebottomleft((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 36: _t->receivetopright((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 37: _t->receivebottomright((*reinterpret_cast< const QString(*)>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -384,9 +389,16 @@ void doctor::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
             }
         }
         {
-            using _t = void (doctor::*)(int , int , int , int );
+            using _t = void (doctor::*)(int & , int & , int & , int & );
             if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&doctor::transmitval)) {
                 *result = 11;
+                return;
+            }
+        }
+        {
+            using _t = void (doctor::*)();
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&doctor::activatemainwindow)) {
+                *result = 12;
                 return;
             }
         }
@@ -422,13 +434,13 @@ int doctor::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 37)
+        if (_id < 38)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 37;
+        _id -= 38;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 37)
+        if (_id < 38)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 37;
+        _id -= 38;
     }
     return _id;
 }
@@ -511,10 +523,16 @@ void doctor::surgeonNamefoot(const QString & _t1)
 }
 
 // SIGNAL 11
-void doctor::transmitval(int _t1, int _t2, int _t3, int _t4)
+void doctor::transmitval(int & _t1, int & _t2, int & _t3, int & _t4)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t3))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t4))) };
     QMetaObject::activate(this, &staticMetaObject, 11, _a);
+}
+
+// SIGNAL 12
+void doctor::activatemainwindow()
+{
+    QMetaObject::activate(this, &staticMetaObject, 12, nullptr);
 }
 QT_WARNING_POP
 QT_END_MOC_NAMESPACE

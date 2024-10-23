@@ -5,7 +5,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++11
 TARGET = iNanoplusVp_ver1.3
-QMAKE_CXXFLAGS_RELEASE += -O2
+QMAKE_CXXFLAGS_RELEASE += -O3
 
 # The following define makes your compiler emit warnings if you use
 # any Qt feature that has been marked deprecated (the exact warnings
@@ -25,7 +25,6 @@ SOURCES += \
     footswitch.cpp \
     general.cpp \
     keypad.cpp \
-    learner.cpp \
     ltc2614.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -42,7 +41,6 @@ HEADERS += \
     general.h \
     hwhandler.h \
     keypad.h \
-    learner.h \
     ltc2614.h \
     mainwindow.h \
     prime.h \
@@ -57,7 +55,6 @@ FORMS += \
     footswitch.ui \
     general.ui \
     keypad.ui \
-    learner.ui \
     mainwindow.ui \
     prime.ui \
     settings.ui \
