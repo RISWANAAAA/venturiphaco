@@ -9,6 +9,7 @@
 #include <QtSql/QSqlQuery>
 #define PATH "/home/phacohigh.db"
 #include"footswitch.h"
+#include"hwhandler.h"
 class QLineEdit;
 namespace Ui {
 class doctor;
@@ -74,6 +75,8 @@ private slots:
   void receivetopright(const QString &text);
   void receivebottomright(const QString &text);
 
+  void on_Vibration_onoff_clicked();
+
 signals:
 
   void sendleftfootvalues(const QString &text1);
@@ -116,7 +119,8 @@ signals:
               void surgeonNamefoot(const QString &surgeon);
              void transmitval(int &fpzero,int &fpone,int &fptwo,int &fpthree);
              void activatemainwindow();
-
+     void txfootpedalvalues(const QString &topleft,const QString &topright,const QString &bottomleft,const QString &bottomright);
+     void tx_viberation(const QString &text);
 
 
 
@@ -130,6 +134,8 @@ private:
     QMap<QLineEdit*, int> lastValidValues1;  // Declare the QMap as a member variable
     QSqlDatabase db;
     footswitch *cFoot;
+    hwhandler *hand;
+    bool vib_onoff=false;
 
 
 };

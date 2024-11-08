@@ -3,9 +3,9 @@ QT       += core gui sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-CONFIG += c++11
+CONFIG += c++11 release precompile_header
 TARGET = iNanoplusVp_ver1.3
-QMAKE_CXXFLAGS_RELEASE += -O3
+QMAKE_CXXFLAGS_RELEASE += -O3 -g0 -DNDEBUG
 
 # The following define makes your compiler emit warnings if you use
 # any Qt feature that has been marked deprecated (the exact warnings
@@ -19,45 +19,36 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    display.cpp \
     doctor.cpp \
     footpedal.cpp \
     footswitch.cpp \
-    general.cpp \
     keypad.cpp \
     ltc2614.cpp \
     main.cpp \
     mainwindow.cpp \
     prime.cpp \
-    settings.cpp \
     tuning.cpp
 
 HEADERS += \
-    display.h \
     doctor.h \
     footlib.h \
     footpedal.h \
     footswitch.h \
-    general.h \
     hwhandler.h \
     keypad.h \
     ltc2614.h \
     mainwindow.h \
     prime.h \
-    settings.h \
     tuning.h \
     vaccum.h
 
 FORMS += \
-    display.ui \
     doctor.ui \
     footpedal.ui \
     footswitch.ui \
-    general.ui \
     keypad.ui \
     mainwindow.ui \
     prime.ui \
-    settings.ui \
     tuning.ui
 
 # Default rules for deployment.

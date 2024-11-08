@@ -42,17 +42,19 @@ public:
         But_Next = new QPushButton(tuning);
         But_Next->setObjectName(QString::fromUtf8("But_Next"));
         But_Next->setGeometry(QRect(690, 570, 151, 121));
-        But_Next->setStyleSheet(QString::fromUtf8("image: url(:/images/nextarrow.png);\n"
+        But_Next->setStyleSheet(QString::fromUtf8("image: url(:/images/nextbutton.png);\n"
 "background-color:transparent;\n"
 "border:none;"));
         But_Handpiece = new QPushButton(tuning);
         But_Handpiece->setObjectName(QString::fromUtf8("But_Handpiece"));
         But_Handpiece->setGeometry(QRect(150, 340, 141, 131));
         But_Handpiece->setStyleSheet(QString::fromUtf8("background-color:transparent;\n"
+"image: url(:/images/notconnected.png);\n"
 "border:none;"));
         But_value = new QPushButton(tuning);
         But_value->setObjectName(QString::fromUtf8("But_value"));
         But_value->setGeometry(QRect(370, 270, 131, 141));
+        But_value->setStyleSheet(QString::fromUtf8(""));
         But_Tune->raise();
         But_Next->raise();
         But_value->raise();

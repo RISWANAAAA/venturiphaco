@@ -35,7 +35,6 @@ public:
     QLabel *circle;
     QLabel *FootPedalSettings;
     QPushButton *IABut;
-    QLabel *Select;
     QComboBox *RightFoot;
     QComboBox *BottomLFoot;
     QPushButton *PhacoBut;
@@ -175,6 +174,11 @@ public:
     QComboBox *comboBox;
     QPushButton *SaveDiaBut;
     QPushButton *pushButton_2;
+    QLabel *label_2;
+    QPushButton *Vibration_onoff;
+    QLabel *lab_vibonoff;
+    QLabel *label_3;
+    QLabel *label_4;
 
     void setupUi(QDialog *doctor)
     {
@@ -238,7 +242,7 @@ public:
 "background-color:transparent;"));
         VitBut = new QPushButton(doctor);
         VitBut->setObjectName(QString::fromUtf8("VitBut"));
-        VitBut->setGeometry(QRect(280, 310, 101, 81));
+        VitBut->setGeometry(QRect(280, 260, 101, 81));
         VitBut->setStyleSheet(QString::fromUtf8("border-radius: 40px;\n"
 "width:10px;\n"
 "height:10px;\n"
@@ -248,29 +252,25 @@ public:
 "border:3px solid black;"));
         circle = new QLabel(doctor);
         circle->setObjectName(QString::fromUtf8("circle"));
-        circle->setGeometry(QRect(190, 140, 271, 251));
+        circle->setGeometry(QRect(190, 90, 271, 251));
         circle->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);\n"
 "border:3px solid black;\n"
 "border-radius:120px;"));
         FootPedalSettings = new QLabel(doctor);
         FootPedalSettings->setObjectName(QString::fromUtf8("FootPedalSettings"));
-        FootPedalSettings->setGeometry(QRect(70, 410, 281, 41));
+        FootPedalSettings->setGeometry(QRect(90, 380, 381, 51));
         FootPedalSettings->setStyleSheet(QString::fromUtf8("font: 20pt \"Ubuntu Condensed\";\n"
 "background-color:transparent;\n"
 "font:bold;"));
         IABut = new QPushButton(doctor);
         IABut->setObjectName(QString::fromUtf8("IABut"));
-        IABut->setGeometry(QRect(190, 220, 91, 81));
+        IABut->setGeometry(QRect(190, 170, 91, 81));
         IABut->setStyleSheet(QString::fromUtf8("border-radius: 40px;\n"
 "width:10px;\n"
 "height:10px;\n"
 "background-color:transparent;\n"
 "border:none;\n"
 "font:bold;border:3px solid black;"));
-        Select = new QLabel(doctor);
-        Select->setObjectName(QString::fromUtf8("Select"));
-        Select->setGeometry(QRect(190, 30, 191, 17));
-        Select->setStyleSheet(QString::fromUtf8("font: 15pt \"Ubuntu Condensed\";"));
         RightFoot = new QComboBox(doctor);
         RightFoot->addItem(QString());
         RightFoot->addItem(QString());
@@ -299,7 +299,7 @@ public:
 "background-color: rgb(14, 50, 6);"));
         PhacoBut = new QPushButton(doctor);
         PhacoBut->setObjectName(QString::fromUtf8("PhacoBut"));
-        PhacoBut->setGeometry(QRect(370, 220, 91, 81));
+        PhacoBut->setGeometry(QRect(370, 170, 91, 81));
         PhacoBut->setStyleSheet(QString::fromUtf8("border-radius: 40px;\n"
 "width:10px;\n"
 "height:10px;\n"
@@ -308,7 +308,7 @@ public:
 "font:bold;border:3px solid black;"));
         Surgeon = new QLabel(doctor);
         Surgeon->setObjectName(QString::fromUtf8("Surgeon"));
-        Surgeon->setGeometry(QRect(100, 40, 81, 91));
+        Surgeon->setGeometry(QRect(80, 10, 41, 51));
         Surgeon->setStyleSheet(QString::fromUtf8("\n"
 "image: url(:/images/doctor.png);\n"
 "background-color:transparent;\n"
@@ -327,7 +327,7 @@ public:
         SelectSurgeon->addItem(QString());
         SelectSurgeon->addItem(QString());
         SelectSurgeon->setObjectName(QString::fromUtf8("SelectSurgeon"));
-        SelectSurgeon->setGeometry(QRect(180, 60, 291, 51));
+        SelectSurgeon->setGeometry(QRect(120, 10, 291, 51));
         SelectSurgeon->setStyleSheet(QString::fromUtf8("border-radius:20px;\n"
 "color: rgb(255, 255, 255);\n"
 "font:20pt \"Ubuntu\";\n"
@@ -1074,14 +1074,14 @@ public:
         lineEdit_7->setAlignment(Qt::AlignCenter);
         lineEdit_11 = new QLineEdit(tab_3);
         lineEdit_11->setObjectName(QString::fromUtf8("lineEdit_11"));
-        lineEdit_11->setGeometry(QRect(540, 460, 151, 41));
+        lineEdit_11->setGeometry(QRect(540, 360, 151, 41));
         lineEdit_11->setStyleSheet(QString::fromUtf8("font:20pt \"Ubuntu\";\n"
 "background-color: rgb(255,255,255);\n"
 "border-radius:20px;"));
         lineEdit_11->setAlignment(Qt::AlignCenter);
         lineEdit_12 = new QLineEdit(tab_3);
         lineEdit_12->setObjectName(QString::fromUtf8("lineEdit_12"));
-        lineEdit_12->setGeometry(QRect(540, 360, 151, 41));
+        lineEdit_12->setGeometry(QRect(540, 460, 151, 41));
         lineEdit_12->setStyleSheet(QString::fromUtf8("font:20pt \"Ubuntu\";\n"
 "background-color: rgb(255,255,255);\n"
 "border-radius:20px;"));
@@ -1441,7 +1441,7 @@ public:
         lineEdit_20->raise();
         DiaBut = new QPushButton(doctor);
         DiaBut->setObjectName(QString::fromUtf8("DiaBut"));
-        DiaBut->setGeometry(QRect(280, 140, 91, 81));
+        DiaBut->setGeometry(QRect(280, 90, 91, 81));
         DiaBut->setStyleSheet(QString::fromUtf8("border-radius: 40px;\n"
 "width:10px;\n"
 "height:10px;\n"
@@ -1455,7 +1455,7 @@ public:
         label->setStyleSheet(QString::fromUtf8("background-color:rgb(83, 104, 120);"));
         Select_2 = new QLabel(doctor);
         Select_2->setObjectName(QString::fromUtf8("Select_2"));
-        Select_2->setGeometry(QRect(20, 240, 151, 61));
+        Select_2->setGeometry(QRect(10, 100, 151, 61));
         Select_2->setStyleSheet(QString::fromUtf8("font: 15pt \"Ubuntu Condensed\";\n"
 "background-color:transparent;\n"
 "font:25px;\n"
@@ -1473,7 +1473,7 @@ public:
         comboBox->addItem(QString());
         comboBox->addItem(QString());
         comboBox->setObjectName(QString::fromUtf8("comboBox"));
-        comboBox->setGeometry(QRect(10, 310, 181, 51));
+        comboBox->setGeometry(QRect(0, 170, 181, 51));
         comboBox->setStyleSheet(QString::fromUtf8("border-radius:20px;\n"
 "color: rgb(255, 255, 255);\n"
 "font:20pt \"Ubuntu\";\n"
@@ -1489,40 +1489,75 @@ public:
 "font:bold;"));
         pushButton_2 = new QPushButton(doctor);
         pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
-        pushButton_2->setGeometry(QRect(270, 210, 111, 101));
-        pushButton_2->setStyleSheet(QString::fromUtf8("image: url(:/images/footimg.png);\n"
+        pushButton_2->setGeometry(QRect(-80, 380, 581, 381));
+        pushButton_2->setStyleSheet(QString::fromUtf8("background-color:transparent;\n"
+"image: url(:/images/footswitch_3.png);\n"
+"border:none;\n"
+"outline:none;"));
+        label_2 = new QLabel(doctor);
+        label_2->setObjectName(QString::fromUtf8("label_2"));
+        label_2->setGeometry(QRect(0, 0, 461, 721));
+        Vibration_onoff = new QPushButton(doctor);
+        Vibration_onoff->setObjectName(QString::fromUtf8("Vibration_onoff"));
+        Vibration_onoff->setGeometry(QRect(0, 290, 171, 51));
+        Vibration_onoff->setStyleSheet(QString::fromUtf8("color: rgb(255,255,255);\n"
+"font:15pt;\n"
+"background-color: rgb(14, 50, 6);\n"
+"text-align:left;"));
+        lab_vibonoff = new QLabel(doctor);
+        lab_vibonoff->setObjectName(QString::fromUtf8("lab_vibonoff"));
+        lab_vibonoff->setGeometry(QRect(170, 290, 61, 51));
+        lab_vibonoff->setStyleSheet(QString::fromUtf8("image: url(:/images/vibrationoff.png);\n"
+"border:2px solid skyblue;\n"
+"border-radius:20px;"));
+        label_3 = new QLabel(doctor);
+        label_3->setObjectName(QString::fromUtf8("label_3"));
+        label_3->setGeometry(QRect(10, 240, 171, 41));
+        label_3->setStyleSheet(QString::fromUtf8("font: 15pt \"Ubuntu Condensed\";\n"
 "background-color:transparent;\n"
-"border:none;"));
-        circle->raise();
-        BottomRFoot->raise();
-        BottomRight->raise();
-        BackBut->raise();
-        BottomLeft->raise();
+"font:25px;\n"
+"font:bold;"));
+        label_4 = new QLabel(doctor);
+        label_4->setObjectName(QString::fromUtf8("label_4"));
+        label_4->setGeometry(QRect(280, 170, 91, 91));
+        label_4->setStyleSheet(QString::fromUtf8("image: url(:/images/settings.png);\n"
+"background-color: rgb(3, 58, 11);\n"
+"border:none;\n"
+"border-radius:40px;"));
         LeftFoot->raise();
-        Right->raise();
-        VitBut->raise();
-        FootPedalSettings->raise();
-        IABut->raise();
-        Select->raise();
-        RightFoot->raise();
+        BottomRFoot->raise();
         BottomLFoot->raise();
-        PhacoBut->raise();
-        Surgeon->raise();
+        RightFoot->raise();
+        Right->raise();
         Left->raise();
-        SelectSurgeon->raise();
-        tabWidget->raise();
-        DiaBut->raise();
-        label->raise();
-        Select_2->raise();
         pushButton->raise();
-        comboBox->raise();
+        BottomRight->raise();
+        BottomLeft->raise();
+        tabWidget->raise();
+        label->raise();
+        label_2->raise();
+        SelectSurgeon->raise();
         SaveDiaBut->raise();
+        comboBox->raise();
+        BackBut->raise();
+        Select_2->raise();
+        Surgeon->raise();
+        circle->raise();
+        VitBut->raise();
+        IABut->raise();
+        PhacoBut->raise();
+        DiaBut->raise();
         pushButton_2->raise();
+        FootPedalSettings->raise();
+        Vibration_onoff->raise();
+        lab_vibonoff->raise();
+        label_3->raise();
+        label_4->raise();
 
         retranslateUi(doctor);
 
         tabWidget->setCurrentIndex(2);
-        tabWidget_2->setCurrentIndex(1);
+        tabWidget_2->setCurrentIndex(3);
 
 
         QMetaObject::connectSlotsByName(doctor);
@@ -1553,7 +1588,6 @@ public:
         circle->setText(QString());
         FootPedalSettings->setText(QCoreApplication::translate("doctor", "FOOTPEDAL SETTINGS", nullptr));
         IABut->setText(QCoreApplication::translate("doctor", "I/A", nullptr));
-        Select->setText(QCoreApplication::translate("doctor", "SELECT SURGEON", nullptr));
         RightFoot->setItemText(0, QCoreApplication::translate("doctor", "Increment", nullptr));
         RightFoot->setItemText(1, QCoreApplication::translate("doctor", "Decrement", nullptr));
         RightFoot->setItemText(2, QCoreApplication::translate("doctor", "Reflux", nullptr));
@@ -1724,6 +1758,11 @@ public:
 
         SaveDiaBut->setText(QCoreApplication::translate("doctor", "Save All Values", nullptr));
         pushButton_2->setText(QString());
+        label_2->setText(QString());
+        Vibration_onoff->setText(QCoreApplication::translate("doctor", "Vibration OFF", nullptr));
+        lab_vibonoff->setText(QString());
+        label_3->setText(QCoreApplication::translate("doctor", "Vibration Mode", nullptr));
+        label_4->setText(QString());
     } // retranslateUi
 
 };

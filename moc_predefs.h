@@ -95,6 +95,7 @@
 #define _FORTIFY_SOURCE 2
 #define __LLACCUM_MIN__ (-0X1P31LLK-0X1P31LLK)
 #define __SIZEOF_INT__ 4
+#define NDEBUG 1
 #define __FLT32X_MANT_DIG__ 53
 #define __GCC_ATOMIC_CHAR16_T_LOCK_FREE 2
 #define __USACCUM_IBIT__ 8
@@ -196,7 +197,6 @@
 #define __GXX_ABI_VERSION 1017
 #define __UTA_FBIT__ 64
 #define __PIE__ 2
-#define __GCC_HAVE_DWARF2_CFI_ASM 1
 #define __UFRACT_IBIT__ 0
 #define __FLT64_IS_IEC_60559__ 2
 #define __USQ_FBIT__ 32

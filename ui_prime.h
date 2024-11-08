@@ -60,13 +60,13 @@ public:
 ""));
         clean_but = new QPushButton(prime);
         clean_but->setObjectName(QString::fromUtf8("clean_but"));
-        clean_but->setGeometry(QRect(20, 380, 391, 291));
+        clean_but->setGeometry(QRect(30, 450, 371, 181));
         clean_but->setStyleSheet(QString::fromUtf8("QPushButton {\n"
-"    font: 40pt \"Ubuntu\";\n"
+"    font: 30pt \"Ubuntu\";\n"
 "    background-color: transparent;\n"
 "    border-radius: 20px;\n"
-"	image: url(:/images/unselectedbutton.png);\n"
 "    border: none;\n"
+"	image: url(:/images/primeddd.png);\n"
 "    font-weight: bold;\n"
 "color:white;\n"
 "}\n"
@@ -78,13 +78,13 @@ public:
 ""));
         Tune_but = new QPushButton(prime);
         Tune_but->setObjectName(QString::fromUtf8("Tune_but"));
-        Tune_but->setGeometry(QRect(20, 210, 391, 291));
+        Tune_but->setGeometry(QRect(30, 250, 371, 181));
         Tune_but->setStyleSheet(QString::fromUtf8("QPushButton {\n"
-"    font: 40pt \"Ubuntu\";\n"
+"    font: 30pt \"Ubuntu\";\n"
 "    background-color: transparent;\n"
 "    border-radius: 20px;\n"
-"	image: url(:/images/unselectedbutton.png);\n"
 "    border: none;\n"
+"	image: url(:/images/primeddd.png);\n"
 "    font-weight: bold;\n"
 "color:white;\n"
 "}\n"
@@ -96,13 +96,13 @@ public:
 ""));
         prime1_but = new QPushButton(prime);
         prime1_but->setObjectName(QString::fromUtf8("prime1_but"));
-        prime1_but->setGeometry(QRect(20, 30, 391, 291));
+        prime1_but->setGeometry(QRect(30, 60, 371, 181));
         prime1_but->setStyleSheet(QString::fromUtf8("QPushButton {\n"
-"    font: 40pt \"Ubuntu\";\n"
+"    font: 30pt \"Ubuntu\";\n"
 "    background-color: transparent;\n"
 "    border-radius: 20px;\n"
-"	image: url(:/images/unselectedbutton.png);\n"
 "    border: none;\n"
+"	image: url(:/images/primeddd.png);\n"
 "    font-weight: bold;\n"
 "color:white;\n"
 "}\n"
@@ -114,7 +114,7 @@ public:
 ""));
         tabWidget = new QTabWidget(prime);
         tabWidget->setObjectName(QString::fromUtf8("tabWidget"));
-        tabWidget->setGeometry(QRect(420, 0, 861, 721));
+        tabWidget->setGeometry(QRect(410, -30, 871, 791));
         tabWidget->setStyleSheet(QString::fromUtf8(""));
         tab_6 = new QWidget();
         tab_6->setObjectName(QString::fromUtf8("tab_6"));
@@ -125,7 +125,7 @@ public:
 ""));
         process_lab_2 = new QLabel(tab_6);
         process_lab_2->setObjectName(QString::fromUtf8("process_lab_2"));
-        process_lab_2->setGeometry(QRect(140, 20, 351, 51));
+        process_lab_2->setGeometry(QRect(140, 70, 351, 51));
         process_lab_2->setStyleSheet(QString::fromUtf8("font:25pt \"Ubuntu\";\n"
 "background-color: rgb(255, 255, 255);\n"
 "color: rgb(0, 0, 0);\n"
@@ -133,7 +133,7 @@ public:
 "border:none;font:bold;"));
         start_prime_but_2 = new QPushButton(tab_6);
         start_prime_but_2->setObjectName(QString::fromUtf8("start_prime_but_2"));
-        start_prime_but_2->setGeometry(QRect(260, 550, 321, 121));
+        start_prime_but_2->setGeometry(QRect(260, 600, 321, 121));
         start_prime_but_2->setStyleSheet(QString::fromUtf8("QPushButton{\n"
 "font:20pt \"Ubuntu\";\n"
 "image: url(:/images/g4210.png);\n"
@@ -149,7 +149,7 @@ public:
 ""));
         start_check_2 = new QCheckBox(tab_6);
         start_check_2->setObjectName(QString::fromUtf8("start_check_2"));
-        start_check_2->setGeometry(QRect(110, 160, 721, 51));
+        start_check_2->setGeometry(QRect(110, 210, 721, 51));
         start_check_2->setStyleSheet(QString::fromUtf8("QCheckBox::indicator {\n"
 "    width: 30px;\n"
 "    height: 30px;\n"
@@ -161,7 +161,7 @@ public:
 ""));
         wait_Check_2 = new QCheckBox(tab_6);
         wait_Check_2->setObjectName(QString::fromUtf8("wait_Check_2"));
-        wait_Check_2->setGeometry(QRect(110, 260, 751, 71));
+        wait_Check_2->setGeometry(QRect(110, 310, 751, 71));
         wait_Check_2->setStyleSheet(QString::fromUtf8("QCheckBox::indicator {\n"
 "    width: 30px;\n"
 "    height: 30px;\n"
@@ -173,7 +173,7 @@ public:
 ""));
         motor_Check_2 = new QCheckBox(tab_6);
         motor_Check_2->setObjectName(QString::fromUtf8("motor_Check_2"));
-        motor_Check_2->setGeometry(QRect(110, 70, 381, 61));
+        motor_Check_2->setGeometry(QRect(110, 120, 381, 61));
         motor_Check_2->setStyleSheet(QString::fromUtf8("QCheckBox::indicator {\n"
 "    width: 30px;\n"
 "    height: 30px;\n"
@@ -185,7 +185,7 @@ public:
 ""));
         done_Check_2 = new QCheckBox(tab_6);
         done_Check_2->setObjectName(QString::fromUtf8("done_Check_2"));
-        done_Check_2->setGeometry(QRect(110, 370, 321, 41));
+        done_Check_2->setGeometry(QRect(110, 420, 321, 41));
         done_Check_2->setStyleSheet(QString::fromUtf8("QCheckBox::indicator {\n"
 "    width: 30px;\n"
 "    height: 30px;\n"
@@ -197,13 +197,13 @@ public:
 ""));
         progressBar_2 = new QProgressBar(tab_6);
         progressBar_2->setObjectName(QString::fromUtf8("progressBar_2"));
-        progressBar_2->setGeometry(QRect(40, 480, 761, 51));
+        progressBar_2->setGeometry(QRect(40, 530, 761, 51));
         progressBar_2->setValue(0);
         pushButton_5 = new QPushButton(tab_6);
         pushButton_5->setObjectName(QString::fromUtf8("pushButton_5"));
-        pushButton_5->setGeometry(QRect(690, 530, 171, 141));
+        pushButton_5->setGeometry(QRect(720, 610, 131, 101));
         pushButton_5->setStyleSheet(QString::fromUtf8("QPushButton{\n"
-"image: url(:/images/nextimg.png);\n"
+"image: url(:/images/nextbutton.png);\n"
 "background-color:transparent;\n"
 "border:none;\n"
 "}\n"
@@ -222,7 +222,7 @@ public:
 ""));
         warning_lab_2 = new QLabel(tab_8);
         warning_lab_2->setObjectName(QString::fromUtf8("warning_lab_2"));
-        warning_lab_2->setGeometry(QRect(50, 60, 431, 41));
+        warning_lab_2->setGeometry(QRect(70, 110, 431, 41));
         warning_lab_2->setStyleSheet(QString::fromUtf8("font:25pt \"Ubuntu\";\n"
 "background-color: rgb(36, 31, 49);\n"
 "color: rgb(255, 255, 255);\n"
@@ -231,14 +231,14 @@ public:
 "font:bold;"));
         Instruction_lab_2 = new QTextEdit(tab_8);
         Instruction_lab_2->setObjectName(QString::fromUtf8("Instruction_lab_2"));
-        Instruction_lab_2->setGeometry(QRect(110, 210, 741, 281));
+        Instruction_lab_2->setGeometry(QRect(130, 260, 741, 281));
         Instruction_lab_2->setStyleSheet(QString::fromUtf8("\n"
 "font:20px;border:none;\n"
 "background-color: transparent;\n"
 ""));
         begin_clean_but_2 = new QPushButton(tab_8);
         begin_clean_but_2->setObjectName(QString::fromUtf8("begin_clean_but_2"));
-        begin_clean_but_2->setGeometry(QRect(300, 520, 331, 141));
+        begin_clean_but_2->setGeometry(QRect(320, 570, 331, 141));
         begin_clean_but_2->setStyleSheet(QString::fromUtf8("QPushButton{\n"
 "font:20pt \"Ubuntu\";\n"
 "background-color: transparent;\n"
@@ -255,12 +255,12 @@ public:
 ""));
         warning_img_2 = new QLabel(tab_8);
         warning_img_2->setObjectName(QString::fromUtf8("warning_img_2"));
-        warning_img_2->setGeometry(QRect(70, 60, 31, 41));
+        warning_img_2->setGeometry(QRect(90, 110, 31, 41));
         warning_img_2->setStyleSheet(QString::fromUtf8("image: url(:/images/warning1.png);\n"
 "BACKGROUND-COLOR:TRANSPARENT;"));
         label_10 = new QLabel(tab_8);
         label_10->setObjectName(QString::fromUtf8("label_10"));
-        label_10->setGeometry(QRect(60, 130, 651, 51));
+        label_10->setGeometry(QRect(80, 180, 651, 51));
         label_10->setStyleSheet(QString::fromUtf8("font: 75 20pt \"Ubuntu\";\n"
 "font:bold;\n"
 "background-color:transparent;"));
@@ -268,8 +268,8 @@ public:
         pushButton_8->setObjectName(QString::fromUtf8("pushButton_8"));
         pushButton_8->setGeometry(QRect(700, 540, 151, 141));
         pushButton_8->setStyleSheet(QString::fromUtf8("QPushButton{\n"
-"image: url(:/images/backimg.png);\n"
 "border:none;\n"
+"	image: url(:/images/backbuttonarrow.png);\n"
 "background-color:transparent;\n"
 "}\n"
 "QPushButton:focus {\n"
@@ -280,19 +280,19 @@ public:
         tabWidget->addTab(tab_8, QString());
         label = new QLabel(prime);
         label->setObjectName(QString::fromUtf8("label"));
-        label->setGeometry(QRect(330, 170, 91, 101));
+        label->setGeometry(QRect(320, 150, 61, 71));
         label->setStyleSheet(QString::fromUtf8("image: url(:/images/prime.png);\n"
 "background-color:transparent;\n"
 "border:none;"));
         label_2 = new QLabel(prime);
         label_2->setObjectName(QString::fromUtf8("label_2"));
-        label_2->setGeometry(QRect(330, 350, 91, 101));
+        label_2->setGeometry(QRect(310, 340, 61, 61));
         label_2->setStyleSheet(QString::fromUtf8("image: url(:/images/wifi.png);\n"
 "background-color:transparent;\n"
 "border:none;"));
         label_3 = new QLabel(prime);
         label_3->setObjectName(QString::fromUtf8("label_3"));
-        label_3->setGeometry(QRect(330, 520, 91, 111));
+        label_3->setGeometry(QRect(310, 550, 71, 61));
         label_3->setStyleSheet(QString::fromUtf8("image: url(:/images/clean.png);\n"
 "background-color:transparent;\n"
 "border:none;"));

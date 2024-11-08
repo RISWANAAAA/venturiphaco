@@ -16,7 +16,7 @@ tuning::tuning(QWidget *parent) :
     setGPIODirection("in",960);
     readGPIOValue(960);
     connect(handpiece,&QTimer::timeout,this,&tuning::updatehandpieceStatus);
-    handpiece->start(10);
+    handpiece->start(1);
      ui->But_value->hide();
     ui->But_value->setStyleSheet("font-size: 90px; font-weight: bold; color: white; background-color: transparent;");
     ui->But_Tune->show();
@@ -229,6 +229,7 @@ void tuning::updateCircle()
 //handpiece
 void tuning::on_But_Handpiece_clicked()
 {
+   // hand->buzz();
     if (!isRunning) { // Only start if the progress is not currently running
            ui->But_Tune->move(170, 280);
            ui->But_Handpiece->move(150,340);
@@ -240,6 +241,7 @@ Tune_Phaco();
 //button value
 void tuning::on_But_value_clicked()
 {
+  //  hand->buzz();
     if (!isRunning) { // Only start if the progress is not currently running
            ui->But_Tune->move(170, 280);
            ui->But_Handpiece->move(150,340);
@@ -251,6 +253,7 @@ Tune_Phaco();
 // Slot for handling the button click
 void tuning::on_pushButton_clicked()
 {
+   // hand->buzz();
     if (!isRunning) { // Only start if the progress is not currently running
            ui->But_Tune->move(170, 280);
            ui->But_Handpiece->move(150,340);
@@ -317,6 +320,7 @@ main->setTuneMode();
 
 void tuning::on_But_Next_clicked()
 {
+   // hand->buzz();
     emit activatemain();
     main->show();
     main->DIATHERMYBUT();

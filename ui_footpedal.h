@@ -116,8 +116,8 @@ public:
         backbut = new QPushButton(footpedal);
         backbut->setObjectName(QString::fromUtf8("backbut"));
         backbut->setGeometry(QRect(40, 20, 111, 91));
-        backbut->setStyleSheet(QString::fromUtf8("image: url(:/images/backarrowimg.png);\n"
-"background-color:transparent;\n"
+        backbut->setStyleSheet(QString::fromUtf8("background-color:transparent;\n"
+"image: url(:/images/backbuttonarrow.png);\n"
 "border:none;"));
         label_7 = new QLabel(footpedal);
         label_7->setObjectName(QString::fromUtf8("label_7"));

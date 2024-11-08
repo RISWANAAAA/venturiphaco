@@ -9,6 +9,7 @@ doctor::doctor(QWidget *parent) :
     ui(new Ui::doctor)
 {
     ui->setupUi(this);
+    hand=new hwhandler;
     //last surgeon update
    setLastSelectedValue();
    move(0,0);
@@ -22,10 +23,6 @@ connect(ui->SelectSurgeon, QOverload<int>::of(&QComboBox::currentIndexChanged), 
 //select surgeon on combo box changed
 connect(ui->SelectSurgeon,&QComboBox::currentTextChanged,this,&doctor::onSurgeonSelectionChanged);
 
-    //databasepath
-    QSqlDatabase mydb = QSqlDatabase::addDatabase("QSQLITE");
-       mydb.setDatabaseName(PATH);
-       mydb.open();
        //current surgeon
 
     QString tabStyle1 = "QTabBar::tab:selected { background-color: black; color: #ffffff; }";
@@ -141,6 +138,7 @@ connect(ui->SelectSurgeon,&QComboBox::currentTextChanged,this,&doctor::onSurgeon
      connect(cFoot,&footswitch::topright,this,&doctor::receivetopright);
      connect(cFoot,&footswitch::bottomleft,this,&doctor::receivebottomleft);
      connect(cFoot,&footswitch::bottomright,this,&doctor::receivetopright);
+     connect(this,&doctor::txfootpedalvalues,cFoot,&footswitch::rxfootpedalmodes);
 }
 
 doctor::~doctor()
@@ -156,7 +154,7 @@ bool doctor::eventFilter(QObject *object, QEvent *event)
       QMouseEvent *k = static_cast<QMouseEvent *> (event);
       if( k->button() == Qt::LeftButton ) {
           key->close();
-          key->resize(481,301);
+          key->resize(401,291);
           key->move(280,320);
           key->show();
 
@@ -171,7 +169,7 @@ bool doctor::eventFilter(QObject *object, QEvent *event)
       QMouseEvent *k = static_cast<QMouseEvent *> (event);
       if( k->button() == Qt::LeftButton ) {
           key->close();
-          key->resize(481,301);
+          key->resize(401,291);
           key->move(280,320);
           key->show();
           ui->lineEdit_2->setFocus();
@@ -186,7 +184,7 @@ bool doctor::eventFilter(QObject *object, QEvent *event)
       QMouseEvent *k = static_cast<QMouseEvent *> (event);
       if( k->button() == Qt::LeftButton ) {
           key->close();
-          key->resize(481,301);
+          key->resize(401,291);
           key->move(280,320);
           key->show();
           ui->lineEdit_3->setFocus();
@@ -201,7 +199,7 @@ bool doctor::eventFilter(QObject *object, QEvent *event)
       QMouseEvent *k = static_cast<QMouseEvent *> (event);
       if( k->button() == Qt::LeftButton ) {
           key->close();
-          key->resize(481,301);
+          key->resize(401,291);
           key->move(280,320);
           key->show();
           ui->lineEdit_4->setFocus();
@@ -217,7 +215,7 @@ bool doctor::eventFilter(QObject *object, QEvent *event)
         QMouseEvent *k = static_cast<QMouseEvent *> (event);
         if( k->button() == Qt::LeftButton ) {
             key->close();
-            key->resize(481,301);
+            key->resize(401,291);
             key->move(280,320);
             key->show();
             ui->lineEdit_10->setFocus();
@@ -232,7 +230,7 @@ bool doctor::eventFilter(QObject *object, QEvent *event)
         QMouseEvent *k = static_cast<QMouseEvent *> (event);
         if( k->button() == Qt::LeftButton ) {
             key->close();
-            key->resize(481,301);
+            key->resize(401,291);
             key->move(280,320);
             key->show();
             ui->lineEdit_8->setFocus();
@@ -247,7 +245,7 @@ bool doctor::eventFilter(QObject *object, QEvent *event)
         QMouseEvent *k = static_cast<QMouseEvent *> (event);
         if( k->button() == Qt::LeftButton ) {
             key->close();
-            key->resize(481,301);
+            key->resize(401,291);
             key->move(280,320);
             key->show();
             ui->lineEdit_9->setFocus();
@@ -264,7 +262,7 @@ bool doctor::eventFilter(QObject *object, QEvent *event)
         QMouseEvent *k = static_cast<QMouseEvent *> (event);
         if( k->button() == Qt::LeftButton ) {
             key->close();
-            key->resize(481,301);
+            key->resize(401,291);
             key->move(280,320);
             key->show();
             ui->lineEdit_13->setFocus();
@@ -279,7 +277,7 @@ bool doctor::eventFilter(QObject *object, QEvent *event)
         QMouseEvent *k = static_cast<QMouseEvent *> (event);
         if( k->button() == Qt::LeftButton ) {
             key->close();
-            key->resize(481,301);
+            key->resize(401,291);
             key->move(280,320);
             key->show();
             ui->lineEdit_14->setFocus();
@@ -294,7 +292,7 @@ bool doctor::eventFilter(QObject *object, QEvent *event)
         QMouseEvent *k = static_cast<QMouseEvent *> (event);
         if( k->button() == Qt::LeftButton ) {
             key->close();
-            key->resize(481,301);
+            key->resize(401,291);
             key->move(280,320);
             key->show();
             ui->lineEdit_15->setFocus();
@@ -311,7 +309,7 @@ bool doctor::eventFilter(QObject *object, QEvent *event)
         QMouseEvent *k = static_cast<QMouseEvent *> (event);
         if( k->button() == Qt::LeftButton ) {
             key->close();
-            key->resize(481,301);
+            key->resize(401,291);
             key->move(280,320);
             key->show();
             ui->lineEdit_16->setFocus();
@@ -326,7 +324,7 @@ bool doctor::eventFilter(QObject *object, QEvent *event)
         QMouseEvent *k = static_cast<QMouseEvent *> (event);
         if( k->button() == Qt::LeftButton ) {
             key->close();
-            key->resize(481,301);
+            key->resize(401,291);
             key->move(280,320);
             key->show();
             ui->lineEdit_17->setFocus();
@@ -341,7 +339,7 @@ bool doctor::eventFilter(QObject *object, QEvent *event)
         QMouseEvent *k = static_cast<QMouseEvent *> (event);
         if( k->button() == Qt::LeftButton ) {
             key->close();
-            key->resize(481,301);
+            key->resize(401,291);
             key->move(280,320);
             key->show();
             ui->lineEdit_18->setFocus();
@@ -359,7 +357,7 @@ bool doctor::eventFilter(QObject *object, QEvent *event)
       QMouseEvent *k = static_cast<QMouseEvent *> (event);
       if( k->button() == Qt::LeftButton ) {
           key->close();
-          key->resize(481,301);
+          key->resize(401,291);
           key->move(280,320);
           key->show();
           ui->lineEdit_5->setFocus();
@@ -375,7 +373,7 @@ bool doctor::eventFilter(QObject *object, QEvent *event)
       QMouseEvent *k = static_cast<QMouseEvent *> (event);
       if( k->button() == Qt::LeftButton ) {
           key->close();
-          key->resize(481,301);
+          key->resize(401,291);
           key->move(280,320);
           key->show();
           ui->lineEdit_7->setFocus();
@@ -391,7 +389,7 @@ bool doctor::eventFilter(QObject *object, QEvent *event)
         QMouseEvent *k = static_cast<QMouseEvent *> (event);
         if( k->button() == Qt::LeftButton ) {
             key->close();
-            key->resize(481,301);
+            key->resize(401,291);
             key->move(280,320);
             key->show();
             ui->lineEdit_12->setFocus();
@@ -407,7 +405,7 @@ bool doctor::eventFilter(QObject *object, QEvent *event)
         QMouseEvent *k = static_cast<QMouseEvent *> (event);
         if( k->button() == Qt::LeftButton ) {
             key->close();
-            key->resize(481,301);
+            key->resize(401,291);
             key->move(280,320);
             key->show();
             ui->lineEdit_11->setFocus();
@@ -424,7 +422,7 @@ bool doctor::eventFilter(QObject *object, QEvent *event)
         QMouseEvent *k = static_cast<QMouseEvent *> (event);
         if( k->button() == Qt::LeftButton ) {
             key->close();
-            key->resize(481,301);
+            key->resize(401,291);
             key->move(280,320);
             key->show();
             ui->lineEdit->setFocus();
@@ -439,7 +437,7 @@ bool doctor::eventFilter(QObject *object, QEvent *event)
           QMouseEvent *k = static_cast<QMouseEvent *> (event);
           if( k->button() == Qt::LeftButton ) {
               key->close();
-              key->resize(481,301);
+              key->resize(401,291);
               key->move(280,320);
               key->show();
               ui->lineEdit_19->setFocus();
@@ -455,7 +453,7 @@ bool doctor::eventFilter(QObject *object, QEvent *event)
           QMouseEvent *k = static_cast<QMouseEvent *> (event);
           if( k->button() == Qt::LeftButton ) {
               key->close();
-              key->resize(481,301);
+              key->resize(401,291);
               key->move(280,320);
               key->show();
               ui->lineEdit_20->setFocus();
@@ -893,23 +891,27 @@ int doctor::decreasebutton(int input)
 void doctor::DiathermyBut()
 {
 
+    hand->buzz();
     ui->tabWidget->setCurrentIndex(0);
 }
 
 void doctor::PhacoBut()
 {
+    hand->buzz();
     ui->tabWidget->setCurrentIndex(1);
 
 }
 
 void doctor::IrrigationAspirationBut()
 {
+    hand->buzz();
     ui->tabWidget->setCurrentIndex(2);
 
 }
 
 void doctor::VitrectomyBut()
 {
+    hand->buzz();
     ui->tabWidget->setCurrentIndex(3);
 
 
@@ -917,6 +919,8 @@ void doctor::VitrectomyBut()
 
 void doctor::BackBut()
 {
+    hand->buzz();
+    emit activatemainwindow();
     this->close();
 }
 
@@ -1020,21 +1024,25 @@ void doctor::clickedtab(int tab1)
 
 void doctor::on_EpinBut_phaco_clicked()
 {
+    hand->buzz();
      ui->tabWidget_2->setCurrentIndex(0);
 }
 
 void doctor::on_QuadBut_phaco_clicked()
 {
+    hand->buzz();
     ui->tabWidget_2->setCurrentIndex(1);
 }
 
 void doctor::on_ChopBut_phaco_clicked()
 {
+    hand->buzz();
     ui->tabWidget_2->setCurrentIndex(2);
 }
 
 void doctor::on_ScupltBut_phaco_clicked()
 {
+    hand->buzz();
     ui->tabWidget_2->setCurrentIndex(3);
 }
 
@@ -1099,10 +1107,7 @@ QString footleft=ui->LeftFoot->currentText();
 QString footright=ui->RightFoot->currentText();
 QString b_left=ui->BottomLFoot->currentText();
 QString b_right=ui->BottomRFoot->currentText();
-// Check and clear existing default connection
-    if (QSqlDatabase::contains("qt_sql_default_connection")) {
-        QSqlDatabase::removeDatabase("qt_sql_default_connection");
-    }
+QString vibrationtext=ui->Vibration_onoff->text();
 
     // Open database connection with a unique name
     QSqlDatabase mydb = QSqlDatabase::addDatabase("QSQLITE", "unique_connection_name");
@@ -1146,8 +1151,9 @@ QString b_right=ui->BottomRFoot->currentText();
     }
 
     query.prepare("UPDATE phacohigh SET "
-                  "diapowmax = :diapowmax, pump = :pump, Epinaspmax = :Epinaspmax, Epinvacmax = :Epinvacmax, "
-                  "Epinpowmax = :Epinpowmax, quadpowmax = :quadpowmax, quadvacmax = :quadvacmax, "
+                  "viberationoff = :viberationoff, "
+                  "diapowmax = :diapowmax, pump = :pump, Epinaspmax = :Epinaspmax, "
+                  "Epinvacmax = :Epinvacmax, Epinpowmax = :Epinpowmax, quadpowmax = :quadpowmax, quadvacmax = :quadvacmax, "
                   "quadaspmax = :quadaspmax, Quadvacmode = :Quadvacmode, Quadpowermethod = :Quadpowermethod, "
                   "Quadpowmode = :Quadpowmode, caspmax = :caspmax, cvacmax = :cvacmax, cpowmax = :cpowmax, "
                   "Chopvacmode = :Chopvacmode, Choppowermethod = :Choppowermethod, Choppowmode = :Choppowmode, "
@@ -1164,6 +1170,7 @@ QString b_right=ui->BottomRFoot->currentText();
     // Bind values to the placeholders
     query.bindValue(":diapowmax", ui->lineEdit_6->text().toInt());
     query.bindValue(":pump", ui->comboBox->currentText());
+ query.bindValue(":viberationoff", ui->Vibration_onoff->text());
     query.bindValue(":Epinaspmax", ui->lineEdit_2->text().toInt());
     query.bindValue(":Epinvacmax", ui->lineEdit_3->text().toInt());
     query.bindValue(":Epinpowmax", ui->lineEdit_4->text().toInt());
@@ -1189,10 +1196,10 @@ QString b_right=ui->BottomRFoot->currentText();
     query.bindValue(":cortexvacmode", ui->VacModeCom_phaco_4->currentText());
     query.bindValue(":polishaspmode", ui->PowMethodCom_phaco_4->currentText());
     query.bindValue(":polishvacmode", ui->VacModeCom_phaco_4->currentText());
-    query.bindValue(":ia1aspmax", ui->lineEdit_5->text().toInt());
-    query.bindValue(":ia1vacmax", ui->lineEdit_7->text().toInt());
-    query.bindValue(":ia2aspmax", ui->lineEdit_12->text().toInt());
-    query.bindValue(":ia2vacmax", ui->lineEdit_11->text().toInt());
+    query.bindValue(":ia1aspmax", ui->lineEdit_12->text().toInt());
+    query.bindValue(":ia1vacmax", ui->lineEdit_11->text().toInt());
+    query.bindValue(":ia2aspmax", ui->lineEdit_5->text().toInt());
+    query.bindValue(":ia2vacmax", ui->lineEdit_7->text().toInt());
     query.bindValue(":vitcutmax", ui->lineEdit->text().toInt());
     query.bindValue(":vitvacmax", ui->lineEdit_19->text().toInt());
     query.bindValue(":vitaspmax", ui->lineEdit_20->text().toInt());
@@ -1212,7 +1219,7 @@ QString b_right=ui->BottomRFoot->currentText();
 
     // Execute the update query
     if (!query.exec()) {
-//        //qDebug() << "Error executing UPDATE query: " << query.lastError().text();
+qDebug() << "Error executing UPDATE query: " << query.lastError().text();
     } else {
 //        //qDebug() << "Data updated successfully.";
         QMessageBox* msgBox = new QMessageBox(QMessageBox::Information, "Info", "Surgeon is updated");
@@ -1251,10 +1258,12 @@ emit sendleftfootvalues(ui->LeftFoot->currentText());
     //transmitval(fpzero,fpone,fptwo,fpthree);
    emit activatemainwindow();
      //qDebug()<<"values are transmitted"<<fpzero<<fpone<<fptwo<<fpthree;
+    emit tx_viberation(ui->Vibration_onoff->text());
+    qDebug()<<"viberation in doctor"<<ui->Vibration_onoff->text();
     this->close();
-    db.close();
+    mydb.close();
 
-    QSqlDatabase::removeDatabase(PATH);
+    QSqlDatabase::removeDatabase("unique_connection_name");
 }
 
 void doctor::pumpvalue()
@@ -1286,56 +1295,52 @@ void doctor::handleDataSaved()
 }
 void doctor::onComboBoxIndexChanged(int index)
 {
-    // Close and remove the existing connection
-    QSqlDatabase db = QSqlDatabase::database();  // Get the default connection
-    db.close();  // Close the connection
-    QSqlDatabase::removeDatabase(QSqlDatabase::defaultConnection);
 
 
-    // Step 2: Check if the connection is open and valid
-    if (!db.isValid() || !db.isOpen()) {
-        db = QSqlDatabase::addDatabase("QSQLITE");
-        db.setDatabaseName(PATH);
+    // Step 2: Create a new database connection
+    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+    db.setDatabaseName(PATH);
 
-        if (!db.open()) {
-            //qDebug() << "Error: connection with database failed:";
-            return;
-        }
+    if (!db.open()) {
+        // Uncomment for debugging
+        // qDebug() << "Error: connection with database failed:";
+        return;
     }
 
     // Step 3: Prepare and execute the SQL query to update the last selected index
     QSqlQuery query(db);
     query.prepare("UPDATE phacohigh SET lastupdate = :index");
     query.bindValue(":index", index);
-    //qDebug() << "Updating last selected index to" << index;
-    QString text=ui->SelectSurgeon->itemText(index);
-    QString send=ui->SelectSurgeon->currentText();
-    emit surgeonNamefoot(send);
+
+    // Get the current text from the combo box
+    QString text = ui->SelectSurgeon->itemText(index);
+    emit surgeonNamefoot(text);
+
     if (!query.exec()) {
-        //qDebug() << "Error updating last selected index:" << query.lastError();
+        // Uncomment for debugging
+        // qDebug() << "Error updating last selected index:" << query.lastError();
     } else {
-        //qDebug() << "Last selected index updated to" << index;
+        // Uncomment for debugging
+        // qDebug() << "Last selected index updated to" << index;
     }
 
+   query.clear();
     db.close();
-    QSqlDatabase::removeDatabase(PATH);
+    // Removed unnecessary database removal; keep connection for future use
 }
 
 void doctor::setLastSelectedValue()
 {
-    // Close and remove the existing connection
-    QSqlDatabase db = QSqlDatabase::database();  // Get the default connection
-    db.close();  // Close the connection
-    QSqlDatabase::removeDatabase(QSqlDatabase::defaultConnection);
 
-    if (!db.isValid()) {
-        db = QSqlDatabase::addDatabase("QSQLITE");
-        db.setDatabaseName(PATH);
 
-        if (!db.open()) {
-            //qDebug() << "Error: connection with database failed:";
-            return;
-        }
+    // Create a new database connection
+    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+    db.setDatabaseName(PATH);
+
+    if (!db.open()) {
+        // Uncomment for debugging
+        // qDebug() << "Error: connection with database failed:";
+        return;
     }
 
     // Prepare and execute the query
@@ -1343,9 +1348,9 @@ void doctor::setLastSelectedValue()
     query.prepare("SELECT lastupdate FROM phacohigh LIMIT 1");
 
     if (!query.exec()) {
-//        //qDebug() << "Error retrieving last index:";
+        // Uncomment for debugging
+        // qDebug() << "Error retrieving last index:";
         db.close();
-        QSqlDatabase::removeDatabase(QSqlDatabase::defaultConnection);
         return;
     }
 
@@ -1353,17 +1358,16 @@ void doctor::setLastSelectedValue()
     if (query.next()) {
         int lastIndex = query.value(0).toInt();
         ui->SelectSurgeon->setCurrentIndex(lastIndex);
-        QString text=ui->SelectSurgeon->currentText();
+        QString text = ui->SelectSurgeon->currentText();
         emit surgeonNamefoot(text);
-//        //qDebug() << "Last selected index set to" << lastIndex;
-    } else {
-//        //qDebug() << "No index found in the database. Verify the data in the table.";
+        // Uncomment for debugging
+        // qDebug() << "Last selected index set to" << lastIndex;
     }
-    if (query.isActive()) {
-        query.finish();  // Finish or close the query before closing the database
-    }
+    query.clear();
+
+    // No need to call query.finish() here; it's automatically cleaned up when going out of scope
     db.close();
-    QSqlDatabase::removeDatabase(PATH);
+    // No need to remove the database connection here; just keep the connection for future use if needed
 }
 
 void doctor::receivingvalueffs(int &val0, int &val1,int &val2,int &val3)
@@ -1379,31 +1383,23 @@ void doctor::receivingvalueffs(int &val0, int &val1,int &val2,int &val3)
 void doctor::onSurgeonSelectionChanged(const QString &surgeonName)
 {
 
-    // Close and remove the existing connection
-    QSqlDatabase db = QSqlDatabase::database();  // Get the default connection
-    db.close();  // Close the connection
-    QSqlDatabase::removeDatabase(QSqlDatabase::defaultConnection);
-
-    if (!db.isValid()) {
-        db = QSqlDatabase::addDatabase("QSQLITE");
-        db.setDatabaseName(PATH); // Ensure PATH is correctly set
-    }
-
-    if (!db.isOpen()) {
-        if (!db.open()) {
-//            //qDebug() << "Failed to open database. Error:" << db.lastError().text();
-            return;
-        } else {
-//            //qDebug() << "Database connection opened successfully.";
-        }
+    QSqlDatabase db = QSqlDatabase::database("qt_sql_default_connection", false);
+    if (!QSqlDatabase::contains("qt_sql_default_connection")) {
+        QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE", "qt_sql_default_connection");
+        db.setDatabaseName(PATH);
     } else {
-//        //qDebug() << "Database is already open.";
+        QSqlDatabase db = QSqlDatabase::database("qt_sql_default_connection");
     }
 
+
+    if (!db.isOpen() && !db.open()) {
+        qDebug() << "Failed to open database. Error:" << db.lastError().text();
+        return;
+    }
     // Prepare a single query to fetch all required data
     QSqlQuery query(db);
     query.prepare(
-          "SELECT diapowmax, pump, Epinaspmax, Epinvacmax, Epinpowmax, "
+          "SELECT diapowmax, pump, viberationoff, Epinaspmax, Epinvacmax, Epinpowmax, "
           "quadpowmax, quadvacmax, quadaspmax, Quadvacmode, Quadpowermethod, Quadpowmode, "
           "caspmax, cvacmax, cpowmax, Chopvacmode, Choppowermethod, Choppowmode, "
           "saspmax, svacmax, spowmax, Sculptvacmode, Sculptpowermethod, Sculptpowmode, "
@@ -1430,7 +1426,12 @@ void doctor::onSurgeonSelectionChanged(const QString &surgeonName)
         int phacoPowerMax = query.value("diapowmax").toInt();
         ui->progressBar->setValue(phacoPowerMax);
         QString pump = query.value("pump").toString();
-
+        QString vib_onoff = query.value("viberationoff").toString();
+   if(vib_onoff == "Viberation ON"){
+       ui->lab_vibonoff->setStyleSheet("image: url(:/images/vibrationon.png);border:2px solid skyblue;border-radius:20px;");
+   }else if(vib_onoff == "Viberation OFF"){
+       ui->lab_vibonoff->setStyleSheet("image: url(:/images/vibrationoff.png);border:2px solid skyblue;border-radius:20px;");
+   }
         // US1 (Epinucleus) parameters
         int us1power = query.value("Epinpowmax").toInt();
         int us1vacmax = query.value("Epinvacmax").toInt();
@@ -1537,10 +1538,10 @@ void doctor::onSurgeonSelectionChanged(const QString &surgeonName)
         ui->PowMethodCom_phaco_4->setCurrentText(us4powermethod);
 
         // Update IA1 and IA2 UI components
-        ui->lineEdit_7->setText(QString::number(ia1vacmax));
-        ui->lineEdit_5->setText(QString::number(ia1aspmax));
-        ui->lineEdit_11->setText(QString::number(ia2vacmax));
-        ui->lineEdit_12->setText(QString::number(ia2aspmax));
+        ui->lineEdit_7->setText(QString::number(ia2vacmax));
+        ui->lineEdit_5->setText(QString::number(ia2aspmax));
+        ui->lineEdit_11->setText(QString::number(ia1vacmax));
+        ui->lineEdit_12->setText(QString::number(ia1aspmax));
         ui->VacMode1_iacom->setCurrentText(ia1mode);
         ui->VacMode2_iacom->setCurrentText(ia2mode);
 
@@ -1550,6 +1551,7 @@ void doctor::onSurgeonSelectionChanged(const QString &surgeonName)
         ui->lineEdit_19->setText(QString::number(vitvacmax));
         ui->CutMode_vitCom->setCurrentText(vitcutmode);
         ui->VacMode_VitCom->setCurrentText(vitvacmode);
+        ui->Vibration_onoff->setText(vib_onoff);
 
          emit leftfoot(ui->LeftFoot->currentText());
         emit rightfoot(ui->RightFoot->currentText());
@@ -1559,21 +1561,18 @@ void doctor::onSurgeonSelectionChanged(const QString &surgeonName)
       cFoot->receivelineEditval(footpedalzero,footpedalone,footpedaltwo,footpedalthree);
   emit activatemainwindow();
 
-
-        if (query.isActive()) {
-            query.finish();  // Finish or close the query before closing the database
-        }
-    } else {
-        //qDebug() << "No data found for surgeon:" << surgeonName;
+       query.clear();
+    } if (db.isOpen()) {
+        db.close();  // This closes the connection safely.
     }
-    db.close();
-    QSqlDatabase::removeDatabase(PATH);
+    QSqlDatabase::removeDatabase("qt_sql_default_connection");
 }
 
 void doctor::on_pushButton_2_clicked()
 {
     cFoot->show();
     QString text=ui->SelectSurgeon->currentText();
+    emit txfootpedalvalues(ui->LeftFoot->currentText(),ui->RightFoot->currentText(),ui->BottomLFoot->currentText(),ui->BottomRFoot->currentText());
     emit surgeonNamefoot(text);
 
 }
@@ -1596,4 +1595,17 @@ void doctor::receivetopright(const QString &text)
 void doctor::receivebottomright(const QString &text)
 {
     ui->BottomRFoot->setCurrentText(text);
+}
+
+void doctor::on_Vibration_onoff_clicked()
+{
+    vib_onoff=!vib_onoff;
+    if(vib_onoff){
+        ui->Vibration_onoff->setText("Vibration ON");
+        ui->lab_vibonoff->setStyleSheet("image: url(:/images/vibrationon.png);border:2px solid skyblue;border-radius:20px;");
+    }else{
+        ui->Vibration_onoff->setText("Vibration OFF");
+        ui->lab_vibonoff->setStyleSheet("image: url(:/images/vibrationoff.png);border:2px solid skyblue;border-radius:20px;");
+
+    }
 }

@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 
-#include "settings.h"
+//#include "settings.h"
 
 #include "keypad.h"
 #include <QMainWindow>
@@ -49,7 +49,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void footpedalbeep();
-
+    void beepsound();
 void push(const QString &surgeonName);
 void changesvaluesql();
 void changebuttonstyle();
@@ -144,11 +144,12 @@ void speedofthelabe(QLabel *label);
 void setTuneMode();
 void enableButtons(bool powerOn);
    void setLastSelectedValue();
+   void rx_viberationvalue(const QString &text);
 public slots:
    int readsensorvalue();
    void footpedalvalues(int &value1,int &value2,int &value3,int &value4);
+   void rx_defaultvalues(int &value1,int &value2,int &value3,int &value4);
    void disablefunction();
-
  void onComboBoxIndexChanged(int index);
  void onPdmModeSelected(int gpio);
  void onPdmModeSelected1(int gpio);
@@ -431,6 +432,14 @@ int nfpzero;
 int nfpone;
 int nfptwo;
 int nfpthree;
+int diacount=0;
+int us1count=0;
+int us2count=0;
+int us3count=0;
+int us4count=0;
+int ia1count=0;
+int ia2count=0;
+int vitcount=0;
 
 QMessageBox *message;
 QMessageBox *messageline;
@@ -504,6 +513,7 @@ QString vus2;
 QString vus3;
 QString vus4;
 QString vvit;
+QString vibon;
 
 
 qint64 elap=0;

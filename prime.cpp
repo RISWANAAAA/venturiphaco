@@ -15,7 +15,7 @@ prime::prime(QWidget *parent) :
     move(0,0);
     m=new MainWindow;
     sur=new doctor;
-    set=new settings;
+
     hand=new hwhandler;
     tune=new tuning;
     ui->progressBar_2->setRange(0,100);
@@ -23,8 +23,8 @@ prime::prime(QWidget *parent) :
                          "    font-family: Ubuntu;"
                          "    font-size: 40pt;"
                          "    background-color: transparent;"
-                         "    image: url(:/images/selectedbut1.png);"
-                         "    color: white;"
+                         "    image: url(:/images/tuneddd.png);"
+                         "    color: black;"
                          "    border-radius: 20px;" // Adjust the radius as needed
                          "}"
                          "QPushButton:focus {"
@@ -84,27 +84,70 @@ prime::prime(QWidget *parent) :
      on_Tune_but_clicked();
 
 
-
 }
 
 prime::~prime()
 {
     delete ui;
 }
+bool prime::eventFilter(QObject *watched, QEvent *event)
+{
+    if (event->type() == QEvent::TouchBegin || event->type() == QEvent::TouchUpdate || event->type() == QEvent::TouchEnd) {
+        QTouchEvent *touchEvent = static_cast<QTouchEvent *>(event);
+        QList<QTouchEvent::TouchPoint> points = touchEvent->touchPoints();
+
+        foreach (const QTouchEvent::TouchPoint &point, points) {
+            if (point.state() == Qt::TouchPointPressed) {
+                qDebug() << "Touch detected at position: " << point.pos();
+                // You can perform actions here based on touch events
+            }
+            if (point.state() == Qt::TouchPointReleased) {
+                qDebug() << "Touch released at position: " << point.pos();
+            }
+        }
+    }
+    return QWidget::eventFilter(watched, event);  // Allow default processing
+}
+
 void prime::click()
 {
     QString styleSheet = "QPushButton {"
                          "    font-family: Ubuntu;"
                          "    font-size: 20pt;"
-                         "    image: url(:/images/unselectedbutton.png);"
+                         "    image: url(:/images/tuneddd.png);"
                          "    background-color: transparent;"
                          "    color: white;"
                          "    border-radius: 40px;" // Adjust the radius as needed
+            "width: 401;"
+"height:211;"
                          "}"
                          "QPushButton:focus {"
                          "    outline: none;"
                          "    border: none;"
                          "}";
+    QString style="QLabel{"
+                  "image: url(:/images/prime.png);"
+            "background-color:transparent;"
+                  "border:none;"
+            "width:71;"
+            "height:71;"
+                  "}";
+    QString style1="QLabel{"
+                  "image: url(:/images/wifi.png);"
+            "background-color:transparent;"
+                  "border:none;"
+                   "width:71;"
+                   "height:71;"
+                  "}";
+
+    QString style2="QLabel{"
+                  "image: url(:/images/clean.png);"
+            "background-color:transparent;"
+                  "border:none;"
+                   "width:71;"
+                   "height:71;"
+                  "}";
+
 
 
    ui->prime1_but->setStyleSheet(styleSheet);
@@ -113,7 +156,9 @@ void prime::click()
    ui->label->show();
    ui->label_2->show();
    ui->label_3->show();
-
+   ui->label->setStyleSheet(style);
+   ui->label_2->setStyleSheet(style1);
+    ui->label_3->setStyleSheet(style2);
 
 }
 void prime::current(int tab)
@@ -121,9 +166,11 @@ void prime::current(int tab)
     QString styleSheet = "QPushButton {"
                          "    font-family: Ubuntu;"
                          "    font-size: 40pt;"
-                         "    image: url(:/images/selectedbut1.png);"
+                         "    image: url(:/images/tuneddd.png);"
                          "    background-color: transparent;"
                          "    color: white;"
+                         "width: 401;"
+            "height:211;"
                          //"    border-radius: 20px;" // Uncomment if needed
                          "}"
                          "QPushButton:focus {"
@@ -134,11 +181,13 @@ void prime::current(int tab)
     QString styleSheet1 = "QPushButton {"
                           "    font-family: Ubuntu;"
                           "    font-size: 20pt;"
-                          "    image: url(:/images/unselectedbutton.png);"
+                          "    image: url(:/images/primeddd.png);"
                           "    background-color: transparent;"
                           "    color: white;"
                           //"    border-radius: 40px;" // Uncomment if needed
                           "    font-weight: bold;"  // Corrected from 'font: bold;'
+            "width: 401;"
+"height:211;"
                           "}"
                           "QPushButton:focus {"
                           "    outline: none;"
@@ -148,17 +197,23 @@ void prime::current(int tab)
                   "image: url(:/images/prime.png);"
             "background-color:transparent;"
                   "border:none;"
+            "width:71;"
+            "height:71;"
                   "}";
     QString style1="QLabel{"
                   "image: url(:/images/wifi.png);"
             "background-color:transparent;"
                   "border:none;"
+                   "width:71;"
+                   "height:71;"
                   "}";
 
     QString style2="QLabel{"
                   "image: url(:/images/clean.png);"
             "background-color:transparent;"
                   "border:none;"
+                   "width:71;"
+                   "height:71;"
                   "}";
 
 
@@ -245,20 +300,31 @@ void prime::Prime()
     QString styleSheet = "QPushButton {"
                          "    font-family: Ubuntu;"
                          "    font-size: 20pt;"
-                         "    image: url(:/images/unselectedbutton.png);"
+                         "    image: url(:/images/primeddd.png);"
                          "    background-color: transparent;"
                          "    color: white;"
                          //"    border-radius: 20px;" // Uncomment if needed
+
                          "}"
                          "QPushButton:focus {"
                          "    outline: none;"
                          "    border: none;"
                          "}";
+    QString style="QLabel{"
+                  "image: url(:/images/prime.png);"
+            "background-color:transparent;"
+                  "border:none;"
+            "width:71;"
+            "height:71;"
+                  "}";
+    ui->label->setStyleSheet(style);
+
     ui->tabWidget->setCurrentIndex(0);
     ui->prime1_but->raise();
    timer1->stop();
    ui->Tune_but->setStyleSheet(styleSheet);
    ui->clean_but->setStyleSheet(styleSheet);
+   ui->label->raise();
 }
 
 void prime::Tune()
@@ -271,18 +337,29 @@ void prime::on_Tune_but_clicked()
     QString styleSheet = "QPushButton {"
                          "    font-family: Ubuntu;"
                          "    font-size: 20pt;"
-                         "    image: url(:/images/unselectedbutton.png);"
+                         "    image: url(:/images/primeddd.png);"
                          "    background-color: transparent;"
                          "    color: white;"
                          //"    border-radius: 20px;" // Uncomment if needed
+
                          "}"
                          "QPushButton:focus {"
                          "    outline: none;"
                          "    border: none;"
                          "}";
+    QString style1="QLabel{"
+                  "image: url(:/images/wifi.png);"
+            "background-color:transparent;"
+                  "border:none;"
+                   "width:71;"
+                   "height:71;"
+                  "}";
+    ui->label_2->setStyleSheet(style1);
+
     ui->tabWidget->setCurrentIndex(1);
     ui->prime1_but->setStyleSheet(styleSheet);
     ui->clean_but->setStyleSheet(styleSheet);
+    tune->updatehandpieceStatus();
 
 
 }
@@ -292,15 +369,24 @@ void prime::Clean()
     QString styleSheet = "QPushButton {"
                          "    font-family: Ubuntu;"
                          "    font-size: 20pt;"
-                         "    image: url(:/images/unselectedbutton.png);"
+                         "    image: url(:/images/primeddd.png);"
                          "    background-color: transparent;"
                          "    color: white;"
                          //"    border-radius: 20px;" // Uncomment if needed
+
                          "}"
                          "QPushButton:focus {"
                          "    outline: none;"
                          "    border: none;"
                          "}";
+    QString style2="QLabel{"
+                  "image: url(:/images/clean.png);"
+            "background-color:transparent;"
+                  "border:none;"
+                   "width:71;"
+                   "height:71;"
+                  "}";
+    ui->label_3->setStyleSheet(style2);
 
     ui->tabWidget->setCurrentIndex(2);
    timer1->stop();
@@ -316,6 +402,7 @@ void prime::Start_Tune()
 }
 void prime::on_start_prime_but_2_clicked()
 {
+    hand->buzz();
     ui->start_check_2->setChecked(false);
     ui->motor_Check_2->setChecked(false);
     ui->wait_Check_2->setChecked(false);
@@ -329,6 +416,7 @@ void prime::on_start_prime_but_2_clicked()
 
 void prime::on_begin_clean_but_2_clicked()
 {
+    hand->buzz();
     ui->start_check_2->setChecked(false);
     ui->motor_Check_2->setChecked(false);
     ui->wait_Check_2->setChecked(false);
@@ -356,32 +444,6 @@ on_Tune_but_clicked();
     ui->Tune_but->setStyleSheet(styleSheet);
 }
 
-void prime::on_pushButton_6_clicked()
-{
-    QMessageBox msgBox;
-    msgBox.setWindowTitle("Info"); // Title of the message box
-    msgBox.setText("Tune is not completed. Do you want to continue?");
-    msgBox.setIcon(QMessageBox::Question); // Set icon to question mark
-    msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No); // Yes and No buttons
-    msgBox.setDefaultButton(QMessageBox::No); // Default button
-
-    // Apply stylesheet to change background color to gray
-    msgBox.setStyleSheet("QMessageBox { background-color: gray; color: white; }"
-                         "QPushButton { background-color: #444; color: white; border: 1px solid #666;width:91;height:51 }"
-                         "QPushButton:hover { background-color: #666; }");
-
-    // Show the message box and get the user's response
-    QMessageBox::StandardButton reply = static_cast<QMessageBox::StandardButton>(msgBox.exec());
-
-    // Check the user's response
-    if (reply == QMessageBox::Yes) {
-        m->show();
-        m->DIATHERMYBUT();
-    }
-
-
-
-}
 
 void prime::on_pushButton_8_clicked()
 {
@@ -399,8 +461,4 @@ void prime::on_pushButton_8_clicked()
 }
 
 
-void prime::on_pushButton_clicked()
-{
-//    tune->circularporgressbar();
-//    tune->updateProgress();
-}
+

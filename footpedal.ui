@@ -260,8 +260,8 @@ border:3px solid black;</string>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">image: url(:/images/backarrowimg.png);
-background-color:transparent;
+    <string notr="true">background-color:transparent;
+image: url(:/images/backbuttonarrow.png);
 border:none;</string>
    </property>
    <property name="text">

@@ -5,7 +5,7 @@
 #include "mainwindow.h"
 #include<QTimer>
 #include "doctor.h"
-#include "settings.h"
+//#include "settings.h"
 #include"hwhandler.h"
 #include"tuning.h"
 class MainWindow;
@@ -32,6 +32,8 @@ public:
     void done();
     void motoron();
     void motoroff();
+protected:
+    bool eventFilter(QObject *watched, QEvent *event) override; // Declaration of eventFilter
 
 
 public slots:
@@ -60,13 +62,12 @@ private slots:
 
     void on_pushButton_5_clicked();
 
-    void on_pushButton_6_clicked();
 
     void on_pushButton_8_clicked();
 
     void on_Tune_but_clicked();
 
-    void on_pushButton_clicked();
+
 
 private:
     Ui::prime *ui;

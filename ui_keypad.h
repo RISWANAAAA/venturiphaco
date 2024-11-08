@@ -40,84 +40,84 @@ public:
     {
         if (keypad->objectName().isEmpty())
             keypad->setObjectName(QString::fromUtf8("keypad"));
-        keypad->resize(292, 241);
+        keypad->resize(402, 288);
         keypad->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
         pushButton_5 = new QPushButton(keypad);
         pushButton_5->setObjectName(QString::fromUtf8("pushButton_5"));
-        pushButton_5->setGeometry(QRect(150, 20, 41, 41));
+        pushButton_5->setGeometry(QRect(205, 36, 51, 41));
         pushButton_5->setStyleSheet(QString::fromUtf8("border:none;\n"
 "background-color:transparent;"));
         pushButton_11 = new QPushButton(keypad);
         pushButton_11->setObjectName(QString::fromUtf8("pushButton_11"));
-        pushButton_11->setGeometry(QRect(220, 80, 51, 31));
+        pushButton_11->setGeometry(QRect(310, 40, 51, 31));
         pushButton_11->setStyleSheet(QString::fromUtf8("border:none;\n"
 "background-color:transparent;"));
         pushButton_14 = new QPushButton(keypad);
         pushButton_14->setObjectName(QString::fromUtf8("pushButton_14"));
-        pushButton_14->setGeometry(QRect(220, 20, 51, 31));
+        pushButton_14->setGeometry(QRect(37, 226, 51, 41));
         pushButton_14->setStyleSheet(QString::fromUtf8("border:none;\n"
 "background-color:transparent;"));
         pushButton_3 = new QPushButton(keypad);
         pushButton_3->setObjectName(QString::fromUtf8("pushButton_3"));
-        pushButton_3->setGeometry(QRect(150, 130, 51, 41));
+        pushButton_3->setGeometry(QRect(205, 163, 51, 41));
         pushButton_3->setStyleSheet(QString::fromUtf8("border:none;\n"
 "background-color:transparent;"));
         pushButton_2 = new QPushButton(keypad);
         pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
-        pushButton_2->setGeometry(QRect(160, 80, 31, 31));
+        pushButton_2->setGeometry(QRect(205, 98, 51, 41));
         pushButton_2->setStyleSheet(QString::fromUtf8("border:none;\n"
 "background-color:transparent;"));
         pushButton = new QPushButton(keypad);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        pushButton->setGeometry(QRect(80, 130, 61, 41));
+        pushButton->setGeometry(QRect(123, 163, 51, 41));
         pushButton->setStyleSheet(QString::fromUtf8("border:none;\n"
 "background-color:transparent;"));
         pushButton_4 = new QPushButton(keypad);
         pushButton_4->setObjectName(QString::fromUtf8("pushButton_4"));
-        pushButton_4->setGeometry(QRect(90, 80, 41, 31));
+        pushButton_4->setGeometry(QRect(123, 98, 51, 41));
         pushButton_4->setStyleSheet(QString::fromUtf8("border:none;\n"
 "background-color:transparent;"));
         pushButton_6 = new QPushButton(keypad);
         pushButton_6->setObjectName(QString::fromUtf8("pushButton_6"));
-        pushButton_6->setGeometry(QRect(20, 80, 51, 31));
+        pushButton_6->setGeometry(QRect(37, 98, 51, 41));
         pushButton_6->setStyleSheet(QString::fromUtf8("border:none;\n"
 "background-color:transparent;"));
         pushButton_13 = new QPushButton(keypad);
         pushButton_13->setObjectName(QString::fromUtf8("pushButton_13"));
-        pushButton_13->setGeometry(QRect(90, 180, 51, 41));
+        pushButton_13->setGeometry(QRect(122, 226, 51, 41));
         pushButton_13->setStyleSheet(QString::fromUtf8("border:none;\n"
 "background-color:transparent;"));
         pushButton_10 = new QPushButton(keypad);
         pushButton_10->setObjectName(QString::fromUtf8("pushButton_10"));
-        pushButton_10->setGeometry(QRect(90, 20, 41, 41));
+        pushButton_10->setGeometry(QRect(123, 36, 51, 41));
         pushButton_10->setStyleSheet(QString::fromUtf8("border:none;\n"
 "background-color:transparent;"));
         pushButton_8 = new QPushButton(keypad);
         pushButton_8->setObjectName(QString::fromUtf8("pushButton_8"));
-        pushButton_8->setGeometry(QRect(20, 20, 51, 41));
+        pushButton_8->setGeometry(QRect(37, 36, 51, 41));
         pushButton_8->setStyleSheet(QString::fromUtf8("border:none;\n"
 "background-color:transparent;"));
         pushButton_12 = new QPushButton(keypad);
         pushButton_12->setObjectName(QString::fromUtf8("pushButton_12"));
-        pushButton_12->setGeometry(QRect(30, 130, 31, 41));
+        pushButton_12->setGeometry(QRect(37, 162, 51, 41));
         pushButton_12->setStyleSheet(QString::fromUtf8("border:none;\n"
 "background-color:transparent;\n"
 ""));
         pushButton_15 = new QPushButton(keypad);
         pushButton_15->setObjectName(QString::fromUtf8("pushButton_15"));
-        pushButton_15->setGeometry(QRect(210, 130, 61, 31));
+        pushButton_15->setGeometry(QRect(310, 110, 61, 31));
         pushButton_15->setStyleSheet(QString::fromUtf8("border:none;\n"
 "background-color:transparent;"));
         pushButton_16 = new QPushButton(keypad);
         pushButton_16->setObjectName(QString::fromUtf8("pushButton_16"));
-        pushButton_16->setGeometry(QRect(210, 190, 61, 21));
+        pushButton_16->setGeometry(QRect(310, 190, 61, 21));
         pushButton_16->setStyleSheet(QString::fromUtf8("border:none;\n"
 "background-color:transparent;"));
         label = new QLabel(keypad);
         label->setObjectName(QString::fromUtf8("label"));
-        label->setGeometry(QRect(0, 0, 291, 241));
-        label->setStyleSheet(QString::fromUtf8("image: url(:/images/int.png);\n"
-"background-color:transparent;"));
+        label->setGeometry(QRect(0, 0, 401, 291));
+        label->setStyleSheet(QString::fromUtf8("image: url(:/images/keypad9.png);\n"
+"background-color: rgb(15, 186, 205);"));
         label->raise();
         pushButton_11->raise();
         pushButton_8->raise();

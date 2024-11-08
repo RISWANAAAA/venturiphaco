@@ -45,7 +45,7 @@ QPushButton:focus {
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">image: url(:/images/nextarrow.png);
+    <string notr="true">image: url(:/images/nextbutton.png);
 background-color:transparent;
 border:none;</string>
    </property>
@@ -64,6 +64,7 @@ border:none;</string>
    </property>
    <property name="styleSheet">
     <string notr="true">background-color:transparent;
+image: url(:/images/notconnected.png);
 border:none;</string>
    </property>
    <property name="text">
@@ -78,6 +79,9 @@ border:none;</string>
      <width>131</width>
      <height>141</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
    </property>
    <property name="text">
     <string>PushButton</string>

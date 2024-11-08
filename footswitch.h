@@ -20,6 +20,7 @@ public:
     void setValues();
     void SurgeonFoot(const QString &surgeon);
     void receivelineEditval(int &val1,int &val2,int &val3,int &val4);
+    void rxfootpedalmodes(const QString &topleft,const QString &topright,const QString &bottomleft,const QString &bottomright);
 protected:
     void paintEvent(QPaintEvent *event) override;
 private slots:

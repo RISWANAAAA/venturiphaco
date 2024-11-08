@@ -26,6 +26,7 @@ footswitch::footswitch(QWidget *parent) :
     ui->Bottom_leftcom->hide();
     ui->Bottom_rightcom->hide();
     ui->label_2->hide();
+      setValues();
 }
 
 footswitch::~footswitch()
@@ -59,7 +60,7 @@ void footswitch::setValues() {
 
 
 void footswitch::paintEvent(QPaintEvent *event) {
-    if (showingpaint) {
+    //if (showingpaint) {
         QPainter painter(this);
 
         painter.setRenderHint(QPainter::Antialiasing);
@@ -78,7 +79,7 @@ void footswitch::paintEvent(QPaintEvent *event) {
         };
 
         // Part 1
-        painter.setBrush(QColor("#FFB521"));
+        painter.setBrush(QColor("#9A99F2"));
         painter.drawPie(rect, startAngle, spanAngle * part1Value / 100);
 
         // Calculate and draw text for part 1
@@ -87,7 +88,7 @@ void footswitch::paintEvent(QPaintEvent *event) {
         painter.drawText(part1TextPos, QString::number(part1Value) + "%");
 
         // Part 2
-        painter.setBrush(QColor("#FF8103"));
+        painter.setBrush(QColor("#805EBF"));
         int part2StartAngle = startAngle + spanAngle * part1Value / 100;
         painter.drawPie(rect, part2StartAngle, spanAngle * part2Value / 100);
 
@@ -97,7 +98,7 @@ void footswitch::paintEvent(QPaintEvent *event) {
         painter.drawText(part2TextPos, QString::number(part2Value) + "%");
 
         // Part 3
-        painter.setBrush(QColor("#a3842c"));
+        painter.setBrush(QColor("#60308C"));
         int part3StartAngle = part2StartAngle + spanAngle * part2Value / 100;
         painter.drawPie(rect, part3StartAngle, spanAngle * part3Value / 100);
 
@@ -107,7 +108,7 @@ void footswitch::paintEvent(QPaintEvent *event) {
         painter.drawText(part3TextPos, QString::number(part3Value) + "%");
 
         // Part 4
-        painter.setBrush(QColor("#ffb8b1"));
+        painter.setBrush(QColor("#310055"));
         int part4StartAngle = part3StartAngle + spanAngle * part3Value / 100;
         painter.drawPie(rect, part4StartAngle, spanAngle * part4Value / 100);
 
@@ -115,7 +116,7 @@ void footswitch::paintEvent(QPaintEvent *event) {
         QPointF part4TextPos = getTextPosition(part4StartAngle, spanAngle, part4Value);
         painter.setPen(Qt::black);
         painter.drawText(part4TextPos, QString::number(part4Value) + "%");
-    }
+   // }
 }
 
 void footswitch::SurgeonFoot(const QString &surgeon)
@@ -131,6 +132,19 @@ void footswitch::receivelineEditval(int &val1, int &val2, int &val3,int &val4)
     ui->lineEdit_3->setText(QString::number(val3));
     ui->lineEdit_4->setText(QString::number(val4));
 
+
+}
+
+void footswitch::rxfootpedalmodes(const QString &topleft, const QString &topright, const QString &bottomleft, const QString &bottomright)
+{
+    ui->But_topleft->setText(topleft);
+    ui->But_topright->setText(topright);
+    ui->But_bottomleft->setText(bottomleft);
+    ui->But_bottomright->setText(bottomright);
+    ui->LeftFoot_com->setCurrentText(topleft);
+    ui->Right_footcom->setCurrentText(topright);
+    ui->Bottom_leftcom->setCurrentText(bottomleft);
+    ui->Bottom_rightcom->setCurrentText(bottomright);
 
 }
 void footswitch::on_But_save_clicked()
@@ -173,7 +187,7 @@ void footswitch::on_But_save_clicked()
 
     }
     db.close();
-    QSqlDatabase::removeDatabase(PATH);
+    QSqlDatabase::removeDatabase("myConnection");
 this->close();
 }
 
@@ -277,24 +291,24 @@ void footswitch::on_pushButton_clicked()
 void footswitch::on_But_footswitch_clicked()
 {
   showingpaint=!showingpaint;
-    if(showingpaint){
-    ui->label->setStyleSheet("border:none;background-color:transparent;image: url(:/images/footswitch.png);");
-    ui->label->move(-30,10);
-    ui->label->resize(531,731);
-    ui->label_2->show();
-    ui->label_2->move(400,350);
-    ui->label_2->resize(71,61);
-    ui->But_footswitch->move(100,310);
-    ui->But_footswitch->resize(271,111);
-    ui->But_topleft->move(330,230);//ok
-    ui->But_topleft->resize(61,71);
-    ui->But_topright->move(330,440);
-    ui->But_topright->resize(61,71);
-    ui->But_bottomleft->move(200,230);//ok
-    ui->But_bottomleft->resize(61,71);
-    ui->But_bottomright->move(205,440);//ok
-    ui->But_bottomright->resize(61,71);
-    setValues();
+   if(showingpaint){
+//    ui->label->setStyleSheet("border:none;background-color:transparent;image: url(:/images/footswitch.png);");
+//    ui->label->move(-30,10);
+//    ui->label->resize(531,731);
+//    ui->label_2->show();
+//    ui->label_2->move(400,350);
+//    ui->label_2->resize(71,61);
+//    ui->But_footswitch->move(100,310);
+//    ui->But_footswitch->resize(271,111);
+//    ui->But_topleft->move(330,230);//ok
+//    ui->But_topleft->resize(61,71);
+//    ui->But_topright->move(330,440);
+//    ui->But_topright->resize(61,71);
+//    ui->But_bottomleft->move(200,230);//ok
+//    ui->But_bottomleft->resize(61,71);
+//    ui->But_bottomright->move(205,440);//ok
+//    ui->But_bottomright->resize(61,71);
+
     }
 
 
@@ -306,7 +320,12 @@ void footswitch::on_But_topleft_clicked()
     ui->Right_footcom->hidePopup();
     ui->Bottom_rightcom->hidePopup();
     ui->Bottom_leftcom->hidePopup();
-    emit topleft(ui->LeftFoot_com->currentText());
+    // Connect to the signal that triggers when the user selects an option from the combo box
+    connect(ui->LeftFoot_com, &QComboBox::currentTextChanged, this, [this](const QString &text) {
+        emit topleft(text);
+        ui->But_topleft->setText(ui->LeftFoot_com->currentText());
+    });
+
 
 
 }
@@ -317,7 +336,12 @@ void footswitch::on_But_topright_clicked()
     ui->Bottom_rightcom->hidePopup();
     ui->Bottom_leftcom->hidePopup();
     ui->LeftFoot_com->hidePopup();
-    emit topright(ui->Right_footcom->currentText());
+   // emit topright(ui->Right_footcom->currentText());
+    connect(ui->Right_footcom, &QComboBox::currentTextChanged, this, [this](const QString &text) {
+        emit topright(text);
+        ui->But_topright->setText(ui->Right_footcom->currentText());
+    });
+
 
 }
 
@@ -327,7 +351,10 @@ void footswitch::on_But_bottomleft_clicked()
       ui->Right_footcom->hidePopup();
          ui->LeftFoot_com->hidePopup();
           ui->Bottom_rightcom->hidePopup();
-          emit bottomleft(ui->Bottom_leftcom->currentText());
+          connect(ui->Bottom_leftcom, QOverload<const QString &>::of(&QComboBox::currentTextChanged), this, [this](const QString &text) {
+              emit bottomleft(text);
+              ui->But_bottomleft->setText(ui->Bottom_leftcom->currentText());
+          });
 }
 
 void footswitch::on_But_bottomright_clicked()
@@ -336,7 +363,11 @@ void footswitch::on_But_bottomright_clicked()
       ui->Right_footcom->hidePopup();
          ui->LeftFoot_com->hidePopup();
           ui->Bottom_rightcom->showPopup();
-          emit bottomright(ui->Bottom_rightcom->currentText());
+          connect(ui->Bottom_rightcom, &QComboBox::currentTextChanged, this, [this](const QString &text) {
+              emit bottomright(text);
+              ui->But_bottomright->setText(ui->Bottom_rightcom->currentText());
+          });
+
 }
 
 void footswitch::on_But_save_2_clicked()
@@ -359,26 +390,29 @@ void footswitch::on_But_save_2_clicked()
     }
 
     // Prepare the new values to be updated
-    int dfp0 = 0; // Replace with your actual new value
-    int dfp1 = 100; // Replace with your actual new value
-    int dfp2 = 1334; // Replace with your actual new value
-    int dfp3 = 2338; // Replace with your actual new value
+    int dfp0 =4; // Replace with your actual new value
+    int dfp1 =4; // Replace with your actual new value
+    int dfp2 =46; // Replace with your actual new value
+    int dfp3 =46; // Replace with your actual new value
 
     // Prepare the UPDATE query to save the new values
     QSqlQuery query(db);
-    query.prepare("UPDATE phacohigh SET dfp0 = :dfp0, dfp1 = :dfp1, dfp2 = :dfp2, dfp3 = :dfp3 WHERE surgeon = :surgeon");
-    query.bindValue(":dfp0", dfp0);  // Bind the new values
-    query.bindValue(":dfp1", dfp1);
-    query.bindValue(":dfp2", dfp2);
-    query.bindValue(":dfp3", dfp3);
-    query.bindValue(":surgeon", surgeonName);
-
-    // Execute the UPDATE query
-    if (!query.exec()) {
-        qWarning() << "Error: Could not execute UPDATE query." << query.lastError().text();
+    if (!query.prepare("UPDATE phacohigh SET fzero = :value1, fone = :value2, ftwo = :value3, fthree = :value4 WHERE surgeon = :surgeonName")) {
+        qWarning() << "Error preparing query:" << query.lastError();
         return;
+    }
+    query.bindValue(":surgeonName", surgeonName);
+    query.bindValue(":value1", dfp0);
+    query.bindValue(":value2", dfp1);
+    query.bindValue(":value3", dfp2);
+    query.bindValue(":value4", dfp3);
+    if (!query.exec()) {
+        qWarning() << "Error: Could not update data in the database:" << query.lastError();
     }
 
     // Emit the new values to MainWindow after the update
     sendvaltomain(dfp0, dfp1, dfp2, dfp3);
+    db.close();
+    QSqlDatabase::removeDatabase("myConnection");
+    this->close();
 }

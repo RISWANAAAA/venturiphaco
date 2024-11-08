@@ -46,13 +46,16 @@ public:
     QComboBox *Right_footcom;
     QComboBox *Bottom_leftcom;
     QComboBox *Bottom_rightcom;
-    QLabel *label_3;
     QLabel *label_4;
     QLabel *label_5;
     QLabel *label_6;
     QLabel *label_7;
     QPushButton *pushButton;
     QPushButton *But_save_2;
+    QLabel *label_3;
+    QLabel *label_8;
+    QLabel *label_9;
+    QLabel *label_10;
 
     void setupUi(QDialog *footswitch)
     {
@@ -66,16 +69,16 @@ public:
 ""));
         label = new QLabel(footswitch);
         label->setObjectName(QString::fromUtf8("label"));
-        label->setGeometry(QRect(230, 50, 471, 571));
-        label->setStyleSheet(QString::fromUtf8("image: url(:/images/footimg.png);\n"
-"background-color:transparent;\n"
-"border:none;"));
+        label->setGeometry(QRect(-80, 100, 631, 561));
+        label->setStyleSheet(QString::fromUtf8("background-color:transparent;\n"
+"border:none;\n"
+"image: url(:/images/footimges.png);"));
         lineEdit = new QLineEdit(footswitch);
         lineEdit->setObjectName(QString::fromUtf8("lineEdit"));
         lineEdit->setGeometry(QRect(960, 90, 211, 61));
         lineEdit->setStyleSheet(QString::fromUtf8("\n"
 "font:25pt \"Ubuntu\";\n"
-"background-color:#FFB521;\n"
+"background-color:#9A99F2;\n"
 "border-radius:20px;border:2px solid black;"));
         lineEdit->setAlignment(Qt::AlignCenter);
         lineEdit_2 = new QLineEdit(footswitch);
@@ -83,7 +86,7 @@ public:
         lineEdit_2->setGeometry(QRect(960, 230, 211, 61));
         lineEdit_2->setStyleSheet(QString::fromUtf8("\n"
 "font:25pt \"Ubuntu\";\n"
-"background-color: #FF8103;\n"
+"background-color: #805EBF;\n"
 "border-radius:20px;border:2px solid black;"));
         lineEdit_2->setAlignment(Qt::AlignCenter);
         lineEdit_3 = new QLineEdit(footswitch);
@@ -91,7 +94,7 @@ public:
         lineEdit_3->setGeometry(QRect(960, 360, 211, 61));
         lineEdit_3->setStyleSheet(QString::fromUtf8("\n"
 "font:25pt \"Ubuntu\";\n"
-"background-color: #a3842c;\n"
+"background-color: #60308C;\n"
 "border-radius:20px;border:2px solid black;"));
         lineEdit_3->setAlignment(Qt::AlignCenter);
         lineEdit_4 = new QLineEdit(footswitch);
@@ -99,57 +102,57 @@ public:
         lineEdit_4->setGeometry(QRect(960, 500, 211, 61));
         lineEdit_4->setStyleSheet(QString::fromUtf8("\n"
 "font:25pt \"Ubuntu\";\n"
-"background-color: #ffb8b1;\n"
+"background-color: #310055;\n"
 "border-radius:20px;border:2px solid black;"));
         lineEdit_4->setAlignment(Qt::AlignCenter);
         But_zero = new QPushButton(footswitch);
         But_zero->setObjectName(QString::fromUtf8("But_zero"));
         But_zero->setGeometry(QRect(860, 80, 81, 81));
         But_zero->setStyleSheet(QString::fromUtf8("border:none;\n"
-"image: url(:/images/up1.png);\n"
-"background-color:transparent;"));
+"background-color:transparent;\n"
+"image: url(:/images/uarrow.png);"));
         But_zerodown = new QPushButton(footswitch);
         But_zerodown->setObjectName(QString::fromUtf8("But_zerodown"));
         But_zerodown->setGeometry(QRect(1190, 80, 81, 81));
         But_zerodown->setStyleSheet(QString::fromUtf8("border:none;\n"
 "background-color:transparent;\n"
-"image: url(:/images/down1.png);"));
+"image: url(:/images/darrow.png);"));
         But_onedown = new QPushButton(footswitch);
         But_onedown->setObjectName(QString::fromUtf8("But_onedown"));
         But_onedown->setGeometry(QRect(1190, 220, 81, 81));
         But_onedown->setStyleSheet(QString::fromUtf8("border:none;\n"
-"image: url(:/images/down1.png);\n"
-"background-color:transparent;"));
+"background-color:transparent;\n"
+"image: url(:/images/darrow.png);"));
         But_oneup = new QPushButton(footswitch);
         But_oneup->setObjectName(QString::fromUtf8("But_oneup"));
         But_oneup->setGeometry(QRect(860, 220, 81, 81));
-        But_oneup->setStyleSheet(QString::fromUtf8("image: url(:/images/up1.png);\n"
-"border:none;\n"
-"background-color:transparent;"));
+        But_oneup->setStyleSheet(QString::fromUtf8("border:none;\n"
+"background-color:transparent;\n"
+"image: url(:/images/uarrow.png);"));
         But_twodown = new QPushButton(footswitch);
         But_twodown->setObjectName(QString::fromUtf8("But_twodown"));
         But_twodown->setGeometry(QRect(1190, 350, 81, 81));
         But_twodown->setStyleSheet(QString::fromUtf8("border:none;\n"
-"image: url(:/images/down1.png);\n"
-"background-color:transparent;"));
+"background-color:transparent;\n"
+"image: url(:/images/darrow.png);"));
         But_twoup = new QPushButton(footswitch);
         But_twoup->setObjectName(QString::fromUtf8("But_twoup"));
         But_twoup->setGeometry(QRect(860, 350, 81, 81));
-        But_twoup->setStyleSheet(QString::fromUtf8("image: url(:/images/up1.png);\n"
-"border:none;\n"
-"background-color:transparent;"));
+        But_twoup->setStyleSheet(QString::fromUtf8("border:none;\n"
+"background-color:transparent;\n"
+"image: url(:/images/uarrow.png);"));
         But_threedown = new QPushButton(footswitch);
         But_threedown->setObjectName(QString::fromUtf8("But_threedown"));
         But_threedown->setGeometry(QRect(1190, 490, 81, 81));
         But_threedown->setStyleSheet(QString::fromUtf8("border:none;\n"
-"image: url(:/images/down1.png);\n"
-"background-color:transparent;"));
+"background-color:transparent;\n"
+"image: url(:/images/darrow.png);"));
         But_threeup = new QPushButton(footswitch);
         But_threeup->setObjectName(QString::fromUtf8("But_threeup"));
         But_threeup->setGeometry(QRect(860, 490, 81, 81));
-        But_threeup->setStyleSheet(QString::fromUtf8("image: url(:/images/up1.png);\n"
-"border:none;\n"
-"background-color:transparent;"));
+        But_threeup->setStyleSheet(QString::fromUtf8("border:none;\n"
+"background-color:transparent;\n"
+"image: url(:/images/uarrow.png);"));
         label_2 = new QLabel(footswitch);
         label_2->setObjectName(QString::fromUtf8("label_2"));
         label_2->setGeometry(QRect(830, 610, 71, 61));
@@ -158,35 +161,52 @@ public:
 "border:none;"));
         But_save = new QPushButton(footswitch);
         But_save->setObjectName(QString::fromUtf8("But_save"));
-        But_save->setGeometry(QRect(1070, 570, 211, 151));
+        But_save->setGeometry(QRect(1020, 610, 111, 81));
         But_save->setStyleSheet(QString::fromUtf8("border:none;\n"
 "image: url(:/images/savebuttonimg.png);\n"
 "background-color:transparent;"));
         But_topleft = new QPushButton(footswitch);
         But_topleft->setObjectName(QString::fromUtf8("But_topleft"));
-        But_topleft->setGeometry(QRect(328, 164, 81, 101));
-        But_topleft->setStyleSheet(QString::fromUtf8("border:none;\n"
-"background-color: transparent;"));
+        But_topleft->setGeometry(QRect(310, 240, 221, 71));
+        But_topleft->setStyleSheet(QString::fromUtf8("QPushButton { text-align: center; font-size: 9pt; \n"
+"background-color: rgb(0, 0, 0);\n"
+"color: rgb(255, 255, 255);\n"
+"border-radius:20px;\n"
+"border:2px solid skyblue;\n"
+"}"));
         But_topright = new QPushButton(footswitch);
         But_topright->setObjectName(QString::fromUtf8("But_topright"));
-        But_topright->setGeometry(QRect(540, 170, 61, 101));
-        But_topright->setStyleSheet(QString::fromUtf8("border:none;\n"
-"background-color: transparent;"));
+        But_topright->setGeometry(QRect(320, 460, 241, 71));
+        But_topright->setStyleSheet(QString::fromUtf8("QPushButton { text-align:center; font-size: 9pt; \n"
+"background-color: rgb(0, 0, 0);\n"
+"color: rgb(255, 255, 255);\n"
+"border-radius:20px;\n"
+"border:2px solid skyblue;\n"
+"}"));
         But_bottomleft = new QPushButton(footswitch);
         But_bottomleft->setObjectName(QString::fromUtf8("But_bottomleft"));
-        But_bottomleft->setGeometry(QRect(340, 300, 61, 91));
-        But_bottomleft->setStyleSheet(QString::fromUtf8("border:none;\n"
-"background-color: transparent;"));
+        But_bottomleft->setGeometry(QRect(60, 232, 211, 81));
+        But_bottomleft->setStyleSheet(QString::fromUtf8("QPushButton { text-align:center; font-size: 9pt; \n"
+"background-color: rgb(0, 0, 0);\n"
+"color: rgb(255, 255, 255);\n"
+"border-radius:20px;\n"
+"border:2px solid skyblue;\n"
+"}"));
         But_bottomright = new QPushButton(footswitch);
         But_bottomright->setObjectName(QString::fromUtf8("But_bottomright"));
-        But_bottomright->setGeometry(QRect(540, 300, 61, 91));
-        But_bottomright->setStyleSheet(QString::fromUtf8("border:none;\n"
-"background-color: transparent;"));
+        But_bottomright->setGeometry(QRect(50, 460, 221, 81));
+        But_bottomright->setStyleSheet(QString::fromUtf8("QPushButton { text-align:center; font-size: 9pt; \n"
+"background-color: rgb(0, 0, 0);\n"
+"color: rgb(255, 255, 255);\n"
+"border-radius:20px;\n"
+"border:2px solid skyblue;\n"
+"}"));
         But_footswitch = new QPushButton(footswitch);
         But_footswitch->setObjectName(QString::fromUtf8("But_footswitch"));
-        But_footswitch->setGeometry(QRect(420, 180, 111, 231));
+        But_footswitch->setGeometry(QRect(110, 296, 361, 181));
         But_footswitch->setStyleSheet(QString::fromUtf8("border:none;\n"
-"background-color: transparent;"));
+"background-color: transparent;\n"
+"image: url(:/images/g2332.png);"));
         LeftFoot_com = new QComboBox(footswitch);
         LeftFoot_com->addItem(QString());
         LeftFoot_com->addItem(QString());
@@ -195,7 +215,7 @@ public:
         LeftFoot_com->addItem(QString());
         LeftFoot_com->addItem(QString());
         LeftFoot_com->setObjectName(QString::fromUtf8("LeftFoot_com"));
-        LeftFoot_com->setGeometry(QRect(50, 170, 261, 81));
+        LeftFoot_com->setGeometry(QRect(320, 130, 261, 81));
         LeftFoot_com->setStyleSheet(QString::fromUtf8("border-radius:20px;\n"
 "color: rgb(255, 255, 255);\n"
 "font:20pt \"Ubuntu\";\n"
@@ -208,7 +228,7 @@ public:
         Right_footcom->addItem(QString());
         Right_footcom->addItem(QString());
         Right_footcom->setObjectName(QString::fromUtf8("Right_footcom"));
-        Right_footcom->setGeometry(QRect(610, 170, 261, 81));
+        Right_footcom->setGeometry(QRect(340, 540, 261, 81));
         Right_footcom->setStyleSheet(QString::fromUtf8("border-radius:20px;\n"
 "color: rgb(255, 255, 255);\n"
 "font:20pt \"Ubuntu\";\n"
@@ -221,7 +241,7 @@ public:
         Bottom_leftcom->addItem(QString());
         Bottom_leftcom->addItem(QString());
         Bottom_leftcom->setObjectName(QString::fromUtf8("Bottom_leftcom"));
-        Bottom_leftcom->setGeometry(QRect(50, 300, 261, 81));
+        Bottom_leftcom->setGeometry(QRect(20, 130, 261, 81));
         Bottom_leftcom->setStyleSheet(QString::fromUtf8("border-radius:20px;\n"
 "color: rgb(255, 255, 255);\n"
 "font:20pt \"Ubuntu\";\n"
@@ -234,14 +254,11 @@ public:
         Bottom_rightcom->addItem(QString());
         Bottom_rightcom->addItem(QString());
         Bottom_rightcom->setObjectName(QString::fromUtf8("Bottom_rightcom"));
-        Bottom_rightcom->setGeometry(QRect(610, 300, 271, 81));
+        Bottom_rightcom->setGeometry(QRect(30, 550, 271, 81));
         Bottom_rightcom->setStyleSheet(QString::fromUtf8("border-radius:20px;\n"
 "color: rgb(255, 255, 255);\n"
 "font:20pt \"Ubuntu\";\n"
 "background-color: rgb(0, 0, 0);"));
-        label_3 = new QLabel(footswitch);
-        label_3->setObjectName(QString::fromUtf8("label_3"));
-        label_3->setGeometry(QRect(50, 490, 41, 41));
         label_4 = new QLabel(footswitch);
         label_4->setObjectName(QString::fromUtf8("label_4"));
         label_4->setGeometry(QRect(950, 40, 241, 41));
@@ -278,9 +295,33 @@ public:
 "background-color:transparent;"));
         But_save_2 = new QPushButton(footswitch);
         But_save_2->setObjectName(QString::fromUtf8("But_save_2"));
-        But_save_2->setGeometry(QRect(890, 570, 211, 151));
+        But_save_2->setGeometry(QRect(1190, 0, 81, 101));
         But_save_2->setStyleSheet(QString::fromUtf8("border:none;\n"
 "image: url(:/images/defaultbutton.png);\n"
+"background-color:transparent;"));
+        label_3 = new QLabel(footswitch);
+        label_3->setObjectName(QString::fromUtf8("label_3"));
+        label_3->setGeometry(QRect(380, 301, 21, 41));
+        label_3->setStyleSheet(QString::fromUtf8("image: url(:/images/uparrow.png);\n"
+"border:none;\n"
+"background-color:transparent;"));
+        label_8 = new QLabel(footswitch);
+        label_8->setObjectName(QString::fromUtf8("label_8"));
+        label_8->setGeometry(QRect(220, 302, 31, 51));
+        label_8->setStyleSheet(QString::fromUtf8("image: url(:/images/uparrow.png);\n"
+"border:none;\n"
+"background-color:transparent;"));
+        label_9 = new QLabel(footswitch);
+        label_9->setObjectName(QString::fromUtf8("label_9"));
+        label_9->setGeometry(QRect(370, 430, 21, 41));
+        label_9->setStyleSheet(QString::fromUtf8("border:none;\n"
+"image: url(:/images/downarrow.png);\n"
+"background-color:transparent;"));
+        label_10 = new QLabel(footswitch);
+        label_10->setObjectName(QString::fromUtf8("label_10"));
+        label_10->setGeometry(QRect(220, 420, 31, 51));
+        label_10->setStyleSheet(QString::fromUtf8("border:none;\n"
+"image: url(:/images/downarrow.png);\n"
 "background-color:transparent;"));
         label_2->raise();
         label->raise();
@@ -306,13 +347,16 @@ public:
         Right_footcom->raise();
         Bottom_leftcom->raise();
         Bottom_rightcom->raise();
-        label_3->raise();
         label_4->raise();
         label_5->raise();
         label_6->raise();
         label_7->raise();
         pushButton->raise();
         But_save_2->raise();
+        label_3->raise();
+        label_8->raise();
+        label_9->raise();
+        label_10->raise();
 
         retranslateUi(footswitch);
 
@@ -333,10 +377,10 @@ public:
         But_threeup->setText(QString());
         label_2->setText(QString());
         But_save->setText(QString());
-        But_topleft->setText(QString());
-        But_topright->setText(QString());
-        But_bottomleft->setText(QString());
-        But_bottomright->setText(QString());
+        But_topleft->setText(QCoreApplication::translate("footswitch", "Top Left", nullptr));
+        But_topright->setText(QCoreApplication::translate("footswitch", "Top Right", nullptr));
+        But_bottomleft->setText(QCoreApplication::translate("footswitch", "Bottom left", nullptr));
+        But_bottomright->setText(QCoreApplication::translate("footswitch", "Bottom Right", nullptr));
         But_footswitch->setText(QString());
         LeftFoot_com->setItemText(0, QCoreApplication::translate("footswitch", "Increment", nullptr));
         LeftFoot_com->setItemText(1, QCoreApplication::translate("footswitch", "Decrement", nullptr));
@@ -366,13 +410,16 @@ public:
         Bottom_rightcom->setItemText(4, QCoreApplication::translate("footswitch", "Power ON/OFF", nullptr));
         Bottom_rightcom->setItemText(5, QCoreApplication::translate("footswitch", "PDM", nullptr));
 
-        label_3->setText(QString());
         label_4->setText(QCoreApplication::translate("footswitch", "0 Position", nullptr));
         label_5->setText(QCoreApplication::translate("footswitch", "1 Position", nullptr));
         label_6->setText(QCoreApplication::translate("footswitch", "2 Position", nullptr));
         label_7->setText(QCoreApplication::translate("footswitch", "3 Position", nullptr));
         pushButton->setText(QString());
         But_save_2->setText(QString());
+        label_3->setText(QString());
+        label_8->setText(QString());
+        label_9->setText(QString());
+        label_10->setText(QString());
     } // retranslateUi
 
 };
