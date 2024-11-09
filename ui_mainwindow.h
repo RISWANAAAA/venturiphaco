@@ -278,15 +278,11 @@ public:
         tabWidget->setObjectName(QString::fromUtf8("tabWidget"));
         tabWidget->setEnabled(true);
         tabWidget->setGeometry(QRect(-10, -20, 1301, 741));
-        tabWidget->setStyleSheet(QString::fromUtf8("\n"
-"background-color:rgb(64, 142, 198);"));
+        tabWidget->setStyleSheet(QString::fromUtf8("background-color: rgb(36, 73, 90);"));
         tab_33 = new QWidget();
         tab_33->setObjectName(QString::fromUtf8("tab_33"));
         tab_33->setStyleSheet(QString::fromUtf8("\n"
-"background-color: rgb(18, 78, 102);\n"
-"\n"
-"\n"
-""));
+"background-color: rgb(18, 78, 102);"));
         us1powup_but = new QPushButton(tab_33);
         us1powup_but->setObjectName(QString::fromUtf8("us1powup_but"));
         us1powup_but->setGeometry(QRect(880, 140, 91, 61));
@@ -3040,7 +3036,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(7);
+        tabWidget->setCurrentIndex(1);
         tabWidget_2->setCurrentIndex(5);
 
 

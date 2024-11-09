@@ -23,10 +23,10 @@ background-color: rgb(18, 78, 102);
   <widget class="QPushButton" name="clean_but">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>450</y>
-     <width>371</width>
-     <height>181</height>
+     <x>0</x>
+     <y>500</y>
+     <width>351</width>
+     <height>141</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -35,7 +35,7 @@ background-color: rgb(18, 78, 102);
     background-color: transparent;
     border-radius: 20px;
     border: none;
-	image: url(:/images/primeddd.png);
+	image: url(:/images/tuneddd.png);
     font-weight: bold;
 color:white;
 }
@@ -53,10 +53,10 @@ QPushButton:focus {
   <widget class="QPushButton" name="Tune_but">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>250</y>
-     <width>371</width>
-     <height>181</height>
+     <x>0</x>
+     <y>280</y>
+     <width>351</width>
+     <height>141</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -65,7 +65,7 @@ QPushButton:focus {
     background-color: transparent;
     border-radius: 20px;
     border: none;
-	image: url(:/images/primeddd.png);
+	image: url(:/images/tuneddd.png);
     font-weight: bold;
 color:white;
 }
@@ -83,10 +83,10 @@ QPushButton:focus {
   <widget class="QPushButton" name="prime1_but">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>60</y>
-     <width>371</width>
-     <height>181</height>
+     <x>0</x>
+     <y>80</y>
+     <width>351</width>
+     <height>141</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -95,7 +95,7 @@ QPushButton:focus {
     background-color: transparent;
     border-radius: 20px;
     border: none;
-	image: url(:/images/primeddd.png);
+	image: url(:/images/tuneddd.png);
     font-weight: bold;
 color:white;
 }
@@ -123,7 +123,7 @@ QPushButton:focus {
     <string notr="true"/>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>1</number>
    </property>
    <widget class="QWidget" name="tab_6">
     <property name="styleSheet">
@@ -371,15 +371,15 @@ background-color: transparent;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:20px; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;1.Disconnect the Irrigation/Aspiration connectors from handpiece&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:14pt; font-weight:600;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;2.Connect the irrigation,aspiration connectors together&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:14pt; font-weight:600;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;3.Disconnect the saline connection from irrigation.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:14pt; font-weight:600;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;4.Disconnect the tubing from irriagtion valve.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:14pt; font-weight:600;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;5.dip the irrigation connector in distilled water bowl&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt; font-weight:600; color:#ffffff;&quot;&gt;1.Disconnect the Irrigation/Aspiration connectors from handpiece&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:14pt; font-weight:600; color:#ffffff;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt; font-weight:600; color:#ffffff;&quot;&gt;2.Connect the irrigation,aspiration connectors together&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:14pt; font-weight:600; color:#ffffff;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt; font-weight:600; color:#ffffff;&quot;&gt;3.Disconnect the saline connection from irrigation.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:14pt; font-weight:600; color:#ffffff;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt; font-weight:600; color:#ffffff;&quot;&gt;4.Disconnect the tubing from irriagtion valve.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:14pt; font-weight:600; color:#ffffff;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt; font-weight:600; color:#ffffff;&quot;&gt;5.dip the irrigation connector in distilled water bowl&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
     <widget class="QPushButton" name="begin_clean_but_2">
@@ -439,6 +439,7 @@ BACKGROUND-COLOR:TRANSPARENT;</string>
      </property>
      <property name="styleSheet">
       <string notr="true">font: 75 20pt &quot;Ubuntu&quot;;
+color: rgb(255, 255, 255);
 font:bold;
 background-color:transparent;</string>
      </property>
@@ -476,8 +477,8 @@ QPushButton:focus {
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>320</x>
-     <y>150</y>
+     <x>270</x>
+     <y>140</y>
      <width>61</width>
      <height>71</height>
     </rect>
@@ -494,8 +495,8 @@ border:none;</string>
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>310</x>
-     <y>340</y>
+     <x>270</x>
+     <y>360</y>
      <width>61</width>
      <height>61</height>
     </rect>
@@ -512,8 +513,8 @@ border:none;</string>
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
-     <x>310</x>
-     <y>550</y>
+     <x>270</x>
+     <y>570</y>
      <width>71</width>
      <height>61</height>
     </rect>
@@ -527,13 +528,13 @@ border:none;</string>
     <string/>
    </property>
   </widget>
-  <zorder>clean_but</zorder>
-  <zorder>Tune_but</zorder>
   <zorder>prime1_but</zorder>
   <zorder>tabWidget</zorder>
   <zorder>label_2</zorder>
   <zorder>label_3</zorder>
   <zorder>label</zorder>
+  <zorder>Tune_but</zorder>
+  <zorder>clean_but</zorder>
  </widget>
  <resources/>
  <connections/>

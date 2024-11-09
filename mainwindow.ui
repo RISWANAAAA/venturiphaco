@@ -50,19 +50,15 @@ background-color: rgb(18, 78, 102);
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">
-background-color:rgb(64, 142, 198);</string>
+     <string notr="true">background-color: rgb(36, 73, 90);</string>
     </property>
     <property name="currentIndex">
-     <number>7</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tab_33">
      <property name="styleSheet">
       <string notr="true">
-background-color: rgb(18, 78, 102);
-
-
-</string>
+background-color: rgb(18, 78, 102);</string>
      </property>
      <attribute name="title">
       <string>Tab 1</string>

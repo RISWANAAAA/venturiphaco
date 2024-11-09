@@ -23,9 +23,14 @@ prime::prime(QWidget *parent) :
                          "    font-family: Ubuntu;"
                          "    font-size: 40pt;"
                          "    background-color: transparent;"
-                         "    image: url(:/images/tuneddd.png);"
-                         "    color: black;"
+                         "    image: url(:/images/primeddd.png);"
+                         "    color: white;"
+                         "    min-width: 411px;"
+                                           "    max-width: 411px;"
+                                           "    min-height: 241px;"
+                                           "    max-height: 241px;"
                          "    border-radius: 20px;" // Adjust the radius as needed
+
                          "}"
                          "QPushButton:focus {"
                          "    outline: none;"
@@ -63,16 +68,32 @@ prime::prime(QWidget *parent) :
 
    connect(ui->prime1_but, &QPushButton::clicked, [=](){
        ui->prime1_but->setStyleSheet(styleSheet);
+       ui->prime1_but->move(20,40);
+       ui->label->move(20,120);
+       ui->prime1_but->raise();
+       ui->label->raise();
+
+
 
    });
    connect(ui->Tune_but, &QPushButton::clicked, [=](){
        ui->Tune_but->setStyleSheet(styleSheet);
+       ui->Tune_but->move(20,240);
+       ui->label_2->move(30,380);
+  ui->Tune_but->raise();
+  ui->label_2->raise();
+
 
    });
   connect(ui->clean_but, &QPushButton::clicked, [=](){
       ui->clean_but->setStyleSheet(styleSheet);
+      ui->clean_but->move(20,450);
+      ui->label_3->move(30,580);
+      ui->clean_but->raise();
+      ui->label_3->raise();
 
-  });
+
+ });
   //timerssss
     timer1=new QTimer;
      pretimer=new QTimer;
@@ -117,9 +138,12 @@ void prime::click()
                          "    image: url(:/images/tuneddd.png);"
                          "    background-color: transparent;"
                          "    color: white;"
+                         "    min-width: 341px;"
+                                           "    max-width: 341px;"
+                                           "    min-height: 141px;"
+                                           "    max-height: 141px;"
                          "    border-radius: 40px;" // Adjust the radius as needed
-            "width: 401;"
-"height:211;"
+
                          "}"
                          "QPushButton:focus {"
                          "    outline: none;"
@@ -166,28 +190,33 @@ void prime::current(int tab)
     QString styleSheet = "QPushButton {"
                          "    font-family: Ubuntu;"
                          "    font-size: 40pt;"
-                         "    image: url(:/images/tuneddd.png);"
+                         "    image: url(:/images/primeddd.png);"
                          "    background-color: transparent;"
                          "    color: white;"
-                         "width: 401;"
-            "height:211;"
-                         //"    border-radius: 20px;" // Uncomment if needed
+                         "    min-width: 411px;"
+                                           "    max-width: 411px;"
+                                           "    min-height: 241px;"
+                                           "    max-height: 241px;"
                          "}"
                          "QPushButton:focus {"
                          "    outline: none;"
                          "    border: none;"
                          "}";
 
+
     QString styleSheet1 = "QPushButton {"
                           "    font-family: Ubuntu;"
                           "    font-size: 20pt;"
-                          "    image: url(:/images/primeddd.png);"
+                          "    image: url(:/images/tuneddd.png);"
                           "    background-color: transparent;"
-                          "    color: white;"
+                          "    color: black;"
+                          "    min-width: 341px;"
+                                            "    max-width: 341px;"
+                                            "    min-height: 141px;"
+                                            "    max-height: 141px;"
                           //"    border-radius: 40px;" // Uncomment if needed
                           "    font-weight: bold;"  // Corrected from 'font: bold;'
-            "width: 401;"
-"height:211;"
+
                           "}"
                           "QPushButton:focus {"
                           "    outline: none;"
@@ -219,22 +248,30 @@ void prime::current(int tab)
 
     // Reset all buttons to the default style
     ui->prime1_but->setStyleSheet(styleSheet1);
+    ui->prime1_but->move(0,70);
     ui->Tune_but->setStyleSheet(styleSheet1);
+    ui->Tune_but->move(0,280);
     ui->clean_but->setStyleSheet(styleSheet1);
+    ui->clean_but->move(0,500);
     ui->label->setStyleSheet(style);
     ui->label_2->setStyleSheet(style1);
     ui->label_3->setStyleSheet(style2);
 
-    // Set the style for the current tab
     if (tab == 0) {
         ui->prime1_but->setStyleSheet(styleSheet);
          ui->label->setStyleSheet(style);
+         ui->prime1_but->move(0,10);
+         ui->label->move(30,380);
     } else if (tab == 1) {
         ui->Tune_but->setStyleSheet(styleSheet);
+        ui->Tune_but->move(20,240);
+        ui->label_2->move(30,380);
          ui->label_2->setStyleSheet(style1);
     } else if (tab == 2) {
         ui->clean_but->setStyleSheet(styleSheet);
         ui->label_3->setStyleSheet(style2);
+        ui->clean_but->move(20,500);
+        ui->label_3->move(30,580);
 
     }
 }
@@ -300,9 +337,13 @@ void prime::Prime()
     QString styleSheet = "QPushButton {"
                          "    font-family: Ubuntu;"
                          "    font-size: 20pt;"
-                         "    image: url(:/images/primeddd.png);"
+                         "    image: url(:/images/tuneddd.png);"
                          "    background-color: transparent;"
-                         "    color: white;"
+                         "    color: black;"
+                         "    min-width: 341px;"
+                                           "    max-width: 341px;"
+                                           "    min-height: 141px;"
+                                           "    max-height: 141px;"
                          //"    border-radius: 20px;" // Uncomment if needed
 
                          "}"
@@ -322,9 +363,15 @@ void prime::Prime()
     ui->tabWidget->setCurrentIndex(0);
     ui->prime1_but->raise();
    timer1->stop();
-   ui->Tune_but->setStyleSheet(styleSheet);
    ui->clean_but->setStyleSheet(styleSheet);
+   ui->clean_but->move(0,500);
+   ui->Tune_but->setStyleSheet(styleSheet);
+   ui->Tune_but->move(0,280);
    ui->label->raise();
+   ui->label_2->raise();
+   ui->label_3->raise();
+   ui->label_2->move(270,360);
+   ui->label_3->move(270,570);
 }
 
 void prime::Tune()
@@ -337,9 +384,13 @@ void prime::on_Tune_but_clicked()
     QString styleSheet = "QPushButton {"
                          "    font-family: Ubuntu;"
                          "    font-size: 20pt;"
-                         "    image: url(:/images/primeddd.png);"
+                         "    image: url(:/images/tuneddd.png);"
                          "    background-color: transparent;"
-                         "    color: white;"
+                         "    color: black;"
+                         "    min-width: 341px;"
+                                           "    max-width: 341px;"
+                                           "    min-height: 141px;"
+                                           "    max-height: 141px;"
                          //"    border-radius: 20px;" // Uncomment if needed
 
                          "}"
@@ -360,7 +411,16 @@ void prime::on_Tune_but_clicked()
     ui->prime1_but->setStyleSheet(styleSheet);
     ui->clean_but->setStyleSheet(styleSheet);
     tune->updatehandpieceStatus();
+    ui->prime1_but->setStyleSheet(styleSheet);
+    ui->prime1_but->move(0,80);
 
+    ui->clean_but->setStyleSheet(styleSheet);
+    ui->clean_but->move(0,500);
+    ui->label->move(270,140);
+    ui->label_3->move(270,570);
+    ui->label->raise();
+    ui->label_2->raise();
+    ui->label_3->raise();
 
 }
 
@@ -369,9 +429,13 @@ void prime::Clean()
     QString styleSheet = "QPushButton {"
                          "    font-family: Ubuntu;"
                          "    font-size: 20pt;"
-                         "    image: url(:/images/primeddd.png);"
+                         "    image: url(:/images/tuneddd.png);"
                          "    background-color: transparent;"
-                         "    color: white;"
+                         "    color: black;"
+                         "    min-width: 341px;"
+                                           "    max-width: 341px;"
+                                           "    min-height: 141px;"
+                                           "    max-height: 141px;"
                          //"    border-radius: 20px;" // Uncomment if needed
 
                          "}"
@@ -391,7 +455,14 @@ void prime::Clean()
     ui->tabWidget->setCurrentIndex(2);
    timer1->stop();
    ui->prime1_but->setStyleSheet(styleSheet);
+   ui->prime1_but->move(0,80);
    ui->Tune_but->setStyleSheet(styleSheet);
+   ui->Tune_but->move(0,280);
+   ui->label->move(270,140);
+   ui->label_2->move(270,360);
+   ui->label->raise();
+   ui->label_2->raise();
+   ui->label_3->raise();
 }
 
 

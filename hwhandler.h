@@ -110,6 +110,7 @@ public:
     static void vit_on(int count);
     static void vit_off();
     static void vit_ontime(int ontime);
+    void emitTunePhaco();
 
     static void vso_off();
     static void vso_ontime(int ontime);

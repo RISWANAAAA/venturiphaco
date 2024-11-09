@@ -8,6 +8,21 @@
 #include"mainwindow.h"
 #include"hwhandler.h"
 #include"vaccum.h"
+
+#define TUNE_LOWERFREQ_COUNT 2564 //100000/2631=38KHz      100000/2777=36.0KHz
+#define TUNE_HIGHFREQ_COUNT 2325  //100000/2272 100000/2380=42KHz      10000/2500 = 40KHz
+
+
+#define ADS7841_FS_CH0	          0x97		//CH0    0x97
+#define ADS7841_SENSOR_CH1         0xD7		//CH1    0xD7
+#define ADS7841_CURRENTSENSOR_CH2    0xA7		//CH2    0xA7
+#define ADS7841_VOLTAGESENSOR_CH3  0xE7		//CH3    0xE7
+
+
+#define XPAR_AXI_ADITHYA_0_BASEADDR 0x43C20000
+#define XPAR_AXI_SPEAK_0_BASEADDR   0x43C30000
+
+
 namespace Ui {
 class tuning;
 }
@@ -28,6 +43,7 @@ public:
     int readGPIOValue(int pin);
     void updatehandpieceStatus();
     void updateProgress();
+
 void resetState();
 int Tune_Phaco();
 int ADC_value();
@@ -49,7 +65,9 @@ private slots:
 
 signals:
     void sendvisibleisgnale(bool status);
+    void sendfreq(int count);
     void activatemain();
+
 private:
     Ui::tuning *ui;
     int m_value=0; // Holds the current value of the progress (0 to 100)
@@ -65,6 +83,9 @@ private:
       Vaccum *vacSensor;
       bool powerState;
         bool tuneCompleted = false;
+      int nADCValue;
+        int statushp;
+
 };
 
 #endif // TUNING_H

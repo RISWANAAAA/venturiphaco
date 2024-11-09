@@ -376,6 +376,11 @@ MainWindow::~MainWindow()
     db.close();
 }
 
+void MainWindow::nReceiveFreq(int count)
+{
+     nFreqCount=count;
+}
+
 //updateline edit when enter max value
 void MainWindow::updateLineedit(QLineEdit *lineEdit, int prevValue, int value, int maxValue) {
 
