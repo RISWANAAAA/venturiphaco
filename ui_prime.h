@@ -54,13 +54,10 @@ public:
             prime->setObjectName(QString::fromUtf8("prime"));
         prime->resize(1280, 720);
         prime->setStyleSheet(QString::fromUtf8("\n"
-"background-color: rgb(18, 78, 102);\n"
-"\n"
-"\n"
-""));
+"background-color: rgb(25, 73, 108);"));
         clean_but = new QPushButton(prime);
         clean_but->setObjectName(QString::fromUtf8("clean_but"));
-        clean_but->setGeometry(QRect(30, 450, 371, 181));
+        clean_but->setGeometry(QRect(20, 450, 371, 181));
         clean_but->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "    font: 30pt \"Ubuntu\";\n"
 "    background-color: transparent;\n"
@@ -78,7 +75,7 @@ public:
 ""));
         Tune_but = new QPushButton(prime);
         Tune_but->setObjectName(QString::fromUtf8("Tune_but"));
-        Tune_but->setGeometry(QRect(30, 250, 371, 181));
+        Tune_but->setGeometry(QRect(80, 250, 371, 181));
         Tune_but->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "    font: 30pt \"Ubuntu\";\n"
 "    background-color: transparent;\n"
@@ -96,7 +93,7 @@ public:
 ""));
         prime1_but = new QPushButton(prime);
         prime1_but->setObjectName(QString::fromUtf8("prime1_but"));
-        prime1_but->setGeometry(QRect(30, 60, 371, 181));
+        prime1_but->setGeometry(QRect(20, 60, 371, 181));
         prime1_but->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "    font: 30pt \"Ubuntu\";\n"
 "    background-color: transparent;\n"
@@ -119,9 +116,7 @@ public:
         tab_6 = new QWidget();
         tab_6->setObjectName(QString::fromUtf8("tab_6"));
         tab_6->setStyleSheet(QString::fromUtf8("\n"
-"background-color: rgb(18, 78, 102);\n"
-"\n"
-"\n"
+"background-color: rgb(12, 40, 82);\n"
 ""));
         process_lab_2 = new QLabel(tab_6);
         process_lab_2->setObjectName(QString::fromUtf8("process_lab_2"));
@@ -216,9 +211,7 @@ public:
         tab_8 = new QWidget();
         tab_8->setObjectName(QString::fromUtf8("tab_8"));
         tab_8->setStyleSheet(QString::fromUtf8("\n"
-"background-color: rgb(18, 78, 102);\n"
-"\n"
-"\n"
+"background-color: rgb(12, 40, 82);\n"
 ""));
         warning_lab_2 = new QLabel(tab_8);
         warning_lab_2->setObjectName(QString::fromUtf8("warning_lab_2"));
@@ -280,19 +273,19 @@ public:
         tabWidget->addTab(tab_8, QString());
         label = new QLabel(prime);
         label->setObjectName(QString::fromUtf8("label"));
-        label->setGeometry(QRect(320, 150, 61, 71));
+        label->setGeometry(QRect(310, 150, 61, 71));
         label->setStyleSheet(QString::fromUtf8("image: url(:/images/prime.png);\n"
 "background-color:transparent;\n"
 "border:none;"));
         label_2 = new QLabel(prime);
         label_2->setObjectName(QString::fromUtf8("label_2"));
-        label_2->setGeometry(QRect(310, 340, 61, 61));
+        label_2->setGeometry(QRect(70, 320, 61, 61));
         label_2->setStyleSheet(QString::fromUtf8("image: url(:/images/wifi.png);\n"
 "background-color:transparent;\n"
 "border:none;"));
         label_3 = new QLabel(prime);
         label_3->setObjectName(QString::fromUtf8("label_3"));
-        label_3->setGeometry(QRect(310, 550, 71, 61));
+        label_3->setGeometry(QRect(300, 550, 71, 61));
         label_3->setStyleSheet(QString::fromUtf8("image: url(:/images/clean.png);\n"
 "background-color:transparent;\n"
 "border:none;"));
@@ -306,7 +299,7 @@ public:
 
         retranslateUi(prime);
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(prime);
@@ -328,19 +321,22 @@ public:
         tabWidget->setTabText(tabWidget->indexOf(tab_6), QCoreApplication::translate("prime", "Tab 1", nullptr));
         warning_lab_2->setText(QCoreApplication::translate("prime", "   BEFORE CLEANING", nullptr));
         Instruction_lab_2->setHtml(QCoreApplication::translate("prime", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
+"hr { height: 1px; border-width: 0; }\n"
+"li.unchecked::marker { content: \"\\2610\"; }\n"
+"li.checked::marker { content: \"\\2612\"; }\n"
 "</style></head><body style=\" font-family:'Ubuntu'; font-size:20px; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:14pt; font-weight:600;\">1.Disconnect the Irrigation/Aspiration connectors from handpiece</span></p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:14pt; font-weight:600;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:14pt; font-weight:600;\">2.Connect the irrigation,aspiration connectors together</span></p>\n"
-"<p s"
-                        "tyle=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:14pt; font-weight:600;\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px;"
+                        " -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:14pt; font-weight:600;\">2.Connect the irrigation,aspiration connectors together</span></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:14pt; font-weight:600;\"><br /></p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:14pt; font-weight:600;\">3.Disconnect the saline connection from irrigation.</span></p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:14pt; font-weight:600;\"><br /></p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:14pt; font-weight:600;\">4.Disconnect the tubing from irriagtion valve.</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:14pt; font-weigh"
-                        "t:600;\"><br /></p>\n"
+"<p st"
+                        "yle=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:14pt; font-weight:600;\"><br /></p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:14pt; font-weight:600;\">5.dip the irrigation connector in distilled water bowl</span></p></body></html>", nullptr));
         begin_clean_but_2->setText(QCoreApplication::translate("prime", "Begin Clean", nullptr));
         warning_img_2->setText(QString());

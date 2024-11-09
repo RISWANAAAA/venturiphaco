@@ -48,6 +48,7 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    void nReceiveFreq(int count);
     void footpedalbeep();
     void beepsound();
 void push(const QString &surgeonName);
@@ -440,6 +441,7 @@ int us4count=0;
 int ia1count=0;
 int ia2count=0;
 int vitcount=0;
+int nFreqCount=0;
 
 QMessageBox *message;
 QMessageBox *messageline;

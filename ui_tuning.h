@@ -31,7 +31,7 @@ public:
         tuning->resize(861, 711);
         But_Tune = new QPushButton(tuning);
         But_Tune->setObjectName(QString::fromUtf8("But_Tune"));
-        But_Tune->setGeometry(QRect(170, 280, 561, 141));
+        But_Tune->setGeometry(QRect(170, 310, 561, 141));
         But_Tune->setStyleSheet(QString::fromUtf8("QPushButton{background-color:transparent;\n"
 "image: url(:/images/handpiece1.png);\n"
 "border:none;}\n"
@@ -42,18 +42,17 @@ public:
         But_Next = new QPushButton(tuning);
         But_Next->setObjectName(QString::fromUtf8("But_Next"));
         But_Next->setGeometry(QRect(690, 570, 151, 121));
-        But_Next->setStyleSheet(QString::fromUtf8("image: url(:/images/nextbutton.png);\n"
+        But_Next->setStyleSheet(QString::fromUtf8("image: url(:/images/nextarrow.png);\n"
 "background-color:transparent;\n"
 "border:none;"));
         But_Handpiece = new QPushButton(tuning);
         But_Handpiece->setObjectName(QString::fromUtf8("But_Handpiece"));
-        But_Handpiece->setGeometry(QRect(150, 340, 141, 131));
+        But_Handpiece->setGeometry(QRect(150, 370, 141, 131));
         But_Handpiece->setStyleSheet(QString::fromUtf8("background-color:transparent;\n"
-"image: url(:/images/notconnected.png);\n"
 "border:none;"));
         But_value = new QPushButton(tuning);
         But_value->setObjectName(QString::fromUtf8("But_value"));
-        But_value->setGeometry(QRect(370, 270, 131, 141));
+        But_value->setGeometry(QRect(370, 300, 131, 141));
         But_value->setStyleSheet(QString::fromUtf8(""));
         But_Tune->raise();
         But_Next->raise();

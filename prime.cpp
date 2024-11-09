@@ -23,9 +23,11 @@ prime::prime(QWidget *parent) :
                          "    font-family: Ubuntu;"
                          "    font-size: 40pt;"
                          "    background-color: transparent;"
-                         "    image: url(:/images/tuneddd.png);"
+                         "    image: url(:/images/primeddd.png);"
                          "    color: black;"
                          "    border-radius: 20px;" // Adjust the radius as needed
+                         "width: 401;"
+                         "height:211;"
                          "}"
                          "QPushButton:focus {"
                          "    outline: none;"
@@ -118,8 +120,7 @@ void prime::click()
                          "    background-color: transparent;"
                          "    color: white;"
                          "    border-radius: 40px;" // Adjust the radius as needed
-            "width: 401;"
-"height:211;"
+
                          "}"
                          "QPushButton:focus {"
                          "    outline: none;"
@@ -166,11 +167,11 @@ void prime::current(int tab)
     QString styleSheet = "QPushButton {"
                          "    font-family: Ubuntu;"
                          "    font-size: 40pt;"
-                         "    image: url(:/images/tuneddd.png);"
+                         "    image: url(:/images/primeddd.png);"
                          "    background-color: transparent;"
                          "    color: white;"
                          "width: 401;"
-            "height:211;"
+                         "height:211;"
                          //"    border-radius: 20px;" // Uncomment if needed
                          "}"
                          "QPushButton:focus {"
@@ -181,13 +182,12 @@ void prime::current(int tab)
     QString styleSheet1 = "QPushButton {"
                           "    font-family: Ubuntu;"
                           "    font-size: 20pt;"
-                          "    image: url(:/images/primeddd.png);"
+                          "    image: url(:/images/tuneddd.png);"
                           "    background-color: transparent;"
                           "    color: white;"
                           //"    border-radius: 40px;" // Uncomment if needed
                           "    font-weight: bold;"  // Corrected from 'font: bold;'
-            "width: 401;"
-"height:211;"
+
                           "}"
                           "QPushButton:focus {"
                           "    outline: none;"
@@ -300,7 +300,7 @@ void prime::Prime()
     QString styleSheet = "QPushButton {"
                          "    font-family: Ubuntu;"
                          "    font-size: 20pt;"
-                         "    image: url(:/images/primeddd.png);"
+                         "    image: url(:/images/tuneddd.png);"
                          "    background-color: transparent;"
                          "    color: white;"
                          //"    border-radius: 20px;" // Uncomment if needed
@@ -337,7 +337,7 @@ void prime::on_Tune_but_clicked()
     QString styleSheet = "QPushButton {"
                          "    font-family: Ubuntu;"
                          "    font-size: 20pt;"
-                         "    image: url(:/images/primeddd.png);"
+                         "    image: url(:/images/tuneddd.png);"
                          "    background-color: transparent;"
                          "    color: white;"
                          //"    border-radius: 20px;" // Uncomment if needed
@@ -369,7 +369,7 @@ void prime::Clean()
     QString styleSheet = "QPushButton {"
                          "    font-family: Ubuntu;"
                          "    font-size: 20pt;"
-                         "    image: url(:/images/primeddd.png);"
+                         "    image: url(:/images/tuneddd.png);"
                          "    background-color: transparent;"
                          "    color: white;"
                          //"    border-radius: 20px;" // Uncomment if needed
