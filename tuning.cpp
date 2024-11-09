@@ -115,7 +115,11 @@ void tuning::paintEvent(QPaintEvent *event)
 
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing);
+<<<<<<< HEAD
     painter.fillRect(rect(), QColor("#124E66")); // Replace with your color
+=======
+    painter.fillRect(rect(), QColor("#0C2852")); // Replace with your color
+>>>>>>> f7a36fe841821dd24f2a343ff0d2d099de3e035c
     // Ensure we handle the event properly
     if (!event) return; // Check for a valid event
     // Define the circle parameters
@@ -161,8 +165,13 @@ void tuning::paintEvent1(QPaintEvent *event)
     int totalLines = 60; // Total number of lines for a full circle
 
     // Define a base center for positioning all circles
+<<<<<<< HEAD
     int baseOffsetX = 440; // Base horizontal position (center of circles)
     int baseOffsetY = 390; // Base vertical position (center of circles)
+=======
+    int baseOffsetX = 430; // Base horizontal position (center of circles)
+    int baseOffsetY = 450; // Base vertical position (center of circles)
+>>>>>>> f7a36fe841821dd24f2a343ff0d2d099de3e035c
 
     // Define colors for each circle
     QColor colors[14] = {
@@ -246,7 +255,11 @@ void tuning::updateCircle()
 void tuning::on_But_Handpiece_clicked()
 {
     if (!isRunning) { // Only start if the progress is not currently running
+<<<<<<< HEAD
         ui->But_Tune->move(170,410);
+=======
+    //       ui->But_Tune->move(150, 230);
+>>>>>>> f7a36fe841821dd24f2a343ff0d2d099de3e035c
         ui->But_Handpiece->hide();
            ui->But_value->setStyleSheet("font-size: 90px; font-weight: bold; color: white; background-color: transparent;");
 
@@ -259,7 +272,11 @@ Tune_Phaco();
 void tuning::on_But_value_clicked()
 {
     if (!isRunning) { // Only start if the progress is not currently running
+<<<<<<< HEAD
            ui->But_Tune->move(170,410);
+=======
+           ui->But_Tune->move(170, 330);
+>>>>>>> f7a36fe841821dd24f2a343ff0d2d099de3e035c
            ui->But_Handpiece->hide();
 
            ui->But_value->setStyleSheet("font-size: 90px; font-weight: bold; color: white; background-color: transparent;");
@@ -273,7 +290,11 @@ Tune_Phaco();
 void tuning::on_pushButton_clicked()
 {
     if (!isRunning) { // Only start if the progress is not currently running
+<<<<<<< HEAD
         ui->But_Tune->move(170,410);
+=======
+        ui->But_Tune->move(170, 330);
+>>>>>>> f7a36fe841821dd24f2a343ff0d2d099de3e035c
         ui->But_Handpiece->hide();
         ui->But_value->setStyleSheet("font-size: 90px; font-weight: bold; color: white; background-color: transparent;");
         ui->But_value->show();
@@ -291,7 +312,11 @@ void tuning::updateProgress()
 
     ui->But_value->show(); // Show the label
     update();
+<<<<<<< HEAD
     ui->But_Tune->move(170, 380); // Move button back to starting position
+=======
+    ui->But_Tune->move(170, 280); // Move button back to starting position
+>>>>>>> f7a36fe841821dd24f2a343ff0d2d099de3e035c
     ui->But_Tune->resize(541, 141); // Resize button back to original size
   //  ui->But_Handpiece->show();
     // ui->But_Handpiece->move(270,360);
@@ -334,7 +359,11 @@ int tuning::Tune_Phaco()
     if (!isRunning) {
         ui->But_value->show();
         isRunning = true; // Set the running status
+<<<<<<< HEAD
           ui->But_Tune->move(170, 340);
+=======
+        ui->But_Tune->move(150, 260);
+>>>>>>> f7a36fe841821dd24f2a343ff0d2d099de3e035c
         ui->But_Tune->resize(271, 171);
         timer1->start(100);
         QDateTime currentDateTime = QDateTime::currentDateTime();
@@ -354,7 +383,11 @@ int tuning::Tune_Phaco()
 
         hand->phaco_power(100);
         //hand->phaco_on();
+<<<<<<< HEAD
        // hand->emitTunePhaco();
+=======
+        hand->emitTunePhaco();
+>>>>>>> f7a36fe841821dd24f2a343ff0d2d099de3e035c
 
         nNoOfCurrentCount=0;
         // Loop until m_value reaches 100
