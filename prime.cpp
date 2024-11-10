@@ -24,7 +24,6 @@ prime::prime(QWidget *parent) :
                          "    font-size: 40pt;"
                          "    background-color: transparent;"
                          "    image: url(:/images/primeddd.png);"
-<<<<<<< HEAD
                          "    color: white;"
                          "    min-width: 411px;"
                                            "    max-width: 411px;"
@@ -32,12 +31,10 @@ prime::prime(QWidget *parent) :
                                            "    max-height: 241px;"
                          "    border-radius: 20px;" // Adjust the radius as needed
 
-=======
                          "    color: black;"
                          "    border-radius: 20px;" // Adjust the radius as needed
                          "width: 401;"
                          "height:211;"
->>>>>>> f7a36fe841821dd24f2a343ff0d2d099de3e035c
                          "}"
                          "QPushButton:focus {"
                          "    outline: none;"
@@ -200,16 +197,13 @@ void prime::current(int tab)
                          "    image: url(:/images/primeddd.png);"
                          "    background-color: transparent;"
                          "    color: white;"
-<<<<<<< HEAD
                          "    min-width: 411px;"
                                            "    max-width: 411px;"
                                            "    min-height: 241px;"
                                            "    max-height: 241px;"
-=======
                          "width: 401;"
                          "height:211;"
                          //"    border-radius: 20px;" // Uncomment if needed
->>>>>>> f7a36fe841821dd24f2a343ff0d2d099de3e035c
                          "}"
                          "QPushButton:focus {"
                          "    outline: none;"
