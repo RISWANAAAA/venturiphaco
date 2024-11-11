@@ -47,6 +47,7 @@ public:
 void resetState();
 int Tune_Phaco();
 int ADC_value();
+void loose_tip();
 public slots:
 void on_pushButton_clicked();
 

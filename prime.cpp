@@ -103,6 +103,13 @@ prime::prime(QWidget *parent) :
      pretimer=new QTimer;
     connect(timer1, &QTimer::timeout, this, &prime::timer);
     connect(pretimer,&QTimer::timeout,this,&prime::primetimer);
+    QDateTime date = QDateTime::currentDateTime();
+    QString formatteddate = date.toString("dd.MM.yyyy");
+    ui->lab_date->setText(formatteddate);
+
+    QTime time = QTime::currentTime();
+    QString formatTime = time.toString("hh:mm:ss");
+    ui->lab_time->setText(formatTime);
 
       ui->progressBar_2->setRange(0, 100);
      current(1);

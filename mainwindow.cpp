@@ -358,6 +358,13 @@ ui->label_16->setStyleSheet(styleSheet5);
 ui->label_17->setStyleSheet(styleSheet5);
 ui->label_18->setStyleSheet(styleSheet5);
 ui->label_27->setStyleSheet(styleSheet5);
+QDateTime date = QDateTime::currentDateTime();
+QString formatteddate = date.toString("dd.MM.yyyy");
+ui->lab_date->setText(formatteddate);
+
+QTime time = QTime::currentTime();
+QString formatTime = time.toString("hh:mm:ss");
+ui->lab_time->setText(formatTime);
 }
 
 //elapsed time
@@ -1898,7 +1905,14 @@ void MainWindow::setTuneMode() {
                 "background-color:transparent;"
 
                                      "}";
-
+    QString styleSheetOn = "QPushButton {"
+                           " font:20pt Ubuntu;"
+                           " background-color: green;"
+                           " color: black;"
+                           " border:5px solid black;"
+                           " border-radius:30px;"
+                           " font-weight: bold;"
+                           "}";
 // Set the flag based on the argument
  // Enable or disable the US buttons based on the flag
    //QMessageBox::information(nullptr,"Info","Tune is completed");
@@ -1911,6 +1925,15 @@ void MainWindow::setTuneMode() {
     ui->ULTRASONICBUT3->setEnabled(true);  // us3
     ui->ULTRASONICBUT4->setEnabled(true);  // us4
     ui->label_19->setStyleSheet("image: url(:/images/doubled.png); background-color:transparent;border:none;");
+    ui->us1onoff->setText("ON");
+    ui->us1onoff->setStyleSheet(styleSheetOn);
+    ui->us2onoff->setText("ON");
+    ui->us2onoff->setStyleSheet(styleSheetOn);
+    ui->us3onoff->setText("ON");
+    ui->us3onoff->setStyleSheet(styleSheetOn);
+    ui->us4onoff->setText("ON");
+    ui->us4onoff->setStyleSheet(styleSheetOn);
+
 
 
 }
@@ -1960,15 +1983,9 @@ void MainWindow::enableButtons(bool powerOn)
         ui->vitonoff->setText("ON");
         ui->vitpowup_but->setEnabled(true);
         ui->vitpowdown_but->setEnabled(true);
+        qDebug()<<"the power is on";
 
-        // Turn on the hardware features for all buttons
-        int range = lfoot->convert(0x97);
-        int pow1 = ui->lineEdit_57->text().toInt();
-        handler->fs_count(range);
-        handler->freq_count(nFreqCount);
-        handler->phaco_on();
-        handler->phaco_power(pow1);
-        handler->pdm_mode(0);
+
 
     } else {
          handler->buzz();
@@ -1996,11 +2013,9 @@ void MainWindow::enableButtons(bool powerOn)
         ui->vitonoff->setText("OFF");
         ui->vitpowup_but->setEnabled(false);
         ui->vitpowdown_but->setEnabled(false);
+        qDebug()<<"the power is off";
 
-        // Turn off the hardware features
-        handler->fs_count(0);
-        handler->freq_count(0);
-        handler->phaco_off();
+
     }
 }
 void MainWindow::tabupdate(int index)
@@ -2153,6 +2168,7 @@ void MainWindow::footpedalcheck()
    }
         break;
     }
+//ULTRASONICBUT 1
   //us1
     case 1: {
         //they will not run
@@ -2165,7 +2181,7 @@ void MainWindow::footpedalcheck()
         if ((us1 == "Panel")||(vus1=="Panel")){
             if (range>0 && range<nfpzero) {
                 ui->pushButton_42->setText("0");
-  handler->speaker_off();
+                handler->speaker_off();
                 ui->dial_2->setValue(range);
                     handler->freq_count(0);
                     handler->phaco_off();
@@ -2189,15 +2205,14 @@ void MainWindow::footpedalcheck()
                    motoroff();
 
                 ui->label_7->setText("0");
-  handler->speaker_off();
-  us1currectcount=0;
+                handler->speaker_off();
+                us1currectcount=0;
                 flag1 = true; // Reset flag
 }
             else if (range >= nfpzero & range < nfpzero+nfpone) {
                      ui->pushButton_42->setText("1");
                      ui->dial_2->setValue(range);
                      handler->pinchvalve_on();
-                     handler->speaker_on(0,0,1,0);
                      if(ventonus1==false){
                      handler->safetyvent_on();
                    QThread::msleep(100);
@@ -2211,11 +2226,11 @@ void MainWindow::footpedalcheck()
                   //footpedalbeep();
                   motoroff();
                   ui->label_7->setText("0");
-handler->speaker_on(0,0,1,0);
-    handler->freq_count(0);
-    handler->phaco_off();
-    handler->fs_count(0);
-us1poweron=false;
+                  handler->speaker_on(0,0,1,0);
+                  handler->freq_count(0);
+                  handler->phaco_off();
+                  handler->fs_count(0);
+                 us1poweron=false;
 us1currectcount=1;
 flag1 = true;
             }
@@ -2228,18 +2243,18 @@ flag1 = true;
                 handler->pinchvalve_on();
                 handler->safetyvent_off();
                 //footpedalbeep();
-  if(vus1=="Panel"){
+//  if(vus1=="Panel"){
                 int nonlinear_prevac = readsensorvalue(); // Assuming this function reads the current sensor value
                 int nonlinear_vac = std::min(nonlinear_prevac, vacline);
                 ui->label_8->setText(QString::number(nonlinear_vac));
                 motoron(ui->lineEdit_69);
-                //handler->speaker_on(nonlinear_vac,1,0,0);
-                if (nonlinear_prevac >= vacline) {
+   handler->speaker_on(nonlinear_prevac,1,0,0);
+   if (nonlinear_prevac >= vacline) {
                     motoroff(); // Turn off the motor
                     speedofthelabe(ui->label_8);
                    handler->speaker_on(nonlinear_vac,0,0,1);
                 }
-  }
+ // }
                     handler->freq_count(0);
                     handler->phaco_off();
                     handler->fs_count(0);
@@ -2270,9 +2285,8 @@ flag1 = true;
 
                               }
                 }
-                                  if(!us1poweron){
-                                      us1poweron=true;
-                       // Trigger relevant handlers
+                                  if(!us1poweron && text == "ON"){
+                     //  qDebug()<<"the power is "<<ui->us1onoff->text();
                        handler->fs_count(range);
                        handler->freq_count(nFreqCount);
                        handler->phaco_on();
@@ -2283,6 +2297,12 @@ flag1 = true;
 }
                                      us1currectcount=3;
  }
+            if (us1currectcount> us1count) {
+                beepsound();
+            }
+            if (us1currectcount != -1) {
+                us1count = us1currectcount;
+            }
 
   }
         else if ((us1 == "Surgeon")||( vus1 == "Surgeon")) {
@@ -2352,7 +2372,7 @@ flag1 = true;
                 handler->pinchvalve_on();
                 handler->safetyvent_off();
                 ui->CI5_5->setStyleSheet(styleSheet3);
-        if(vus1=="Surgeon"){
+       // if(vus1=="Surgeon"){
                 const int MIN_RANGE = nfpzero + nfpone;
                 const int MAX_RANGE =nfpzero + nfpone + nfptwo;
                 int divi =  MAX_RANGE-MIN_RANGE ; // Divider
@@ -2382,13 +2402,14 @@ flag1 = true;
 
               }
                 }
-  }
+  //}
 
 
                 handler->phaco_off();
                 handler->phaco_power(0);
                 handler->freq_count(0);
                 handler->fs_count(0);
+                us1poweron=false;
    us1currectcount=2;
                 flag1 = true; // Reset flag
 
@@ -2397,7 +2418,6 @@ flag1 = true;
                 ui->dial_2->setValue(range);
                 //footpedalbeep();
                 ventonus1 = false;
-
                 handler->pinchvalve_on();
                 handler->safetyvent_off();
                 ui->CI5_5->setStyleSheet(styleSheet3);
@@ -2432,18 +2452,21 @@ flag1 = true;
 
                               }
                 }
-                if (!us1poweron) {
-                    us1poweron=true;
+                if (!us1poweron && text == "ON") {
+                  //  qDebug()<<"the power is "<<ui->us1onoff->text();
+                   // us1poweron=true;
                     handler->phaco_on();
                     handler->freq_count(nFreqCount);
                     handler->fs_count(range);
                     updateTabsBasedOnComboBox(ui->CutMode_vitCom->currentText());
                     // If pushButton is ON
+                   // qDebug()<<"the range is"<<range;
+                    //qDebug()<<"the power is"<<pow1;
                     float progress4 = ((range - static_cast<float>(nfpone + nfptwo + nfpzero)) /
                                        (4096.0 - static_cast<float>(nfpone + nfptwo + nfpzero))) * pow1;
-                    qDebug()<<"power id deliverd from the us1 is"<<progress4;
-                   // qDebug()<<"the power is"<<progress4;
-                     handler->phaco_power(std::round(progress4));
+                  // qDebug()<<"the power is"<<progress4;
+                     handler->phaco_power(progress4);
+                   // qDebug()<<"power id deliverd from the us1 is"<<progress4;
                     ui->label_7->setText(QString::number(std::round(progress4)));
 
                     if (progress4 == pow1) {
@@ -2460,24 +2483,25 @@ flag1 = true;
 
 
             }
+            if (us1currectcount> us1count) {
+                beepsound();
+            }
+            if (us1currectcount != -1) {
+                us1count = us1currectcount;
+            }
+        }
 
-        }
-        if (us1currectcount> us1count) {
-            beepsound();
-        }
-        if (us1currectcount != -1) {
-            us1count = us1currectcount;
-        }
 
         break;
     }
+//ULTRASONICBUT 2
         // us2
     case 2: {
         int pow2 = ui->lineEdit_58->text().toInt(); // Get the power value from the line edit
         bool flag2 = true;
         double us2vac=ui->lineEdit_60->text().toInt();
+        QString us2on=ui->us2onoff->text();
         int us2currentcount=-1;
-
         if (us2 == "Panel" || vus2 == "Panel") {
             if (range > 0 && range < nfpzero) {
                 ui->pushButton_42->setText("0");
@@ -2575,8 +2599,7 @@ flag1 = true;
                     handler->speaker_on(0,0,0,1);
                 }
                 }
-                if (!us2poweron) {
-                    us2poweron=true;
+                if (!us2poweron && us2on == "OFF") {
                    updateTabsBasedOnComboBox(powerdelivered_1);
                     handler->freq_count(nFreqCount);
                     handler->phaco_on();
@@ -2588,6 +2611,13 @@ flag1 = true;
                 }
                 us2currentcount=3;
             }
+            if (us2currentcount> us2count) {
+                beepsound();
+            }
+            if (us2currentcount != -1) {
+                us2count = us2currentcount;
+            }
+
         } else if (us2 == "Surgeon" || vus2 == "Surgeon") {//panel
              if (range > 0 && range < nfpzero) {
                 ui->pushButton_42->setText("0");
@@ -2728,9 +2758,8 @@ flag1 = true;
                               }
                 }
 
-                if (!us2poweron) {
-                    us2poweron=true;
-                   updateTabsBasedOnComboBox(powerdelivered_1);
+                if (!us2poweron && us2on == "ON") {
+                    updateTabsBasedOnComboBox(powerdelivered_1);
                     handler->freq_count(nFreqCount);
                     handler->phaco_on();
                     handler->fs_count(range);
@@ -2741,7 +2770,7 @@ flag1 = true;
                     float progress4 = ((range - static_cast<float>(nfpone + nfptwo + nfpzero)) /
                                        (4096.0 - static_cast<float>(nfpone + nfptwo + nfpzero))) * pow2;
                   //  qDebug()<<"the power is"<<progress4;
-                     handler->phaco_power(std::round(progress4));
+                     handler->phaco_power(progress4);
                     ui->label_93->setText(QString::number(std::round(progress4)));
                     if (progress4 == pow2) {
                         speedofthelabe(ui->label_93);
@@ -2754,23 +2783,25 @@ flag1 = true;
                 }
                   us2currentcount=3;
             }
+             if (us2currentcount> us2count) {
+                 beepsound();
+             }
+             if (us2currentcount != -1) {
+                 us2count = us2currentcount;
+             }
+        }
 
-        }
-        if (us2currentcount> us2count) {
-            beepsound();
-        }
-        if (us2currentcount != -1) {
-            us2count = us2currentcount;
-        }
 
         break;
     }
+//ULTRASONICBUT 3
         //us 3
 
     case 3: {
         int pow3 = ui->lineEdit_61->text().toInt(); // Get the power value from the line edit
         bool flag3 = true;
         double us3vacline=ui->lineEdit_63->text().toInt();
+        QString us3on=ui->us3onoff->text();
         int us3currentcount=-1;
 
         if (us3 == "Panel" || vus3 == "Panel") {
@@ -2882,8 +2913,8 @@ flag1 = true;
 
                               }
                 }
-                if (!us3poweron) {
-                      us3poweron= true;
+                if (!us3poweron && us3on =="ON") {
+
                     handler->freq_count(nFreqCount);
                     handler->phaco_on();
                     handler->fs_count(range);
@@ -2895,6 +2926,13 @@ flag1 = true;
             }
 us3currentcount=3;
             }
+            if (us3currentcount> us3count) {
+                beepsound();
+            }
+            if (us3currentcount != -1) {
+                us3count = us3currentcount;
+            }
+
         } else if (us3 == "Surgeon" || vus3 == "Surgeon") {
              if (range > 0 && range < nfpzero) {
                 ui->pushButton_42->setText("0");
@@ -3040,8 +3078,7 @@ us3currentcount=3;
                               }
                 }
 
-                if (!us3poweron) {
-                    us3poweron=true;
+                if (!us3poweron && us3on == "ON") {
                     handler->freq_count(nFreqCount);
                     handler->phaco_on();
                     handler->fs_count(range);
@@ -3064,14 +3101,15 @@ us3currentcount=3;
                 }
 us3currentcount=3;
 
-            }
+            }   if (us3currentcount> us3count) {
+                 beepsound();
+             }
+             if (us3currentcount != -1) {
+                 us3count = us3currentcount;
+             }
+
         }
-        if (us3currentcount> us3count) {
-            beepsound();
-        }
-        if (us3currentcount != -1) {
-            us3count = us3currentcount;
-        }
+
 
         break;
     }
@@ -3080,6 +3118,7 @@ us3currentcount=3;
     case 4: {
         int pow4 = ui->lineEdit_64->text().toInt(); // Get the power value from the line edit
         double us4vacline=ui->lineEdit_66->text().toInt();
+        QString us4on=ui->us4onoff->text();
         int us4currentcount=-1;
         if (us4 == "Panel" || vus4 == "Panel") { // surgeon
             if (range > 0 && range < nfpzero) {
@@ -3176,8 +3215,8 @@ us3currentcount=3;
                 handler->pinchvalve_on();
  ui->CI5_5->setStyleSheet(styleSheet3);
 
-                if (!us4poweron) {
-                        us4poweron = true;
+                if (!us4poweron && us4on == "ON") {
+
                     handler->freq_count(nFreqCount);
                     handler->phaco_on();
                     handler->fs_count(range);
@@ -3201,7 +3240,13 @@ us3currentcount=3;
                     message = "Effective time for US4: " + QString::number(elapsedTimeUS4 / 1000.0, 'f', 2) + " s";
                 }
 us4currentcount=3;
+            }  if (us4currentcount> us4count) {
+                beepsound();
             }
+            if (us4currentcount != -1) {
+                us4count = us4currentcount;
+            }
+
         } else if (us4 == "Surgeon" || vus4 == "Surgeon") {
             if (range > 0 && range < nfpzero) {
                 ui->pushButton_42->setText("0");
@@ -3345,8 +3390,7 @@ ventonus4=false;
                }
  }
 
-                if (!us4poweron) {
-                    us4poweron = true;
+                if (!us4poweron && us4on == "ON") {
                     handler->freq_count(nFreqCount);
                     handler->phaco_on();
                     handler->fs_count(range);
@@ -3372,13 +3416,14 @@ ventonus4=false;
                }
                 us4currentcount=3;
             }
+            if (us4currentcount> us4count) {
+                beepsound();
+            }
+            if (us4currentcount != -1) {
+                us4count = us4currentcount;
+            }
         }
-        if (us4currentcount> us4count) {
-            beepsound();
-        }
-        if (us4currentcount != -1) {
-            us4count = us4currentcount;
-        }
+
 
         break;
     }
@@ -5045,37 +5090,40 @@ bool flag=gpio;
 }
 void MainWindow::on_us1onoff_clicked()
 {
-    QString styleSheet1 = "QPushButton {"
-                          " font:20pt Ubuntu;"
-                          " background-color: green;"
-                          " color: black;"
-                          " border:5px solid black;"
-                          " border-radius:30px;font-weight: bold;"
-                          "}";
+    QString styleSheetOn = "QPushButton {"
+                           " font:20pt Ubuntu;"
+                           " background-color: green;"
+                           " color: black;"
+                           " border:5px solid black;"
+                           " border-radius:30px;"
+                           " font-weight: bold;"
+                           "}";
 
-    QString styleSheet2 = "QPushButton {"
-                          " font:20pt Ubuntu;"
-                          " background-color: rgb(224, 27, 36);"
-                          " color: black;"
-                          " border:5px solid black;"
-                          " border-radius:30px;font-weight: bold;"
-                          "}";
+    QString styleSheetOff = "QPushButton {"
+                            " font:20pt Ubuntu;"
+                            " background-color: rgb(224, 27, 36);"
+                            " color: black;"
+                            " border:5px solid black;"
+                            " border-radius:30px;"
+                            " font-weight: bold;"
+                            "}";
 
-
+    // Toggle us1poweron status
     us1poweron = !us1poweron;
+    QString text=ui->us1onoff->text();
 
-    if (us1poweron) {
+    if (us1poweron && text=="OFF") {
         ui->us1onoff->setText("ON");  // Turn ON
-        ui->us1onoff->setStyleSheet(styleSheet1);
+        ui->us1onoff->setStyleSheet(styleSheetOn);
         ui->us2onoff->setText("ON");  // Turn ON
-        ui->us2onoff->setStyleSheet(styleSheet1);
-        us2poweron=true;
+        ui->us2onoff->setStyleSheet(styleSheetOn);
+        us2poweron = true;
         ui->us3onoff->setText("ON");  // Turn ON
-        ui->us3onoff->setStyleSheet(styleSheet1);
-        us3poweron=true;
+        ui->us3onoff->setStyleSheet(styleSheetOn);
+        us3poweron = true;
         ui->us4onoff->setText("ON");  // Turn ON
-        ui->us4onoff->setStyleSheet(styleSheet1);
-        us4poweron=true;
+        ui->us4onoff->setStyleSheet(styleSheetOn);
+        us4poweron = true;
         ui->us1powup_but->setEnabled(true);
         ui->us1powdown_but->setEnabled(true);
         ui->us2powup_but->setEnabled(true);
@@ -5084,20 +5132,21 @@ void MainWindow::on_us1onoff_clicked()
         ui->us3powdown_but->setEnabled(true);
         ui->us4powup_but->setEnabled(true);
         ui->us4powdown_but->setEnabled(true);
+        ui->vitpowup_but->setEnabled(true);
+        ui->vitpowdown_but->setEnabled(true);
 
-        //qDebug()<<"on";
     } else {
         ui->us1onoff->setText("OFF");  // Turn OFF
-        ui->us1onoff->setStyleSheet(styleSheet2);
+        ui->us1onoff->setStyleSheet(styleSheetOff);
         ui->us2onoff->setText("OFF");  // Turn OFF
-        ui->us2onoff->setStyleSheet(styleSheet2);
-        us2poweron=false;
+        ui->us2onoff->setStyleSheet(styleSheetOff);
+        us2poweron = false;
         ui->us3onoff->setText("OFF");  // Turn OFF
-        ui->us3onoff->setStyleSheet(styleSheet2);
-        us3poweron=false;
+        ui->us3onoff->setStyleSheet(styleSheetOff);
+        us3poweron = false;
         ui->us4onoff->setText("OFF");  // Turn OFF
-        ui->us4onoff->setStyleSheet(styleSheet2);
-        us4poweron=false;
+        ui->us4onoff->setStyleSheet(styleSheetOff);
+        us4poweron = false;
         ui->us1powup_but->setEnabled(false);
         ui->us1powdown_but->setEnabled(false);
         ui->us2powup_but->setEnabled(false);
@@ -5108,9 +5157,10 @@ void MainWindow::on_us1onoff_clicked()
         ui->us4powdown_but->setEnabled(false);
         ui->vitpowup_but->setEnabled(false);
         ui->vitpowdown_but->setEnabled(false);
-         //qDebug()<<"off";
+
     }
 }
+
 
 
 

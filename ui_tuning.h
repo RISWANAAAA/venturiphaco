@@ -42,8 +42,8 @@ public:
         But_Next = new QPushButton(tuning);
         But_Next->setObjectName(QString::fromUtf8("But_Next"));
         But_Next->setGeometry(QRect(690, 570, 151, 121));
-        But_Next->setStyleSheet(QString::fromUtf8("image: url(:/images/nextarrow.png);\n"
-"background-color:transparent;\n"
+        But_Next->setStyleSheet(QString::fromUtf8("background-color:transparent;\n"
+"image: url(:/images/nextbutton.png);\n"
 "border:none;"));
         But_Handpiece = new QPushButton(tuning);
         But_Handpiece->setObjectName(QString::fromUtf8("But_Handpiece"));

@@ -27,6 +27,7 @@ tuning::tuning(QWidget *parent) :
     connect(this,&tuning::sendfreq,main,&MainWindow::nReceiveFreq);
     connect(this,&tuning::activatemain,main,&MainWindow::disablefunction);
 
+
 }
 
 tuning::~tuning()
@@ -236,6 +237,14 @@ int tuning::ADC_value(){
     return value;
 }
 
+void tuning::loose_tip()
+{
+    int value=Tune_Phaco();
+    if(value==0){
+
+    }
+}
+
 void tuning::updateCircle()
 {
     if (currentCircle < 13) { // Ensure we stay within the bounds (0-4)
@@ -249,7 +258,7 @@ void tuning::updateCircle()
 void tuning::on_But_Handpiece_clicked()
 {
     if (!isRunning) { // Only start if the progress is not currently running
-        ui->But_Tune->move(170,410);
+        ui->But_Tune->move(170,430);
     //       ui->But_Tune->move(150, 230);
         ui->But_Handpiece->hide();
            ui->But_value->setStyleSheet("font-size: 90px; font-weight: bold; color: white; background-color: transparent;");
@@ -263,8 +272,7 @@ Tune_Phaco();
 void tuning::on_But_value_clicked()
 {
     if (!isRunning) { // Only start if the progress is not currently running
-           ui->But_Tune->move(170,410);
-           ui->But_Tune->move(170, 330);
+           ui->But_Tune->move(170,430);
            ui->But_Handpiece->hide();
 
            ui->But_value->setStyleSheet("font-size: 90px; font-weight: bold; color: white; background-color: transparent;");
@@ -278,8 +286,7 @@ Tune_Phaco();
 void tuning::on_pushButton_clicked()
 {
     if (!isRunning) { // Only start if the progress is not currently running
-        ui->But_Tune->move(170,410);
-        ui->But_Tune->move(170, 330);
+        ui->But_Tune->move(170,430);
         ui->But_Handpiece->hide();
         ui->But_value->setStyleSheet("font-size: 90px; font-weight: bold; color: white; background-color: transparent;");
         ui->But_value->show();
@@ -342,7 +349,7 @@ int tuning::Tune_Phaco()
         ui->But_value->show();
         isRunning = true; // Set the running status
           ui->But_Tune->move(170, 340);
-        ui->But_Tune->move(150, 260);
+        ui->But_Tune->move(150, 330);
         ui->But_Tune->resize(271, 171);
         timer1->start(100);
         QDateTime currentDateTime = QDateTime::currentDateTime();
@@ -525,6 +532,7 @@ int tuning::Tune_Phaco()
         out<<"set object circle at " <<100000.0/(TUNE_LOWERFREQ_COUNT - (nLowValueFreq+25))<<","<<nADC7841CurrentCount[nLowValueFreq+25]<<" radius 0.01\n";
 
         isRunning = false;
+        if(nResonantFreqCount>0){
         hand->phaco_off();
         main->show();
         main->ULTRASONICBUT1();
@@ -544,6 +552,9 @@ int tuning::Tune_Phaco()
             ui->But_value->hide();
             ui->But_value->setStyleSheet("border:none;background-color:transparent;image: url(:/images/singletick.png);outline:none");
 
+        }}
+        else if(nResonantFreqCount<0){
+            updateProgress();
         }
         file.close();
 

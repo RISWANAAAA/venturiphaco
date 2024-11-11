@@ -47,6 +47,10 @@ public:
     QLabel *label;
     QLabel *label_2;
     QLabel *label_3;
+    QLabel *lab_time;
+    QLabel *lab_date;
+    QLabel *label_4;
+    QLabel *label_5;
 
     void setupUi(QWidget *prime)
     {
@@ -151,11 +155,13 @@ public:
         start_check_2->setObjectName(QString::fromUtf8("start_check_2"));
         start_check_2->setGeometry(QRect(110, 210, 721, 51));
         start_check_2->setStyleSheet(QString::fromUtf8("QCheckBox::indicator {\n"
+"	color: rgb(255, 255, 255);\n"
 "    width: 30px;\n"
 "    height: 30px;\n"
 "}\n"
 "QCheckBox {\n"
 "    font-size: 30px;\n"
+"	color: rgb(255, 255, 255);\n"
 "\n"
 "}\n"
 ""));
@@ -163,11 +169,13 @@ public:
         wait_Check_2->setObjectName(QString::fromUtf8("wait_Check_2"));
         wait_Check_2->setGeometry(QRect(110, 310, 751, 71));
         wait_Check_2->setStyleSheet(QString::fromUtf8("QCheckBox::indicator {\n"
+"	color: rgb(255, 255, 255);\n"
 "    width: 30px;\n"
 "    height: 30px;\n"
 "}\n"
 "QCheckBox {\n"
 "    font-size: 30px;\n"
+"	color: rgb(255, 255, 255);\n"
 "\n"
 "}\n"
 ""));
@@ -175,11 +183,13 @@ public:
         motor_Check_2->setObjectName(QString::fromUtf8("motor_Check_2"));
         motor_Check_2->setGeometry(QRect(110, 120, 381, 61));
         motor_Check_2->setStyleSheet(QString::fromUtf8("QCheckBox::indicator {\n"
+"	color: rgb(255, 255, 255);\n"
 "    width: 30px;\n"
 "    height: 30px;\n"
 "}\n"
 "QCheckBox {\n"
 "    font-size: 30px;\n"
+"	color: rgb(255, 255, 255);\n"
 "\n"
 "}\n"
 ""));
@@ -187,11 +197,13 @@ public:
         done_Check_2->setObjectName(QString::fromUtf8("done_Check_2"));
         done_Check_2->setGeometry(QRect(110, 420, 321, 41));
         done_Check_2->setStyleSheet(QString::fromUtf8("QCheckBox::indicator {\n"
+"	color: rgb(255, 255, 255);\n"
 "    width: 30px;\n"
 "    height: 30px;\n"
 "}\n"
 "QCheckBox {\n"
 "    font-size: 30px;\n"
+"	color: rgb(255, 255, 255);\n"
 "\n"
 "}\n"
 ""));
@@ -297,6 +309,35 @@ public:
         label_3->setStyleSheet(QString::fromUtf8("image: url(:/images/clean.png);\n"
 "background-color:transparent;\n"
 "border:none;"));
+        lab_time = new QLabel(prime);
+        lab_time->setObjectName(QString::fromUtf8("lab_time"));
+        lab_time->setGeometry(QRect(1070, 10, 201, 51));
+        lab_time->setStyleSheet(QString::fromUtf8("background-color: rgb(132, 225, 255);\n"
+"color: rgb(0, 0, 0);\n"
+"border-radius:15px;\n"
+""));
+        lab_time->setAlignment(Qt::AlignCenter);
+        lab_date = new QLabel(prime);
+        lab_date->setObjectName(QString::fromUtf8("lab_date"));
+        lab_date->setGeometry(QRect(860, 10, 201, 51));
+        lab_date->setStyleSheet(QString::fromUtf8("background-color: rgb(132, 225, 255);\n"
+"color: rgb(0, 0, 0);\n"
+"border-radius:15px;\n"
+""));
+        lab_date->setAlignment(Qt::AlignCenter);
+        label_4 = new QLabel(prime);
+        label_4->setObjectName(QString::fromUtf8("label_4"));
+        label_4->setGeometry(QRect(1070, 10, 61, 51));
+        label_4->setStyleSheet(QString::fromUtf8("border-radius:12px;\n"
+"image: url(:/images/clock.png);\n"
+"border:1px solid black;\n"
+"background-color: transparent;"));
+        label_5 = new QLabel(prime);
+        label_5->setObjectName(QString::fromUtf8("label_5"));
+        label_5->setGeometry(QRect(830, -10, 121, 91));
+        label_5->setStyleSheet(QString::fromUtf8("border-radius:12px;\n"
+"image: url(:/images/calendor.png);\n"
+"background-color: transparent;"));
         prime1_but->raise();
         tabWidget->raise();
         label_2->raise();
@@ -304,6 +345,10 @@ public:
         label->raise();
         Tune_but->raise();
         clean_but->raise();
+        lab_time->raise();
+        lab_date->raise();
+        label_5->raise();
+        label_4->raise();
 
         retranslateUi(prime);
 
@@ -351,6 +396,10 @@ public:
         label->setText(QString());
         label_2->setText(QString());
         label_3->setText(QString());
+        lab_time->setText(QString());
+        lab_date->setText(QString());
+        label_4->setText(QString());
+        label_5->setText(QString());
     } // retranslateUi
 
 };

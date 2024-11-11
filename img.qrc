@@ -90,5 +90,7 @@
         <file>tuneddd.png</file>
         <file>primeddd.png</file>
         <file>nextbutton.png</file>
+        <file>clock.png</file>
+        <file>calendor.png</file>
     </qresource>
 </RCC>

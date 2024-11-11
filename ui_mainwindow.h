@@ -256,6 +256,10 @@ public:
     QLabel *label_18;
     QLabel *label_19;
     QPushButton *pushButton_2;
+    QLabel *label_21;
+    QLabel *label_22;
+    QLabel *lab_date;
+    QLabel *lab_time;
     QStatusBar *statusbar;
 
     void setupUi(QMainWindow *MainWindow)
@@ -2985,6 +2989,33 @@ public:
         pushButton_2->setStyleSheet(QString::fromUtf8("image: url(:/images/vibrationoff.png);\n"
 "border-radius:20px;\n"
 "border:none;"));
+        label_21 = new QLabel(centralwidget);
+        label_21->setObjectName(QString::fromUtf8("label_21"));
+        label_21->setGeometry(QRect(490, 0, 121, 91));
+        label_21->setStyleSheet(QString::fromUtf8("border-radius:12px;\n"
+"image: url(:/images/calendor.png);\n"
+"background-color: transparent;"));
+        label_22 = new QLabel(centralwidget);
+        label_22->setObjectName(QString::fromUtf8("label_22"));
+        label_22->setGeometry(QRect(730, 20, 61, 51));
+        label_22->setStyleSheet(QString::fromUtf8("border-radius:12px;\n"
+"image: url(:/images/clock.png);\n"
+"border:1px solid black;\n"
+"background-color: transparent;"));
+        lab_date = new QLabel(centralwidget);
+        lab_date->setObjectName(QString::fromUtf8("lab_date"));
+        lab_date->setGeometry(QRect(520, 20, 201, 51));
+        lab_date->setStyleSheet(QString::fromUtf8("background-color: rgb(132, 225, 255);\n"
+"color: rgb(0, 0, 0);\n"
+"border-radius:15px;\n"
+""));
+        lab_time = new QLabel(centralwidget);
+        lab_time->setObjectName(QString::fromUtf8("lab_time"));
+        lab_time->setGeometry(QRect(730, 20, 201, 51));
+        lab_time->setStyleSheet(QString::fromUtf8("background-color: rgb(132, 225, 255);\n"
+"color: rgb(0, 0, 0);\n"
+"border-radius:15px;\n"
+""));
         MainWindow->setCentralWidget(centralwidget);
         pushButton_2->raise();
         comboBox->raise();
@@ -3030,6 +3061,10 @@ public:
         label_17->raise();
         label_18->raise();
         label_27->raise();
+        lab_date->raise();
+        lab_time->raise();
+        label_21->raise();
+        label_22->raise();
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
         MainWindow->setStatusBar(statusbar);
@@ -3387,6 +3422,10 @@ public:
         label_18->setText(QString());
         label_19->setText(QString());
         pushButton_2->setText(QString());
+        label_21->setText(QString());
+        label_22->setText(QString());
+        lab_date->setText(QString());
+        lab_time->setText(QString());
     } // retranslateUi
 
 };
