@@ -1965,7 +1965,7 @@ void MainWindow::enableButtons(bool powerOn)
         int range = lfoot->convert(0x97);
         int pow1 = ui->lineEdit_57->text().toInt();
         handler->fs_count(range);
-        handler->freq_count(2500);
+        handler->freq_count(nFreqCount);
         handler->phaco_on();
         handler->phaco_power(pow1);
         handler->pdm_mode(0);
@@ -2274,7 +2274,7 @@ flag1 = true;
                                       us1poweron=true;
                        // Trigger relevant handlers
                        handler->fs_count(range);
-                       handler->freq_count(2500);
+                       handler->freq_count(nFreqCount);
                        handler->phaco_on();
                        ui->label_7->setText(QString::number(pow1));
                        handler->phaco_power(pow1);
@@ -2309,6 +2309,7 @@ flag1 = true;
                 ui->label_7->setText("0");
                 handler->speaker_off();
                 us1currectcount=0;
+                us1poweron=false;
                 flag1 = true; // Reset flag
 
             } else if (range >= nfpzero && range < (nfpzero + nfpone)) {
@@ -2336,6 +2337,8 @@ flag1 = true;
                 handler->freq_count(0);
                 handler->fs_count(0);
                 handler->speaker_on(0,0,1,0);
+                us1poweron=false;
+
                 us1currectcount=1;
                 flag1 = true; // Reset flag
 
@@ -2432,12 +2435,13 @@ flag1 = true;
                 if (!us1poweron) {
                     us1poweron=true;
                     handler->phaco_on();
-                    handler->freq_count(2500);
+                    handler->freq_count(nFreqCount);
                     handler->fs_count(range);
                     updateTabsBasedOnComboBox(ui->CutMode_vitCom->currentText());
                     // If pushButton is ON
                     float progress4 = ((range - static_cast<float>(nfpone + nfptwo + nfpzero)) /
                                        (4096.0 - static_cast<float>(nfpone + nfptwo + nfpzero))) * pow1;
+                    qDebug()<<"power id deliverd from the us1 is"<<progress4;
                    // qDebug()<<"the power is"<<progress4;
                      handler->phaco_power(std::round(progress4));
                     ui->label_7->setText(QString::number(std::round(progress4)));
@@ -2574,7 +2578,7 @@ flag1 = true;
                 if (!us2poweron) {
                     us2poweron=true;
                    updateTabsBasedOnComboBox(powerdelivered_1);
-                    handler->freq_count(2500);
+                    handler->freq_count(nFreqCount);
                     handler->phaco_on();
                     handler->fs_count(range);
                     ui->label_92->setText(QString::number(pow2));
@@ -2727,7 +2731,7 @@ flag1 = true;
                 if (!us2poweron) {
                     us2poweron=true;
                    updateTabsBasedOnComboBox(powerdelivered_1);
-                    handler->freq_count(2500);
+                    handler->freq_count(nFreqCount);
                     handler->phaco_on();
                     handler->fs_count(range);
                     handler->phaco_power(pow2);
@@ -2880,7 +2884,7 @@ flag1 = true;
                 }
                 if (!us3poweron) {
                       us3poweron= true;
-                    handler->freq_count(2500);
+                    handler->freq_count(nFreqCount);
                     handler->phaco_on();
                     handler->fs_count(range);
                     ui->label_98->setText(QString::number(pow3));
@@ -3038,7 +3042,7 @@ us3currentcount=3;
 
                 if (!us3poweron) {
                     us3poweron=true;
-                    handler->freq_count(2500);
+                    handler->freq_count(nFreqCount);
                     handler->phaco_on();
                     handler->fs_count(range);
                     handler->phaco_power(pow3);
@@ -3174,7 +3178,7 @@ us3currentcount=3;
 
                 if (!us4poweron) {
                         us4poweron = true;
-                    handler->freq_count(2500);
+                    handler->freq_count(nFreqCount);
                     handler->phaco_on();
                     handler->fs_count(range);
                     ui->label_105->setText(QString::number(pow4));
@@ -3343,7 +3347,7 @@ ventonus4=false;
 
                 if (!us4poweron) {
                     us4poweron = true;
-                    handler->freq_count(2500);
+                    handler->freq_count(nFreqCount);
                     handler->phaco_on();
                     handler->fs_count(range);
                     handler->phaco_power(pow4);
@@ -4174,7 +4178,7 @@ void MainWindow::pulseup_mode()
         pulse = 15;
     }
     ui->lineEdit_75->setText(QString::number(pulse));
-    handler->freq_count(2500);
+    handler->freq_count(nFreqCount);
     handler->fs_count(nfpzero+nfpone+nfptwo);
     handler->pulse_count(pulse);
 
@@ -4191,7 +4195,7 @@ void MainWindow::pulsedown_mode()
         pulse = 1;
     }
     ui->lineEdit_75->setText(QString::number(pulse));
-    handler->freq_count(2500);
+    handler->freq_count(nFreqCount);
     handler->fs_count(nfpzero+nfpone+nfptwo);
     handler->pulse_count(pulse);
 handler->pdm_mode(PULSE_MODE);
@@ -4219,7 +4223,7 @@ void MainWindow::singleburstup_mode()
         singleburst = 400;
     }
     ui->lineEdit_78->setText(QString::number(singleburst));
-    handler->freq_count(2500);
+    handler->freq_count(nFreqCount);
     handler->fs_count(nfpzero+nfpone+nfptwo);
      handler->pdm_mode(SINGLE_BURST);
     handler->burst_length(singleburst);
@@ -4236,7 +4240,7 @@ void MainWindow::singleburstdown_mode()
         singleburst = 10;
     }
     ui->lineEdit_78->setText(QString::number(singleburst));
-    handler->freq_count(2500);
+    handler->freq_count(nFreqCount);
     handler->fs_count(nfpzero+nfpone+nfptwo);
      handler->pdm_mode(SINGLE_BURST);
     handler->burst_length(singleburst);
@@ -4254,7 +4258,7 @@ void MainWindow::multiburstup_mode()
     }
     ui->lineEdit_79->setText(QString::number(multiburst));
     handler->fs_count(nfpzero+nfpone+nfptwo);
-    handler->freq_count(2500);
+    handler->freq_count(nFreqCount);
     handler->pdm_mode(MULTI_BURST);
     handler->burst_length(multiburst);
     handler->burst_off_length(multiburst);
@@ -4270,7 +4274,7 @@ void MainWindow::multiburstdown_mode()
     }
     ui->lineEdit_79->setText(QString::number(multiburst));
     handler->fs_count(nfpzero+nfpone+nfptwo);
-    handler->freq_count(2500);
+    handler->freq_count(nFreqCount);
     handler->pdm_mode(MULTI_BURST);
     handler->burst_length(multiburst);
     handler->burst_off_length(multiburst);
@@ -4618,21 +4622,21 @@ void MainWindow::sensor2()
 //        if(vac1 == pro7){
 //            motoroff();
 //            if(mode3 == "Ocupulse"){
-//                handler->freq_count(2500);
+//                handler->freq_count(nFreqCount);
 //                handler->fs_count(3000);
 //            handler->pdm_mode(PULSE_MODE);
 //              ocupulseup_mode();
 //              ocupulsedown_mode();
 //            }
 //            else if(mode3=="Ocuburst"){
-//                handler->freq_count(2500);
+//                handler->freq_count(nFreqCount);
 //                handler->fs_count(3000);
 //                handler->pdm_mode(PULSE_MODE);
 //                ocuburstup_mode();
 //                ocuburstdown_mode();
 //            }
 //            else if(mode3 == "Multi burst"){
-//                handler->freq_count(2500);
+//                handler->freq_count(nFreqCount);
 //                handler->fs_count(3000);
 //                 handler->pdm_mode(PULSE_MODE);
 //                multiburstup_mode();
@@ -6090,7 +6094,7 @@ void MainWindow::on_ocuburstdown_but_clicked()
         ocuburst = 1;
     }
     ui->lineEdit_77->setText(QString::number(ocuburst));
-    handler->freq_count(2500);
+    handler->freq_count(nFreqCount);
     handler->fs_count(nfpzero+nfpone+nfptwo);
     handler->burst_length(ocuburst);
     handler->burst_off_length(ocuburst);
@@ -6106,7 +6110,7 @@ void MainWindow::on_ocuburstup_but_clicked()
         ocuburst = 15;
     }
     ui->lineEdit_77->setText(QString::number(ocuburst));
-    handler->freq_count(2500);
+    handler->freq_count(nFreqCount);
     handler->fs_count(nfpzero+nfpone+nfptwo);
     handler->burst_length(ocuburst);
     handler->burst_off_length(ocuburst);
@@ -6122,7 +6126,7 @@ void MainWindow::on_ocupulsedown_but_clicked()
         ocupulse = 5;
     }
     ui->lineEdit_76->setText(QString::number(ocupulse));
-    handler->freq_count(2500);
+    handler->freq_count(nFreqCount);
     handler->fs_count(nfpzero+nfpone+nfptwo);
     handler->pdm_mode(CONTINOUS);
     handler->pulse_count(ocupulse);
@@ -6137,7 +6141,7 @@ void MainWindow::on_ocupulseup_but_clicked()
     }
     ui->lineEdit_76->setText(QString::number(ocupulse));
 
-    handler->freq_count(2500);
+    handler->freq_count(nFreqCount);
     handler->fs_count(nfpzero+nfpone+nfptwo);
     handler->pdm_mode(CONTINOUS);
     handler->pulse_count(ocupulse);
