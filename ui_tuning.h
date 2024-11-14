@@ -12,6 +12,7 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QDialog>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
 
 QT_BEGIN_NAMESPACE
@@ -23,6 +24,8 @@ public:
     QPushButton *But_Next;
     QPushButton *But_Handpiece;
     QPushButton *But_value;
+    QPushButton *pushButton;
+    QLabel *label;
 
     void setupUi(QDialog *tuning)
     {
@@ -54,10 +57,21 @@ public:
         But_value->setObjectName(QString::fromUtf8("But_value"));
         But_value->setGeometry(QRect(370, 300, 131, 141));
         But_value->setStyleSheet(QString::fromUtf8(""));
+        pushButton = new QPushButton(tuning);
+        pushButton->setObjectName(QString::fromUtf8("pushButton"));
+        pushButton->setGeometry(QRect(120, 600, 441, 41));
+        label = new QLabel(tuning);
+        label->setObjectName(QString::fromUtf8("label"));
+        label->setGeometry(QRect(120, 600, 71, 41));
+        label->setStyleSheet(QString::fromUtf8("image: url(:/images/singletick.png);\n"
+"background-color:transparent;\n"
+"border:none;"));
         But_Tune->raise();
         But_Next->raise();
         But_value->raise();
         But_Handpiece->raise();
+        pushButton->raise();
+        label->raise();
 
         retranslateUi(tuning);
 
@@ -71,6 +85,8 @@ public:
         But_Next->setText(QString());
         But_Handpiece->setText(QString());
         But_value->setText(QCoreApplication::translate("tuning", "PushButton", nullptr));
+        pushButton->setText(QString());
+        label->setText(QString());
     } // retranslateUi
 
 };

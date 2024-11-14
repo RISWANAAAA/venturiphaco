@@ -478,7 +478,7 @@ int tuning::Tune_Phaco()
             hand->phaco_power(0);
             QMessageBox::information(nullptr,"WARNING","Tune is not Completed May Be Loose Tip");
             ui->But_value->setStyleSheet("border:none;background-color:transparent;image: url(:/images/singletick.png);outline:none");
-            qDebug()<<"remote crasheddddd";
+            qDebug()<<"remote crashedddddddd";
             isRunning=false;
             updateProgress();
             update();

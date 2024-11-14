@@ -1128,6 +1128,7 @@ void MainWindow::ULTRASONICBUT3()
     ui->CutMode_vitCom->show();
     ui->tabWidget_2->show();
     butname=3;
+     handler->buzz();
     us1PdmMode = false;
        us2PdmMode = false;
        us3PdmMode = true;
@@ -1927,12 +1928,20 @@ void MainWindow::setTuneMode() {
     ui->label_19->setStyleSheet("image: url(:/images/doubled.png); background-color:transparent;border:none;");
     ui->us1onoff->setText("ON");
     ui->us1onoff->setStyleSheet(styleSheetOn);
+    ui->us1powup_but->setEnabled(true);
+    ui->us1powdown_but->setEnabled(true);
     ui->us2onoff->setText("ON");
     ui->us2onoff->setStyleSheet(styleSheetOn);
+    ui->us2powup_but->setEnabled(true);
+    ui->us2powdown_but->setEnabled(true);
     ui->us3onoff->setText("ON");
     ui->us3onoff->setStyleSheet(styleSheetOn);
+    ui->us3powup_but->setEnabled(true);
+    ui->us3powdown_but->setEnabled(true);
     ui->us4onoff->setText("ON");
     ui->us4onoff->setStyleSheet(styleSheetOn);
+    ui->us4powup_but->setEnabled(true);
+    ui->us4powdown_but->setEnabled(true);
 
 
 
@@ -1958,7 +1967,7 @@ void MainWindow::enableButtons(bool powerOn)
 
     // Enable or disable buttons and update their styles
     if (powerOn) {
-         handler->buzz();
+        // handler->buzz();
         ui->us1onoff->setStyleSheet(styleSheetOn);
         ui->us1onoff->setText("ON");
         ui->us1powup_but->setEnabled(true);
@@ -1988,7 +1997,7 @@ void MainWindow::enableButtons(bool powerOn)
 
 
     } else {
-         handler->buzz();
+        // handler->buzz();
         ui->us1onoff->setStyleSheet(styleSheetOff);
         ui->us1onoff->setText("OFF");
         ui->us1powup_but->setEnabled(false);
@@ -2177,6 +2186,7 @@ void MainWindow::footpedalcheck()
         QString text=ui->us1onoff->text();
         bool flag1 = false;
         int us1currectcount=-1;
+        QString us1powmode=ui->CutMode_vitCom->currentText();
 
         if ((us1 == "Panel")||(vus1=="Panel")){
             if (range>0 && range<nfpzero) {
@@ -2282,6 +2292,13 @@ flag1 = true;
                                   motoroff(); // Turn off the motor
                                   speedofthelabe(ui->label_8);
                                   handler->speaker_on(nonlinear_vac,0,0,1);
+                                  if(us1powmode == "OCUBURST"){
+                                      on_ocuburstup_but_clicked();
+                                      on_ocuburstdown_but_clicked();
+                                  }else if(us1powmode == "MULTI BURST"){
+                                     multiburstup_mode();
+                                     multiburstdown_mode();
+                                  }
 
                               }
                 }
@@ -2446,6 +2463,14 @@ flag1 = true;
                                        pro=static_cast<int>(vacline);
                                        speedofthelabe(ui->label_8);
                                        ui->label_8->setText(QString::number(pro));
+                                       if(us1powmode == "OCUBURST"){
+                                           on_ocuburstup_but_clicked();
+                                           on_ocuburstdown_but_clicked();
+                                       }else if(us1powmode == "MULTI BURST"){
+                                          multiburstup_mode();
+                                          multiburstdown_mode();
+                                       }
+
                                        handler->speaker_on(0,0,0,1);
 
                                    }
@@ -4216,7 +4241,7 @@ void MainWindow::on_vitvacmode_clicked()
 //pulse
 void MainWindow::pulseup_mode()
 {
- handler->buzz();
+// handler->buzz();
     pulse = ui->lineEdit_75->text().toInt();
     pulse += 1;
     if (pulse > 15) {
@@ -4233,7 +4258,7 @@ void MainWindow::pulseup_mode()
 
 void MainWindow::pulsedown_mode()
 {
- handler->buzz();
+ //handler->buzz();
     pulse = ui->lineEdit_75->text().toInt();
    pulse -= 1;
     if (pulse < 1) {
@@ -4261,7 +4286,7 @@ void MainWindow::ocuburstdown_mode()
 //singleburst
 void MainWindow::singleburstup_mode()
 {
- handler->buzz();
+// handler->buzz();
     singleburst = ui->lineEdit_78->text().toInt();
     singleburst += 10;
     if (singleburst > 400) {
@@ -4278,7 +4303,7 @@ void MainWindow::singleburstup_mode()
 
 void MainWindow::singleburstdown_mode()
 {
- handler->buzz();
+// handler->buzz();
     singleburst = ui->lineEdit_78->text().toInt();
     singleburst -= 10;
     if (singleburst < 10) {
@@ -4295,7 +4320,7 @@ void MainWindow::singleburstdown_mode()
 //multiburst
 void MainWindow::multiburstup_mode()
 {
- handler->buzz();
+// handler->buzz();
     multiburst = ui->lineEdit_79->text().toInt();
     multiburst += 10;
     if (multiburst > 400) {
@@ -4311,7 +4336,7 @@ void MainWindow::multiburstup_mode()
 
 void MainWindow::multiburstdown_mode()
 {
- handler->buzz();
+// handler->buzz();
     multiburst = ui->lineEdit_79->text().toInt();
     multiburst -= 10;
     if (multiburst < 10) {
@@ -4339,7 +4364,7 @@ void MainWindow::ocupulsedown_mode()
 //coldphaco
 void MainWindow::coldphacoup_mode()
 {
- handler->buzz();
+ //handler->buzz();
     coldphaco = ui->lineEdit_80->text().toInt();
     coldphaco += 1;
     if (coldphaco > 15) {
@@ -4352,7 +4377,7 @@ void MainWindow::coldphacoup_mode()
 
 void MainWindow::coldphacodown_mode()
 {
-     handler->buzz();
+    // handler->buzz();
     coldphaco = ui->lineEdit_80->text().toInt();
     coldphaco -= 1;
     if (coldphaco < 1) {
@@ -4365,7 +4390,7 @@ void MainWindow::coldphacodown_mode()
 
 void MainWindow::coldphaco1up_mode()
 {
-    handler->buzz();
+   // handler->buzz();
     coldphaco1 = ui->lineEdit_81->text().toInt();
     coldphaco1 += 5;
     if (coldphaco1 > 40) {
@@ -4378,7 +4403,7 @@ void MainWindow::coldphaco1up_mode()
 
 void MainWindow::coldphaco1down_mode()
 {
-    handler->buzz();
+  //  handler->buzz();
     coldphaco1 = ui->lineEdit_81->text().toInt();
     coldphaco1 -= 5;
     if (coldphaco1 < 5) {
@@ -5167,39 +5192,41 @@ void MainWindow::on_us1onoff_clicked()
 
 void MainWindow::on_us2onoff_clicked()
 {
-    QString text = ui->us2onoff->text();
 
+    QString styleSheetOn = "QPushButton {"
+                           " font:20pt Ubuntu;"
+                           " background-color: green;"
+                           " color: black;"
+                           " border:5px solid black;"
+                           " border-radius:30px;"
+                           " font-weight: bold;"
+                           "}";
 
-    QString styleSheet1 = "QPushButton {"
-                          " font:20pt Ubuntu;"
-                          " background-color: green;"
-                          " color: black;"
-                          " border:5px solid black;"
-                          " border-radius:30px;font-weight: bold;"
-                          "}";
+    QString styleSheetOff = "QPushButton {"
+                            " font:20pt Ubuntu;"
+                            " background-color: rgb(224, 27, 36);"
+                            " color: black;"
+                            " border:5px solid black;"
+                            " border-radius:30px;"
+                            " font-weight: bold;"
+                            "}";
 
-    QString styleSheet2 = "QPushButton {"
-                          " font:20pt Ubuntu;"
-                          " background-color: rgb(224, 27, 36);"
-                          " color: black;"
-                          " border:5px solid black;"
-                          " border-radius:30px;font-weight: bold;"
-                          "}";
-
+    // Toggle us1poweron status
     us2poweron = !us2poweron;
+    QString text=ui->us2onoff->text();
 
-    if (us2poweron) {
+    if (us2poweron && text=="OFF") {
         ui->us2onoff->setText("ON");  // Turn ON
-         ui->us2onoff->setStyleSheet(styleSheet1);
+        ui->us2onoff->setStyleSheet(styleSheetOn);
         ui->us1onoff->setText("ON");  // Turn ON
-        ui->us1onoff->setStyleSheet(styleSheet1);
-        us1poweron=true;
+        ui->us1onoff->setStyleSheet(styleSheetOn);
+        us1poweron = true;
         ui->us3onoff->setText("ON");  // Turn ON
-        ui->us3onoff->setStyleSheet(styleSheet1);
-        us3poweron=true;
+        ui->us3onoff->setStyleSheet(styleSheetOn);
+        us3poweron = true;
         ui->us4onoff->setText("ON");  // Turn ON
-        ui->us4onoff->setStyleSheet(styleSheet1);
-        us4poweron=true;
+        ui->us4onoff->setStyleSheet(styleSheetOn);
+        us4poweron = true;
         ui->us1powup_but->setEnabled(true);
         ui->us1powdown_but->setEnabled(true);
         ui->us2powup_but->setEnabled(true);
@@ -5208,20 +5235,21 @@ void MainWindow::on_us2onoff_clicked()
         ui->us3powdown_but->setEnabled(true);
         ui->us4powup_but->setEnabled(true);
         ui->us4powdown_but->setEnabled(true);
-        //qDebug()<<"on";
-    } else {
+        ui->vitpowup_but->setEnabled(true);
+        ui->vitpowdown_but->setEnabled(true);
 
+    } else {
         ui->us2onoff->setText("OFF");  // Turn OFF
-        ui->us2onoff->setStyleSheet(styleSheet2);
+        ui->us2onoff->setStyleSheet(styleSheetOff);
         ui->us1onoff->setText("OFF");  // Turn OFF
-        ui->us1onoff->setStyleSheet(styleSheet2);
-        us1poweron=false;
+        ui->us1onoff->setStyleSheet(styleSheetOff);
+        us1poweron = false;
         ui->us3onoff->setText("OFF");  // Turn OFF
-        ui->us3onoff->setStyleSheet(styleSheet2);
-        us3poweron=false;
+        ui->us3onoff->setStyleSheet(styleSheetOff);
+        us3poweron = false;
         ui->us4onoff->setText("OFF");  // Turn OFF
-        ui->us4onoff->setStyleSheet(styleSheet2);
-        us4poweron=false;
+        ui->us4onoff->setStyleSheet(styleSheetOff);
+        us4poweron = false;
         ui->us1powup_but->setEnabled(false);
         ui->us1powdown_but->setEnabled(false);
         ui->us2powup_but->setEnabled(false);
@@ -5232,68 +5260,71 @@ void MainWindow::on_us2onoff_clicked()
         ui->us4powdown_but->setEnabled(false);
         ui->vitpowup_but->setEnabled(false);
         ui->vitpowdown_but->setEnabled(false);
-         //qDebug()<<"off";
+
     }
 }
 
 
 void MainWindow::on_us3onoff_clicked()
 {
+
+    QString styleSheetOn = "QPushButton {"
+                           " font:20pt Ubuntu;"
+                           " background-color: green;"
+                           " color: black;"
+                           " border:5px solid black;"
+                           " border-radius:30px;"
+                           " font-weight: bold;"
+                           "}";
+
+    QString styleSheetOff = "QPushButton {"
+                            " font:20pt Ubuntu;"
+                            " background-color: rgb(224, 27, 36);"
+                            " color: black;"
+                            " border:5px solid black;"
+                            " border-radius:30px;"
+                            " font-weight: bold;"
+                            "}";
+
+    // Toggle us1poweron status
+    us3poweron = !us3poweron;
     QString text=ui->us3onoff->text();
 
-    QString styleSheet1 = "QPushButton {"
-           " font:20pt Ubuntu;"
-          " background-color: green;"
-            "color: black;"
-
-           " border:5px solid black;"
-           " border-radius:30px;font-weight: bold;"
-                                 "}";
-
-    QString styleSheet2 = "QPushButton {"
-           " font:20pt Ubuntu;"
-          " background-color: rgb(224, 27, 36);"
-            "color: black;"
-            //"image: url(:/ci.png);"
-           " border:5px solid black;"
-           " border-radius:30px;font-weight: bold;"
-
-           "}";
-    us3poweron = !us3poweron;
-
-    if (us3poweron) {
-        ui->us1onoff->setText("ON");  // Turn ON
-        ui->us1onoff->setStyleSheet(styleSheet1);
-        ui->us2onoff->setText("ON");  // Turn ON
-         ui->us2onoff->setStyleSheet(styleSheet1);
-            us2poweron=true;
+    if (us3poweron && text=="OFF") {
         ui->us3onoff->setText("ON");  // Turn ON
-        ui->us3onoff->setStyleSheet(styleSheet1);
-                    us3poweron=true;
+        ui->us3onoff->setStyleSheet(styleSheetOn);
+        ui->us1onoff->setText("ON");  // Turn ON
+        ui->us1onoff->setStyleSheet(styleSheetOn);
+        us1poweron = true;
+        ui->us2onoff->setText("ON");  // Turn ON
+        ui->us2onoff->setStyleSheet(styleSheetOn);
+        us2poweron = true;
         ui->us4onoff->setText("ON");  // Turn ON
-        ui->us4onoff->setStyleSheet(styleSheet1);
-              us4poweron=true;
-              ui->us1powup_but->setEnabled(true);
-              ui->us1powdown_but->setEnabled(true);
-              ui->us2powup_but->setEnabled(true);
-              ui->us2powdown_but->setEnabled(true);
-              ui->us3powup_but->setEnabled(true);
-              ui->us3powdown_but->setEnabled(true);
-              ui->us4powup_but->setEnabled(true);
-              ui->us4powdown_but->setEnabled(true);
-        //qDebug()<<"on";
+        ui->us4onoff->setStyleSheet(styleSheetOn);
+        us4poweron = true;
+        ui->us1powup_but->setEnabled(true);
+        ui->us1powdown_but->setEnabled(true);
+        ui->us2powup_but->setEnabled(true);
+        ui->us2powdown_but->setEnabled(true);
+        ui->us3powup_but->setEnabled(true);
+        ui->us3powdown_but->setEnabled(true);
+        ui->us4powup_but->setEnabled(true);
+        ui->us4powdown_but->setEnabled(true);
+        ui->vitpowup_but->setEnabled(true);
+        ui->vitpowdown_but->setEnabled(true);
+
     } else {
-        ui->us1onoff->setText("OFF");  // Turn OFF
-        ui->us1onoff->setStyleSheet(styleSheet2);
-        ui->us2onoff->setText("OFF");  // Turn OFF
-        ui->us2onoff->setStyleSheet(styleSheet2);
-        us2poweron=false;
         ui->us3onoff->setText("OFF");  // Turn OFF
-        ui->us3onoff->setStyleSheet(styleSheet2);
-        us3poweron=false;
+        ui->us3onoff->setStyleSheet(styleSheetOff);
+        ui->us1onoff->setText("OFF");  // Turn OFF
+        ui->us1onoff->setStyleSheet(styleSheetOff);
+        us1poweron = false;
+        ui->us2onoff->setText("OFF");  // Turn OFF
+        ui->us2onoff->setStyleSheet(styleSheetOff);
+        us2poweron = false;
         ui->us4onoff->setText("OFF");  // Turn OFF
-        ui->us4onoff->setStyleSheet(styleSheet2);
-        us4poweron=false;
+        ui->us4onoff->setStyleSheet(styleSheetOff);
+        us4poweron = false;
         ui->us1powup_but->setEnabled(false);
         ui->us1powdown_but->setEnabled(false);
         ui->us2powup_but->setEnabled(false);
@@ -5304,67 +5335,72 @@ void MainWindow::on_us3onoff_clicked()
         ui->us4powdown_but->setEnabled(false);
         ui->vitpowup_but->setEnabled(false);
         ui->vitpowdown_but->setEnabled(false);
-         //qDebug()<<"off";
+
     }
 }
 
 void MainWindow::on_us4onoff_clicked()
 {
-    QString text=ui->us4onoff->text();
 
-    QString styleSheet1 = "QPushButton {"
-           " font:20pt Ubuntu;"
-          " background-color: green;"
-            "color: black;"
 
-           " border:5px solid black;"
-           " border-radius:30px;font-weight: bold;"
-                                 "}";
 
-    QString styleSheet2 = "QPushButton {"
-           " font:20pt Ubuntu;"
-          " background-color: rgb(224, 27, 36);"
-            "color: black;"
-            //"image: url(:/ci.png);"
-           " border:5px solid black;"
-           " border-radius:30px;font-weight: bold;"
+    QString styleSheetOn = "QPushButton {"
+                           " font:20pt Ubuntu;"
+                           " background-color: green;"
+                           " color: black;"
+                           " border:5px solid black;"
+                           " border-radius:30px;"
+                           " font-weight: bold;"
+                           "}";
 
-           "}";
+    QString styleSheetOff = "QPushButton {"
+                            " font:20pt Ubuntu;"
+                            " background-color: rgb(224, 27, 36);"
+                            " color: black;"
+                            " border:5px solid black;"
+                            " border-radius:30px;"
+                            " font-weight: bold;"
+                            "}";
+
+    // Toggle us1poweron status
     us4poweron = !us4poweron;
+    QString text=ui->us2onoff->text();
 
-    if (us4poweron) {
-        ui->us1onoff->setText("ON");  // Turn ON
-        ui->us1onoff->setStyleSheet(styleSheet1);
-        ui->us2onoff->setText("ON");  // Turn ON
-         ui->us2onoff->setStyleSheet(styleSheet1);
-            us2poweron=true;
-        ui->us3onoff->setText("ON");  // Turn ON
-        ui->us3onoff->setStyleSheet(styleSheet1);
-                    us3poweron=true;
+    if (us4poweron && text=="OFF") {
         ui->us4onoff->setText("ON");  // Turn ON
-        ui->us4onoff->setStyleSheet(styleSheet1);
-              us4poweron=true;
-              ui->us1powup_but->setEnabled(true);
-              ui->us1powdown_but->setEnabled(true);
-              ui->us2powup_but->setEnabled(true);
-              ui->us2powdown_but->setEnabled(true);
-              ui->us3powup_but->setEnabled(true);
-              ui->us3powdown_but->setEnabled(true);
-              ui->us4powup_but->setEnabled(true);
-              ui->us4powdown_but->setEnabled(true);
-        //qDebug()<<"on";
+        ui->us4onoff->setStyleSheet(styleSheetOn);
+        ui->us1onoff->setText("ON");  // Turn ON
+        ui->us1onoff->setStyleSheet(styleSheetOn);
+        us1poweron = true;
+        ui->us3onoff->setText("ON");  // Turn ON
+        ui->us3onoff->setStyleSheet(styleSheetOn);
+        us3poweron = true;
+        ui->us2onoff->setText("ON");  // Turn ON
+        ui->us2onoff->setStyleSheet(styleSheetOn);
+        us2poweron = true;
+        ui->us1powup_but->setEnabled(true);
+        ui->us1powdown_but->setEnabled(true);
+        ui->us2powup_but->setEnabled(true);
+        ui->us2powdown_but->setEnabled(true);
+        ui->us3powup_but->setEnabled(true);
+        ui->us3powdown_but->setEnabled(true);
+        ui->us4powup_but->setEnabled(true);
+        ui->us4powdown_but->setEnabled(true);
+        ui->vitpowup_but->setEnabled(true);
+        ui->vitpowdown_but->setEnabled(true);
+
     } else {
-        ui->us1onoff->setText("OFF");  // Turn OFF
-        ui->us1onoff->setStyleSheet(styleSheet2);
-        ui->us2onoff->setText("OFF");  // Turn OFF
-        ui->us2onoff->setStyleSheet(styleSheet2);
-        us2poweron=false;
-        ui->us3onoff->setText("OFF");  // Turn OFF
-        ui->us3onoff->setStyleSheet(styleSheet2);
-        us3poweron=false;
         ui->us4onoff->setText("OFF");  // Turn OFF
-        ui->us4onoff->setStyleSheet(styleSheet2);
-        us4poweron=false;
+        ui->us4onoff->setStyleSheet(styleSheetOff);
+        ui->us1onoff->setText("OFF");  // Turn OFF
+        ui->us1onoff->setStyleSheet(styleSheetOff);
+        us1poweron = false;
+        ui->us3onoff->setText("OFF");  // Turn OFF
+        ui->us3onoff->setStyleSheet(styleSheetOff);
+        us3poweron = false;
+        ui->us2onoff->setText("OFF");  // Turn OFF
+        ui->us2onoff->setStyleSheet(styleSheetOff);
+        //us2spoweron = false;
         ui->us1powup_but->setEnabled(false);
         ui->us1powdown_but->setEnabled(false);
         ui->us2powup_but->setEnabled(false);
@@ -5375,7 +5411,7 @@ void MainWindow::on_us4onoff_clicked()
         ui->us4powdown_but->setEnabled(false);
         ui->vitpowup_but->setEnabled(false);
         ui->vitpowdown_but->setEnabled(false);
-         //qDebug()<<"off";
+
     }
 }
 
@@ -5433,6 +5469,7 @@ void MainWindow::footpedalwindow_show()
 }
 
 void MainWindow::onCutMode_vitComChanged(int index) {
+
     QString modeText = ui->CutMode_vitCom->currentText();
     updateTabsBasedOnComboBox(modeText);
 
@@ -5469,6 +5506,7 @@ void MainWindow::updateTabsBasedOnComboBox(const QString &selected) {
       //  ui->comboBox->setCurrentText("Continuous");  // Update combo box text
         modeFound = true;
         ui->label_32->hide();
+       // handler->buzz();
 
     } else if (selected == "Pulse") {
         handler->pdm_mode(PULSE_MODE);
@@ -5476,10 +5514,12 @@ void MainWindow::updateTabsBasedOnComboBox(const QString &selected) {
         pulsedown_mode();
         ui->tabWidget_2->setCurrentIndex(1);
      //   ui->comboBox->setCurrentText("Pulse");  // Update combo box text
+         handler->buzz();
         modeFound = true;
         ui->label_32->show();
 
     } else if (selected == "Ocupulse") {
+         //handler->buzz();
         handler->pdm_mode(CONTINOUS);
         on_ocupulseup_but_clicked();
       on_ocupulsedown_but_clicked();
@@ -5490,9 +5530,9 @@ void MainWindow::updateTabsBasedOnComboBox(const QString &selected) {
 
 
     } else if (selected == "Ocuburst") {
+       //  handler->buzz();
         handler->pdm_mode(CONTINOUS);
-on_ocuburstup_but_clicked();
-on_ocuburstdown_but_clicked();
+
         ui->tabWidget_2->setCurrentIndex(3);
     //    ui->comboBox->setCurrentText("Ocuburst");  // Update combo box text
         modeFound = true;
@@ -5500,6 +5540,7 @@ on_ocuburstdown_but_clicked();
 
 
     } else if (selected == "Single burst") {
+       //  handler->buzz();
         handler->pdm_mode(SINGLE_BURST);
         singleburstup_mode();
         singleburstdown_mode();
@@ -5510,9 +5551,9 @@ on_ocuburstdown_but_clicked();
 
 
     } else if (selected == "Multi burst") {
+      //  handler->buzz();
         handler->pdm_mode(CONTINOUS);
-        multiburstup_mode();
-        multiburstdown_mode();
+
         ui->tabWidget_2->setCurrentIndex(5);
        // ui->comboBox->setCurrentText("Multi burst");  // Update combo box text
         modeFound = true;
@@ -5520,6 +5561,7 @@ on_ocuburstdown_but_clicked();
 
 
     } else if (selected == "Cold phaco") {
+       // handler->buzz();
         handler->pdm_mode(COLD_PHACO);
         coldphacoup_mode();
         coldphacodown_mode();

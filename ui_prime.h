@@ -123,8 +123,7 @@ public:
         tab_6 = new QWidget();
         tab_6->setObjectName(QString::fromUtf8("tab_6"));
         tab_6->setStyleSheet(QString::fromUtf8("\n"
-"background-color: rgb(18, 78, 102);\n"
-"\n"
+"background-color: rgb(36, 175, 194);\n"
 "\n"
 ""));
         process_lab_2 = new QLabel(tab_6);
@@ -319,7 +318,7 @@ public:
         lab_time->setAlignment(Qt::AlignCenter);
         lab_date = new QLabel(prime);
         lab_date->setObjectName(QString::fromUtf8("lab_date"));
-        lab_date->setGeometry(QRect(860, 10, 201, 51));
+        lab_date->setGeometry(QRect(850, 10, 211, 51));
         lab_date->setStyleSheet(QString::fromUtf8("background-color: rgb(132, 225, 255);\n"
 "color: rgb(0, 0, 0);\n"
 "border-radius:15px;\n"
@@ -330,11 +329,10 @@ public:
         label_4->setGeometry(QRect(1070, 10, 61, 51));
         label_4->setStyleSheet(QString::fromUtf8("border-radius:12px;\n"
 "image: url(:/images/clock.png);\n"
-"border:1px solid black;\n"
 "background-color: transparent;"));
         label_5 = new QLabel(prime);
         label_5->setObjectName(QString::fromUtf8("label_5"));
-        label_5->setGeometry(QRect(830, -10, 121, 91));
+        label_5->setGeometry(QRect(820, -10, 121, 91));
         label_5->setStyleSheet(QString::fromUtf8("border-radius:12px;\n"
 "image: url(:/images/calendor.png);\n"
 "background-color: transparent;"));

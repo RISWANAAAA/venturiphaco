@@ -53,7 +53,7 @@ background-color: rgb(18, 78, 102);
      <string notr="true">background-color: rgb(36, 73, 90);</string>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>7</number>
     </property>
     <widget class="QWidget" name="tab_33">
      <property name="styleSheet">
@@ -4103,6 +4103,7 @@ background-color: rgb(18, 78, 102);
       </property>
       <property name="styleSheet">
        <string notr="true">background-color:transparent;
+color: rgb(255, 255, 255);
 font: 15pt &quot;Ubuntu Condensed&quot;;
 font:bold;
 border:none;
@@ -4222,11 +4223,38 @@ border-radius:20px;border:2px solid black;</string>
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
+     <widget class="QLabel" name="label_116">
+      <property name="geometry">
+       <rect>
+        <x>970</x>
+        <y>10</y>
+        <width>231</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font:20pt &quot;Ubuntu&quot;;
+
+border-radius:20px;
+
+border:none;font-weight: bold;border:3px solid black;
+
+color: rgb(255, 255, 255);
+background-color: rgb(3, 58, 11);</string>
+      </property>
+      <property name="text">
+       <string>Diathermy</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
      <zorder>label_120</zorder>
      <zorder>diapowup_but</zorder>
      <zorder>lineEdit_74</zorder>
      <zorder>diapowdown_but</zorder>
      <zorder>textEdit_60</zorder>
+     <zorder>label_116</zorder>
     </widget>
    </widget>
    <widget class="QLabel" name="label_14">
@@ -5711,13 +5739,17 @@ background-color: transparent;</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(132, 225, 255);
-color: rgb(0, 0, 0);
+     <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(3, 58, 11);
 border-radius:15px;
+font:15pt;
 </string>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QLabel" name="lab_time">
@@ -5730,13 +5762,17 @@ border-radius:15px;
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(132, 225, 255);
-color: rgb(0, 0, 0);
+     <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(3, 58, 11);
 border-radius:15px;
+font:15pt;
 </string>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <zorder>pushButton_2</zorder>

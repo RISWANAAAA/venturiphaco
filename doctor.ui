@@ -187,14 +187,14 @@ background-color:transparent;</string>
   <widget class="QPushButton" name="VitBut">
    <property name="geometry">
     <rect>
-     <x>280</x>
+     <x>303</x>
      <y>260</y>
-     <width>101</width>
-     <height>81</height>
+     <width>71</width>
+     <height>71</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">border-radius: 40px;
+    <string notr="true">border-radius: 35px;
 width:10px;
 height:10px;
 background-color:transparent;
@@ -209,10 +209,10 @@ border:3px solid black;</string>
   <widget class="QLabel" name="circle">
    <property name="geometry">
     <rect>
-     <x>190</x>
+     <x>210</x>
      <y>90</y>
-     <width>271</width>
-     <height>251</height>
+     <width>261</width>
+     <height>241</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -227,7 +227,7 @@ border-radius:120px;</string>
   <widget class="QLabel" name="FootPedalSettings">
    <property name="geometry">
     <rect>
-     <x>90</x>
+     <x>70</x>
      <y>380</y>
      <width>381</width>
      <height>51</height>
@@ -245,14 +245,14 @@ font:bold;</string>
   <widget class="QPushButton" name="IABut">
    <property name="geometry">
     <rect>
-     <x>190</x>
+     <x>210</x>
      <y>170</y>
-     <width>91</width>
-     <height>81</height>
+     <width>71</width>
+     <height>71</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">border-radius: 40px;
+    <string notr="true">border-radius: 35px;
 width:10px;
 height:10px;
 background-color:transparent;
@@ -358,14 +358,14 @@ background-color: rgb(14, 50, 6);</string>
   <widget class="QPushButton" name="PhacoBut">
    <property name="geometry">
     <rect>
-     <x>370</x>
+     <x>400</x>
      <y>170</y>
-     <width>91</width>
-     <height>81</height>
+     <width>71</width>
+     <height>71</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">border-radius: 40px;
+    <string notr="true">border-radius: 35px;
 width:10px;
 height:10px;
 background-color:transparent;
@@ -468,7 +468,7 @@ background-color: rgb(14, 50, 6);</string>
     <string notr="true">background-color: rgb(162, 128, 137);</string>
    </property>
    <property name="currentIndex">
-    <number>2</number>
+    <number>1</number>
    </property>
    <widget class="QWidget" name="Diathermy">
     <property name="styleSheet">
@@ -501,14 +501,14 @@ border-radius:20px;</string>
     <widget class="QLabel" name="DiaPowMax">
      <property name="geometry">
       <rect>
-       <x>70</x>
+       <x>50</x>
        <y>190</y>
-       <width>281</width>
-       <height>51</height>
+       <width>311</width>
+       <height>61</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color:transparent;font: 15pt &quot;Ubuntu Condensed&quot;;
+      <string notr="true">background-color:transparent;font: 20pt &quot;Ubuntu Condensed&quot;;
 font:bold;</string>
      </property>
      <property name="text">
@@ -653,7 +653,7 @@ QProgressBar::chunk {
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color:transparent;font: 15pt &quot;Ubuntu Condensed&quot;;
+        <string notr="true">background-color:transparent;font: 20pt &quot;Ubuntu Condensed&quot;;
 font:bold;</string>
        </property>
        <property name="text">
@@ -713,7 +713,7 @@ background-color: rgb(14, 50, 6);</string>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color:transparent;font: 15pt &quot;Ubuntu Condensed&quot;;
+        <string notr="true">background-color:transparent;font: 20pt &quot;Ubuntu Condensed&quot;;
 font:bold;</string>
        </property>
        <property name="text">
@@ -730,7 +730,7 @@ font:bold;</string>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color:transparent;font: 15pt &quot;Ubuntu Condensed&quot;;
+        <string notr="true">background-color:transparent;font: 20pt &quot;Ubuntu Condensed&quot;;
 font:bold;</string>
        </property>
        <property name="text">
@@ -765,7 +765,7 @@ border-radius:20px;</string>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color:transparent;font: 15pt &quot;Ubuntu Condensed&quot;;
+        <string notr="true">background-color:transparent;font: 20pt &quot;Ubuntu Condensed&quot;;
 font:bold;</string>
        </property>
        <property name="text">
@@ -782,7 +782,7 @@ font:bold;</string>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color:transparent;font: 15pt &quot;Ubuntu Condensed&quot;;
+        <string notr="true">background-color:transparent;font: 20pt &quot;Ubuntu Condensed&quot;;
 font:bold;</string>
        </property>
        <property name="text">
@@ -794,12 +794,12 @@ font:bold;</string>
         <rect>
          <x>60</x>
          <y>20</y>
-         <width>251</width>
+         <width>341</width>
          <height>31</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color:transparent;font: 15pt &quot;Ubuntu Condensed&quot;;
+        <string notr="true">background-color:transparent;font: 20pt &quot;Ubuntu Condensed&quot;;
 font:bold;</string>
        </property>
        <property name="text">
@@ -841,7 +841,7 @@ background-color: rgb(14, 50, 6);</string>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color:transparent;font: 15pt &quot;Ubuntu Condensed&quot;;
+        <string notr="true">background-color:transparent;font: 20pt &quot;Ubuntu Condensed&quot;;
 font:bold;</string>
        </property>
        <property name="text">
@@ -926,7 +926,7 @@ background-color: rgb(14, 50, 6);</string>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color:transparent;font: 15pt &quot;Ubuntu Condensed&quot;;
+        <string notr="true">background-color:transparent;font: 20pt &quot;Ubuntu Condensed&quot;;
 font:bold;</string>
        </property>
        <property name="text">
@@ -943,7 +943,7 @@ font:bold;</string>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color:transparent;font: 15pt &quot;Ubuntu Condensed&quot;;
+        <string notr="true">background-color:transparent;font: 20pt &quot;Ubuntu Condensed&quot;;
 font:bold;</string>
        </property>
        <property name="text">
@@ -1067,7 +1067,7 @@ QProgressBar::chunk {
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color:transparent;font: 15pt &quot;Ubuntu Condensed&quot;;
+        <string notr="true">background-color:transparent;font: 20pt &quot;Ubuntu Condensed&quot;;
 font:bold;</string>
        </property>
        <property name="text">
@@ -1127,7 +1127,7 @@ background-color: rgb(14, 50, 6);</string>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color:transparent;font: 15pt &quot;Ubuntu Condensed&quot;;
+        <string notr="true">background-color:transparent;font: 20pt &quot;Ubuntu Condensed&quot;;
 font:bold;</string>
        </property>
        <property name="text">
@@ -1144,7 +1144,7 @@ font:bold;</string>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color:transparent;font: 15pt &quot;Ubuntu Condensed&quot;;
+        <string notr="true">background-color:transparent;font: 20pt &quot;Ubuntu Condensed&quot;;
 font:bold;</string>
        </property>
        <property name="text">
@@ -1179,7 +1179,7 @@ border-radius:20px;</string>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color:transparent;font: 15pt &quot;Ubuntu Condensed&quot;;
+        <string notr="true">background-color:transparent;font: 20pt &quot;Ubuntu Condensed&quot;;
 font:bold;</string>
        </property>
        <property name="text">
@@ -1196,7 +1196,7 @@ font:bold;</string>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color:transparent;font: 15pt &quot;Ubuntu Condensed&quot;;
+        <string notr="true">background-color:transparent;font: 20pt &quot;Ubuntu Condensed&quot;;
 font:bold;</string>
        </property>
        <property name="text">
@@ -1208,12 +1208,12 @@ font:bold;</string>
         <rect>
          <x>60</x>
          <y>20</y>
-         <width>251</width>
+         <width>341</width>
          <height>31</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color:transparent;font: 15pt &quot;Ubuntu Condensed&quot;;
+        <string notr="true">background-color:transparent;font: 20pt &quot;Ubuntu Condensed&quot;;
 font:bold;</string>
        </property>
        <property name="text">
@@ -1255,7 +1255,7 @@ background-color: rgb(14, 50, 6);</string>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color:transparent;font: 15pt &quot;Ubuntu Condensed&quot;;
+        <string notr="true">background-color:transparent;font: 20pt &quot;Ubuntu Condensed&quot;;
 font:bold;</string>
        </property>
        <property name="text">
@@ -1340,7 +1340,7 @@ background-color: rgb(14, 50, 6);</string>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color:transparent;font: 15pt &quot;Ubuntu Condensed&quot;;
+        <string notr="true">background-color:transparent;font: 20pt &quot;Ubuntu Condensed&quot;;
 font:bold;</string>
        </property>
        <property name="text">
@@ -1357,7 +1357,7 @@ font:bold;</string>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color:transparent;font: 15pt &quot;Ubuntu Condensed&quot;;
+        <string notr="true">background-color:transparent;font: 20pt &quot;Ubuntu Condensed&quot;;
 font:bold;</string>
        </property>
        <property name="text">
@@ -1481,7 +1481,7 @@ QProgressBar::chunk {
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color:transparent;font: 15pt &quot;Ubuntu Condensed&quot;;
+        <string notr="true">background-color:transparent;font: 20pt &quot;Ubuntu Condensed&quot;;
 font:bold;</string>
        </property>
        <property name="text">
@@ -1542,7 +1542,7 @@ background-color: rgb(14, 50, 6);</string>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color:transparent;font: 15pt &quot;Ubuntu Condensed&quot;;
+        <string notr="true">background-color:transparent;font: 20pt &quot;Ubuntu Condensed&quot;;
 font:bold;</string>
        </property>
        <property name="text">
@@ -1559,7 +1559,7 @@ font:bold;</string>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color:transparent;font: 15pt &quot;Ubuntu Condensed&quot;;
+        <string notr="true">background-color:transparent;font: 20pt &quot;Ubuntu Condensed&quot;;
 font:bold;</string>
        </property>
        <property name="text">
@@ -1594,7 +1594,7 @@ border-radius:20px;</string>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color:transparent;font: 15pt &quot;Ubuntu Condensed&quot;;
+        <string notr="true">background-color:transparent;font: 20pt &quot;Ubuntu Condensed&quot;;
 font:bold;</string>
        </property>
        <property name="text">
@@ -1611,7 +1611,7 @@ font:bold;</string>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color:transparent;font: 15pt &quot;Ubuntu Condensed&quot;;
+        <string notr="true">background-color:transparent;font: 20pt &quot;Ubuntu Condensed&quot;;
 font:bold;</string>
        </property>
        <property name="text">
@@ -1623,12 +1623,12 @@ font:bold;</string>
         <rect>
          <x>60</x>
          <y>20</y>
-         <width>251</width>
+         <width>331</width>
          <height>31</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color:transparent;font: 15pt &quot;Ubuntu Condensed&quot;;
+        <string notr="true">background-color:transparent;font: 20pt &quot;Ubuntu Condensed&quot;;
 font:bold;</string>
        </property>
        <property name="text">
@@ -1671,7 +1671,7 @@ background-color: rgb(14, 50, 6);</string>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color:transparent;font: 15pt &quot;Ubuntu Condensed&quot;;
+        <string notr="true">background-color:transparent;font: 20pt &quot;Ubuntu Condensed&quot;;
 font:bold;</string>
        </property>
        <property name="text">
@@ -1757,7 +1757,7 @@ background-color: rgb(14, 50, 6);</string>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color:transparent;font: 15pt &quot;Ubuntu Condensed&quot;;
+        <string notr="true">background-color:transparent;font: 20pt &quot;Ubuntu Condensed&quot;;
 font:bold;</string>
        </property>
        <property name="text">
@@ -1774,7 +1774,7 @@ font:bold;</string>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color:transparent;font: 15pt &quot;Ubuntu Condensed&quot;;
+        <string notr="true">background-color:transparent;font: 20pt &quot;Ubuntu Condensed&quot;;
 font:bold;</string>
        </property>
        <property name="text">
@@ -1898,7 +1898,7 @@ QProgressBar::chunk {
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color:transparent;font: 15pt &quot;Ubuntu Condensed&quot;;
+        <string notr="true">background-color:transparent;font: 20pt &quot;Ubuntu Condensed&quot;;
 font:bold;</string>
        </property>
        <property name="text">
@@ -1959,7 +1959,7 @@ background-color: rgb(14, 50, 6);</string>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color:transparent;font: 15pt &quot;Ubuntu Condensed&quot;;
+        <string notr="true">background-color:transparent;font: 20pt &quot;Ubuntu Condensed&quot;;
 font:bold;</string>
        </property>
        <property name="text">
@@ -1976,7 +1976,7 @@ font:bold;</string>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color:transparent;font: 15pt &quot;Ubuntu Condensed&quot;;
+        <string notr="true">background-color:transparent;font: 20pt &quot;Ubuntu Condensed&quot;;
 font:bold;</string>
        </property>
        <property name="text">
@@ -2011,7 +2011,7 @@ border-radius:20px;</string>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color:transparent;font: 15pt &quot;Ubuntu Condensed&quot;;
+        <string notr="true">background-color:transparent;font: 20pt &quot;Ubuntu Condensed&quot;;
 font:bold;</string>
        </property>
        <property name="text">
@@ -2028,7 +2028,7 @@ font:bold;</string>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color:transparent;font: 15pt &quot;Ubuntu Condensed&quot;;
+        <string notr="true">background-color:transparent;font: 20pt &quot;Ubuntu Condensed&quot;;
 font:bold;</string>
        </property>
        <property name="text">
@@ -2040,12 +2040,12 @@ font:bold;</string>
         <rect>
          <x>60</x>
          <y>20</y>
-         <width>251</width>
+         <width>351</width>
          <height>31</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color:transparent;font: 15pt &quot;Ubuntu Condensed&quot;;
+        <string notr="true">background-color:transparent;font: 20pt &quot;Ubuntu Condensed&quot;;
 font:bold;</string>
        </property>
        <property name="text">
@@ -2088,7 +2088,7 @@ background-color: rgb(14, 50, 6);</string>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color:transparent;font: 15pt &quot;Ubuntu Condensed&quot;;
+        <string notr="true">background-color:transparent;font: 20pt &quot;Ubuntu Condensed&quot;;
 font:bold;</string>
        </property>
        <property name="text">
@@ -2170,11 +2170,11 @@ background-color: rgb(14, 50, 6);</string>
          <x>70</x>
          <y>500</y>
          <width>351</width>
-         <height>31</height>
+         <height>41</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color:transparent;font: 15pt &quot;Ubuntu Condensed&quot;;
+        <string notr="true">background-color:transparent;font: 20pt &quot;Ubuntu Condensed&quot;;
 font:bold;</string>
        </property>
        <property name="text">
@@ -2191,7 +2191,7 @@ font:bold;</string>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color:transparent;font: 15pt &quot;Ubuntu Condensed&quot;;
+        <string notr="true">background-color:transparent;font: 20pt &quot;Ubuntu Condensed&quot;;
 font:bold;</string>
        </property>
        <property name="text">
@@ -2397,7 +2397,7 @@ border-radius:20px;</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color:transparent;font: 15pt &quot;Ubuntu Condensed&quot;;
+      <string notr="true">background-color:transparent;font: 20pt &quot;Ubuntu Condensed&quot;;
 font:bold;</string>
      </property>
      <property name="text">
@@ -2414,7 +2414,7 @@ font:bold;</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color:transparent;font: 15pt &quot;Ubuntu Condensed&quot;;
+      <string notr="true">background-color:transparent;font: 20pt &quot;Ubuntu Condensed&quot;;
 font:bold;</string>
      </property>
      <property name="text">
@@ -2431,7 +2431,7 @@ font:bold;</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color:transparent;font: 15pt &quot;Ubuntu Condensed&quot;;
+      <string notr="true">background-color:transparent;font: 20pt &quot;Ubuntu Condensed&quot;;
 font:bold;</string>
      </property>
      <property name="text">
@@ -2448,7 +2448,7 @@ font:bold;</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color:transparent;font: 15pt &quot;Ubuntu Condensed&quot;;
+      <string notr="true">background-color:transparent;font: 20pt &quot;Ubuntu Condensed&quot;;
 font:bold;</string>
      </property>
      <property name="text">
@@ -2465,7 +2465,7 @@ font:bold;</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color:transparent;font: 15pt &quot;Ubuntu Condensed&quot;;
+      <string notr="true">background-color:transparent;font: 20pt &quot;Ubuntu Condensed&quot;;
 font:bold;</string>
      </property>
      <property name="text">
@@ -2482,7 +2482,7 @@ font:bold;</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color:transparent;font: 15pt &quot;Ubuntu Condensed&quot;;
+      <string notr="true">background-color:transparent;font: 20pt &quot;Ubuntu Condensed&quot;;
 font:bold;</string>
      </property>
      <property name="text">
@@ -2594,7 +2594,7 @@ background-color: rgb(255, 255, 255);</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color:transparent;font: 15pt &quot;Ubuntu Condensed&quot;;
+      <string notr="true">background-color:transparent;font: 20pt &quot;Ubuntu Condensed&quot;;
 font:bold;</string>
      </property>
      <property name="text">
@@ -2611,7 +2611,7 @@ font:bold;</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color:transparent;font: 15pt &quot;Ubuntu Condensed&quot;;
+      <string notr="true">background-color:transparent;font: 20pt &quot;Ubuntu Condensed&quot;;
 font:bold;</string>
      </property>
      <property name="text">
@@ -2628,7 +2628,7 @@ font:bold;</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color:transparent;font: 15pt &quot;Ubuntu Condensed&quot;;
+      <string notr="true">background-color:transparent;font: 20pt &quot;Ubuntu Condensed&quot;;
 font:bold;</string>
      </property>
      <property name="text">
@@ -2645,7 +2645,7 @@ font:bold;</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color:transparent;font: 15pt &quot;Ubuntu Condensed&quot;;
+      <string notr="true">background-color:transparent;font: 20pt &quot;Ubuntu Condensed&quot;;
 font:bold;</string>
      </property>
      <property name="text">
@@ -2846,7 +2846,7 @@ border-radius:20px;</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color:transparent;font: 15pt &quot;Ubuntu Condensed&quot;;
+      <string notr="true">background-color:transparent;font:20pt &quot;Ubuntu Condensed&quot;;
 font:bold;</string>
      </property>
      <property name="text">
@@ -2889,7 +2889,7 @@ background-color: rgb(14, 50, 6);</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color:transparent;font: 15pt &quot;Ubuntu Condensed&quot;;
+      <string notr="true">background-color:transparent;font:20pt &quot;Ubuntu Condensed&quot;;
 font:bold;</string>
      </property>
      <property name="text">
@@ -2927,7 +2927,7 @@ border-radius:20px;</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color:transparent;font: 15pt &quot;Ubuntu Condensed&quot;;
+      <string notr="true">background-color:transparent;font:20pt &quot;Ubuntu Condensed&quot;;
 font:bold;</string>
      </property>
      <property name="text">
@@ -2970,11 +2970,11 @@ background-color: rgb(14, 50, 6);</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color:transparent;font: 15pt &quot;Ubuntu Condensed&quot;;
+      <string notr="true">background-color:transparent;font:20pt &quot;Ubuntu Condensed&quot;;
 font:bold;</string>
      </property>
      <property name="text">
-      <string>Mode                                                    :</string>
+      <string>Vaccum Mode                                                    :</string>
      </property>
     </widget>
     <widget class="QLabel" name="AspMax_vit">
@@ -2987,7 +2987,7 @@ font:bold;</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color:transparent;font: 15pt &quot;Ubuntu Condensed&quot;;
+      <string notr="true">background-color:transparent;font:20pt &quot;Ubuntu Condensed&quot;;
 font:bold;</string>
      </property>
      <property name="text">
@@ -3166,6 +3166,7 @@ border-radius:20px;</string>
      </property>
     </widget>
     <zorder>CutMode_vit</zorder>
+    <zorder>CutMode_vitCom</zorder>
     <zorder>VacMode_VitCom</zorder>
     <zorder>CutMax_vit</zorder>
     <zorder>VacMax_vit</zorder>
@@ -3173,7 +3174,6 @@ border-radius:20px;</string>
     <zorder>AspMax_vit</zorder>
     <zorder>VacMode_vit</zorder>
     <zorder>Vaccum</zorder>
-    <zorder>CutMode_vitCom</zorder>
     <zorder>lineEdit</zorder>
     <zorder>lineEdit_19</zorder>
     <zorder>progressBar_19</zorder>
@@ -3185,14 +3185,14 @@ border-radius:20px;</string>
   <widget class="QPushButton" name="DiaBut">
    <property name="geometry">
     <rect>
-     <x>280</x>
+     <x>303</x>
      <y>90</y>
-     <width>91</width>
-     <height>81</height>
+     <width>71</width>
+     <height>71</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">border-radius: 40px;
+    <string notr="true">border-radius: 35px;
 width:10px;
 height:10px;
 background-color:transparent;
@@ -3225,7 +3225,7 @@ border:3px solid black;</string>
     <rect>
      <x>10</x>
      <y>100</y>
-     <width>151</width>
+     <width>191</width>
      <height>61</height>
     </rect>
    </property>
@@ -3265,7 +3265,7 @@ font:bold;</string>
     <rect>
      <x>0</x>
      <y>170</y>
-     <width>181</width>
+     <width>201</width>
      <height>51</height>
     </rect>
    </property>
@@ -3344,13 +3344,13 @@ outline:none;</string>
     <rect>
      <x>0</x>
      <y>290</y>
-     <width>171</width>
+     <width>201</width>
      <height>51</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">color: rgb(255,255,255);
-font:15pt;
+font:20pt;
 background-color: rgb(14, 50, 6);
 text-align:left;</string>
    </property>
@@ -3361,8 +3361,8 @@ text-align:left;</string>
   <widget class="QLabel" name="lab_vibonoff">
    <property name="geometry">
     <rect>
-     <x>170</x>
-     <y>290</y>
+     <x>180</x>
+     <y>310</y>
      <width>61</width>
      <height>51</height>
     </rect>
@@ -3379,9 +3379,9 @@ border-radius:20px;</string>
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
-     <x>10</x>
+     <x>4</x>
      <y>240</y>
-     <width>171</width>
+     <width>211</width>
      <height>41</height>
     </rect>
    </property>
@@ -3398,8 +3398,8 @@ font:bold;</string>
   <widget class="QLabel" name="label_4">
    <property name="geometry">
     <rect>
-     <x>280</x>
-     <y>170</y>
+     <x>294</x>
+     <y>165</y>
      <width>91</width>
      <height>91</height>
     </rect>

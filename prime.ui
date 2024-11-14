@@ -128,8 +128,7 @@ QPushButton:focus {
    <widget class="QWidget" name="tab_6">
     <property name="styleSheet">
      <string notr="true">
-background-color: rgb(18, 78, 102);
-
+background-color: rgb(36, 175, 194);
 
 </string>
     </property>
@@ -561,9 +560,9 @@ border-radius:15px;
   <widget class="QLabel" name="lab_date">
    <property name="geometry">
     <rect>
-     <x>860</x>
+     <x>850</x>
      <y>10</y>
-     <width>201</width>
+     <width>211</width>
      <height>51</height>
     </rect>
    </property>
@@ -601,7 +600,7 @@ background-color: transparent;</string>
   <widget class="QLabel" name="label_5">
    <property name="geometry">
     <rect>
-     <x>830</x>
+     <x>820</x>
      <y>-10</y>
      <width>121</width>
      <height>91</height>

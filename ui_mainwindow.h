@@ -186,6 +186,7 @@ public:
     QLabel *label_120;
     QPushButton *diapowup_but;
     QLineEdit *lineEdit_74;
+    QLabel *label_116;
     QLabel *label_14;
     QLabel *label_12;
     QPushButton *IA2BUT;
@@ -2319,6 +2320,7 @@ public:
         textEdit_60->setObjectName(QString::fromUtf8("textEdit_60"));
         textEdit_60->setGeometry(QRect(730, 90, 181, 70));
         textEdit_60->setStyleSheet(QString::fromUtf8("background-color:transparent;\n"
+"color: rgb(255, 255, 255);\n"
 "font: 15pt \"Ubuntu Condensed\";\n"
 "font:bold;\n"
 "border:none;\n"
@@ -2379,12 +2381,25 @@ public:
 "background-color: rgb(255,255,255);\n"
 "border-radius:20px;border:2px solid black;"));
         lineEdit_74->setAlignment(Qt::AlignCenter);
+        label_116 = new QLabel(tab_40);
+        label_116->setObjectName(QString::fromUtf8("label_116"));
+        label_116->setGeometry(QRect(970, 10, 231, 51));
+        label_116->setStyleSheet(QString::fromUtf8("font:20pt \"Ubuntu\";\n"
+"\n"
+"border-radius:20px;\n"
+"\n"
+"border:none;font-weight: bold;border:3px solid black;\n"
+"\n"
+"color: rgb(255, 255, 255);\n"
+"background-color: rgb(3, 58, 11);"));
+        label_116->setAlignment(Qt::AlignCenter);
         tabWidget->addTab(tab_40, QString());
         label_120->raise();
         diapowup_but->raise();
         lineEdit_74->raise();
         diapowdown_but->raise();
         textEdit_60->raise();
+        label_116->raise();
         label_14 = new QLabel(centralwidget);
         label_14->setObjectName(QString::fromUtf8("label_14"));
         label_14->setGeometry(QRect(667, 390, 121, 121));
@@ -3005,17 +3020,21 @@ public:
         lab_date = new QLabel(centralwidget);
         lab_date->setObjectName(QString::fromUtf8("lab_date"));
         lab_date->setGeometry(QRect(520, 20, 201, 51));
-        lab_date->setStyleSheet(QString::fromUtf8("background-color: rgb(132, 225, 255);\n"
-"color: rgb(0, 0, 0);\n"
+        lab_date->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);\n"
+"background-color: rgb(3, 58, 11);\n"
 "border-radius:15px;\n"
+"font:15pt;\n"
 ""));
+        lab_date->setAlignment(Qt::AlignCenter);
         lab_time = new QLabel(centralwidget);
         lab_time->setObjectName(QString::fromUtf8("lab_time"));
         lab_time->setGeometry(QRect(730, 20, 201, 51));
-        lab_time->setStyleSheet(QString::fromUtf8("background-color: rgb(132, 225, 255);\n"
-"color: rgb(0, 0, 0);\n"
+        lab_time->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);\n"
+"background-color: rgb(3, 58, 11);\n"
 "border-radius:15px;\n"
+"font:15pt;\n"
 ""));
+        lab_time->setAlignment(Qt::AlignCenter);
         MainWindow->setCentralWidget(centralwidget);
         pushButton_2->raise();
         comboBox->raise();
@@ -3071,7 +3090,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(1);
+        tabWidget->setCurrentIndex(7);
         tabWidget_2->setCurrentIndex(5);
 
 
@@ -3346,6 +3365,7 @@ public:
         label_120->setText(QString());
         diapowup_but->setText(QString());
         lineEdit_74->setText(QCoreApplication::translate("MainWindow", "100", nullptr));
+        label_116->setText(QCoreApplication::translate("MainWindow", "Diathermy", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_40), QCoreApplication::translate("MainWindow", "Page", nullptr));
         label_14->setText(QString());
         label_12->setText(QString());

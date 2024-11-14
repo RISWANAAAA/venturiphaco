@@ -96,9 +96,9 @@ connect(ui->SelectSurgeon,&QComboBox::currentTextChanged,this,&doctor::onSurgeon
   ui->progressBar_5->setRange(2,40);
   ui->progressBar_6->setRange(5,500);
   ui->progressBar_7->setRange(5,100);
+  ui->progressBar_9->setRange(5,500);
   ui->progressBar_10->setRange(5,100);
   ui->progressBar_8->setRange(2,40);
-  ui->progressBar_9->setRange(5,500);
   ui->progressBar_11->setRange(2,40);
   ui->progressBar_12->setRange(5,500);
   ui->progressBar_13->setRange(5,100);
@@ -574,7 +574,7 @@ if(value ==0){
             return;
         }
         setRange(ui->lineEdit_10, prevValue, value2, 100);
-        ui->progressBar_9->setValue(value2);
+        ui->progressBar_10->setValue(value2);
 
 
     }
@@ -589,7 +589,7 @@ if(value ==0){
             return;
         }
         setRange(ui->lineEdit_9, prevValue, value3, 500);
-          ui->progressBar_10->setValue(value3);
+          ui->progressBar_9->setValue(value3);
 
 
     }
@@ -663,7 +663,7 @@ if(value ==0){
             return;
         }
         setRange(ui->lineEdit_18, prevValue, value2, 100);
-  ui->progressBar_3->setValue(value2);
+  ui->progressBar_4->setValue(value2);
     }
      if(ui->lineEdit_17->focusWidget()) {
         ui->lineEdit_16->clearFocus();
@@ -676,7 +676,7 @@ if(value ==0){
             return;
         }
         setRange(ui->lineEdit_17, prevValue, value3, 500);
-  ui->progressBar_4->setValue(value3);
+  ui->progressBar_3->setValue(value3);
 
       }
 
@@ -977,14 +977,14 @@ void doctor::click(int tab)
 void doctor::clickedtab(int tab1)
 {
     QString styleSheet = "QPushButton {"
-
+             "font:20pt;"
             "background-color:black;"
             "color:white;"
             "border:2px solid black;"
             "font:bold;"// Adjust the radius as needed
                                  "}";
     QString styleSheet1 = "QPushButton {"
-
+  "font:20pt;"
             "background-color:white;"
             "color:black;"
             "border:2px solid black;"
@@ -1427,11 +1427,7 @@ void doctor::onSurgeonSelectionChanged(const QString &surgeonName)
         ui->progressBar->setValue(phacoPowerMax);
         QString pump = query.value("pump").toString();
         QString vib_onoff = query.value("viberationoff").toString();
-   if(vib_onoff == "Viberation ON"){
-       ui->lab_vibonoff->setStyleSheet("image: url(:/images/vibrationon.png);border:2px solid skyblue;border-radius:20px;");
-   }else if(vib_onoff == "Viberation OFF"){
-       ui->lab_vibonoff->setStyleSheet("image: url(:/images/vibrationoff.png);border:2px solid skyblue;border-radius:20px;");
-   }
+
         // US1 (Epinucleus) parameters
         int us1power = query.value("Epinpowmax").toInt();
         int us1vacmax = query.value("Epinvacmax").toInt();
@@ -1463,9 +1459,9 @@ void doctor::onSurgeonSelectionChanged(const QString &surgeonName)
         ui->progressBar_12->setValue(us3vacmax);
         ui->progressBar_13->setValue(us3power);
         // US4 (Sculpt) parameters
-        int us4power = query.value("spowmax").toInt();
+        int us4aspmax = query.value("spowmax").toInt();
         int us4vacmax = query.value("svacmax").toInt();
-        int us4aspmax = query.value("saspmax").toInt();
+        int  us4power= query.value("saspmax").toInt();
         QString us4mode = query.value("Sculptpowmode").toString();
         QString us4vacmode = query.value("Sculptvacmode").toString();
         QString us4powermethod = query.value("Sculptpowermethod").toString();
@@ -1509,32 +1505,32 @@ void doctor::onSurgeonSelectionChanged(const QString &surgeonName)
         ui->lineEdit_4->setText(QString::number(us1power));  // Power
         ui->lineEdit_3->setText(QString::number(us1vacmax)); // Vacuum
         ui->lineEdit_2->setText(QString::number(us1flowmax)); // Flow
-        ui->PowMode_phaco->setText(us1mode);
-        ui->VacMode_vit->setText(us1vacmode);
+        ui->PowModeCom_phaco->setCurrentText(us1mode);
+        ui->VacModeCom_phaco->setCurrentText(us1vacmode);
         ui->PowMethodCom_phaco->setCurrentText(us1powermethod);
 
         // Update US2 UI components
         ui->lineEdit_10->setText(QString::number(us2power)); // Power
         ui->lineEdit_9->setText(QString::number(us2vacmax)); // Vacuum
         ui->lineEdit_8->setText(QString::number(us2aspmax)); // Aspiration
-        ui->PowMode_phaco_2->setText(us2mode);
-        ui->VacMode_phaco_2->setText(us2vacmode);
+        ui->PowModeCom_phaco_2->setCurrentText(us2mode);
+        ui->VacModeCom_phaco_2->setCurrentText(us2vacmode);
         ui->PowMethodCom_phaco_2->setCurrentText(us2powermethod);
 
         // Update US3 UI components
         ui->lineEdit_15->setText(QString::number(us3power)); // Power
         ui->lineEdit_14->setText(QString::number(us3vacmax)); // Vacuum
         ui->lineEdit_13->setText(QString::number(us3aspmax)); // Aspiration
-        ui->PowMode_phaco_3->setText(us3mode);
-        ui->VacMode_phaco_3->setText(us3vacmode);
+        ui->PowModeCom_phaco_3->setCurrentText(us3mode);
+        ui->VacModeCom_phaco_3->setCurrentText(us3vacmode);
         ui->PowMethodCom_phaco_3->setCurrentText(us3powermethod);
 
         // Update US4 UI components
         ui->lineEdit_16->setText(QString::number(us4power)); // Power
         ui->lineEdit_17->setText(QString::number(us4vacmax)); // Vacuum
         ui->lineEdit_18->setText(QString::number(us4aspmax)); // Aspiration
-        ui->PowMode_phaco_4->setText(us4mode);   // Changed from us1mode to us4mode
-        ui->VacMode_phaco_4->setText(us4vacmode);   // Changed from us1vacmode to us4vacmode
+        ui->PowModeCom_phaco_4->setCurrentText(us4mode);   // Changed from us1mode to us4mode
+        ui->VacModeCom_phaco_4->setCurrentText(us4vacmode);   // Changed from us1vacmode to us4vacmode
         ui->PowMethodCom_phaco_4->setCurrentText(us4powermethod);
 
         // Update IA1 and IA2 UI components
@@ -1552,7 +1548,11 @@ void doctor::onSurgeonSelectionChanged(const QString &surgeonName)
         ui->CutMode_vitCom->setCurrentText(vitcutmode);
         ui->VacMode_VitCom->setCurrentText(vitvacmode);
         ui->Vibration_onoff->setText(vib_onoff);
-
+        if(vib_onoff == "Viberation ON"){
+            ui->lab_vibonoff->setStyleSheet("image: url(:/images/vibrationon.png);border:2px solid skyblue;border-radius:20px;");
+        }else if(vib_onoff == "Viberation OFF"){
+            ui->lab_vibonoff->setStyleSheet("image: url(:/images/vibrationoff.png);border:2px solid skyblue;border-radius:20px;");
+        }
          emit leftfoot(ui->LeftFoot->currentText());
         emit rightfoot(ui->RightFoot->currentText());
         emit bottomleft(ui->BottomLFoot->currentText());

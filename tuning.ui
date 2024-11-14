@@ -86,10 +86,43 @@ border:none;</string>
     <string>PushButton</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>600</y>
+     <width>441</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>600</y>
+     <width>71</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">image: url(:/images/singletick.png);
+background-color:transparent;
+border:none;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
   <zorder>But_Tune</zorder>
   <zorder>But_Next</zorder>
   <zorder>But_value</zorder>
   <zorder>But_Handpiece</zorder>
+  <zorder>pushButton</zorder>
+  <zorder>label</zorder>
  </widget>
  <resources/>
  <connections/>

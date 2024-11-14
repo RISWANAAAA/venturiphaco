@@ -242,8 +242,8 @@ public:
 "background-color:transparent;"));
         VitBut = new QPushButton(doctor);
         VitBut->setObjectName(QString::fromUtf8("VitBut"));
-        VitBut->setGeometry(QRect(280, 260, 101, 81));
-        VitBut->setStyleSheet(QString::fromUtf8("border-radius: 40px;\n"
+        VitBut->setGeometry(QRect(303, 260, 71, 71));
+        VitBut->setStyleSheet(QString::fromUtf8("border-radius: 35px;\n"
 "width:10px;\n"
 "height:10px;\n"
 "background-color:transparent;\n"
@@ -252,20 +252,20 @@ public:
 "border:3px solid black;"));
         circle = new QLabel(doctor);
         circle->setObjectName(QString::fromUtf8("circle"));
-        circle->setGeometry(QRect(190, 90, 271, 251));
+        circle->setGeometry(QRect(210, 90, 261, 241));
         circle->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);\n"
 "border:3px solid black;\n"
 "border-radius:120px;"));
         FootPedalSettings = new QLabel(doctor);
         FootPedalSettings->setObjectName(QString::fromUtf8("FootPedalSettings"));
-        FootPedalSettings->setGeometry(QRect(90, 380, 381, 51));
+        FootPedalSettings->setGeometry(QRect(70, 380, 381, 51));
         FootPedalSettings->setStyleSheet(QString::fromUtf8("font: 20pt \"Ubuntu Condensed\";\n"
 "background-color:transparent;\n"
 "font:bold;"));
         IABut = new QPushButton(doctor);
         IABut->setObjectName(QString::fromUtf8("IABut"));
-        IABut->setGeometry(QRect(190, 170, 91, 81));
-        IABut->setStyleSheet(QString::fromUtf8("border-radius: 40px;\n"
+        IABut->setGeometry(QRect(210, 170, 71, 71));
+        IABut->setStyleSheet(QString::fromUtf8("border-radius: 35px;\n"
 "width:10px;\n"
 "height:10px;\n"
 "background-color:transparent;\n"
@@ -299,8 +299,8 @@ public:
 "background-color: rgb(14, 50, 6);"));
         PhacoBut = new QPushButton(doctor);
         PhacoBut->setObjectName(QString::fromUtf8("PhacoBut"));
-        PhacoBut->setGeometry(QRect(370, 170, 91, 81));
-        PhacoBut->setStyleSheet(QString::fromUtf8("border-radius: 40px;\n"
+        PhacoBut->setGeometry(QRect(400, 170, 71, 71));
+        PhacoBut->setStyleSheet(QString::fromUtf8("border-radius: 35px;\n"
 "width:10px;\n"
 "height:10px;\n"
 "background-color:transparent;\n"
@@ -348,8 +348,8 @@ public:
         lineEdit_6->setAlignment(Qt::AlignCenter);
         DiaPowMax = new QLabel(Diathermy);
         DiaPowMax->setObjectName(QString::fromUtf8("DiaPowMax"));
-        DiaPowMax->setGeometry(QRect(70, 190, 281, 51));
-        DiaPowMax->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 15pt \"Ubuntu Condensed\";\n"
+        DiaPowMax->setGeometry(QRect(50, 190, 311, 61));
+        DiaPowMax->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 20pt \"Ubuntu Condensed\";\n"
 "font:bold;"));
         progressBar = new QProgressBar(Diathermy);
         progressBar->setObjectName(QString::fromUtf8("progressBar"));
@@ -404,7 +404,7 @@ public:
         VacMax_phaco = new QLabel(tab_6);
         VacMax_phaco->setObjectName(QString::fromUtf8("VacMax_phaco"));
         VacMax_phaco->setGeometry(QRect(60, 140, 291, 31));
-        VacMax_phaco->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 15pt \"Ubuntu Condensed\";\n"
+        VacMax_phaco->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 20pt \"Ubuntu Condensed\";\n"
 "font:bold;"));
         lineEdit_2 = new QLineEdit(tab_6);
         lineEdit_2->setObjectName(QString::fromUtf8("lineEdit_2"));
@@ -424,12 +424,12 @@ public:
         AspMax_phaco_3 = new QLabel(tab_6);
         AspMax_phaco_3->setObjectName(QString::fromUtf8("AspMax_phaco_3"));
         AspMax_phaco_3->setGeometry(QRect(660, 140, 251, 31));
-        AspMax_phaco_3->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 15pt \"Ubuntu Condensed\";\n"
+        AspMax_phaco_3->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 20pt \"Ubuntu Condensed\";\n"
 "font:bold;"));
         AspMax_phaco_2 = new QLabel(tab_6);
         AspMax_phaco_2->setObjectName(QString::fromUtf8("AspMax_phaco_2"));
         AspMax_phaco_2->setGeometry(QRect(660, 20, 251, 31));
-        AspMax_phaco_2->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 15pt \"Ubuntu Condensed\";\n"
+        AspMax_phaco_2->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 20pt \"Ubuntu Condensed\";\n"
 "font:bold;"));
         lineEdit_3 = new QLineEdit(tab_6);
         lineEdit_3->setObjectName(QString::fromUtf8("lineEdit_3"));
@@ -441,17 +441,17 @@ public:
         AspMax_phaco_4 = new QLabel(tab_6);
         AspMax_phaco_4->setObjectName(QString::fromUtf8("AspMax_phaco_4"));
         AspMax_phaco_4->setGeometry(QRect(670, 260, 251, 31));
-        AspMax_phaco_4->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 15pt \"Ubuntu Condensed\";\n"
+        AspMax_phaco_4->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 20pt \"Ubuntu Condensed\";\n"
 "font:bold;"));
         VacMode_phaco = new QLabel(tab_6);
         VacMode_phaco->setObjectName(QString::fromUtf8("VacMode_phaco"));
         VacMode_phaco->setGeometry(QRect(70, 370, 391, 31));
-        VacMode_phaco->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 15pt \"Ubuntu Condensed\";\n"
+        VacMode_phaco->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 20pt \"Ubuntu Condensed\";\n"
 "font:bold;"));
         AspMax_phaco = new QLabel(tab_6);
         AspMax_phaco->setObjectName(QString::fromUtf8("AspMax_phaco"));
-        AspMax_phaco->setGeometry(QRect(60, 20, 251, 31));
-        AspMax_phaco->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 15pt \"Ubuntu Condensed\";\n"
+        AspMax_phaco->setGeometry(QRect(60, 20, 341, 31));
+        AspMax_phaco->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 20pt \"Ubuntu Condensed\";\n"
 "font:bold;"));
         PowModeCom_phaco = new QComboBox(tab_6);
         PowModeCom_phaco->addItem(QString());
@@ -464,7 +464,7 @@ public:
         PowMethod_phaco = new QLabel(tab_6);
         PowMethod_phaco->setObjectName(QString::fromUtf8("PowMethod_phaco"));
         PowMethod_phaco->setGeometry(QRect(70, 440, 351, 31));
-        PowMethod_phaco->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 15pt \"Ubuntu Condensed\";\n"
+        PowMethod_phaco->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 20pt \"Ubuntu Condensed\";\n"
 "font:bold;"));
         lineEdit_4 = new QLineEdit(tab_6);
         lineEdit_4->setObjectName(QString::fromUtf8("lineEdit_4"));
@@ -489,12 +489,12 @@ public:
         PowMode_phaco = new QLabel(tab_6);
         PowMode_phaco->setObjectName(QString::fromUtf8("PowMode_phaco"));
         PowMode_phaco->setGeometry(QRect(70, 500, 381, 31));
-        PowMode_phaco->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 15pt \"Ubuntu Condensed\";\n"
+        PowMode_phaco->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 20pt \"Ubuntu Condensed\";\n"
 "font:bold;"));
         PowMax_phaco = new QLabel(tab_6);
         PowMax_phaco->setObjectName(QString::fromUtf8("PowMax_phaco"));
         PowMax_phaco->setGeometry(QRect(60, 260, 251, 31));
-        PowMax_phaco->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 15pt \"Ubuntu Condensed\";\n"
+        PowMax_phaco->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 20pt \"Ubuntu Condensed\";\n"
 "font:bold;"));
         progressBar_5 = new QProgressBar(tab_6);
         progressBar_5->setObjectName(QString::fromUtf8("progressBar_5"));
@@ -565,7 +565,7 @@ public:
         VacMax_phaco_2 = new QLabel(tab_7);
         VacMax_phaco_2->setObjectName(QString::fromUtf8("VacMax_phaco_2"));
         VacMax_phaco_2->setGeometry(QRect(60, 140, 291, 31));
-        VacMax_phaco_2->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 15pt \"Ubuntu Condensed\";\n"
+        VacMax_phaco_2->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 20pt \"Ubuntu Condensed\";\n"
 "font:bold;"));
         lineEdit_8 = new QLineEdit(tab_7);
         lineEdit_8->setObjectName(QString::fromUtf8("lineEdit_8"));
@@ -585,12 +585,12 @@ public:
         AspMax_phaco_9 = new QLabel(tab_7);
         AspMax_phaco_9->setObjectName(QString::fromUtf8("AspMax_phaco_9"));
         AspMax_phaco_9->setGeometry(QRect(660, 140, 251, 31));
-        AspMax_phaco_9->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 15pt \"Ubuntu Condensed\";\n"
+        AspMax_phaco_9->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 20pt \"Ubuntu Condensed\";\n"
 "font:bold;"));
         AspMax_phaco_10 = new QLabel(tab_7);
         AspMax_phaco_10->setObjectName(QString::fromUtf8("AspMax_phaco_10"));
         AspMax_phaco_10->setGeometry(QRect(660, 20, 251, 31));
-        AspMax_phaco_10->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 15pt \"Ubuntu Condensed\";\n"
+        AspMax_phaco_10->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 20pt \"Ubuntu Condensed\";\n"
 "font:bold;"));
         lineEdit_9 = new QLineEdit(tab_7);
         lineEdit_9->setObjectName(QString::fromUtf8("lineEdit_9"));
@@ -602,17 +602,17 @@ public:
         AspMax_phaco_11 = new QLabel(tab_7);
         AspMax_phaco_11->setObjectName(QString::fromUtf8("AspMax_phaco_11"));
         AspMax_phaco_11->setGeometry(QRect(670, 260, 251, 31));
-        AspMax_phaco_11->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 15pt \"Ubuntu Condensed\";\n"
+        AspMax_phaco_11->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 20pt \"Ubuntu Condensed\";\n"
 "font:bold;"));
         VacMode_phaco_2 = new QLabel(tab_7);
         VacMode_phaco_2->setObjectName(QString::fromUtf8("VacMode_phaco_2"));
         VacMode_phaco_2->setGeometry(QRect(70, 370, 341, 31));
-        VacMode_phaco_2->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 15pt \"Ubuntu Condensed\";\n"
+        VacMode_phaco_2->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 20pt \"Ubuntu Condensed\";\n"
 "font:bold;"));
         AspMax_phaco_12 = new QLabel(tab_7);
         AspMax_phaco_12->setObjectName(QString::fromUtf8("AspMax_phaco_12"));
-        AspMax_phaco_12->setGeometry(QRect(60, 20, 251, 31));
-        AspMax_phaco_12->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 15pt \"Ubuntu Condensed\";\n"
+        AspMax_phaco_12->setGeometry(QRect(60, 20, 341, 31));
+        AspMax_phaco_12->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 20pt \"Ubuntu Condensed\";\n"
 "font:bold;"));
         PowModeCom_phaco_2 = new QComboBox(tab_7);
         PowModeCom_phaco_2->addItem(QString());
@@ -625,7 +625,7 @@ public:
         PowMethod_phaco_2 = new QLabel(tab_7);
         PowMethod_phaco_2->setObjectName(QString::fromUtf8("PowMethod_phaco_2"));
         PowMethod_phaco_2->setGeometry(QRect(70, 440, 281, 31));
-        PowMethod_phaco_2->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 15pt \"Ubuntu Condensed\";\n"
+        PowMethod_phaco_2->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 20pt \"Ubuntu Condensed\";\n"
 "font:bold;"));
         lineEdit_10 = new QLineEdit(tab_7);
         lineEdit_10->setObjectName(QString::fromUtf8("lineEdit_10"));
@@ -650,12 +650,12 @@ public:
         PowMode_phaco_2 = new QLabel(tab_7);
         PowMode_phaco_2->setObjectName(QString::fromUtf8("PowMode_phaco_2"));
         PowMode_phaco_2->setGeometry(QRect(70, 500, 351, 31));
-        PowMode_phaco_2->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 15pt \"Ubuntu Condensed\";\n"
+        PowMode_phaco_2->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 20pt \"Ubuntu Condensed\";\n"
 "font:bold;"));
         PowMax_phaco_2 = new QLabel(tab_7);
         PowMax_phaco_2->setObjectName(QString::fromUtf8("PowMax_phaco_2"));
         PowMax_phaco_2->setGeometry(QRect(60, 260, 251, 31));
-        PowMax_phaco_2->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 15pt \"Ubuntu Condensed\";\n"
+        PowMax_phaco_2->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 20pt \"Ubuntu Condensed\";\n"
 "font:bold;"));
         progressBar_8 = new QProgressBar(tab_7);
         progressBar_8->setObjectName(QString::fromUtf8("progressBar_8"));
@@ -726,7 +726,7 @@ public:
         VacMax_phaco_3 = new QLabel(tab_8);
         VacMax_phaco_3->setObjectName(QString::fromUtf8("VacMax_phaco_3"));
         VacMax_phaco_3->setGeometry(QRect(60, 140, 291, 31));
-        VacMax_phaco_3->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 15pt \"Ubuntu Condensed\";\n"
+        VacMax_phaco_3->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 20pt \"Ubuntu Condensed\";\n"
 "font:bold;"));
         lineEdit_13 = new QLineEdit(tab_8);
         lineEdit_13->setObjectName(QString::fromUtf8("lineEdit_13"));
@@ -747,12 +747,12 @@ public:
         AspMax_phaco_13 = new QLabel(tab_8);
         AspMax_phaco_13->setObjectName(QString::fromUtf8("AspMax_phaco_13"));
         AspMax_phaco_13->setGeometry(QRect(660, 140, 251, 31));
-        AspMax_phaco_13->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 15pt \"Ubuntu Condensed\";\n"
+        AspMax_phaco_13->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 20pt \"Ubuntu Condensed\";\n"
 "font:bold;"));
         AspMax_phaco_14 = new QLabel(tab_8);
         AspMax_phaco_14->setObjectName(QString::fromUtf8("AspMax_phaco_14"));
         AspMax_phaco_14->setGeometry(QRect(660, 20, 251, 31));
-        AspMax_phaco_14->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 15pt \"Ubuntu Condensed\";\n"
+        AspMax_phaco_14->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 20pt \"Ubuntu Condensed\";\n"
 "font:bold;"));
         lineEdit_14 = new QLineEdit(tab_8);
         lineEdit_14->setObjectName(QString::fromUtf8("lineEdit_14"));
@@ -764,17 +764,17 @@ public:
         AspMax_phaco_15 = new QLabel(tab_8);
         AspMax_phaco_15->setObjectName(QString::fromUtf8("AspMax_phaco_15"));
         AspMax_phaco_15->setGeometry(QRect(670, 260, 251, 31));
-        AspMax_phaco_15->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 15pt \"Ubuntu Condensed\";\n"
+        AspMax_phaco_15->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 20pt \"Ubuntu Condensed\";\n"
 "font:bold;"));
         VacMode_phaco_3 = new QLabel(tab_8);
         VacMode_phaco_3->setObjectName(QString::fromUtf8("VacMode_phaco_3"));
         VacMode_phaco_3->setGeometry(QRect(70, 370, 391, 31));
-        VacMode_phaco_3->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 15pt \"Ubuntu Condensed\";\n"
+        VacMode_phaco_3->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 20pt \"Ubuntu Condensed\";\n"
 "font:bold;"));
         AspMax_phaco_16 = new QLabel(tab_8);
         AspMax_phaco_16->setObjectName(QString::fromUtf8("AspMax_phaco_16"));
-        AspMax_phaco_16->setGeometry(QRect(60, 20, 251, 31));
-        AspMax_phaco_16->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 15pt \"Ubuntu Condensed\";\n"
+        AspMax_phaco_16->setGeometry(QRect(60, 20, 331, 31));
+        AspMax_phaco_16->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 20pt \"Ubuntu Condensed\";\n"
 "font:bold;"));
         PowModeCom_phaco_3 = new QComboBox(tab_8);
         PowModeCom_phaco_3->addItem(QString());
@@ -788,7 +788,7 @@ public:
         PowMethod_phaco_3 = new QLabel(tab_8);
         PowMethod_phaco_3->setObjectName(QString::fromUtf8("PowMethod_phaco_3"));
         PowMethod_phaco_3->setGeometry(QRect(70, 440, 351, 31));
-        PowMethod_phaco_3->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 15pt \"Ubuntu Condensed\";\n"
+        PowMethod_phaco_3->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 20pt \"Ubuntu Condensed\";\n"
 "font:bold;"));
         lineEdit_15 = new QLineEdit(tab_8);
         lineEdit_15->setObjectName(QString::fromUtf8("lineEdit_15"));
@@ -814,12 +814,12 @@ public:
         PowMode_phaco_3 = new QLabel(tab_8);
         PowMode_phaco_3->setObjectName(QString::fromUtf8("PowMode_phaco_3"));
         PowMode_phaco_3->setGeometry(QRect(70, 500, 331, 31));
-        PowMode_phaco_3->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 15pt \"Ubuntu Condensed\";\n"
+        PowMode_phaco_3->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 20pt \"Ubuntu Condensed\";\n"
 "font:bold;"));
         PowMax_phaco_3 = new QLabel(tab_8);
         PowMax_phaco_3->setObjectName(QString::fromUtf8("PowMax_phaco_3"));
         PowMax_phaco_3->setGeometry(QRect(60, 260, 251, 31));
-        PowMax_phaco_3->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 15pt \"Ubuntu Condensed\";\n"
+        PowMax_phaco_3->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 20pt \"Ubuntu Condensed\";\n"
 "font:bold;"));
         progressBar_11 = new QProgressBar(tab_8);
         progressBar_11->setObjectName(QString::fromUtf8("progressBar_11"));
@@ -890,7 +890,7 @@ public:
         VacMax_phaco_4 = new QLabel(tab_9);
         VacMax_phaco_4->setObjectName(QString::fromUtf8("VacMax_phaco_4"));
         VacMax_phaco_4->setGeometry(QRect(60, 140, 291, 31));
-        VacMax_phaco_4->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 15pt \"Ubuntu Condensed\";\n"
+        VacMax_phaco_4->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 20pt \"Ubuntu Condensed\";\n"
 "font:bold;"));
         lineEdit_16 = new QLineEdit(tab_9);
         lineEdit_16->setObjectName(QString::fromUtf8("lineEdit_16"));
@@ -911,12 +911,12 @@ public:
         AspMax_phaco_17 = new QLabel(tab_9);
         AspMax_phaco_17->setObjectName(QString::fromUtf8("AspMax_phaco_17"));
         AspMax_phaco_17->setGeometry(QRect(660, 140, 251, 31));
-        AspMax_phaco_17->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 15pt \"Ubuntu Condensed\";\n"
+        AspMax_phaco_17->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 20pt \"Ubuntu Condensed\";\n"
 "font:bold;"));
         AspMax_phaco_18 = new QLabel(tab_9);
         AspMax_phaco_18->setObjectName(QString::fromUtf8("AspMax_phaco_18"));
         AspMax_phaco_18->setGeometry(QRect(660, 20, 251, 31));
-        AspMax_phaco_18->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 15pt \"Ubuntu Condensed\";\n"
+        AspMax_phaco_18->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 20pt \"Ubuntu Condensed\";\n"
 "font:bold;"));
         lineEdit_17 = new QLineEdit(tab_9);
         lineEdit_17->setObjectName(QString::fromUtf8("lineEdit_17"));
@@ -928,17 +928,17 @@ public:
         AspMax_phaco_19 = new QLabel(tab_9);
         AspMax_phaco_19->setObjectName(QString::fromUtf8("AspMax_phaco_19"));
         AspMax_phaco_19->setGeometry(QRect(670, 260, 251, 31));
-        AspMax_phaco_19->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 15pt \"Ubuntu Condensed\";\n"
+        AspMax_phaco_19->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 20pt \"Ubuntu Condensed\";\n"
 "font:bold;"));
         VacMode_phaco_4 = new QLabel(tab_9);
         VacMode_phaco_4->setObjectName(QString::fromUtf8("VacMode_phaco_4"));
         VacMode_phaco_4->setGeometry(QRect(70, 370, 391, 31));
-        VacMode_phaco_4->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 15pt \"Ubuntu Condensed\";\n"
+        VacMode_phaco_4->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 20pt \"Ubuntu Condensed\";\n"
 "font:bold;"));
         AspMax_phaco_20 = new QLabel(tab_9);
         AspMax_phaco_20->setObjectName(QString::fromUtf8("AspMax_phaco_20"));
-        AspMax_phaco_20->setGeometry(QRect(60, 20, 251, 31));
-        AspMax_phaco_20->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 15pt \"Ubuntu Condensed\";\n"
+        AspMax_phaco_20->setGeometry(QRect(60, 20, 351, 31));
+        AspMax_phaco_20->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 20pt \"Ubuntu Condensed\";\n"
 "font:bold;"));
         PowModeCom_phaco_4 = new QComboBox(tab_9);
         PowModeCom_phaco_4->addItem(QString());
@@ -952,7 +952,7 @@ public:
         PowMethod_phaco_4 = new QLabel(tab_9);
         PowMethod_phaco_4->setObjectName(QString::fromUtf8("PowMethod_phaco_4"));
         PowMethod_phaco_4->setGeometry(QRect(70, 440, 351, 31));
-        PowMethod_phaco_4->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 15pt \"Ubuntu Condensed\";\n"
+        PowMethod_phaco_4->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 20pt \"Ubuntu Condensed\";\n"
 "font:bold;"));
         lineEdit_18 = new QLineEdit(tab_9);
         lineEdit_18->setObjectName(QString::fromUtf8("lineEdit_18"));
@@ -977,13 +977,13 @@ public:
 "background-color: rgb(14, 50, 6);"));
         PowMode_phaco_4 = new QLabel(tab_9);
         PowMode_phaco_4->setObjectName(QString::fromUtf8("PowMode_phaco_4"));
-        PowMode_phaco_4->setGeometry(QRect(70, 500, 351, 31));
-        PowMode_phaco_4->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 15pt \"Ubuntu Condensed\";\n"
+        PowMode_phaco_4->setGeometry(QRect(70, 500, 351, 41));
+        PowMode_phaco_4->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 20pt \"Ubuntu Condensed\";\n"
 "font:bold;"));
         PowMax_phaco_4 = new QLabel(tab_9);
         PowMax_phaco_4->setObjectName(QString::fromUtf8("PowMax_phaco_4"));
         PowMax_phaco_4->setGeometry(QRect(60, 260, 251, 31));
-        PowMax_phaco_4->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 15pt \"Ubuntu Condensed\";\n"
+        PowMax_phaco_4->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 20pt \"Ubuntu Condensed\";\n"
 "font:bold;"));
         progressBar_2 = new QProgressBar(tab_9);
         progressBar_2->setObjectName(QString::fromUtf8("progressBar_2"));
@@ -1089,32 +1089,32 @@ public:
         AspMax_ia = new QLabel(tab_3);
         AspMax_ia->setObjectName(QString::fromUtf8("AspMax_ia"));
         AspMax_ia->setGeometry(QRect(80, 70, 281, 31));
-        AspMax_ia->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 15pt \"Ubuntu Condensed\";\n"
+        AspMax_ia->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 20pt \"Ubuntu Condensed\";\n"
 "font:bold;"));
         VacMax_ia = new QLabel(tab_3);
         VacMax_ia->setObjectName(QString::fromUtf8("VacMax_ia"));
         VacMax_ia->setGeometry(QRect(80, 160, 371, 31));
-        VacMax_ia->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 15pt \"Ubuntu Condensed\";\n"
+        VacMax_ia->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 20pt \"Ubuntu Condensed\";\n"
 "font:bold;"));
         VacMode2_ia = new QLabel(tab_3);
         VacMode2_ia->setObjectName(QString::fromUtf8("VacMode2_ia"));
         VacMode2_ia->setGeometry(QRect(70, 260, 361, 41));
-        VacMode2_ia->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 15pt \"Ubuntu Condensed\";\n"
+        VacMode2_ia->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 20pt \"Ubuntu Condensed\";\n"
 "font:bold;"));
         AspMax2_ia = new QLabel(tab_3);
         AspMax2_ia->setObjectName(QString::fromUtf8("AspMax2_ia"));
         AspMax2_ia->setGeometry(QRect(70, 360, 411, 51));
-        AspMax2_ia->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 15pt \"Ubuntu Condensed\";\n"
+        AspMax2_ia->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 20pt \"Ubuntu Condensed\";\n"
 "font:bold;"));
         VacMax_ia_2 = new QLabel(tab_3);
         VacMax_ia_2->setObjectName(QString::fromUtf8("VacMax_ia_2"));
         VacMax_ia_2->setGeometry(QRect(70, 470, 381, 41));
-        VacMax_ia_2->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 15pt \"Ubuntu Condensed\";\n"
+        VacMax_ia_2->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 20pt \"Ubuntu Condensed\";\n"
 "font:bold;"));
         VacMode3_ia = new QLabel(tab_3);
         VacMode3_ia->setObjectName(QString::fromUtf8("VacMode3_ia"));
         VacMode3_ia->setGeometry(QRect(70, 570, 381, 31));
-        VacMode3_ia->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 15pt \"Ubuntu Condensed\";\n"
+        VacMode3_ia->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 20pt \"Ubuntu Condensed\";\n"
 "font:bold;"));
         VacMode1_iacom = new QComboBox(tab_3);
         VacMode1_iacom->addItem(QString());
@@ -1152,22 +1152,22 @@ public:
         AspMax_phaco_5 = new QLabel(tab_3);
         AspMax_phaco_5->setObjectName(QString::fromUtf8("AspMax_phaco_5"));
         AspMax_phaco_5->setGeometry(QRect(700, 160, 251, 31));
-        AspMax_phaco_5->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 15pt \"Ubuntu Condensed\";\n"
+        AspMax_phaco_5->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 20pt \"Ubuntu Condensed\";\n"
 "font:bold;"));
         AspMax_phaco_6 = new QLabel(tab_3);
         AspMax_phaco_6->setObjectName(QString::fromUtf8("AspMax_phaco_6"));
         AspMax_phaco_6->setGeometry(QRect(700, 70, 251, 31));
-        AspMax_phaco_6->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 15pt \"Ubuntu Condensed\";\n"
+        AspMax_phaco_6->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 20pt \"Ubuntu Condensed\";\n"
 "font:bold;"));
         AspMax_phaco_7 = new QLabel(tab_3);
         AspMax_phaco_7->setObjectName(QString::fromUtf8("AspMax_phaco_7"));
         AspMax_phaco_7->setGeometry(QRect(710, 360, 251, 31));
-        AspMax_phaco_7->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 15pt \"Ubuntu Condensed\";\n"
+        AspMax_phaco_7->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 20pt \"Ubuntu Condensed\";\n"
 "font:bold;"));
         AspMax_phaco_8 = new QLabel(tab_3);
         AspMax_phaco_8->setObjectName(QString::fromUtf8("AspMax_phaco_8"));
         AspMax_phaco_8->setGeometry(QRect(710, 460, 251, 31));
-        AspMax_phaco_8->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 15pt \"Ubuntu Condensed\";\n"
+        AspMax_phaco_8->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 20pt \"Ubuntu Condensed\";\n"
 "font:bold;"));
         progressBar_14 = new QProgressBar(tab_3);
         progressBar_14->setObjectName(QString::fromUtf8("progressBar_14"));
@@ -1289,7 +1289,7 @@ public:
         CutMax_vit = new QLabel(tab_4);
         CutMax_vit->setObjectName(QString::fromUtf8("CutMax_vit"));
         CutMax_vit->setGeometry(QRect(170, 80, 281, 31));
-        CutMax_vit->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 15pt \"Ubuntu Condensed\";\n"
+        CutMax_vit->setStyleSheet(QString::fromUtf8("background-color:transparent;font:20pt \"Ubuntu Condensed\";\n"
 "font:bold;"));
         CutMode_vitCom = new QComboBox(tab_4);
         CutMode_vitCom->addItem(QString());
@@ -1303,7 +1303,7 @@ public:
         CutMode_vit = new QLabel(tab_4);
         CutMode_vit->setObjectName(QString::fromUtf8("CutMode_vit"));
         CutMode_vit->setGeometry(QRect(170, 170, 251, 31));
-        CutMode_vit->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 15pt \"Ubuntu Condensed\";\n"
+        CutMode_vit->setStyleSheet(QString::fromUtf8("background-color:transparent;font:20pt \"Ubuntu Condensed\";\n"
 "font:bold;"));
         lineEdit_19 = new QLineEdit(tab_4);
         lineEdit_19->setObjectName(QString::fromUtf8("lineEdit_19"));
@@ -1316,7 +1316,7 @@ public:
         VacMax_vit = new QLabel(tab_4);
         VacMax_vit->setObjectName(QString::fromUtf8("VacMax_vit"));
         VacMax_vit->setGeometry(QRect(160, 290, 271, 31));
-        VacMax_vit->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 15pt \"Ubuntu Condensed\";\n"
+        VacMax_vit->setStyleSheet(QString::fromUtf8("background-color:transparent;font:20pt \"Ubuntu Condensed\";\n"
 "font:bold;"));
         VacMode_VitCom = new QComboBox(tab_4);
         VacMode_VitCom->addItem(QString());
@@ -1330,12 +1330,12 @@ public:
         VacMode_vit = new QLabel(tab_4);
         VacMode_vit->setObjectName(QString::fromUtf8("VacMode_vit"));
         VacMode_vit->setGeometry(QRect(160, 390, 271, 31));
-        VacMode_vit->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 15pt \"Ubuntu Condensed\";\n"
+        VacMode_vit->setStyleSheet(QString::fromUtf8("background-color:transparent;font:20pt \"Ubuntu Condensed\";\n"
 "font:bold;"));
         AspMax_vit = new QLabel(tab_4);
         AspMax_vit->setObjectName(QString::fromUtf8("AspMax_vit"));
         AspMax_vit->setGeometry(QRect(150, 490, 331, 31));
-        AspMax_vit->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 15pt \"Ubuntu Condensed\";\n"
+        AspMax_vit->setStyleSheet(QString::fromUtf8("background-color:transparent;font:20pt \"Ubuntu Condensed\";\n"
 "font:bold;"));
         CutRate = new QLabel(tab_4);
         CutRate->setObjectName(QString::fromUtf8("CutRate"));
@@ -1425,6 +1425,7 @@ public:
         lineEdit_20->setAlignment(Qt::AlignCenter);
         tabWidget->addTab(tab_4, QString());
         CutMode_vit->raise();
+        CutMode_vitCom->raise();
         VacMode_VitCom->raise();
         CutMax_vit->raise();
         VacMax_vit->raise();
@@ -1432,7 +1433,6 @@ public:
         AspMax_vit->raise();
         VacMode_vit->raise();
         Vaccum->raise();
-        CutMode_vitCom->raise();
         lineEdit->raise();
         lineEdit_19->raise();
         progressBar_19->raise();
@@ -1441,8 +1441,8 @@ public:
         lineEdit_20->raise();
         DiaBut = new QPushButton(doctor);
         DiaBut->setObjectName(QString::fromUtf8("DiaBut"));
-        DiaBut->setGeometry(QRect(280, 90, 91, 81));
-        DiaBut->setStyleSheet(QString::fromUtf8("border-radius: 40px;\n"
+        DiaBut->setGeometry(QRect(303, 90, 71, 71));
+        DiaBut->setStyleSheet(QString::fromUtf8("border-radius: 35px;\n"
 "width:10px;\n"
 "height:10px;\n"
 "background-color:transparent;\n"
@@ -1455,7 +1455,7 @@ public:
         label->setStyleSheet(QString::fromUtf8("background-color:rgb(83, 104, 120);"));
         Select_2 = new QLabel(doctor);
         Select_2->setObjectName(QString::fromUtf8("Select_2"));
-        Select_2->setGeometry(QRect(10, 100, 151, 61));
+        Select_2->setGeometry(QRect(10, 100, 191, 61));
         Select_2->setStyleSheet(QString::fromUtf8("font: 15pt \"Ubuntu Condensed\";\n"
 "background-color:transparent;\n"
 "font:25px;\n"
@@ -1473,7 +1473,7 @@ public:
         comboBox->addItem(QString());
         comboBox->addItem(QString());
         comboBox->setObjectName(QString::fromUtf8("comboBox"));
-        comboBox->setGeometry(QRect(0, 170, 181, 51));
+        comboBox->setGeometry(QRect(0, 170, 201, 51));
         comboBox->setStyleSheet(QString::fromUtf8("border-radius:20px;\n"
 "color: rgb(255, 255, 255);\n"
 "font:20pt \"Ubuntu\";\n"
@@ -1499,27 +1499,27 @@ public:
         label_2->setGeometry(QRect(0, 0, 461, 721));
         Vibration_onoff = new QPushButton(doctor);
         Vibration_onoff->setObjectName(QString::fromUtf8("Vibration_onoff"));
-        Vibration_onoff->setGeometry(QRect(0, 290, 171, 51));
+        Vibration_onoff->setGeometry(QRect(0, 290, 201, 51));
         Vibration_onoff->setStyleSheet(QString::fromUtf8("color: rgb(255,255,255);\n"
-"font:15pt;\n"
+"font:20pt;\n"
 "background-color: rgb(14, 50, 6);\n"
 "text-align:left;"));
         lab_vibonoff = new QLabel(doctor);
         lab_vibonoff->setObjectName(QString::fromUtf8("lab_vibonoff"));
-        lab_vibonoff->setGeometry(QRect(170, 290, 61, 51));
+        lab_vibonoff->setGeometry(QRect(180, 310, 61, 51));
         lab_vibonoff->setStyleSheet(QString::fromUtf8("image: url(:/images/vibrationoff.png);\n"
 "border:2px solid skyblue;\n"
 "border-radius:20px;"));
         label_3 = new QLabel(doctor);
         label_3->setObjectName(QString::fromUtf8("label_3"));
-        label_3->setGeometry(QRect(10, 240, 171, 41));
+        label_3->setGeometry(QRect(4, 240, 211, 41));
         label_3->setStyleSheet(QString::fromUtf8("font: 15pt \"Ubuntu Condensed\";\n"
 "background-color:transparent;\n"
 "font:25px;\n"
 "font:bold;"));
         label_4 = new QLabel(doctor);
         label_4->setObjectName(QString::fromUtf8("label_4"));
-        label_4->setGeometry(QRect(280, 170, 91, 91));
+        label_4->setGeometry(QRect(294, 165, 91, 91));
         label_4->setStyleSheet(QString::fromUtf8("image: url(:/images/settings.png);\n"
 "background-color: rgb(3, 58, 11);\n"
 "border:none;\n"
@@ -1556,7 +1556,7 @@ public:
 
         retranslateUi(doctor);
 
-        tabWidget->setCurrentIndex(2);
+        tabWidget->setCurrentIndex(1);
         tabWidget_2->setCurrentIndex(3);
 
 
@@ -1743,7 +1743,7 @@ public:
         VacMode_VitCom->setItemText(0, QCoreApplication::translate("doctor", "Surgeon", nullptr));
         VacMode_VitCom->setItemText(1, QCoreApplication::translate("doctor", "Panel", nullptr));
 
-        VacMode_vit->setText(QCoreApplication::translate("doctor", "Mode                                                    :", nullptr));
+        VacMode_vit->setText(QCoreApplication::translate("doctor", "Vaccum Mode                                                    :", nullptr));
         AspMax_vit->setText(QCoreApplication::translate("doctor", "Aspiration Max                                    :", nullptr));
         CutRate->setText(QCoreApplication::translate("doctor", "Cut Rate", nullptr));
         Vaccum->setText(QCoreApplication::translate("doctor", "Vaccum", nullptr));
