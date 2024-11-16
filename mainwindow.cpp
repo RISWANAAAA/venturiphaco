@@ -35,6 +35,11 @@ MainWindow::MainWindow(QWidget *parent)
     //s=new settings;
     key=new keypad;
     footsensor=new QTimer;
+
+    handler->phaco_off();
+    handler->phaco_power(0);
+    handler->fs_count(0);
+    handler->freq_count(0);
     lfoot=new footlib;
     ui->label_32->hide();
     ui->CutMode_vit->hide();
@@ -61,6 +66,10 @@ MainWindow::MainWindow(QWidget *parent)
     connect(protimer,&QTimer::timeout,this,&MainWindow::footpedalcheck);
     protimer->start(1);
 
+    //range
+    burstTimer=new QTimer;
+    connect(burstTimer,&QTimer::timeout,this,&MainWindow::footswitchrange);
+    burstTimer->start(1);
 //update sensor for linear
        sensortimer = new QTimer(this);
        connect(sensortimer, SIGNAL(timeout()), this, SLOT(sensor2()));
@@ -365,6 +374,7 @@ ui->lab_date->setText(formatteddate);
 QTime time = QTime::currentTime();
 QString formatTime = time.toString("hh:mm:ss");
 ui->lab_time->setText(formatTime);
+
 }
 
 //elapsed time
@@ -1058,6 +1068,14 @@ void MainWindow::ULTRASONICBUT1()
        us2PdmMode = false;
        us3PdmMode = false;
        us4PdmMode = false;
+
+}
+
+int MainWindow::footswitchrange()
+{
+  int range=lfoot->convert(0X97);
+  return range;
+  //qDebug()<<"the range is"<<range;
 
 }
 
@@ -2187,6 +2205,7 @@ void MainWindow::footpedalcheck()
         bool flag1 = false;
         int us1currectcount=-1;
         QString us1powmode=ui->CutMode_vitCom->currentText();
+         int nOfftime;
 
         if ((us1 == "Panel")||(vus1=="Panel")){
             if (range>0 && range<nfpzero) {
@@ -2292,14 +2311,11 @@ flag1 = true;
                                   motoroff(); // Turn off the motor
                                   speedofthelabe(ui->label_8);
                                   handler->speaker_on(nonlinear_vac,0,0,1);
-                                  if(us1powmode == "OCUBURST"){
-                                      on_ocuburstup_but_clicked();
-                                      on_ocuburstdown_but_clicked();
-                                  }else if(us1powmode == "MULTI BURST"){
-                                     multiburstup_mode();
-                                     multiburstdown_mode();
+                                  if(us1powmode == "Ocuburst"){
+                                      handler->pdm_mode(SINGLE_BURST);
+                                  }else if(us1powmode == "Ocupulse" ){
+                                      handler->pdm_mode(PULSE_MODE);
                                   }
-
                               }
                 }
                                   if(!us1poweron && text == "ON"){
@@ -2307,6 +2323,38 @@ flag1 = true;
                        handler->fs_count(range);
                        handler->freq_count(nFreqCount);
                        handler->phaco_on();
+                       if(us1powmode == "Multi burst"){
+                           qDebug()<<range<<"multi burst";
+                                qDebug()<<"the range is from foot pedal"<<range;
+                               if(range>(nfpzero+nfpone+nfptwo)){
+                                   qDebug()<<"footswitch range is"<<range;
+                                    //nOnTime=(int)((range/(nfpzero+nfpone+nfptwo))*120);
+                                   double upper=static_cast<int>(range)-static_cast<int>(nfpzero+nfpone+nfptwo);
+                                   qDebug()<<"the upper range is"<<upper;
+                                   double lower=static_cast<int>(nfpzero+nfpone+nfptwo+nfpthree)-static_cast<int>(nfpzero+nfpone+nfptwo);
+                               qDebug()<<"the lower range is"<<lower;
+                               double intialontime=static_cast<double>(upper)/static_cast<double>(lower);
+                               qDebug()<<"the initalontime is"<<intialontime;
+
+
+                               double ontime=static_cast<double>(intialontime)*120;
+                               qDebug()<<"before burst off length is"<<ontime;
+                               int rounded_Value=std::round(ontime);
+                                qDebug()<<"the after rounded value is"<<rounded_Value;
+                               nOfftime=120-static_cast<int>(ontime);
+                               qDebug()<<"the off time of burst is"<<nOfftime;
+                               handler->burst_off_length(nOfftime);
+                               }
+                               if(nOfftime == 1 || nOfftime ==2 ){
+                                  qDebug()<<"the mode is continuous";
+                                  handler->pdm_mode(CONTINOUS);
+
+                       }
+
+
+
+
+                       }
                        ui->label_7->setText(QString::number(pow1));
                        handler->phaco_power(pow1);
                        elapsedTimeUS1 += elapsed;
@@ -2417,6 +2465,7 @@ flag1 = true;
                            ui->label_8->setText(QString::number(pro));
                            handler->speaker_on(0,0,0,1);
 
+
               }
                 }
   //}
@@ -2463,14 +2512,11 @@ flag1 = true;
                                        pro=static_cast<int>(vacline);
                                        speedofthelabe(ui->label_8);
                                        ui->label_8->setText(QString::number(pro));
-                                       if(us1powmode == "OCUBURST"){
-                                           on_ocuburstup_but_clicked();
-                                           on_ocuburstdown_but_clicked();
-                                       }else if(us1powmode == "MULTI BURST"){
-                                          multiburstup_mode();
-                                          multiburstdown_mode();
+                                       if(us1powmode == "Ocuburst"){
+                                           handler->pdm_mode(SINGLE_BURST);
+                                       }else if(us1powmode == "Ocupulse"){
+                                           handler->pdm_mode(PULSE_MODE);
                                        }
-
                                        handler->speaker_on(0,0,0,1);
 
                                    }
@@ -2483,7 +2529,39 @@ flag1 = true;
                     handler->phaco_on();
                     handler->freq_count(nFreqCount);
                     handler->fs_count(range);
-                    updateTabsBasedOnComboBox(ui->CutMode_vitCom->currentText());
+
+                    if(us1powmode == "Multi burst"){
+                        qDebug()<<range<<"multi burst";
+                             qDebug()<<"the range is from foot pedal"<<range;
+                            if(range>(nfpzero+nfpone+nfptwo)){
+                                qDebug()<<"footswitch range is"<<range;
+                                 //nOnTime=(int)((range/(nfpzero+nfpone+nfptwo))*120);
+                                double upper=static_cast<int>(range)-static_cast<int>(nfpzero+nfpone+nfptwo);
+                                qDebug()<<"the upper range is"<<upper;
+                                double lower=static_cast<int>(nfpzero+nfpone+nfptwo+nfpthree)-static_cast<int>(nfpzero+nfpone+nfptwo);
+                            qDebug()<<"the lower range is"<<lower;
+                            double intialontime=static_cast<double>(upper)/static_cast<double>(lower);
+                            qDebug()<<"the initalontime is"<<intialontime;
+
+
+                            double ontime=static_cast<double>(intialontime)*120;
+                            qDebug()<<"before burst off length is"<<ontime;
+                            int rounded_Value=std::round(ontime);
+                             qDebug()<<"the after rounded value is"<<rounded_Value;
+                            nOfftime=120-static_cast<int>(ontime);
+                            qDebug()<<"the off time of burst is"<<nOfftime;
+                            handler->burst_off_length(nOfftime);
+                            }
+                            if(nOfftime == 1 || nOfftime ==2 ){
+                               qDebug()<<"the mode is continuous";
+                               handler->pdm_mode(CONTINOUS);
+                                                       }
+
+
+
+
+                    }
+                  //  updateTabsBasedOnComboBox(ui->CutMode_vitCom->currentText());
                     // If pushButton is ON
                    // qDebug()<<"the range is"<<range;
                     //qDebug()<<"the power is"<<pow1;
@@ -2624,8 +2702,8 @@ flag1 = true;
                     handler->speaker_on(0,0,0,1);
                 }
                 }
-                if (!us2poweron && us2on == "OFF") {
-                   updateTabsBasedOnComboBox(powerdelivered_1);
+                if (!us2poweron && us2on == "ON") {
+                   //updateTabsBasedOnComboBox(powerdelivered_1);
                     handler->freq_count(nFreqCount);
                     handler->phaco_on();
                     handler->fs_count(range);
@@ -2784,7 +2862,7 @@ flag1 = true;
                 }
 
                 if (!us2poweron && us2on == "ON") {
-                    updateTabsBasedOnComboBox(powerdelivered_1);
+                   // updateTabsBasedOnComboBox(powerdelivered_1);
                     handler->freq_count(nFreqCount);
                     handler->phaco_on();
                     handler->fs_count(range);
@@ -4242,33 +4320,39 @@ void MainWindow::on_vitvacmode_clicked()
 void MainWindow::pulseup_mode()
 {
 // handler->buzz();
-    pulse = ui->lineEdit_75->text().toInt();
-    pulse += 1;
-    if (pulse > 15) {
-        pulse = 15;
+    nPulseCount = ui->lineEdit_75->text().toInt();
+     nPulseCount++;
+    if ( nPulseCount > 15) {
+         nPulseCount = 15;
     }
-    ui->lineEdit_75->setText(QString::number(pulse));
+    ui->lineEdit_75->setText(QString::number(nPulseCount));
+    qDebug()<<"the increment pulse count is"<<nPulseCount;
+    handler->phaco_on();
+     handler->fs_count(nfpzero+nfpone+nfptwo);
     handler->freq_count(nFreqCount);
-    handler->fs_count(nfpzero+nfpone+nfptwo);
-    handler->pulse_count(pulse);
+handler->pdm_mode(PULSE_MODE);
+    handler->pulse_count(nPulseCount);
 
-  handler->pdm_mode(PULSE_MODE);
+
   //qDebug()<<pulse;
 }
 
 void MainWindow::pulsedown_mode()
 {
  //handler->buzz();
-    pulse = ui->lineEdit_75->text().toInt();
-   pulse -= 1;
-    if (pulse < 1) {
-        pulse = 1;
+
+     nPulseCount = ui->lineEdit_75->text().toInt();
+    nPulseCount--;
+    if ( nPulseCount < 1) {
+         nPulseCount = 1;
     }
-    ui->lineEdit_75->setText(QString::number(pulse));
+    ui->lineEdit_75->setText(QString::number(nPulseCount));
+     qDebug()<<"the decrement pulse count is"<<nPulseCount;
+     handler->phaco_on();
+      handler->fs_count(nfpzero+nfpone+nfptwo);
     handler->freq_count(nFreqCount);
-    handler->fs_count(nfpzero+nfpone+nfptwo);
-    handler->pulse_count(pulse);
-handler->pdm_mode(PULSE_MODE);
+    handler->pdm_mode(PULSE_MODE);
+    handler->pulse_count( nPulseCount);
 //qDebug()<<pulse;
 }
 //ocuburst
@@ -4321,33 +4405,35 @@ void MainWindow::singleburstdown_mode()
 void MainWindow::multiburstup_mode()
 {
 // handler->buzz();
-    multiburst = ui->lineEdit_79->text().toInt();
-    multiburst += 10;
-    if (multiburst > 400) {
-        multiburst = 400;
+    //int footrange=footswitchrange();
+    nMultiBurstCount = ui->lineEdit_79->text().toInt();
+    nMultiBurstCount += 10;
+    if (nMultiBurstCount > 400) {
+        nMultiBurstCount = 400;
     }
-    ui->lineEdit_79->setText(QString::number(multiburst));
+    ui->lineEdit_79->setText(QString::number(nMultiBurstCount));
     handler->fs_count(nfpzero+nfpone+nfptwo);
     handler->freq_count(nFreqCount);
     handler->pdm_mode(MULTI_BURST);
-    handler->burst_length(multiburst);
-    handler->burst_off_length(multiburst);
+    handler->burst_length(nMultiBurstCount);
+
 }
 
 void MainWindow::multiburstdown_mode()
 {
 // handler->buzz();
-    multiburst = ui->lineEdit_79->text().toInt();
-    multiburst -= 10;
-    if (multiburst < 10) {
-        multiburst = 10;
+     //int footrange=footswitchrange();
+    nMultiBurstCount = ui->lineEdit_79->text().toInt();
+    nMultiBurstCount -= 10;
+    if (nMultiBurstCount < 10) {
+        nMultiBurstCount = 10;
     }
-    ui->lineEdit_79->setText(QString::number(multiburst));
+    ui->lineEdit_79->setText(QString::number(nMultiBurstCount));
     handler->fs_count(nfpzero+nfpone+nfptwo);
     handler->freq_count(nFreqCount);
     handler->pdm_mode(MULTI_BURST);
-    handler->burst_length(multiburst);
-    handler->burst_off_length(multiburst);
+    handler->burst_length(nMultiBurstCount);
+
 }
 //ocupulse
 void MainWindow::ocupulseup_mode()
@@ -5501,50 +5587,67 @@ void MainWindow::updateTabsBasedOnComboBox(const QString &selected) {
 
     // Call the appropriate function based on the selected mode
     if (selected == "Continuous") {
-        handler->pdm_mode(CONTINOUS);
+
         ui->tabWidget_2->setCurrentIndex(0);
+        handler->pdm_mode(CONTINOUS);
       //  ui->comboBox->setCurrentText("Continuous");  // Update combo box text
         modeFound = true;
         ui->label_32->hide();
        // handler->buzz();
 
     } else if (selected == "Pulse") {
-        handler->pdm_mode(PULSE_MODE);
-        pulseup_mode();
-        pulsedown_mode();
+
         ui->tabWidget_2->setCurrentIndex(1);
-     //   ui->comboBox->setCurrentText("Pulse");  // Update combo box text
+        handler->phaco_on();
+        handler->fs_count(nfpzero+nfpone+nfptwo);
+        handler->freq_count(nFreqCount);
+        handler->pdm_mode(PULSE_MODE);
+        nPulseCount=ui->lineEdit_75->text().toInt();
+        handler->pulse_count(nPulseCount);
+        qDebug()<<"the pulse count is"<<nPulseCount;
+        //pulseup_mode();
+         //pulsedown_mode();
+     // //   ui->comboBox->setCurrentText("Pulse");  // Update combo box text
          handler->buzz();
         modeFound = true;
         ui->label_32->show();
 
     } else if (selected == "Ocupulse") {
-         //handler->buzz();
-        handler->pdm_mode(CONTINOUS);
-        on_ocupulseup_but_clicked();
-      on_ocupulsedown_but_clicked();
+
         ui->tabWidget_2->setCurrentIndex(2);
-       // ui->comboBox->setCurrentText("Ocupulse");  // Update combo box text
+        //handler->buzz();
+        handler->phaco_on();
+        handler->fs_count(nfpzero+nfpone+nfptwo);
+        handler->freq_count(nFreqCount);
+        handler->pdm_mode(CONTINOUS);
+        ocupulse=ui->lineEdit_76->text().toInt();
+        handler->pulse_count(ocupulse);
         modeFound = true;
         ui->label_32->show();
 
 
     } else if (selected == "Ocuburst") {
-       //  handler->buzz();
-        handler->pdm_mode(CONTINOUS);
-
-        ui->tabWidget_2->setCurrentIndex(3);
-    //    ui->comboBox->setCurrentText("Ocuburst");  // Update combo box text
+            ui->tabWidget_2->setCurrentIndex(3);
+            handler->phaco_on();
+            handler->fs_count(nfpzero+nfpone+nfptwo);
+            handler->freq_count(nFreqCount);
+            handler->pdm_mode(CONTINOUS);
+            ocuburst=ui->lineEdit_77->text().toInt();
+            handler->pulse_count(ocuburst);
         modeFound = true;
         ui->label_32->show();
 
 
     } else if (selected == "Single burst") {
        //  handler->buzz();
-        handler->pdm_mode(SINGLE_BURST);
-        singleburstup_mode();
-        singleburstdown_mode();
+
         ui->tabWidget_2->setCurrentIndex(4);
+        handler->pdm_mode(SINGLE_BURST);
+        handler->phaco_on();
+        handler->fs_count(1920);
+        handler->freq_count(nFreqCount);
+        handler->phaco_power(100);
+
         //ui->comboBox->setCurrentText("Single burst");  // Update combo box text
         modeFound = true;
         ui->label_32->show();
@@ -5552,9 +5655,21 @@ void MainWindow::updateTabsBasedOnComboBox(const QString &selected) {
 
     } else if (selected == "Multi burst") {
       //  handler->buzz();
-        handler->pdm_mode(CONTINOUS);
 
         ui->tabWidget_2->setCurrentIndex(5);
+        handler->pdm_mode(MULTI_BURST);
+        handler->phaco_on();
+        handler->fs_count(1920);
+        handler->freq_count(nFreqCount);
+        qDebug()<<"the resonant freq_cont is"<<nFreqCount;
+        handler->phaco_power(100);
+        nMultiBurstCount=ui->lineEdit_79->text().toInt();
+        handler->burst_length(nMultiBurstCount);
+
+        // // //if(footrange>(nfpzero+nfpone+nfptwo)){
+
+
+       // handler->burst_off_length(40);
        // ui->comboBox->setCurrentText("Multi burst");  // Update combo box text
         modeFound = true;
         ui->label_32->show();
@@ -5562,12 +5677,13 @@ void MainWindow::updateTabsBasedOnComboBox(const QString &selected) {
 
     } else if (selected == "Cold phaco") {
        // handler->buzz();
+
+        ui->tabWidget_2->setCurrentIndex(6);
         handler->pdm_mode(COLD_PHACO);
         coldphacoup_mode();
         coldphacodown_mode();
         coldphaco1up_mode();
         coldphaco1down_mode();
-        ui->tabWidget_2->setCurrentIndex(6);
     //    ui->comboBox->setCurrentText("Cold phaco");  // Update combo box text
         modeFound = true;
         ui->label_32->show();
@@ -5579,7 +5695,7 @@ void MainWindow::updateTabsBasedOnComboBox(const QString &selected) {
     }
 
     // Print to the debug output
-    ////qDebug() << "Mode is working: " << selected;
+   qDebug() << "Mode is working: " << selected;
 
     // Update multiple line edits with the selected value
 

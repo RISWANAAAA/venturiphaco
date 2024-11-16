@@ -18,6 +18,10 @@ prime::prime(QWidget *parent) :
 
     hand=new hwhandler;
     tune=new tuning;
+    hand->phaco_off();
+    hand->phaco_power(0);
+    hand->fs_count(0);
+    hand->freq_count(0);
     ui->progressBar_2->setRange(0,100);
     QString styleSheet = "QPushButton {"
                          "    font-family: Ubuntu;"

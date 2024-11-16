@@ -49,6 +49,8 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void nReceiveFreq(int count);
+    int footswitchrange();
+
     void footpedalbeep();
     void beepsound();
 void push(const QString &surgeonName);
@@ -421,11 +423,11 @@ int maxValue;
 int currentButton;
 int counter=0;
 int currentbut;
-int pulse;
+int nPulseCount;
 int ocupulse;
 int ocuburst;
 int singleburst;
-int multiburst;
+int nMultiBurstCount;
 int coldphaco;
 int coldphaco1;
 int gpioNumber = 960;
@@ -442,6 +444,7 @@ int ia1count=0;
 int ia2count=0;
 int vitcount=0;
 int nFreqCount=0;
+ int nOnTime=0;
 
 QMessageBox *message;
 QMessageBox *messageline;
@@ -457,6 +460,7 @@ QTime currentTimer;
 QTimer *updateTimer;
 QTimer *Tacutalsensor;
   QTimer *timerfoot;
+QTimer *burstTimer;
 
 bool flag1=false;
 bool on;

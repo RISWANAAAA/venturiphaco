@@ -71,7 +71,7 @@
 #define OCUPULSE        0x04
 #define OCUBURST        0x08
 #define SINGLE_BURST    0x05
-#define MULTI_BURST     0x07
+#define MULTI_BURST     0x06
 #define COLD_PHACO      0x03
 #define CONTINOUS_BURST 0x06
 

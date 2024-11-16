@@ -12,6 +12,10 @@ tuning::tuning(QWidget *parent) :
     hand=new hwhandler;
     handpiece=new QTimer;
     vacSensor=new Vaccum;
+    hand->phaco_off();
+    hand->phaco_power(0);
+    hand->fs_count(0);
+    hand->freq_count(0);
     exportGPIO(960);
     setGPIODirection("in",960);
     readGPIOValue(960);
@@ -478,7 +482,7 @@ int tuning::Tune_Phaco()
             hand->phaco_power(0);
             QMessageBox::information(nullptr,"WARNING","Tune is not Completed May Be Loose Tip");
             ui->But_value->setStyleSheet("border:none;background-color:transparent;image: url(:/images/singletick.png);outline:none");
-            qDebug()<<"remote crasheddddd";
+            qDebug()<<"remote crashedddddddd";
             isRunning=false;
             updateProgress();
             update();
@@ -573,5 +577,7 @@ void tuning::on_But_Next_clicked()
 {
     main->show();
     emit activatemain();
+
+
 
 }
