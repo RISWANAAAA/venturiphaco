@@ -30,6 +30,9 @@ tuning::tuning(QWidget *parent) :
     connect(ui->But_Tune,&QPushButton::clicked,this,&tuning::on_pushButton_clicked);
     connect(this,&tuning::sendfreq,main,&MainWindow::nReceiveFreq);
     connect(this,&tuning::activatemain,main,&MainWindow::disablefunction);
+    ui->lblTuned->hide();
+    ui->butTuned->hide();
+
 
 
 }
@@ -557,6 +560,10 @@ int tuning::Tune_Phaco()
              ui->But_value->move(680,270);
             ui->But_value->resize(141,131);
              ui->But_value->show();
+            ui->butTuned->show();
+             ui->lblTuned->show();
+            ui->lblRTune->hide();
+             ui->ButRTune->hide();
         }else{
             ui->But_value->setEnabled(false);
             ui->But_value->hide();
@@ -577,7 +584,24 @@ void tuning::on_But_Next_clicked()
 {
     main->show();
     emit activatemain();
+    main->setTuneMode();
 
 
 
 }
+
+void tuning::on_ButRTune_clicked()
+{
+    if (!isRunning) { // Only start if the progress is not currently running
+        ui->But_Tune->move(170,430);
+        ui->But_Handpiece->hide();
+
+        ui->But_value->setStyleSheet("font-size: 90px; font-weight: bold; color: white; background-color: transparent;");
+
+        ui->But_value->show();
+
+
+        Tune_Phaco();
+    }
+}
+

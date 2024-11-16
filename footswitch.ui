@@ -49,7 +49,8 @@ image: url(:/images/footimges.png);</string>
    </property>
    <property name="styleSheet">
     <string notr="true">
-font:25pt &quot;Ubuntu&quot;;
+font:30pt &quot;Ubuntu&quot;;
+color:white;
 background-color:#9A99F2;
 border-radius:20px;border:2px solid black;</string>
    </property>
@@ -68,7 +69,8 @@ border-radius:20px;border:2px solid black;</string>
    </property>
    <property name="styleSheet">
     <string notr="true">
-font:25pt &quot;Ubuntu&quot;;
+font:30pt &quot;Ubuntu&quot;;
+color: rgb(255, 255, 255);
 background-color: #805EBF;
 border-radius:20px;border:2px solid black;</string>
    </property>
@@ -87,7 +89,8 @@ border-radius:20px;border:2px solid black;</string>
    </property>
    <property name="styleSheet">
     <string notr="true">
-font:25pt &quot;Ubuntu&quot;;
+font:30pt &quot;Ubuntu&quot;;
+color: rgb(255, 255, 255);
 background-color: #60308C;
 border-radius:20px;border:2px solid black;</string>
    </property>
@@ -106,7 +109,8 @@ border-radius:20px;border:2px solid black;</string>
    </property>
    <property name="styleSheet">
     <string notr="true">
-font:25pt &quot;Ubuntu&quot;;
+font:30pt &quot;Ubuntu&quot;;
+color: rgb(255, 255, 255);
 background-color: #310055;
 border-radius:20px;border:2px solid black;</string>
    </property>
@@ -261,8 +265,8 @@ image: url(:/images/uarrow.png);</string>
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>830</x>
-     <y>610</y>
+     <x>780</x>
+     <y>440</y>
      <width>71</width>
      <height>61</height>
     </rect>
@@ -279,28 +283,30 @@ border:none;</string>
   <widget class="QPushButton" name="But_save">
    <property name="geometry">
     <rect>
-     <x>1020</x>
-     <y>610</y>
-     <width>111</width>
-     <height>81</height>
+     <x>1010</x>
+     <y>630</y>
+     <width>231</width>
+     <height>71</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">border:none;
-image: url(:/images/savebuttonimg.png);
-background-color:transparent;</string>
+    <string notr="true">font:15pt;
+color: rgb(255, 255, 255);
+font:bold;
+border:3px solid white;
+background-color: rgb(12, 40, 82);</string>
    </property>
    <property name="text">
-    <string/>
+    <string>Save</string>
    </property>
   </widget>
   <widget class="QPushButton" name="But_topleft">
    <property name="geometry">
     <rect>
-     <x>310</x>
-     <y>240</y>
-     <width>221</width>
-     <height>71</height>
+     <x>270</x>
+     <y>250</y>
+     <width>201</width>
+     <height>61</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -318,10 +324,10 @@ border:2px solid skyblue;
   <widget class="QPushButton" name="But_topright">
    <property name="geometry">
     <rect>
-     <x>320</x>
+     <x>270</x>
      <y>460</y>
-     <width>241</width>
-     <height>71</height>
+     <width>201</width>
+     <height>61</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -340,9 +346,9 @@ border:2px solid skyblue;
    <property name="geometry">
     <rect>
      <x>60</x>
-     <y>232</y>
-     <width>211</width>
-     <height>81</height>
+     <y>252</y>
+     <width>201</width>
+     <height>61</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -360,10 +366,10 @@ border:2px solid skyblue;
   <widget class="QPushButton" name="But_bottomright">
    <property name="geometry">
     <rect>
-     <x>50</x>
+     <x>60</x>
      <y>460</y>
-     <width>221</width>
-     <height>81</height>
+     <width>201</width>
+     <height>61</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -685,19 +691,21 @@ background-color:transparent;</string>
   <widget class="QPushButton" name="But_save_2">
    <property name="geometry">
     <rect>
-     <x>1190</x>
-     <y>0</y>
-     <width>81</width>
-     <height>101</height>
+     <x>740</x>
+     <y>630</y>
+     <width>231</width>
+     <height>71</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">border:none;
-image: url(:/images/defaultbutton.png);
-background-color:transparent;</string>
+    <string notr="true">font:15pt;
+color: rgb(255, 255, 255);
+font:bold;
+border:3px solid white;
+background-color: rgb(12, 40, 82);</string>
    </property>
    <property name="text">
-    <string/>
+    <string>Load Default</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_3">

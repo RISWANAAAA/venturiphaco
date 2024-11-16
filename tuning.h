@@ -64,6 +64,8 @@ private slots:
 
     void on_But_value_clicked();
 
+    void on_ButRTune_clicked();
+
 signals:
     void sendvisibleisgnale(bool status);
     void sendfreq(int count);

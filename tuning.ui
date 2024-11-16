@@ -86,24 +86,31 @@ border:none;</string>
     <string>PushButton</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="ButRTune">
    <property name="geometry">
     <rect>
-     <x>120</x>
-     <y>600</y>
+     <x>130</x>
+     <y>620</y>
      <width>441</width>
      <height>41</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(12, 40, 82);
+color:rgb(255,255,255);
+font:20pt;
+font:bold;
+</string>
+   </property>
    <property name="text">
-    <string/>
+    <string>Ready For Tune</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label">
+  <widget class="QLabel" name="lblRTune">
    <property name="geometry">
     <rect>
      <x>120</x>
-     <y>600</y>
+     <y>620</y>
      <width>71</width>
      <height>41</height>
     </rect>
@@ -117,12 +124,52 @@ border:none;</string>
     <string/>
    </property>
   </widget>
+  <widget class="QLabel" name="lblTuned">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>670</y>
+     <width>71</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color:transparent;
+image: url(:/images/doubled.png);
+border:none;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="butTuned">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>670</y>
+     <width>441</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(12, 40, 82);
+color:rgb(255,255,255);
+font:20pt;
+font:bold;
+</string>
+   </property>
+   <property name="text">
+    <string> Tuned</string>
+   </property>
+  </widget>
   <zorder>But_Tune</zorder>
   <zorder>But_Next</zorder>
   <zorder>But_value</zorder>
   <zorder>But_Handpiece</zorder>
-  <zorder>pushButton</zorder>
-  <zorder>label</zorder>
+  <zorder>ButRTune</zorder>
+  <zorder>lblRTune</zorder>
+  <zorder>butTuned</zorder>
+  <zorder>lblTuned</zorder>
  </widget>
  <resources/>
  <connections/>

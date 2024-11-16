@@ -2206,7 +2206,8 @@ void MainWindow::footpedalcheck()
         int us1currectcount=-1;
         QString us1powmode=ui->CutMode_vitCom->currentText();
          int nOfftime;
-
+ int nonlinear_prevac=readsensorvalue();
+ qDebug()<<"the nonlinear vaccum is"<<nonlinear_prevac;
         if ((us1 == "Panel")||(vus1=="Panel")){
             if (range>0 && range<nfpzero) {
                 ui->pushButton_42->setText("0");
@@ -2265,24 +2266,28 @@ flag1 = true;
             }
             else if (range >=(nfpone+nfpzero) && range < (nfpzero+nfpone+nfptwo)) {
                 ui->pushButton_42->setText("2");
+                qDebug()<<"the postion is 2nd";
                 ui->label_8->show();
                 ventonus1=false;
                 ui->dial_2->setValue(range);
                 ui->CI5_5->setStyleSheet(styleSheet3);
                 handler->pinchvalve_on();
-                handler->safetyvent_off();
+                //handler->safetyvent_off();
                 //footpedalbeep();
-//  if(vus1=="Panel"){
-                int nonlinear_prevac = readsensorvalue(); // Assuming this function reads the current sensor value
-                int nonlinear_vac = std::min(nonlinear_prevac, vacline);
-                ui->label_8->setText(QString::number(nonlinear_vac));
-                motoron(ui->lineEdit_69);
-   handler->speaker_on(nonlinear_prevac,1,0,0);
-   if (nonlinear_prevac >= vacline) {
-                    motoroff(); // Turn off the motor
-                    speedofthelabe(ui->label_8);
-                   handler->speaker_on(nonlinear_vac,0,0,1);
-                }
+ // if(vus1=="Panel"){
+ //                //int nonlinear_vac = std::min(nonlinear_prevac, vacline);
+ //     if(nonlinear_prevac < vacline){
+ //                ui->label_8->setText(QString::number(nonlinear_prevac));
+ //                motoron(ui->lineEdit_69);
+ //   handler->speaker_on(nonlinear_prevac,1,0,0);
+ //     }
+ //   if (nonlinear_prevac == vacline) {
+ //                    motoroff(); // Turn off the motor
+ //                    ui->label_8->setText(QString::number(nonlinear_prevac));
+ //                  //  speedofthelabe(ui->label_8);
+ //                   handler->speaker_on(nonlinear_prevac,0,0,1);
+ //                   qDebug()<<"the vaccum is reached preset vac"<<nonlinear_prevac<<"PANEL";
+ //                }
  // }
                     handler->freq_count(0);
                     handler->phaco_off();
@@ -2296,28 +2301,40 @@ flag1 = true;
                 ui->pushButton_42->setText("3");
                  ui->dial_2->setValue(range);
                 ui->label_7->show();
+                ui->label_8->show();
+
                 //footpedalbeep();
                 ventonus1=false;
                 handler->pinchvalve_on();
-                handler->safetyvent_off();
+                //handler->safetyvent_off();
                 ui->CI5_5->setStyleSheet(styleSheet3);
-                if(vus1=="Panel"){
-                              int nonlinear_prevac = readsensorvalue(); // Assuming this function reads the current sensor value
-                              int nonlinear_vac = std::min(nonlinear_prevac, vacline);
-                              ui->label_8->setText(QString::number(nonlinear_vac));
-                              motoron(ui->lineEdit_69);
-                             // handler->speaker_on(nonlinear_vac,0,1,0);
-                              if (nonlinear_prevac >= vacline) {
-                                  motoroff(); // Turn off the motor
-                                  speedofthelabe(ui->label_8);
-                                  handler->speaker_on(nonlinear_vac,0,0,1);
-                                  if(us1powmode == "Ocuburst"){
-                                      handler->pdm_mode(SINGLE_BURST);
-                                  }else if(us1powmode == "Ocupulse" ){
-                                      handler->pdm_mode(PULSE_MODE);
-                                  }
-                              }
-                }
+// if(vus1=="Panel"){
+//     qDebug()<<"the positon is 3rd";
+//                               int nonlinear_vac = std::min(nonlinear_prevac, vacline);
+//                               ui->label_8->setText(QString::number(nonlinear_vac));
+//                               motoron(ui->lineEdit_69);
+//                               // if(us1powmode == "Ocuburst"){
+//                               //     handler->pdm_mode(CONTINOUS);
+//                               //     qDebug()<<"the vaccumm is reached mode is continuous ";
+//                               // }else if(us1powmode == "Ocupulse" ){
+//                               //     handler->pdm_mode(CONTINOUS);
+//                               //     qDebug()<<"the vaccum is reached mode is ocupulse";
+//                               // }
+//                              // handler->speaker_on(nonlinear_vac,0,1,0);
+//                               if (nonlinear_vac == vacline) {
+//                                   motoroff(); // Turn off the motor
+//                                 //  speedofthelabe(ui->label_8);
+//                                   handler->speaker_on(nonlinear_vac,0,0,1);
+//                                   qDebug()<<"the non linear preset vac is 3rd position is"<<nonlinear_vac<<"PANEL";
+//                                   // if(us1powmode == "Ocuburst"){
+//                                   //     handler->pdm_mode(SINGLE_BURST);
+//                                   //     qDebug()<<"the vaccumm is reached mode is continuous to singleburst";
+//                                   // }else if(us1powmode == "Ocupulse" ){
+//                                   //     handler->pdm_mode(PULSE_MODE);
+//                                   //     qDebug()<<"the vaccum is reached mode is ocupulse continuous mode to pulse mode";
+//                                   // }
+//                               }
+// }
                                   if(!us1poweron && text == "ON"){
                      //  qDebug()<<"the power is "<<ui->us1onoff->text();
                        handler->fs_count(range);
@@ -2435,7 +2452,7 @@ flag1 = true;
                 ventonus1 = false;
 
                 handler->pinchvalve_on();
-                handler->safetyvent_off();
+               // handler->safetyvent_off();
                 ui->CI5_5->setStyleSheet(styleSheet3);
        // if(vus1=="Surgeon"){
                 const int MIN_RANGE = nfpzero + nfpone;
@@ -2461,7 +2478,7 @@ flag1 = true;
                     }
                      if(pro>=vacline){
                           pro=static_cast<int>(vacline);
-                           speedofthelabe(ui->label_8);
+                           //speedofthelabe(ui->label_8);
                            ui->label_8->setText(QString::number(pro));
                            handler->speaker_on(0,0,0,1);
 
@@ -2485,7 +2502,7 @@ flag1 = true;
                 //footpedalbeep();
                 ventonus1 = false;
                 handler->pinchvalve_on();
-                handler->safetyvent_off();
+               // handler->safetyvent_off();
                 ui->CI5_5->setStyleSheet(styleSheet3);
                 if(vus1=="Surgeon"){
                               const int MIN_RANGE = nfpzero + nfpone+nfptwo;
@@ -2514,8 +2531,11 @@ flag1 = true;
                                        ui->label_8->setText(QString::number(pro));
                                        if(us1powmode == "Ocuburst"){
                                            handler->pdm_mode(SINGLE_BURST);
+                                           qDebug()<<"the vaccum is reached mode is ocuburst to single burst";
                                        }else if(us1powmode == "Ocupulse"){
                                            handler->pdm_mode(PULSE_MODE);
+                                           qDebug()<<"the vaccum is reached mode is ocupulse to pulse";
+
                                        }
                                        handler->speaker_on(0,0,0,1);
 
@@ -4453,8 +4473,8 @@ void MainWindow::coldphacoup_mode()
  //handler->buzz();
     coldphaco = ui->lineEdit_80->text().toInt();
     coldphaco += 1;
-    if (coldphaco > 15) {
-        coldphaco = 15;
+    if (coldphaco > 40) {
+        coldphaco = 40;
     }
     ui->lineEdit_80->setText(QString::number(coldphaco));
     handler->cold_pulse(coldphaco);
@@ -4478,9 +4498,9 @@ void MainWindow::coldphaco1up_mode()
 {
    // handler->buzz();
     coldphaco1 = ui->lineEdit_81->text().toInt();
-    coldphaco1 += 5;
-    if (coldphaco1 > 40) {
-        coldphaco1 = 40;
+    coldphaco1 += 1;
+    if (coldphaco1 > 15) {
+        coldphaco1 = 15;
     }
     ui->lineEdit_81->setText(QString::number(coldphaco1));
     handler->cold_pulse(coldphaco1);
@@ -4491,9 +4511,9 @@ void MainWindow::coldphaco1down_mode()
 {
   //  handler->buzz();
     coldphaco1 = ui->lineEdit_81->text().toInt();
-    coldphaco1 -= 5;
-    if (coldphaco1 < 5) {
-        coldphaco1 = 5;
+    coldphaco1 -= 1;
+    if (coldphaco1 < 1) {
+        coldphaco1 = 1;
     }
     ui->lineEdit_81->setText(QString::number(coldphaco1));
     handler->cold_pulse(coldphaco1);
@@ -5680,10 +5700,7 @@ void MainWindow::updateTabsBasedOnComboBox(const QString &selected) {
 
         ui->tabWidget_2->setCurrentIndex(6);
         handler->pdm_mode(COLD_PHACO);
-        coldphacoup_mode();
-        coldphacodown_mode();
-        coldphaco1up_mode();
-        coldphaco1down_mode();
+
     //    ui->comboBox->setCurrentText("Cold phaco");  // Update combo box text
         modeFound = true;
         ui->label_32->show();

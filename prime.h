@@ -8,6 +8,10 @@
 //#include "settings.h"
 #include"hwhandler.h"
 #include"tuning.h"
+#include<QSqlDatabase>
+#include<QSqlQuery>
+#define PATH "/home/phacohigh.db"
+
 class MainWindow;
 class doctor;
 class settings;
@@ -41,6 +45,8 @@ public slots:
     void primetimer();
     void current(int tab);
     void Start_Tune();
+    void onComboBoxIndexChanged(int index);
+    void setLastSelectedValue();
 
     void Tune();
 private slots:
@@ -82,6 +88,8 @@ private:
     settings *set;
      QTimer *statusUpdateTimer;
      hwhandler *hand;
+     QSqlDatabase db;
+
 };
 
 #endif // PRIME_H

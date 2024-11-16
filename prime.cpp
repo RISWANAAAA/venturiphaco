@@ -294,6 +294,78 @@ void prime::current(int tab)
     }
 }
 
+void prime::onComboBoxIndexChanged(int index)
+{
+
+
+    if (!db.isValid()) {
+        db = QSqlDatabase::addDatabase("QSQLITE");
+        db.setDatabaseName(PATH);
+
+        if (!db.open()) {
+            //qDebug() << "Error: connection with database failed:";
+            return;
+        }
+    }
+
+    QSqlQuery query(db);
+
+    // Step 1: Update the last selected index
+    query.prepare("UPDATE phacohigh SET lastupdate = :index");
+    query.bindValue(":index", index);
+
+    if (!query.exec()) {
+        //        //qDebug() << "Error updating last selected index:";
+        return;
+    } else {
+        //        qDebug() << "Last selected index updated to" << index;
+    }
+
+
+    db.close();
+    QSqlDatabase::removeDatabase(QSqlDatabase::defaultConnection);
+}
+void prime::setLastSelectedValue()
+{
+
+    if (!db.isValid()) {
+        db = QSqlDatabase::addDatabase("QSQLITE");
+        db.setDatabaseName(PATH);
+
+        if (!db.open()) {
+            //            qDebug() << "Error: connection with database failed:";
+            return;
+        }
+    }
+
+    // Prepare and execute the query
+    QSqlQuery query(db);
+    query.prepare("SELECT lastupdate FROM phacohigh LIMIT 1");
+    if (!query.exec()) {
+        //        qDebug() << "Error retrieving last index:";
+        db.close();
+        QSqlDatabase::removeDatabase(QSqlDatabase::defaultConnection);
+        return;
+    }
+
+    if (query.next()) {
+        int lastIndex = query.value(0).toInt();
+
+        if (lastIndex >= 0 && lastIndex <= 4) {  // Ensure index is within valid range
+            ui->comboBox_4->setCurrentIndex(lastIndex);
+            QString surgeonName = ui->comboBox_4->currentText();
+            m->push(surgeonName);
+            //               qDebug() << "Last selected surgeon index set to" << lastIndex << "corresponding to surgeon:" << surgeonName;
+
+            // push(ui->comboBox_4->currentText());
+        }else {
+            //        qDebug() << "No index found in the database. Verify the data in the table.";
+        }
+
+        db.close();
+        QSqlDatabase::removeDatabase(QSqlDatabase::defaultConnection);
+    }
+}
 
 
 void prime::start_irrigation()
