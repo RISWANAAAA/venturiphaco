@@ -206,7 +206,6 @@ public slots:
  void on_pushButton_clicked();
  void ULTRASONICBUT1();
  void updateTabsBasedOnComboBox(const QString &text);
- void updateTabsBasedOnComboBox1(const QString &text);
 
 private slots:
 
