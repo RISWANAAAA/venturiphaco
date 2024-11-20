@@ -6108,7 +6108,9 @@ prime.o: prime.cpp prime.h \
 		../../../tools/xsdk-2024.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtWidgets/qtextedit.h \
 		../../../tools/xsdk-2024.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtGui/qtextdocument.h \
 		../../../tools/xsdk-2024.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtGui/QImage \
-		../../../tools/xsdk-2024.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/QIODevice
+		../../../tools/xsdk-2024.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtCore/QIODevice \
+		../../../tools/xsdk-2024.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql/QSqlError \
+		../../../tools/xsdk-2024.1/sysroots/cortexa9t2hf-neon-xilinx-linux-gnueabi/usr/include/QtSql/qsqlerror.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o prime.o prime.cpp
 
 tuning.o: tuning.cpp tuning.h \

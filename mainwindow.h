@@ -205,6 +205,9 @@ public slots:
 
  void on_pushButton_clicked();
  void ULTRASONICBUT1();
+ void updateTabsBasedOnComboBox(const QString &text);
+ void updateTabsBasedOnComboBox1(const QString &text);
+
 private slots:
 
  void sensor2();
@@ -537,7 +540,6 @@ QMap<QLineEdit*, int> lastValidValues1;
 QSqlDatabase db;
 
 void updateLabel();
-void updateTabsBasedOnComboBox(const QString &text);
 
 };
 #endif // MAINWINDOW_H

@@ -139,6 +139,7 @@ connect(ui->SelectSurgeon,&QComboBox::currentTextChanged,this,&doctor::onSurgeon
      connect(cFoot,&footswitch::bottomleft,this,&doctor::receivebottomleft);
      connect(cFoot,&footswitch::bottomright,this,&doctor::receivetopright);
      connect(this,&doctor::txfootpedalvalues,cFoot,&footswitch::rxfootpedalmodes);
+     qDebug()<<"the doctor window is started";
 }
 
 doctor::~doctor()

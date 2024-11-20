@@ -33,6 +33,7 @@ footpedal::footpedal(QWidget *parent) :
     QTimer *timer=new QTimer;
     connect(timer,&QTimer::timeout,this,&footpedal::readInitialGPIOValues);
     timer->start(100);
+    qDebug()<<"the foorpedal widow is finished";
 }
 
 footpedal::~footpedal()

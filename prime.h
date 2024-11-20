@@ -10,6 +10,7 @@
 #include"tuning.h"
 #include<QSqlDatabase>
 #include<QSqlQuery>
+
 #define PATH "/home/phacohigh.db"
 
 class MainWindow;
@@ -36,6 +37,8 @@ public:
     void done();
     void motoron();
     void motoroff();
+    void serialnumber();
+
 protected:
     bool eventFilter(QObject *watched, QEvent *event) override; // Declaration of eventFilter
 
@@ -82,6 +85,7 @@ private:
     tuning *tune;
     QTimer *timer1;
     QTimer *pretimer;
+    QTimer *cleantimer;
     int value=0;
     int val1=0;
     doctor *sur;

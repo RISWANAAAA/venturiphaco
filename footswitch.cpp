@@ -26,13 +26,13 @@ footswitch::footswitch(QWidget *parent) :
     ui->Bottom_leftcom->hide();
     ui->Bottom_rightcom->hide();
     ui->label_2->hide();
-      setValues();
+    setValues();
 }
 
 footswitch::~footswitch()
 {
     delete ui;
-     db.close();  // Close the database connection when the dialog is destroyed
+    db.close();  // Close the database connection when the dialog is destroyed
 }
 void footswitch::setValues() {
     // Get values from line edits and validate input
@@ -61,62 +61,62 @@ void footswitch::setValues() {
 
 void footswitch::paintEvent(QPaintEvent *event) {
     //if (showingpaint) {
-        QPainter painter(this);
+    QPainter painter(this);
 
-        painter.setRenderHint(QPainter::Antialiasing);
-        QRect rect(30, -10, 800, 800); // Rectangle for pie
-        QPointF center(430, 390); // Center of the pie
+    painter.setRenderHint(QPainter::Antialiasing);
+    QRect rect(30, -10, 800, 800); // Rectangle for pie
+    QPointF center(430, 390); // Center of the pie
 
-        int startAngle = 60 * 16; // Start at 60 degrees
-        int spanAngle = -90 * 16; // Span of -90 degrees for each part
+    int startAngle = 60 * 16; // Start at 60 degrees
+    int spanAngle = -90 * 16; // Span of -90 degrees for each part
 
-        // Helper lambda to calculate text position based on angle
-        auto getTextPosition = [&](int start, int span, int value) -> QPointF {
-            int angle = start + (span * value) / 200; // Middle of the slice
-            qreal radians = angle / 16.0 * M_PI / 180.0; // Convert to radians
-            qreal radius = 250; // Adjust radius for text placement
-            return QPointF(center.x() + radius * cos(radians), center.y() - radius * sin(radians));
-        };
+    // Helper lambda to calculate text position based on angle
+    auto getTextPosition = [&](int start, int span, int value) -> QPointF {
+        int angle = start + (span * value) / 200; // Middle of the slice
+        qreal radians = angle / 16.0 * M_PI / 180.0; // Convert to radians
+        qreal radius = 250; // Adjust radius for text placement
+        return QPointF(center.x() + radius * cos(radians), center.y() - radius * sin(radians));
+    };
 
-        // Part 1
-        painter.setBrush(QColor("#9A99F2"));
-        painter.drawPie(rect, startAngle, spanAngle * part1Value / 100);
+    // Part 1
+    painter.setBrush(QColor("#c9e4ff"));
+    painter.drawPie(rect, startAngle, spanAngle * part1Value / 100);
 
-        // Calculate and draw text for part 1
-        QPointF part1TextPos = getTextPosition(startAngle, spanAngle, part1Value);
-        painter.setPen(Qt::black);
-        painter.drawText(part1TextPos, QString::number(part1Value) + "%");
+    // Calculate and draw text for part 1
+    QPointF part1TextPos = getTextPosition(startAngle, spanAngle, part1Value);
+    painter.setPen(Qt::black);
+    painter.drawText(part1TextPos, QString::number(part1Value) + "%");
 
-        // Part 2
-        painter.setBrush(QColor("#805EBF"));
-        int part2StartAngle = startAngle + spanAngle * part1Value / 100;
-        painter.drawPie(rect, part2StartAngle, spanAngle * part2Value / 100);
+    // Part 2
+    painter.setBrush(QColor("#77b2e6"));
+    int part2StartAngle = startAngle + spanAngle * part1Value / 100;
+    painter.drawPie(rect, part2StartAngle, spanAngle * part2Value / 100);
 
-        // Calculate and draw text for part 2
-        QPointF part2TextPos = getTextPosition(part2StartAngle, spanAngle, part2Value);
-        painter.setPen(Qt::black);
-        painter.drawText(part2TextPos, QString::number(part2Value) + "%");
+    // Calculate and draw text for part 2
+    QPointF part2TextPos = getTextPosition(part2StartAngle, spanAngle, part2Value);
+    painter.setPen(Qt::black);
+    painter.drawText(part2TextPos, QString::number(part2Value) + "%");
 
-        // Part 3
-        painter.setBrush(QColor("#60308C"));
-        int part3StartAngle = part2StartAngle + spanAngle * part2Value / 100;
-        painter.drawPie(rect, part3StartAngle, spanAngle * part3Value / 100);
+    // Part 3
+    painter.setBrush(QColor("#4ca6e6"));
+    int part3StartAngle = part2StartAngle + spanAngle * part2Value / 100;
+    painter.drawPie(rect, part3StartAngle, spanAngle * part3Value / 100);
 
-        // Calculate and draw text for part 3
-        QPointF part3TextPos = getTextPosition(part3StartAngle, spanAngle, part3Value);
-        painter.setPen(Qt::black);
-        painter.drawText(part3TextPos, QString::number(part3Value) + "%");
+    // Calculate and draw text for part 3
+    QPointF part3TextPos = getTextPosition(part3StartAngle, spanAngle, part3Value);
+    painter.setPen(Qt::black);
+    painter.drawText(part3TextPos, QString::number(part3Value) + "%");
 
-        // Part 4
-        painter.setBrush(QColor("#310055"));
-        int part4StartAngle = part3StartAngle + spanAngle * part3Value / 100;
-        painter.drawPie(rect, part4StartAngle, spanAngle * part4Value / 100);
+    // Part 4
+    painter.setBrush(QColor("#00b1ff"));
+    int part4StartAngle = part3StartAngle + spanAngle * part3Value / 100;
+    painter.drawPie(rect, part4StartAngle, spanAngle * part4Value / 100);
 
-        // Calculate and draw text for part 4
-        QPointF part4TextPos = getTextPosition(part4StartAngle, spanAngle, part4Value);
-        painter.setPen(Qt::black);
-        painter.drawText(part4TextPos, QString::number(part4Value) + "%");
-   // }
+    // Calculate and draw text for part 4
+    QPointF part4TextPos = getTextPosition(part4StartAngle, spanAngle, part4Value);
+    painter.setPen(Qt::black);
+    painter.drawText(part4TextPos, QString::number(part4Value) + "%");
+    // }
 }
 
 void footswitch::SurgeonFoot(const QString &surgeon)
@@ -149,7 +149,7 @@ void footswitch::rxfootpedalmodes(const QString &topleft, const QString &toprigh
 }
 void footswitch::on_But_save_clicked()
 {
-   int value1 = ui->lineEdit->text().toInt();
+    int value1 = ui->lineEdit->text().toInt();
     int value2 = ui->lineEdit_2->text().toInt();
     int value3= ui->lineEdit_3->text().toInt();
     int value4 = ui->lineEdit_4->text().toInt();
@@ -188,7 +188,7 @@ void footswitch::on_But_save_clicked()
     }
     db.close();
     QSqlDatabase::removeDatabase("myConnection");
-this->close();
+    this->close();
 }
 
 
@@ -290,24 +290,24 @@ void footswitch::on_pushButton_clicked()
 
 void footswitch::on_But_footswitch_clicked()
 {
-  showingpaint=!showingpaint;
-   if(showingpaint){
-//    ui->label->setStyleSheet("border:none;background-color:transparent;image: url(:/images/footswitch.png);");
-//    ui->label->move(-30,10);
-//    ui->label->resize(531,731);
-//    ui->label_2->show();
-//    ui->label_2->move(400,350);
-//    ui->label_2->resize(71,61);
-//    ui->But_footswitch->move(100,310);
-//    ui->But_footswitch->resize(271,111);
-//    ui->But_topleft->move(330,230);//ok
-//    ui->But_topleft->resize(61,71);
-//    ui->But_topright->move(330,440);
-//    ui->But_topright->resize(61,71);
-//    ui->But_bottomleft->move(200,230);//ok
-//    ui->But_bottomleft->resize(61,71);
-//    ui->But_bottomright->move(205,440);//ok
-//    ui->But_bottomright->resize(61,71);
+    showingpaint=!showingpaint;
+    if(showingpaint){
+        //    ui->label->setStyleSheet("border:none;background-color:transparent;image: url(:/images/footswitch.png);");
+        //    ui->label->move(-30,10);
+        //    ui->label->resize(531,731);
+        //    ui->label_2->show();
+        //    ui->label_2->move(400,350);
+        //    ui->label_2->resize(71,61);
+        //    ui->But_footswitch->move(100,310);
+        //    ui->But_footswitch->resize(271,111);
+        //    ui->But_topleft->move(330,230);//ok
+        //    ui->But_topleft->resize(61,71);
+        //    ui->But_topright->move(330,440);
+        //    ui->But_topright->resize(61,71);
+        //    ui->But_bottomleft->move(200,230);//ok
+        //    ui->But_bottomleft->resize(61,71);
+        //    ui->But_bottomright->move(205,440);//ok
+        //    ui->But_bottomright->resize(61,71);
 
     }
 
@@ -336,7 +336,7 @@ void footswitch::on_But_topright_clicked()
     ui->Bottom_rightcom->hidePopup();
     ui->Bottom_leftcom->hidePopup();
     ui->LeftFoot_com->hidePopup();
-   // emit topright(ui->Right_footcom->currentText());
+    // emit topright(ui->Right_footcom->currentText());
     connect(ui->Right_footcom, &QComboBox::currentTextChanged, this, [this](const QString &text) {
         emit topright(text);
         ui->But_topright->setText(ui->Right_footcom->currentText());
@@ -348,25 +348,25 @@ void footswitch::on_But_topright_clicked()
 void footswitch::on_But_bottomleft_clicked()
 {
     ui->Bottom_leftcom->showPopup();
-      ui->Right_footcom->hidePopup();
-         ui->LeftFoot_com->hidePopup();
-          ui->Bottom_rightcom->hidePopup();
-          connect(ui->Bottom_leftcom, QOverload<const QString &>::of(&QComboBox::currentTextChanged), this, [this](const QString &text) {
-              emit bottomleft(text);
-              ui->But_bottomleft->setText(ui->Bottom_leftcom->currentText());
-          });
+    ui->Right_footcom->hidePopup();
+    ui->LeftFoot_com->hidePopup();
+    ui->Bottom_rightcom->hidePopup();
+    connect(ui->Bottom_leftcom, QOverload<const QString &>::of(&QComboBox::currentTextChanged), this, [this](const QString &text) {
+        emit bottomleft(text);
+        ui->But_bottomleft->setText(ui->Bottom_leftcom->currentText());
+    });
 }
 
 void footswitch::on_But_bottomright_clicked()
 {
     ui->Bottom_leftcom->hidePopup();
-      ui->Right_footcom->hidePopup();
-         ui->LeftFoot_com->hidePopup();
-          ui->Bottom_rightcom->showPopup();
-          connect(ui->Bottom_rightcom, &QComboBox::currentTextChanged, this, [this](const QString &text) {
-              emit bottomright(text);
-              ui->But_bottomright->setText(ui->Bottom_rightcom->currentText());
-          });
+    ui->Right_footcom->hidePopup();
+    ui->LeftFoot_com->hidePopup();
+    ui->Bottom_rightcom->showPopup();
+    connect(ui->Bottom_rightcom, &QComboBox::currentTextChanged, this, [this](const QString &text) {
+        emit bottomright(text);
+        ui->But_bottomright->setText(ui->Bottom_rightcom->currentText());
+    });
 
 }
 
