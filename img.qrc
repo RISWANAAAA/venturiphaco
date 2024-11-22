@@ -92,5 +92,6 @@
         <file>nextbutton.png</file>
         <file>clock.png</file>
         <file>calendor.png</file>
+        <file>information.png</file>
     </qresource>
 </RCC>

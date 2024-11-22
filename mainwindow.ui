@@ -53,7 +53,7 @@ background-color: rgb(18, 78, 102);
      <string notr="true">background-color: rgb(36, 73, 90);</string>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>5</number>
     </property>
     <widget class="QWidget" name="tab_33">
      <property name="styleSheet">
@@ -192,7 +192,7 @@ QPushButton:focus {
      <widget class="QLineEdit" name="lineEdit_56">
       <property name="geometry">
        <rect>
-        <x>210</x>
+        <x>220</x>
         <y>590</y>
         <width>101</width>
         <height>61</height>
@@ -214,7 +214,7 @@ border:2px solid black;</string>
      <widget class="QPushButton" name="us1flowdown_but">
       <property name="geometry">
        <rect>
-        <x>360</x>
+        <x>380</x>
         <y>590</y>
         <width>91</width>
         <height>61</height>
@@ -240,7 +240,7 @@ QPushButton:focus {
      <widget class="QPushButton" name="us1flowup_but">
       <property name="geometry">
        <rect>
-        <x>80</x>
+        <x>70</x>
         <y>590</y>
         <width>91</width>
         <height>61</height>
@@ -288,7 +288,7 @@ border:2px solid black;</string>
      <widget class="QTextEdit" name="textEdit_41">
       <property name="geometry">
        <rect>
-        <x>70</x>
+        <x>80</x>
         <y>540</y>
         <width>431</width>
         <height>41</height>
@@ -506,11 +506,14 @@ border-bottom-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop: 0 rgb(195,195
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">font:15pt &quot;Ubuntu&quot;;
-
-image: url(:/images/panelbutton.png);
-background-color:transparent;
-border:none;</string>
+       <string notr="true">QPushButton {
+    font: 15pt &quot;Ubuntu&quot;;
+    image: url(:/images/panelbutton.png);
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+</string>
       </property>
       <property name="text">
        <string>SURGEON</string>
@@ -532,11 +535,14 @@ border:none;</string>
        <enum>Qt::LeftToRight</enum>
       </property>
       <property name="styleSheet">
-       <string notr="true">font:15pt &quot;Ubuntu&quot;;
-
-image: url(:/images/panelbutton.png);
-background-color:transparent;
-border:none;</string>
+       <string notr="true">QPushButton {
+    font: 15pt &quot;Ubuntu&quot;;
+    image: url(:/images/panelbutton.png);
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+</string>
       </property>
       <property name="text">
        <string>SURGEON</string>
@@ -825,7 +831,7 @@ QPushButton:focus {
      <widget class="QLineEdit" name="lineEdit_59">
       <property name="geometry">
        <rect>
-        <x>210</x>
+        <x>220</x>
         <y>590</y>
         <width>101</width>
         <height>61</height>
@@ -847,7 +853,7 @@ border:2px solid black;</string>
      <widget class="QPushButton" name="us2flowup_but">
       <property name="geometry">
        <rect>
-        <x>80</x>
+        <x>70</x>
         <y>590</y>
         <width>91</width>
         <height>61</height>
@@ -873,7 +879,7 @@ QPushButton:focus {
      <widget class="QPushButton" name="us2flowdown_but">
       <property name="geometry">
        <rect>
-        <x>360</x>
+        <x>380</x>
         <y>590</y>
         <width>91</width>
         <height>61</height>
@@ -899,10 +905,10 @@ QPushButton:focus {
      <widget class="QTextEdit" name="textEdit_44">
       <property name="geometry">
        <rect>
-        <x>70</x>
+        <x>80</x>
         <y>540</y>
-        <width>331</width>
-        <height>51</height>
+        <width>341</width>
+        <height>41</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -1897,7 +1903,7 @@ border:none;</string>
      <widget class="QLineEdit" name="lineEdit_62">
       <property name="geometry">
        <rect>
-        <x>210</x>
+        <x>220</x>
         <y>590</y>
         <width>101</width>
         <height>61</height>
@@ -1918,10 +1924,10 @@ border-radius:20px;border:2px solid black;</string>
      <widget class="QTextEdit" name="textEdit_48">
       <property name="geometry">
        <rect>
-        <x>70</x>
+        <x>80</x>
         <y>540</y>
-        <width>321</width>
-        <height>71</height>
+        <width>331</width>
+        <height>41</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -1942,7 +1948,7 @@ p, li { white-space: pre-wrap; }
      <widget class="QPushButton" name="us3flowdown_but">
       <property name="geometry">
        <rect>
-        <x>360</x>
+        <x>380</x>
         <y>590</y>
         <width>91</width>
         <height>61</height>
@@ -1968,7 +1974,7 @@ QPushButton:focus {
      <widget class="QPushButton" name="us3flowup_but">
       <property name="geometry">
        <rect>
-        <x>80</x>
+        <x>70</x>
         <y>590</y>
         <width>91</width>
         <height>61</height>
@@ -2177,7 +2183,7 @@ QPushButton:focus {
      <widget class="QPushButton" name="us4flowup_but">
       <property name="geometry">
        <rect>
-        <x>80</x>
+        <x>70</x>
         <y>590</y>
         <width>91</width>
         <height>61</height>
@@ -2203,7 +2209,7 @@ QPushButton:focus {
      <widget class="QLineEdit" name="lineEdit_65">
       <property name="geometry">
        <rect>
-        <x>210</x>
+        <x>220</x>
         <y>590</y>
         <width>101</width>
         <height>61</height>
@@ -2224,7 +2230,7 @@ border-radius:20px;border:2px solid black;</string>
      <widget class="QPushButton" name="us4flowdown_but">
       <property name="geometry">
        <rect>
-        <x>360</x>
+        <x>380</x>
         <y>590</y>
         <width>91</width>
         <height>61</height>
@@ -2250,10 +2256,10 @@ QPushButton:focus {
      <widget class="QTextEdit" name="textEdit_50">
       <property name="geometry">
        <rect>
-        <x>70</x>
+        <x>80</x>
         <y>540</y>
-        <width>301</width>
-        <height>81</height>
+        <width>341</width>
+        <height>41</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -2757,13 +2763,13 @@ background-color:transparent;</string>
      <zorder>us4vacup_but</zorder>
      <zorder>label_104</zorder>
      <zorder>label_105</zorder>
-     <zorder>us4mode</zorder>
-     <zorder>us4vacmode</zorder>
      <zorder>us4onoff</zorder>
      <zorder>CutMode_vitCom_4</zorder>
      <zorder>CutMode_vit_4</zorder>
      <zorder>label_26</zorder>
      <zorder>label_106</zorder>
+     <zorder>us4vacmode</zorder>
+     <zorder>us4mode</zorder>
     </widget>
     <widget class="QWidget" name="tab_38">
      <property name="styleSheet">
@@ -3184,7 +3190,7 @@ QPushButton:focus {
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">font:20pt &quot;Ubuntu&quot;;
+       <string notr="true">font:25pt &quot;Ubuntu&quot;;
 background-color: rgb(255,255,255);
 border-radius:20px;border:2px solid black;</string>
       </property>
@@ -3593,7 +3599,7 @@ QPushButton:focus {
      <widget class="QLineEdit" name="lineEdit_72">
       <property name="geometry">
        <rect>
-        <x>210</x>
+        <x>220</x>
         <y>590</y>
         <width>101</width>
         <height>61</height>
@@ -3614,7 +3620,7 @@ border-radius:20px;border:2px solid black;</string>
      <widget class="QPushButton" name="vitflowup_but">
       <property name="geometry">
        <rect>
-        <x>80</x>
+        <x>70</x>
         <y>590</y>
         <width>91</width>
         <height>61</height>
@@ -3640,7 +3646,7 @@ QPushButton:focus {
      <widget class="QPushButton" name="vitflowdown_but">
       <property name="geometry">
        <rect>
-        <x>360</x>
+        <x>380</x>
         <y>590</y>
         <width>91</width>
         <height>61</height>
@@ -3690,7 +3696,7 @@ p, li { white-space: pre-wrap; }
      <widget class="QTextEdit" name="textEdit_58">
       <property name="geometry">
        <rect>
-        <x>70</x>
+        <x>80</x>
         <y>540</y>
         <width>431</width>
         <height>51</height>

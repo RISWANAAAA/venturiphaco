@@ -87,7 +87,7 @@ background-color:transparent;</string>
   <widget class="QPushButton" name="BackBut">
    <property name="geometry">
     <rect>
-     <x>-10</x>
+     <x>1170</x>
      <y>10</y>
      <width>111</width>
      <height>71</height>
@@ -379,10 +379,10 @@ font:bold;border:3px solid black;</string>
   <widget class="QLabel" name="Surgeon">
    <property name="geometry">
     <rect>
-     <x>80</x>
+     <x>10</x>
      <y>10</y>
-     <width>41</width>
-     <height>51</height>
+     <width>91</width>
+     <height>81</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -418,7 +418,7 @@ background-color:transparent;</string>
    <property name="geometry">
     <rect>
      <x>120</x>
-     <y>10</y>
+     <y>20</y>
      <width>291</width>
      <height>51</height>
     </rect>
@@ -468,7 +468,7 @@ background-color: rgb(14, 50, 6);</string>
     <string notr="true">background-color: rgb(162, 128, 137);</string>
    </property>
    <property name="currentIndex">
-    <number>1</number>
+    <number>2</number>
    </property>
    <widget class="QWidget" name="Diathermy">
     <property name="styleSheet">
@@ -3429,7 +3429,6 @@ border-radius:40px;</string>
   <zorder>SelectSurgeon</zorder>
   <zorder>SaveDiaBut</zorder>
   <zorder>comboBox</zorder>
-  <zorder>BackBut</zorder>
   <zorder>Select_2</zorder>
   <zorder>Surgeon</zorder>
   <zorder>circle</zorder>
@@ -3443,6 +3442,7 @@ border-radius:40px;</string>
   <zorder>lab_vibonoff</zorder>
   <zorder>label_3</zorder>
   <zorder>label_4</zorder>
+  <zorder>BackBut</zorder>
  </widget>
  <resources/>
  <connections/>

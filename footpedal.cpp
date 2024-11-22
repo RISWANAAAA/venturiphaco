@@ -75,10 +75,10 @@ void footpedal::storeComboBoxSelection(int index)
 
 void footpedal::readInitialGPIOValues()
 {
-    int value1 = readGPIOValue(961);
-    int value2 = readGPIOValue(962);
-    int value3 = readGPIOValue(963);
-    int value4 = readGPIOValue(964);
+    int value1 = readGPIOValue(960);
+    int value2 = readGPIOValue(961);
+    int value3 = readGPIOValue(962);
+    int value4 = readGPIOValue(963);
 
 
        if (leftFootcomAction == "Continuous Irrigation" ) {

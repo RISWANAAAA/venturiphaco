@@ -696,7 +696,7 @@ if(value ==0){
             return;
         }
         setRange(ui->lineEdit_5, prevValue, value4, 40);
-        ui->progressBar_15->setValue(value4);
+        ui->progressBar_17->setValue(value4);
 
 
 
@@ -713,7 +713,7 @@ if(value ==0){
             return;
         }
         setRange(ui->lineEdit_7, prevValue, value5, 500);
-        ui->progressBar_14->setValue(value5);
+        ui->progressBar_16->setValue(value5);
 
 
     }
@@ -728,8 +728,8 @@ if(value ==0){
             ui->lineEdit_12->setText(QString::number(2));
             return;
         }
-        setRange(ui->lineEdit_12, prevValue, value6, 40);
-        ui->progressBar_16->setValue(value6);
+        setRange(ui->lineEdit_12, prevValue, value6, 500);
+        ui->progressBar_14->setValue(value6);
 
     }
     if(ui->lineEdit_11->focusWidget()) {
@@ -743,8 +743,8 @@ if(value ==0){
             ui->lineEdit_11->setText(QString::number(5));
             return;
         }
-        setRange(ui->lineEdit_11, prevValue, value7, 500);
-        ui->progressBar_17->setValue(value7);
+        setRange(ui->lineEdit_11, prevValue, value7,40);
+        ui->progressBar_15->setValue(value7);
 
     }
     //vitrectomy
@@ -1197,8 +1197,8 @@ QString vibrationtext=ui->Vibration_onoff->text();
     query.bindValue(":cortexvacmode", ui->VacModeCom_phaco_4->currentText());
     query.bindValue(":polishaspmode", ui->PowMethodCom_phaco_4->currentText());
     query.bindValue(":polishvacmode", ui->VacModeCom_phaco_4->currentText());
-    query.bindValue(":ia1aspmax", ui->lineEdit_12->text().toInt());
-    query.bindValue(":ia1vacmax", ui->lineEdit_11->text().toInt());
+    query.bindValue(":ia1aspmax", ui->lineEdit_11->text().toInt());
+    query.bindValue(":ia1vacmax", ui->lineEdit_12->text().toInt());
     query.bindValue(":ia2aspmax", ui->lineEdit_5->text().toInt());
     query.bindValue(":ia2vacmax", ui->lineEdit_7->text().toInt());
     query.bindValue(":vitcutmax", ui->lineEdit->text().toInt());
@@ -1460,9 +1460,9 @@ void doctor::onSurgeonSelectionChanged(const QString &surgeonName)
         ui->progressBar_12->setValue(us3vacmax);
         ui->progressBar_13->setValue(us3power);
         // US4 (Sculpt) parameters
-        int us4aspmax = query.value("spowmax").toInt();
+        int us4power = query.value("spowmax").toInt();
         int us4vacmax = query.value("svacmax").toInt();
-        int  us4power= query.value("saspmax").toInt();
+        int  us4aspmax= query.value("saspmax").toInt();
         QString us4mode = query.value("Sculptpowmode").toString();
         QString us4vacmode = query.value("Sculptvacmode").toString();
         QString us4powermethod = query.value("Sculptpowermethod").toString();
@@ -1470,14 +1470,14 @@ void doctor::onSurgeonSelectionChanged(const QString &surgeonName)
         ui->progressBar_3->setValue(us4vacmax);
         ui->progressBar_4->setValue(us4power);
         // IA (Irrigation/Aspiration) parameters
-        int ia1vacmax = query.value("ia1aspmax").toInt();
-        int ia1aspmax = query.value("ia1vacmax").toInt();
+        int ia1aspmax = query.value("ia1aspmax").toInt();
+        int ia1vacmax = query.value("ia1vacmax").toInt();
         int ia2vacmax = query.value("ia2vacmax").toInt();
         int ia2aspmax = query.value("ia2aspmax").toInt();
         QString ia1mode = query.value("cortexvacmode").toString();
         QString ia2mode = query.value("polishvacmode").toString();
-        ui->progressBar_14->setValue(ia1aspmax);
-        ui->progressBar_15->setValue(ia1vacmax);
+        ui->progressBar_15->setValue(ia1aspmax);
+        ui->progressBar_14->setValue(ia1vacmax);
         ui->progressBar_16->setValue(ia2vacmax);
         ui->progressBar_17->setValue(ia2aspmax);
         // Vitrectomy parameters
@@ -1527,9 +1527,9 @@ void doctor::onSurgeonSelectionChanged(const QString &surgeonName)
         ui->PowMethodCom_phaco_3->setCurrentText(us3powermethod);
 
         // Update US4 UI components
-        ui->lineEdit_16->setText(QString::number(us4power)); // Power
+        ui->lineEdit_16->setText(QString::number(us4aspmax)); // Power
         ui->lineEdit_17->setText(QString::number(us4vacmax)); // Vacuum
-        ui->lineEdit_18->setText(QString::number(us4aspmax)); // Aspiration
+        ui->lineEdit_18->setText(QString::number(us4power)); // Aspiration
         ui->PowModeCom_phaco_4->setCurrentText(us4mode);   // Changed from us1mode to us4mode
         ui->VacModeCom_phaco_4->setCurrentText(us4vacmode);   // Changed from us1vacmode to us4vacmode
         ui->PowMethodCom_phaco_4->setCurrentText(us4powermethod);
@@ -1537,8 +1537,8 @@ void doctor::onSurgeonSelectionChanged(const QString &surgeonName)
         // Update IA1 and IA2 UI components
         ui->lineEdit_7->setText(QString::number(ia2vacmax));
         ui->lineEdit_5->setText(QString::number(ia2aspmax));
-        ui->lineEdit_11->setText(QString::number(ia1vacmax));
-        ui->lineEdit_12->setText(QString::number(ia1aspmax));
+        ui->lineEdit_11->setText(QString::number(ia1aspmax));
+        ui->lineEdit_12->setText(QString::number(ia1vacmax));
         ui->VacMode1_iacom->setCurrentText(ia1mode);
         ui->VacMode2_iacom->setCurrentText(ia2mode);
 

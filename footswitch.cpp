@@ -77,44 +77,46 @@ void footswitch::paintEvent(QPaintEvent *event) {
         qreal radius = 250; // Adjust radius for text placement
         return QPointF(center.x() + radius * cos(radians), center.y() - radius * sin(radians));
     };
-
+    QFont font = painter.font();
+       font.setPointSize(16); // Increase font size (you can adjust this value as needed)
+       painter.setFont(font);
     // Part 1
-    painter.setBrush(QColor("#c9e4ff"));
+    painter.setBrush(QColor("#62A0EA"));
     painter.drawPie(rect, startAngle, spanAngle * part1Value / 100);
 
     // Calculate and draw text for part 1
     QPointF part1TextPos = getTextPosition(startAngle, spanAngle, part1Value);
-    painter.setPen(Qt::black);
+    painter.setPen(Qt::white);
     painter.drawText(part1TextPos, QString::number(part1Value) + "%");
 
     // Part 2
-    painter.setBrush(QColor("#77b2e6"));
+    painter.setBrush(QColor("#00B2FF"));
     int part2StartAngle = startAngle + spanAngle * part1Value / 100;
     painter.drawPie(rect, part2StartAngle, spanAngle * part2Value / 100);
 
     // Calculate and draw text for part 2
     QPointF part2TextPos = getTextPosition(part2StartAngle, spanAngle, part2Value);
-    painter.setPen(Qt::black);
+    painter.setPen(Qt::white);
     painter.drawText(part2TextPos, QString::number(part2Value) + "%");
 
     // Part 3
-    painter.setBrush(QColor("#4ca6e6"));
+    painter.setBrush(QColor("#007BFF"));
     int part3StartAngle = part2StartAngle + spanAngle * part2Value / 100;
     painter.drawPie(rect, part3StartAngle, spanAngle * part3Value / 100);
 
     // Calculate and draw text for part 3
     QPointF part3TextPos = getTextPosition(part3StartAngle, spanAngle, part3Value);
-    painter.setPen(Qt::black);
+    painter.setPen(Qt::white);
     painter.drawText(part3TextPos, QString::number(part3Value) + "%");
 
     // Part 4
-    painter.setBrush(QColor("#00b1ff"));
+    painter.setBrush(QColor("#0056b3"));
     int part4StartAngle = part3StartAngle + spanAngle * part3Value / 100;
     painter.drawPie(rect, part4StartAngle, spanAngle * part4Value / 100);
 
     // Calculate and draw text for part 4
     QPointF part4TextPos = getTextPosition(part4StartAngle, spanAngle, part4Value);
-    painter.setPen(Qt::black);
+    painter.setPen(Qt::white);
     painter.drawText(part4TextPos, QString::number(part4Value) + "%");
     // }
 }

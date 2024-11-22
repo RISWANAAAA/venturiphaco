@@ -89,9 +89,9 @@ border:none;</string>
   <widget class="QPushButton" name="ButRTune">
    <property name="geometry">
     <rect>
-     <x>130</x>
+     <x>160</x>
      <y>620</y>
-     <width>441</width>
+     <width>521</width>
      <height>41</height>
     </rect>
    </property>
@@ -109,7 +109,7 @@ font:bold;
   <widget class="QLabel" name="lblRTune">
    <property name="geometry">
     <rect>
-     <x>120</x>
+     <x>150</x>
      <y>620</y>
      <width>71</width>
      <height>41</height>
@@ -127,7 +127,7 @@ border:none;</string>
   <widget class="QLabel" name="lblTuned">
    <property name="geometry">
     <rect>
-     <x>120</x>
+     <x>150</x>
      <y>670</y>
      <width>71</width>
      <height>41</height>
@@ -145,9 +145,9 @@ border:none;</string>
   <widget class="QPushButton" name="butTuned">
    <property name="geometry">
     <rect>
-     <x>130</x>
+     <x>160</x>
      <y>670</y>
-     <width>441</width>
+     <width>521</width>
      <height>41</height>
     </rect>
    </property>

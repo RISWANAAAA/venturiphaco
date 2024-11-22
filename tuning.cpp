@@ -88,6 +88,7 @@ void tuning::updatehandpieceStatus()
          "border:none;"
             "background-color:transparent;"
                                      "}";
+    //qDebug()<<"the handpiece from the gpio pin is 960"<<statushp;
    if(statushp==0)
    {
        ui->But_Handpiece->setStyleSheet(styleSheet4);
@@ -317,6 +318,11 @@ void tuning::updateProgress()
   //  ui->But_Handpiece->show();
     // ui->But_Handpiece->move(270,360);
     // ui->But_Handpiece->resize(141,131);
+    ui->lblRTune->setStyleSheet("image: url(:/images/singletick.png);background-color:transparent;");
+    ui->lblRTune->move(150,620);
+   ui->ButRTune->setText("Ready For Tune");
+    ui->ButRTune->resize(521,41);
+
    timer1->stop();
 
 
@@ -454,16 +460,21 @@ int tuning::Tune_Phaco()
         else{
             file.close();
             qDebug()<<"Error < 5";
-            hand->phaco_off();
-            hand->phaco_power(0);
-            QMessageBox::information(nullptr,"WARNING","Tune is not Completed May Be Loose Tip");
-            ui->But_value->setStyleSheet("border:none;background-color:transparent;image: url(:/images/singletick.png);outline:none");
-            qDebug()<<"remote";
-            isRunning=false;
-            updateProgress();
-            update();
-            trueFreqFound=false;
+            ui->ButRTune->resize(681,41);
+            ui->lblRTune->move(10,620);
+            ui->lblRTune->setStyleSheet("image: url(:/images/information.png);background-color:transparent;");
+            ui->ButRTune->setText("Tune is not completed.May be loose tip");
+         ui->ButRTune->move(80,621);
+            // Reset the text, size, and hide the label after 1 second
+                   QTimer::singleShot(1000, this, [this]() {
+                       hand->phaco_off();
+                       hand->phaco_power(0);
 
+                       isRunning=false;
+                       updateProgress();
+                       update();
+                   });
+            trueFreqFound=false;
             return -1;
         }
 
@@ -603,6 +614,7 @@ int tuning::Tune_Phaco()
     }
 
     return 0;
+
 }
 
 
@@ -611,7 +623,7 @@ void tuning::on_But_Next_clicked()
 {
     main->show();
     emit activatemain();
-    main->setTuneMode();
+
 
 
 
