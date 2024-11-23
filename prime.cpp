@@ -707,6 +707,7 @@ void prime::on_pushButton_8_clicked()
                          "}";
     Prime();
     ui->prime1_but->setStyleSheet(styleSheet);
+    ui->Tune_but->move(20,240);
     ui->label_2->move(30,380);
 
 

@@ -1556,7 +1556,7 @@ public:
 
         retranslateUi(doctor);
 
-        tabWidget->setCurrentIndex(2);
+        tabWidget->setCurrentIndex(1);
         tabWidget_2->setCurrentIndex(3);
 
 
