@@ -637,7 +637,7 @@ QProgressBar::chunk {
       <string notr="true">background-color:rgb(83, 104, 120);</string>
      </property>
      <property name="currentIndex">
-      <number>3</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="tab_6">
       <attribute name="title">
@@ -1743,7 +1743,7 @@ background-color: rgb(14, 50, 6);</string>
        </item>
        <item>
         <property name="text">
-         <string>Hyper Burst</string>
+         <string>Cold phaco</string>
         </property>
        </item>
       </widget>
@@ -2160,7 +2160,7 @@ background-color: rgb(14, 50, 6);</string>
        </item>
        <item>
         <property name="text">
-         <string>Hyper burst</string>
+         <string>Cold phaco</string>
         </property>
        </item>
       </widget>

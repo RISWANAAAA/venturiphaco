@@ -134,7 +134,7 @@ public:
     void pulse_count(int count);
     void pdm_mode(int mode);
     void burst_length(int time);
-    void cold_pulse(int time);
+    void cold_pulse(int time,int pulse);
     void freq_count(int count);
     void burst_off_length(int length);
     void fs_count(int count);

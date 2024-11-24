@@ -338,10 +338,10 @@ MainWindow::MainWindow(QWidget *parent)
       connect(ui->singleburstdown_but,&QPushButton::clicked,this,&MainWindow::singleburstdown_mode);
       connect(ui->multiburstup_but,&QPushButton::clicked,this,&MainWindow::multiburstup_mode);
       connect(ui->multiburstdown_but,&QPushButton::clicked,this,&MainWindow::multiburstdown_mode);
-      connect(ui->coldphacoup_but,&QPushButton::clicked,this,&MainWindow::coldphacoup_mode);
-      connect(ui->coldphacodown_but,&QPushButton::clicked,this,&MainWindow::coldphacodown_mode);
-      connect(ui->coldphaco1up_but,&QPushButton::clicked,this,&MainWindow::coldphaco1up_mode);
-      connect(ui->coldphaco1down_but,&QPushButton::clicked,this,&MainWindow::coldphaco1down_mode);
+      //connect(ui->coldphacoup_but,&QPushButton::clicked,this,&MainWindow::coldphacoup_mode);
+     // connect(ui->coldphacodown_but,&QPushButton::clicked,this,&MainWindow::coldphacodown_mode);
+      //connect(ui->coldphaco1up_but,&QPushButton::clicked,this,&MainWindow::coldphaco1up_mode);
+    //  connect(ui->coldphaco1down_but,&QPushButton::clicked,this,&MainWindow::coldphaco1down_mode);
      //update mode linear or nonlinear
       us1_linear_nonlinear();
       us2_linear_nonlinear();
@@ -2193,10 +2193,9 @@ void MainWindow::updateTabsBasedOnComboBox(const QString &selected) {
         handler->fs_count(nfpzero + nfpone + nfptwo);
         handler->freq_count(nFreqCount);
         handler->pdm_mode(COLD_PHACO);
-        nColdPhaco=ui->lineEdit_80->text().toInt();
-        handler->cold_pulse(nColdPhaco);
+        nColdPhacoPer=ui->lineEdit_80->text().toInt();
         nColdPhacoCount=ui->lineEdit_81->text().toInt();
-        handler->cold_pulse(nColdPhacoCount);
+        handler->cold_pulse(nColdPhacoPer,nColdPhacoCount);
 
         modeFound = true;
         ui->label_32->show();
@@ -4936,68 +4935,93 @@ void MainWindow::ocupulsedown_mode()
 
 }
 //coldphaco
-void MainWindow::coldphacoup_mode()
+void MainWindow::on_ButColdPhacoPer_down_clicked()
 {
- //handler->buzz();
-    nColdPhaco = ui->lineEdit_80->text().toInt();
-    nColdPhaco += 5;
-    if (nColdPhaco > 40) {
-        nColdPhaco = 40;
+    // handler->buzz();
+    nColdPhacoPer = ui->lineEdit_80->text().toInt();
+    nColdPhacoPer -= 5;
+    if (nColdPhacoPer < 5) {
+        nColdPhacoPer = 5;
     }
-    ui->lineEdit_80->setText(QString::number(nColdPhaco));
+    ui->lineEdit_80->setText(QString::number(nColdPhacoPer));
     handler->fs_count(nfpzero+nfpone+nfptwo);
     handler->freq_count(nFreqCount);
     handler->pdm_mode(COLD_PHACO);
 
-  handler->cold_pulse(nColdPhaco);
+    handler->cold_pulse(nColdPhacoPer,nColdPhacoCount);
+}
+
+
+void MainWindow::on_ButColdPulse_up_clicked()
+{
+    // handler->buzz();
+     nColdPhacoCount = ui->lineEdit_81->text().toInt();
+     nColdPhacoCount += 1;
+     if (nColdPhacoCount > 15) {
+         nColdPhacoCount = 15;
+     }
+     ui->lineEdit_81->setText(QString::number(nColdPhacoCount));
+     handler->fs_count(nfpzero+nfpone+nfptwo);
+     handler->freq_count(nFreqCount);
+     handler->pdm_mode(COLD_PHACO);
+
+     handler->cold_pulse(nColdPhacoPer,nColdPhacoCount);
+
+}
+
+
+void MainWindow::on_ButColdPulse_down_clicked()
+{
+    //  handler->buzz();
+      nColdPhacoCount = ui->lineEdit_81->text().toInt();
+      nColdPhacoCount -= 1;
+      if (nColdPhacoCount < 1) {
+          nColdPhacoCount = 1;
+      }
+      ui->lineEdit_81->setText(QString::number(nColdPhacoCount));
+      handler->fs_count(nfpzero+nfpone+nfptwo);
+      handler->freq_count(nFreqCount);
+      handler->pdm_mode(COLD_PHACO);
+
+      handler->cold_pulse(nColdPhacoPer,nColdPhacoCount);
+
+}
+
+
+void MainWindow::on_ButColdPhacoPer_up_clicked()
+{
+    //handler->buzz();
+       nColdPhacoPer = ui->lineEdit_80->text().toInt();
+       nColdPhacoPer += 5;
+       if (nColdPhacoPer > 40) {
+           nColdPhacoPer = 40;
+       }
+       ui->lineEdit_80->setText(QString::number(nColdPhacoPer));
+       handler->fs_count(nfpzero+nfpone+nfptwo);
+       handler->freq_count(nFreqCount);
+       handler->pdm_mode(COLD_PHACO);
+
+     handler->cold_pulse(nColdPhacoPer,nColdPhacoCount);
+}
+
+void MainWindow::coldphacoup_mode()
+{
+
 }
 
 void MainWindow::coldphacodown_mode()
 {
-    // handler->buzz();
-    nColdPhaco = ui->lineEdit_80->text().toInt();
-    nColdPhaco -= 5;
-    if (nColdPhaco < 5) {
-        nColdPhaco = 5;
-    }
-    ui->lineEdit_80->setText(QString::number(nColdPhaco));
-    handler->fs_count(nfpzero+nfpone+nfptwo);
-    handler->freq_count(nFreqCount);
-    handler->pdm_mode(COLD_PHACO);
 
-    handler->cold_pulse(nColdPhaco);
 }
 
 void MainWindow::coldphaco1up_mode()
 {
-   // handler->buzz();
-    nColdPhacoCount = ui->lineEdit_81->text().toInt();
-    nColdPhacoCount += 1;
-    if (nColdPhacoCount > 15) {
-        nColdPhacoCount = 15;
-    }
-    ui->lineEdit_81->setText(QString::number(nColdPhacoCount));
-    handler->fs_count(nfpzero+nfpone+nfptwo);
-    handler->freq_count(nFreqCount);
-    handler->pdm_mode(COLD_PHACO);
 
-    handler->cold_pulse(nColdPhacoCount);
 }
 
 void MainWindow::coldphaco1down_mode()
 {
-  //  handler->buzz();
-    nColdPhacoCount = ui->lineEdit_81->text().toInt();
-    nColdPhacoCount -= 1;
-    if (nColdPhacoCount < 1) {
-        nColdPhacoCount = 1;
-    }
-    ui->lineEdit_81->setText(QString::number(nColdPhacoCount));
-    handler->fs_count(nfpzero+nfpone+nfptwo);
-    handler->freq_count(nFreqCount);
-    handler->pdm_mode(COLD_PHACO);
 
-    handler->cold_pulse(nColdPhacoCount);
 }
 
 
@@ -6700,3 +6724,7 @@ void MainWindow::on_ocupulseup_but_clicked()
     handler->pdm_mode(CONTINOUS);
 
 }
+
+
+
+

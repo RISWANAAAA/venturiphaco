@@ -397,6 +397,15 @@ void on_ocupulsedown_but_clicked();
 
 void on_ocupulseup_but_clicked();
 
+
+void on_ButColdPhacoPer_down_clicked();
+
+void on_ButColdPulse_up_clicked();
+
+void on_ButColdPulse_down_clicked();
+
+void on_ButColdPhacoPer_up_clicked();
+
 signals:
      void sensorValueChanged(int value);
      void surgeonSelected(const QString &surgeonName);
@@ -430,7 +439,7 @@ int nOcuPulseCount;
 int nOcuBurstCount;
 int singleburst;
 int nMultiBurstCount;
-int nColdPhaco;
+int nColdPhacoPer;
 int nColdPhacoCount;
 int gpioNumber = 960;
 int nfpzero;
