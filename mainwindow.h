@@ -148,6 +148,7 @@ void setTuneMode();
 void enableButtons(bool powerOn);
    void setLastSelectedValue();
    void rx_viberationvalue(const QString &text);
+   void rx_speakeronoff(const QString &text);
 public slots:
    int readsensorvalue();
    void footpedalvalues(int &value1,int &value2,int &value3,int &value4);
@@ -531,6 +532,7 @@ QString vus3;
 QString vus4;
 QString vvit;
 QString vibon;
+QString speakeronoff;
 
 
 qint64 elap=0;

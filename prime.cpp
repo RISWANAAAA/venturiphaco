@@ -30,6 +30,7 @@ prime::prime(QWidget *parent) :
     hand->freq_count(0);
     hand->safetyvent_off();
     hand->pinchvalve_off();
+    hand->speaker_off();
     QString styleSheet = "QPushButton {"
                          "    font-family: Ubuntu;"
                          "    font-size: 60pt;"

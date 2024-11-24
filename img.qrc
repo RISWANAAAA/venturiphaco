@@ -93,5 +93,7 @@
         <file>clock.png</file>
         <file>calendor.png</file>
         <file>information.png</file>
+        <file>speakeron.png</file>
+        <file>speakeroff.png</file>
     </qresource>
 </RCC>

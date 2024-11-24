@@ -227,9 +227,9 @@ border-radius:120px;</string>
   <widget class="QLabel" name="FootPedalSettings">
    <property name="geometry">
     <rect>
-     <x>70</x>
-     <y>380</y>
-     <width>381</width>
+     <x>160</x>
+     <y>670</y>
+     <width>231</width>
      <height>51</height>
     </rect>
    </property>
@@ -468,7 +468,7 @@ background-color: rgb(14, 50, 6);</string>
     <string notr="true">background-color: rgb(162, 128, 137);</string>
    </property>
    <property name="currentIndex">
-    <number>1</number>
+    <number>2</number>
    </property>
    <widget class="QWidget" name="Diathermy">
     <property name="styleSheet">
@@ -3310,10 +3310,10 @@ font:bold;</string>
   <widget class="QPushButton" name="pushButton_2">
    <property name="geometry">
     <rect>
-     <x>-80</x>
-     <y>380</y>
-     <width>581</width>
-     <height>381</height>
+     <x>230</x>
+     <y>360</y>
+     <width>271</width>
+     <height>401</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -3342,9 +3342,9 @@ outline:none;</string>
   <widget class="QPushButton" name="Vibration_onoff">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>290</y>
-     <width>201</width>
+     <x>10</x>
+     <y>330</y>
+     <width>251</width>
      <height>51</height>
     </rect>
    </property>
@@ -3361,15 +3361,14 @@ text-align:left;</string>
   <widget class="QLabel" name="lab_vibonoff">
    <property name="geometry">
     <rect>
-     <x>180</x>
-     <y>310</y>
+     <x>230</x>
+     <y>350</y>
      <width>61</width>
      <height>51</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">image: url(:/images/vibrationoff.png);
-border:2px solid skyblue;
+    <string notr="true">border:2px solid skyblue;
 border-radius:20px;</string>
    </property>
    <property name="text">
@@ -3379,8 +3378,8 @@ border-radius:20px;</string>
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
-     <x>4</x>
-     <y>240</y>
+     <x>10</x>
+     <y>280</y>
      <width>211</width>
      <height>41</height>
     </rect>
@@ -3409,6 +3408,61 @@ font:bold;</string>
 background-color: rgb(3, 58, 11);
 border:none;
 border-radius:40px;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_5">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>430</y>
+     <width>211</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 15pt &quot;Ubuntu Condensed&quot;;
+background-color:transparent;
+font:25px;
+font:bold;</string>
+   </property>
+   <property name="text">
+    <string>Speaker ON/OFF</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="ButSpeakerOnOff">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>480</y>
+     <width>251</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255,255,255);
+font:20pt;
+background-color: rgb(14, 50, 6);
+text-align:left;</string>
+   </property>
+   <property name="text">
+    <string>Speaker ON</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lab_vibonoff_2">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>510</y>
+     <width>61</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border:2px solid skyblue;
+border-radius:20px;</string>
    </property>
    <property name="text">
     <string/>
@@ -3443,6 +3497,9 @@ border-radius:40px;</string>
   <zorder>label_3</zorder>
   <zorder>label_4</zorder>
   <zorder>BackBut</zorder>
+  <zorder>label_5</zorder>
+  <zorder>ButSpeakerOnOff</zorder>
+  <zorder>lab_vibonoff_2</zorder>
  </widget>
  <resources/>
  <connections/>

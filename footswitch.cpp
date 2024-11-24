@@ -173,7 +173,10 @@ void footswitch::on_But_save_clicked()
     }
 
     QSqlQuery query(db);  // Use the specific database connection
-    if (!query.prepare("UPDATE phacohigh SET fzero = :value1, fone = :value2, ftwo = :value3, fthree = :value4 WHERE surgeon = :surgeonName")) {
+    if (!query.prepare("UPDATE phacohigh SET fzero = :value1, fone = :value2, ftwo = :value3, fthree = :value4, "
+                       "footleft = :footleft, footright = :footright, footbottomleft = :footbottomleft, footbottomright = :footbottomright "
+
+                       " WHERE surgeon = :surgeonName")) {
         qWarning() << "Error preparing query:" << query.lastError();
         return;
     }
@@ -182,12 +185,22 @@ void footswitch::on_But_save_clicked()
     query.bindValue(":value2", value2);
     query.bindValue(":value3", value3);
     query.bindValue(":value4", value4);
+    query.bindValue(":footleft", ui->LeftFoot_com->currentText());
+    query.bindValue(":footright", ui->Right_footcom->currentText());
+    query.bindValue(":footbottomleft", ui->Bottom_leftcom->currentText());
+    query.bindValue(":footbottomright", ui->Bottom_rightcom->currentText());
     if (!query.exec()) {
         qWarning() << "Error: Could not update data in the database:" << query.lastError();
     } else {
         sendvaltomain(value1,value2,value3,value4);
+        emit topleft(ui->LeftFoot_com->currentText());
+        emit topright(ui->Right_footcom->currentText());
+        emit bottomleft(ui->Bottom_leftcom->currentText());
+        emit bottomright(ui->Bottom_rightcom->currentText());
+        qDebug()<<"the left right bottom left bottom right is"<<ui->LeftFoot_com->currentText()<<ui->Right_footcom->currentText()<<ui->Bottom_leftcom->currentText()<<ui->Bottom_rightcom->currentText();
 
     }
+
     db.close();
     QSqlDatabase::removeDatabase("myConnection");
     this->close();
@@ -324,7 +337,6 @@ void footswitch::on_But_topleft_clicked()
     ui->Bottom_leftcom->hidePopup();
     // Connect to the signal that triggers when the user selects an option from the combo box
     connect(ui->LeftFoot_com, &QComboBox::currentTextChanged, this, [this](const QString &text) {
-        emit topleft(text);
         ui->But_topleft->setText(ui->LeftFoot_com->currentText());
     });
 
@@ -340,7 +352,6 @@ void footswitch::on_But_topright_clicked()
     ui->LeftFoot_com->hidePopup();
     // emit topright(ui->Right_footcom->currentText());
     connect(ui->Right_footcom, &QComboBox::currentTextChanged, this, [this](const QString &text) {
-        emit topright(text);
         ui->But_topright->setText(ui->Right_footcom->currentText());
     });
 
@@ -354,7 +365,6 @@ void footswitch::on_But_bottomleft_clicked()
     ui->LeftFoot_com->hidePopup();
     ui->Bottom_rightcom->hidePopup();
     connect(ui->Bottom_leftcom, QOverload<const QString &>::of(&QComboBox::currentTextChanged), this, [this](const QString &text) {
-        emit bottomleft(text);
         ui->But_bottomleft->setText(ui->Bottom_leftcom->currentText());
     });
 }
@@ -366,7 +376,6 @@ void footswitch::on_But_bottomright_clicked()
     ui->LeftFoot_com->hidePopup();
     ui->Bottom_rightcom->showPopup();
     connect(ui->Bottom_rightcom, &QComboBox::currentTextChanged, this, [this](const QString &text) {
-        emit bottomright(text);
         ui->But_bottomright->setText(ui->Bottom_rightcom->currentText());
     });
 
@@ -414,6 +423,11 @@ void footswitch::on_But_save_2_clicked()
 
     // Emit the new values to MainWindow after the update
     sendvaltomain(dfp0, dfp1, dfp2, dfp3);
+    ui->lineEdit->setText(QString::number(dfp0));
+    ui->lineEdit_2->setText(QString::number(dfp1));
+    ui->lineEdit_3->setText(QString::number(dfp2));
+    ui->lineEdit_4->setText(QString::number(dfp3));
+
     db.close();
     QSqlDatabase::removeDatabase("myConnection");
     this->close();

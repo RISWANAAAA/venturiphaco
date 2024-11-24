@@ -6,10 +6,13 @@
 #include<QMap>
 doctor::doctor(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::doctor)
+    ui(new Ui::doctor),
+    spealer_onoff(false)
 {
     ui->setupUi(this);
     hand=new hwhandler;
+    hand->speaker_off();
+
     //last surgeon update
    setLastSelectedValue();
    move(0,0);
@@ -1083,8 +1086,8 @@ int us4vac=ui->lineEdit_17->text().toInt();
 int us4asp=ui->lineEdit_16->text().toInt();
 int ia1vac=ui->lineEdit_7->text().toInt();
 int ia1asp=ui->lineEdit_5->text().toInt();
-int ia2vac=ui->lineEdit_11->text().toInt();
-int ia2asp=ui->lineEdit_12->text().toInt();
+int ia2vac=ui->lineEdit_12->text().toInt();
+int ia2asp=ui->lineEdit_11->text().toInt();
 int vitcut=ui->lineEdit->text().toInt();
 int vitvac=ui->lineEdit_19->text().toInt();
 int vitasp=ui->lineEdit_20->text().toInt();
@@ -1109,6 +1112,7 @@ QString footright=ui->RightFoot->currentText();
 QString b_left=ui->BottomLFoot->currentText();
 QString b_right=ui->BottomRFoot->currentText();
 QString vibrationtext=ui->Vibration_onoff->text();
+QString speakeronoff=ui->ButSpeakerOnOff->text();
 
     // Open database connection with a unique name
     QSqlDatabase mydb = QSqlDatabase::addDatabase("QSQLITE", "unique_connection_name");
@@ -1153,6 +1157,7 @@ QString vibrationtext=ui->Vibration_onoff->text();
 
     query.prepare("UPDATE phacohigh SET "
                   "viberationoff = :viberationoff, "
+                  "speakeronoff = :speakeronoff, "
                   "diapowmax = :diapowmax, pump = :pump, Epinaspmax = :Epinaspmax, "
                   "Epinvacmax = :Epinvacmax, Epinpowmax = :Epinpowmax, quadpowmax = :quadpowmax, quadvacmax = :quadvacmax, "
                   "quadaspmax = :quadaspmax, Quadvacmode = :Quadvacmode, Quadpowermethod = :Quadpowermethod, "
@@ -1172,6 +1177,7 @@ QString vibrationtext=ui->Vibration_onoff->text();
     query.bindValue(":diapowmax", ui->lineEdit_6->text().toInt());
     query.bindValue(":pump", ui->comboBox->currentText());
  query.bindValue(":viberationoff", ui->Vibration_onoff->text());
+ query.bindValue(":speakeronoff", ui->ButSpeakerOnOff->text());
     query.bindValue(":Epinaspmax", ui->lineEdit_2->text().toInt());
     query.bindValue(":Epinvacmax", ui->lineEdit_3->text().toInt());
     query.bindValue(":Epinpowmax", ui->lineEdit_4->text().toInt());
@@ -1261,6 +1267,7 @@ emit sendleftfootvalues(ui->LeftFoot->currentText());
      //qDebug()<<"values are transmitted"<<fpzero<<fpone<<fptwo<<fpthree;
     emit tx_viberation(ui->Vibration_onoff->text());
     qDebug()<<"viberation in doctor"<<ui->Vibration_onoff->text();
+    emit tx_speakeronoff(ui->ButSpeakerOnOff->text());
     this->close();
     mydb.close();
 
@@ -1400,7 +1407,7 @@ void doctor::onSurgeonSelectionChanged(const QString &surgeonName)
     // Prepare a single query to fetch all required data
     QSqlQuery query(db);
     query.prepare(
-          "SELECT diapowmax, pump, viberationoff, Epinaspmax, Epinvacmax, Epinpowmax, "
+          "SELECT diapowmax, pump, viberationoff, speakeronoff, Epinaspmax, Epinvacmax, Epinpowmax, "
           "quadpowmax, quadvacmax, quadaspmax, Quadvacmode, Quadpowermethod, Quadpowmode, "
           "caspmax, cvacmax, cpowmax, Chopvacmode, Choppowermethod, Choppowmode, "
           "saspmax, svacmax, spowmax, Sculptvacmode, Sculptpowermethod, Sculptpowmode, "
@@ -1428,6 +1435,7 @@ void doctor::onSurgeonSelectionChanged(const QString &surgeonName)
         ui->progressBar->setValue(phacoPowerMax);
         QString pump = query.value("pump").toString();
         QString vib_onoff = query.value("viberationoff").toString();
+        QString speaker_onoff = query.value("speakeronoff").toString();
 
         // US1 (Epinucleus) parameters
         int us1power = query.value("Epinpowmax").toInt();
@@ -1499,6 +1507,7 @@ void doctor::onSurgeonSelectionChanged(const QString &surgeonName)
             ui->BottomLFoot->setCurrentText(query.value("footbottomleft").toString());
             ui->BottomRFoot->setCurrentText(query.value("footbottomright").toString());
 
+
         // Update UI components with the retrieved values
         ui->lineEdit_6->setText(QString::number(phacoPowerMax));
        ui->comboBox->setCurrentText(pump);
@@ -1554,12 +1563,19 @@ void doctor::onSurgeonSelectionChanged(const QString &surgeonName)
         }else if(vib_onoff == "Viberation OFF"){
             ui->lab_vibonoff->setStyleSheet("image: url(:/images/vibrationoff.png);border:2px solid skyblue;border-radius:20px;");
         }
+        if(speaker_onoff == "Speaker ON"){
+            ui->lab_vibonoff_2->setStyleSheet("image: url(:/images/speakeron.png);border:2px solid skyblue;border-radius:20px;");
+        }else if(speaker_onoff == "Speaker OFF"){
+            ui->lab_vibonoff_2->setStyleSheet("image: url(:/images/speakeroff.png);border:2px solid skyblue;border-radius:20px;");
+
+        }
          emit leftfoot(ui->LeftFoot->currentText());
         emit rightfoot(ui->RightFoot->currentText());
         emit bottomleft(ui->BottomLFoot->currentText());
         emit bottomright(ui->BottomRFoot->currentText());
         emit pumpsignal(pump);
       cFoot->receivelineEditval(footpedalzero,footpedalone,footpedaltwo,footpedalthree);
+      emit tx_speakeronoff(speaker_onoff);
   emit activatemainwindow();
 
        query.clear();
@@ -1581,21 +1597,28 @@ void doctor::on_pushButton_2_clicked()
 void doctor::receivetopleft(const QString &text)
 {
     ui->LeftFoot->setCurrentText(text);
+    qDebug()<<"the current text of topleft is"<<text;
 }
 
 void doctor::receivebottomleft(const QString &text)
 {
    ui->BottomLFoot->setCurrentText(text);
+   qDebug()<<"the current text of bottomleft is"<<text;
+
 }
 
 void doctor::receivetopright(const QString &text)
 {
     ui->RightFoot->setCurrentText(text);
+    qDebug()<<"the current text of topright is"<<text;
+
 }
 
 void doctor::receivebottomright(const QString &text)
 {
     ui->BottomRFoot->setCurrentText(text);
+    qDebug()<<"the current text of bottomright is"<<text;
+
 }
 
 void doctor::on_Vibration_onoff_clicked()
@@ -1607,6 +1630,20 @@ void doctor::on_Vibration_onoff_clicked()
     }else{
         ui->Vibration_onoff->setText("Vibration OFF");
         ui->lab_vibonoff->setStyleSheet("image: url(:/images/vibrationoff.png);border:2px solid skyblue;border-radius:20px;");
+
+    }
+}
+
+void doctor::on_ButSpeakerOnOff_clicked()
+{
+    spealer_onoff = !spealer_onoff;
+    if(spealer_onoff){
+        ui->ButSpeakerOnOff->setText("Speaker ON");
+        ui->lab_vibonoff_2->setStyleSheet("image: url(:/images/speakeron.png);border:2px solid skyblue;border-radius:20px;");
+
+    }else{
+        ui->ButSpeakerOnOff->setText("Speaker OFF");
+        ui->lab_vibonoff_2->setStyleSheet("image: url(:/images/speakeroff.png);border:2px solid skyblue;border-radius:20px;");
 
     }
 }

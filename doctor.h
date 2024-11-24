@@ -77,6 +77,8 @@ private slots:
 
   void on_Vibration_onoff_clicked();
 
+  void on_ButSpeakerOnOff_clicked();
+
 signals:
 
   void sendleftfootvalues(const QString &text1);
@@ -121,6 +123,7 @@ signals:
              void activatemainwindow();
      void txfootpedalvalues(const QString &topleft,const QString &topright,const QString &bottomleft,const QString &bottomright);
      void tx_viberation(const QString &text);
+     void tx_speakeronoff(const QString &text);
 
 
 
@@ -136,6 +139,7 @@ private:
     footswitch *cFoot;
     hwhandler *hand;
     bool vib_onoff=false;
+   bool spealer_onoff;
 
 
 };
