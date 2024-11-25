@@ -1228,7 +1228,7 @@ QString speakeronoff=ui->ButSpeakerOnOff->text();
     if (!query.exec()) {
 //qDebug() << "Error executing UPDATE query: " << query.lastError().text();
     } else {
-qDebug() << "Data updated successfully.";
+//qDebug() << "Data updated successfully.";
         QMessageBox* msgBox = new QMessageBox(QMessageBox::Information, "Info", "Surgeon is updated");
 
         // Set the message box to show

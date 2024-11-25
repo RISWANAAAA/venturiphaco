@@ -486,6 +486,7 @@ bool ci_ia2;
 bool cidia;
 bool overallci;
 bool con=1;
+bool reflux=1;
 bool us1PdmMode = false;
 bool us2PdmMode = false;
 bool us3PdmMode = false;

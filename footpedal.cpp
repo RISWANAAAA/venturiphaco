@@ -33,7 +33,7 @@ footpedal::footpedal(QWidget *parent) :
     QTimer *timer=new QTimer;
     connect(timer,&QTimer::timeout,this,&footpedal::readInitialGPIOValues);
     timer->start(100);
-    qDebug()<<"the foorpedal widow is finished";
+    //qDebug()<<"the foorpedal widow is finished";
 }
 
 footpedal::~footpedal()
@@ -75,10 +75,10 @@ void footpedal::storeComboBoxSelection(int index)
 
 void footpedal::readInitialGPIOValues()
 {
-    int value1 = readGPIOValue(960);
-    int value2 = readGPIOValue(961);
-    int value3 = readGPIOValue(962);
-    int value4 = readGPIOValue(963);
+    int value1 = readGPIOValue(961);
+    int value2 = readGPIOValue(962);
+    int value3 = readGPIOValue(963);
+    int value4 = readGPIOValue(964);
 
 
        if (leftFootcomAction == "Continuous Irrigation" ) {
@@ -300,7 +300,7 @@ else if (leftFootcomAction == "Increment") {
          if (value3 == 0 && flag3 == 0 && state3 == 1) {
              flag3 = 1;
              state3 = 2;
-             emit continous_irrigation(0);
+             emit continous_irrigation(value3);
          }
         if (value3 == 1 && flag3 == 1 && state3 == 2) {
              state3 = 3;
@@ -563,11 +563,11 @@ void footpedal::updateFootpedalComboBoxes(const QString &surgeonName) {
         QString footNRightValue = query.value("footbottomright").toString();
 
         // Debug output to check retrieved values
-        qDebug() << "Foot pedal values retrieved:"
-                 << "footleft:" << footLeftValue
-                 << "footright:" << footRightValue
-                 << "footbleft:" << footBLeftValue
-                 << "footnright:" << footNRightValue;
+        //qDebug() << "Foot pedal values retrieved:"
+                 //<< "footleft:" << footLeftValue
+                // << "footright:" << footRightValue
+                // << "footbleft:" << footBLeftValue
+               //  << "footnright:" << footNRightValue;
 
         // Set the retrieved values to the combo boxes
         ui->left_footcom->setCurrentText(footLeftValue);
@@ -618,9 +618,9 @@ void footpedal::on_pushButton_clicked()
 
     // Check if the database connection is open
     if (!db.isOpen()) {
-        qDebug() << "Database is not open. Attempting to open it...";
+        //qDebug() << "Database is not open. Attempting to open it...";
         if (!db.open()) {
-            qDebug() << "Failed to open the database:" << db.lastError().text();
+            //qDebug() << "Failed to open the database:" << db.lastError().text();
             return;
         }
     }
@@ -630,9 +630,9 @@ void footpedal::on_pushButton_clicked()
     QString footBLeftValue = ui->bleft_footcom->currentText();
     QString footNRightValue = ui->bright_footcom->currentText();
 
-    qDebug() << "Saving footpedal settings for surgeon:" << currentSurgeonName;
-    qDebug() << "footleft:" << footLeftValue << "footright:" << footRightValue;
-    qDebug() << "footbleft:" << footBLeftValue << "footnright:" << footNRightValue;
+    //qDebug() << "Saving footpedal settings for surgeon:" << currentSurgeonName;
+    //qDebug() << "footleft:" << footLeftValue << "footright:" << footRightValue;
+    //qDebug() << "footbleft:" << footBLeftValue << "footnright:" << footNRightValue;
 
     QSqlQuery query(db);
     query.prepare(
@@ -650,12 +650,12 @@ void footpedal::on_pushButton_clicked()
     query.bindValue(":surgeon", currentSurgeonName);
 
     if (!query.exec()) {
-        qDebug() << "Failed to update footpedal data for surgeon:" << query.lastError().text();
+        //qDebug() << "Failed to update footpedal data for surgeon:" << query.lastError().text();
         return;
     }
 
     query.clear();
-    qDebug() << "Footpedal settings saved successfully for surgeon:" << currentSurgeonName;
+    //qDebug() << "Footpedal settings saved successfully for surgeon:" << currentSurgeonName;
 
     readInitialGPIOValues();  // Continue with the next operations
     this->close();
