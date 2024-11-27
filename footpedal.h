@@ -67,6 +67,12 @@ signals:
     void powerdm3(int value1);
 
 
+    void sendleftfootdoc(const QString &text);
+    void sendrightfootdoc(const QString &text);
+    void sendbottomleftddoc(const QString &text);
+    void sendbottomrightdoc(const QString &text);
+
+
 private slots:
     void Back();
     void on_pushButton_clicked();

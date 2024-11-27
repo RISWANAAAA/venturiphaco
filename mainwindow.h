@@ -53,6 +53,7 @@ public:
 
     void footpedalbeep();
     void beepsound();
+    void receivesignal(const QString &text);
 void push(const QString &surgeonName);
 void changesvaluesql();
 void changebuttonstyle();
@@ -431,6 +432,8 @@ private:
 
 int getvalue(int input);
 int currentButtonIndex;
+int currentButtonIndex1;
+
 int maxValue;
 int currentButton;
 int counter=0;
@@ -457,6 +460,7 @@ int ia2count=0;
 int vitcount=0;
 int nFreqCount=0;
  int nOnTime=0;
+int nHandPiece;
 
 QMessageBox *message;
 QMessageBox *messageline;

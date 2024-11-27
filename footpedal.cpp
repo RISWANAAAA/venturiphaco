@@ -618,9 +618,9 @@ void footpedal::on_pushButton_clicked()
 
     // Check if the database connection is open
     if (!db.isOpen()) {
-        //qDebug() << "Database is not open. Attempting to open it...";
+        qDebug() << "Database is not open. Attempting to open it...";
         if (!db.open()) {
-            //qDebug() << "Failed to open the database:" << db.lastError().text();
+            qDebug() << "Failed to open the database:" << db.lastError().text();
             return;
         }
     }
@@ -655,7 +655,11 @@ void footpedal::on_pushButton_clicked()
     }
 
     query.clear();
-    //qDebug() << "Footpedal settings saved successfully for surgeon:" << currentSurgeonName;
+    qDebug() << "Footpedal settings saved successfully for surgeon:" << currentSurgeonName;
+    emit sendleftfootdoc(footLeftValue);
+    emit sendrightfootdoc(footRightValue);
+    emit sendbottomleftddoc(footBLeftValue);
+    emit sendbottomrightdoc(footNRightValue);
 
     readInitialGPIOValues();  // Continue with the next operations
     this->close();

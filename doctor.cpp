@@ -1228,7 +1228,7 @@ QString speakeronoff=ui->ButSpeakerOnOff->text();
     if (!query.exec()) {
 //qDebug() << "Error executing UPDATE query: " << query.lastError().text();
     } else {
-qDebug() << "Data updated successfully.";
+//qDebug() << "Data updated successfully.";
         QMessageBox* msgBox = new QMessageBox(QMessageBox::Information, "Info", "Surgeon is updated");
 
         // Set the message box to show
@@ -1599,27 +1599,27 @@ void doctor::on_pushButton_2_clicked()
 void doctor::receivetopleft(const QString &text)
 {
     ui->LeftFoot->setCurrentText(text);
-    //qDebug()<<"the current text of topleft is"<<text;
+    qDebug()<<"the current text of topleft is"<<text;
 }
 
 void doctor::receivebottomleft(const QString &text)
 {
    ui->BottomLFoot->setCurrentText(text);
-   //qDebug()<<"the current text of bottomleft is"<<text;
+   qDebug()<<"the current text of bottomleft is"<<text;
 
 }
 
 void doctor::receivetopright(const QString &text)
 {
     ui->RightFoot->setCurrentText(text);
-    //qDebug()<<"the current text of topright is"<<text;
+    qDebug()<<"the current text of topright is"<<text;
 
 }
 
 void doctor::receivebottomright(const QString &text)
 {
     ui->BottomRFoot->setCurrentText(text);
-    //qDebug()<<"the current text of bottomright is"<<text;
+   qDebug()<<"the current text of bottomright is"<<text;
 
 }
 

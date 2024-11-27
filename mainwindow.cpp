@@ -45,6 +45,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->label_32->hide();
     ui->CutMode_vit->hide();
     ui->CutMode_vitCom->hide();
+
     ui->tabWidget_2->tabBar()->hide();
 
     ui->tabWidget_2->hide();
@@ -103,6 +104,10 @@ MainWindow::MainWindow(QWidget *parent)
                   "image: url(:/images/not_Tuned.png);"
                    "background-color:transparent;"
                                         "}";
+       connect(foot,&footpedal::sendleftfootdoc,in,&doctor::receivetopleft);
+       connect(foot,&footpedal::sendrightfootdoc,in,&doctor::receivetopright);
+       connect(foot,&footpedal::sendbottomleftddoc,in,&doctor::receivebottomleft);
+       connect(foot,&footpedal::sendbottomrightdoc,in,&doctor::receivebottomright);
 //update footpedal value from doctor window to mainwindow and mainwindow to footpedal screen
        connect(in,&doctor::sendleftfootvalues,foot,&footpedal::combobox1);
        connect(in,&doctor::sendrightfootvalues,foot,&footpedal::combobox2);
@@ -1213,11 +1218,11 @@ void MainWindow::DIATHERMYBUT()
 {
     handler->buzz();
 
-  ui->tabWidget->setCurrentIndex(7);
+    ui->tabWidget->setCurrentIndex(7);
+    ui->label_32->hide();
     ui->CutMode_vit->hide();
     ui->CutMode_vitCom->hide();
     ui->tabWidget_2->hide();
-    ui->label_32->hide();
     ui->tabWidget_2->hide();
     butname=0;
 
@@ -1970,6 +1975,7 @@ void MainWindow::setTuneMode() {
     ui->us4onoff->setStyleSheet(styleSheetOn);
     ui->us4powup_but->setEnabled(true);
     ui->us4powdown_but->setEnabled(true);
+    ui->label_32->show();
 
 
 
@@ -2089,7 +2095,14 @@ void MainWindow::beepsound()
 //    QString path = "/usr/bin/beep";
 //    p.setProgram(path);
 //    p.start();
-//    p.waitForFinished();
+    //    p.waitForFinished();
+}
+
+void MainWindow::receivesignal(const QString &text)
+{
+ //ui->comboBox_4->setCurrentText(text);
+ //push(text);
+
 }
 void MainWindow::onCutMode_vitComChanged(int index) {
 
@@ -2327,8 +2340,12 @@ vus4=ui->us4vacmode->text();
                 handler->dia_count(pow);
 
                 ui->CI5_5->setStyleSheet(styleSheet3);
-                handler->pinchvalve_on();
-                handler->safetyvent_on();
+                if (!overallci) {
+                    ui->CI5_5->setStyleSheet(styleSheet4);
+                    handler->pinchvalve_off();
+                    handler->safetyvent_off();
+                }
+
                 if (!ventondia) {
                     handler->safetyvent_on();
                     QThread::msleep(100);
@@ -4310,6 +4327,7 @@ handler->pinchvalve_on();
                 //footpedalbeep();
                 ui->dial_2->setValue(range);
                 ui->CI5_5->setStyleSheet(styleSheet3);
+                handler->safetyvent_off();
                 handler->pinchvalve_on();
 
                               int nonlinear_prevac = readsensorvalue(); // Assuming this function reads the current sensor value
@@ -4341,7 +4359,8 @@ ia2currentcount=2;
                     if(!overallci){
                  ui->CI5_5->setStyleSheet(styleSheet4);
                         handler->pinchvalve_off();
-                    } handler->speaker_off();
+                    }
+                    handler->speaker_off();
                       motoroff();
                       if(ventonia2==false){
                         handler->safetyvent_on();
@@ -5301,7 +5320,7 @@ int MainWindow::readGPIOValue(int pin)
 }
 void MainWindow::updatehandpieceStatus()
 {
-    int status = readGPIOValue(960);
+  nHandPiece = readGPIOValue(960);
 
 
     QString styleSheet4 = "QPushButton {"
@@ -5331,13 +5350,13 @@ void MainWindow::updatehandpieceStatus()
                 "background-color:transparent;"
 
                                      "}";
-   if(status==0)
+   if(nHandPiece==0)
    {
    ui->pushButton->setStyleSheet(styleSheet4);
 
 
    }
-   else if(status==1)
+   else if(nHandPiece==1)
    {
      ui->pushButton->setStyleSheet(styleSheet5);
 
@@ -5660,8 +5679,13 @@ void MainWindow::moved(int gpio)
         ui->ULTRASONICBUT3, ui->ULTRASONICBUT4, ui->IA1BUT,
         ui->IA2BUT, ui->VITRECTOMYBUT
     };
+    QPushButton *buttons1[] = {
+        ui->DIABUT, ui->IA1BUT,
+        ui->IA2BUT, ui->VITRECTOMYBUT
+    };
     int totalButtons = sizeof(buttons) / sizeof(buttons[0]);
-
+    int totalButtons1 = sizeof(buttons1) / sizeof(buttons1[0]);
+if(nHandPiece == 0){
     if (gpio == 0) {
         if (currentButtonIndex == -1) {
             currentButtonIndex = 0;
@@ -5672,6 +5696,19 @@ void MainWindow::moved(int gpio)
     // Simulate a click on the current button
     buttons[currentButtonIndex]->click();
     buttons[currentButtonIndex]->setFocus();
+}if(nHandPiece == 1){
+    if (gpio == 0) {
+        if (currentButtonIndex == -1) {
+            currentButtonIndex = 0;
+        } else {
+            currentButtonIndex = (currentButtonIndex + 1) % totalButtons1;
+        }
+    }
+    // Simulate a click on the current button
+    buttons1[currentButtonIndex]->click();
+    buttons1[currentButtonIndex]->setFocus();
+}
+
 }
 
 void MainWindow::movePushButtonBottomToTop(int gpio) {
@@ -5680,8 +5717,13 @@ void MainWindow::movePushButtonBottomToTop(int gpio) {
         ui->ULTRASONICBUT3, ui->ULTRASONICBUT4, ui->IA1BUT,
         ui->IA2BUT, ui->VITRECTOMYBUT
     };
+    QPushButton *buttons1[] = {
+        ui->DIABUT, ui->IA1BUT,
+        ui->IA2BUT, ui->VITRECTOMYBUT
+    };
     int totalButtons = sizeof(buttons) / sizeof(buttons[0]);
-
+    int totalButtons1 = sizeof(buttons1) / sizeof(buttons1[0]);
+  if(nHandPiece == 0){
     if (gpio == 0) {
         if (currentButtonIndex == -1) {
             currentButtonIndex = totalButtons - 1;
@@ -5691,6 +5733,17 @@ void MainWindow::movePushButtonBottomToTop(int gpio) {
     }
     buttons[currentButtonIndex]->click();
      buttons[currentButtonIndex]->setFocus();
+  }if(nHandPiece == 1){
+      if (gpio == 0) {
+          if (currentButtonIndex == -1) {
+              currentButtonIndex = totalButtons1 - 1;
+          } else {
+              currentButtonIndex = (currentButtonIndex - 1 + totalButtons1) % totalButtons1;
+          }
+      }
+      buttons1[currentButtonIndex]->click();
+       buttons1[currentButtonIndex]->setFocus();
+  }
 }
 
 void MainWindow::onPdmModeSelected(int gpio) {

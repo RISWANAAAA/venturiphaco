@@ -468,7 +468,7 @@ background-color: rgb(14, 50, 6);</string>
     <string notr="true">background-color: rgb(162, 128, 137);</string>
    </property>
    <property name="currentIndex">
-    <number>2</number>
+    <number>3</number>
    </property>
    <widget class="QWidget" name="Diathermy">
     <property name="styleSheet">

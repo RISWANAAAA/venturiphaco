@@ -197,7 +197,7 @@ void footswitch::on_But_save_clicked()
         emit topright(ui->Right_footcom->currentText());
         emit bottomleft(ui->Bottom_leftcom->currentText());
         emit bottomright(ui->Bottom_rightcom->currentText());
-        //qDebug()<<"the left right bottom left bottom right is"<<ui->LeftFoot_com->currentText()<<ui->Right_footcom->currentText()<<ui->Bottom_leftcom->currentText()<<ui->Bottom_rightcom->currentText();
+        qDebug()<<"the left right bottom left bottom right is"<<ui->LeftFoot_com->currentText()<<ui->Right_footcom->currentText()<<ui->Bottom_leftcom->currentText()<<ui->Bottom_rightcom->currentText();
 
     }
 

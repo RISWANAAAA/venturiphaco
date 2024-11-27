@@ -71,6 +71,7 @@ signals:
     void sendfreq(int count);
     void activatemain();
 
+
 private:
     Ui::tuning *ui;
     int m_value=0; // Holds the current value of the progress (0 to 100)

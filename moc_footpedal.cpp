@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_footpedal_t {
-    QByteArrayData data[26];
-    char stringdata0[307];
+    QByteArrayData data[30];
+    char stringdata0[378];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -46,29 +46,34 @@ QT_MOC_LITERAL(10, 107, 6), // "value1"
 QT_MOC_LITERAL(11, 114, 8), // "powerdm1"
 QT_MOC_LITERAL(12, 123, 8), // "powerdm2"
 QT_MOC_LITERAL(13, 132, 8), // "powerdm3"
-QT_MOC_LITERAL(14, 141, 9), // "combobox1"
-QT_MOC_LITERAL(15, 151, 4), // "text"
-QT_MOC_LITERAL(16, 156, 9), // "combobox2"
-QT_MOC_LITERAL(17, 166, 9), // "combobox3"
-QT_MOC_LITERAL(18, 176, 9), // "combobox4"
-QT_MOC_LITERAL(19, 186, 22), // "storeComboBoxSelection"
-QT_MOC_LITERAL(20, 209, 5), // "index"
-QT_MOC_LITERAL(21, 215, 25), // "updateFootpedalComboBoxes"
-QT_MOC_LITERAL(22, 241, 11), // "surgeonName"
-QT_MOC_LITERAL(23, 253, 26), // "updateFootpedalComboBoxes1"
-QT_MOC_LITERAL(24, 280, 4), // "Back"
-QT_MOC_LITERAL(25, 285, 21) // "on_pushButton_clicked"
+QT_MOC_LITERAL(14, 141, 15), // "sendleftfootdoc"
+QT_MOC_LITERAL(15, 157, 4), // "text"
+QT_MOC_LITERAL(16, 162, 16), // "sendrightfootdoc"
+QT_MOC_LITERAL(17, 179, 18), // "sendbottomleftddoc"
+QT_MOC_LITERAL(18, 198, 18), // "sendbottomrightdoc"
+QT_MOC_LITERAL(19, 217, 9), // "combobox1"
+QT_MOC_LITERAL(20, 227, 9), // "combobox2"
+QT_MOC_LITERAL(21, 237, 9), // "combobox3"
+QT_MOC_LITERAL(22, 247, 9), // "combobox4"
+QT_MOC_LITERAL(23, 257, 22), // "storeComboBoxSelection"
+QT_MOC_LITERAL(24, 280, 5), // "index"
+QT_MOC_LITERAL(25, 286, 25), // "updateFootpedalComboBoxes"
+QT_MOC_LITERAL(26, 312, 11), // "surgeonName"
+QT_MOC_LITERAL(27, 324, 26), // "updateFootpedalComboBoxes1"
+QT_MOC_LITERAL(28, 351, 4), // "Back"
+QT_MOC_LITERAL(29, 356, 21) // "on_pushButton_clicked"
 
     },
     "footpedal\0moveTopToBottom\0\0value\0"
     "moveBottomToTop\0performReflux\0togglePower\0"
     "on\0continous_irrigation\0powerdm\0value1\0"
-    "powerdm1\0powerdm2\0powerdm3\0combobox1\0"
-    "text\0combobox2\0combobox3\0combobox4\0"
-    "storeComboBoxSelection\0index\0"
-    "updateFootpedalComboBoxes\0surgeonName\0"
-    "updateFootpedalComboBoxes1\0Back\0"
-    "on_pushButton_clicked"
+    "powerdm1\0powerdm2\0powerdm3\0sendleftfootdoc\0"
+    "text\0sendrightfootdoc\0sendbottomleftddoc\0"
+    "sendbottomrightdoc\0combobox1\0combobox2\0"
+    "combobox3\0combobox4\0storeComboBoxSelection\0"
+    "index\0updateFootpedalComboBoxes\0"
+    "surgeonName\0updateFootpedalComboBoxes1\0"
+    "Back\0on_pushButton_clicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -78,34 +83,38 @@ static const uint qt_meta_data_footpedal[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-      18,   14, // methods
+      22,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       9,       // signalCount
+      13,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    1,  104,    2, 0x06 /* Public */,
-       4,    1,  107,    2, 0x06 /* Public */,
-       5,    1,  110,    2, 0x06 /* Public */,
-       6,    1,  113,    2, 0x06 /* Public */,
-       8,    1,  116,    2, 0x06 /* Public */,
-       9,    1,  119,    2, 0x06 /* Public */,
-      11,    1,  122,    2, 0x06 /* Public */,
-      12,    1,  125,    2, 0x06 /* Public */,
-      13,    1,  128,    2, 0x06 /* Public */,
+       1,    1,  124,    2, 0x06 /* Public */,
+       4,    1,  127,    2, 0x06 /* Public */,
+       5,    1,  130,    2, 0x06 /* Public */,
+       6,    1,  133,    2, 0x06 /* Public */,
+       8,    1,  136,    2, 0x06 /* Public */,
+       9,    1,  139,    2, 0x06 /* Public */,
+      11,    1,  142,    2, 0x06 /* Public */,
+      12,    1,  145,    2, 0x06 /* Public */,
+      13,    1,  148,    2, 0x06 /* Public */,
+      14,    1,  151,    2, 0x06 /* Public */,
+      16,    1,  154,    2, 0x06 /* Public */,
+      17,    1,  157,    2, 0x06 /* Public */,
+      18,    1,  160,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-      14,    1,  131,    2, 0x0a /* Public */,
-      16,    1,  134,    2, 0x0a /* Public */,
-      17,    1,  137,    2, 0x0a /* Public */,
-      18,    1,  140,    2, 0x0a /* Public */,
-      19,    1,  143,    2, 0x0a /* Public */,
-      21,    1,  146,    2, 0x0a /* Public */,
-      23,    1,  149,    2, 0x0a /* Public */,
-      24,    0,  152,    2, 0x08 /* Private */,
-      25,    0,  153,    2, 0x08 /* Private */,
+      19,    1,  163,    2, 0x0a /* Public */,
+      20,    1,  166,    2, 0x0a /* Public */,
+      21,    1,  169,    2, 0x0a /* Public */,
+      22,    1,  172,    2, 0x0a /* Public */,
+      23,    1,  175,    2, 0x0a /* Public */,
+      25,    1,  178,    2, 0x0a /* Public */,
+      27,    1,  181,    2, 0x0a /* Public */,
+      28,    0,  184,    2, 0x08 /* Private */,
+      29,    0,  185,    2, 0x08 /* Private */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::Int,    3,
@@ -117,15 +126,19 @@ static const uint qt_meta_data_footpedal[] = {
     QMetaType::Void, QMetaType::Int,   10,
     QMetaType::Void, QMetaType::Int,   10,
     QMetaType::Void, QMetaType::Int,   10,
+    QMetaType::Void, QMetaType::QString,   15,
+    QMetaType::Void, QMetaType::QString,   15,
+    QMetaType::Void, QMetaType::QString,   15,
+    QMetaType::Void, QMetaType::QString,   15,
 
  // slots: parameters
     QMetaType::Void, QMetaType::QString,   15,
     QMetaType::Void, QMetaType::QString,   15,
     QMetaType::Void, QMetaType::QString,   15,
     QMetaType::Void, QMetaType::QString,   15,
-    QMetaType::Void, QMetaType::Int,   20,
-    QMetaType::Void, QMetaType::QString,   22,
-    QMetaType::Void, QMetaType::QString,   22,
+    QMetaType::Void, QMetaType::Int,   24,
+    QMetaType::Void, QMetaType::QString,   26,
+    QMetaType::Void, QMetaType::QString,   26,
     QMetaType::Void,
     QMetaType::Void,
 
@@ -147,15 +160,19 @@ void footpedal::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
         case 6: _t->powerdm1((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 7: _t->powerdm2((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 8: _t->powerdm3((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 9: _t->combobox1((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 10: _t->combobox2((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 11: _t->combobox3((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 12: _t->combobox4((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 13: _t->storeComboBoxSelection((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 14: _t->updateFootpedalComboBoxes((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 15: _t->updateFootpedalComboBoxes1((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 16: _t->Back(); break;
-        case 17: _t->on_pushButton_clicked(); break;
+        case 9: _t->sendleftfootdoc((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 10: _t->sendrightfootdoc((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 11: _t->sendbottomleftddoc((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 12: _t->sendbottomrightdoc((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 13: _t->combobox1((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 14: _t->combobox2((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 15: _t->combobox3((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 16: _t->combobox4((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 17: _t->storeComboBoxSelection((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 18: _t->updateFootpedalComboBoxes((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 19: _t->updateFootpedalComboBoxes1((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 20: _t->Back(); break;
+        case 21: _t->on_pushButton_clicked(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -223,6 +240,34 @@ void footpedal::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
                 return;
             }
         }
+        {
+            using _t = void (footpedal::*)(const QString & );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&footpedal::sendleftfootdoc)) {
+                *result = 9;
+                return;
+            }
+        }
+        {
+            using _t = void (footpedal::*)(const QString & );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&footpedal::sendrightfootdoc)) {
+                *result = 10;
+                return;
+            }
+        }
+        {
+            using _t = void (footpedal::*)(const QString & );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&footpedal::sendbottomleftddoc)) {
+                *result = 11;
+                return;
+            }
+        }
+        {
+            using _t = void (footpedal::*)(const QString & );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&footpedal::sendbottomrightdoc)) {
+                *result = 12;
+                return;
+            }
+        }
     }
 }
 
@@ -255,13 +300,13 @@ int footpedal::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 18)
+        if (_id < 22)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 18;
+        _id -= 22;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 18)
+        if (_id < 22)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 18;
+        _id -= 22;
     }
     return _id;
 }
@@ -327,6 +372,34 @@ void footpedal::powerdm3(int _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
     QMetaObject::activate(this, &staticMetaObject, 8, _a);
+}
+
+// SIGNAL 9
+void footpedal::sendleftfootdoc(const QString & _t1)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 9, _a);
+}
+
+// SIGNAL 10
+void footpedal::sendrightfootdoc(const QString & _t1)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 10, _a);
+}
+
+// SIGNAL 11
+void footpedal::sendbottomleftddoc(const QString & _t1)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 11, _a);
+}
+
+// SIGNAL 12
+void footpedal::sendbottomrightdoc(const QString & _t1)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 12, _a);
 }
 QT_WARNING_POP
 QT_END_MOC_NAMESPACE

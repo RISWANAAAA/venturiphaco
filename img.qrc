@@ -95,5 +95,6 @@
         <file>information.png</file>
         <file>speakeron.png</file>
         <file>speakeroff.png</file>
+        <file>spalshscreen.png</file>
     </qresource>
 </RCC>

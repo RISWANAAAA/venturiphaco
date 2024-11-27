@@ -40,6 +40,11 @@ public slots:
     void click(int tab);
     int increasebutton(int input);
     int decreasebutton(int input);
+    void receivetopleft(const QString &text);
+    void receivebottomleft(const QString &text);
+    void receivetopright(const QString &text);
+    void receivebottomright(const QString &text);
+
 
 private slots:
     void DiathermyBut();
@@ -70,10 +75,6 @@ private slots:
 
 
   void on_pushButton_2_clicked();
-  void receivetopleft(const QString &text);
-  void receivebottomleft(const QString &text);
-  void receivetopright(const QString &text);
-  void receivebottomright(const QString &text);
 
   void on_Vibration_onoff_clicked();
 

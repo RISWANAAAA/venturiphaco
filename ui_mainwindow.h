@@ -3096,7 +3096,6 @@ public:
         IA1BUT->raise();
         dial_2->raise();
         SETTINGS_BUT_3->raise();
-        pushButton_42->raise();
         label_16->raise();
         label_17->raise();
         label_18->raise();
@@ -3105,13 +3104,14 @@ public:
         lab_time->raise();
         label_21->raise();
         label_22->raise();
+        pushButton_42->raise();
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
         MainWindow->setStatusBar(statusbar);
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(5);
+        tabWidget->setCurrentIndex(6);
         tabWidget_2->setCurrentIndex(6);
 
 

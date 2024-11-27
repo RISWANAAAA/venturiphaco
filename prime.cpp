@@ -74,18 +74,21 @@ prime::prime(QWidget *parent) :
 
     statusUpdateTimer = new QTimer(this);
     serialnumber();
+   //
+    connect(ui->comboBox_4, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &prime::onComboBoxIndexChanged);
+
     //connect(statusUpdateTimer, &QTimer::timeout, this, &prime::onUpdateStatusTimeout);
     // statusUpdateTimer->start(500); // Update every second
 
-
+     connect(this,&prime::sendsignal,m,&MainWindow::receivesignal);
     connect(ui->prime1_but,&QPushButton::clicked,this,&prime::Prime);
     //connect(this,&prime::sendcomboBoxsignals,m,&MainWindow::doctorwindow_show);
 
     //  connect(ui->Tune_but,&QPushButton::clicked,this,&prime::Tune);
     // connect(ui->Start_tune_2,&QPushButton::clicked,this,&prime::Start_Tune);
     connect(ui->clean_but,&QPushButton::clicked,this,&prime::Clean);
-    connect(cleantimer,&QTimer::timeout,this,&prime::on_begin_clean_but_2_clicked);
-    cleantimer->stop();
+    //connect(cleantimer,&QTimer::timeout,this,&prime::on_begin_clean_but_2_clicked);
+    //cleantimer->stop();
 
     connect(ui->prime1_but, &QPushButton::clicked, [=](){
         ui->prime1_but->setStyleSheet(styleSheet);
@@ -300,54 +303,21 @@ void prime::current(int tab)
         ui->Tune_but->move(20,240);
         ui->label_2->move(30,380);
         ui->label_2->setStyleSheet(style1);
+        pretimer->stop();
+        timer1->stop();
     } else if (tab == 2) {
         ui->clean_but->setStyleSheet(styleSheet);
         ui->label_3->setStyleSheet(style2);
         ui->clean_but->move(20,500);
         ui->label_3->move(30,580);
+        pretimer->stop();
+        timer1->stop();
 
     }
 }
 
 
-void prime::start_irrigation()
-{
-    hand->pinchvalve_on();
-    //qDebug() << "Irrigation started";
-    ui->start_check_2->setChecked(true);
-    pretimer->start(290);
-    QTimer::singleShot(15000, this, &prime::champer_Filled);
-}
-void prime::motoron()
-{
 
-    hand->write_motor(0x01,0x03,40);
-    ui->motor_Check_2->setChecked(true);
-    pretimer->start(290);
-    QTimer::singleShot(15000, this, &prime::start_irrigation);
-}
-
-void prime::motoroff()
-{
-    hand->write_motor(0x00,0x00,0);
-}
-void prime::champer_Filled()
-{
-    ui->wait_Check_2->setChecked(true);
-    pretimer->start(290);
-    QTimer::singleShot(15000, this, &prime::done);
-}
-
-void prime::done()
-{
-    ui->done_Check_2->setChecked(true);
-    pretimer->start(290);
-    hand->safetyvent_off();
-    hand->pinchvalve_off();
-    motoroff();
-    on_pushButton_5_clicked();
-
-}
 void prime::onUpdateStatusTimeout(){
 }
 void prime::timer(){
@@ -359,10 +329,136 @@ void prime::primetimer()
     if (value < 100) {
         ui->progressBar_2->setValue(value + 1);
     }
-    else {
+    else{
         pretimer->stop();
+
     }
 }
+void prime::on_start_prime_but_2_clicked()
+{
+    // Reset progress bar and UI elements
+    ui->progressBar_2->setValue(0);
+    ui->start_check_2->setChecked(false);
+    ui->motor_Check_2->setChecked(false);
+    ui->wait_Check_2->setChecked(false);
+    ui->done_Check_2->setChecked(false);
+
+    // Stop any ongoing timers to reset the state
+    if (pretimer->isActive()) {
+        pretimer->stop();
+    }
+
+//    // Ensure motor and irrigation are off before restarting
+//    motoroff();
+//    hand->pinchvalve_off();
+//    hand->safetyvent_off();
+
+    // Buzz to indicate start
+    hand->buzz();
+
+    // Begin the priming process
+    motoron();
+}
+//void prime::on_start_prime_but_2_clicked()
+//{
+//    // Reset progress bar and UI elements
+//    ui->progressBar_2->setValue(0);
+//    ui->start_check_2->setChecked(false);
+//    ui->motor_Check_2->setChecked(false);
+//    ui->wait_Check_2->setChecked(false);
+//    ui->done_Check_2->setChecked(false);
+
+//    // Stop any ongoing timers to reset the state
+//    if (pretimer->isActive()) {
+//        pretimer->stop();
+//    }
+
+//    // Buzz to indicate start
+//    hand->buzz();
+
+//    // Step 1: Start the motor for 15000 ms
+//    motoron();
+//    ui->motor_Check_2->setChecked(true); // Update UI to show motor is on
+//    QTimer::singleShot(15000, this, [this]() {
+//        // Step 2: Start irrigation for another 15000 ms
+//        hand->pinchvalve_on(); // Start irrigation
+//        QTimer::singleShot(15000, this, [this]() {
+//            ui->wait_Check_2->setChecked(true); // Update UI to show wait/chamber filling
+
+//            // Step 3: Wait for the chamber to fill for 15000 ms
+//            QTimer::singleShot(15000, this, [this]() {
+//                // Step 4: Finalize - Turn off motor, pinch valve, and update UI
+//                motoroff();
+//                hand->pinchvalve_off();
+//                hand->safetyvent_off();
+
+//                ui->done_Check_2->setChecked(true); // Indicate the process is done
+//                ui->motor_Check_2->setChecked(false);
+//                ui->wait_Check_2->setChecked(false);
+
+//                // Optionally indicate completion with a buzz
+//                hand->buzz();
+//            });
+//        });
+//    });
+//}
+
+void prime::start_irrigation()
+{
+    // Start irrigation and update UI
+    hand->pinchvalve_on();
+    ui->start_check_2->setChecked(true);
+
+    // Start progress bar timer
+    pretimer->start(420);
+
+    // Schedule chamber filling
+    QTimer::singleShot(15000, this, &prime::champer_Filled);
+}
+
+void prime::motoron()
+{
+    // Turn on the motor and update UI
+    hand->write_motor(0x01, 0x03, 40);
+    ui->motor_Check_2->setChecked(true);
+
+    // Start progress bar timer
+    pretimer->start(420);
+
+    // Schedule irrigation start after motor initialization
+    QTimer::singleShot(15000, this, &prime::start_irrigation);
+}
+
+void prime::motoroff()
+{
+    // Turn off the motor
+    hand->write_motor(0x00, 0x00, 0);
+}
+
+void prime::champer_Filled()
+{
+    // Update UI for chamber filled
+    ui->wait_Check_2->setChecked(true);
+
+    // Continue progress bar timer
+    pretimer->start(420);
+
+    // Schedule completion
+    QTimer::singleShot(15000, this, &prime::done);
+}
+
+void prime::done()
+{
+    // Finalize the priming process
+    ui->done_Check_2->setChecked(true);
+
+
+    // Turn off hardware controls
+    hand->safetyvent_off();
+    hand->pinchvalve_off();
+    motoroff();
+}
+
 void prime::Prime()
 {
     QString styleSheet = "QPushButton {"
@@ -404,13 +500,50 @@ void prime::Prime()
     ui->label_2->move(270,360);
     ui->label_3->move(270,570);
     cleantimer->stop();
+    ui->start_check_2->setChecked(false);
+    ui->motor_Check_2->setChecked(false);
+    ui->wait_Check_2->setChecked(false);
+    ui->done_Check_2->setChecked(false);
+    ui->progressBar_2->setValue(0);
+
 
 }
 
 void prime::Tune()
 {
+    QString styleSheet = "QPushButton {"
+                         "    font-family: Ubuntu;"
+                         "    font-size: 60pt;"
+                         "font:bold;"
+                         "    background-color: transparent;"
+                         "    image: url(:/images/primeddd.png);"
+                         "    color: white;"
+                         "    min-width: 411px;"
+                         "    max-width: 411px;"
+                         "    min-height: 241px;"
+                         "    max-height: 241px;"
+                         "    border-radius: 20px;" // Adjust the radius as needed
 
+                         "    color: black;"
+                         "    border-radius: 20px;" // Adjust the radius as needed
+                         "width: 401;"
+                         "height:211;"
+                         "}"
+                         "QPushButton:focus {"
+                         "    outline: none;"
+                         "    border: none;"
+                         "}";
+    ui->Tune_but->setStyleSheet(styleSheet);
 
+    ui->Tune_but->move(20,240);
+    ui->label_2->move(30,380);
+    ui->Tune_but->raise();
+    ui->label_2->raise();
+
+}
+
+void prime::comboboxselected()
+{
 }
 
 
@@ -434,9 +567,11 @@ void prime::onComboBoxIndexChanged(int index) {
     query.bindValue(":index", index);
     //emit sendcomboBoxsignals(ui->comboBox_4->currentText());
     // Push the current combo box text
-    //qDebug()<<"the current text is"<<ui->comboBox_4->currentText();
 
     // m->push(ui->comboBox_4->currentText());
+   // emit sendsignal(ui->comboBox_4->currentText());
+
+    qDebug()<<"the current text is"<<ui->comboBox_4->currentText();
 
     if (!query.exec()) {
         //qDebug() << "Error updating last selected index:" << query.lastError().text();
@@ -531,6 +666,7 @@ void prime::serialnumber() {
 
 void prime::on_Tune_but_clicked()
 {
+
     QString styleSheet = "QPushButton {"
                          "    font-family: Ubuntu;"
                          "    font-size: 20pt;"
@@ -555,6 +691,7 @@ void prime::on_Tune_but_clicked()
                      "width:71;"
                      "height:71;"
                      "}";
+
     ui->label_2->setStyleSheet(style1);
 
     ui->tabWidget->setCurrentIndex(1);
@@ -563,7 +700,6 @@ void prime::on_Tune_but_clicked()
     tune->updatehandpieceStatus();
     ui->prime1_but->setStyleSheet(styleSheet);
     ui->prime1_but->move(0,80);
-
     ui->clean_but->setStyleSheet(styleSheet);
     ui->clean_but->move(0,500);
     ui->label->move(270,140);
@@ -571,7 +707,6 @@ void prime::on_Tune_but_clicked()
     ui->label->raise();
     ui->label_2->raise();
     ui->label_3->raise();
-
     cleantimer->stop();
 
 }
@@ -605,7 +740,7 @@ void prime::Clean()
     ui->label_3->setStyleSheet(style2);
 
     ui->tabWidget->setCurrentIndex(2);
-    timer1->stop();
+    pretimer->stop();
     ui->prime1_but->setStyleSheet(styleSheet);
     ui->prime1_but->move(0,80);
     ui->Tune_but->setStyleSheet(styleSheet);
@@ -620,37 +755,53 @@ void prime::Clean()
 
 void prime::Start_Tune()
 {
+    // Stop the motor and pinch valve after 1 minute
+    motoroff();
+    hand->pinchvalve_off();
 
-
-}
-void prime::on_start_prime_but_2_clicked()
-{
+    // Optionally provide feedback for the end of the cleaning process
     hand->buzz();
-    ui->start_check_2->setChecked(false);
-    ui->motor_Check_2->setChecked(false);
-    ui->wait_Check_2->setChecked(false);
-    ui->done_Check_2->setChecked(false);
-    ui->progressBar_2->setValue(0);
 
-    motoron();
-    start_irrigation();
+    // Stop the clean timer
+    if (cleantimer->isActive()) {
+        cleantimer->stop();
+    }
+
+    // Update UI to indicate cleaning is complete
+    ui->done_Check_2->setChecked(true);
 
 }
-
 void prime::on_begin_clean_but_2_clicked()
 {
+    // Provide feedback (e.g., a buzz to indicate start)
     hand->buzz();
+
+    // Reset the UI indicators
     ui->start_check_2->setChecked(false);
     ui->motor_Check_2->setChecked(false);
     ui->wait_Check_2->setChecked(false);
     ui->done_Check_2->setChecked(false);
+
+    // Reset the progress bar
     ui->progressBar_2->setValue(0);
+
+    // Ensure timers are stopped before starting the clean process
+    if (pretimer->isActive()) {
+        pretimer->stop();
+    }
+
+    // Start the motor and pinch valve
     motoron();
     hand->pinchvalve_on();
-    pretimer->stop();
+
+    // Start the clean timer for 1 minute (60000 ms)
     cleantimer->start(60000);
 
+    // Connect the timer's timeout signal to a cleanup slot if necessary
+    connect(cleantimer, &QTimer::timeout, this, &prime::Start_Tune);
 }
+
+
 
 void prime::on_pushButton_5_clicked()
 {
@@ -679,6 +830,8 @@ void prime::on_pushButton_5_clicked()
 
     on_Tune_but_clicked();
     ui->Tune_but->setStyleSheet(styleSheet);
+    ui->Tune_but->move(20,240);
+    ui->label_2->move(30,380);
 }
 
 
@@ -706,11 +859,10 @@ void prime::on_pushButton_8_clicked()
                          "    outline: none;"
                          "    border: none;"
                          "}";
-    Prime();
-    ui->prime1_but->setStyleSheet(styleSheet);
-    ui->Tune_but->move(20,240);
-    ui->label_2->move(30,380);
-
+  on_Tune_but_clicked();
+  ui->Tune_but->setStyleSheet(styleSheet);
+  ui->Tune_but->move(20,240);
+  ui->label_2->move(30,380);
 
 }
 

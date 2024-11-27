@@ -33,7 +33,7 @@ tuning::tuning(QWidget *parent) :
     ui->lblTuned->hide();
     ui->butTuned->hide();
 
-    qDebug()<<"the tune is window is closed";
+   // qDebug()<<"the tune is window is closed";
 
 }
 
@@ -623,6 +623,7 @@ void tuning::on_But_Next_clicked()
 {
     main->show();
     emit activatemain();
+    main->DIATHERMYBUT();
 
 
 

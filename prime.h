@@ -52,6 +52,7 @@ public slots:
     void setLastSelectedValue();
 
     void Tune();
+    void comboboxselected();
 private slots:
     void Prime();
 
@@ -77,7 +78,8 @@ private slots:
     void on_Tune_but_clicked();
 
 
-
+signals:
+    void sendsignal(const QString &text);
 private:
     Ui::prime *ui;
 //    int hp=0;

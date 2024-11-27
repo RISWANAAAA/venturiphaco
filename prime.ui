@@ -123,7 +123,7 @@ QPushButton:focus {
     <string notr="true"/>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>1</number>
    </property>
    <widget class="QWidget" name="tab_6">
     <property name="styleSheet">
