@@ -140,7 +140,7 @@ connect(ui->SelectSurgeon,&QComboBox::currentTextChanged,this,&doctor::onSurgeon
      connect(cFoot,&footswitch::topleft,this,&doctor::receivetopleft);
      connect(cFoot,&footswitch::topright,this,&doctor::receivetopright);
      connect(cFoot,&footswitch::bottomleft,this,&doctor::receivebottomleft);
-     connect(cFoot,&footswitch::bottomright,this,&doctor::receivetopright);
+     connect(cFoot,&footswitch::bottomright,this,&doctor::receivebottomright);
      connect(this,&doctor::txfootpedalvalues,cFoot,&footswitch::rxfootpedalmodes);
      //qDebug()<<"the doctor window is started";
 }
@@ -1599,27 +1599,27 @@ void doctor::on_pushButton_2_clicked()
 void doctor::receivetopleft(const QString &text)
 {
     ui->LeftFoot->setCurrentText(text);
-    qDebug()<<"the current text of topleft is"<<text;
+   // qDebug()<<"the current text of topleft is"<<text;
 }
 
 void doctor::receivebottomleft(const QString &text)
 {
    ui->BottomLFoot->setCurrentText(text);
-   qDebug()<<"the current text of bottomleft is"<<text;
+  // qDebug()<<"the current text of bottomleft is"<<text;
 
 }
 
 void doctor::receivetopright(const QString &text)
 {
     ui->RightFoot->setCurrentText(text);
-    qDebug()<<"the current text of topright is"<<text;
+    //qDebug()<<"the current text of topright is"<<text;
 
 }
 
 void doctor::receivebottomright(const QString &text)
 {
     ui->BottomRFoot->setCurrentText(text);
-   qDebug()<<"the current text of bottomright is"<<text;
+ //  qDebug()<<"the current text of bottomright is"<<text;
 
 }
 

@@ -95,7 +95,8 @@ MainWindow::MainWindow(QWidget *parent)
 //connection for send values from the doctor window and receive values from the mainwindow
        connect(in,&doctor::sendValues,this,&MainWindow::receiveValues);
        connect(in,&doctor::transmitval,this,&MainWindow::footpedalvalues);
-      // connect(in,&doctor::transmitval,this,&MainWindow::rx_defaultvalues);
+      // connect(this,&MainWindow::sendfootvalues,foot,&footpedal::receivedval);
+      connect(foot,&footpedal::activatemain,this,&MainWindow::disablefunction);
        connect(in,&doctor::tx_speakeronoff,this,&MainWindow::rx_speakeronoff);
 
        connect(in,&doctor::activatemainwindow,this,&MainWindow::disablefunction);
@@ -5423,163 +5424,7 @@ int MainWindow::decreasebutton(int input)
 
 
 
-void MainWindow::sensor2()
-{
 
-//    int sensor = vac->convert(0xD7);
-//     int vac1=ui->lineEdit_55->text().toInt();
-//      int vac2=ui->lineEdit_60->text().toInt();
-//       int vac3=ui->lineEdit_63->text().toInt();
-//        int vac4=ui->lineEdit_66->text().toInt();
-//         int vac5=ui->lineEdit_70->text().toInt();
-//          int vac6=ui->lineEdit_68->text().toInt();
-//           int vac7=ui->lineEdit_73->text().toInt();
-//           QString mode=ui->CutMode_vitCom->currentText();
-//           QString mode1=ui->CutMode_vitCom_2->currentText();
-//           QString mode2=ui->CutMode_vitCom_3->currentText();
-//           QString mode3=ui->CutMode_vitCom_4->currentText();
-////    if (sensor > 0 && sensor < 4096) {
-////      //  int pro = sensor * vac5 / 4096+50;
-////        double pro=sensor*vac5/4090;
-////       ui->label_113->setText(QString::number(static_cast<int>(pro)));
-////        if(vac5==pro){
-////        motoroff();
-////          handler->speaker_on(pro,0,0,1);
-////    }
-////    }
-//    if (sensor > 0 && sensor < 4096) {
-//        int pro1 = sensor * vac6 / 4096;
-//        ui->label_109->setText(QString::number(pro1));
-//        if(vac6 == pro1){
-//            motoroff();
-//              handler->speaker_on(pro1,0,0,1);
-//        }
-//    }
-//    if (sensor > 0 && sensor < 4096) {
-//        int pro3 = sensor * vac7 / 4096;
-//        ui->label_118->setText(QString::number(pro3));
-//        if(vac7 == pro3){
-//           motoroff();
-//              handler->speaker_on(pro3,0,0,1);
-//        }
-//    }
-//    //us4
-//    if (sensor > 0 && sensor < 4096) {
-//        int pro4 = sensor * 500 / 4096;
-//        pro4=std::min(vac4,pro4);
-//        ui->label_104->setText(QString::number(pro4));
-//        if(vac4 == pro4){
-//   motoroff();
-//            if(mode3 == "Ocupulse"){
-//              handler->pdm_mode(OCUPULSE);
-//              ocupulseup_mode();
-//              ocupulsedown_mode();
-//            }
-//            else if(mode3=="Ocuburst"){
-//                handler->pdm_mode(OCUBURST);
-//                ocuburstup_mode();
-//                ocuburstdown_mode();
-//            }
-//            else if(mode3 == "Multi burst"){
-//                handler->pdm_mode(MULTI_BURST);
-//                multiburstup_mode();
-//                multiburstdown_mode();
-
-//            }
-
-//               handler->speaker_on(pro4,0,0,1);
-//        }
-//    }
-//    //us3
-//    if (sensor > 0 && sensor < 4096) {
-//        int pro5 = sensor * 500 / 4096;
-//        pro5=std::min(vac3,pro5);
-//        ui->label_99->setText(QString::number(pro5));
-//        if(vac3 == pro5){
-//    motoroff();
-//            if(mode3 == "Ocupulse"){
-//              handler->pdm_mode(OCUPULSE);
-//              ocupulseup_mode();
-//              ocupulsedown_mode();
-//            }
-//            else if(mode3=="Ocuburst"){
-//                handler->pdm_mode(OCUBURST);
-//                ocuburstup_mode();
-//                ocuburstdown_mode();
-//            }
-//            else if(mode3 == "Multi burst"){
-//                handler->pdm_mode(MULTI_BURST);
-//                multiburstup_mode();
-//                multiburstdown_mode();
-
-//            }
-
-//               handler->speaker_on(pro5,0,0,1);
-//        }
-//    }
-//    //us2
-//    if (sensor > 0 && sensor < 4096) {
-//        int pro6 = sensor * 500 / 4096;
-//        pro6=std::min(vac2,pro6);
-//        ui->label_93->setText(QString::number(pro6));
-//        if(vac2==pro6){
-//           motoroff();
-
-//            if(mode3 == "Ocupulse"){
-//              handler->pdm_mode(OCUPULSE);
-//              ocupulseup_mode();
-//              ocupulsedown_mode();
-//            }
-//            else if(mode3=="Ocuburst"){
-//                handler->pdm_mode(OCUBURST);
-//                ocuburstup_mode();
-//                ocuburstdown_mode();
-//            }
-//            else if(mode3 == "Multi burst"){
-//                handler->pdm_mode(MULTI_BURST);
-//                multiburstup_mode();
-//                multiburstdown_mode();
-
-//            }
-//             handler->speaker_on(pro6,0,0,1);
-
-//        }
-//    }
-    //us1
-//    if (sensor > 0 && sensor < 4096) {
-//        int pro7 = sensor *vac1 / 4096;
-//        ui->label_8->setText(QString::number(pro7));
-//        if(vac1 == pro7){
-//            motoroff();
-//            if(mode3 == "Ocupulse"){
-//                handler->freq_count(nFreqCount);
-//                handler->fs_count(3000);
-//            handler->pdm_mode(PULSE_MODE);
-//              ocupulseup_mode();
-//              ocupulsedown_mode();
-//            }
-//            else if(mode3=="Ocuburst"){
-//                handler->freq_count(nFreqCount);
-//                handler->fs_count(3000);
-//                handler->pdm_mode(PULSE_MODE);
-//                ocuburstup_mode();
-//                ocuburstdown_mode();
-//            }
-//            else if(mode3 == "Multi burst"){
-//                handler->freq_count(nFreqCount);
-//                handler->fs_count(3000);
-//                 handler->pdm_mode(PULSE_MODE);
-//                multiburstup_mode();
-//                multiburstdown_mode();
-
-//            }
-//             handler->speaker_on(pro7,0,0,1);
-
-
-//    }
-//    }
-
-    }
 
 void MainWindow::updateTimers()
 {
@@ -6949,6 +6794,7 @@ void MainWindow::on_pushButton_42_clicked()
     handler->vit_off();
     protimer->stop();
     Tacutalsensor->stop();
+
     foot->show();
 
 }
@@ -7029,6 +6875,7 @@ void MainWindow::on_ocupulseup_but_clicked()
     handler->pdm_mode(CONTINOUS);
 
 }
+
 
 
 

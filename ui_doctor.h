@@ -261,7 +261,7 @@ public:
 "border-radius:120px;"));
         FootPedalSettings = new QLabel(doctor);
         FootPedalSettings->setObjectName(QString::fromUtf8("FootPedalSettings"));
-        FootPedalSettings->setGeometry(QRect(160, 670, 231, 51));
+        FootPedalSettings->setGeometry(QRect(10, 600, 231, 51));
         FootPedalSettings->setStyleSheet(QString::fromUtf8("font: 20pt \"Ubuntu Condensed\";\n"
 "background-color:transparent;\n"
 "font:bold;"));
@@ -1492,7 +1492,7 @@ public:
 "font:bold;"));
         pushButton_2 = new QPushButton(doctor);
         pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
-        pushButton_2->setGeometry(QRect(230, 360, 271, 401));
+        pushButton_2->setGeometry(QRect(230, 380, 271, 401));
         pushButton_2->setStyleSheet(QString::fromUtf8("background-color:transparent;\n"
 "image: url(:/images/footswitch_3.png);\n"
 "border:none;\n"

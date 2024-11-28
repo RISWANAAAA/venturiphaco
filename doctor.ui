@@ -227,8 +227,8 @@ border-radius:120px;</string>
   <widget class="QLabel" name="FootPedalSettings">
    <property name="geometry">
     <rect>
-     <x>160</x>
-     <y>670</y>
+     <x>10</x>
+     <y>600</y>
      <width>231</width>
      <height>51</height>
     </rect>
@@ -3311,7 +3311,7 @@ font:bold;</string>
    <property name="geometry">
     <rect>
      <x>230</x>
-     <y>360</y>
+     <y>380</y>
      <width>271</width>
      <height>401</height>
     </rect>

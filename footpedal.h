@@ -7,6 +7,7 @@
 #include <QDebug>
 #include "doctor.h"
 #include"mainwindow.h"
+#define PATH "phacohigh.db"
 
 
 class doctor;
@@ -43,6 +44,7 @@ public:
           int readGPIOValue(int gpioNumber);
           void readInitialGPIOValues();
           void initializeGPIO();
+          void receivedval(const int &text,const int &text1,const int &text2,const int &text3);
 
 public slots:
             void combobox1(const QString &text);
@@ -72,6 +74,9 @@ signals:
     void sendbottomleftddoc(const QString &text);
     void sendbottomrightdoc(const QString &text);
 
+    void activatemain();
+
+
 
 private slots:
     void Back();
@@ -98,6 +103,10 @@ QString bleftFootcomAction;
 QString brightFootcomAction;
 QSqlDatabase db;
 bool flagcon;
+int f1;
+int f2;
+int f3;
+int f4;
 
 
 

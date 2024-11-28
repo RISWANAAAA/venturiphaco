@@ -491,6 +491,14 @@ else if (leftFootcomAction == "Increment") {
 
 }
 
+void footpedal::receivedval(const int &text, const int &text1, const int &text2, const int &text3)
+{
+   f1=text;
+   f2=text1;
+   f3=text2;
+   f4=text3;
+}
+
 
 
 
@@ -610,11 +618,15 @@ void footpedal::updateFootpedalComboBoxes1(const QString &surgeonName)
     currentSurgeonName = surgeonName;  // Assign the passed surgeonName to currentSurgeonName
        //qDebug() << "Updated currentSurgeonName to:" << currentSurgeonName;
 }
-
 void footpedal::on_pushButton_clicked()
 {
-    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("phacohigh.db");
+    QSqlDatabase db = QSqlDatabase::database(); // Use an existing connection if available
+
+    // Ensure the database connection is valid
+    if (!db.isValid()) {
+        db = QSqlDatabase::addDatabase("QSQLITE");
+        db.setDatabaseName(PATH);
+    }
 
     // Check if the database connection is open
     if (!db.isOpen()) {
@@ -625,42 +637,56 @@ void footpedal::on_pushButton_clicked()
         }
     }
 
+    // Retrieve values from the combo boxes
     QString footLeftValue = ui->left_footcom->currentText();
     QString footRightValue = ui->right_footcom->currentText();
     QString footBLeftValue = ui->bleft_footcom->currentText();
     QString footNRightValue = ui->bright_footcom->currentText();
 
-    //qDebug() << "Saving footpedal settings for surgeon:" << currentSurgeonName;
-    //qDebug() << "footleft:" << footLeftValue << "footright:" << footRightValue;
-    //qDebug() << "footbleft:" << footBLeftValue << "footnright:" << footNRightValue;
+    // Ensure that required variables are initialized
+    int f0 , f1 , f2, f3; // Replace with actual values as needed
+    QString currentSurgeonName = "DefaultSurgeon"; // Replace with the actual surgeon name or retrieve it dynamically
 
+    // Prepare the SQL query with the correct syntax
     QSqlQuery query(db);
     query.prepare(
         "UPDATE phacohigh "
         "SET footleft = :footleft, "
         "footright = :footright, "
         "footbottomleft = :footbleft, "
-        "footbottomright = :footnright "
+        "footbottomright = :footnright, "
+        "fzero = :f0, "
+        "fone = :f1, "
+        "ftwo = :f2, "
+        "fthree = :f3 "
         "WHERE surgeon = :surgeon"
     );
+
+    // Bind values to the query
     query.bindValue(":footleft", footLeftValue);
     query.bindValue(":footright", footRightValue);
     query.bindValue(":footbleft", footBLeftValue);
     query.bindValue(":footnright", footNRightValue);
+    query.bindValue(":f0", f0);
+    query.bindValue(":f1", f1);
+    query.bindValue(":f2", f2);
+    query.bindValue(":f3", f3);
     query.bindValue(":surgeon", currentSurgeonName);
 
+    // Execute the query and check for errors
     if (!query.exec()) {
-        //qDebug() << "Failed to update footpedal data for surgeon:" << query.lastError().text();
+        qDebug() << "Failed to update footpedal data for surgeon:" << query.lastError().text();
         return;
     }
 
-    query.clear();
     qDebug() << "Footpedal settings saved successfully for surgeon:" << currentSurgeonName;
+
     emit sendleftfootdoc(footLeftValue);
     emit sendrightfootdoc(footRightValue);
     emit sendbottomleftddoc(footBLeftValue);
     emit sendbottomrightdoc(footNRightValue);
-
-    readInitialGPIOValues();  // Continue with the next operations
+    // Read GPIO values and close the window
+    readInitialGPIOValues();
+    emit activatemain();
     this->close();
 }

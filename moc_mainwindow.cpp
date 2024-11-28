@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[201];
-    char stringdata0[2733];
+    QByteArrayData data[200];
+    char stringdata0[2725];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -136,103 +136,102 @@ QT_MOC_LITERAL(100, 1120, 10), // "vitvacmode"
 QT_MOC_LITERAL(101, 1131, 21), // "on_pushButton_clicked"
 QT_MOC_LITERAL(102, 1153, 14), // "ULTRASONICBUT1"
 QT_MOC_LITERAL(103, 1168, 25), // "updateTabsBasedOnComboBox"
-QT_MOC_LITERAL(104, 1194, 7), // "sensor2"
-QT_MOC_LITERAL(105, 1202, 14), // "ULTRASONICBUT2"
-QT_MOC_LITERAL(106, 1217, 14), // "ULTRASONICBUT4"
-QT_MOC_LITERAL(107, 1232, 14), // "IRRIGATIONBUT1"
-QT_MOC_LITERAL(108, 1247, 14), // "IRRIGATIONBUT2"
-QT_MOC_LITERAL(109, 1262, 13), // "VITRECTOMYBUT"
-QT_MOC_LITERAL(110, 1276, 8), // "diapowup"
-QT_MOC_LITERAL(111, 1285, 10), // "diapowdown"
-QT_MOC_LITERAL(112, 1296, 8), // "vitcutup"
-QT_MOC_LITERAL(113, 1305, 10), // "vitcutdown"
-QT_MOC_LITERAL(114, 1316, 8), // "vitvacup"
-QT_MOC_LITERAL(115, 1325, 10), // "vitvacdown"
-QT_MOC_LITERAL(116, 1336, 9), // "vitflowup"
-QT_MOC_LITERAL(117, 1346, 11), // "vitflowdown"
-QT_MOC_LITERAL(118, 1358, 8), // "ia2vacup"
-QT_MOC_LITERAL(119, 1367, 10), // "ia2vacdown"
-QT_MOC_LITERAL(120, 1378, 9), // "ia2flowup"
-QT_MOC_LITERAL(121, 1388, 11), // "ia2flowdown"
-QT_MOC_LITERAL(122, 1400, 8), // "ia1vacup"
-QT_MOC_LITERAL(123, 1409, 10), // "ia1vacdown"
-QT_MOC_LITERAL(124, 1420, 9), // "ia1flowup"
-QT_MOC_LITERAL(125, 1430, 11), // "ia1flowdown"
-QT_MOC_LITERAL(126, 1442, 8), // "US1POWUP"
-QT_MOC_LITERAL(127, 1451, 10), // "US1POWDOWN"
-QT_MOC_LITERAL(128, 1462, 10), // "US1VACDOWN"
-QT_MOC_LITERAL(129, 1473, 8), // "US1VACUP"
-QT_MOC_LITERAL(130, 1482, 11), // "US1FLOWDOWN"
-QT_MOC_LITERAL(131, 1494, 9), // "US1FLOWUP"
-QT_MOC_LITERAL(132, 1504, 8), // "us2powup"
-QT_MOC_LITERAL(133, 1513, 10), // "us2powdown"
-QT_MOC_LITERAL(134, 1524, 8), // "us2vacup"
-QT_MOC_LITERAL(135, 1533, 10), // "us2vacdown"
-QT_MOC_LITERAL(136, 1544, 9), // "us2flowup"
-QT_MOC_LITERAL(137, 1554, 11), // "us2flowdown"
-QT_MOC_LITERAL(138, 1566, 14), // "ULTRASONICBUT3"
-QT_MOC_LITERAL(139, 1581, 8), // "us3powup"
-QT_MOC_LITERAL(140, 1590, 10), // "us3powdown"
-QT_MOC_LITERAL(141, 1601, 8), // "us3vacup"
-QT_MOC_LITERAL(142, 1610, 10), // "us3vacdown"
-QT_MOC_LITERAL(143, 1621, 9), // "us3flowup"
-QT_MOC_LITERAL(144, 1631, 11), // "us3flowdown"
-QT_MOC_LITERAL(145, 1643, 8), // "us4powup"
-QT_MOC_LITERAL(146, 1652, 10), // "us4powdown"
-QT_MOC_LITERAL(147, 1663, 8), // "us4vacup"
-QT_MOC_LITERAL(148, 1672, 10), // "us4vacdown"
-QT_MOC_LITERAL(149, 1683, 9), // "us4flowup"
-QT_MOC_LITERAL(150, 1693, 11), // "us4flowdown"
-QT_MOC_LITERAL(151, 1705, 7), // "BACKBUT"
-QT_MOC_LITERAL(152, 1713, 20), // "us1_linear_nonlinear"
-QT_MOC_LITERAL(153, 1734, 20), // "us2_linear_nonlinear"
-QT_MOC_LITERAL(154, 1755, 20), // "us3_linear_nonlinear"
-QT_MOC_LITERAL(155, 1776, 20), // "us4_linear_nonlinear"
-QT_MOC_LITERAL(156, 1797, 20), // "ia1_linear_nonlinear"
-QT_MOC_LITERAL(157, 1818, 20), // "ia2_linear_nonlinear"
-QT_MOC_LITERAL(158, 1839, 20), // "vit_linear_nonlinear"
-QT_MOC_LITERAL(159, 1860, 12), // "pulseup_mode"
-QT_MOC_LITERAL(160, 1873, 14), // "pulsedown_mode"
-QT_MOC_LITERAL(161, 1888, 15), // "ocuburstup_mode"
-QT_MOC_LITERAL(162, 1904, 17), // "ocuburstdown_mode"
-QT_MOC_LITERAL(163, 1922, 18), // "singleburstup_mode"
-QT_MOC_LITERAL(164, 1941, 20), // "singleburstdown_mode"
-QT_MOC_LITERAL(165, 1962, 17), // "multiburstup_mode"
-QT_MOC_LITERAL(166, 1980, 19), // "multiburstdown_mode"
-QT_MOC_LITERAL(167, 2000, 15), // "ocupulseup_mode"
-QT_MOC_LITERAL(168, 2016, 17), // "ocupulsedown_mode"
-QT_MOC_LITERAL(169, 2034, 16), // "coldphacoup_mode"
-QT_MOC_LITERAL(170, 2051, 18), // "coldphacodown_mode"
-QT_MOC_LITERAL(171, 2070, 17), // "coldphaco1up_mode"
-QT_MOC_LITERAL(172, 2088, 19), // "coldphaco1down_mode"
-QT_MOC_LITERAL(173, 2108, 21), // "updatehandpieceStatus"
-QT_MOC_LITERAL(174, 2130, 12), // "linearvaccum"
-QT_MOC_LITERAL(175, 2143, 21), // "onUpdateStatusTimeout"
-QT_MOC_LITERAL(176, 2165, 12), // "updateTimers"
-QT_MOC_LITERAL(177, 2178, 19), // "on_us1onoff_clicked"
-QT_MOC_LITERAL(178, 2198, 19), // "on_us2onoff_clicked"
-QT_MOC_LITERAL(179, 2218, 19), // "on_us3onoff_clicked"
-QT_MOC_LITERAL(180, 2238, 19), // "on_us4onoff_clicked"
-QT_MOC_LITERAL(181, 2258, 19), // "on_vitonoff_clicked"
-QT_MOC_LITERAL(182, 2278, 17), // "doctorwindow_show"
-QT_MOC_LITERAL(183, 2296, 11), // "Sugroenname"
-QT_MOC_LITERAL(184, 2308, 20), // "footpedalwindow_show"
-QT_MOC_LITERAL(185, 2329, 21), // "on_us1vacmode_clicked"
-QT_MOC_LITERAL(186, 2351, 21), // "on_us2vacmode_clicked"
-QT_MOC_LITERAL(187, 2373, 21), // "on_us3vacmode_clicked"
-QT_MOC_LITERAL(188, 2395, 21), // "on_vitvacmode_clicked"
-QT_MOC_LITERAL(189, 2417, 21), // "on_us4vacmode_clicked"
-QT_MOC_LITERAL(190, 2439, 16), // "on_CI4_2_clicked"
-QT_MOC_LITERAL(191, 2456, 25), // "on_SETTINGS_BUT_2_clicked"
-QT_MOC_LITERAL(192, 2482, 24), // "on_pushButton_42_clicked"
-QT_MOC_LITERAL(193, 2507, 27), // "on_ocuburstdown_but_clicked"
-QT_MOC_LITERAL(194, 2535, 25), // "on_ocuburstup_but_clicked"
-QT_MOC_LITERAL(195, 2561, 27), // "on_ocupulsedown_but_clicked"
-QT_MOC_LITERAL(196, 2589, 25), // "on_ocupulseup_but_clicked"
-QT_MOC_LITERAL(197, 2615, 31), // "on_ButColdPhacoPer_down_clicked"
-QT_MOC_LITERAL(198, 2647, 26), // "on_ButColdPulse_up_clicked"
-QT_MOC_LITERAL(199, 2674, 28), // "on_ButColdPulse_down_clicked"
-QT_MOC_LITERAL(200, 2703, 29) // "on_ButColdPhacoPer_up_clicked"
+QT_MOC_LITERAL(104, 1194, 14), // "ULTRASONICBUT2"
+QT_MOC_LITERAL(105, 1209, 14), // "ULTRASONICBUT4"
+QT_MOC_LITERAL(106, 1224, 14), // "IRRIGATIONBUT1"
+QT_MOC_LITERAL(107, 1239, 14), // "IRRIGATIONBUT2"
+QT_MOC_LITERAL(108, 1254, 13), // "VITRECTOMYBUT"
+QT_MOC_LITERAL(109, 1268, 8), // "diapowup"
+QT_MOC_LITERAL(110, 1277, 10), // "diapowdown"
+QT_MOC_LITERAL(111, 1288, 8), // "vitcutup"
+QT_MOC_LITERAL(112, 1297, 10), // "vitcutdown"
+QT_MOC_LITERAL(113, 1308, 8), // "vitvacup"
+QT_MOC_LITERAL(114, 1317, 10), // "vitvacdown"
+QT_MOC_LITERAL(115, 1328, 9), // "vitflowup"
+QT_MOC_LITERAL(116, 1338, 11), // "vitflowdown"
+QT_MOC_LITERAL(117, 1350, 8), // "ia2vacup"
+QT_MOC_LITERAL(118, 1359, 10), // "ia2vacdown"
+QT_MOC_LITERAL(119, 1370, 9), // "ia2flowup"
+QT_MOC_LITERAL(120, 1380, 11), // "ia2flowdown"
+QT_MOC_LITERAL(121, 1392, 8), // "ia1vacup"
+QT_MOC_LITERAL(122, 1401, 10), // "ia1vacdown"
+QT_MOC_LITERAL(123, 1412, 9), // "ia1flowup"
+QT_MOC_LITERAL(124, 1422, 11), // "ia1flowdown"
+QT_MOC_LITERAL(125, 1434, 8), // "US1POWUP"
+QT_MOC_LITERAL(126, 1443, 10), // "US1POWDOWN"
+QT_MOC_LITERAL(127, 1454, 10), // "US1VACDOWN"
+QT_MOC_LITERAL(128, 1465, 8), // "US1VACUP"
+QT_MOC_LITERAL(129, 1474, 11), // "US1FLOWDOWN"
+QT_MOC_LITERAL(130, 1486, 9), // "US1FLOWUP"
+QT_MOC_LITERAL(131, 1496, 8), // "us2powup"
+QT_MOC_LITERAL(132, 1505, 10), // "us2powdown"
+QT_MOC_LITERAL(133, 1516, 8), // "us2vacup"
+QT_MOC_LITERAL(134, 1525, 10), // "us2vacdown"
+QT_MOC_LITERAL(135, 1536, 9), // "us2flowup"
+QT_MOC_LITERAL(136, 1546, 11), // "us2flowdown"
+QT_MOC_LITERAL(137, 1558, 14), // "ULTRASONICBUT3"
+QT_MOC_LITERAL(138, 1573, 8), // "us3powup"
+QT_MOC_LITERAL(139, 1582, 10), // "us3powdown"
+QT_MOC_LITERAL(140, 1593, 8), // "us3vacup"
+QT_MOC_LITERAL(141, 1602, 10), // "us3vacdown"
+QT_MOC_LITERAL(142, 1613, 9), // "us3flowup"
+QT_MOC_LITERAL(143, 1623, 11), // "us3flowdown"
+QT_MOC_LITERAL(144, 1635, 8), // "us4powup"
+QT_MOC_LITERAL(145, 1644, 10), // "us4powdown"
+QT_MOC_LITERAL(146, 1655, 8), // "us4vacup"
+QT_MOC_LITERAL(147, 1664, 10), // "us4vacdown"
+QT_MOC_LITERAL(148, 1675, 9), // "us4flowup"
+QT_MOC_LITERAL(149, 1685, 11), // "us4flowdown"
+QT_MOC_LITERAL(150, 1697, 7), // "BACKBUT"
+QT_MOC_LITERAL(151, 1705, 20), // "us1_linear_nonlinear"
+QT_MOC_LITERAL(152, 1726, 20), // "us2_linear_nonlinear"
+QT_MOC_LITERAL(153, 1747, 20), // "us3_linear_nonlinear"
+QT_MOC_LITERAL(154, 1768, 20), // "us4_linear_nonlinear"
+QT_MOC_LITERAL(155, 1789, 20), // "ia1_linear_nonlinear"
+QT_MOC_LITERAL(156, 1810, 20), // "ia2_linear_nonlinear"
+QT_MOC_LITERAL(157, 1831, 20), // "vit_linear_nonlinear"
+QT_MOC_LITERAL(158, 1852, 12), // "pulseup_mode"
+QT_MOC_LITERAL(159, 1865, 14), // "pulsedown_mode"
+QT_MOC_LITERAL(160, 1880, 15), // "ocuburstup_mode"
+QT_MOC_LITERAL(161, 1896, 17), // "ocuburstdown_mode"
+QT_MOC_LITERAL(162, 1914, 18), // "singleburstup_mode"
+QT_MOC_LITERAL(163, 1933, 20), // "singleburstdown_mode"
+QT_MOC_LITERAL(164, 1954, 17), // "multiburstup_mode"
+QT_MOC_LITERAL(165, 1972, 19), // "multiburstdown_mode"
+QT_MOC_LITERAL(166, 1992, 15), // "ocupulseup_mode"
+QT_MOC_LITERAL(167, 2008, 17), // "ocupulsedown_mode"
+QT_MOC_LITERAL(168, 2026, 16), // "coldphacoup_mode"
+QT_MOC_LITERAL(169, 2043, 18), // "coldphacodown_mode"
+QT_MOC_LITERAL(170, 2062, 17), // "coldphaco1up_mode"
+QT_MOC_LITERAL(171, 2080, 19), // "coldphaco1down_mode"
+QT_MOC_LITERAL(172, 2100, 21), // "updatehandpieceStatus"
+QT_MOC_LITERAL(173, 2122, 12), // "linearvaccum"
+QT_MOC_LITERAL(174, 2135, 21), // "onUpdateStatusTimeout"
+QT_MOC_LITERAL(175, 2157, 12), // "updateTimers"
+QT_MOC_LITERAL(176, 2170, 19), // "on_us1onoff_clicked"
+QT_MOC_LITERAL(177, 2190, 19), // "on_us2onoff_clicked"
+QT_MOC_LITERAL(178, 2210, 19), // "on_us3onoff_clicked"
+QT_MOC_LITERAL(179, 2230, 19), // "on_us4onoff_clicked"
+QT_MOC_LITERAL(180, 2250, 19), // "on_vitonoff_clicked"
+QT_MOC_LITERAL(181, 2270, 17), // "doctorwindow_show"
+QT_MOC_LITERAL(182, 2288, 11), // "Sugroenname"
+QT_MOC_LITERAL(183, 2300, 20), // "footpedalwindow_show"
+QT_MOC_LITERAL(184, 2321, 21), // "on_us1vacmode_clicked"
+QT_MOC_LITERAL(185, 2343, 21), // "on_us2vacmode_clicked"
+QT_MOC_LITERAL(186, 2365, 21), // "on_us3vacmode_clicked"
+QT_MOC_LITERAL(187, 2387, 21), // "on_vitvacmode_clicked"
+QT_MOC_LITERAL(188, 2409, 21), // "on_us4vacmode_clicked"
+QT_MOC_LITERAL(189, 2431, 16), // "on_CI4_2_clicked"
+QT_MOC_LITERAL(190, 2448, 25), // "on_SETTINGS_BUT_2_clicked"
+QT_MOC_LITERAL(191, 2474, 24), // "on_pushButton_42_clicked"
+QT_MOC_LITERAL(192, 2499, 27), // "on_ocuburstdown_but_clicked"
+QT_MOC_LITERAL(193, 2527, 25), // "on_ocuburstup_but_clicked"
+QT_MOC_LITERAL(194, 2553, 27), // "on_ocupulsedown_but_clicked"
+QT_MOC_LITERAL(195, 2581, 25), // "on_ocupulseup_but_clicked"
+QT_MOC_LITERAL(196, 2607, 31), // "on_ButColdPhacoPer_down_clicked"
+QT_MOC_LITERAL(197, 2639, 26), // "on_ButColdPulse_up_clicked"
+QT_MOC_LITERAL(198, 2666, 28), // "on_ButColdPulse_down_clicked"
+QT_MOC_LITERAL(199, 2695, 29) // "on_ButColdPhacoPer_up_clicked"
 
     },
     "MainWindow\0sensorValueChanged\0\0value\0"
@@ -269,13 +268,12 @@ QT_MOC_LITERAL(200, 2703, 29) // "on_ButColdPhacoPer_up_clicked"
     "us4powmode\0us4vacmode\0us4powermethod\0"
     "ia1mode\0ia2mode\0vitmode\0vitvacmode\0"
     "on_pushButton_clicked\0ULTRASONICBUT1\0"
-    "updateTabsBasedOnComboBox\0sensor2\0"
-    "ULTRASONICBUT2\0ULTRASONICBUT4\0"
-    "IRRIGATIONBUT1\0IRRIGATIONBUT2\0"
-    "VITRECTOMYBUT\0diapowup\0diapowdown\0"
-    "vitcutup\0vitcutdown\0vitvacup\0vitvacdown\0"
-    "vitflowup\0vitflowdown\0ia2vacup\0"
-    "ia2vacdown\0ia2flowup\0ia2flowdown\0"
+    "updateTabsBasedOnComboBox\0ULTRASONICBUT2\0"
+    "ULTRASONICBUT4\0IRRIGATIONBUT1\0"
+    "IRRIGATIONBUT2\0VITRECTOMYBUT\0diapowup\0"
+    "diapowdown\0vitcutup\0vitcutdown\0vitvacup\0"
+    "vitvacdown\0vitflowup\0vitflowdown\0"
+    "ia2vacup\0ia2vacdown\0ia2flowup\0ia2flowdown\0"
     "ia1vacup\0ia1vacdown\0ia1flowup\0ia1flowdown\0"
     "US1POWUP\0US1POWDOWN\0US1VACDOWN\0US1VACUP\0"
     "US1FLOWDOWN\0US1FLOWUP\0us2powup\0"
@@ -322,7 +320,7 @@ static const uint qt_meta_data_MainWindow[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-     142,   14, // methods
+     141,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -330,150 +328,149 @@ static const uint qt_meta_data_MainWindow[] = {
        8,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    1,  724,    2, 0x06 /* Public */,
-       4,    1,  727,    2, 0x06 /* Public */,
-       6,    1,  730,    2, 0x06 /* Public */,
-       7,    1,  733,    2, 0x06 /* Public */,
-       8,    1,  736,    2, 0x06 /* Public */,
-       9,    1,  739,    2, 0x06 /* Public */,
-      10,    1,  742,    2, 0x06 /* Public */,
-      12,    1,  745,    2, 0x06 /* Public */,
+       1,    1,  719,    2, 0x06 /* Public */,
+       4,    1,  722,    2, 0x06 /* Public */,
+       6,    1,  725,    2, 0x06 /* Public */,
+       7,    1,  728,    2, 0x06 /* Public */,
+       8,    1,  731,    2, 0x06 /* Public */,
+       9,    1,  734,    2, 0x06 /* Public */,
+      10,    1,  737,    2, 0x06 /* Public */,
+      12,    1,  740,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-      13,    0,  748,    2, 0x0a /* Public */,
-      14,    4,  749,    2, 0x0a /* Public */,
-      20,    4,  758,    2, 0x0a /* Public */,
-      21,    0,  767,    2, 0x0a /* Public */,
-      22,    1,  768,    2, 0x0a /* Public */,
-      24,    1,  771,    2, 0x0a /* Public */,
-      26,    1,  774,    2, 0x0a /* Public */,
-      27,    1,  777,    2, 0x0a /* Public */,
-      28,    1,  780,    2, 0x0a /* Public */,
-      29,    4,  783,    2, 0x0a /* Public */,
-      34,    1,  792,    2, 0x0a /* Public */,
-      36,    0,  795,    2, 0x0a /* Public */,
-      37,    1,  796,    2, 0x0a /* Public */,
-      39,    1,  799,    2, 0x0a /* Public */,
-      40,    0,  802,    2, 0x0a /* Public */,
-      41,    0,  803,    2, 0x0a /* Public */,
-      42,    0,  804,    2, 0x0a /* Public */,
-      43,    1,  805,    2, 0x0a /* Public */,
-      44,    0,  808,    2, 0x0a /* Public */,
-      45,    0,  809,    2, 0x0a /* Public */,
-      46,    1,  810,    2, 0x0a /* Public */,
-      48,    1,  813,    2, 0x0a /* Public */,
-      49,    0,  816,    2, 0x0a /* Public */,
-      50,    1,  817,    2, 0x0a /* Public */,
-      51,    1,  820,    2, 0x0a /* Public */,
-      52,    1,  823,    2, 0x0a /* Public */,
-      53,    1,  826,    2, 0x0a /* Public */,
-      54,    1,  829,    2, 0x0a /* Public */,
-      55,    1,  832,    2, 0x0a /* Public */,
-      56,    1,  835,    2, 0x0a /* Public */,
-      57,    1,  838,    2, 0x0a /* Public */,
-      58,    1,  841,    2, 0x0a /* Public */,
-      59,    1,  844,    2, 0x0a /* Public */,
-      61,    1,  847,    2, 0x0a /* Public */,
-      62,   38,  850,    2, 0x0a /* Public */,
-     101,    0,  927,    2, 0x0a /* Public */,
-     102,    0,  928,    2, 0x0a /* Public */,
-     103,    1,  929,    2, 0x0a /* Public */,
-     104,    0,  932,    2, 0x08 /* Private */,
-     105,    0,  933,    2, 0x08 /* Private */,
-     106,    0,  934,    2, 0x08 /* Private */,
-     107,    0,  935,    2, 0x08 /* Private */,
-     108,    0,  936,    2, 0x08 /* Private */,
-     109,    0,  937,    2, 0x08 /* Private */,
-     110,    0,  938,    2, 0x08 /* Private */,
-     111,    0,  939,    2, 0x08 /* Private */,
-     112,    0,  940,    2, 0x08 /* Private */,
-     113,    0,  941,    2, 0x08 /* Private */,
-     114,    0,  942,    2, 0x08 /* Private */,
-     115,    0,  943,    2, 0x08 /* Private */,
-     116,    0,  944,    2, 0x08 /* Private */,
-     117,    0,  945,    2, 0x08 /* Private */,
-     118,    0,  946,    2, 0x08 /* Private */,
-     119,    0,  947,    2, 0x08 /* Private */,
-     120,    0,  948,    2, 0x08 /* Private */,
-     121,    0,  949,    2, 0x08 /* Private */,
-     122,    0,  950,    2, 0x08 /* Private */,
-     123,    0,  951,    2, 0x08 /* Private */,
-     124,    0,  952,    2, 0x08 /* Private */,
-     125,    0,  953,    2, 0x08 /* Private */,
-     126,    0,  954,    2, 0x08 /* Private */,
-     127,    0,  955,    2, 0x08 /* Private */,
-     128,    0,  956,    2, 0x08 /* Private */,
-     129,    0,  957,    2, 0x08 /* Private */,
-     130,    0,  958,    2, 0x08 /* Private */,
-     131,    0,  959,    2, 0x08 /* Private */,
-     132,    0,  960,    2, 0x08 /* Private */,
-     133,    0,  961,    2, 0x08 /* Private */,
-     134,    0,  962,    2, 0x08 /* Private */,
-     135,    0,  963,    2, 0x08 /* Private */,
-     136,    0,  964,    2, 0x08 /* Private */,
-     137,    0,  965,    2, 0x08 /* Private */,
-     138,    0,  966,    2, 0x08 /* Private */,
-     139,    0,  967,    2, 0x08 /* Private */,
-     140,    0,  968,    2, 0x08 /* Private */,
-     141,    0,  969,    2, 0x08 /* Private */,
-     142,    0,  970,    2, 0x08 /* Private */,
-     143,    0,  971,    2, 0x08 /* Private */,
-     144,    0,  972,    2, 0x08 /* Private */,
-     145,    0,  973,    2, 0x08 /* Private */,
-     146,    0,  974,    2, 0x08 /* Private */,
-     147,    0,  975,    2, 0x08 /* Private */,
-     148,    0,  976,    2, 0x08 /* Private */,
-     149,    0,  977,    2, 0x08 /* Private */,
-     150,    0,  978,    2, 0x08 /* Private */,
-     151,    0,  979,    2, 0x08 /* Private */,
-     152,    0,  980,    2, 0x08 /* Private */,
-     153,    0,  981,    2, 0x08 /* Private */,
-     154,    0,  982,    2, 0x08 /* Private */,
-     155,    0,  983,    2, 0x08 /* Private */,
-     156,    0,  984,    2, 0x08 /* Private */,
-     157,    0,  985,    2, 0x08 /* Private */,
-     158,    0,  986,    2, 0x08 /* Private */,
-     159,    0,  987,    2, 0x08 /* Private */,
-     160,    0,  988,    2, 0x08 /* Private */,
-     161,    0,  989,    2, 0x08 /* Private */,
-     162,    0,  990,    2, 0x08 /* Private */,
-     163,    0,  991,    2, 0x08 /* Private */,
-     164,    0,  992,    2, 0x08 /* Private */,
-     165,    0,  993,    2, 0x08 /* Private */,
-     166,    0,  994,    2, 0x08 /* Private */,
-     167,    0,  995,    2, 0x08 /* Private */,
-     168,    0,  996,    2, 0x08 /* Private */,
-     169,    0,  997,    2, 0x08 /* Private */,
-     170,    0,  998,    2, 0x08 /* Private */,
-     171,    0,  999,    2, 0x08 /* Private */,
-     172,    0, 1000,    2, 0x08 /* Private */,
-     173,    0, 1001,    2, 0x08 /* Private */,
-     174,    0, 1002,    2, 0x08 /* Private */,
-     175,    0, 1003,    2, 0x08 /* Private */,
-     176,    0, 1004,    2, 0x08 /* Private */,
-     177,    0, 1005,    2, 0x08 /* Private */,
-     178,    0, 1006,    2, 0x08 /* Private */,
-     179,    0, 1007,    2, 0x08 /* Private */,
-     180,    0, 1008,    2, 0x08 /* Private */,
-     181,    0, 1009,    2, 0x08 /* Private */,
-     182,    1, 1010,    2, 0x08 /* Private */,
-     184,    0, 1013,    2, 0x08 /* Private */,
-     185,    0, 1014,    2, 0x08 /* Private */,
-     186,    0, 1015,    2, 0x08 /* Private */,
-     187,    0, 1016,    2, 0x08 /* Private */,
-     188,    0, 1017,    2, 0x08 /* Private */,
-     189,    0, 1018,    2, 0x08 /* Private */,
-     190,    0, 1019,    2, 0x08 /* Private */,
-     191,    0, 1020,    2, 0x08 /* Private */,
-     192,    0, 1021,    2, 0x08 /* Private */,
-     193,    0, 1022,    2, 0x08 /* Private */,
-     194,    0, 1023,    2, 0x08 /* Private */,
-     195,    0, 1024,    2, 0x08 /* Private */,
-     196,    0, 1025,    2, 0x08 /* Private */,
-     197,    0, 1026,    2, 0x08 /* Private */,
-     198,    0, 1027,    2, 0x08 /* Private */,
-     199,    0, 1028,    2, 0x08 /* Private */,
-     200,    0, 1029,    2, 0x08 /* Private */,
+      13,    0,  743,    2, 0x0a /* Public */,
+      14,    4,  744,    2, 0x0a /* Public */,
+      20,    4,  753,    2, 0x0a /* Public */,
+      21,    0,  762,    2, 0x0a /* Public */,
+      22,    1,  763,    2, 0x0a /* Public */,
+      24,    1,  766,    2, 0x0a /* Public */,
+      26,    1,  769,    2, 0x0a /* Public */,
+      27,    1,  772,    2, 0x0a /* Public */,
+      28,    1,  775,    2, 0x0a /* Public */,
+      29,    4,  778,    2, 0x0a /* Public */,
+      34,    1,  787,    2, 0x0a /* Public */,
+      36,    0,  790,    2, 0x0a /* Public */,
+      37,    1,  791,    2, 0x0a /* Public */,
+      39,    1,  794,    2, 0x0a /* Public */,
+      40,    0,  797,    2, 0x0a /* Public */,
+      41,    0,  798,    2, 0x0a /* Public */,
+      42,    0,  799,    2, 0x0a /* Public */,
+      43,    1,  800,    2, 0x0a /* Public */,
+      44,    0,  803,    2, 0x0a /* Public */,
+      45,    0,  804,    2, 0x0a /* Public */,
+      46,    1,  805,    2, 0x0a /* Public */,
+      48,    1,  808,    2, 0x0a /* Public */,
+      49,    0,  811,    2, 0x0a /* Public */,
+      50,    1,  812,    2, 0x0a /* Public */,
+      51,    1,  815,    2, 0x0a /* Public */,
+      52,    1,  818,    2, 0x0a /* Public */,
+      53,    1,  821,    2, 0x0a /* Public */,
+      54,    1,  824,    2, 0x0a /* Public */,
+      55,    1,  827,    2, 0x0a /* Public */,
+      56,    1,  830,    2, 0x0a /* Public */,
+      57,    1,  833,    2, 0x0a /* Public */,
+      58,    1,  836,    2, 0x0a /* Public */,
+      59,    1,  839,    2, 0x0a /* Public */,
+      61,    1,  842,    2, 0x0a /* Public */,
+      62,   38,  845,    2, 0x0a /* Public */,
+     101,    0,  922,    2, 0x0a /* Public */,
+     102,    0,  923,    2, 0x0a /* Public */,
+     103,    1,  924,    2, 0x0a /* Public */,
+     104,    0,  927,    2, 0x08 /* Private */,
+     105,    0,  928,    2, 0x08 /* Private */,
+     106,    0,  929,    2, 0x08 /* Private */,
+     107,    0,  930,    2, 0x08 /* Private */,
+     108,    0,  931,    2, 0x08 /* Private */,
+     109,    0,  932,    2, 0x08 /* Private */,
+     110,    0,  933,    2, 0x08 /* Private */,
+     111,    0,  934,    2, 0x08 /* Private */,
+     112,    0,  935,    2, 0x08 /* Private */,
+     113,    0,  936,    2, 0x08 /* Private */,
+     114,    0,  937,    2, 0x08 /* Private */,
+     115,    0,  938,    2, 0x08 /* Private */,
+     116,    0,  939,    2, 0x08 /* Private */,
+     117,    0,  940,    2, 0x08 /* Private */,
+     118,    0,  941,    2, 0x08 /* Private */,
+     119,    0,  942,    2, 0x08 /* Private */,
+     120,    0,  943,    2, 0x08 /* Private */,
+     121,    0,  944,    2, 0x08 /* Private */,
+     122,    0,  945,    2, 0x08 /* Private */,
+     123,    0,  946,    2, 0x08 /* Private */,
+     124,    0,  947,    2, 0x08 /* Private */,
+     125,    0,  948,    2, 0x08 /* Private */,
+     126,    0,  949,    2, 0x08 /* Private */,
+     127,    0,  950,    2, 0x08 /* Private */,
+     128,    0,  951,    2, 0x08 /* Private */,
+     129,    0,  952,    2, 0x08 /* Private */,
+     130,    0,  953,    2, 0x08 /* Private */,
+     131,    0,  954,    2, 0x08 /* Private */,
+     132,    0,  955,    2, 0x08 /* Private */,
+     133,    0,  956,    2, 0x08 /* Private */,
+     134,    0,  957,    2, 0x08 /* Private */,
+     135,    0,  958,    2, 0x08 /* Private */,
+     136,    0,  959,    2, 0x08 /* Private */,
+     137,    0,  960,    2, 0x08 /* Private */,
+     138,    0,  961,    2, 0x08 /* Private */,
+     139,    0,  962,    2, 0x08 /* Private */,
+     140,    0,  963,    2, 0x08 /* Private */,
+     141,    0,  964,    2, 0x08 /* Private */,
+     142,    0,  965,    2, 0x08 /* Private */,
+     143,    0,  966,    2, 0x08 /* Private */,
+     144,    0,  967,    2, 0x08 /* Private */,
+     145,    0,  968,    2, 0x08 /* Private */,
+     146,    0,  969,    2, 0x08 /* Private */,
+     147,    0,  970,    2, 0x08 /* Private */,
+     148,    0,  971,    2, 0x08 /* Private */,
+     149,    0,  972,    2, 0x08 /* Private */,
+     150,    0,  973,    2, 0x08 /* Private */,
+     151,    0,  974,    2, 0x08 /* Private */,
+     152,    0,  975,    2, 0x08 /* Private */,
+     153,    0,  976,    2, 0x08 /* Private */,
+     154,    0,  977,    2, 0x08 /* Private */,
+     155,    0,  978,    2, 0x08 /* Private */,
+     156,    0,  979,    2, 0x08 /* Private */,
+     157,    0,  980,    2, 0x08 /* Private */,
+     158,    0,  981,    2, 0x08 /* Private */,
+     159,    0,  982,    2, 0x08 /* Private */,
+     160,    0,  983,    2, 0x08 /* Private */,
+     161,    0,  984,    2, 0x08 /* Private */,
+     162,    0,  985,    2, 0x08 /* Private */,
+     163,    0,  986,    2, 0x08 /* Private */,
+     164,    0,  987,    2, 0x08 /* Private */,
+     165,    0,  988,    2, 0x08 /* Private */,
+     166,    0,  989,    2, 0x08 /* Private */,
+     167,    0,  990,    2, 0x08 /* Private */,
+     168,    0,  991,    2, 0x08 /* Private */,
+     169,    0,  992,    2, 0x08 /* Private */,
+     170,    0,  993,    2, 0x08 /* Private */,
+     171,    0,  994,    2, 0x08 /* Private */,
+     172,    0,  995,    2, 0x08 /* Private */,
+     173,    0,  996,    2, 0x08 /* Private */,
+     174,    0,  997,    2, 0x08 /* Private */,
+     175,    0,  998,    2, 0x08 /* Private */,
+     176,    0,  999,    2, 0x08 /* Private */,
+     177,    0, 1000,    2, 0x08 /* Private */,
+     178,    0, 1001,    2, 0x08 /* Private */,
+     179,    0, 1002,    2, 0x08 /* Private */,
+     180,    0, 1003,    2, 0x08 /* Private */,
+     181,    1, 1004,    2, 0x08 /* Private */,
+     183,    0, 1007,    2, 0x08 /* Private */,
+     184,    0, 1008,    2, 0x08 /* Private */,
+     185,    0, 1009,    2, 0x08 /* Private */,
+     186,    0, 1010,    2, 0x08 /* Private */,
+     187,    0, 1011,    2, 0x08 /* Private */,
+     188,    0, 1012,    2, 0x08 /* Private */,
+     189,    0, 1013,    2, 0x08 /* Private */,
+     190,    0, 1014,    2, 0x08 /* Private */,
+     191,    0, 1015,    2, 0x08 /* Private */,
+     192,    0, 1016,    2, 0x08 /* Private */,
+     193,    0, 1017,    2, 0x08 /* Private */,
+     194,    0, 1018,    2, 0x08 /* Private */,
+     195,    0, 1019,    2, 0x08 /* Private */,
+     196,    0, 1020,    2, 0x08 /* Private */,
+     197,    0, 1021,    2, 0x08 /* Private */,
+     198,    0, 1022,    2, 0x08 /* Private */,
+     199,    0, 1023,    2, 0x08 /* Private */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::Int,    3,
@@ -601,8 +598,7 @@ static const uint qt_meta_data_MainWindow[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void, QMetaType::QString,  183,
+    QMetaType::Void, QMetaType::QString,  182,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -679,102 +675,101 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 43: _t->on_pushButton_clicked(); break;
         case 44: _t->ULTRASONICBUT1(); break;
         case 45: _t->updateTabsBasedOnComboBox((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 46: _t->sensor2(); break;
-        case 47: _t->ULTRASONICBUT2(); break;
-        case 48: _t->ULTRASONICBUT4(); break;
-        case 49: _t->IRRIGATIONBUT1(); break;
-        case 50: _t->IRRIGATIONBUT2(); break;
-        case 51: _t->VITRECTOMYBUT(); break;
-        case 52: _t->diapowup(); break;
-        case 53: _t->diapowdown(); break;
-        case 54: _t->vitcutup(); break;
-        case 55: _t->vitcutdown(); break;
-        case 56: _t->vitvacup(); break;
-        case 57: _t->vitvacdown(); break;
-        case 58: _t->vitflowup(); break;
-        case 59: _t->vitflowdown(); break;
-        case 60: _t->ia2vacup(); break;
-        case 61: _t->ia2vacdown(); break;
-        case 62: _t->ia2flowup(); break;
-        case 63: _t->ia2flowdown(); break;
-        case 64: _t->ia1vacup(); break;
-        case 65: _t->ia1vacdown(); break;
-        case 66: _t->ia1flowup(); break;
-        case 67: _t->ia1flowdown(); break;
-        case 68: _t->US1POWUP(); break;
-        case 69: _t->US1POWDOWN(); break;
-        case 70: _t->US1VACDOWN(); break;
-        case 71: _t->US1VACUP(); break;
-        case 72: _t->US1FLOWDOWN(); break;
-        case 73: _t->US1FLOWUP(); break;
-        case 74: _t->us2powup(); break;
-        case 75: _t->us2powdown(); break;
-        case 76: _t->us2vacup(); break;
-        case 77: _t->us2vacdown(); break;
-        case 78: _t->us2flowup(); break;
-        case 79: _t->us2flowdown(); break;
-        case 80: _t->ULTRASONICBUT3(); break;
-        case 81: _t->us3powup(); break;
-        case 82: _t->us3powdown(); break;
-        case 83: _t->us3vacup(); break;
-        case 84: _t->us3vacdown(); break;
-        case 85: _t->us3flowup(); break;
-        case 86: _t->us3flowdown(); break;
-        case 87: _t->us4powup(); break;
-        case 88: _t->us4powdown(); break;
-        case 89: _t->us4vacup(); break;
-        case 90: _t->us4vacdown(); break;
-        case 91: _t->us4flowup(); break;
-        case 92: _t->us4flowdown(); break;
-        case 93: _t->BACKBUT(); break;
-        case 94: _t->us1_linear_nonlinear(); break;
-        case 95: _t->us2_linear_nonlinear(); break;
-        case 96: _t->us3_linear_nonlinear(); break;
-        case 97: _t->us4_linear_nonlinear(); break;
-        case 98: _t->ia1_linear_nonlinear(); break;
-        case 99: _t->ia2_linear_nonlinear(); break;
-        case 100: _t->vit_linear_nonlinear(); break;
-        case 101: _t->pulseup_mode(); break;
-        case 102: _t->pulsedown_mode(); break;
-        case 103: _t->ocuburstup_mode(); break;
-        case 104: _t->ocuburstdown_mode(); break;
-        case 105: _t->singleburstup_mode(); break;
-        case 106: _t->singleburstdown_mode(); break;
-        case 107: _t->multiburstup_mode(); break;
-        case 108: _t->multiburstdown_mode(); break;
-        case 109: _t->ocupulseup_mode(); break;
-        case 110: _t->ocupulsedown_mode(); break;
-        case 111: _t->coldphacoup_mode(); break;
-        case 112: _t->coldphacodown_mode(); break;
-        case 113: _t->coldphaco1up_mode(); break;
-        case 114: _t->coldphaco1down_mode(); break;
-        case 115: _t->updatehandpieceStatus(); break;
-        case 116: _t->linearvaccum(); break;
-        case 117: _t->onUpdateStatusTimeout(); break;
-        case 118: _t->updateTimers(); break;
-        case 119: _t->on_us1onoff_clicked(); break;
-        case 120: _t->on_us2onoff_clicked(); break;
-        case 121: _t->on_us3onoff_clicked(); break;
-        case 122: _t->on_us4onoff_clicked(); break;
-        case 123: _t->on_vitonoff_clicked(); break;
-        case 124: _t->doctorwindow_show((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 125: _t->footpedalwindow_show(); break;
-        case 126: _t->on_us1vacmode_clicked(); break;
-        case 127: _t->on_us2vacmode_clicked(); break;
-        case 128: _t->on_us3vacmode_clicked(); break;
-        case 129: _t->on_vitvacmode_clicked(); break;
-        case 130: _t->on_us4vacmode_clicked(); break;
-        case 131: _t->on_CI4_2_clicked(); break;
-        case 132: _t->on_SETTINGS_BUT_2_clicked(); break;
-        case 133: _t->on_pushButton_42_clicked(); break;
-        case 134: _t->on_ocuburstdown_but_clicked(); break;
-        case 135: _t->on_ocuburstup_but_clicked(); break;
-        case 136: _t->on_ocupulsedown_but_clicked(); break;
-        case 137: _t->on_ocupulseup_but_clicked(); break;
-        case 138: _t->on_ButColdPhacoPer_down_clicked(); break;
-        case 139: _t->on_ButColdPulse_up_clicked(); break;
-        case 140: _t->on_ButColdPulse_down_clicked(); break;
-        case 141: _t->on_ButColdPhacoPer_up_clicked(); break;
+        case 46: _t->ULTRASONICBUT2(); break;
+        case 47: _t->ULTRASONICBUT4(); break;
+        case 48: _t->IRRIGATIONBUT1(); break;
+        case 49: _t->IRRIGATIONBUT2(); break;
+        case 50: _t->VITRECTOMYBUT(); break;
+        case 51: _t->diapowup(); break;
+        case 52: _t->diapowdown(); break;
+        case 53: _t->vitcutup(); break;
+        case 54: _t->vitcutdown(); break;
+        case 55: _t->vitvacup(); break;
+        case 56: _t->vitvacdown(); break;
+        case 57: _t->vitflowup(); break;
+        case 58: _t->vitflowdown(); break;
+        case 59: _t->ia2vacup(); break;
+        case 60: _t->ia2vacdown(); break;
+        case 61: _t->ia2flowup(); break;
+        case 62: _t->ia2flowdown(); break;
+        case 63: _t->ia1vacup(); break;
+        case 64: _t->ia1vacdown(); break;
+        case 65: _t->ia1flowup(); break;
+        case 66: _t->ia1flowdown(); break;
+        case 67: _t->US1POWUP(); break;
+        case 68: _t->US1POWDOWN(); break;
+        case 69: _t->US1VACDOWN(); break;
+        case 70: _t->US1VACUP(); break;
+        case 71: _t->US1FLOWDOWN(); break;
+        case 72: _t->US1FLOWUP(); break;
+        case 73: _t->us2powup(); break;
+        case 74: _t->us2powdown(); break;
+        case 75: _t->us2vacup(); break;
+        case 76: _t->us2vacdown(); break;
+        case 77: _t->us2flowup(); break;
+        case 78: _t->us2flowdown(); break;
+        case 79: _t->ULTRASONICBUT3(); break;
+        case 80: _t->us3powup(); break;
+        case 81: _t->us3powdown(); break;
+        case 82: _t->us3vacup(); break;
+        case 83: _t->us3vacdown(); break;
+        case 84: _t->us3flowup(); break;
+        case 85: _t->us3flowdown(); break;
+        case 86: _t->us4powup(); break;
+        case 87: _t->us4powdown(); break;
+        case 88: _t->us4vacup(); break;
+        case 89: _t->us4vacdown(); break;
+        case 90: _t->us4flowup(); break;
+        case 91: _t->us4flowdown(); break;
+        case 92: _t->BACKBUT(); break;
+        case 93: _t->us1_linear_nonlinear(); break;
+        case 94: _t->us2_linear_nonlinear(); break;
+        case 95: _t->us3_linear_nonlinear(); break;
+        case 96: _t->us4_linear_nonlinear(); break;
+        case 97: _t->ia1_linear_nonlinear(); break;
+        case 98: _t->ia2_linear_nonlinear(); break;
+        case 99: _t->vit_linear_nonlinear(); break;
+        case 100: _t->pulseup_mode(); break;
+        case 101: _t->pulsedown_mode(); break;
+        case 102: _t->ocuburstup_mode(); break;
+        case 103: _t->ocuburstdown_mode(); break;
+        case 104: _t->singleburstup_mode(); break;
+        case 105: _t->singleburstdown_mode(); break;
+        case 106: _t->multiburstup_mode(); break;
+        case 107: _t->multiburstdown_mode(); break;
+        case 108: _t->ocupulseup_mode(); break;
+        case 109: _t->ocupulsedown_mode(); break;
+        case 110: _t->coldphacoup_mode(); break;
+        case 111: _t->coldphacodown_mode(); break;
+        case 112: _t->coldphaco1up_mode(); break;
+        case 113: _t->coldphaco1down_mode(); break;
+        case 114: _t->updatehandpieceStatus(); break;
+        case 115: _t->linearvaccum(); break;
+        case 116: _t->onUpdateStatusTimeout(); break;
+        case 117: _t->updateTimers(); break;
+        case 118: _t->on_us1onoff_clicked(); break;
+        case 119: _t->on_us2onoff_clicked(); break;
+        case 120: _t->on_us3onoff_clicked(); break;
+        case 121: _t->on_us4onoff_clicked(); break;
+        case 122: _t->on_vitonoff_clicked(); break;
+        case 123: _t->doctorwindow_show((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 124: _t->footpedalwindow_show(); break;
+        case 125: _t->on_us1vacmode_clicked(); break;
+        case 126: _t->on_us2vacmode_clicked(); break;
+        case 127: _t->on_us3vacmode_clicked(); break;
+        case 128: _t->on_vitvacmode_clicked(); break;
+        case 129: _t->on_us4vacmode_clicked(); break;
+        case 130: _t->on_CI4_2_clicked(); break;
+        case 131: _t->on_SETTINGS_BUT_2_clicked(); break;
+        case 132: _t->on_pushButton_42_clicked(); break;
+        case 133: _t->on_ocuburstdown_but_clicked(); break;
+        case 134: _t->on_ocuburstup_but_clicked(); break;
+        case 135: _t->on_ocupulsedown_but_clicked(); break;
+        case 136: _t->on_ocupulseup_but_clicked(); break;
+        case 137: _t->on_ButColdPhacoPer_down_clicked(); break;
+        case 138: _t->on_ButColdPulse_up_clicked(); break;
+        case 139: _t->on_ButColdPulse_down_clicked(); break;
+        case 140: _t->on_ButColdPhacoPer_up_clicked(); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
@@ -885,13 +880,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 142)
+        if (_id < 141)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 142;
+        _id -= 141;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 142)
+        if (_id < 141)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 142;
+        _id -= 141;
     }
     return _id;
 }

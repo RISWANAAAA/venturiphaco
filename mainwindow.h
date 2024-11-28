@@ -211,7 +211,6 @@ public slots:
 
 private slots:
 
- void sensor2();
  void ULTRASONICBUT2();
 
  void ULTRASONICBUT4();
