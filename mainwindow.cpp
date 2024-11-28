@@ -1079,10 +1079,10 @@ void MainWindow::ULTRASONICBUT1()
     ui->tabWidget_2->show();
     butname=1;
     handler->buzz();
-    // us1PdmMode = true;
-    //    us2PdmMode = false;
-    //    us3PdmMode = false;
-    //    us4PdmMode = false;
+     us1PdmMode = true;
+        us2PdmMode = false;
+        us3PdmMode = false;
+        us4PdmMode = false;
 
 }
 
