@@ -570,12 +570,12 @@ void footpedal::updateFootpedalComboBoxes(const QString &surgeonName) {
         QString footBLeftValue = query.value("footbottomleft").toString();
         QString footNRightValue = query.value("footbottomright").toString();
 
-        // Debug output to check retrieved values
-        //qDebug() << "Foot pedal values retrieved:"
-                 //<< "footleft:" << footLeftValue
-                // << "footright:" << footRightValue
-                // << "footbleft:" << footBLeftValue
-               //  << "footnright:" << footNRightValue;
+       //  Debug output to check retrieved values
+//        qDebug() << "Foot pedal values retrieved:"
+//                 << "footleft:" << footLeftValue
+//                 << "footright:" << footRightValue
+//                 << "footbleft:" << footBLeftValue
+//                 << "footnright:" << footNRightValue;
 
         // Set the retrieved values to the combo boxes
         ui->left_footcom->setCurrentText(footLeftValue);
@@ -584,11 +584,11 @@ void footpedal::updateFootpedalComboBoxes(const QString &surgeonName) {
         ui->bright_footcom->setCurrentText(footNRightValue);
 
         // Debug output to confirm the values were set correctly
-        //qDebug() << "ComboBox values set:"
-                 //<< "left_footcom:" << ui->left_footcom->currentText()
-                // << "right_footcom:" << ui->right_footcom->currentText()
-               //  << "bleft_footcom:" << ui->bleft_footcom->currentText()
-               //  << "bright_footcom:" << ui->bright_footcom->currentText();
+//        qDebug() << "ComboBox values set:"
+//                 << "left_footcom:" << ui->left_footcom->currentText()
+//                 << "right_footcom:" << ui->right_footcom->currentText()
+//                 << "bleft_footcom:" << ui->bleft_footcom->currentText()
+//                 << "bright_footcom:" << ui->bright_footcom->currentText();
     }
     db.close();
 }
@@ -630,9 +630,9 @@ void footpedal::on_pushButton_clicked()
 
     // Check if the database connection is open
     if (!db.isOpen()) {
-        qDebug() << "Database is not open. Attempting to open it...";
+       // qDebug() << "Database is not open. Attempting to open it...";
         if (!db.open()) {
-            qDebug() << "Failed to open the database:" << db.lastError().text();
+         //   qDebug() << "Failed to open the database:" << db.lastError().text();
             return;
         }
     }
@@ -643,9 +643,7 @@ void footpedal::on_pushButton_clicked()
     QString footBLeftValue = ui->bleft_footcom->currentText();
     QString footNRightValue = ui->bright_footcom->currentText();
 
-    // Ensure that required variables are initialized
-    int f0 , f1 , f2, f3; // Replace with actual values as needed
-    QString currentSurgeonName = "DefaultSurgeon"; // Replace with the actual surgeon name or retrieve it dynamically
+
 
     // Prepare the SQL query with the correct syntax
     QSqlQuery query(db);
@@ -654,11 +652,7 @@ void footpedal::on_pushButton_clicked()
         "SET footleft = :footleft, "
         "footright = :footright, "
         "footbottomleft = :footbleft, "
-        "footbottomright = :footnright, "
-        "fzero = :f0, "
-        "fone = :f1, "
-        "ftwo = :f2, "
-        "fthree = :f3 "
+        "footbottomright = :footnright "
         "WHERE surgeon = :surgeon"
     );
 
@@ -667,19 +661,16 @@ void footpedal::on_pushButton_clicked()
     query.bindValue(":footright", footRightValue);
     query.bindValue(":footbleft", footBLeftValue);
     query.bindValue(":footnright", footNRightValue);
-    query.bindValue(":f0", f0);
-    query.bindValue(":f1", f1);
-    query.bindValue(":f2", f2);
-    query.bindValue(":f3", f3);
+
     query.bindValue(":surgeon", currentSurgeonName);
 
     // Execute the query and check for errors
     if (!query.exec()) {
-        qDebug() << "Failed to update footpedal data for surgeon:" << query.lastError().text();
+        //qDebug() << "Failed to update footpedal data for surgeon:" << query.lastError().text();
         return;
     }
 
-    qDebug() << "Footpedal settings saved successfully for surgeon:" << currentSurgeonName;
+   // qDebug() << "Footpedal settings saved successfully for surgeon:" << currentSurgeonName;
 
     emit sendleftfootdoc(footLeftValue);
     emit sendrightfootdoc(footRightValue);

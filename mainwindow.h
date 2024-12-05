@@ -69,6 +69,8 @@ void speedofthelabe(QLabel *label);
     int range=0;
     int rec;
     int butname=0;
+    void updateCurrentButtonIndex(int index);
+
     int readGPIO(int gpio,int gpio1,int gpio2,int gpio3);
     void moveTab(int usIndex);
     void moveTab1(int usIndex);
@@ -429,6 +431,7 @@ private:
 
 
 
+
 int getvalue(int input);
 int currentButtonIndex;
 int currentButtonIndex1;
@@ -459,7 +462,7 @@ int ia2count=0;
 int vitcount=0;
 int nFreqCount=0;
  int nOnTime=0;
-int nHandPiece;
+int nHandPiece=1;
 
 QMessageBox *message;
 QMessageBox *messageline;

@@ -1438,7 +1438,17 @@ void doctor::onSurgeonSelectionChanged(const QString &surgeonName)
         ui->Vibration_onoff->setText(vib_onoff);
         QString speaker_onoff = query.value("speakeronoff").toString();
         ui->ButSpeakerOnOff->setText(speaker_onoff);
+        if(vib_onoff == "Viberation ON"){
+            ui->lab_vibonoff->setStyleSheet("image: url(:/images/vibrationon.png);border:2px solid skyblue;border-radius:20px;");
+        }else if(vib_onoff == "Viberation OFF"){
+            ui->lab_vibonoff->setStyleSheet("image: url(:/images/vibrationoff.png);border:2px solid skyblue;border-radius:20px;");
+        }
+        if(speaker_onoff == "Speaker ON"){
+            ui->lab_vibonoff_2->setStyleSheet("image: url(:/images/speakeron.png);border:2px solid skyblue;border-radius:20px;");
+        }else if(speaker_onoff == "Speaker OFF"){
+            ui->lab_vibonoff_2->setStyleSheet("image: url(:/images/speakeroff.png);border:2px solid skyblue;border-radius:20px;");
 
+        }
         // US1 (Epinucleus) parameters
         int us1power = query.value("Epinpowmax").toInt();
         int us1vacmax = query.value("Epinvacmax").toInt();
@@ -1560,17 +1570,7 @@ void doctor::onSurgeonSelectionChanged(const QString &surgeonName)
         ui->CutMode_vitCom->setCurrentText(vitcutmode);
         ui->VacMode_VitCom->setCurrentText(vitvacmode);
         ui->Vibration_onoff->setText(vib_onoff);
-        if(vib_onoff == "Viberation ON"){
-            ui->lab_vibonoff->setStyleSheet("image: url(:/images/vibrationon.png);border:2px solid skyblue;border-radius:20px;");
-        }else if(vib_onoff == "Viberation OFF"){
-            ui->lab_vibonoff->setStyleSheet("image: url(:/images/vibrationoff.png);border:2px solid skyblue;border-radius:20px;");
-        }
-        if(speaker_onoff == "Speaker ON"){
-            ui->lab_vibonoff_2->setStyleSheet("image: url(:/images/speakeron.png);border:2px solid skyblue;border-radius:20px;");
-        }else if(speaker_onoff == "Speaker OFF"){
-            ui->lab_vibonoff_2->setStyleSheet("image: url(:/images/speakeroff.png);border:2px solid skyblue;border-radius:20px;");
 
-        }
          emit leftfoot(ui->LeftFoot->currentText());
         emit rightfoot(ui->RightFoot->currentText());
         emit bottomleft(ui->BottomLFoot->currentText());

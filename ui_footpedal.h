@@ -161,9 +161,9 @@ public:
         right_footcom->setItemText(4, QCoreApplication::translate("footpedal", "Power ON/OFF", nullptr));
         right_footcom->setItemText(5, QCoreApplication::translate("footpedal", "PDM", nullptr));
 
-        left_footcom->setItemText(0, QCoreApplication::translate("footpedal", "Increment", nullptr));
-        left_footcom->setItemText(1, QCoreApplication::translate("footpedal", "Decrement", nullptr));
-        left_footcom->setItemText(2, QCoreApplication::translate("footpedal", "Reflux", nullptr));
+        left_footcom->setItemText(0, QCoreApplication::translate("footpedal", "Reflux", nullptr));
+        left_footcom->setItemText(1, QCoreApplication::translate("footpedal", "Increment", nullptr));
+        left_footcom->setItemText(2, QCoreApplication::translate("footpedal", "Decrement", nullptr));
         left_footcom->setItemText(3, QCoreApplication::translate("footpedal", "Continuous Irrigation", nullptr));
         left_footcom->setItemText(4, QCoreApplication::translate("footpedal", "Power ON/OFF", nullptr));
         left_footcom->setItemText(5, QCoreApplication::translate("footpedal", "PDM", nullptr));

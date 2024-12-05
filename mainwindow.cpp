@@ -72,7 +72,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 //update sensor for linear
        sensortimer = new QTimer(this);
-       connect(sensortimer, SIGNAL(timeout()), this, SLOT(sensor2()));
+      // connect(sensortimer, SIGNAL(timeout()), this, SLOT(sensor2()));
        sensortimer->start(100); // Update labels every 1000 milliseconds (1 second)
  Tacutalsensor=new QTimer;
  connect(Tacutalsensor,&QTimer::timeout,this,&MainWindow::readsensorvalue);
@@ -389,6 +389,20 @@ QTime time = QTime::currentTime();
 QString formatTime = time.toString("hh:mm:ss");
 ui->lab_time->setText(formatTime);
 //qDebug()<<"the mainwidow is closed";
+// Array of all buttons
+   QPushButton *buttons[] = {
+       ui->DIABUT, ui->ULTRASONICBUT1, ui->ULTRASONICBUT2,
+       ui->ULTRASONICBUT3, ui->ULTRASONICBUT4, ui->IA1BUT,
+       ui->IA2BUT, ui->VITRECTOMYBUT
+   };
+
+   // Connect each button's clicked signal to updateCurrentButtonIndex
+   for (int i = 0; i < sizeof(buttons) / sizeof(buttons[0]); i++) {
+       connect(buttons[i], &QPushButton::clicked, this, [this, i]() {
+           updateCurrentButtonIndex(i);
+       });
+   }
+
 
 }
 
@@ -1133,8 +1147,8 @@ void MainWindow::disablefunction()
 void MainWindow::ULTRASONICBUT2()
 {
     ui->tabWidget->setCurrentIndex(1);
-    QString currentText = ui->CutMode_vitCom_2->currentText();
- updateTabsBasedOnComboBox(currentText);
+//    QString currentText = ui->CutMode_vitCom_2->currentText();
+// updateTabsBasedOnComboBox(currentText);
     //qDebug()<<"the mode from us2"<<currentText;
 
     ui->tabWidget_2->show();
@@ -1144,13 +1158,14 @@ void MainWindow::ULTRASONICBUT2()
       us2PdmMode = true;
       us3PdmMode = false;
       us4PdmMode = false;
+      handler->safetyvent_off();
 
 }
 void MainWindow::ULTRASONICBUT3()
 {
     ui->tabWidget->setCurrentIndex(2);
-    QString currentText2 = ui->CutMode_vitCom_3->currentText();
-   updateTabsBasedOnComboBox(currentText2);
+//    QString currentText2 = ui->CutMode_vitCom_3->currentText();
+//   updateTabsBasedOnComboBox(currentText2);
 
 
     ui->tabWidget_2->show();
@@ -1160,6 +1175,8 @@ void MainWindow::ULTRASONICBUT3()
         us2PdmMode = false;
         us3PdmMode = true;
         us4PdmMode = false;
+        handler->safetyvent_off();
+
 
 }
 
@@ -1167,8 +1184,8 @@ void MainWindow::ULTRASONICBUT4()
 {
 
     ui->tabWidget->setCurrentIndex(3);
-    QString currentText3 = ui->CutMode_vitCom_4->currentText();
-    updateTabsBasedOnComboBox(currentText3);
+//    QString currentText3 = ui->CutMode_vitCom_4->currentText();
+//    updateTabsBasedOnComboBox(currentText3);
 
      ui->tabWidget_2->show();
      butname=4;
@@ -1177,6 +1194,8 @@ void MainWindow::ULTRASONICBUT4()
          us2PdmMode = false;
          us3PdmMode = false;
          us4PdmMode = true;
+         handler->safetyvent_off();
+
 
   }
 
@@ -1190,6 +1209,8 @@ void MainWindow::IRRIGATIONBUT1()
      handler->buzz();
      ui->label_32->hide();
      ui->tabWidget_2->hide();
+     handler->safetyvent_off();
+
 
  }
 
@@ -1203,6 +1224,8 @@ void MainWindow::IRRIGATIONBUT2()
      handler->buzz();
      ui->label_32->hide();
      ui->tabWidget_2->hide();
+     handler->safetyvent_off();
+
    }
 
 void MainWindow::VITRECTOMYBUT()
@@ -1212,6 +1235,8 @@ void MainWindow::VITRECTOMYBUT()
     handler->buzz();
     ui->label_32->hide();
     ui->tabWidget_2->hide();
+    handler->safetyvent_off();
+
 
 }
 
@@ -1226,6 +1251,7 @@ void MainWindow::DIATHERMYBUT()
     ui->tabWidget_2->hide();
     ui->tabWidget_2->hide();
     butname=0;
+    handler->safetyvent_off();
 
     current(7);
 
@@ -1977,6 +2003,7 @@ void MainWindow::setTuneMode() {
     ui->us4powup_but->setEnabled(true);
     ui->us4powdown_but->setEnabled(true);
     ui->label_32->show();
+    nHandPiece=0;
 
 
 
@@ -2332,6 +2359,7 @@ vus4=ui->us4vacmode->text();
                     ventondia = true;
                 }
                 flag=true;
+                handler->speaker_off();
             }
             else if (range >= nfpzero && range < (nfpzero + nfpone + nfptwo + nfpthree)) {
                 ui->pushButton_42->setText("1");
@@ -2395,14 +2423,14 @@ vus4=ui->us4vacmode->text();
                            handler->pinchvalve_off();
                     }
 
-                       if(ventonus1==false){
-                        //   handler->pinchvalve_on();
-                 handler->safetyvent_on();
-                     QThread::msleep(100);
-                       handler->pinchvalve_off();
-                     handler->safetyvent_off();
-                     ventonus1=true;
-                       }
+//                       if(ventonus1==false){
+//                        //   handler->pinchvalve_on();
+//                 handler->safetyvent_on();
+//                     QThread::msleep(100);
+//                       handler->pinchvalve_off();
+//                     handler->safetyvent_off();
+//                     ventonus1=true;
+//                       }
                        int pro=readsensorvalue();
                        ui->label_8->setText(QString::number(pro));
                    motoroff();
@@ -2494,10 +2522,11 @@ flag1 = true;
                 if(us1 == "Panel"){
                 if((!us1poweron && text == "ON")){
                       //  qDebug()<<"the power is "<<ui->us1onoff->text();
-                    qDebug()<<us1<<"the panel mode is activated";
+                  //  qDebug()<<us1<<"the panel mode is activated";
                         handler->fs_count(range);
                         handler->freq_count(nFreqCount);
                         handler->phaco_on();
+                        qDebug()<<"the power delivery method from the us1 at panel mode"<<ui->CutMode_vitCom->currentText();
                         if(us1powmode == "Multi burst"){
                                     if(range>(nfpzero+nfpone+nfptwo)){
                                      double upper=static_cast<int>(range)-static_cast<int>(nfpzero+nfpone+nfptwo);
@@ -2566,12 +2595,12 @@ if(vus1 == "Panel"){
                     ui->CI5_5->setStyleSheet(styleSheet4);
                     handler->pinchvalve_off();
                 }
-                if(ventonus1==false){
-                   handler->safetyvent_on();
-              QThread::msleep(100);
-              handler->safetyvent_off();
-              ventonus1=true;
-                }
+//                if(ventonus1==false){
+//                   handler->safetyvent_on();
+//              QThread::msleep(100);
+//              handler->safetyvent_off();
+//              ventonus1=true;
+//                }
                 motoroff();
 
                  handler->phaco_off();
@@ -2723,7 +2752,7 @@ if(vus1 == "Panel"){
                       handler->phaco_power(progress4);
                     // qDebug()<<"power id deliverd from the us1 is"<<progress4;
                      ui->label_7->setText(QString::number(std::round(progress4)));
-
+ qDebug()<<"the us1 mode is from the ultrasonic but1 is"<<ui->CutMode_vitCom->currentText();
                      if (progress4 == pow1) {
                         // speedofthelabe(ui->label_7);
                      }
@@ -2812,7 +2841,7 @@ if(vus1 == "Panel"){
         QString us2powmode=ui->CutMode_vitCom_2->currentText();
          int nOfftime;
 
-         qDebug()<<"the us2 mode is"<<us2<<"the us2 vacmode is"<<vus2;
+        // qDebug()<<"the us2 mode is"<<us2<<"the us2 vacmode is"<<vus2;
         if (us2 == "Panel"||vus2=="Panel"){
             if (range>0 && range<nfpzero) {
                 ui->pushButton_42->setText("0");
@@ -2827,14 +2856,14 @@ if(vus1 == "Panel"){
                            handler->pinchvalve_off();
                     }
 
-                       if(ventonus2==false){
-                        //   handler->pinchvalve_on();
-                 handler->safetyvent_on();
-                     QThread::msleep(100);
-                       handler->pinchvalve_off();
-                     handler->safetyvent_off();
-                     ventonus2=true;
-                       }
+//                       if(ventonus2==false){
+//                        //   handler->pinchvalve_on();
+//                 handler->safetyvent_on();
+//                     QThread::msleep(100);
+//                       handler->pinchvalve_off();
+//                     handler->safetyvent_off();
+//                     ventonus2=true;
+//                       }
                        int pro=readsensorvalue();
                        ui->label_93->setText(QString::number(pro));
                    motoroff();
@@ -2997,12 +3026,12 @@ if(us2 == "Panel"){
                     ui->CI5_5->setStyleSheet(styleSheet4);
                     handler->pinchvalve_off();
                 }
-                if(ventonus2==false){
-                   handler->safetyvent_on();
-              QThread::msleep(100);
-              handler->safetyvent_off();
-              ventonus2=true;
-                }
+//                if(ventonus2==false){
+//                   handler->safetyvent_on();
+//              QThread::msleep(100);
+//              handler->safetyvent_off();
+//              ventonus2=true;
+//                }
                 motoroff();
 
                  handler->phaco_off();
@@ -3242,7 +3271,7 @@ if(us2 == "Panel"){
         QString us3powmode=ui->CutMode_vitCom_3->currentText();
          int nOfftime;
 
-       qDebug()<<"the us3 pdm is"<<us3powmode;
+      // qDebug()<<"the us3 pdm is"<<us3powmode;
         if (us3 == "Panel"||vus3=="Panel"){
             if (range>0 && range<nfpzero) {
                 ui->pushButton_42->setText("0");
@@ -3257,14 +3286,14 @@ if(us2 == "Panel"){
                            handler->pinchvalve_off();
                     }
 
-                       if(ventonus3==false){
-                        //   handler->pinchvalve_on();
-                 handler->safetyvent_on();
-                     QThread::msleep(100);
-                       handler->pinchvalve_off();
-                     handler->safetyvent_off();
-                     ventonus2=true;
-                       }
+//                       if(ventonus3==false){
+//                        //   handler->pinchvalve_on();
+//                 handler->safetyvent_on();
+//                     QThread::msleep(100);
+//                       handler->pinchvalve_off();
+//                     handler->safetyvent_off();
+//                     ventonus2=true;
+//                       }
                        int pro=readsensorvalue();
                        ui->label_99->setText(QString::number(pro));
                    motoroff();
@@ -3421,12 +3450,12 @@ if(us3 == "Panel"){
                     ui->CI5_5->setStyleSheet(styleSheet4);
                     handler->pinchvalve_off();
                 }
-                if(ventonus3==false){
-                   handler->safetyvent_on();
-              QThread::msleep(100);
-              handler->safetyvent_off();
-              ventonus3=true;
-                }
+//                if(ventonus3==false){
+//                   handler->safetyvent_on();
+//              QThread::msleep(100);
+//              handler->safetyvent_off();
+//              ventonus3=true;
+//                }
                 motoroff();
 
                  handler->phaco_off();
@@ -3680,14 +3709,14 @@ if(us3 == "Panel"){
                            handler->pinchvalve_off();
                     }
 
-                       if(ventonus4==false){
-                        //   handler->pinchvalve_on();
-                 handler->safetyvent_on();
-                     QThread::msleep(100);
-                       handler->pinchvalve_off();
-                     handler->safetyvent_off();
-                     ventonus4=true;
-                       }
+//                       if(ventonus4==false){
+//                        //   handler->pinchvalve_on();
+//                 handler->safetyvent_on();
+//                     QThread::msleep(100);
+//                       handler->pinchvalve_off();
+//                     handler->safetyvent_off();
+//                     ventonus4=true;
+//                       }
                        int pro=readsensorvalue();
                        ui->label_104->setText(QString::number(pro));
                    motoroff();
@@ -3845,12 +3874,12 @@ if(us4 == "Panel"){
                     ui->CI5_5->setStyleSheet(styleSheet4);
                     handler->pinchvalve_off();
                 }
-                if(ventonus4==false){
-                   handler->safetyvent_on();
-              QThread::msleep(100);
-              handler->safetyvent_off();
-              ventonus4=true;
-                }
+//                if(ventonus4==false){
+//                   handler->safetyvent_on();
+//              QThread::msleep(100);
+//              handler->safetyvent_off();
+//              ventonus4=true;
+//                }
                 motoroff();
 
                  handler->phaco_off();
@@ -4094,12 +4123,12 @@ QString ia1=ui->ia2mode->text();
                     ui->CI5_5->setStyleSheet(styleSheet4);
                     handler->pinchvalve_off();
                 }
-                if(ventonia1 == false) {
-                    handler->safetyvent_on();
-                    QThread::msleep(200);
-                    handler->safetyvent_off();
-                    ventonia1 = true;
-                }
+//                if(ventonia1 == false) {
+//                    handler->safetyvent_on();
+//                    QThread::msleep(200);
+//                    handler->safetyvent_off();
+//                    ventonia1 = true;
+//                }
                handler->speaker_off();
                 motoroff();
                 ui->label_113->setText(QString::number(0));
@@ -4169,12 +4198,12 @@ ia1currentcount=1;
              ui->CI5_5->setStyleSheet(styleSheet4);
                     handler->pinchvalve_off();
                 }
-                if(ventonia1 == false) {
-                    handler->safetyvent_on();
-                    QThread::msleep(200);
-                    handler->safetyvent_off();
-                    ventonia1 = true;
-                }
+//                if(ventonia1 == false) {
+//                    handler->safetyvent_on();
+//                    QThread::msleep(200);
+//                    handler->safetyvent_off();
+//                    ventonia1 = true;
+//                }
 
                   motoroff();
                     //int pro = readsensorvalue();
@@ -4289,12 +4318,12 @@ handler->pinchvalve_on();
             ui->CI5_5->setStyleSheet(styleSheet4);
                     handler->pinchvalve_off();
                 }
-                if(ventonia2==false){
-                    handler->safetyvent_on();
-                    QThread::msleep(100);
-                    handler->safetyvent_off();
-                   ventonia2=true;
-                }
+//                if(ventonia2==false){
+//                    handler->safetyvent_on();
+//                    QThread::msleep(100);
+//                    handler->safetyvent_off();
+//                   ventonia2=true;
+//                }
              //   int ia2pro=readsensorvalue();
                 ui->label_109->setText(QString::number(0));
  motoroff();
@@ -4363,12 +4392,12 @@ ia2currentcount=2;
                     }
                     handler->speaker_off();
                       motoroff();
-                      if(ventonia2==false){
-                        handler->safetyvent_on();
-                        QThread::msleep(100);
-                        handler->safetyvent_off();
-                        ventonia2=true;
-                      }
+//                      if(ventonia2==false){
+//                        handler->safetyvent_on();
+//                        QThread::msleep(100);
+//                        handler->safetyvent_off();
+//                        ventonia2=true;
+//                      }
                       //int ia2pro=readsensorvalue();
                       ui->label_109->setText(QString::number(0));
                       ia2currentcount=0;
@@ -4472,12 +4501,12 @@ ia2currentcount=2;
                 ui->CI5_5->setStyleSheet(styleSheet4);
                 handler->pinchvalve_off();
             }
-            if (!ventonvit) {
-                handler->safetyvent_on();
-                QThread::msleep(100);
-                handler->safetyvent_off();
-                ventonvit = true;
-            }
+//            if (!ventonvit) {
+//                handler->safetyvent_on();
+//                QThread::msleep(100);
+//                handler->safetyvent_off();
+//                ventonvit = true;
+//            }
 
             motoroff();
             ui->label_119->setText("0");
@@ -4532,16 +4561,16 @@ ia2currentcount=2;
                     int presetvac = static_cast<int>(std::round(calibration * final));
                     int pro = readsensorvalue();
                     ui->label_118->setText(QString::number(pro));
-
+                    if(speakeronoff == "Speaker ON"){
+                    handler->speaker_on(pro,1,0,0);
+                    }else{
+                        handler->speaker_off();
+                    }
 
                     // Motor control based on preset value
                     if (pro < presetvac) {
                         motoron(ui->lineEdit_72);
-                        if(speakeronoff == "Speaker ON"){
-                        handler->speaker_on(pro,1,0,0);
-                        }else{
-                            handler->speaker_off();
-                        }
+
                         if (!motorvit) {
                             motorvit = true;
                         }
@@ -5321,7 +5350,7 @@ int MainWindow::readGPIOValue(int pin)
 }
 void MainWindow::updatehandpieceStatus()
 {
-  nHandPiece = readGPIOValue(960);
+  int hand = readGPIOValue(960);
 
 
     QString styleSheet4 = "QPushButton {"
@@ -5351,13 +5380,13 @@ void MainWindow::updatehandpieceStatus()
                 "background-color:transparent;"
 
                                      "}";
-   if(nHandPiece==0)
+   if(hand==0)
    {
    ui->pushButton->setStyleSheet(styleSheet4);
 
 
    }
-   else if(nHandPiece==1)
+   else if(hand==1)
    {
      ui->pushButton->setStyleSheet(styleSheet5);
 
@@ -5516,9 +5545,12 @@ void MainWindow::changebuttonstyle()
 {
     ui->label_19->show();
 }
+void MainWindow::updateCurrentButtonIndex(int index) {
+    currentButtonIndex = index;
+}
 
-void MainWindow::moved(int gpio)
-{
+
+void MainWindow::moved(int gpio) {
     QPushButton *buttons[] = {
         ui->DIABUT, ui->ULTRASONICBUT1, ui->ULTRASONICBUT2,
         ui->ULTRASONICBUT3, ui->ULTRASONICBUT4, ui->IA1BUT,
@@ -5528,33 +5560,73 @@ void MainWindow::moved(int gpio)
         ui->DIABUT, ui->IA1BUT,
         ui->IA2BUT, ui->VITRECTOMYBUT
     };
+
     int totalButtons = sizeof(buttons) / sizeof(buttons[0]);
     int totalButtons1 = sizeof(buttons1) / sizeof(buttons1[0]);
-if(nHandPiece == 0){
-    if (gpio == 0) {
-        if (currentButtonIndex == -1) {
-            currentButtonIndex = 0;
-        } else {
-            currentButtonIndex = (currentButtonIndex + 1) % totalButtons;
+
+    //if (nHandPiece == 0) {
+        if (gpio == 0) {
+            if (currentButtonIndex == -1) {
+                currentButtonIndex = 0;
+            } else {
+                currentButtonIndex = (currentButtonIndex + 1) % totalButtons;
+            }
         }
-    }
-    // Simulate a click on the current button
-    buttons[currentButtonIndex]->click();
-    buttons[currentButtonIndex]->setFocus();
-}if(nHandPiece == 1){
-    if (gpio == 0) {
-        if (currentButtonIndex == -1) {
-            currentButtonIndex = 0;
-        } else {
-            currentButtonIndex = (currentButtonIndex + 1) % totalButtons1;
+        buttons[currentButtonIndex]->click();
+        buttons[currentButtonIndex]->setFocus();
+  //  }
+
+    if (nHandPiece == 1) {
+        if (gpio == 0) {
+            if (currentButtonIndex == -1) {
+                currentButtonIndex = 0;
+            } else {
+                currentButtonIndex = (currentButtonIndex + 1) % totalButtons1;
+            }
         }
+        buttons1[currentButtonIndex]->click();
+        buttons1[currentButtonIndex]->setFocus();
     }
-    // Simulate a click on the current button
-    buttons1[currentButtonIndex]->click();
-    buttons1[currentButtonIndex]->setFocus();
 }
 
-}
+//void MainWindow::moved(int gpio)
+//{
+//    QPushButton *buttons[] = {
+//        ui->DIABUT, ui->ULTRASONICBUT1, ui->ULTRASONICBUT2,
+//        ui->ULTRASONICBUT3, ui->ULTRASONICBUT4, ui->IA1BUT,
+//        ui->IA2BUT, ui->VITRECTOMYBUT
+//    };
+//    QPushButton *buttons1[] = {
+//        ui->DIABUT, ui->IA1BUT,
+//        ui->IA2BUT, ui->VITRECTOMYBUT
+//    };
+//    int totalButtons = sizeof(buttons) / sizeof(buttons[0]);
+//    int totalButtons1 = sizeof(buttons1) / sizeof(buttons1[0]);
+//if(nHandPiece == 0){
+//    if (gpio == 0) {
+//        if (currentButtonIndex == -1) {
+//            currentButtonIndex = 0;
+//        } else {
+//            currentButtonIndex = (currentButtonIndex + 1) % totalButtons;
+//        }
+//    }
+//    // Simulate a click on the current button
+//    buttons[currentButtonIndex]->click();
+//    buttons[currentButtonIndex]->setFocus();
+//}if(nHandPiece == 1){
+//    if (gpio == 0) {
+//        if (currentButtonIndex == -1) {
+//            currentButtonIndex = 0;
+//        } else {
+//            currentButtonIndex = (currentButtonIndex + 1) % totalButtons1;
+//        }
+//    }
+//    // Simulate a click on the current button
+//    buttons1[currentButtonIndex]->click();
+//    buttons1[currentButtonIndex]->setFocus();
+//}
+
+//}
 
 void MainWindow::movePushButtonBottomToTop(int gpio) {
     QPushButton *buttons[] = {
@@ -5566,29 +5638,37 @@ void MainWindow::movePushButtonBottomToTop(int gpio) {
         ui->DIABUT, ui->IA1BUT,
         ui->IA2BUT, ui->VITRECTOMYBUT
     };
+
     int totalButtons = sizeof(buttons) / sizeof(buttons[0]);
     int totalButtons1 = sizeof(buttons1) / sizeof(buttons1[0]);
-  if(nHandPiece == 0){
-    if (gpio == 0) {
-        if (currentButtonIndex == -1) {
-            currentButtonIndex = totalButtons - 1;
-        } else {
-            currentButtonIndex = (currentButtonIndex - 1 + totalButtons) % totalButtons;
+
+    if (nHandPiece == 0) {
+        if (gpio == 0) {
+            if (currentButtonIndex == -1) {
+                currentButtonIndex = totalButtons - 1; // Start at the last button
+            } else {
+                currentButtonIndex = (currentButtonIndex - 1 + totalButtons) % totalButtons;
+            }
+        }
+        // Ensure currentButtonIndex is within bounds and correctly mapped
+        if (currentButtonIndex >= 0 && currentButtonIndex < totalButtons) {
+            buttons[currentButtonIndex]->click();
+            buttons[currentButtonIndex]->setFocus();
+        }
+    } else if (nHandPiece == 1) {
+        if (gpio == 0) {
+            if (currentButtonIndex == -1) {
+                currentButtonIndex = totalButtons1 - 1; // Start at the last button in the smaller array
+            } else {
+                currentButtonIndex = (currentButtonIndex - 1 + totalButtons1) % totalButtons1;
+            }
+        }
+        // Ensure currentButtonIndex is within bounds and correctly mapped
+        if (currentButtonIndex >= 0 && currentButtonIndex < totalButtons1) {
+            buttons1[currentButtonIndex]->click();
+            buttons1[currentButtonIndex]->setFocus();
         }
     }
-    buttons[currentButtonIndex]->click();
-     buttons[currentButtonIndex]->setFocus();
-  }if(nHandPiece == 1){
-      if (gpio == 0) {
-          if (currentButtonIndex == -1) {
-              currentButtonIndex = totalButtons1 - 1;
-          } else {
-              currentButtonIndex = (currentButtonIndex - 1 + totalButtons1) % totalButtons1;
-          }
-      }
-      buttons1[currentButtonIndex]->click();
-       buttons1[currentButtonIndex]->setFocus();
-  }
 }
 
 void MainWindow::onPdmModeSelected(int gpio) {
@@ -5823,11 +5903,7 @@ void MainWindow::continousirrigation(int value) {
             ui->CI5_5->update();
             overallci = true;
             handler->pinchvalve_on();
-            //qDebug() << "Continuous Irrigation turned ON, button color set to green.";
-            if(speakeronoff == "Speaker ON"){
-            handler->speaker_on(0,0,1,0);}else{
-                handler->speaker_off();
-            }
+           handler->buzz();
             con=1;
         }
     } else {
@@ -5837,7 +5913,7 @@ void MainWindow::continousirrigation(int value) {
                         ui->CI5_5->update();
             overallci = false;
             handler->pinchvalve_off();
-            handler->speaker_off();
+          handler->buzz();
             //qDebug() << "Continuous Irrigation turned OFF, button color set to red.";
 
         }
@@ -6249,13 +6325,10 @@ void MainWindow::on_CI4_2_clicked()
         ui->CI5_5->setStyleSheet(styleSheet3);
 
             handler->pinchvalve_on();
-        handler->safetyvent_on();
         handler->speaker_on(0,0,1,0);
     }
     else{
     ui->CI5_5->setStyleSheet(styleSheet4);
-
-        handler->safetyvent_off();
         handler->pinchvalve_off();
         handler->speaker_off();
     }

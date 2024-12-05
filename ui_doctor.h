@@ -167,6 +167,7 @@ public:
     QProgressBar *progressBar_20;
     QProgressBar *progressBar_21;
     QLineEdit *lineEdit_20;
+    QLabel *label_6;
     QPushButton *DiaBut;
     QLabel *label;
     QLabel *Select_2;
@@ -1426,9 +1427,12 @@ public:
 "border-radius:20px;"));
         lineEdit_20->setFrame(true);
         lineEdit_20->setAlignment(Qt::AlignCenter);
+        label_6 = new QLabel(tab_4);
+        label_6->setObjectName(QString::fromUtf8("label_6"));
+        label_6->setGeometry(QRect(30, 170, 731, 51));
         tabWidget->addTab(tab_4, QString());
-        CutMode_vit->raise();
         CutMode_vitCom->raise();
+        CutMode_vit->raise();
         VacMode_VitCom->raise();
         CutMax_vit->raise();
         VacMax_vit->raise();
@@ -1442,6 +1446,7 @@ public:
         progressBar_20->raise();
         progressBar_21->raise();
         lineEdit_20->raise();
+        label_6->raise();
         DiaBut = new QPushButton(doctor);
         DiaBut->setObjectName(QString::fromUtf8("DiaBut"));
         DiaBut->setGeometry(QRect(303, 90, 71, 71));
@@ -1772,6 +1777,7 @@ public:
         CutRate->setText(QCoreApplication::translate("doctor", "Cut Rate", nullptr));
         Vaccum->setText(QCoreApplication::translate("doctor", "Vaccum", nullptr));
         lineEdit_20->setText(QString());
+        label_6->setText(QString());
         tabWidget->setTabText(tabWidget->indexOf(tab_4), QCoreApplication::translate("doctor", "Page", nullptr));
         DiaBut->setText(QCoreApplication::translate("doctor", "DIA", nullptr));
         label->setText(QString());

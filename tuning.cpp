@@ -628,6 +628,7 @@ void tuning::on_But_Next_clicked()
 
 
 
+
 }
 
 void tuning::on_ButRTune_clicked()

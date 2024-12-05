@@ -3165,8 +3165,21 @@ border-radius:20px;</string>
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <zorder>CutMode_vit</zorder>
+    <widget class="QLabel" name="label_6">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>170</y>
+       <width>731</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
     <zorder>CutMode_vitCom</zorder>
+    <zorder>CutMode_vit</zorder>
     <zorder>VacMode_VitCom</zorder>
     <zorder>CutMax_vit</zorder>
     <zorder>VacMax_vit</zorder>
@@ -3180,6 +3193,7 @@ border-radius:20px;</string>
     <zorder>progressBar_20</zorder>
     <zorder>progressBar_21</zorder>
     <zorder>lineEdit_20</zorder>
+    <zorder>label_6</zorder>
    </widget>
   </widget>
   <widget class="QPushButton" name="DiaBut">

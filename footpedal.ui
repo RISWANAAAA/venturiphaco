@@ -83,17 +83,17 @@ border-radius:20px;
    </property>
    <item>
     <property name="text">
+     <string>Reflux</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
      <string>Increment</string>
     </property>
    </item>
    <item>
     <property name="text">
      <string>Decrement</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Reflux</string>
     </property>
    </item>
    <item>

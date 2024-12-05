@@ -54,7 +54,8 @@ public:
     QLabel *label_5;
     QLabel *label_6;
     QComboBox *comboBox_4;
-    QPushButton *SETTINGS_BUT_4;
+    QLabel *lbloverall;
+    QLabel *label_7;
 
     void setupUi(QWidget *prime)
     {
@@ -366,7 +367,7 @@ public:
         comboBox_4->addItem(QString());
         comboBox_4->addItem(QString());
         comboBox_4->setObjectName(QString::fromUtf8("comboBox_4"));
-        comboBox_4->setGeometry(QRect(420, 20, 321, 51));
+        comboBox_4->setGeometry(QRect(350, 20, 391, 51));
         comboBox_4->setStyleSheet(QString::fromUtf8("\n"
 "background-color: transparent;\n"
 "border:1px solid white;\n"
@@ -374,12 +375,14 @@ public:
 "color: rgb(255, 255, 255);\n"
 "font:20pt \"Ubuntu\";\n"
 "font-weight: bold;"));
-        SETTINGS_BUT_4 = new QPushButton(prime);
-        SETTINGS_BUT_4->setObjectName(QString::fromUtf8("SETTINGS_BUT_4"));
-        SETTINGS_BUT_4->setGeometry(QRect(340, 14, 91, 61));
-        SETTINGS_BUT_4->setStyleSheet(QString::fromUtf8("image: url(:/images/doctor.png);\n"
-"background-color: transparent;\n"
-"border:none;border-radius:30px;"));
+        lbloverall = new QLabel(prime);
+        lbloverall->setObjectName(QString::fromUtf8("lbloverall"));
+        lbloverall->setGeometry(QRect(0, 0, 1281, 81));
+        lbloverall->setStyleSheet(QString::fromUtf8(""));
+        label_7 = new QLabel(prime);
+        label_7->setObjectName(QString::fromUtf8("label_7"));
+        label_7->setGeometry(QRect(370, 80, 67, 651));
+        label_7->setStyleSheet(QString::fromUtf8(""));
         prime1_but->raise();
         tabWidget->raise();
         label_2->raise();
@@ -387,13 +390,14 @@ public:
         label->raise();
         Tune_but->raise();
         clean_but->raise();
+        lbloverall->raise();
         lab_time->raise();
         lab_date->raise();
-        label_5->raise();
-        label_4->raise();
         label_6->raise();
         comboBox_4->raise();
-        SETTINGS_BUT_4->raise();
+        label_5->raise();
+        label_4->raise();
+        label_7->raise();
 
         retranslateUi(prime);
 
@@ -452,7 +456,8 @@ public:
         comboBox_4->setItemText(3, QCoreApplication::translate("prime", "Surgeon 4", nullptr));
         comboBox_4->setItemText(4, QCoreApplication::translate("prime", "Surgeon 5", nullptr));
 
-        SETTINGS_BUT_4->setText(QString());
+        lbloverall->setText(QString());
+        label_7->setText(QString());
     } // retranslateUi
 
 };

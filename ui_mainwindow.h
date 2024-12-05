@@ -3111,7 +3111,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(7);
+        tabWidget->setCurrentIndex(5);
         tabWidget_2->setCurrentIndex(6);
 
 
@@ -3319,7 +3319,7 @@ public:
         ia2vacdown_but->setText(QString());
         label_113->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
         ia2mode->setText(QCoreApplication::translate("MainWindow", "SURGEON", nullptr));
-        label_114->setText(QCoreApplication::translate("MainWindow", "Polish", nullptr));
+        label_114->setText(QCoreApplication::translate("MainWindow", "Cortex", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_38), QCoreApplication::translate("MainWindow", "Page", nullptr));
         ia1flowdown_but->setText(QString());
         lineEdit_67->setText(QCoreApplication::translate("MainWindow", "40", nullptr));
@@ -3341,7 +3341,7 @@ public:
         lineEdit_68->setText(QCoreApplication::translate("MainWindow", "500", nullptr));
         label_109->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
         ia1mode->setText(QCoreApplication::translate("MainWindow", "SURGEON", nullptr));
-        label_110->setText(QCoreApplication::translate("MainWindow", "Cortex", nullptr));
+        label_110->setText(QCoreApplication::translate("MainWindow", "Polish", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_37), QCoreApplication::translate("MainWindow", "Page", nullptr));
         lineEdit_71->setText(QCoreApplication::translate("MainWindow", "960", nullptr));
         vitpowup_but->setText(QString());
