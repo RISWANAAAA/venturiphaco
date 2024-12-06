@@ -392,7 +392,7 @@ else if (leftFootcomAction == "Increment") {
              state3 = 0;       }
     }
 //---------------------------------------------------------------
-    //bottom right
+    //bottom left
     if (bleftFootcomAction == "Continuous Irrigation") {
         if (value4 == 1 && flag4 == 0 && state4 == 0) {
              state4 = 1;           }
@@ -468,7 +468,10 @@ else if (leftFootcomAction == "Increment") {
              state4 = 3;
      }
     if (value4 == 0 && flag4 == 1 && state4 == 3) {
-            emit moveBottomToTop(value4);
+        emit powerdm(value4);
+        emit powerdm1(value4);
+        emit powerdm2(value4);
+        emit powerdm3(value4);
              flag4 = 0;
              state4 = 0;       }
     }else if(bleftFootcomAction == "Reflux"){

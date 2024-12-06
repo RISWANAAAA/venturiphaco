@@ -711,9 +711,9 @@ font-weight: bold;</string>
   <widget class="QLabel" name="label_7">
    <property name="geometry">
     <rect>
-     <x>370</x>
+     <x>410</x>
      <y>80</y>
-     <width>67</width>
+     <width>16</width>
      <height>651</height>
     </rect>
    </property>

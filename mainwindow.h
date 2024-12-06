@@ -50,7 +50,7 @@ public:
     ~MainWindow();
     void nReceiveFreq(int count);
     int footswitchrange();
-
+     void disablegpio();
     void footpedalbeep();
     void beepsound();
     void receivesignal(const QString &text);
@@ -462,7 +462,7 @@ int ia2count=0;
 int vitcount=0;
 int nFreqCount=0;
  int nOnTime=0;
-int nHandPiece=1;
+int nHandPiece;
 
 QMessageBox *message;
 QMessageBox *messageline;
@@ -523,6 +523,7 @@ bool motorus2=false;
 bool motorus3=false;
 bool motorus4=false;
 bool motorvit = false;
+bool isProgrammaticClick = false; // To track if the click is programmatic
 
 
 

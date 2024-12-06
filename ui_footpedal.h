@@ -169,16 +169,16 @@ public:
         left_footcom->setItemText(5, QCoreApplication::translate("footpedal", "PDM", nullptr));
 
         foot_img->setText(QString());
-        bleft_footcom->setItemText(0, QCoreApplication::translate("footpedal", "Increment", nullptr));
-        bleft_footcom->setItemText(1, QCoreApplication::translate("footpedal", "Decrement", nullptr));
-        bleft_footcom->setItemText(2, QCoreApplication::translate("footpedal", "Reflux", nullptr));
+        bleft_footcom->setItemText(0, QCoreApplication::translate("footpedal", "Reflux", nullptr));
+        bleft_footcom->setItemText(1, QCoreApplication::translate("footpedal", "Increment", nullptr));
+        bleft_footcom->setItemText(2, QCoreApplication::translate("footpedal", "Decrement", nullptr));
         bleft_footcom->setItemText(3, QCoreApplication::translate("footpedal", "Continuous Irrigation", nullptr));
         bleft_footcom->setItemText(4, QCoreApplication::translate("footpedal", "Power ON/OFF", nullptr));
         bleft_footcom->setItemText(5, QCoreApplication::translate("footpedal", "PDM", nullptr));
 
-        bright_footcom->setItemText(0, QCoreApplication::translate("footpedal", "Increment", nullptr));
-        bright_footcom->setItemText(1, QCoreApplication::translate("footpedal", "Decrement", nullptr));
-        bright_footcom->setItemText(2, QCoreApplication::translate("footpedal", "Reflux", nullptr));
+        bright_footcom->setItemText(0, QCoreApplication::translate("footpedal", "Reflux", nullptr));
+        bright_footcom->setItemText(1, QCoreApplication::translate("footpedal", "Increment", nullptr));
+        bright_footcom->setItemText(2, QCoreApplication::translate("footpedal", "Decrement", nullptr));
         bright_footcom->setItemText(3, QCoreApplication::translate("footpedal", "Continuous Irrigation", nullptr));
         bright_footcom->setItemText(4, QCoreApplication::translate("footpedal", "Power ON/OFF", nullptr));
         bright_footcom->setItemText(5, QCoreApplication::translate("footpedal", "PDM", nullptr));
