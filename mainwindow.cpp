@@ -1023,16 +1023,16 @@ void MainWindow::on_clickedenter()
 {
    key->hide();
    // Maintain previous value for lineEdit
-   QString text = ui->lineEdit_72->text().trimmed();
+   QString text = ui->lineEdit_71->text().trimmed();
    if (!text.isEmpty()) {
        int input = text.toInt();
        int output = getvalue(input);  // Process the input to get the desired output
-       ui->lineEdit_72->setText(QString::number(output));
-       lastValidValues[ui->lineEdit_72] = output;  // Store the processed output as the last valid value
+       ui->lineEdit_71->setText(QString::number(output));
+       lastValidValues[ui->lineEdit_71] = output;  // Store the processed output as the last valid value
    } else {
        // Restore the last valid value if input is empty
-       if (lastValidValues.contains(ui->lineEdit_72)) {
-           ui->lineEdit_72->setText(QString::number(lastValidValues[ui->lineEdit_72]));
+       if (lastValidValues.contains(ui->lineEdit_71)) {
+           ui->lineEdit_71->setText(QString::number(lastValidValues[ui->lineEdit_71]));
        }
    }
 
@@ -1249,6 +1249,8 @@ void MainWindow::DIATHERMYBUT()
 {
     handler->buzz();
     handler->safetyvent_off();
+    motoroff();
+    handler->pinchvalve_off();
 
     ui->tabWidget->setCurrentIndex(7);
     ui->label_32->hide();
@@ -2344,6 +2346,8 @@ vus4=ui->us4vacmode->text();
         handler->phaco_off();
         handler->fs_count(0);
         handler->phaco_power(0);
+        handler->pinchvalve_off();
+       motoroff();
    if(flag){
             if (range > 0 && range < nfpzero) {
                 ui->pushButton_42->setText("0");
@@ -2351,18 +2355,18 @@ vus4=ui->us4vacmode->text();
                 ui->dial_2->setValue(range);
                 handler->dia_off();
 
-                if (!overallci) {
+                if (overallci && con==0) {
                     ui->CI5_5->setStyleSheet(styleSheet4);
                     handler->pinchvalve_off();
                     handler->safetyvent_off();
                 }
 
-                if (!ventondia) {
-                    handler->safetyvent_on();
-                    QThread::msleep(100);
-                    handler->safetyvent_off();
-                    ventondia = true;
-                }
+//                if (!ventondia) {
+//                    handler->safetyvent_on();
+//                    QThread::msleep(100);
+//                    handler->safetyvent_off();
+//                    ventondia = true;
+//                }
                 flag=true;
                 handler->speaker_off();
             }
@@ -2373,19 +2377,18 @@ vus4=ui->us4vacmode->text();
                 handler->dia_on();
                 handler->dia_count(pow);
 
-                ui->CI5_5->setStyleSheet(styleSheet3);
-                if (!overallci) {
+                if (overallci && con ==0) {
                     ui->CI5_5->setStyleSheet(styleSheet4);
                     handler->pinchvalve_off();
                     handler->safetyvent_off();
                 }
 
-                if (!ventondia) {
-                    handler->safetyvent_on();
-                    QThread::msleep(100);
-                    handler->safetyvent_off();
-                    ventondia = true;
-                }
+//                if (!ventondia) {
+//                    handler->safetyvent_on();
+//                    QThread::msleep(100);
+//                    handler->safetyvent_off();
+//                    ventondia = true;
+//                }
                 if(speakeronoff == "Speaker ON"){
                     handler->speaker_on(0,0,1,0);
                 }else{
@@ -4150,6 +4153,7 @@ QString ia1=ui->ia2mode->text();
                 }
 
                 ui->dial_2->setValue(range);
+                handler->pinchvalve_on();
                 ui->CI5_5->setStyleSheet(styleSheet3);
                 if(ventonia1 == false) {
                     handler->safetyvent_on();
@@ -4157,7 +4161,6 @@ QString ia1=ui->ia2mode->text();
                     handler->safetyvent_off();
                     ventonia1 = true;
                 }
-                handler->pinchvalve_on();
                 motoroff();
                 int pro = readsensorvalue();
                 ui->label_113->setText(QString::number(pro));
@@ -4364,8 +4367,7 @@ handler->pinchvalve_on();
                 ui->CI5_5->setStyleSheet(styleSheet3);
                 handler->safetyvent_off();
                 handler->pinchvalve_on();
-
-                              int nonlinear_prevac = readsensorvalue(); // Assuming this function reads the current sensor value
+            int nonlinear_prevac = readsensorvalue(); // Assuming this function reads the current sensor value
                               int nonlinear_vac = std::min(nonlinear_prevac, static_cast<int>(ia2vacline));
                               ui->label_109->setText(QString::number(nonlinear_vac));
                               motoron(ui->lineEdit_67);
@@ -5425,7 +5427,7 @@ void MainWindow::motoroff()
 
 void MainWindow::motorccwon()
 {
-    handler->write_motor(0x01,0x02,40);
+    handler->write_motor(0x01,0x01,40);
 }
 //roundoff value
 
@@ -5553,116 +5555,236 @@ void MainWindow::changebuttonstyle()
 void MainWindow::updateCurrentButtonIndex(int index) {
     currentButtonIndex = index;
 }
-
 void MainWindow::moved(int gpio) {
-    QPushButton *buttons[] = {
-          ui->DIABUT, ui->ULTRASONICBUT1, ui->ULTRASONICBUT2,
-          ui->ULTRASONICBUT3, ui->ULTRASONICBUT4, ui->IA1BUT,
-          ui->IA2BUT, ui->VITRECTOMYBUT
-      };
-      QPushButton *buttons1[] = {
-          ui->DIABUT, ui->IA1BUT,
-          ui->IA2BUT, ui->VITRECTOMYBUT
-      };
+    // Arrays of buttons for Handpiece modes
+    QPushButton *ultrasonicButtons[] = {
+        ui->DIABUT, ui->ULTRASONICBUT1, ui->ULTRASONICBUT2,
+        ui->ULTRASONICBUT3, ui->ULTRASONICBUT4, ui->IA1BUT,
+        ui->IA2BUT, ui->VITRECTOMYBUT
+    };
 
-      int totalButtons = sizeof(buttons) / sizeof(buttons[0]);
-      int totalButtons1 = sizeof(buttons1) / sizeof(buttons1[0]);
+    QPushButton *otherButtons[] = {
+        ui->DIABUT, ui->IA1BUT,
+        ui->IA2BUT, ui->VITRECTOMYBUT
+    };
 
-      // Handling for nHandPiece == 0
-      if (nHandPiece == 0) {
-          if (gpio == 0) {
-              // If currentButtonIndex is -1, start from the first button in the sequence
-              if (currentButtonIndex == -1) {
-                  currentButtonIndex = 0; // Start from the first button (IA1)
-              } else {
-                  // Move to the next button in the sequence
-                  currentButtonIndex = (currentButtonIndex + 1) % totalButtons;
-              }
+    // Calculate the total buttons for each array
+    int totalUltrasonicButtons = sizeof(ultrasonicButtons) / sizeof(ultrasonicButtons[0]);
+    int totalOtherButtons = sizeof(otherButtons) / sizeof(otherButtons[0]);
 
-              // Debugging output: Log the index and button
-              qDebug() << "Handpiece 0, GPIO: " << gpio << ", Button Index: " << currentButtonIndex;
-              qDebug() << "Selected Button: " << buttons[currentButtonIndex]->text();
-
-              // Debug: Check PDM mode or other associated actions
-              if (buttons[currentButtonIndex] == ui->ULTRASONICBUT1) {
-                  qDebug() << "US1 button clicked, triggering PDM Mode.";
-                  ULTRASONICBUT1();
-                  qDebug()<<"the pdm mode is"<<ui->CutMode_vitCom->currentText()<<"the us1.......................";
-              } else if (buttons[currentButtonIndex] == ui->ULTRASONICBUT2) {
-                  ULTRASONICBUT2();
-                  qDebug() << "US2 button clicked, triggering PDM Mode.";
-                  qDebug()<<"the pdm1 mode is"<<ui->CutMode_vitCom_2->currentText()<<"the us2............................";
-
-              } else if (buttons[currentButtonIndex] == ui->ULTRASONICBUT3) {
-
-                  qDebug() << "US3 button clicked, triggering PDM Mode.";
-                  ULTRASONICBUT3();
-                  qDebug()<<"the pdm mode is selected for pdm mode in us3"<<ui->CutMode_vitCom_3->currentText()<<"the pdm mode in us3...........";
-              } else if (buttons[currentButtonIndex] == ui->ULTRASONICBUT4) {
-                  qDebug() << "US4 button clicked, triggering PDM Mode.";
-                  ULTRASONICBUT4();
-                  qDebug()<<"the pdm mode in us4 is"<<ui->CutMode_vitCom_4->currentText()<<"the pdm mode in us4......................";
-              }else if(buttons[currentButtonIndex] == ui->IA1BUT){
-                  IRRIGATIONBUT1();
-              }else if(buttons[currentButtonIndex] == ui->IA2BUT){
-                  IRRIGATIONBUT2();
-              }else if(buttons[currentButtonIndex] == ui->VITRECTOMYBUT){
-                  VITRECTOMYBUT();
-              }else if(buttons[currentButtonIndex] == ui->DIABUT){
-                  DIATHERMYBUT();
-              }
-
-
-          // Click the selected button and set focus
-          buttons[currentButtonIndex]->click();
-          buttons[currentButtonIndex]->setFocus();
-      }
-
-//        // Check for specific buttons and move to next if necessary (like ia1 to ia2)
-//        if (buttons[currentButtonIndex] == ui->IA1BUT && gpio == 0) {
-//            // Move to the next button (IA2)
-//            currentButtonIndex = (currentButtonIndex + 1) % totalButtons;
-//            qDebug() << "Moving to next button: " << buttons[currentButtonIndex]->text();
-//            buttons[currentButtonIndex]->click();
-//            buttons[currentButtonIndex]->setFocus();
-//        }
-    }
-
-    // Handling for nHandPiece == 1
-    if (nHandPiece == 1) {
+    // Logic for nHandPiece == 0 (SetUltrasonicMode)
+    if (nHandPiece == 0) {
         if (gpio == 0) {
-            // If currentButtonIndex is -1, start from the first button in the sequence
-            if (currentButtonIndex == -1) {
-                currentButtonIndex = 0;
-            } else {
-                // Move to the next button in the sequence
-                currentButtonIndex = (currentButtonIndex + 1) % totalButtons1;
+            // Update the button index
+            currentButtonIndex = (currentButtonIndex + 1) % totalUltrasonicButtons;
+
+            // Retrieve the selected button
+            QPushButton *selectedButton = ultrasonicButtons[currentButtonIndex];
+
+            // Perform actions based on the selected button
+            if (selectedButton == ui->ULTRASONICBUT1) {
+                ULTRASONICBUT1();
+                qDebug() << "US1 triggered in SetUltrasonicMode, PDM mode:"
+                         << ui->CutMode_vitCom->currentText();
+            } else if (selectedButton == ui->ULTRASONICBUT2) {
+                ULTRASONICBUT2();
+                qDebug() << "US2 triggered in SetUltrasonicMode, PDM mode:"
+                         << ui->CutMode_vitCom_2->currentText();
+            } else if (selectedButton == ui->ULTRASONICBUT3) {
+                ULTRASONICBUT3();
+                qDebug() << "US3 triggered in SetUltrasonicMode, PDM mode:"
+                         << ui->CutMode_vitCom_3->currentText();
+            } else if (selectedButton == ui->ULTRASONICBUT4) {
+                ULTRASONICBUT4();
+                qDebug() << "US4 triggered in SetUltrasonicMode, PDM mode:"
+                         << ui->CutMode_vitCom_4->currentText();
+            } else if (selectedButton == ui->IA1BUT) {
+                IRRIGATIONBUT1();
+                qDebug() << "IA1 triggered in SetUltrasonicMode.";
+            } else if (selectedButton == ui->IA2BUT) {
+                IRRIGATIONBUT2();
+                qDebug() << "IA2 triggered in SetUltrasonicMode.";
+            } else if (selectedButton == ui->VITRECTOMYBUT) {
+                VITRECTOMYBUT();
+                qDebug() << "VIT triggered in SetUltrasonicMode.";
+            } else if (selectedButton == ui->DIABUT) {
+                DIATHERMYBUT();
+                qDebug() << "DIA triggered in SetUltrasonicMode.";
             }
-            if(buttons[currentButtonIndex] == ui->IA1BUT){
-                              IRRIGATIONBUT1();
-                              qDebug()<<"the button is ia1";
-                          }else if(buttons[currentButtonIndex] == ui->IA2BUT){
-                              IRRIGATIONBUT2();
-                              qDebug()<<"the button is ia2";
 
-                          }else if(buttons[currentButtonIndex] == ui->VITRECTOMYBUT){
-                              VITRECTOMYBUT();
-                              qDebug()<<"the button is vit";
+            // Click and focus on the selected button
+            selectedButton->click();
+            selectedButton->setFocus();
+        }
+    }
 
-                          }else if(buttons[currentButtonIndex] == ui->DIABUT){
-                              DIATHERMYBUT();
-                              qDebug()<<"The mode is diathermy";
-                          }
-            // Debugging output
-            qDebug() << "Handpiece 1, GPIO: " << gpio << ", Button Index: " << currentButtonIndex;
-            qDebug() << "Selected Button: " << buttons1[currentButtonIndex]->text();
+//    // Logic for nHandPiece == 1 (Other Modes)
+   else if (nHandPiece == 1) {//    if (nHandPiece == 1) {
+        //        if (gpio == 0) {
+        //            // Update the button index
+        //            currentButtonIndex = (currentButtonIndex + 1) % totalOtherButtons;
 
+        //            // Retrieve the selected button
+        //            QPushButton *selectedButton = otherButtons[currentButtonIndex];
 
-        buttons1[currentButtonIndex]->click();
-        buttons1[currentButtonIndex]->setFocus();
+        //            // Perform actions based on the selected button
+        //            if (selectedButton == ui->IA1BUT) {
+        //                IRRIGATIONBUT1();
+        //                qDebug() << "IA1 triggered in Other Modes.";
+        //            } else if (selectedButton == ui->IA2BUT) {
+        //                IRRIGATIONBUT2();
+        //                qDebug() << "IA2 triggered in Other Modes.";
+        //            } else if (selectedButton == ui->VITRECTOMYBUT) {
+        //                VITRECTOMYBUT();
+        //                qDebug() << "VIT triggered in Other Modes.";
+        //            } else if (selectedButton == ui->DIABUT) {
+        //                DIATHERMYBUT();
+        //                qDebug() << "DIA triggered in Other Modes.";
+        //            }
+
+        //            // Click and focus on the selected button
+        //            selectedButton->click();
+        //            selectedButton->setFocus();
+        //        }
+        //    }
+        if (gpio == 0) {
+            // Update the button index
+            currentButtonIndex = (currentButtonIndex + 1) % totalOtherButtons;
+
+            // Retrieve the selected button
+            QPushButton *selectedButton = otherButtons[currentButtonIndex];
+
+            // Perform actions based on the selected button
+            if (selectedButton == ui->IA1BUT) {
+                IRRIGATIONBUT1();
+                qDebug() << "IA1 triggered in Other Modes.";
+            } else if (selectedButton == ui->IA2BUT) {
+                IRRIGATIONBUT2();
+                qDebug() << "IA2 triggered in Other Modes.";
+            } else if (selectedButton == ui->VITRECTOMYBUT) {
+                VITRECTOMYBUT();
+                qDebug() << "VIT triggered in Other Modes.";
+            } else if (selectedButton == ui->DIABUT) {
+                DIATHERMYBUT();
+                qDebug() << "DIA triggered in Other Modes.";
+            }
+
+            // Click and focus on the selected button
+            selectedButton->click();
+            selectedButton->setFocus();
+        }
     }
 }
-}
+
+//void MainWindow::moved(int gpio) {
+//    QPushButton *buttons[] = {
+//          ui->DIABUT, ui->ULTRASONICBUT1, ui->ULTRASONICBUT2,
+//          ui->ULTRASONICBUT3, ui->ULTRASONICBUT4, ui->IA1BUT,
+//          ui->IA2BUT, ui->VITRECTOMYBUT
+//      };
+//      QPushButton *buttons1[] = {
+//          ui->DIABUT, ui->IA1BUT,
+//          ui->IA2BUT, ui->VITRECTOMYBUT
+//      };
+
+//      int totalButtons = sizeof(buttons) / sizeof(buttons[0]);
+//      int totalButtons1 = sizeof(buttons1) / sizeof(buttons1[0]);
+
+//      // Handling for nHandPiece == 0
+//      if (nHandPiece == 0) {
+//          if (gpio == 0) {
+//              // If currentButtonIndex is -1, start from the first button in the sequence
+//              if (currentButtonIndex == -1) {
+//                  currentButtonIndex = 0; // Start from the first button (IA1)
+//              } else {
+//                  // Move to the next button in the sequence
+//                  currentButtonIndex = (currentButtonIndex + 1) % totalButtons;
+//              }
+
+//              // Debugging output: Log the index and button
+//              qDebug() << "Handpiece 0, GPIO: " << gpio << ", Button Index: " << currentButtonIndex;
+//              qDebug() << "Selected Button: " << buttons[currentButtonIndex]->text();
+
+//              // Debug: Check PDM mode or other associated actions
+//              if (buttons[currentButtonIndex] == ui->ULTRASONICBUT1) {
+//                  qDebug() << "US1 button clicked, triggering PDM Mode.";
+//                  ULTRASONICBUT1();
+//                  qDebug()<<"the pdm mode is"<<ui->CutMode_vitCom->currentText()<<"the us1.......................";
+//              } else if (buttons[currentButtonIndex] == ui->ULTRASONICBUT2) {
+//                  ULTRASONICBUT2();
+//                  qDebug() << "US2 button clicked, triggering PDM Mode.";
+//                  qDebug()<<"the pdm1 mode is"<<ui->CutMode_vitCom_2->currentText()<<"the us2............................";
+
+//              } else if (buttons[currentButtonIndex] == ui->ULTRASONICBUT3) {
+
+//                  qDebug() << "US3 button clicked, triggering PDM Mode.";
+//                  ULTRASONICBUT3();
+//                  qDebug()<<"the pdm mode is selected for pdm mode in us3"<<ui->CutMode_vitCom_3->currentText()<<"the pdm mode in us3...........";
+//              } else if (buttons[currentButtonIndex] == ui->ULTRASONICBUT4) {
+//                  qDebug() << "US4 button clicked, triggering PDM Mode.";
+//                  ULTRASONICBUT4();
+//                  qDebug()<<"the pdm mode in us4 is"<<ui->CutMode_vitCom_4->currentText()<<"the pdm mode in us4......................";
+//              }else if(buttons[currentButtonIndex] == ui->IA1BUT){
+//                  IRRIGATIONBUT1();
+//              }else if(buttons[currentButtonIndex] == ui->IA2BUT){
+//                  IRRIGATIONBUT2();
+//              }else if(buttons[currentButtonIndex] == ui->VITRECTOMYBUT){
+//                  VITRECTOMYBUT();
+//              }else if(buttons[currentButtonIndex] == ui->DIABUT){
+//                  DIATHERMYBUT();
+//              }
+
+
+//          // Click the selected button and set focus
+//          buttons[currentButtonIndex]->click();
+//          buttons[currentButtonIndex]->setFocus();
+//      }
+
+////        // Check for specific buttons and move to next if necessary (like ia1 to ia2)
+////        if (buttons[currentButtonIndex] == ui->IA1BUT && gpio == 0) {
+////            // Move to the next button (IA2)
+////            currentButtonIndex = (currentButtonIndex + 1) % totalButtons;
+////            qDebug() << "Moving to next button: " << buttons[currentButtonIndex]->text();
+////            buttons[currentButtonIndex]->click();
+////            buttons[currentButtonIndex]->setFocus();
+////        }
+//    }
+
+//    // Handling for nHandPiece == 1
+//    if (nHandPiece == 1) {
+//        if (gpio == 0) {
+//            // If currentButtonIndex is -1, start from the first button in the sequence
+//            if (currentButtonIndex == -1) {
+//                currentButtonIndex = 0;
+//            } else {
+//                // Move to the next button in the sequence
+//                currentButtonIndex = (currentButtonIndex + 1) % totalButtons1;
+//            }
+//            if(buttons[currentButtonIndex] == ui->IA1BUT){
+//                              IRRIGATIONBUT1();
+//                              qDebug()<<"the button is ia1";
+//                          }else if(buttons[currentButtonIndex] == ui->IA2BUT){
+//                              IRRIGATIONBUT2();
+//                              qDebug()<<"the button is ia2";
+
+//                          }else if(buttons[currentButtonIndex] == ui->VITRECTOMYBUT){
+//                              VITRECTOMYBUT();
+//                              qDebug()<<"the button is vit";
+
+//                          }else if(buttons[currentButtonIndex] == ui->DIABUT){
+//                              DIATHERMYBUT();
+//                              qDebug()<<"The mode is diathermy";
+//                          }
+//            // Debugging output
+//            qDebug() << "Handpiece 1, GPIO: " << gpio << ", Button Index: " << currentButtonIndex;
+//            qDebug() << "Selected Button: " << buttons1[currentButtonIndex]->text();
+
+
+//        buttons1[currentButtonIndex]->click();
+//        buttons1[currentButtonIndex]->setFocus();
+//    }
+//}
+//}
 
 //void MainWindow::moved(int gpio)
 //{
@@ -6056,8 +6178,136 @@ reflux= 1;       // Update the flag to indicate motor action completed
         reflux=0;
     }
 }
+//void MainWindow::continousirrigation(int value) {
+//    QString styleSheetOn = "QPushButton {"
+//                           "font: 20pt Ubuntu;"
+//                           "background-color: green;"
+//                           "color: black;"
+//                           "image: url(:/images/ci.png);"
+//                           "border: 5px solid black;"
+//                           "border-radius: 30px;"
+//                           "font-weight: bold;"
+//                           "}";
 
-void MainWindow::continousirrigation(int value) {
+//    QString styleSheetOff = "QPushButton {"
+//                            "font: 20pt Ubuntu;"
+//                            "background-color: red;"
+//                            "image: url(:/images/ci.png);"
+//                            "border: 5px solid black;"
+//                            "border-radius: 30px;"
+//                            "font-weight: bold;"
+//                            "}";
+
+//    con = value; // Update the con value with the input
+
+//    if (con == 0) {
+//        // GPIO value is 0
+//        if (overallci) {
+//            // If irrigation is ON, turn it OFF
+//            ui->CI5_5->setStyleSheet(styleSheetOff);
+//            ui->CI5_5->update();
+//            overallci = false;
+//            handler->pinchvalve_off();
+//            handler->buzz();
+//        }
+//    } else {
+//        // GPIO value is 1
+//        if (!overallci) {
+//            // If irrigation is OFF, turn it ON
+//            ui->CI5_5->setStyleSheet(styleSheetOn);
+//            ui->CI5_5->update();
+//            overallci = true;
+//            handler->pinchvalve_on();
+//            handler->buzz();
+//        }
+//    }
+//}
+//void MainWindow::continousirrigation(int value)
+//{
+//    QString styleSheetOn = "QPushButton {"
+//                           "font: 20pt Ubuntu;"
+//                           "background-color: green;"
+//                           "color: black;"
+//                           "image: url(:/images/ci.png);"
+//                           "border: 5px solid black;"
+//                           "border-radius: 30px;"
+//                           "font-weight: bold;"
+//                           "}";
+
+//    QString styleSheetOff = "QPushButton {"
+//                            "font: 20pt Ubuntu;"
+//                            "background-color: red;"
+//                            "image: url(:/images/ci.png);"
+//                            "border: 5px solid black;"
+//                            "border-radius: 30px;"
+//                            "font-weight: bold;"
+//                            "}";
+
+//    con = value; // Update GPIO value
+
+//    if (con == 0 && overallci) {
+//        // GPIO value is 0 and irrigation is ON -> Turn OFF
+//        ui->CI5_5->setStyleSheet(styleSheetOff);
+//        ui->CI5_5->update();
+//        overallci = false; // Update state
+//        handler->pinchvalve_off();    // Deactivate pinch valve
+//        handler->buzz();              // Trigger buzzer
+//    } else if (con == 1 && !overallci) {
+//        // GPIO value is 1 and irrigation is OFF -> Turn ON
+//        ui->CI5_5->setStyleSheet(styleSheetOn);
+//        ui->CI5_5->update();
+//        overallci = true;             // Update state
+//        handler->pinchvalve_on();     // Activate pinch valve
+//        handler->buzz();              // Trigger buzzer
+//    }
+//}
+
+//void MainWindow::continousirrigation(int value) {
+//    QString styleSheetOn = "QPushButton {"
+//                           "font: 20pt Ubuntu;"
+//                           "background-color: green;"
+//                           "color: black;"
+//                           "image: url(:/images/ci.png);"
+//                           "border: 5px solid black;"
+//                           "border-radius: 30px;"
+//                           "font-weight: bold;"
+//                           "}";
+
+//    QString styleSheetOff = "QPushButton {"
+//                            "font: 20pt Ubuntu;"
+//                            "background-color: red;"
+//                            "image: url(:/images/ci.png);"
+//                            "border: 5px solid black;"
+//                            "border-radius: 30px;"
+//                            "font-weight: bold;"
+//                            "}";
+
+//    con = value; // Update the con value with the input
+
+//    if (overallci) {
+//        // Continuous Irrigation is ON
+//        if (con == 0) {
+//            // GPIO value is 0, turn OFF irrigation
+//            ui->CI5_5->setStyleSheet(styleSheetOff);
+//            ui->CI5_5->update();
+//            overallci = false; // Update state
+//            handler->pinchvalve_off();
+//            handler->buzz();
+//        }
+//    } else {
+//        // Continuous Irrigation is OFF
+//        if (con == 1) {
+//            // GPIO value is 1, turn ON irrigation
+//            ui->CI5_5->setStyleSheet(styleSheetOn);
+//            ui->CI5_5->update();
+//            overallci = true; // Update state
+//            handler->pinchvalve_on();
+//            handler->buzz();
+//        }
+//    }
+//}
+
+void MainWindow::continousirrigation(int value) {//this is correct program
     QString styleSheetOn = "QPushButton {"
                            "font: 20pt Ubuntu;"
                            "background-color: green;"
@@ -6076,6 +6326,7 @@ void MainWindow::continousirrigation(int value) {
                             "border-radius: 30px;"
                             "font-weight: bold;"
                             "}";
+
  con=value;
     if (con == 0) {
         if (!overallci) {
@@ -6106,13 +6357,13 @@ void MainWindow::continousirrigation(int value) {
 
 void MainWindow::poweronoff(int gpio)
 {
-bool flag=gpio;
-    if (flag == 0) {
+poweronoff1=gpio;
+    if (poweronoff1 == 0) {
           enableButtons(true);
-          flag=1;
+          poweronoff1=1;
        }else{
         enableButtons(false);
-        flag=0;
+        poweronoff1=0;
     }
 
 }
@@ -6481,40 +6732,75 @@ int MainWindow::getvalue(int input)
         return ((input-1)/60+1)*60;
     }
 }
-
 void MainWindow::on_CI4_2_clicked()
 {
-    QString styleSheet3 = "QPushButton {"
-           " font:20pt Ubuntu;"
-          " background-color: green;"
-            "color: black;"
-      "image: url(:/images/ci.png);"
-           " border:5px solid black;"
-           " border-radius:30px;"
-            "font-weight: bold;"
-                                 "}";
-    QString styleSheet4 = "QPushButton {"
-           " font:20pt Ubuntu;"
-          " background-color: red;"
+    QString styleSheetOn = "QPushButton {"
+                           "font: 20pt Ubuntu;"
+                           "background-color: green;"
+                           "color: black;"
+                           "image: url(:/images/ci.png);"
+                           "border: 5px solid black;"
+                           "border-radius: 30px;"
+                           "font-weight: bold;"
+                           "}";
 
-            "image: url(:/images/ci.png);"
-           " border:5px solid black;"
-           " border-radius:30px;"
-            "font-weight: bold;"
-                                 "}";
-    if(!overallci){
-        ui->CI5_5->setStyleSheet(styleSheet3);
+    QString styleSheetOff = "QPushButton {"
+                            "font: 20pt Ubuntu;"
+                            "background-color: red;"
+                            "image: url(:/images/ci.png);"
+                            "border: 5px solid black;"
+                            "border-radius: 30px;"
+                            "font-weight: bold;"
+                            "}";
 
-            handler->pinchvalve_on();
-        handler->speaker_on(0,0,1,0);
+    if (!overallci) {
+        // Turn ON Continuous Irrigation
+        ui->CI5_5->setStyleSheet(styleSheetOn);
+        handler->pinchvalve_on();       // Activate pinch valve
+        handler->speaker_on(0, 0, 1, 0); // Activate speaker
+    } else {
+        // Turn OFF Continuous Irrigation
+        ui->CI5_5->setStyleSheet(styleSheetOff);
+        handler->pinchvalve_off();     // Deactivate pinch valve
+        handler->speaker_off();        // Deactivate speaker
     }
-    else{
-    ui->CI5_5->setStyleSheet(styleSheet4);
-        handler->pinchvalve_off();
-        handler->speaker_off();
-    }
-    overallci=!overallci;
+
+    overallci = !overallci; // Toggle state
 }
+
+//void MainWindow::on_CI4_2_clicked()
+//{
+//    QString styleSheet3 = "QPushButton {"
+//           " font:20pt Ubuntu;"
+//          " background-color: green;"
+//            "color: black;"
+//      "image: url(:/images/ci.png);"
+//           " border:5px solid black;"
+//           " border-radius:30px;"
+//            "font-weight: bold;"
+//                                 "}";
+//    QString styleSheet4 = "QPushButton {"
+//           " font:20pt Ubuntu;"
+//          " background-color: red;"
+
+//            "image: url(:/images/ci.png);"
+//           " border:5px solid black;"
+//           " border-radius:30px;"
+//            "font-weight: bold;"
+//                                 "}";
+//    if(!overallci){
+//        ui->CI5_5->setStyleSheet(styleSheet3);
+
+//            handler->pinchvalve_on();
+//        handler->speaker_on(0,0,1,0);
+//    }
+//    else{
+//    ui->CI5_5->setStyleSheet(styleSheet4);
+//        handler->pinchvalve_off();
+//        handler->speaker_off();
+//    }
+//    overallci=!overallci;
+//}
 
 void MainWindow::receivecombo(const QString &text)
 {
@@ -6719,6 +7005,9 @@ void MainWindow::receiveValues(const QString &comboBoxValue,const QString &combo
       ui->lineEdit_71->setText(QString::number(surgicalData.vitcut));
       ui->lineEdit_73->setText(QString::number(surgicalData.vitvac));
       ui->lineEdit_72->setText(QString::number(surgicalData.vitasp));
+      ui->vitvacmode->setText(surgicalData.vitvacmode);
+      ui->ia2mode->setText(surgicalData.ia1mode);
+      ui->ia1mode->setText(surgicalData.ia2mode);
       //qDebug()<<surgicalData.ia1asp<<surgicalData.ia2asp<<surgicalData.ia1vac<<surgicalData.ia2vac<<"these are sended from the doctor windiow";
 
 

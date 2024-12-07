@@ -524,6 +524,7 @@ bool motorus3=false;
 bool motorus4=false;
 bool motorvit = false;
 bool isProgrammaticClick = false; // To track if the click is programmatic
+bool poweronoff1;
 
 
 

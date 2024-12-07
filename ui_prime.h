@@ -381,7 +381,7 @@ public:
         lbloverall->setStyleSheet(QString::fromUtf8(""));
         label_7 = new QLabel(prime);
         label_7->setObjectName(QString::fromUtf8("label_7"));
-        label_7->setGeometry(QRect(370, 80, 67, 651));
+        label_7->setGeometry(QRect(410, 80, 16, 651));
         label_7->setStyleSheet(QString::fromUtf8(""));
         prime1_but->raise();
         tabWidget->raise();
