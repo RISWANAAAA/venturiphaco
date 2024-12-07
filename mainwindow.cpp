@@ -2355,7 +2355,7 @@ vus4=ui->us4vacmode->text();
                 ui->dial_2->setValue(range);
                 handler->dia_off();
 
-                if (overallci && con==0) {
+                if (!overallci && con==0) {
                     ui->CI5_5->setStyleSheet(styleSheet4);
                     handler->pinchvalve_off();
                     handler->safetyvent_off();
@@ -2377,7 +2377,7 @@ vus4=ui->us4vacmode->text();
                 handler->dia_on();
                 handler->dia_count(pow);
 
-                if (overallci && con ==0) {
+                if (!overallci && con ==0) {
                     ui->CI5_5->setStyleSheet(styleSheet4);
                     handler->pinchvalve_off();
                     handler->safetyvent_off();
