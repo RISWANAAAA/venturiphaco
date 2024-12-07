@@ -2355,7 +2355,7 @@ vus4=ui->us4vacmode->text();
                 ui->dial_2->setValue(range);
                 handler->dia_off();
 
-                if (!overallci && con==0) {
+                if (!overallci ) {
                     ui->CI5_5->setStyleSheet(styleSheet4);
                     handler->pinchvalve_off();
                     handler->safetyvent_off();
@@ -2377,7 +2377,7 @@ vus4=ui->us4vacmode->text();
                 handler->dia_on();
                 handler->dia_count(pow);
 
-                if (!overallci && con ==0) {
+                if (!overallci) {
                     ui->CI5_5->setStyleSheet(styleSheet4);
                     handler->pinchvalve_off();
                     handler->safetyvent_off();
@@ -5620,33 +5620,7 @@ void MainWindow::moved(int gpio) {
 
 //    // Logic for nHandPiece == 1 (Other Modes)
    else if (nHandPiece == 1) {//    if (nHandPiece == 1) {
-        //        if (gpio == 0) {
-        //            // Update the button index
-        //            currentButtonIndex = (currentButtonIndex + 1) % totalOtherButtons;
 
-        //            // Retrieve the selected button
-        //            QPushButton *selectedButton = otherButtons[currentButtonIndex];
-
-        //            // Perform actions based on the selected button
-        //            if (selectedButton == ui->IA1BUT) {
-        //                IRRIGATIONBUT1();
-        //                qDebug() << "IA1 triggered in Other Modes.";
-        //            } else if (selectedButton == ui->IA2BUT) {
-        //                IRRIGATIONBUT2();
-        //                qDebug() << "IA2 triggered in Other Modes.";
-        //            } else if (selectedButton == ui->VITRECTOMYBUT) {
-        //                VITRECTOMYBUT();
-        //                qDebug() << "VIT triggered in Other Modes.";
-        //            } else if (selectedButton == ui->DIABUT) {
-        //                DIATHERMYBUT();
-        //                qDebug() << "DIA triggered in Other Modes.";
-        //            }
-
-        //            // Click and focus on the selected button
-        //            selectedButton->click();
-        //            selectedButton->setFocus();
-        //        }
-        //    }
         if (gpio == 0) {
             // Update the button index
             currentButtonIndex = (currentButtonIndex + 1) % totalOtherButtons;
@@ -5824,6 +5798,7 @@ void MainWindow::moved(int gpio) {
 //}
 
 //}
+
 void MainWindow::movePushButtonBottomToTop(int gpio) {
     QPushButton *buttons[] = {
         ui->DIABUT, ui->ULTRASONICBUT1, ui->ULTRASONICBUT2,
