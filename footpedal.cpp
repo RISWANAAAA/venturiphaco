@@ -45,6 +45,7 @@ db.close();
 void footpedal::Back()
 {
     this->close();
+    emit activatemain();
 }
 
 void footpedal::setupConnections()
@@ -199,7 +200,7 @@ else if (leftFootcomAction == "Increment") {
              state2 = 3;
      }
     if (value2 == 0 && flag2 == 1 && state2 == 3) {
-             emit continous_irrigation(1);
+             emit continous_irrigation(0);
              flag2 = 0;
              state2 = 0;       }
     }

@@ -623,9 +623,11 @@ void tuning::on_But_Next_clicked()
 {
     main->show();
     emit activatemain();
-   main->DIATHERMYBUT();
-  //main->setTuneMode();
-main->disablegpio();
+  // main->DIATHERMYBUT();
+  main->setTuneMode();
+main->ULTRASONICBUT1();
+ //main->activategpio();
+//main->disablegpio();
 
 
 

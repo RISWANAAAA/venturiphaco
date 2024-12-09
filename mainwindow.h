@@ -51,6 +51,7 @@ public:
     void nReceiveFreq(int count);
     int footswitchrange();
      void disablegpio();
+     void activategpio();
     void footpedalbeep();
     void beepsound();
     void receivesignal(const QString &text);
@@ -70,6 +71,7 @@ void speedofthelabe(QLabel *label);
     int rec;
     int butname=0;
     void updateCurrentButtonIndex(int index);
+
 
     int readGPIO(int gpio,int gpio1,int gpio2,int gpio3);
     void moveTab(int usIndex);
@@ -461,8 +463,9 @@ int ia1count=0;
 int ia2count=0;
 int vitcount=0;
 int nFreqCount=0;
- int nOnTime=0;
-int nHandPiece;
+int nOnTime=0;
+int nHandPiece=1;
+int nHandPiece1=1;
 
 QMessageBox *message;
 QMessageBox *messageline;
