@@ -53,7 +53,7 @@ background-color: rgb(18, 78, 102);
      <string notr="true">background-color: rgb(36, 73, 90);</string>
     </property>
     <property name="currentIndex">
-     <number>7</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="tab_33">
      <property name="styleSheet">
@@ -2728,24 +2728,6 @@ font:bold;</string>
        <string>Mode</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_26">
-      <property name="geometry">
-       <rect>
-        <x>980</x>
-        <y>280</y>
-        <width>67</width>
-        <height>17</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">font:13pt;
-font:bold;
-background-color:transparent;</string>
-      </property>
-      <property name="text">
-       <string>EPT  :</string>
-      </property>
-     </widget>
      <zorder>label_102</zorder>
      <zorder>label_101</zorder>
      <zorder>label_103</zorder>
@@ -2766,7 +2748,6 @@ background-color:transparent;</string>
      <zorder>us4onoff</zorder>
      <zorder>CutMode_vitCom_4</zorder>
      <zorder>CutMode_vit_4</zorder>
-     <zorder>label_26</zorder>
      <zorder>label_106</zorder>
      <zorder>us4vacmode</zorder>
      <zorder>us4mode</zorder>
@@ -5242,7 +5223,7 @@ border-radius:30px;</string>
    <widget class="QPushButton" name="elapsed_time">
     <property name="geometry">
      <rect>
-      <x>1020</x>
+      <x>1090</x>
       <y>260</y>
       <width>191</width>
       <height>71</height>
@@ -5256,7 +5237,7 @@ border:none;
 border-radius:20px;</string>
     </property>
     <property name="text">
-     <string>23.65 sec</string>
+     <string>0:00:00</string>
     </property>
    </widget>
    <widget class="QComboBox" name="comboBox">
@@ -5796,6 +5777,62 @@ font-weight: bold;</string>
      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
     </property>
    </widget>
+   <widget class="QPushButton" name="elapsed_time_2">
+    <property name="geometry">
+     <rect>
+      <x>860</x>
+      <y>260</y>
+      <width>191</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:/images/elapsed.png);
+background-color:transparent;
+font:20pt;
+border:none;
+border-radius:20px;</string>
+    </property>
+    <property name="text">
+     <string>0:00:00</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_28">
+    <property name="geometry">
+     <rect>
+      <x>831</x>
+      <y>290</y>
+      <width>67</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font:13pt;
+font:bold;
+background-color:transparent;</string>
+    </property>
+    <property name="text">
+     <string>EFT:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_26">
+    <property name="geometry">
+     <rect>
+      <x>1050</x>
+      <y>290</y>
+      <width>51</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font:13pt;
+font:bold;
+background-color:transparent;</string>
+    </property>
+    <property name="text">
+     <string>EPT  :</string>
+    </property>
+   </widget>
    <zorder>pushButton_2</zorder>
    <zorder>comboBox</zorder>
    <zorder>label</zorder>
@@ -5844,6 +5881,9 @@ font-weight: bold;</string>
    <zorder>label_21</zorder>
    <zorder>label_22</zorder>
    <zorder>pushButton_42</zorder>
+   <zorder>elapsed_time_2</zorder>
+   <zorder>label_28</zorder>
+   <zorder>label_26</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>

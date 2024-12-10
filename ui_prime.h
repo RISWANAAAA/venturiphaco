@@ -158,7 +158,7 @@ public:
 ""));
         start_check_2 = new QCheckBox(tab_6);
         start_check_2->setObjectName(QString::fromUtf8("start_check_2"));
-        start_check_2->setGeometry(QRect(110, 240, 721, 51));
+        start_check_2->setGeometry(QRect(110, 260, 721, 51));
         start_check_2->setStyleSheet(QString::fromUtf8("QCheckBox::indicator {\n"
 "	color: rgb(255, 255, 255);\n"
 "    width: 30px;\n"
@@ -172,7 +172,7 @@ public:
 ""));
         wait_Check_2 = new QCheckBox(tab_6);
         wait_Check_2->setObjectName(QString::fromUtf8("wait_Check_2"));
-        wait_Check_2->setGeometry(QRect(110, 340, 751, 71));
+        wait_Check_2->setGeometry(QRect(110, 360, 751, 71));
         wait_Check_2->setStyleSheet(QString::fromUtf8("QCheckBox::indicator {\n"
 "	color: rgb(255, 255, 255);\n"
 "    width: 30px;\n"
@@ -186,7 +186,7 @@ public:
 ""));
         motor_Check_2 = new QCheckBox(tab_6);
         motor_Check_2->setObjectName(QString::fromUtf8("motor_Check_2"));
-        motor_Check_2->setGeometry(QRect(110, 150, 381, 61));
+        motor_Check_2->setGeometry(QRect(110, 170, 381, 61));
         motor_Check_2->setStyleSheet(QString::fromUtf8("QCheckBox::indicator {\n"
 "	color: rgb(255, 255, 255);\n"
 "    width: 30px;\n"
@@ -200,7 +200,7 @@ public:
 ""));
         done_Check_2 = new QCheckBox(tab_6);
         done_Check_2->setObjectName(QString::fromUtf8("done_Check_2"));
-        done_Check_2->setGeometry(QRect(110, 450, 321, 41));
+        done_Check_2->setGeometry(QRect(110, 470, 321, 41));
         done_Check_2->setStyleSheet(QString::fromUtf8("QCheckBox::indicator {\n"
 "	color: rgb(255, 255, 255);\n"
 "    width: 30px;\n"
@@ -381,7 +381,7 @@ public:
         lbloverall->setStyleSheet(QString::fromUtf8(""));
         label_7 = new QLabel(prime);
         label_7->setObjectName(QString::fromUtf8("label_7"));
-        label_7->setGeometry(QRect(410, 80, 16, 651));
+        label_7->setGeometry(QRect(410, 79, 16, 651));
         label_7->setStyleSheet(QString::fromUtf8(""));
         prime1_but->raise();
         tabWidget->raise();
@@ -401,7 +401,7 @@ public:
 
         retranslateUi(prime);
 
-        tabWidget->setCurrentIndex(1);
+        tabWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(prime);

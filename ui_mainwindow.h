@@ -129,7 +129,6 @@ public:
     QLabel *label_106;
     QComboBox *CutMode_vitCom_4;
     QLabel *CutMode_vit_4;
-    QLabel *label_26;
     QWidget *tab_38;
     QPushButton *ia2flowup_but;
     QPushButton *ia2flowdown_but;
@@ -261,6 +260,9 @@ public:
     QLabel *label_22;
     QLabel *lab_date;
     QLabel *lab_time;
+    QPushButton *elapsed_time_2;
+    QLabel *label_28;
+    QLabel *label_26;
     QStatusBar *statusbar;
 
     void setupUi(QMainWindow *MainWindow)
@@ -1600,12 +1602,6 @@ public:
         CutMode_vit_4->setGeometry(QRect(940, 340, 81, 31));
         CutMode_vit_4->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 15pt \"Ubuntu Condensed\";\n"
 "font:bold;"));
-        label_26 = new QLabel(tab_36);
-        label_26->setObjectName(QString::fromUtf8("label_26"));
-        label_26->setGeometry(QRect(980, 280, 67, 17));
-        label_26->setStyleSheet(QString::fromUtf8("font:13pt;\n"
-"font:bold;\n"
-"background-color:transparent;"));
         tabWidget->addTab(tab_36, QString());
         label_102->raise();
         label_101->raise();
@@ -1627,7 +1623,6 @@ public:
         us4onoff->raise();
         CutMode_vitCom_4->raise();
         CutMode_vit_4->raise();
-        label_26->raise();
         label_106->raise();
         us4vacmode->raise();
         us4mode->raise();
@@ -2838,7 +2833,7 @@ public:
 "border-radius:30px;"));
         elapsed_time = new QPushButton(centralwidget);
         elapsed_time->setObjectName(QString::fromUtf8("elapsed_time"));
-        elapsed_time->setGeometry(QRect(1020, 260, 191, 71));
+        elapsed_time->setGeometry(QRect(1090, 260, 191, 71));
         elapsed_time->setStyleSheet(QString::fromUtf8("image: url(:/images/elapsed.png);\n"
 "background-color:transparent;\n"
 "font:20pt;\n"
@@ -3056,6 +3051,26 @@ public:
 "font:20pt \"Ubuntu\";\n"
 "font-weight: bold;"));
         lab_time->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        elapsed_time_2 = new QPushButton(centralwidget);
+        elapsed_time_2->setObjectName(QString::fromUtf8("elapsed_time_2"));
+        elapsed_time_2->setGeometry(QRect(860, 260, 191, 71));
+        elapsed_time_2->setStyleSheet(QString::fromUtf8("image: url(:/images/elapsed.png);\n"
+"background-color:transparent;\n"
+"font:20pt;\n"
+"border:none;\n"
+"border-radius:20px;"));
+        label_28 = new QLabel(centralwidget);
+        label_28->setObjectName(QString::fromUtf8("label_28"));
+        label_28->setGeometry(QRect(831, 290, 67, 17));
+        label_28->setStyleSheet(QString::fromUtf8("font:13pt;\n"
+"font:bold;\n"
+"background-color:transparent;"));
+        label_26 = new QLabel(centralwidget);
+        label_26->setObjectName(QString::fromUtf8("label_26"));
+        label_26->setGeometry(QRect(1050, 290, 51, 17));
+        label_26->setStyleSheet(QString::fromUtf8("font:13pt;\n"
+"font:bold;\n"
+"background-color:transparent;"));
         MainWindow->setCentralWidget(centralwidget);
         pushButton_2->raise();
         comboBox->raise();
@@ -3105,13 +3120,16 @@ public:
         label_21->raise();
         label_22->raise();
         pushButton_42->raise();
+        elapsed_time_2->raise();
+        label_28->raise();
+        label_26->raise();
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
         MainWindow->setStatusBar(statusbar);
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(7);
+        tabWidget->setCurrentIndex(3);
         tabWidget_2->setCurrentIndex(6);
 
 
@@ -3297,7 +3315,6 @@ public:
         CutMode_vitCom_4->setItemText(6, QCoreApplication::translate("MainWindow", "Cold phaco", nullptr));
 
         CutMode_vit_4->setText(QCoreApplication::translate("MainWindow", "Mode", nullptr));
-        label_26->setText(QCoreApplication::translate("MainWindow", "EPT  :", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_36), QCoreApplication::translate("MainWindow", "Page", nullptr));
         ia2flowup_but->setText(QString());
         ia2flowdown_but->setText(QString());
@@ -3436,7 +3453,7 @@ public:
         SETTINGS_BUT_4->setText(QString());
         CI5_5->setText(QString());
         SETTINGS_BUT_2->setText(QString());
-        elapsed_time->setText(QCoreApplication::translate("MainWindow", "23.65 sec", nullptr));
+        elapsed_time->setText(QCoreApplication::translate("MainWindow", "0:00:00", nullptr));
         comboBox->setItemText(0, QCoreApplication::translate("MainWindow", "Peristaltic", nullptr));
         comboBox->setItemText(1, QCoreApplication::translate("MainWindow", "Venturi", nullptr));
 
@@ -3467,6 +3484,9 @@ public:
         label_22->setText(QString());
         lab_date->setText(QString());
         lab_time->setText(QString());
+        elapsed_time_2->setText(QCoreApplication::translate("MainWindow", "0:00:00", nullptr));
+        label_28->setText(QCoreApplication::translate("MainWindow", "EFT:", nullptr));
+        label_26->setText(QCoreApplication::translate("MainWindow", "EPT  :", nullptr));
     } // retranslateUi
 
 };

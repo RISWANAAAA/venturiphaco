@@ -48,7 +48,8 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-    void nReceiveFreq(int count);
+void updateTimes(float progress4, QPushButton* elapsedTimeLabel, QPushButton* effectiveTimeLabel);
+void nReceiveFreq(int count);
     int footswitchrange();
      void disablegpio();
      void activategpio();
@@ -482,6 +483,9 @@ QTimer *updateTimer;
 QTimer *Tacutalsensor;
   QTimer *timerfoot;
 QTimer *burstTimer;
+QElapsedTimer *elapsedTimer;  // Elapsed time (in milliseconds)
+int cumulativeElapsedTimeSec;
+    int cumulativeEffectiveTimeSec;
 
 bool flag1=false;
 bool on;
@@ -547,11 +551,6 @@ QString vibon;
 QString speakeronoff;
 
 
-qint64 elap=0;
-qint64 elapsedTimeUS1;
-qint64 elapsedTimeUS2;
-qint64 elapsedTimeUS3;
-qint64 elapsedTimeUS4;
 
 
 

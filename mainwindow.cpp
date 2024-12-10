@@ -11,10 +11,6 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
-    , elapsedTimeUS1(0)
-    , elapsedTimeUS2(0)
-    , elapsedTimeUS3(0)
-    , elapsedTimeUS4(0)
     , butname(-1)
     ,isTuneEnabled(false)
     ,powerOn1(false)
@@ -35,6 +31,7 @@ MainWindow::MainWindow(QWidget *parent)
     //s=new settings;
     key=new keypad;
     footsensor=new QTimer;
+    elapsedTimer=new QElapsedTimer;
 
     handler->phaco_off();
     handler->phaco_power(0);
@@ -411,6 +408,8 @@ MainWindow::~MainWindow()
     delete ui;
     db.close();
 }
+
+
 
 void MainWindow::nReceiveFreq(int count)
 {
@@ -1097,7 +1096,7 @@ int MainWindow::footswitchrange()
 
 }
 
-void MainWindow::disablegpio()
+void MainWindow:: disablegpio()
 {
     nHandPiece1 = 0;  // Set nHandPiece to 1
 
@@ -1933,30 +1932,45 @@ void MainWindow::current(int tab)
     ui->label_5->hide();
     ui->label_6->hide();
     ui->elapsed_time->hide();
+    ui->elapsed_time_2->hide();
+    ui->label_28->hide();
+    ui->label_26->hide();
     ui->label_32->hide();
     switch (tab) {
         case 0:
             ui->ULTRASONICBUT1->setStyleSheet(styleSheet);
             ui->label_3->show();
-            ui->elapsed_time->show();
             ui->label_32->show();
+            ui->elapsed_time->show();
+            ui->label_26->show();
+            ui->label_28->show();
+            ui->elapsed_time_2->show();
 
             break;
         case 1:
             ui->ULTRASONICBUT2->setStyleSheet(styleSheet);
             ui->label_4->show();
             ui->elapsed_time->show();
-             ui->label_32->show();
+            ui->label_26->show();
+            ui->label_28->show();
+            ui->elapsed_time_2->show();
+            ui->label_32->show();
             break;
         case 2:
             ui->ULTRASONICBUT3->setStyleSheet(styleSheet);
             ui->label_14->show();
             ui->elapsed_time->show();
-             ui->label_32->show();
+            ui->label_26->show();
+            ui->label_28->show();
+            ui->elapsed_time_2->show();
+            ui->label_32->show();
             break;
         case 3:
             ui->ULTRASONICBUT4->setStyleSheet(styleSheet);
             ui->elapsed_time->show();
+            ui->label_26->show();
+            ui->label_28->show();
+            ui->elapsed_time_2->show();
             ui->label_12->show();
             ui->label_32->show();
             break;
@@ -2277,8 +2291,8 @@ void MainWindow::updateTabsBasedOnComboBox(const QString &selected) {
         handler->fs_count(nfpzero + nfpone + nfptwo);
         handler->freq_count(nFreqCount);
         handler->phaco_power(100);
-
-        modeFound = true;
+qDebug()<<"the single burst mode is workinggggg";
+modeFound = true;
         ui->label_32->show();
         handler->buzz();
 
@@ -2583,7 +2597,7 @@ flag1 = true;
                         handler->fs_count(range);
                         handler->freq_count(nFreqCount);
                         handler->phaco_on();
-                        qDebug()<<"the power delivery method from the us1 at panel mode"<<ui->CutMode_vitCom->currentText();
+
                         if(us1powmode == "Multi burst"){
                                     if(range>(nfpzero+nfpone+nfptwo)){
                                      double upper=static_cast<int>(range)-static_cast<int>(nfpzero+nfpone+nfptwo);
@@ -2601,9 +2615,21 @@ flag1 = true;
                         }
                         ui->label_7->setText(QString::number(pow1));
                         handler->phaco_power(pow1);
-                        elapsedTimeUS1 += elapsed;
-                        message = "Effective time for US1: " + QString::number(elapsedTimeUS1 / 1000.0, 'f', 2) + " s";
- }
+                        // Ensure this is called once, when the timer should start
+                        qDebug()<<"the mode is from us1 is"<<ui->CutMode_vitCom->currentText();
+                        if (!elapsedTimer->isValid()) {
+                            elapsedTimer->start();
+                            qDebug() << "Timer started!";
+                        }                      //  cumulativeElapsedTimeSec=0;
+                    //    cumulativeEffectiveTimeSec=0;
+                        updateTimes(pow1,ui->elapsed_time, ui->elapsed_time_2);
+
+ }else {  // If pushButton is OFF
+                    handler->phaco_off();
+                    handler->freq_count(0);
+                    handler->fs_count(0);
+                    handler->phaco_power(0);
+                 }
                 }
 
 if(vus1 == "Panel"){
@@ -2810,6 +2836,13 @@ if(vus1 == "Panel"){
                     // qDebug()<<"power id deliverd from the us1 is"<<progress4;
                      ui->label_7->setText(QString::number(std::round(progress4)));
  qDebug()<<"the us1 mode is from the ultrasonic but1 is"<<ui->CutMode_vitCom->currentText();
+ // Ensure this is called once, when the timer should start
+ if (!elapsedTimer->isValid()) {
+     elapsedTimer->start();
+     qDebug() << "Timer started!";
+ }
+ updateTimes(pow1,ui->elapsed_time,ui->elapsed_time_2);
+
                      if (progress4 == pow1) {
                         // speedofthelabe(ui->label_7);
                      }
@@ -3066,9 +3099,15 @@ if(us2 == "Panel"){
                        }
                        ui->label_92->setText(QString::number(pow2));
                        handler->phaco_power(pow2);
-                       elapsedTimeUS2 += elapsed;
-                       message = "Effective time for US1: " + QString::number(elapsedTimeUS2/ 1000.0, 'f', 2) + " s";
-}
+                       // Ensure this is called once, when the timer should start
+                       if (!elapsedTimer->isValid()) {
+                           elapsedTimer->start();
+                           qDebug() << "Timer started!";
+                       }
+
+                       updateTimes(pow2, ui->elapsed_time, ui->elapsed_time_2);
+
+                     }
 }
                                      us2currectcount=3;
 
@@ -3112,7 +3151,6 @@ if(us2 == "Panel"){
                 if(ventonus2==false){
                     handler->safetyvent_on();
               QThread::msleep(100);
-                handler->pinchvalve_off();
              handler->safetyvent_off();
               ventonus2=true;
                 }
@@ -3287,6 +3325,16 @@ if(us2 == "Panel"){
                      handler->phaco_power(progress4);
                    // qDebug()<<"power id deliverd from the us2 is"<<progress4;
                     ui->label_92->setText(QString::number(std::round(progress4)));
+                    // Ensure this is called once, when the timer should start
+                    // Ensure this is called once, when the timer should start
+                    if (!elapsedTimer->isValid()) {
+                        elapsedTimer->start();  // Start the timer only if it's not already running
+                        qDebug() << "Timer started!";
+                    }
+
+
+                    // Call the updateTimes function to update the displayed times
+                    updateTimes(progress4, ui->elapsed_time, ui->elapsed_time_2);
 
                     if (progress4 == pow2) {
                        // speedofthelabe(ui->label_7);
@@ -3355,7 +3403,7 @@ if(us2 == "Panel"){
                        ui->label_99->setText(QString::number(pro));
                    motoroff();
 
-                ui->label_99->setText("0");
+                ui->label_98->setText("0");
 
                 us3currectcount=0;
                 flag1 = true; // Reset flag
@@ -3415,6 +3463,7 @@ flag1 = true;
 
                 }
  }
+ ui->label_98->setText("0");
                     handler->freq_count(0);
                     handler->phaco_off();
                     handler->fs_count(0);
@@ -3490,8 +3539,11 @@ if(us3 == "Panel"){
                        }
                        ui->label_98->setText(QString::number(pow3));
                        handler->phaco_power(pow3);
-                       elapsedTimeUS3 += elapsed;
-                       message = "Effective time for US3: " + QString::number(elapsedTimeUS3/ 1000.0, 'f', 2) + " s";
+                       if (!elapsedTimer->isValid()) {
+                           elapsedTimer->start();
+                           qDebug() << "Timer started!";
+                       }
+                       updateTimes(pow3,ui->elapsed_time,ui->elapsed_time_2);
 }
 }
                                      us3currectcount=3;
@@ -3711,7 +3763,11 @@ if(us3 == "Panel"){
                      handler->phaco_power(progress4);
                    // qDebug()<<"power id deliverd from the us2 is"<<progress4;
                     ui->label_98->setText(QString::number(std::round(progress4)));
-
+                    if (!elapsedTimer->isValid()) {
+                        elapsedTimer->start();
+                        qDebug() << "Timer started!";
+                    }
+                    updateTimes(pow3,ui->elapsed_time,ui->elapsed_time_2);
                     if (progress4 == pow3) {
                        // speedofthelabe(ui->label_7);
                     }
@@ -3757,6 +3813,8 @@ if(us3 == "Panel"){
                 ui->pushButton_42->setText("0");
                 handler->speaker_off();
                 ui->dial_2->setValue(range);
+                ui->label_105->setText("0");
+
                     handler->freq_count(0);
                     handler->phaco_off();
                     handler->fs_count(0);
@@ -3765,7 +3823,7 @@ if(us3 == "Panel"){
                            ui->CI5_5->setStyleSheet(styleSheet4);
                            handler->pinchvalve_off();
                     }
-
+//qDebug()<<"the power value at us4 is"<<pow4;
 //                       if(ventonus4==false){
 //                        //   handler->pinchvalve_on();
 //                 handler->safetyvent_on();
@@ -3778,7 +3836,6 @@ if(us3 == "Panel"){
                        ui->label_104->setText(QString::number(pro));
                    motoroff();
 
-                ui->label_105->setText("0");
 
                 us4currectcount=0;
                 flag1 = true; // Reset flag
@@ -3841,10 +3898,11 @@ flag1 = true;
                     }
                 }
  }
+ ui->label_105->setText("0");
                     handler->freq_count(0);
                     handler->phaco_off();
                     handler->fs_count(0);
-                    us3poweron= false;
+                    us4poweron= false;
                     us4currectcount=2;
 
                 flag1 = true; // Reset flag
@@ -3854,7 +3912,7 @@ flag1 = true;
                  ui->dial_2->setValue(range);
                 ui->label_105->show();
                 ui->label_104->show();
-                ventonus2=false;
+                ventonus4=false;
                 handler->pinchvalve_on();
                 ui->CI5_5->setStyleSheet(styleSheet3);
 if(vus4=="Panel"){
@@ -3886,9 +3944,8 @@ if(vus4=="Panel"){
                                       }
                                   }
                               }
-}
 if(us4 == "Panel"){
-               if(!us3poweron && text == "ON" ){
+               if(!us4poweron && text == "ON" ){
                        handler->fs_count(range);
                        handler->freq_count(nFreqCount);
                        handler->phaco_on();
@@ -3912,15 +3969,21 @@ if(us4 == "Panel"){
 
 
                        }
-                       ui->label_105->setText(QString::number(pow4));
+
+                       if (!elapsedTimer->isValid()) {
+                           elapsedTimer->start();
+                           qDebug() << "Timer started!";
+                       }
+                       updateTimes(pow4,ui->elapsed_time,ui->elapsed_time_2);
+                       //ui->label_105->setText(QString::number(pow4));
                        handler->phaco_power(pow4);
-                       elapsedTimeUS3 += elapsed;
-                       message = "Effective time for US3: " + QString::number(elapsedTimeUS3/ 1000.0, 'f', 2) + " s";
 
 }
                                      us4currectcount=3;
 
             }
+
+}
 
   }
         if ((us4== "Surgeon")||( vus4 == "Surgeon")) {
@@ -4135,7 +4198,11 @@ if(us4 == "Panel"){
                      handler->phaco_power(progress4);
                    // qDebug()<<"power id deliverd from the us2 is"<<progress4;
                     ui->label_105->setText(QString::number(std::round(progress4)));
-
+                    if (!elapsedTimer->isValid()) {
+                        elapsedTimer->start();
+                        qDebug() << "Timer started!";
+                    }
+                    updateTimes(pow4,ui->elapsed_time,ui->elapsed_time_2);
                     if (progress4 == pow4) {
                        // speedofthelabe(ui->label_7);
                     }
@@ -4760,11 +4827,195 @@ ia2currentcount=2;
     }
 
 
-    currentTimer.restart();
-    updateLabel();
     }
 
 }
+void MainWindow::updateLabel()
+{
+    if (!elapsedTimer->isValid()) {
+    }
+}
+
+
+//void MainWindow::updateTimes(QElapsedTimer* timer, float progress4, int& cumulativeElapsedTimeSec, int& cumulativeEffectiveTimeSec, QPushButton* elapsedTimeLabel, QPushButton* effectiveTimeLabel) {
+//    // Ensure the timer is not null
+//    if (!timer) {
+//        qDebug() << "Timer is null!";
+//        return;
+//    }
+
+//    // If the timer is not started, start it
+//    if (!timer->isValid()) {
+//        timer->start();
+//        qDebug() << "Timer started!";
+//    }
+
+//    // Get elapsed time in milliseconds
+//    int elapsedTimeMs = timer->elapsed();
+//    qDebug() << "Elapsed Time (ms):" << elapsedTimeMs;  // Debugging elapsed time in ms
+
+//    // If elapsed time is 0, print a message to help debug
+//    if (elapsedTimeMs == 0) {
+//        qDebug() << "Elapsed time is still 0!";
+//    }
+
+//    // Calculate minutes, seconds, and milliseconds for elapsed time
+//    int elapsedTimeSec = elapsedTimeMs / 1000;  // Get the full seconds part
+//    int milliseconds = elapsedTimeMs % 1000;  // Get the milliseconds part
+//    int minutes = elapsedTimeSec / 60;  // Calculate minutes
+//    elapsedTimeSec = elapsedTimeSec % 60;  // Get remaining seconds
+
+//    // Add current elapsed time to cumulative elapsed time
+//    cumulativeElapsedTimeSec += elapsedTimeSec;
+
+//    // Format the elapsed time string as min:sec::ms
+//    QString elapsedTimeStr = QString::number(minutes) + ":"
+//                             + QString::number(elapsedTimeSec).rightJustified(2, '0') + ":"
+//                             + QString::number(milliseconds).rightJustified(3, '0');
+
+//    qDebug() << "Elapsed Time (min:sec::ms):" << elapsedTimeStr;
+
+//    // Update the UI with formatted elapsed time
+//    elapsedTimeLabel->setText(elapsedTimeStr);
+
+//    // Calculate effective time: This formula might need adjustment depending on your requirement
+//    int effectiveTimeSec = elapsedTimeSec * progress4;  // Calculate effective time in seconds
+//    cumulativeEffectiveTimeSec += effectiveTimeSec;
+
+//    qDebug() << "Effective Time (seconds):" << effectiveTimeSec;
+
+//    // Calculate minutes, seconds, and milliseconds for effective time
+//    int effectiveMinutes = effectiveTimeSec / 60;  // Calculate minutes
+//    int effectiveSeconds = effectiveTimeSec % 60;  // Get remaining seconds
+//    int effectiveMilliseconds = static_cast<int>((progress4 - int(progress4)) * 1000);  // Calculate milliseconds
+
+//    // Format the effective time string as min:sec::ms
+//    QString effectiveTimeStr = QString::number(effectiveMinutes) + ":"
+//                               + QString::number(effectiveSeconds).rightJustified(2, '0') + ":"
+//                               + QString::number(effectiveMilliseconds).rightJustified(3, '0');
+
+//    // Update the UI with effective time
+//    effectiveTimeLabel->setText(effectiveTimeStr);
+//}
+// Function to update the elapsed time and effective time
+//void MainWindow::updateTimes(float progress4, QPushButton* elapsedTimeLabel, QPushButton* effectiveTimeLabel) {
+//    // Ensure the timer is not null
+//    if (!elapsedTimer) {
+//        qDebug() << "Timer is null!";
+//        return;
+//    }
+
+//    // Get elapsed time in milliseconds
+//    int elapsedTimeMs = elapsedTimer->elapsed();
+//    qDebug() << "Elapsed Time (ms):" << elapsedTimeMs;
+
+//    // Calculate minutes, seconds, and milliseconds for elapsed time
+//    int elapsedTimeSec = elapsedTimeMs / 1000;  // Get the full seconds part
+//    int milliseconds = elapsedTimeMs % 1000;  // Get the milliseconds part
+//    int minutes = elapsedTimeSec / 60;  // Calculate minutes
+//    elapsedTimeSec = elapsedTimeSec % 60;  // Get remaining seconds
+
+//    // Add current elapsed time to cumulative elapsed time
+//    cumulativeElapsedTimeSec += elapsedTimeSec;
+
+//    // Format the elapsed time string as min:sec::ms
+//    QString elapsedTimeStr = QString::number(minutes) + ":"
+//                             + QString::number(elapsedTimeSec).rightJustified(2, '0') + ":"
+//                             + QString::number(milliseconds).rightJustified(3, '0');
+//    qDebug() << "Elapsed Time (min:sec::ms):" << elapsedTimeStr;
+
+//    // Update the UI with formatted elapsed time
+//    elapsedTimeLabel->setText(elapsedTimeStr);
+
+
+//    // Check that progress4 is within expected range [0.0, 1.0]
+//    if (progress4 < 0.0f) {
+//               progress4 = 0.0f;
+//           } else if (progress4 > 1.0f) {
+//               progress4 = 1.0f;
+//           }
+
+//          int effectiveTime = elapsedTimeSec * progress4;  // Effective time based on progress
+//          cumulativeEffectiveTimeSec += effectiveTime;
+
+//          qDebug() << "Effective Time (seconds):" << effectiveTime;
+
+//          // Format the effective time as mm:ss:ms
+//          int effectiveMinutes = cumulativeEffectiveTimeSec / 60;
+//          int effectiveSeconds = cumulativeEffectiveTimeSec % 60;
+//          int effectiveMilliseconds = cumulativeEffectiveTimeSec % 1000;
+
+//          QString effectiveTimeStr = QString::number(effectiveMinutes) + ":"
+//                                     + QString::number(effectiveSeconds).rightJustified(2, '0') + ":"
+//                                     + QString::number(effectiveMilliseconds).rightJustified(3, '0');
+
+//          qDebug() << "Effective Time (min:sec:ms):" << effectiveTimeStr;
+
+//          // Update the UI with formatted effective time
+//          effectiveTimeLabel->setText(effectiveTimeStr);
+
+//}
+void MainWindow::updateTimes(float progress4, QPushButton* elapsedTimeLabel, QPushButton* effectiveTimeLabel) {//working
+    // Ensure the timer is not null
+    if (!elapsedTimer) {
+        qDebug() << "Timer is null!";
+        return;
+    }
+
+    // Get elapsed time in milliseconds
+    int elapsedTimeMs = elapsedTimer->elapsed();
+    qDebug() << "Elapsed Time (ms):" << elapsedTimeMs;
+
+    // Calculate minutes, seconds, and milliseconds for elapsed time
+    int elapsedTimeSec = elapsedTimeMs / 1000;  // Get the full seconds part
+    int milliseconds = elapsedTimeMs % 1000;  // Get the milliseconds part
+    int minutes = elapsedTimeSec / 60;  // Calculate minutes
+    elapsedTimeSec = elapsedTimeSec % 60;  // Get remaining seconds
+
+    // Add current elapsed time to cumulative elapsed time
+    cumulativeElapsedTimeSec += elapsedTimeSec;
+
+    // Format the elapsed time string as min:sec::ms
+    QString elapsedTimeStr = QString::number(minutes) + ":"
+                             + QString::number(elapsedTimeSec).rightJustified(2, '0') + ":"
+                             + QString::number(milliseconds).rightJustified(3, '0');
+    qDebug() << "Elapsed Time (min:sec::ms):" << elapsedTimeStr;
+
+    // Update the UI with formatted elapsed time
+    elapsedTimeLabel->setText(elapsedTimeStr);
+
+    // Calculate effective time using progress4
+    // Ensure progress4 is within bounds (clamp between 0.0 and 1.0)
+    if (progress4 < 0.0f) {
+        progress4 = 0.0f;
+    } else if (progress4 > 1.0f) {
+        progress4 = 1.0f;
+    }
+
+    // Calculate effective time based on elapsed time and progress4
+       float effectiveTime = static_cast<float>(elapsedTimeSec) * progress4;
+       int effectiveTimeSec = static_cast<int>(effectiveTime);  // Cast effectiveTime to int before using
+
+       qDebug() << "Effective Time (seconds):" << effectiveTimeSec;
+
+       // Format the effective time as mm:ss:ms
+       int effectiveMinutes = effectiveTimeSec / 60;   // Convert to minutes
+       int effectiveSeconds = effectiveTimeSec % 60;   // Remaining seconds
+       int effectiveMilliseconds = static_cast<int>(elapsedTimeMs * progress4) % 1000;
+
+       // Format the effective time as min:sec:ms
+       QString effectiveTimeStr = QString::number(effectiveMinutes) + ":"
+                                  + QString::number(effectiveSeconds).rightJustified(2, '0') + ":"
+                                  + QString::number(effectiveMilliseconds).rightJustified(3, '0');
+
+       qDebug() << "Effective Time (min:sec:ms):" << effectiveTimeStr;
+
+       // Update the UI with formatted effective time
+       effectiveTimeLabel->setText(effectiveTimeStr);
+}
+
+
+
 //us1 non linear and linear
 void MainWindow::us1_linear_nonlinear()
 {
@@ -5214,8 +5465,10 @@ void MainWindow::singleburstup_mode()
         singleburst = 400;
     }
     ui->lineEdit_78->setText(QString::number(singleburst));
+    handler->phaco_on();
+     handler->fs_count(nfpzero+nfpone+nfptwo);
+   handler->freq_count(nFreqCount);
     handler->freq_count(nFreqCount);
-    handler->fs_count(nfpzero+nfpone+nfptwo);
      handler->pdm_mode(SINGLE_BURST);
       //qDebug()<<singleburst;
 }
@@ -5229,8 +5482,9 @@ void MainWindow::singleburstdown_mode()
         singleburst = 10;
     }
     ui->lineEdit_78->setText(QString::number(singleburst));
-    handler->freq_count(nFreqCount);
-    handler->fs_count(nfpzero+nfpone+nfptwo);
+    handler->phaco_on();
+     handler->fs_count(nfpzero+nfpone+nfptwo);
+   handler->freq_count(nFreqCount);
      handler->pdm_mode(SINGLE_BURST);
     //qDebug()<<singleburst;
 }
@@ -5513,33 +5767,9 @@ int MainWindow::decreasebutton(int input)
 
 void MainWindow::updateTimers()
 {
-    if (currentButton != -1) {
-        qint64 elapsed = currentTimer.elapsed();
-        qint64 totalTime = elapsedTimeUS1 + elapsedTimeUS2 + elapsedTimeUS3 + elapsedTimeUS4;
 
-        switch (currentButton) {
-            case 1:
-                totalTime += elapsed;
-                break;
-            case 2:
-                totalTime += elapsed;
-                break;
-            case 3:
-                totalTime += elapsed;
-                break;
-            case 4:
-                totalTime += elapsed;
-                break;
-        }
+}
 
-        ui->elapsed_time->setText(QString::number(totalTime / 1000.0, 'f', 2) + " s");
-    }
-}
-void MainWindow::updateLabel()
-{
-    qint64 totalTime = elapsedTimeUS1 + elapsedTimeUS2 + elapsedTimeUS3 + elapsedTimeUS4;
-    ui->elapsed_time->setText(QString::number(totalTime / 1000.0, 'f', 2) + " s");
-}
 
 void MainWindow::changesvaluesql()
 {
@@ -5663,7 +5893,7 @@ void MainWindow::moved(int gpio) {
 
       // Handling for nHandPiece == 1
         if (gpio == 0) {
-      if (nHandPiece == 0 && nHandPiece1==0) {
+      if (nHandPiece == 1 && nHandPiece1==0) {
 
               // Cycle through DIABUT, IA1BUT, IA2BUT, VITRECTOMYBUT
               if (currentButtonIndex == -1) {
@@ -5698,13 +5928,14 @@ void MainWindow::moved(int gpio) {
       }
 }
 
-
 void MainWindow::movePushButtonBottomToTop(int gpio) {
+    // Define button arrays for each set of buttons
     QPushButton *buttons[] = {
-     ui->ULTRASONICBUT1, ui->ULTRASONICBUT2,
+        ui->ULTRASONICBUT1, ui->ULTRASONICBUT2,
         ui->ULTRASONICBUT3, ui->ULTRASONICBUT4, ui->IA1BUT,
-        ui->IA2BUT, ui->VITRECTOMYBUT,   ui->DIABUT
+        ui->IA2BUT, ui->VITRECTOMYBUT, ui->DIABUT
     };
+
     QPushButton *buttons1[] = {
         ui->DIABUT, ui->IA1BUT,
         ui->IA2BUT, ui->VITRECTOMYBUT
@@ -5713,11 +5944,10 @@ void MainWindow::movePushButtonBottomToTop(int gpio) {
     int totalButtons = sizeof(buttons) / sizeof(buttons[0]);
     int totalButtons1 = sizeof(buttons1) / sizeof(buttons1[0]);
 
-//    // Handling for nHandPiece == 0 (first set of buttons)
-     if (gpio == 0) {
-    if (nHandPiece == 0 && nHandPiece1==1) {
-
-            // If currentButtonIndex is -1, start from the last button
+    // Ensure gpio is 0 for processing
+    if (gpio == 0) {
+        if (nHandPiece == 0 && nHandPiece1 == 1) {
+            // Handle button index for the first set of buttons (buttons)
             if (currentButtonIndex == -1) {
                 currentButtonIndex = totalButtons - 1; // Start at the last button
             } else {
@@ -5725,83 +5955,183 @@ void MainWindow::movePushButtonBottomToTop(int gpio) {
                 currentButtonIndex = (currentButtonIndex - 1 + totalButtons) % totalButtons;
             }
 
-            // Debugging output: Log the selected button and PDM mode
+            // Debugging output
             qDebug() << "Handpiece 0, GPIO: " << gpio << ", Button Index: " << currentButtonIndex;
             qDebug() << "Selected Button: " << buttons[currentButtonIndex]->text();
 
-            // Debugging the associated PDM Mode for each button
+            // Handle corresponding PDM Modes
             if (buttons[currentButtonIndex] == ui->ULTRASONICBUT1) {
-                qDebug() << "PDM Mode: 1 (Ultrasonic 1)";
                 ULTRASONICBUT1();
-                qDebug()<<"the pdm mode is DECREMENT"<<ui->CutMode_vitCom->currentText()<<"us1";
+                qDebug() << "The PDM mode is DECREMENT" << ui->CutMode_vitCom->currentText() << "us1";
             } else if (buttons[currentButtonIndex] == ui->ULTRASONICBUT2) {
-                qDebug() << "PDM Mode: 2 (Ultrasonic 2)";
                 ULTRASONICBUT2();
-                qDebug()<<"the pdm mode2 is DECREMENT"<<ui->CutMode_vitCom_2->currentText()<<"us2";
-
+                qDebug() << "The PDM mode is DECREMENT" << ui->CutMode_vitCom_2->currentText() << "us2";
             } else if (buttons[currentButtonIndex] == ui->ULTRASONICBUT3) {
-                qDebug() << "PDM Mode: 3 (Ultrasonic 3)";
                 ULTRASONICBUT3();
-                qDebug()<<"the pdm mode3 is DECREMENT"<<ui->CutMode_vitCom_3->currentText()<<"us3";
-
+                qDebug() << "The PDM mode is DECREMENT" << ui->CutMode_vitCom_3->currentText() << "us3";
             } else if (buttons[currentButtonIndex] == ui->ULTRASONICBUT4) {
-                qDebug() << "PDM Mode: 4 (Ultrasonic 4)";
                 ULTRASONICBUT4();
-                qDebug()<<"the pdm mode4 is DECREMENT"<<ui->CutMode_vitCom_4->currentText()<<"us4";
-
-            }
-            else if(buttons[currentButtonIndex] == ui->IA1BUT){
-                              IRRIGATIONBUT1();
-                          }else if(buttons[currentButtonIndex] == ui->IA2BUT){
-                              IRRIGATIONBUT2();
-                          }else if(buttons[currentButtonIndex] == ui->VITRECTOMYBUT){
-                              VITRECTOMYBUT();
-                          }else if(buttons[currentButtonIndex] == ui->DIABUT){
-                              DIATHERMYBUT();
-                          }
-        }
-
-    buttons[currentButtonIndex]->click();
-    buttons[currentButtonIndex]->setFocus();
-    }
-    // Handling for nHandPiece == 1 (second set of buttons)
-     if (gpio == 0) {
-    if (nHandPiece == 1 &&nHandPiece1 == 0) {
-
-            // If currentButtonIndex is -1, start from the last button
-            if (currentButtonIndex == -1) {
-                currentButtonIndex = totalButtons1 - 1; // Start at the last button
-            } else {
-                // Move to the previous button (bottom to top)
-                currentButtonIndex = (currentButtonIndex - 1 + totalButtons1) % totalButtons1;
+                qDebug() << "The PDM mode is DECREMENT" << ui->CutMode_vitCom_4->currentText() << "us4";
+            } else if (buttons[currentButtonIndex] == ui->IA1BUT) {
+                IRRIGATIONBUT1();
+            } else if (buttons[currentButtonIndex] == ui->IA2BUT) {
+                IRRIGATIONBUT2();
+            } else if (buttons[currentButtonIndex] == ui->VITRECTOMYBUT) {
+                VITRECTOMYBUT();
+            } else if (buttons[currentButtonIndex] == ui->DIABUT) {
+                DIATHERMYBUT();
             }
 
-            // Debugging output: Log the selected button and PDM mode
-            qDebug() << "Handpiece 1, GPIO: " << gpio << ", Button Index: " << currentButtonIndex;
-            qDebug() << "Selected Button: " << buttons1[currentButtonIndex]->text();
-           if(buttons1[currentButtonIndex] == ui->DIABUT){
-                                          DIATHERMYBUT();
-                                          qDebug()<<"The mode is diathermy";
-                                      }
-            if(buttons1[currentButtonIndex] == ui->IA1BUT){
-                              IRRIGATIONBUT1();
-                              qDebug()<<"the button is ia1";
-                          }else if(buttons1[currentButtonIndex] == ui->IA2BUT){
-                              IRRIGATIONBUT2();
-                              qDebug()<<"the button is ia2";
-
-                          }else if(buttons1[currentButtonIndex] == ui->VITRECTOMYBUT){
-                              VITRECTOMYBUT();
-                              qDebug()<<"the button is vit";
-
-                          }
-            buttons1[currentButtonIndex]->click();
-            buttons1[currentButtonIndex]->setFocus();
+            buttons[currentButtonIndex]->click();
+            buttons[currentButtonIndex]->setFocus();
         }
+        // Handle second set of buttons (buttons1)
+          if (nHandPiece == 1 && nHandPiece1 == 0) {
+              if (currentButtonIndex == -1) {
+                  currentButtonIndex = totalButtons1 - 1; // Start at the last button
+              } else {
+                  // If the current button is DIABUT (Diathermy), check GPIO value
+                  if (buttons1[currentButtonIndex] == ui->DIABUT) {
+                      // Read the GPIO value (assume gpio is the variable holding the current GPIO state)
+                      if (gpio == 0) {
+                          // If GPIO value is 0, move to the previous button (Vitrectomy)
+                          currentButtonIndex = (currentButtonIndex - 1 + totalButtons1) % totalButtons1;
+                      }
+                  } else {
+                      // Move to the previous button (bottom to top)
+                      currentButtonIndex = (currentButtonIndex - 1 + totalButtons1) % totalButtons1;
+                  }
+              }
 
+              // Debugging output
+              qDebug() << "Handpiece 1, GPIO: " << gpio << ", Button Index: " << currentButtonIndex;
+              qDebug() << "Selected Button: " << buttons1[currentButtonIndex]->text();
 
-    }
+              // Handle the actions for buttons1
+              if (buttons1[currentButtonIndex] == ui->DIABUT) {
+                  DIATHERMYBUT();
+                  qDebug() << "The mode is diathermy";
+              } else if (buttons1[currentButtonIndex] == ui->IA1BUT) {
+                  IRRIGATIONBUT1();
+                  qDebug() << "The button is IA1";
+              } else if (buttons1[currentButtonIndex] == ui->IA2BUT) {
+                  IRRIGATIONBUT2();
+                  qDebug() << "The button is IA2";
+              } else if (buttons1[currentButtonIndex] == ui->VITRECTOMYBUT) {
+                  VITRECTOMYBUT();
+                  qDebug() << "The button is vitrectomy";
+              }
+
+              // Simulate a click on the selected button and set focus
+              buttons1[currentButtonIndex]->click();
+              buttons1[currentButtonIndex]->setFocus();
+          }
+      }
 }
+
+//void MainWindow::movePushButtonBottomToTop(int gpio) {//already have logic
+//    QPushButton *buttons[] = {
+//     ui->ULTRASONICBUT1, ui->ULTRASONICBUT2,
+//        ui->ULTRASONICBUT3, ui->ULTRASONICBUT4, ui->IA1BUT,
+//        ui->IA2BUT, ui->VITRECTOMYBUT,   ui->DIABUT
+//    };
+//    QPushButton *buttons1[] = {
+//        ui->DIABUT, ui->IA1BUT,
+//        ui->IA2BUT, ui->VITRECTOMYBUT
+//    };
+
+//    int totalButtons = sizeof(buttons) / sizeof(buttons[0]);
+//    int totalButtons1 = sizeof(buttons1) / sizeof(buttons1[0]);
+
+////    // Handling for nHandPiece == 0 (first set of buttons)
+//     if (gpio == 0) {
+//    if (nHandPiece == 0 && nHandPiece1==1) {
+
+//            // If currentButtonIndex is -1, start from the last button
+//            if (currentButtonIndex == -1) {
+//                currentButtonIndex = totalButtons - 1; // Start at the last button
+//            } else {
+//                // Move to the previous button (bottom to top)
+//                currentButtonIndex = (currentButtonIndex - 1 + totalButtons) % totalButtons;
+//            }
+
+//            // Debugging output: Log the selected button and PDM mode
+//            qDebug() << "Handpiece 0, GPIO: " << gpio << ", Button Index: " << currentButtonIndex;
+//            qDebug() << "Selected Button: " << buttons[currentButtonIndex]->text();
+
+//            // Debugging the associated PDM Mode for each button
+//            if (buttons[currentButtonIndex] == ui->ULTRASONICBUT1) {
+//                qDebug() << "PDM Mode: 1 (Ultrasonic 1)";
+//                ULTRASONICBUT1();
+//                qDebug()<<"the pdm mode is DECREMENT"<<ui->CutMode_vitCom->currentText()<<"us1";
+//            } else if (buttons[currentButtonIndex] == ui->ULTRASONICBUT2) {
+//                qDebug() << "PDM Mode: 2 (Ultrasonic 2)";
+//                ULTRASONICBUT2();
+//                qDebug()<<"the pdm mode2 is DECREMENT"<<ui->CutMode_vitCom_2->currentText()<<"us2";
+
+//            } else if (buttons[currentButtonIndex] == ui->ULTRASONICBUT3) {
+//                qDebug() << "PDM Mode: 3 (Ultrasonic 3)";
+//                ULTRASONICBUT3();
+//                qDebug()<<"the pdm mode3 is DECREMENT"<<ui->CutMode_vitCom_3->currentText()<<"us3";
+
+//            } else if (buttons[currentButtonIndex] == ui->ULTRASONICBUT4) {
+//                qDebug() << "PDM Mode: 4 (Ultrasonic 4)";
+//                ULTRASONICBUT4();
+//                qDebug()<<"the pdm mode4 is DECREMENT"<<ui->CutMode_vitCom_4->currentText()<<"us4";
+
+//            }
+//            else if(buttons[currentButtonIndex] == ui->IA1BUT){
+//                              IRRIGATIONBUT1();
+//                          }else if(buttons[currentButtonIndex] == ui->IA2BUT){
+//                              IRRIGATIONBUT2();
+//                          }else if(buttons[currentButtonIndex] == ui->VITRECTOMYBUT){
+//                              VITRECTOMYBUT();
+//                          }else if(buttons[currentButtonIndex] == ui->DIABUT){
+//                              DIATHERMYBUT();
+//                          }
+//        }
+
+//    buttons[currentButtonIndex]->click();
+//    buttons[currentButtonIndex]->setFocus();
+//    }
+//    // Handling for nHandPiece == 1 (second set of buttons)
+//     if (gpio == 0) {
+//    if (nHandPiece == 1 &&nHandPiece1 == 0) {
+
+//            // If currentButtonIndex is -1, start from the last button
+//            if (currentButtonIndex == -1) {
+//                currentButtonIndex = totalButtons1 - 1; // Start at the last button
+//            } else {
+//                // Move to the previous button (bottom to top)
+//                currentButtonIndex = (currentButtonIndex - 1 + totalButtons1) % totalButtons1;
+//            }
+
+//            // Debugging output: Log the selected button and PDM mode
+//            qDebug() << "Handpiece 1, GPIO: " << gpio << ", Button Index: " << currentButtonIndex;
+//            qDebug() << "Selected Button: " << buttons1[currentButtonIndex]->text();
+//           if(buttons1[currentButtonIndex] == ui->DIABUT){
+//                                          DIATHERMYBUT();
+//                                          qDebug()<<"The mode is diathermy";
+//                                      }
+//            if(buttons1[currentButtonIndex] == ui->IA1BUT){
+//                              IRRIGATIONBUT1();
+//                              qDebug()<<"the button is ia1";
+//                          }else if(buttons1[currentButtonIndex] == ui->IA2BUT){
+//                              IRRIGATIONBUT2();
+//                              qDebug()<<"the button is ia2";
+
+//                          }else if(buttons1[currentButtonIndex] == ui->VITRECTOMYBUT){
+//                              VITRECTOMYBUT();
+//                              qDebug()<<"the button is vit";
+
+//                          }
+//            buttons1[currentButtonIndex]->click();
+//            buttons1[currentButtonIndex]->setFocus();
+//        }
+
+
+//    }
+//}
 
 //void MainWindow::movePushButtonBottomToTop(int gpio) {
 //    QPushButton *buttons[] = {
@@ -6257,16 +6587,18 @@ void MainWindow::continousirrigation(int value)
 
 void MainWindow::poweronoff(int gpio)
 {
-poweronoff1=gpio;
-    if (poweronoff1 == 0) {
-          enableButtons(true);
-//          poweronoff1=1;
-       }else{
+    // Check the current state and toggle it
+    if (gpio == 0) {
+        // If gpio is 0, disable buttons immediately
         enableButtons(false);
-//        poweronoff1=0;
+        poweronoff1 = 0;  // Set poweronoff1 to 0 to reflect the off state
+    } else if (gpio == 1) {
+        // If gpio is 1, enable buttons
+        enableButtons(true);
+        poweronoff1 = 1;  // Set poweronoff1 to 1 to reflect the on state
     }
-
 }
+
 void MainWindow::on_us1onoff_clicked()
 {
     QString styleSheetOn = "QPushButton {"
@@ -7222,6 +7554,8 @@ void MainWindow::on_pushButton_clicked()
     protimer->stop();
     Tacutalsensor->stop();
     this->close();
+    nHandPiece=1;
+    nHandPiece1=1;
 
 
 }
