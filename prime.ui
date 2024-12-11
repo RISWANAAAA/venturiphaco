@@ -140,7 +140,7 @@ background-color: rgb(18, 78, 102);
      <property name="geometry">
       <rect>
        <x>140</x>
-       <y>100</y>
+       <y>110</y>
        <width>351</width>
        <height>51</height>
       </rect>
@@ -301,31 +301,6 @@ QCheckBox {
       <number>0</number>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_5">
-     <property name="geometry">
-      <rect>
-       <x>720</x>
-       <y>610</y>
-       <width>131</width>
-       <height>101</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton{
-image: url(:/images/nextbutton.png);
-background-color:transparent;
-border:none;
-}
-QPushButton:focus {
-    outline: none;
-    border: none;
-}
-</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
    </widget>
    <widget class="QWidget" name="tab_8">
     <property name="styleSheet">
@@ -453,31 +428,6 @@ background-color:transparent;</string>
      </property>
      <property name="text">
       <string> Instructions To Be Followed:</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="pushButton_8">
-     <property name="geometry">
-      <rect>
-       <x>700</x>
-       <y>540</y>
-       <width>151</width>
-       <height>141</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton{
-border:none;
-	image: url(:/images/backbuttonarrow.png);
-background-color:transparent;
-}
-QPushButton:focus {
-    outline: none;
-    border: none;
-}
-</string>
-     </property>
-     <property name="text">
-      <string/>
      </property>
     </widget>
    </widget>
@@ -712,7 +662,7 @@ font-weight: bold;</string>
    <property name="geometry">
     <rect>
      <x>410</x>
-     <y>79</y>
+     <y>80</y>
      <width>16</width>
      <height>651</height>
     </rect>
@@ -722,6 +672,22 @@ font-weight: bold;</string>
    </property>
    <property name="text">
     <string/>
+   </property>
+  </widget>
+  <widget class="Line" name="line">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>70</y>
+     <width>1280</width>
+     <height>3</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));</string>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
    </property>
   </widget>
   <zorder>prime1_but</zorder>
@@ -739,6 +705,7 @@ font-weight: bold;</string>
   <zorder>label_5</zorder>
   <zorder>label_4</zorder>
   <zorder>label_7</zorder>
+  <zorder>line</zorder>
  </widget>
  <resources/>
  <connections/>

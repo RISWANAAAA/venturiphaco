@@ -13,13 +13,13 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QDial>
+#include <QtWidgets/QFrame>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTabWidget>
-#include <QtWidgets/QTextEdit>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -40,9 +40,6 @@ public:
     QPushButton *us1flowdown_but;
     QPushButton *us1flowup_but;
     QLineEdit *lineEdit_57;
-    QTextEdit *textEdit_41;
-    QTextEdit *textEdit_42;
-    QTextEdit *textEdit_43;
     QLabel *label_85;
     QLabel *label_86;
     QLabel *label_87;
@@ -55,6 +52,9 @@ public:
     QLabel *label_8;
     QComboBox *CutMode_vitCom;
     QLabel *label_23;
+    QLabel *lblus1vac;
+    QLabel *lblus1pow;
+    QLabel *lblus1flow;
     QWidget *tab_34;
     QLineEdit *lineEdit_58;
     QPushButton *us2powup_but;
@@ -62,11 +62,8 @@ public:
     QLineEdit *lineEdit_59;
     QPushButton *us2flowup_but;
     QPushButton *us2flowdown_but;
-    QTextEdit *textEdit_44;
-    QTextEdit *textEdit_45;
     QLineEdit *lineEdit_60;
     QPushButton *us2vacup_but;
-    QTextEdit *textEdit_46;
     QPushButton *us2vacdown_but;
     QLabel *label_90;
     QLabel *label_91;
@@ -80,11 +77,13 @@ public:
     QComboBox *CutMode_vitCom_2;
     QLabel *CutMode_vit_2;
     QLabel *label_24;
+    QLabel *lblus2pow;
+    QLabel *lblus2flow;
+    QLabel *lblus2vac;
     QWidget *tab_35;
     QPushButton *us3powup_but;
     QPushButton *us3powdown_but;
     QLineEdit *lineEdit_61;
-    QTextEdit *textEdit_47;
     QLabel *label_96;
     QLabel *label_97;
     QPushButton *us3mode;
@@ -92,19 +91,20 @@ public:
     QLabel *label_100;
     QComboBox *CutMode_vitCom_3;
     QLabel *label_99;
-    QTextEdit *textEdit_49;
     QLabel *label_95;
     QLineEdit *lineEdit_63;
     QPushButton *us3vacdown_but;
     QPushButton *us3vacup_but;
     QPushButton *us3vacmode;
     QLineEdit *lineEdit_62;
-    QTextEdit *textEdit_48;
     QPushButton *us3flowdown_but;
     QPushButton *us3flowup_but;
     QLabel *label_98;
     QLabel *CutMode_vit_3;
     QLabel *label_25;
+    QLabel *lblus3pow;
+    QLabel *lblus3flow;
+    QLabel *lblus3vac;
     QWidget *tab_36;
     QLineEdit *lineEdit_64;
     QPushButton *us4powup_but;
@@ -112,12 +112,9 @@ public:
     QPushButton *us4flowup_but;
     QLineEdit *lineEdit_65;
     QPushButton *us4flowdown_but;
-    QTextEdit *textEdit_50;
-    QTextEdit *textEdit_51;
     QLabel *label_101;
     QLabel *label_102;
     QLabel *label_103;
-    QTextEdit *textEdit_52;
     QPushButton *us4vacdown_but;
     QLineEdit *lineEdit_66;
     QPushButton *us4vacup_but;
@@ -129,34 +126,37 @@ public:
     QLabel *label_106;
     QComboBox *CutMode_vitCom_4;
     QLabel *CutMode_vit_4;
+    QLabel *lblus4pow;
+    QLabel *lblus4flow;
+    QLabel *lblus4vac;
     QWidget *tab_38;
     QPushButton *ia2flowup_but;
     QPushButton *ia2flowdown_but;
     QLineEdit *lineEdit_69;
-    QTextEdit *textEdit_55;
     QLabel *label_111;
     QLabel *label_112;
     QLineEdit *lineEdit_70;
     QPushButton *ia2vacup_but;
-    QTextEdit *textEdit_56;
     QPushButton *ia2vacdown_but;
     QLabel *label_113;
     QPushButton *ia2mode;
     QLabel *label_114;
+    QLabel *lblia1flow;
+    QLabel *lblia1vac;
     QWidget *tab_37;
     QPushButton *ia1flowdown_but;
     QLineEdit *lineEdit_67;
     QPushButton *ia1flowup_but;
-    QTextEdit *textEdit_53;
     QLabel *label_107;
     QLabel *label_108;
     QPushButton *ia1vacdown_but;
-    QTextEdit *textEdit_54;
     QPushButton *ia1vacup_but;
     QLineEdit *lineEdit_68;
     QLabel *label_109;
     QPushButton *ia1mode;
     QLabel *label_110;
+    QLabel *lblia2vac;
+    QLabel *lblia2flow;
     QWidget *tab_39;
     QLineEdit *lineEdit_71;
     QPushButton *vitpowup_but;
@@ -164,13 +164,10 @@ public:
     QLineEdit *lineEdit_72;
     QPushButton *vitflowup_but;
     QPushButton *vitflowdown_but;
-    QTextEdit *textEdit_57;
-    QTextEdit *textEdit_58;
     QLabel *label_115;
     QLabel *label_117;
     QPushButton *vitvacup_but;
     QPushButton *vitvacdown_but;
-    QTextEdit *textEdit_59;
     QLineEdit *lineEdit_73;
     QLabel *label_118;
     QLabel *label_119;
@@ -179,13 +176,16 @@ public:
     QPushButton *vitonoff;
     QLabel *label_122;
     QLabel *label_20;
+    QLabel *lblvitvac;
+    QLabel *lblvitflow;
+    QLabel *lblcutrate;
     QWidget *tab_40;
-    QTextEdit *textEdit_60;
     QPushButton *diapowdown_but;
     QLabel *label_120;
     QPushButton *diapowup_but;
     QLineEdit *lineEdit_74;
     QLabel *label_116;
+    QLabel *label_33;
     QLabel *label_14;
     QLabel *label_12;
     QPushButton *IA2BUT;
@@ -263,6 +263,7 @@ public:
     QPushButton *elapsed_time_2;
     QLabel *label_28;
     QLabel *label_26;
+    QFrame *line;
     QStatusBar *statusbar;
 
     void setupUi(QMainWindow *MainWindow)
@@ -398,30 +399,6 @@ public:
 "border-radius:20px;\n"
 "border:2px solid black;"));
         lineEdit_57->setAlignment(Qt::AlignCenter);
-        textEdit_41 = new QTextEdit(tab_33);
-        textEdit_41->setObjectName(QString::fromUtf8("textEdit_41"));
-        textEdit_41->setGeometry(QRect(80, 540, 431, 41));
-        textEdit_41->setStyleSheet(QString::fromUtf8("background-color:transparent;\n"
-"font: 15pt \"Ubuntu Condensed\";\n"
-"font:bold;\n"
-"border:none;\n"
-""));
-        textEdit_42 = new QTextEdit(tab_33);
-        textEdit_42->setObjectName(QString::fromUtf8("textEdit_42"));
-        textEdit_42->setGeometry(QRect(70, 100, 331, 81));
-        textEdit_42->setStyleSheet(QString::fromUtf8("background-color:transparent;\n"
-"font: 25pt \"Ubuntu Condensed\";\n"
-"font:bold;\n"
-"border:none;\n"
-""));
-        textEdit_43 = new QTextEdit(tab_33);
-        textEdit_43->setObjectName(QString::fromUtf8("textEdit_43"));
-        textEdit_43->setGeometry(QRect(780, 90, 251, 41));
-        textEdit_43->setStyleSheet(QString::fromUtf8("background-color:transparent;\n"
-"font: 15pt \"Ubuntu Condensed\";\n"
-"font:bold;\n"
-"border:none;\n"
-""));
         label_85 = new QLabel(tab_33);
         label_85->setObjectName(QString::fromUtf8("label_85"));
         label_85->setGeometry(QRect(720, 70, 531, 181));
@@ -603,20 +580,45 @@ public:
         label_23->setStyleSheet(QString::fromUtf8("font:13pt;\n"
 "font:bold;\n"
 "background-color:transparent;"));
+        lblus1vac = new QLabel(tab_33);
+        lblus1vac->setObjectName(QString::fromUtf8("lblus1vac"));
+        lblus1vac->setGeometry(QRect(70, 100, 241, 31));
+        lblus1vac->setStyleSheet(QString::fromUtf8("background-color:transparent;\n"
+"color: rgb(255, 255, 255);\n"
+"font: 20pt \"Ubuntu Condensed\";\n"
+"font:bold;\n"
+"border:none;\n"
+""));
+        lblus1pow = new QLabel(tab_33);
+        lblus1pow->setObjectName(QString::fromUtf8("lblus1pow"));
+        lblus1pow->setGeometry(QRect(780, 90, 241, 31));
+        lblus1pow->setStyleSheet(QString::fromUtf8("background-color:transparent;\n"
+"color: rgb(255, 255, 255);\n"
+"font: 20pt \"Ubuntu Condensed\";\n"
+"font:bold;\n"
+"border:none;\n"
+""));
+        lblus1flow = new QLabel(tab_33);
+        lblus1flow->setObjectName(QString::fromUtf8("lblus1flow"));
+        lblus1flow->setGeometry(QRect(80, 540, 371, 31));
+        lblus1flow->setStyleSheet(QString::fromUtf8("background-color:transparent;\n"
+"color: rgb(255, 255, 255);\n"
+"font: 20pt \"Ubuntu Condensed\";\n"
+"font:bold;\n"
+"border:none;\n"
+""));
         tabWidget->addTab(tab_33, QString());
         label_87->raise();
         label_86->raise();
         label_85->raise();
         us1powdown_but->raise();
         lineEdit_57->raise();
-        textEdit_43->raise();
         label_7->raise();
         us1mode->raise();
         us1onoff->raise();
         label_88->raise();
         us1vacup_but->raise();
         lineEdit_55->raise();
-        textEdit_42->raise();
         us1vacmode->raise();
         CutMode_vit->raise();
         us1vacdow_but->raise();
@@ -625,9 +627,11 @@ public:
         us1flowdown_but->raise();
         lineEdit_56->raise();
         us1flowup_but->raise();
-        textEdit_41->raise();
         CutMode_vitCom->raise();
         label_8->raise();
+        lblus1vac->raise();
+        lblus1pow->raise();
+        lblus1flow->raise();
         tab_34 = new QWidget();
         tab_34->setObjectName(QString::fromUtf8("tab_34"));
         tab_34->setStyleSheet(QString::fromUtf8("\n"
@@ -707,22 +711,6 @@ public:
 "    border: none;\n"
 "}\n"
 ""));
-        textEdit_44 = new QTextEdit(tab_34);
-        textEdit_44->setObjectName(QString::fromUtf8("textEdit_44"));
-        textEdit_44->setGeometry(QRect(80, 540, 341, 41));
-        textEdit_44->setStyleSheet(QString::fromUtf8("background-color:transparent;\n"
-"font: 15pt \"Ubuntu Condensed\";\n"
-"font:bold;\n"
-"border:none;\n"
-""));
-        textEdit_45 = new QTextEdit(tab_34);
-        textEdit_45->setObjectName(QString::fromUtf8("textEdit_45"));
-        textEdit_45->setGeometry(QRect(780, 90, 251, 41));
-        textEdit_45->setStyleSheet(QString::fromUtf8("background-color:transparent;\n"
-"font: 15pt \"Ubuntu Condensed\";\n"
-"font:bold;\n"
-"border:none;\n"
-""));
         lineEdit_60 = new QLineEdit(tab_34);
         lineEdit_60->setObjectName(QString::fromUtf8("lineEdit_60"));
         lineEdit_60->setGeometry(QRect(180, 150, 101, 61));
@@ -744,14 +732,6 @@ public:
 "    outline: none;\n"
 "    border: none;\n"
 "}\n"
-""));
-        textEdit_46 = new QTextEdit(tab_34);
-        textEdit_46->setObjectName(QString::fromUtf8("textEdit_46"));
-        textEdit_46->setGeometry(QRect(70, 100, 241, 41));
-        textEdit_46->setStyleSheet(QString::fromUtf8("background-color:transparent;\n"
-"font: 15pt \"Ubuntu Condensed\";\n"
-"font:bold;\n"
-"border:none;\n"
 ""));
         us2vacdown_but = new QPushButton(tab_34);
         us2vacdown_but->setObjectName(QString::fromUtf8("us2vacdown_but"));
@@ -939,6 +919,33 @@ public:
         label_24->setStyleSheet(QString::fromUtf8("font:13pt;\n"
 "font:bold;\n"
 "background-color:transparent;"));
+        lblus2pow = new QLabel(tab_34);
+        lblus2pow->setObjectName(QString::fromUtf8("lblus2pow"));
+        lblus2pow->setGeometry(QRect(780, 90, 241, 31));
+        lblus2pow->setStyleSheet(QString::fromUtf8("background-color:transparent;\n"
+"color: rgb(255, 255, 255);\n"
+"font: 20pt \"Ubuntu Condensed\";\n"
+"font:bold;\n"
+"border:none;\n"
+""));
+        lblus2flow = new QLabel(tab_34);
+        lblus2flow->setObjectName(QString::fromUtf8("lblus2flow"));
+        lblus2flow->setGeometry(QRect(80, 540, 381, 31));
+        lblus2flow->setStyleSheet(QString::fromUtf8("background-color:transparent;\n"
+"color: rgb(255, 255, 255);\n"
+"font: 20pt \"Ubuntu Condensed\";\n"
+"font:bold;\n"
+"border:none;\n"
+""));
+        lblus2vac = new QLabel(tab_34);
+        lblus2vac->setObjectName(QString::fromUtf8("lblus2vac"));
+        lblus2vac->setGeometry(QRect(70, 100, 241, 31));
+        lblus2vac->setStyleSheet(QString::fromUtf8("background-color:transparent;\n"
+"color: rgb(255, 255, 255);\n"
+"font: 20pt \"Ubuntu Condensed\";\n"
+"font:bold;\n"
+"border:none;\n"
+""));
         tabWidget->addTab(tab_34, QString());
         label_123->raise();
         label_91->raise();
@@ -948,11 +955,8 @@ public:
         lineEdit_59->raise();
         us2flowup_but->raise();
         us2flowdown_but->raise();
-        textEdit_44->raise();
-        textEdit_45->raise();
         lineEdit_60->raise();
         us2vacup_but->raise();
-        textEdit_46->raise();
         us2vacdown_but->raise();
         label_92->raise();
         label_93->raise();
@@ -964,6 +968,9 @@ public:
         label_94->raise();
         CutMode_vit_2->raise();
         label_24->raise();
+        lblus2pow->raise();
+        lblus2flow->raise();
+        lblus2vac->raise();
         tab_35 = new QWidget();
         tab_35->setObjectName(QString::fromUtf8("tab_35"));
         tab_35->setStyleSheet(QString::fromUtf8("\n"
@@ -1007,14 +1014,6 @@ public:
 "border-radius:20px;\n"
 "border:2px solid black;"));
         lineEdit_61->setAlignment(Qt::AlignCenter);
-        textEdit_47 = new QTextEdit(tab_35);
-        textEdit_47->setObjectName(QString::fromUtf8("textEdit_47"));
-        textEdit_47->setGeometry(QRect(780, 90, 251, 41));
-        textEdit_47->setStyleSheet(QString::fromUtf8("background-color:transparent;\n"
-"font: 15pt \"Ubuntu Condensed\";\n"
-"font:bold;\n"
-"border:none;\n"
-""));
         label_96 = new QLabel(tab_35);
         label_96->setObjectName(QString::fromUtf8("label_96"));
         label_96->setGeometry(QRect(30, 510, 531, 181));
@@ -1123,14 +1122,6 @@ public:
 "\n"
 ""));
         label_99->setAlignment(Qt::AlignCenter);
-        textEdit_49 = new QTextEdit(tab_35);
-        textEdit_49->setObjectName(QString::fromUtf8("textEdit_49"));
-        textEdit_49->setGeometry(QRect(70, 100, 241, 61));
-        textEdit_49->setStyleSheet(QString::fromUtf8("background-color:transparent;\n"
-"font: 15pt \"Ubuntu Condensed\";\n"
-"font:bold;\n"
-"border:none;\n"
-""));
         label_95 = new QLabel(tab_35);
         label_95->setObjectName(QString::fromUtf8("label_95"));
         label_95->setGeometry(QRect(30, 70, 531, 181));
@@ -1202,14 +1193,6 @@ public:
 "background-color: rgb(255,255,255);\n"
 "border-radius:20px;border:2px solid black;"));
         lineEdit_62->setAlignment(Qt::AlignCenter);
-        textEdit_48 = new QTextEdit(tab_35);
-        textEdit_48->setObjectName(QString::fromUtf8("textEdit_48"));
-        textEdit_48->setGeometry(QRect(80, 540, 331, 41));
-        textEdit_48->setStyleSheet(QString::fromUtf8("background-color:transparent;\n"
-"font: 15pt \"Ubuntu Condensed\";\n"
-"font:bold;\n"
-"border:none;\n"
-""));
         us3flowdown_but = new QPushButton(tab_35);
         us3flowdown_but->setObjectName(QString::fromUtf8("us3flowdown_but"));
         us3flowdown_but->setGeometry(QRect(380, 590, 91, 61));
@@ -1274,13 +1257,39 @@ public:
         label_25->setStyleSheet(QString::fromUtf8("font:13pt;\n"
 "font:bold;\n"
 "background-color:transparent;"));
+        lblus3pow = new QLabel(tab_35);
+        lblus3pow->setObjectName(QString::fromUtf8("lblus3pow"));
+        lblus3pow->setGeometry(QRect(780, 90, 241, 31));
+        lblus3pow->setStyleSheet(QString::fromUtf8("background-color:transparent;\n"
+"color: rgb(255, 255, 255);\n"
+"font: 20pt \"Ubuntu Condensed\";\n"
+"font:bold;\n"
+"border:none;\n"
+""));
+        lblus3flow = new QLabel(tab_35);
+        lblus3flow->setObjectName(QString::fromUtf8("lblus3flow"));
+        lblus3flow->setGeometry(QRect(80, 540, 371, 31));
+        lblus3flow->setStyleSheet(QString::fromUtf8("background-color:transparent;\n"
+"color: rgb(255, 255, 255);\n"
+"font: 20pt \"Ubuntu Condensed\";\n"
+"font:bold;\n"
+"border:none;\n"
+""));
+        lblus3vac = new QLabel(tab_35);
+        lblus3vac->setObjectName(QString::fromUtf8("lblus3vac"));
+        lblus3vac->setGeometry(QRect(70, 100, 241, 31));
+        lblus3vac->setStyleSheet(QString::fromUtf8("background-color:transparent;\n"
+"color: rgb(255, 255, 255);\n"
+"font: 20pt \"Ubuntu Condensed\";\n"
+"font:bold;\n"
+"border:none;\n"
+""));
         tabWidget->addTab(tab_35, QString());
         label_96->raise();
         label_97->raise();
         us3powup_but->raise();
         us3powdown_but->raise();
         lineEdit_61->raise();
-        textEdit_47->raise();
         us3mode->raise();
         us3onoff->raise();
         label_100->raise();
@@ -1291,14 +1300,15 @@ public:
         us3vacup_but->raise();
         us3vacmode->raise();
         label_99->raise();
-        textEdit_49->raise();
         lineEdit_62->raise();
-        textEdit_48->raise();
         us3flowdown_but->raise();
         us3flowup_but->raise();
         label_98->raise();
         CutMode_vit_3->raise();
         label_25->raise();
+        lblus3pow->raise();
+        lblus3flow->raise();
+        lblus3vac->raise();
         tab_36 = new QWidget();
         tab_36->setObjectName(QString::fromUtf8("tab_36"));
         tab_36->setStyleSheet(QString::fromUtf8("\n"
@@ -1376,22 +1386,6 @@ public:
 "    border: none;\n"
 "}\n"
 ""));
-        textEdit_50 = new QTextEdit(tab_36);
-        textEdit_50->setObjectName(QString::fromUtf8("textEdit_50"));
-        textEdit_50->setGeometry(QRect(80, 540, 341, 41));
-        textEdit_50->setStyleSheet(QString::fromUtf8("background-color:transparent;\n"
-"font: 15pt \"Ubuntu Condensed\";\n"
-"font:bold;\n"
-"border:none;\n"
-""));
-        textEdit_51 = new QTextEdit(tab_36);
-        textEdit_51->setObjectName(QString::fromUtf8("textEdit_51"));
-        textEdit_51->setGeometry(QRect(780, 90, 251, 41));
-        textEdit_51->setStyleSheet(QString::fromUtf8("background-color:transparent;\n"
-"font: 15pt \"Ubuntu Condensed\";\n"
-"font:bold;\n"
-"border:none;\n"
-""));
         label_101 = new QLabel(tab_36);
         label_101->setObjectName(QString::fromUtf8("label_101"));
         label_101->setGeometry(QRect(30, 70, 531, 181));
@@ -1454,14 +1448,6 @@ public:
 "\n"
 "\n"
 "\n"
-""));
-        textEdit_52 = new QTextEdit(tab_36);
-        textEdit_52->setObjectName(QString::fromUtf8("textEdit_52"));
-        textEdit_52->setGeometry(QRect(70, 100, 241, 61));
-        textEdit_52->setStyleSheet(QString::fromUtf8("background-color:transparent;\n"
-"font: 15pt \"Ubuntu Condensed\";\n"
-"font:bold;\n"
-"border:none;\n"
 ""));
         us4vacdown_but = new QPushButton(tab_36);
         us4vacdown_but->setObjectName(QString::fromUtf8("us4vacdown_but"));
@@ -1573,7 +1559,7 @@ public:
 "color: rgb(0, 0, 0);"));
         label_106 = new QLabel(tab_36);
         label_106->setObjectName(QString::fromUtf8("label_106"));
-        label_106->setGeometry(QRect(970, 10, 231, 51));
+        label_106->setGeometry(QRect(960, 10, 241, 51));
         label_106->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);\n"
 "background-color:transparent;\n"
 "border:1px solid white;\n"
@@ -1602,6 +1588,33 @@ public:
         CutMode_vit_4->setGeometry(QRect(940, 340, 81, 31));
         CutMode_vit_4->setStyleSheet(QString::fromUtf8("background-color:transparent;font: 15pt \"Ubuntu Condensed\";\n"
 "font:bold;"));
+        lblus4pow = new QLabel(tab_36);
+        lblus4pow->setObjectName(QString::fromUtf8("lblus4pow"));
+        lblus4pow->setGeometry(QRect(780, 90, 241, 31));
+        lblus4pow->setStyleSheet(QString::fromUtf8("background-color:transparent;\n"
+"color: rgb(255, 255, 255);\n"
+"font: 20pt \"Ubuntu Condensed\";\n"
+"font:bold;\n"
+"border:none;\n"
+""));
+        lblus4flow = new QLabel(tab_36);
+        lblus4flow->setObjectName(QString::fromUtf8("lblus4flow"));
+        lblus4flow->setGeometry(QRect(80, 540, 371, 31));
+        lblus4flow->setStyleSheet(QString::fromUtf8("background-color:transparent;\n"
+"color: rgb(255, 255, 255);\n"
+"font: 20pt \"Ubuntu Condensed\";\n"
+"font:bold;\n"
+"border:none;\n"
+""));
+        lblus4vac = new QLabel(tab_36);
+        lblus4vac->setObjectName(QString::fromUtf8("lblus4vac"));
+        lblus4vac->setGeometry(QRect(70, 100, 241, 31));
+        lblus4vac->setStyleSheet(QString::fromUtf8("background-color:transparent;\n"
+"color: rgb(255, 255, 255);\n"
+"font: 20pt \"Ubuntu Condensed\";\n"
+"font:bold;\n"
+"border:none;\n"
+""));
         tabWidget->addTab(tab_36, QString());
         label_102->raise();
         label_101->raise();
@@ -1612,9 +1625,6 @@ public:
         us4flowup_but->raise();
         lineEdit_65->raise();
         us4flowdown_but->raise();
-        textEdit_50->raise();
-        textEdit_51->raise();
-        textEdit_52->raise();
         us4vacdown_but->raise();
         lineEdit_66->raise();
         us4vacup_but->raise();
@@ -1626,6 +1636,9 @@ public:
         label_106->raise();
         us4vacmode->raise();
         us4mode->raise();
+        lblus4pow->raise();
+        lblus4flow->raise();
+        lblus4vac->raise();
         tab_38 = new QWidget();
         tab_38->setObjectName(QString::fromUtf8("tab_38"));
         tab_38->setStyleSheet(QString::fromUtf8("\n"
@@ -1669,14 +1682,6 @@ public:
 "background-color: rgb(255,255,255);\n"
 "border-radius:20px;border:2px solid black;"));
         lineEdit_69->setAlignment(Qt::AlignCenter);
-        textEdit_55 = new QTextEdit(tab_38);
-        textEdit_55->setObjectName(QString::fromUtf8("textEdit_55"));
-        textEdit_55->setGeometry(QRect(80, 540, 331, 41));
-        textEdit_55->setStyleSheet(QString::fromUtf8("background-color:transparent;\n"
-"font: 15pt \"Ubuntu Condensed\";\n"
-"font:bold;\n"
-"border:none;\n"
-""));
         label_111 = new QLabel(tab_38);
         label_111->setObjectName(QString::fromUtf8("label_111"));
         label_111->setGeometry(QRect(30, 70, 531, 181));
@@ -1741,14 +1746,6 @@ public:
 "    border: none;\n"
 "}\n"
 ""));
-        textEdit_56 = new QTextEdit(tab_38);
-        textEdit_56->setObjectName(QString::fromUtf8("textEdit_56"));
-        textEdit_56->setGeometry(QRect(70, 100, 321, 41));
-        textEdit_56->setStyleSheet(QString::fromUtf8("background-color:transparent;\n"
-"font: 15pt \"Ubuntu Condensed\";\n"
-"font:bold;\n"
-"border:none;\n"
-""));
         ia2vacdown_but = new QPushButton(tab_38);
         ia2vacdown_but->setObjectName(QString::fromUtf8("ia2vacdown_but"));
         ia2vacdown_but->setGeometry(QRect(300, 150, 91, 61));
@@ -1808,6 +1805,24 @@ public:
 "\n"
 ""));
         label_114->setAlignment(Qt::AlignCenter);
+        lblia1flow = new QLabel(tab_38);
+        lblia1flow->setObjectName(QString::fromUtf8("lblia1flow"));
+        lblia1flow->setGeometry(QRect(80, 540, 391, 31));
+        lblia1flow->setStyleSheet(QString::fromUtf8("background-color:transparent;\n"
+"color: rgb(255, 255, 255);\n"
+"font: 20pt \"Ubuntu Condensed\";\n"
+"font:bold;\n"
+"border:none;\n"
+""));
+        lblia1vac = new QLabel(tab_38);
+        lblia1vac->setObjectName(QString::fromUtf8("lblia1vac"));
+        lblia1vac->setGeometry(QRect(70, 100, 241, 31));
+        lblia1vac->setStyleSheet(QString::fromUtf8("background-color:transparent;\n"
+"color: rgb(255, 255, 255);\n"
+"font: 20pt \"Ubuntu Condensed\";\n"
+"font:bold;\n"
+"border:none;\n"
+""));
         tabWidget->addTab(tab_38, QString());
         label_112->raise();
         lineEdit_69->raise();
@@ -1815,13 +1830,13 @@ public:
         lineEdit_70->raise();
         ia2mode->raise();
         label_114->raise();
-        textEdit_56->raise();
-        textEdit_55->raise();
         ia2flowdown_but->raise();
         ia2flowup_but->raise();
         ia2vacdown_but->raise();
         ia2vacup_but->raise();
         label_113->raise();
+        lblia1flow->raise();
+        lblia1vac->raise();
         tab_37 = new QWidget();
         tab_37->setObjectName(QString::fromUtf8("tab_37"));
         tab_37->setStyleSheet(QString::fromUtf8("\n"
@@ -1863,14 +1878,6 @@ public:
 "    outline: none;\n"
 "    border: none;\n"
 "}\n"
-""));
-        textEdit_53 = new QTextEdit(tab_37);
-        textEdit_53->setObjectName(QString::fromUtf8("textEdit_53"));
-        textEdit_53->setGeometry(QRect(80, 540, 361, 41));
-        textEdit_53->setStyleSheet(QString::fromUtf8("background-color:transparent;\n"
-"font: 15pt \"Ubuntu Condensed\";\n"
-"font:bold;\n"
-"border:none;\n"
 ""));
         label_107 = new QLabel(tab_37);
         label_107->setObjectName(QString::fromUtf8("label_107"));
@@ -1927,14 +1934,6 @@ public:
 "    outline: none;\n"
 "    border: none;\n"
 "}\n"
-""));
-        textEdit_54 = new QTextEdit(tab_37);
-        textEdit_54->setObjectName(QString::fromUtf8("textEdit_54"));
-        textEdit_54->setGeometry(QRect(70, 100, 321, 41));
-        textEdit_54->setStyleSheet(QString::fromUtf8("background-color:transparent;\n"
-"font: 15pt \"Ubuntu Condensed\";\n"
-"font:bold;\n"
-"border:none;\n"
 ""));
         ia1vacup_but = new QPushButton(tab_37);
         ia1vacup_but->setObjectName(QString::fromUtf8("ia1vacup_but"));
@@ -2001,20 +2000,38 @@ public:
 "font:bold;\n"
 ""));
         label_110->setAlignment(Qt::AlignCenter);
+        lblia2vac = new QLabel(tab_37);
+        lblia2vac->setObjectName(QString::fromUtf8("lblia2vac"));
+        lblia2vac->setGeometry(QRect(70, 100, 241, 31));
+        lblia2vac->setStyleSheet(QString::fromUtf8("background-color:transparent;\n"
+"color: rgb(255, 255, 255);\n"
+"font: 20pt \"Ubuntu Condensed\";\n"
+"font:bold;\n"
+"border:none;\n"
+""));
+        lblia2flow = new QLabel(tab_37);
+        lblia2flow->setObjectName(QString::fromUtf8("lblia2flow"));
+        lblia2flow->setGeometry(QRect(80, 540, 401, 31));
+        lblia2flow->setStyleSheet(QString::fromUtf8("background-color:transparent;\n"
+"color: rgb(255, 255, 255);\n"
+"font: 20pt \"Ubuntu Condensed\";\n"
+"font:bold;\n"
+"border:none;\n"
+""));
         tabWidget->addTab(tab_37, QString());
         label_108->raise();
         lineEdit_67->raise();
         label_107->raise();
-        textEdit_54->raise();
         lineEdit_68->raise();
         label_109->raise();
         ia1mode->raise();
         label_110->raise();
-        textEdit_53->raise();
         ia1flowdown_but->raise();
         ia1flowup_but->raise();
         ia1vacdown_but->raise();
         ia1vacup_but->raise();
+        lblia2vac->raise();
+        lblia2flow->raise();
         tab_39 = new QWidget();
         tab_39->setObjectName(QString::fromUtf8("tab_39"));
         tab_39->setStyleSheet(QString::fromUtf8("\n"
@@ -2092,22 +2109,6 @@ public:
 "    border: none;\n"
 "}\n"
 ""));
-        textEdit_57 = new QTextEdit(tab_39);
-        textEdit_57->setObjectName(QString::fromUtf8("textEdit_57"));
-        textEdit_57->setGeometry(QRect(780, 90, 381, 41));
-        textEdit_57->setStyleSheet(QString::fromUtf8("background-color:transparent;\n"
-"font: 15pt \"Ubuntu Condensed\";\n"
-"font:bold;\n"
-"border:none;\n"
-""));
-        textEdit_58 = new QTextEdit(tab_39);
-        textEdit_58->setObjectName(QString::fromUtf8("textEdit_58"));
-        textEdit_58->setGeometry(QRect(80, 540, 431, 51));
-        textEdit_58->setStyleSheet(QString::fromUtf8("background-color:transparent;\n"
-"font: 15pt \"Ubuntu Condensed\";\n"
-"font:bold;\n"
-"border:none;\n"
-""));
         label_115 = new QLabel(tab_39);
         label_115->setObjectName(QString::fromUtf8("label_115"));
         label_115->setGeometry(QRect(30, 70, 531, 181));
@@ -2177,14 +2178,6 @@ public:
 "    outline: none;\n"
 "    border: none;\n"
 "}\n"
-""));
-        textEdit_59 = new QTextEdit(tab_39);
-        textEdit_59->setObjectName(QString::fromUtf8("textEdit_59"));
-        textEdit_59->setGeometry(QRect(70, 100, 431, 71));
-        textEdit_59->setStyleSheet(QString::fromUtf8("background-color:transparent;\n"
-"font: 15pt \"Ubuntu Condensed\";\n"
-"font:bold;\n"
-"border:none;\n"
 ""));
         lineEdit_73 = new QLineEdit(tab_39);
         lineEdit_73->setObjectName(QString::fromUtf8("lineEdit_73"));
@@ -2299,6 +2292,34 @@ public:
 "\n"
 ""));
         label_20->setAlignment(Qt::AlignCenter);
+        lblvitvac = new QLabel(tab_39);
+        lblvitvac->setObjectName(QString::fromUtf8("lblvitvac"));
+        lblvitvac->setGeometry(QRect(70, 100, 241, 31));
+        lblvitvac->setStyleSheet(QString::fromUtf8("background-color:transparent;\n"
+"color: rgb(255, 255, 255);\n"
+"font: 20pt \"Ubuntu Condensed\";\n"
+"font:bold;\n"
+"border:none;\n"
+""));
+        lblvitflow = new QLabel(tab_39);
+        lblvitflow->setObjectName(QString::fromUtf8("lblvitflow"));
+        lblvitflow->setGeometry(QRect(80, 540, 381, 31));
+        lblvitflow->setStyleSheet(QString::fromUtf8("background-color:transparent;\n"
+"color: rgb(255, 255, 255);\n"
+"font: 20pt \"Ubuntu Condensed\";\n"
+"font:bold;\n"
+"border:none;\n"
+""));
+        lblcutrate = new QLabel(tab_39);
+        lblcutrate->setObjectName(QString::fromUtf8("lblcutrate"));
+        lblcutrate->setGeometry(QRect(780, 90, 401, 51));
+        lblcutrate->setStyleSheet(QString::fromUtf8("background-color:transparent;\n"
+"color: rgb(255, 255, 255);\n"
+"font: 20pt \"Ubuntu Condensed\";\n"
+"font:bold;\n"
+"border:none;\n"
+""));
+        lblcutrate->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
         tabWidget->addTab(tab_39, QString());
         vitmode->raise();
         label_115->raise();
@@ -2309,11 +2330,8 @@ public:
         lineEdit_72->raise();
         vitflowup_but->raise();
         vitflowdown_but->raise();
-        textEdit_57->raise();
-        textEdit_58->raise();
         vitvacup_but->raise();
         vitvacdown_but->raise();
-        textEdit_59->raise();
         lineEdit_73->raise();
         label_118->raise();
         label_119->raise();
@@ -2321,21 +2339,15 @@ public:
         vitonoff->raise();
         vitpowup_but->raise();
         label_20->raise();
+        lblvitvac->raise();
+        lblvitflow->raise();
+        lblcutrate->raise();
         tab_40 = new QWidget();
         tab_40->setObjectName(QString::fromUtf8("tab_40"));
         tab_40->setStyleSheet(QString::fromUtf8("\n"
 "background-color: rgb(18, 78, 102);\n"
 "\n"
 "\n"
-""));
-        textEdit_60 = new QTextEdit(tab_40);
-        textEdit_60->setObjectName(QString::fromUtf8("textEdit_60"));
-        textEdit_60->setGeometry(QRect(730, 90, 181, 70));
-        textEdit_60->setStyleSheet(QString::fromUtf8("background-color:transparent;\n"
-"color: rgb(255, 255, 255);\n"
-"font: 15pt \"Ubuntu Condensed\";\n"
-"font:bold;\n"
-"border:none;\n"
 ""));
         diapowdown_but = new QPushButton(tab_40);
         diapowdown_but->setObjectName(QString::fromUtf8("diapowdown_but"));
@@ -2405,13 +2417,22 @@ public:
 "\n"
 ""));
         label_116->setAlignment(Qt::AlignCenter);
+        label_33 = new QLabel(tab_40);
+        label_33->setObjectName(QString::fromUtf8("label_33"));
+        label_33->setGeometry(QRect(790, 100, 171, 41));
+        label_33->setStyleSheet(QString::fromUtf8("background-color:transparent;\n"
+"color: rgb(255, 255, 255);\n"
+"font: 20pt \"Ubuntu Condensed\";\n"
+"font:bold;\n"
+"border:none;\n"
+""));
         tabWidget->addTab(tab_40, QString());
         label_120->raise();
         diapowup_but->raise();
         lineEdit_74->raise();
         diapowdown_but->raise();
-        textEdit_60->raise();
         label_116->raise();
+        label_33->raise();
         label_14 = new QLabel(centralwidget);
         label_14->setObjectName(QString::fromUtf8("label_14"));
         label_14->setGeometry(QRect(667, 390, 121, 121));
@@ -2804,7 +2825,7 @@ public:
         ButColdPhacoPer_up->raise();
         SETTINGS_BUT_4 = new QPushButton(centralwidget);
         SETTINGS_BUT_4->setObjectName(QString::fromUtf8("SETTINGS_BUT_4"));
-        SETTINGS_BUT_4->setGeometry(QRect(90, 20, 51, 51));
+        SETTINGS_BUT_4->setGeometry(QRect(10, 20, 51, 51));
         SETTINGS_BUT_4->setStyleSheet(QString::fromUtf8("image: url(:/images/doctor.png);\n"
 "background-color: transparent;\n"
 "border:none;border-radius:30px;"));
@@ -2825,7 +2846,7 @@ public:
 ""));
         SETTINGS_BUT_2 = new QPushButton(centralwidget);
         SETTINGS_BUT_2->setObjectName(QString::fromUtf8("SETTINGS_BUT_2"));
-        SETTINGS_BUT_2->setGeometry(QRect(1190, 10, 71, 71));
+        SETTINGS_BUT_2->setGeometry(QRect(1190, 10, 61, 61));
         SETTINGS_BUT_2->setStyleSheet(QString::fromUtf8("\n"
 "image: url(:/images/settings1.png);\n"
 "background-color: rgb(222, 221, 218);\n"
@@ -2882,7 +2903,7 @@ public:
         comboBox_4->addItem(QString());
         comboBox_4->addItem(QString());
         comboBox_4->setObjectName(QString::fromUtf8("comboBox_4"));
-        comboBox_4->setGeometry(QRect(130, 20, 311, 51));
+        comboBox_4->setGeometry(QRect(60, 20, 331, 51));
         comboBox_4->setStyleSheet(QString::fromUtf8("\n"
 "background-color: transparent;\n"
 "border:1px solid white;\n"
@@ -3019,19 +3040,19 @@ public:
 "border:none;"));
         label_21 = new QLabel(centralwidget);
         label_21->setObjectName(QString::fromUtf8("label_21"));
-        label_21->setGeometry(QRect(440, 0, 81, 91));
+        label_21->setGeometry(QRect(380, 0, 81, 91));
         label_21->setStyleSheet(QString::fromUtf8("border-radius:12px;\n"
 "image: url(:/images/calendor.png);\n"
 "background-color: transparent;"));
         label_22 = new QLabel(centralwidget);
         label_22->setObjectName(QString::fromUtf8("label_22"));
-        label_22->setGeometry(QRect(710, 20, 61, 51));
+        label_22->setGeometry(QRect(660, 20, 51, 51));
         label_22->setStyleSheet(QString::fromUtf8("border-radius:12px;\n"
 "image: url(:/images/clock.png);\n"
 "background-color: transparent;"));
         lab_date = new QLabel(centralwidget);
         lab_date->setObjectName(QString::fromUtf8("lab_date"));
-        lab_date->setGeometry(QRect(450, 20, 251, 51));
+        lab_date->setGeometry(QRect(390, 20, 271, 51));
         lab_date->setStyleSheet(QString::fromUtf8("\n"
 "background-color: transparent;\n"
 "border:1px solid white;\n"
@@ -3042,7 +3063,7 @@ public:
         lab_date->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         lab_time = new QLabel(centralwidget);
         lab_time->setObjectName(QString::fromUtf8("lab_time"));
-        lab_time->setGeometry(QRect(710, 20, 241, 51));
+        lab_time->setGeometry(QRect(660, 20, 291, 51));
         lab_time->setStyleSheet(QString::fromUtf8("\n"
 "background-color: transparent;\n"
 "border:1px solid white;\n"
@@ -3071,7 +3092,14 @@ public:
         label_26->setStyleSheet(QString::fromUtf8("font:13pt;\n"
 "font:bold;\n"
 "background-color:transparent;"));
+        line = new QFrame(centralwidget);
+        line->setObjectName(QString::fromUtf8("line"));
+        line->setGeometry(QRect(0, 70, 1280, 3));
+        line->setStyleSheet(QString::fromUtf8("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));"));
+        line->setFrameShape(QFrame::HLine);
+        line->setFrameShadow(QFrame::Sunken);
         MainWindow->setCentralWidget(centralwidget);
+        BACKBUT->raise();
         pushButton_2->raise();
         comboBox->raise();
         label->raise();
@@ -3086,7 +3114,6 @@ public:
         label_29->raise();
         label_9->raise();
         label_10->raise();
-        BACKBUT->raise();
         label_2->raise();
         label_4->raise();
         label_13->raise();
@@ -3123,14 +3150,15 @@ public:
         elapsed_time_2->raise();
         label_28->raise();
         label_26->raise();
+        line->raise();
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
         MainWindow->setStatusBar(statusbar);
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(3);
-        tabWidget_2->setCurrentIndex(6);
+        tabWidget->setCurrentIndex(6);
+        tabWidget_2->setCurrentIndex(4);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -3149,22 +3177,6 @@ public:
         us1flowdown_but->setText(QString());
         us1flowup_but->setText(QString());
         lineEdit_57->setText(QCoreApplication::translate("MainWindow", "100", nullptr));
-        textEdit_41->setHtml(QCoreApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Ubuntu Condensed'; font-size:15pt; font-weight:600; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Ubuntu'; font-size:18pt; color:#ffffff;\">FLOW RATE(ml/min)</span></p></body></html>", nullptr));
-        textEdit_42->setHtml(QCoreApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Ubuntu Condensed'; font-size:25pt; font-weight:600; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:18pt; color:#ffffff;\">VACCUM (mmHg)</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:18pt; color:#ffffff;\"><br /></p></body></html>", nullptr));
-        textEdit_43->setHtml(QCoreApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Ubuntu Condensed'; font-size:15pt; font-weight:600; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:18pt; color:#ffffff;\">POWER(%)</span></p></body></html>", nullptr));
         label_85->setText(QString());
         label_86->setText(QString());
         label_87->setText(QString());
@@ -3172,7 +3184,7 @@ public:
         us1mode->setText(QCoreApplication::translate("MainWindow", "SURGEON", nullptr));
         us1vacmode->setText(QCoreApplication::translate("MainWindow", "SURGEON", nullptr));
         us1onoff->setText(QCoreApplication::translate("MainWindow", "OFF", nullptr));
-        label_88->setText(QCoreApplication::translate("MainWindow", "Epinucleus", nullptr));
+        label_88->setText(QCoreApplication::translate("MainWindow", "Sculpt", nullptr));
         CutMode_vit->setText(QCoreApplication::translate("MainWindow", "Mode", nullptr));
         label_8->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
         CutMode_vitCom->setItemText(0, QCoreApplication::translate("MainWindow", "Continuous", nullptr));
@@ -3184,6 +3196,9 @@ public:
         CutMode_vitCom->setItemText(6, QCoreApplication::translate("MainWindow", "Cold phaco", nullptr));
 
         label_23->setText(QCoreApplication::translate("MainWindow", "EPT  :", nullptr));
+        lblus1vac->setText(QCoreApplication::translate("MainWindow", "VACCUM(mmHg)", nullptr));
+        lblus1pow->setText(QCoreApplication::translate("MainWindow", "POWER(%)", nullptr));
+        lblus1flow->setText(QCoreApplication::translate("MainWindow", "FLOW RATE(ml/min)", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_33), QCoreApplication::translate("MainWindow", "Tab 1", nullptr));
         lineEdit_58->setText(QCoreApplication::translate("MainWindow", "100", nullptr));
         us2powup_but->setText(QString());
@@ -3191,23 +3206,8 @@ public:
         lineEdit_59->setText(QCoreApplication::translate("MainWindow", "40", nullptr));
         us2flowup_but->setText(QString());
         us2flowdown_but->setText(QString());
-        textEdit_44->setHtml(QCoreApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Ubuntu Condensed'; font-size:15pt; font-weight:600; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Ubuntu'; font-size:18pt; color:#ffffff;\">FLOW RATE(ml/min)</span></p></body></html>", nullptr));
-        textEdit_45->setHtml(QCoreApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Ubuntu Condensed'; font-size:15pt; font-weight:600; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:18pt; color:#ffffff;\">POWER(%)</span></p></body></html>", nullptr));
         lineEdit_60->setText(QCoreApplication::translate("MainWindow", "500", nullptr));
         us2vacup_but->setText(QString());
-        textEdit_46->setHtml(QCoreApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Ubuntu Condensed'; font-size:15pt; font-weight:600; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:18pt; color:#ffffff;\">VACCUM (mmHg)</span></p></body></html>", nullptr));
         us2vacdown_but->setText(QString());
         label_90->setText(QString());
         label_91->setText(QString());
@@ -3216,7 +3216,7 @@ public:
         us2mode->setText(QCoreApplication::translate("MainWindow", "SURGEON", nullptr));
         us2vacmode->setText(QCoreApplication::translate("MainWindow", "SURGEON", nullptr));
         us2onoff->setText(QCoreApplication::translate("MainWindow", "OFF", nullptr));
-        label_94->setText(QCoreApplication::translate("MainWindow", "Quad", nullptr));
+        label_94->setText(QCoreApplication::translate("MainWindow", "Chop", nullptr));
         label_123->setText(QString());
         CutMode_vitCom_2->setItemText(0, QCoreApplication::translate("MainWindow", "Continuous", nullptr));
         CutMode_vitCom_2->setItemText(1, QCoreApplication::translate("MainWindow", "Pulse", nullptr));
@@ -3228,20 +3228,18 @@ public:
 
         CutMode_vit_2->setText(QCoreApplication::translate("MainWindow", "Mode", nullptr));
         label_24->setText(QCoreApplication::translate("MainWindow", "EPT  :", nullptr));
+        lblus2pow->setText(QCoreApplication::translate("MainWindow", "POWER(%)", nullptr));
+        lblus2flow->setText(QCoreApplication::translate("MainWindow", "FLOW RATE(ml/min)", nullptr));
+        lblus2vac->setText(QCoreApplication::translate("MainWindow", "VACCUM(mmHg)", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_34), QCoreApplication::translate("MainWindow", "Page", nullptr));
         us3powup_but->setText(QString());
         us3powdown_but->setText(QString());
         lineEdit_61->setText(QCoreApplication::translate("MainWindow", "100", nullptr));
-        textEdit_47->setHtml(QCoreApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Ubuntu Condensed'; font-size:15pt; font-weight:600; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:18pt; color:#ffffff;\">POWER(%)</span></p></body></html>", nullptr));
         label_96->setText(QString());
         label_97->setText(QString());
         us3mode->setText(QCoreApplication::translate("MainWindow", "SURGEON", nullptr));
         us3onoff->setText(QCoreApplication::translate("MainWindow", "OFF", nullptr));
-        label_100->setText(QCoreApplication::translate("MainWindow", "Chop", nullptr));
+        label_100->setText(QCoreApplication::translate("MainWindow", "Quad", nullptr));
         CutMode_vitCom_3->setItemText(0, QCoreApplication::translate("MainWindow", "Continuous", nullptr));
         CutMode_vitCom_3->setItemText(1, QCoreApplication::translate("MainWindow", "Pulse", nullptr));
         CutMode_vitCom_3->setItemText(2, QCoreApplication::translate("MainWindow", "Ocupulse", nullptr));
@@ -3251,27 +3249,20 @@ public:
         CutMode_vitCom_3->setItemText(6, QCoreApplication::translate("MainWindow", "Cold phaco", nullptr));
 
         label_99->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
-        textEdit_49->setHtml(QCoreApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Ubuntu Condensed'; font-size:15pt; font-weight:600; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:18pt; color:#ffffff;\">VACCUM (mmHg)</span></p></body></html>", nullptr));
         label_95->setText(QString());
         lineEdit_63->setText(QCoreApplication::translate("MainWindow", "500", nullptr));
         us3vacdown_but->setText(QString());
         us3vacup_but->setText(QString());
         us3vacmode->setText(QCoreApplication::translate("MainWindow", "SURGEON", nullptr));
         lineEdit_62->setText(QCoreApplication::translate("MainWindow", "40", nullptr));
-        textEdit_48->setHtml(QCoreApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Ubuntu Condensed'; font-size:15pt; font-weight:600; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Ubuntu'; font-size:18pt; color:#ffffff;\">FLOW RATE(ml/min)</span></p></body></html>", nullptr));
         us3flowdown_but->setText(QString());
         us3flowup_but->setText(QString());
         label_98->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
         CutMode_vit_3->setText(QCoreApplication::translate("MainWindow", "Mode", nullptr));
         label_25->setText(QCoreApplication::translate("MainWindow", "EPT  :", nullptr));
+        lblus3pow->setText(QCoreApplication::translate("MainWindow", "POWER(%)", nullptr));
+        lblus3flow->setText(QCoreApplication::translate("MainWindow", "FLOW RATE(ml/min)", nullptr));
+        lblus3vac->setText(QCoreApplication::translate("MainWindow", "VACCUM(mmHg)", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_35), QCoreApplication::translate("MainWindow", "Page", nullptr));
         lineEdit_64->setText(QCoreApplication::translate("MainWindow", "100", nullptr));
         us4powup_but->setText(QString());
@@ -3279,24 +3270,9 @@ public:
         us4flowup_but->setText(QString());
         lineEdit_65->setText(QCoreApplication::translate("MainWindow", "40", nullptr));
         us4flowdown_but->setText(QString());
-        textEdit_50->setHtml(QCoreApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Ubuntu Condensed'; font-size:15pt; font-weight:600; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Ubuntu'; font-size:18pt; color:#ffffff;\">FLOW RATE(ml/min)</span></p></body></html>", nullptr));
-        textEdit_51->setHtml(QCoreApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Ubuntu Condensed'; font-size:15pt; font-weight:600; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:18pt; color:#ffffff;\">POWER(%)</span></p></body></html>", nullptr));
         label_101->setText(QString());
         label_102->setText(QString());
         label_103->setText(QString());
-        textEdit_52->setHtml(QCoreApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Ubuntu Condensed'; font-size:15pt; font-weight:600; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:18pt; color:#ffffff;\">VACCUM (mmHg)</span></p></body></html>", nullptr));
         us4vacdown_but->setText(QString());
         lineEdit_66->setText(QCoreApplication::translate("MainWindow", "500", nullptr));
         us4vacup_but->setText(QString());
@@ -3305,7 +3281,7 @@ public:
         us4mode->setText(QCoreApplication::translate("MainWindow", "SURGEON", nullptr));
         us4vacmode->setText(QCoreApplication::translate("MainWindow", "SURGEON", nullptr));
         us4onoff->setText(QCoreApplication::translate("MainWindow", "OFF", nullptr));
-        label_106->setText(QCoreApplication::translate("MainWindow", "Sculpt", nullptr));
+        label_106->setText(QCoreApplication::translate("MainWindow", "Epinucleus", nullptr));
         CutMode_vitCom_4->setItemText(0, QCoreApplication::translate("MainWindow", "Continuous", nullptr));
         CutMode_vitCom_4->setItemText(1, QCoreApplication::translate("MainWindow", "Pulse", nullptr));
         CutMode_vitCom_4->setItemText(2, QCoreApplication::translate("MainWindow", "Ocupulse", nullptr));
@@ -3315,50 +3291,37 @@ public:
         CutMode_vitCom_4->setItemText(6, QCoreApplication::translate("MainWindow", "Cold phaco", nullptr));
 
         CutMode_vit_4->setText(QCoreApplication::translate("MainWindow", "Mode", nullptr));
+        lblus4pow->setText(QCoreApplication::translate("MainWindow", "POWER(%)", nullptr));
+        lblus4flow->setText(QCoreApplication::translate("MainWindow", "FLOW RATE(ml/min)", nullptr));
+        lblus4vac->setText(QCoreApplication::translate("MainWindow", "VACCUM(mmHg)", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_36), QCoreApplication::translate("MainWindow", "Page", nullptr));
         ia2flowup_but->setText(QString());
         ia2flowdown_but->setText(QString());
         lineEdit_69->setText(QCoreApplication::translate("MainWindow", "40", nullptr));
-        textEdit_55->setHtml(QCoreApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Ubuntu Condensed'; font-size:15pt; font-weight:600; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Ubuntu'; font-size:18pt; color:#ffffff;\">FLOW RATE(ml/min)</span></p></body></html>", nullptr));
         label_111->setText(QString());
         label_112->setText(QString());
         lineEdit_70->setText(QCoreApplication::translate("MainWindow", "500", nullptr));
         ia2vacup_but->setText(QString());
-        textEdit_56->setHtml(QCoreApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Ubuntu Condensed'; font-size:15pt; font-weight:600; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:18pt; color:#ffffff;\">VACCUM (mmHg)</span></p></body></html>", nullptr));
         ia2vacdown_but->setText(QString());
         label_113->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
         ia2mode->setText(QCoreApplication::translate("MainWindow", "SURGEON", nullptr));
         label_114->setText(QCoreApplication::translate("MainWindow", "Cortex", nullptr));
+        lblia1flow->setText(QCoreApplication::translate("MainWindow", "FLOW RATE(ml/min)", nullptr));
+        lblia1vac->setText(QCoreApplication::translate("MainWindow", "VACCUM(mmHg)", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_38), QCoreApplication::translate("MainWindow", "Page", nullptr));
         ia1flowdown_but->setText(QString());
         lineEdit_67->setText(QCoreApplication::translate("MainWindow", "40", nullptr));
         ia1flowup_but->setText(QString());
-        textEdit_53->setHtml(QCoreApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Ubuntu Condensed'; font-size:15pt; font-weight:600; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Ubuntu'; font-size:18pt; color:#ffffff;\">FLOW RATE(ml/min)</span></p></body></html>", nullptr));
         label_107->setText(QString());
         label_108->setText(QString());
         ia1vacdown_but->setText(QString());
-        textEdit_54->setHtml(QCoreApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Ubuntu Condensed'; font-size:15pt; font-weight:600; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:18pt; color:#ffffff;\">VACCUM (mmHg)</span></p></body></html>", nullptr));
         ia1vacup_but->setText(QString());
         lineEdit_68->setText(QCoreApplication::translate("MainWindow", "500", nullptr));
         label_109->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
         ia1mode->setText(QCoreApplication::translate("MainWindow", "SURGEON", nullptr));
         label_110->setText(QCoreApplication::translate("MainWindow", "Polish", nullptr));
+        lblia2vac->setText(QCoreApplication::translate("MainWindow", "VACCUM(mmHg)", nullptr));
+        lblia2flow->setText(QCoreApplication::translate("MainWindow", "FLOW RATE(ml/min)", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_37), QCoreApplication::translate("MainWindow", "Page", nullptr));
         lineEdit_71->setText(QCoreApplication::translate("MainWindow", "960", nullptr));
         vitpowup_but->setText(QString());
@@ -3366,25 +3329,10 @@ public:
         lineEdit_72->setText(QCoreApplication::translate("MainWindow", "40", nullptr));
         vitflowup_but->setText(QString());
         vitflowdown_but->setText(QString());
-        textEdit_57->setHtml(QCoreApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Ubuntu Condensed'; font-size:15pt; font-weight:600; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:18pt; color:#ffffff;\">Cut Rate(cuts per min)</span></p></body></html>", nullptr));
-        textEdit_58->setHtml(QCoreApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Ubuntu Condensed'; font-size:15pt; font-weight:600; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Ubuntu'; font-size:18pt; color:#ffffff;\">FLOW RATE(ml/min)</span></p></body></html>", nullptr));
         label_115->setText(QString());
         label_117->setText(QString());
         vitvacup_but->setText(QString());
         vitvacdown_but->setText(QString());
-        textEdit_59->setHtml(QCoreApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Ubuntu Condensed'; font-size:15pt; font-weight:600; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:18pt; color:#ffffff;\">VACCUM (mmHg)</span></p></body></html>", nullptr));
         lineEdit_73->setText(QCoreApplication::translate("MainWindow", "500", nullptr));
         label_118->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
         label_119->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
@@ -3393,17 +3341,16 @@ public:
         vitonoff->setText(QCoreApplication::translate("MainWindow", "OFF", nullptr));
         label_122->setText(QString());
         label_20->setText(QCoreApplication::translate("MainWindow", "Vitrectomy", nullptr));
+        lblvitvac->setText(QCoreApplication::translate("MainWindow", "VACCUM(mmHg)", nullptr));
+        lblvitflow->setText(QCoreApplication::translate("MainWindow", "FLOW RATE(ml/min)", nullptr));
+        lblcutrate->setText(QCoreApplication::translate("MainWindow", "Cut Rate(Cuts Per Min)", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_39), QCoreApplication::translate("MainWindow", "Page", nullptr));
-        textEdit_60->setHtml(QCoreApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Ubuntu Condensed'; font-size:15pt; font-weight:600; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">POWER(%)</p></body></html>", nullptr));
         diapowdown_but->setText(QString());
         label_120->setText(QString());
         diapowup_but->setText(QString());
         lineEdit_74->setText(QCoreApplication::translate("MainWindow", "100", nullptr));
         label_116->setText(QCoreApplication::translate("MainWindow", "Diathermy", nullptr));
+        label_33->setText(QCoreApplication::translate("MainWindow", "Power(%)", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_40), QCoreApplication::translate("MainWindow", "Page", nullptr));
         label_14->setText(QString());
         label_12->setText(QString());

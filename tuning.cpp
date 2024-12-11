@@ -587,8 +587,9 @@ int tuning::Tune_Phaco()
         hand->phaco_off();
         main->show();
         main->ULTRASONICBUT1();
-        main->setTuneMode();
         main->activategpio();
+
+        main->setTuneMode();
         updateProgress();
         emit sendfreq(nResonantFreqCount);
         emit activatemain();
@@ -625,11 +626,9 @@ void tuning::on_But_Next_clicked()
 {
     main->show();
     emit activatemain();
-  // main->DIATHERMYBUT();
-  main->setTuneMode();
-main->ULTRASONICBUT1();
-main->activategpio();
-//main->disablegpio();
+   main->DIATHERMYBUT();
+
+main->disablegpio();
 
 
 

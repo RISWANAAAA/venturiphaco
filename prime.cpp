@@ -14,7 +14,7 @@ prime::prime(QWidget *parent) :
 {
     ui->setupUi(this);
     move(0,0);
-    m=new MainWindow;
+  //  m=new MainWindow;
     sur=new doctor;
 
     hand=new hwhandler;
@@ -80,7 +80,7 @@ prime::prime(QWidget *parent) :
     //connect(statusUpdateTimer, &QTimer::timeout, this, &prime::onUpdateStatusTimeout);
     // statusUpdateTimer->start(500); // Update every second
 
-     connect(this,&prime::sendsignal,m,&MainWindow::receivesignal);
+     //connect(this,&prime::sendsignal,m,&MainWindow::receivesignal);
     connect(ui->prime1_but,&QPushButton::clicked,this,&prime::Prime);
     //connect(this,&prime::sendcomboBoxsignals,m,&MainWindow::doctorwindow_show);
 
@@ -142,6 +142,8 @@ prime::prime(QWidget *parent) :
 prime::~prime()
 {
     delete ui;
+    delete timer1;
+    delete pretimer;
 }
 bool prime::eventFilter(QObject *watched, QEvent *event)
 {
@@ -298,6 +300,7 @@ void prime::current(int tab)
         ui->label->setStyleSheet(style);
         ui->prime1_but->move(0,10);
         ui->label->move(30,380);
+        ui->prime1_but->raise();
     } else if (tab == 1) {
         ui->Tune_but->setStyleSheet(styleSheet);
         ui->Tune_but->move(20,240);
@@ -305,12 +308,14 @@ void prime::current(int tab)
         ui->label_2->setStyleSheet(style1);
         pretimer->stop();
         timer1->stop();
+        ui->Tune_but->raise();
     } else if (tab == 2) {
         ui->clean_but->setStyleSheet(styleSheet);
         ui->label_3->setStyleSheet(style2);
         ui->clean_but->move(20,500);
         ui->label_3->move(30,580);
         pretimer->stop();
+        ui->clean_but->raise();
         timer1->stop();
 
     }
@@ -803,68 +808,68 @@ void prime::on_begin_clean_but_2_clicked()
 
 
 
-void prime::on_pushButton_5_clicked()
-{
-    QString styleSheet = "QPushButton {"
-                         "    font-family: Ubuntu;"
-                         "    font-size: 60pt;"
-                         "font:bold;"
-                         "    background-color: transparent;"
-                         "    image: url(:/images/primeddd.png);"
-                         "    color: white;"
-                         "    min-width: 411px;"
-                         "    max-width: 411px;"
-                         "    min-height: 241px;"
-                         "    max-height: 241px;"
-                         "    border-radius: 20px;" // Adjust the radius as needed
+//void prime::on_pushButton_5_clicked()
+//{
+//    QString styleSheet = "QPushButton {"
+//                         "    font-family: Ubuntu;"
+//                         "    font-size: 60pt;"
+//                         "font:bold;"
+//                         "    background-color: transparent;"
+//                         "    image: url(:/images/primeddd.png);"
+//                         "    color: white;"
+//                         "    min-width: 411px;"
+//                         "    max-width: 411px;"
+//                         "    min-height: 241px;"
+//                         "    max-height: 241px;"
+//                         "    border-radius: 20px;" // Adjust the radius as needed
 
-                         "    color: black;"
-                         "    border-radius: 20px;" // Adjust the radius as needed
-                         "width: 401;"
-                         "height:211;"
-                         "}"
-                         "QPushButton:focus {"
-                         "    outline: none;"
-                         "    border: none;"
-                         "}";
+//                         "    color: black;"
+//                         "    border-radius: 20px;" // Adjust the radius as needed
+//                         "width: 401;"
+//                         "height:211;"
+//                         "}"
+//                         "QPushButton:focus {"
+//                         "    outline: none;"
+//                         "    border: none;"
+//                         "}";
 
-    on_Tune_but_clicked();
-    ui->Tune_but->setStyleSheet(styleSheet);
-    ui->Tune_but->move(20,240);
-    ui->label_2->move(30,380);
-}
+//    on_Tune_but_clicked();
+//    ui->Tune_but->setStyleSheet(styleSheet);
+//    ui->Tune_but->move(20,240);
+//    ui->label_2->move(30,380);
+//}
 
 
-void prime::on_pushButton_8_clicked()
-{
-    QString styleSheet = "QPushButton {"
-                         "    font-family: Ubuntu;"
-                         "    font-size: 60pt;"
-                         "font:bold;"
-                         "    background-color: transparent;"
-                         "    image: url(:/images/primeddd.png);"
-                         "    color: white;"
-                         "    min-width: 411px;"
-                         "    max-width: 411px;"
-                         "    min-height: 241px;"
-                         "    max-height: 241px;"
-                         "    border-radius: 20px;" // Adjust the radius as needed
+//void prime::on_pushButton_8_clicked()
+//{
+//    QString styleSheet = "QPushButton {"
+//                         "    font-family: Ubuntu;"
+//                         "    font-size: 60pt;"
+//                         "font:bold;"
+//                         "    background-color: transparent;"
+//                         "    image: url(:/images/primeddd.png);"
+//                         "    color: white;"
+//                         "    min-width: 411px;"
+//                         "    max-width: 411px;"
+//                         "    min-height: 241px;"
+//                         "    max-height: 241px;"
+//                         "    border-radius: 20px;" // Adjust the radius as needed
 
-                         "    color: black;"
-                         "    border-radius: 20px;" // Adjust the radius as needed
-                         "width: 401;"
-                         "height:211;"
-                         "}"
-                         "QPushButton:focus {"
-                         "    outline: none;"
-                         "    border: none;"
-                         "}";
-  on_Tune_but_clicked();
-  ui->Tune_but->setStyleSheet(styleSheet);
-  ui->Tune_but->move(20,240);
-  ui->label_2->move(30,380);
+//                         "    color: black;"
+//                         "    border-radius: 20px;" // Adjust the radius as needed
+//                         "width: 401;"
+//                         "height:211;"
+//                         "}"
+//                         "QPushButton:focus {"
+//                         "    outline: none;"
+//                         "    border: none;"
+//                         "}";
+//  on_Tune_but_clicked();
+//  ui->Tune_but->setStyleSheet(styleSheet);
+//  ui->Tune_but->move(20,240);
+//  ui->label_2->move(30,380);
 
-}
+//}
 
 
 

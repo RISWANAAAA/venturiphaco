@@ -446,7 +446,7 @@ int currentbut;
 int nPulseCount;
 int nOcuPulseCount;
 int nOcuBurstCount;
-int singleburst;
+int nSingleBurst;
 int nMultiBurstCount;
 int nColdPhacoPer;
 int nColdPhacoCount;

@@ -94,7 +94,7 @@ void footpedal::readInitialGPIOValues()
                state1 = 3;
        }
       if (value1 == 0 && flag1 == 1 && state1 == 3) {
-               emit continous_irrigation(1);
+               emit continous_irrigation(0);
                flag1 = 0;
                state1 = 0;       }
 
@@ -301,13 +301,13 @@ else if (leftFootcomAction == "Increment") {
          if (value3 == 0 && flag3 == 0 && state3 == 1) {
              flag3 = 1;
              state3 = 2;
-             emit continous_irrigation(value3);
+             emit continous_irrigation(0);
          }
         if (value3 == 1 && flag3 == 1 && state3 == 2) {
              state3 = 3;
      }
     if (value3 == 0 && flag3 == 1 && state3 == 3) {
-             emit continous_irrigation(1);
+             emit continous_irrigation(0);
              flag3 = 0;
              state3 = 0;       }
     } else if (rightFootcomAction == "Power ON/OFF") {
@@ -406,7 +406,7 @@ else if (leftFootcomAction == "Increment") {
              state4 = 3;
      }
     if (value4 == 0 && flag4 == 1 && state4 == 3) {
-             emit continous_irrigation(1);
+             emit continous_irrigation(0);
              flag4 = 0;
              state4 = 0;       }
     } else if (bleftFootcomAction == "Power ON/OFF") {
@@ -415,7 +415,7 @@ else if (leftFootcomAction == "Increment") {
          if (value4 == 0 && flag4 == 0 && state4 == 1) {
              flag4 = 1;
              state4 = 2;
-             emit togglePower(0);
+             emit togglePower(1);
          }
         if (value4 == 1 && flag4 == 1 && state4 == 2) {
              state4 = 3;

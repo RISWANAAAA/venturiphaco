@@ -13,6 +13,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QCheckBox>
 #include <QtWidgets/QComboBox>
+#include <QtWidgets/QFrame>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QProgressBar>
 #include <QtWidgets/QPushButton>
@@ -37,14 +38,12 @@ public:
     QCheckBox *motor_Check_2;
     QCheckBox *done_Check_2;
     QProgressBar *progressBar_2;
-    QPushButton *pushButton_5;
     QWidget *tab_8;
     QLabel *warning_lab_2;
     QTextEdit *Instruction_lab_2;
     QPushButton *begin_clean_but_2;
     QLabel *warning_img_2;
     QLabel *label_10;
-    QPushButton *pushButton_8;
     QLabel *label;
     QLabel *label_2;
     QLabel *label_3;
@@ -56,6 +55,7 @@ public:
     QComboBox *comboBox_4;
     QLabel *lbloverall;
     QLabel *label_7;
+    QFrame *line;
 
     void setupUi(QWidget *prime)
     {
@@ -134,7 +134,7 @@ public:
 ""));
         process_lab_2 = new QLabel(tab_6);
         process_lab_2->setObjectName(QString::fromUtf8("process_lab_2"));
-        process_lab_2->setGeometry(QRect(140, 100, 351, 51));
+        process_lab_2->setGeometry(QRect(140, 110, 351, 51));
         process_lab_2->setStyleSheet(QString::fromUtf8("font:25pt \"Ubuntu\";\n"
 "background-color: rgb(255, 255, 255);\n"
 "color: rgb(0, 0, 0);\n"
@@ -216,19 +216,6 @@ public:
         progressBar_2->setObjectName(QString::fromUtf8("progressBar_2"));
         progressBar_2->setGeometry(QRect(40, 560, 761, 51));
         progressBar_2->setValue(0);
-        pushButton_5 = new QPushButton(tab_6);
-        pushButton_5->setObjectName(QString::fromUtf8("pushButton_5"));
-        pushButton_5->setGeometry(QRect(720, 610, 131, 101));
-        pushButton_5->setStyleSheet(QString::fromUtf8("QPushButton{\n"
-"image: url(:/images/nextbutton.png);\n"
-"background-color:transparent;\n"
-"border:none;\n"
-"}\n"
-"QPushButton:focus {\n"
-"    outline: none;\n"
-"    border: none;\n"
-"}\n"
-""));
         tabWidget->addTab(tab_6, QString());
         tab_8 = new QWidget();
         tab_8->setObjectName(QString::fromUtf8("tab_8"));
@@ -282,19 +269,6 @@ public:
 "color: rgb(255, 255, 255);\n"
 "font:bold;\n"
 "background-color:transparent;"));
-        pushButton_8 = new QPushButton(tab_8);
-        pushButton_8->setObjectName(QString::fromUtf8("pushButton_8"));
-        pushButton_8->setGeometry(QRect(700, 540, 151, 141));
-        pushButton_8->setStyleSheet(QString::fromUtf8("QPushButton{\n"
-"border:none;\n"
-"	image: url(:/images/backbuttonarrow.png);\n"
-"background-color:transparent;\n"
-"}\n"
-"QPushButton:focus {\n"
-"    outline: none;\n"
-"    border: none;\n"
-"}\n"
-""));
         tabWidget->addTab(tab_8, QString());
         label = new QLabel(prime);
         label->setObjectName(QString::fromUtf8("label"));
@@ -381,8 +355,14 @@ public:
         lbloverall->setStyleSheet(QString::fromUtf8(""));
         label_7 = new QLabel(prime);
         label_7->setObjectName(QString::fromUtf8("label_7"));
-        label_7->setGeometry(QRect(410, 79, 16, 651));
+        label_7->setGeometry(QRect(410, 80, 16, 651));
         label_7->setStyleSheet(QString::fromUtf8(""));
+        line = new QFrame(prime);
+        line->setObjectName(QString::fromUtf8("line"));
+        line->setGeometry(QRect(0, 70, 1280, 3));
+        line->setStyleSheet(QString::fromUtf8("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));"));
+        line->setFrameShape(QFrame::HLine);
+        line->setFrameShadow(QFrame::Sunken);
         prime1_but->raise();
         tabWidget->raise();
         label_2->raise();
@@ -398,6 +378,7 @@ public:
         label_5->raise();
         label_4->raise();
         label_7->raise();
+        line->raise();
 
         retranslateUi(prime);
 
@@ -419,7 +400,6 @@ public:
         wait_Check_2->setText(QCoreApplication::translate("prime", "Wait For Chamber To Be Filled", nullptr));
         motor_Check_2->setText(QCoreApplication::translate("prime", "Start Motor", nullptr));
         done_Check_2->setText(QCoreApplication::translate("prime", "Done", nullptr));
-        pushButton_5->setText(QString());
         tabWidget->setTabText(tabWidget->indexOf(tab_6), QCoreApplication::translate("prime", "Tab 1", nullptr));
         warning_lab_2->setText(QCoreApplication::translate("prime", "   BEFORE CLEANING", nullptr));
         Instruction_lab_2->setHtml(QCoreApplication::translate("prime", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
@@ -440,7 +420,6 @@ public:
         begin_clean_but_2->setText(QCoreApplication::translate("prime", "Begin Clean", nullptr));
         warning_img_2->setText(QString());
         label_10->setText(QCoreApplication::translate("prime", " Instructions To Be Followed:", nullptr));
-        pushButton_8->setText(QString());
         tabWidget->setTabText(tabWidget->indexOf(tab_8), QCoreApplication::translate("prime", "Page", nullptr));
         label->setText(QString());
         label_2->setText(QString());

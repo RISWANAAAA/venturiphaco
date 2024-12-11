@@ -399,13 +399,19 @@ void MainWindow::updateElapsedTime()
     if (timer5.isValid()) {
         qint64 elapsed = timer5.elapsed();
         QString elapsedTimeStr = QString::number(elapsed) + " ms";
-        ui->elapsed_time->setText(elapsedTimeStr);
+        //ui->elapsed_time->setText(elapsedTimeStr);
     }
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete footsensor;
+    delete elapsedTimer;
+    delete updateTimer;
+    delete protimer;
+    delete sensortimer;
+    delete timerfoot;
     db.close();
 }
 
@@ -1098,6 +1104,7 @@ int MainWindow::footswitchrange()
 
 void MainWindow:: disablegpio()
 {
+    nHandPiece=1;
     nHandPiece1 = 0;  // Set nHandPiece to 1
 
         QPushButton *buttons1[] = { ui->DIABUT, ui->IA1BUT, ui->IA2BUT, ui->VITRECTOMYBUT };
@@ -1115,11 +1122,23 @@ void MainWindow:: disablegpio()
         }
 }
 
-void MainWindow::activategpio()
-{
+void MainWindow::activategpio() {
+    nHandPiece = 0;
+    nHandPiece1 = 1;
 
+    QPushButton *buttons[] = {
+        ui->ULTRASONICBUT1, ui->ULTRASONICBUT2,
+        ui->ULTRASONICBUT3, ui->ULTRASONICBUT4,
+        ui->IA1BUT, ui->IA2BUT, ui->VITRECTOMYBUT, ui->DIABUT
+    };
+
+    // Connect each button's clicked signal to updateCurrentButtonIndex
+    for (int i = 0; i < sizeof(buttons) / sizeof(buttons[0]); i++) {
+        connect(buttons[i], &QPushButton::clicked, this, [this, i]() {
+            updateCurrentButtonIndex(i);
+        });
+    }
 }
-
 
 
 void MainWindow::footpedalvalues(int &value1, int &value2, int &value3, int &value4)
@@ -2062,20 +2081,7 @@ void MainWindow::setTuneMode() {
     ui->us4onoff->setEnabled(true);
   //  nHandPiece = 0;  // Set nHandPiece to 0
 
-    nHandPiece=0;
-    QPushButton *buttons[] = {
-        ui->ULTRASONICBUT1, ui->ULTRASONICBUT2,
-        ui->ULTRASONICBUT3, ui->ULTRASONICBUT4,
-        ui->IA1BUT, ui->IA2BUT, ui->VITRECTOMYBUT, ui->DIABUT
-    };
 
-
-    // Connect each button's clicked signal to updateCurrentButtonIndex
-    for (int i = 0; i < sizeof(buttons) / sizeof(buttons[0]); i++) {
-        connect(buttons[i], &QPushButton::clicked, this, [this, i]() {
-            updateCurrentButtonIndex(i);
-        });
-    }
 
 
 }
@@ -2198,8 +2204,7 @@ void MainWindow::beepsound()
 
 void MainWindow::receivesignal(const QString &text)
 {
- //ui->comboBox_4->setCurrentText(text);
- //push(text);
+
 
 }
 void MainWindow::onCutMode_vitComChanged(int index) {
@@ -2291,7 +2296,10 @@ void MainWindow::updateTabsBasedOnComboBox(const QString &selected) {
         handler->fs_count(nfpzero + nfpone + nfptwo);
         handler->freq_count(nFreqCount);
         handler->phaco_power(100);
-qDebug()<<"the single burst mode is workinggggg";
+        nSingleBurst=ui->lineEdit_78->text().toInt();
+        handler->burst_length(nSingleBurst);
+
+//qDebug()<<"the single burst mode is workinggggg";
 modeFound = true;
         ui->label_32->show();
         handler->buzz();
@@ -2542,7 +2550,7 @@ flag1 = true;
             }
             else if (range >=(nfpone+nfpzero) && range < (nfpzero+nfpone+nfptwo)) {
                 ui->pushButton_42->setText("2");
-                qDebug()<<"the postion is 2nd";
+                //qDebug()<<"the postion is 2nd";
                 ui->label_8->show();
                 ventonus1=false;
                 ui->dial_2->setValue(range);
@@ -2616,7 +2624,7 @@ flag1 = true;
                         ui->label_7->setText(QString::number(pow1));
                         handler->phaco_power(pow1);
                         // Ensure this is called once, when the timer should start
-                        qDebug()<<"the mode is from us1 is"<<ui->CutMode_vitCom->currentText();
+                        //qDebug()<<"the mode is from us1 is"<<ui->CutMode_vitCom->currentText();
                         if (!elapsedTimer->isValid()) {
                             elapsedTimer->start();
                             qDebug() << "Timer started!";
@@ -2820,7 +2828,7 @@ if(vus1 == "Panel"){
                              handler->burst_off_length(nOfftime);
                              }
                              if(nOfftime == 1 || nOfftime ==2 ){
-                                qDebug()<<"the mode is continuous";
+                               // qDebug()<<"the mode is continuous";
                                 handler->pdm_mode(CONTINOUS);
                                                         }
 
@@ -2835,7 +2843,7 @@ if(vus1 == "Panel"){
                       handler->phaco_power(progress4);
                     // qDebug()<<"power id deliverd from the us1 is"<<progress4;
                      ui->label_7->setText(QString::number(std::round(progress4)));
- qDebug()<<"the us1 mode is from the ultrasonic but1 is"<<ui->CutMode_vitCom->currentText();
+ //qDebug()<<"the us1 mode is from the ultrasonic but1 is"<<ui->CutMode_vitCom->currentText();
  // Ensure this is called once, when the timer should start
  if (!elapsedTimer->isValid()) {
      elapsedTimer->start();
@@ -2906,7 +2914,7 @@ if(vus1 == "Panel"){
                   }
 
           us1currectcount=3;
-          qDebug()<<"the final of us1 mode and vac mode is"<<us1 <<vus1;
+         // qDebug()<<"the final of us1 mode and vac mode is"<<us1 <<vus1;
 
 
             }
@@ -2994,7 +3002,7 @@ flag1 = true;
             }
             else if (range >=(nfpone+nfpzero) && range < (nfpzero+nfpone+nfptwo)) {
                 ui->pushButton_42->setText("2");
-                qDebug()<<"the postion is 2nd";
+              //  qDebug()<<"the postion is 2nd";
                 ui->label_93->show();
                 ventonus2=false;
                 ui->dial_2->setValue(range);
@@ -3089,7 +3097,7 @@ if(us2 == "Panel"){
                                handler->burst_off_length(nOfftime);
                                }
                                if(nOfftime == 1 || nOfftime ==2 ){
-                                  qDebug()<<"the mode is continuous";
+                                 // qDebug()<<"the mode is continuous";
                                   handler->pdm_mode(CONTINOUS);
                                                           }
 
@@ -3311,7 +3319,7 @@ if(us2 == "Panel"){
                             handler->burst_off_length(nOfftime);
                             }
                             if(nOfftime == 1 || nOfftime ==2 ){
-                               qDebug()<<"the mode is continuous";
+                              // qDebug()<<"the mode is continuous";
                                handler->pdm_mode(CONTINOUS);
                       }
 
@@ -3439,7 +3447,7 @@ flag1 = true;
             }
             else if (range >=(nfpone+nfpzero) && range < (nfpzero+nfpone+nfptwo)) {
                 ui->pushButton_42->setText("2");
-                qDebug()<<"the postion is 2nd";
+               // qDebug()<<"the postion is 2nd";
                 ui->label_99->show();
                 ventonus3=false;
                 ui->dial_2->setValue(range);
@@ -3748,7 +3756,7 @@ if(us3 == "Panel"){
                             handler->burst_off_length(nOfftime);
                             }
                             if(nOfftime == 1 || nOfftime ==2 ){
-                               qDebug()<<"the mode is continuous";
+                              // qDebug()<<"the mode is continuous";
                                handler->pdm_mode(CONTINOUS);
                 }
 
@@ -3870,7 +3878,7 @@ flag1 = true;
             }
             else if (range >=(nfpone+nfpzero) && range < (nfpzero+nfpone+nfptwo)) {
                 ui->pushButton_42->setText("2");
-                qDebug()<<"the postion is 2nd";
+               // qDebug()<<"the postion is 2nd";
                 ui->label_104->show();
                 ventonus4=false;
                 ui->dial_2->setValue(range);
@@ -3961,7 +3969,7 @@ if(us4 == "Panel"){
                                handler->burst_off_length(nOfftime);
                                }
                                if(nOfftime == 1 || nOfftime ==2 ){
-                                  qDebug()<<"the mode is continuous";
+                                 // qDebug()<<"the mode is continuous";
                                   handler->pdm_mode(CONTINOUS);
                                                           }
 
@@ -4183,7 +4191,7 @@ if(us4 == "Panel"){
                             handler->burst_off_length(nOfftime);
                             }
                             if(nOfftime == 1 || nOfftime ==2 ){
-                               qDebug()<<"the mode is continuous";
+                              // qDebug()<<"the mode is continuous";
                                handler->pdm_mode(CONTINOUS);
                                                        }
 
@@ -4964,7 +4972,7 @@ void MainWindow::updateTimes(float progress4, QPushButton* elapsedTimeLabel, QPu
 
     // Get elapsed time in milliseconds
     int elapsedTimeMs = elapsedTimer->elapsed();
-    qDebug() << "Elapsed Time (ms):" << elapsedTimeMs;
+    //qDebug() << "Elapsed Time (ms):" << elapsedTimeMs;
 
     // Calculate minutes, seconds, and milliseconds for elapsed time
     int elapsedTimeSec = elapsedTimeMs / 1000;  // Get the full seconds part
@@ -4979,7 +4987,7 @@ void MainWindow::updateTimes(float progress4, QPushButton* elapsedTimeLabel, QPu
     QString elapsedTimeStr = QString::number(minutes) + ":"
                              + QString::number(elapsedTimeSec).rightJustified(2, '0') + ":"
                              + QString::number(milliseconds).rightJustified(3, '0');
-    qDebug() << "Elapsed Time (min:sec::ms):" << elapsedTimeStr;
+   // qDebug() << "Elapsed Time (min:sec::ms):" << elapsedTimeStr;
 
     // Update the UI with formatted elapsed time
     elapsedTimeLabel->setText(elapsedTimeStr);
@@ -4996,7 +5004,7 @@ void MainWindow::updateTimes(float progress4, QPushButton* elapsedTimeLabel, QPu
        float effectiveTime = static_cast<float>(elapsedTimeSec) * progress4;
        int effectiveTimeSec = static_cast<int>(effectiveTime);  // Cast effectiveTime to int before using
 
-       qDebug() << "Effective Time (seconds):" << effectiveTimeSec;
+      // qDebug() << "Effective Time (seconds):" << effectiveTimeSec;
 
        // Format the effective time as mm:ss:ms
        int effectiveMinutes = effectiveTimeSec / 60;   // Convert to minutes
@@ -5008,7 +5016,7 @@ void MainWindow::updateTimes(float progress4, QPushButton* elapsedTimeLabel, QPu
                                   + QString::number(effectiveSeconds).rightJustified(2, '0') + ":"
                                   + QString::number(effectiveMilliseconds).rightJustified(3, '0');
 
-       qDebug() << "Effective Time (min:sec:ms):" << effectiveTimeStr;
+      // qDebug() << "Effective Time (min:sec:ms):" << effectiveTimeStr;
 
        // Update the UI with formatted effective time
        effectiveTimeLabel->setText(effectiveTimeStr);
@@ -5414,7 +5422,7 @@ void MainWindow::pulseup_mode()
          nPulseCount = 15;
     }
     ui->lineEdit_75->setText(QString::number(nPulseCount));
-    qDebug()<<"the increment pulse count is"<<nPulseCount;
+   // qDebug()<<"the increment pulse count is"<<nPulseCount;
     handler->phaco_on();
      handler->fs_count(nfpzero+nfpone+nfptwo);
     handler->freq_count(nFreqCount);
@@ -5435,7 +5443,7 @@ void MainWindow::pulsedown_mode()
          nPulseCount = 1;
     }
     ui->lineEdit_75->setText(QString::number(nPulseCount));
-     qDebug()<<"the decrement pulse count is"<<nPulseCount;
+     //qDebug()<<"the decrement pulse count is"<<nPulseCount;
      handler->phaco_on();
       handler->fs_count(nfpzero+nfpone+nfptwo);
     handler->freq_count(nFreqCount);
@@ -5459,33 +5467,35 @@ void MainWindow::ocuburstdown_mode()
 void MainWindow::singleburstup_mode()
 {
 // handler->buzz();
-    singleburst = ui->lineEdit_78->text().toInt();
-    singleburst += 10;
-    if (singleburst > 400) {
-        singleburst = 400;
+    nSingleBurst = ui->lineEdit_78->text().toInt();
+    nSingleBurst += 10;
+    if (nSingleBurst > 400) {
+        nSingleBurst = 400;
     }
-    ui->lineEdit_78->setText(QString::number(singleburst));
+    ui->lineEdit_78->setText(QString::number(nSingleBurst));
     handler->phaco_on();
      handler->fs_count(nfpzero+nfpone+nfptwo);
    handler->freq_count(nFreqCount);
     handler->freq_count(nFreqCount);
      handler->pdm_mode(SINGLE_BURST);
+     handler->burst_length(nSingleBurst);
       //qDebug()<<singleburst;
 }
 
 void MainWindow::singleburstdown_mode()
 {
 // handler->buzz();
-    singleburst = ui->lineEdit_78->text().toInt();
-    singleburst -= 10;
-    if (singleburst < 10) {
-        singleburst = 10;
+    nSingleBurst = ui->lineEdit_78->text().toInt();
+   nSingleBurst -= 10;
+    if (nSingleBurst < 10) {
+        nSingleBurst = 10;
     }
-    ui->lineEdit_78->setText(QString::number(singleburst));
+    ui->lineEdit_78->setText(QString::number(nSingleBurst));
     handler->phaco_on();
      handler->fs_count(nfpzero+nfpone+nfptwo);
    handler->freq_count(nFreqCount);
      handler->pdm_mode(SINGLE_BURST);
+   handler->burst_length(nSingleBurst);
     //qDebug()<<singleburst;
 }
 //multiburst
@@ -5835,99 +5845,266 @@ void MainWindow::updateCurrentButtonIndex(int index) {
     currentButtonIndex = index;
 }
 
-
-
 void MainWindow::moved(int gpio) {
     QPushButton *buttons[] = {
          ui->ULTRASONICBUT1, ui->ULTRASONICBUT2,
-          ui->ULTRASONICBUT3, ui->ULTRASONICBUT4, ui->IA1BUT,
-          ui->IA2BUT, ui->VITRECTOMYBUT, ui->DIABUT
+         ui->ULTRASONICBUT3, ui->ULTRASONICBUT4, ui->IA1BUT,
+         ui->IA2BUT, ui->VITRECTOMYBUT, ui->DIABUT
       };
-      QPushButton *buttons1[] = {
-          ui->DIABUT, ui->IA1BUT,
-          ui->IA2BUT, ui->VITRECTOMYBUT
-      };
-      int totalButtons = sizeof(buttons) / sizeof(buttons[0]);
-      int totalButtons1 = sizeof(buttons1) / sizeof(buttons1[0]);
+    QPushButton *buttons1[] = {
+         ui->DIABUT, ui->IA1BUT,
+         ui->IA2BUT, ui->VITRECTOMYBUT
+    };
+    int totalButtons = sizeof(buttons) / sizeof(buttons[0]);
+    int totalButtons1 = sizeof(buttons1) / sizeof(buttons1[0]);
 
-      // Handling for nHandPiece == 0
-        if (gpio == 0) {
-      if (nHandPiece == 0 &&nHandPiece1 ==1) {
+    // Handling for nHandPiece == 0
+    if (gpio == 0 && nHandPiece == 0 && nHandPiece1 == 1) {
+        if (currentButtonIndex == -1) {
+            currentButtonIndex = 0; // Start from the first button (IA1)
+        } else {
+            currentButtonIndex = (currentButtonIndex + 1) % totalButtons;
+        }
 
-              if (currentButtonIndex == -1) {
-                  currentButtonIndex = 0; // Start from the first button (IA1)
-              } else {
-                  currentButtonIndex = (currentButtonIndex + 1) % totalButtons;
-              }
+//        qDebug() << "Handpiece 0, GPIO: " << gpio << ", Button Index: " << currentButtonIndex;
+//        qDebug() << "Selected Button: " << buttons[currentButtonIndex]->text();
 
-              qDebug() << "Handpiece 0, GPIO: " << gpio << ", Button Index: " << currentButtonIndex;
-              qDebug() << "Selected Button: " << buttons[currentButtonIndex]->text();
+        // Handle each button's specific action
+        if (buttons[currentButtonIndex] == ui->ULTRASONICBUT1) {
+            ULTRASONICBUT1();
+        } else if (buttons[currentButtonIndex] == ui->ULTRASONICBUT2) {
+            ULTRASONICBUT2();
+        } else if (buttons[currentButtonIndex] == ui->ULTRASONICBUT3) {
+            ULTRASONICBUT3();
+        } else if (buttons[currentButtonIndex] == ui->ULTRASONICBUT4) {
+            ULTRASONICBUT4();
+        } else if (buttons[currentButtonIndex] == ui->IA1BUT) {
+            IRRIGATIONBUT1();
+        } else if (buttons[currentButtonIndex] == ui->IA2BUT) {
+            IRRIGATIONBUT2();
+        } else if (buttons[currentButtonIndex] == ui->VITRECTOMYBUT) {
+            VITRECTOMYBUT();
+        } else if (buttons[currentButtonIndex] == ui->DIABUT) {
+            DIATHERMYBUT();
+        }
 
-              // Handle each button's specific action
-              if (buttons[currentButtonIndex] == ui->ULTRASONICBUT1) {
-                  ULTRASONICBUT1();
-                  qDebug()<<"the pdm mode is"<<ui->CutMode_vitCom->currentText()<<"the us1";
-              } else if (buttons[currentButtonIndex] == ui->ULTRASONICBUT2) {
-                  ULTRASONICBUT2();
-                  qDebug()<<"the pdm1 mode is"<<ui->CutMode_vitCom_2->currentText()<<"the us2";
-              } else if (buttons[currentButtonIndex] == ui->ULTRASONICBUT3) {
-                  ULTRASONICBUT3();
-                  qDebug()<<"the pdm mode is selected for pdm mode in us3"<<ui->CutMode_vitCom_3->currentText()<<"the us3";
-              } else if (buttons[currentButtonIndex] == ui->ULTRASONICBUT4) {
-                  ULTRASONICBUT4();
-                  qDebug()<<"the pdm mode in us4 is"<<ui->CutMode_vitCom_4->currentText()<<"the us4";
-              } else if(buttons[currentButtonIndex] == ui->IA1BUT){
-                  IRRIGATIONBUT1();
-              } else if(buttons[currentButtonIndex] == ui->IA2BUT){
-                  IRRIGATIONBUT2();
-              } else if(buttons[currentButtonIndex] == ui->VITRECTOMYBUT){
-                  VITRECTOMYBUT();
-              } else if(buttons[currentButtonIndex] == ui->DIABUT){
-                  DIATHERMYBUT();
-              }
+        buttons[currentButtonIndex]->click();
+        buttons[currentButtonIndex]->setFocus();
+    }
 
-              buttons[currentButtonIndex]->click();
-              buttons[currentButtonIndex]->setFocus();
-          }
-      }
+    // Handling for nHandPiece == 1
+    if (gpio == 0 && nHandPiece == 1 && nHandPiece1 == 0) {
+        if (currentButtonIndex == -1) {
+            currentButtonIndex = 0; // Start from DIABUT
+        } else {
+            currentButtonIndex = (currentButtonIndex + 1) % totalButtons1;
+        }
 
-      // Handling for nHandPiece == 1
-        if (gpio == 0) {
-      if (nHandPiece == 1 && nHandPiece1==0) {
+//        // Debugging output
+//        qDebug() << "Handpiece 1, GPIO: " << gpio << ", Button Index: " << currentButtonIndex;
+//        qDebug() << "Selected Button: " << buttons1[currentButtonIndex]->text();
 
-              // Cycle through DIABUT, IA1BUT, IA2BUT, VITRECTOMYBUT
-              if (currentButtonIndex == -1) {
-                  currentButtonIndex = 0; // Start from DIABUT
-              } else {
-                  // Move to the next button in the sequence, loop back to DIABUT after VITRECTOMYBUT
-                  currentButtonIndex = (currentButtonIndex + 1) % totalButtons1;
-              }
+        // Handle each button's specific action
+        if (buttons1[currentButtonIndex] == ui->DIABUT) {
+            DIATHERMYBUT();
+        } else if (buttons1[currentButtonIndex] == ui->IA1BUT) {
+            IRRIGATIONBUT1();
+        } else if (buttons1[currentButtonIndex] == ui->IA2BUT) {
+            IRRIGATIONBUT2();
+        } else if (buttons1[currentButtonIndex] == ui->VITRECTOMYBUT) {
+            VITRECTOMYBUT();
+        }
 
-              // Debugging output
-              qDebug() << "Handpiece 1, GPIO: " << gpio << ", Button Index: " << currentButtonIndex;
-              qDebug() << "Selected Button: " << buttons1[currentButtonIndex]->text();
-
-              // Handle each button's specific action
-              if(buttons1[currentButtonIndex] == ui->DIABUT) {
-                  DIATHERMYBUT();
-                  qDebug()<<"The mode is diathermy";
-              } else if(buttons1[currentButtonIndex] == ui->IA1BUT) {
-                  IRRIGATIONBUT1();
-                  qDebug()<<"the button is ia1";
-              } else if(buttons1[currentButtonIndex] == ui->IA2BUT) {
-                  IRRIGATIONBUT2();
-                  qDebug()<<"the button is ia2";
-              } else if(buttons1[currentButtonIndex] == ui->VITRECTOMYBUT) {
-                  VITRECTOMYBUT();
-                  qDebug()<<"the button is vit";
-              }
-
-              buttons1[currentButtonIndex]->click();
-              buttons1[currentButtonIndex]->setFocus();
-          }
-      }
+        buttons1[currentButtonIndex]->click();
+        buttons1[currentButtonIndex]->setFocus();
+    }
 }
 
+
+//void MainWindow::moved(int gpio) {
+//    QPushButton *buttons[] = {
+//         ui->ULTRASONICBUT1, ui->ULTRASONICBUT2,
+//          ui->ULTRASONICBUT3, ui->ULTRASONICBUT4, ui->IA1BUT,
+//          ui->IA2BUT, ui->VITRECTOMYBUT, ui->DIABUT
+//      };
+//      QPushButton *buttons1[] = {
+//          ui->DIABUT, ui->IA1BUT,
+//          ui->IA2BUT, ui->VITRECTOMYBUT
+//      };
+//      int totalButtons = sizeof(buttons) / sizeof(buttons[0]);
+//      int totalButtons1 = sizeof(buttons1) / sizeof(buttons1[0]);
+
+//      if (gpio == 0 && nHandPiece == 0 && nHandPiece1 == 1) {
+//            if (currentButtonIndex == -1) {
+//                currentButtonIndex = 0; // Start from the first button (IA1)
+//            } else {
+//                currentButtonIndex = (currentButtonIndex + 1) % totalButtons;
+//            }
+
+//            qDebug() << "Handpiece 0, GPIO: " << gpio << ", Button Index: " << currentButtonIndex;
+//            qDebug() << "Selected Button: " << buttons[currentButtonIndex]->text();
+//  qDebug()<<"the nhandpiece"<<nHandPiece<<nHandPiece1;
+//            // Handle each button's specific action
+//            if (buttons[currentButtonIndex] == ui->ULTRASONICBUT1) {
+//                ULTRASONICBUT1();
+//            } else if (buttons[currentButtonIndex] == ui->ULTRASONICBUT2) {
+//                ULTRASONICBUT2();
+//            } else if (buttons[currentButtonIndex] == ui->ULTRASONICBUT3) {
+//                ULTRASONICBUT3();
+//            } else if (buttons[currentButtonIndex] == ui->ULTRASONICBUT4) {
+//                ULTRASONICBUT4();
+//            } else if (buttons[currentButtonIndex] == ui->IA1BUT) {
+//                IRRIGATIONBUT1();
+//            } else if (buttons[currentButtonIndex] == ui->IA2BUT) {
+//                IRRIGATIONBUT2();
+//            } else if (buttons[currentButtonIndex] == ui->VITRECTOMYBUT) {
+//                VITRECTOMYBUT();
+//            } else if (buttons[currentButtonIndex] == ui->DIABUT) {
+//                DIATHERMYBUT();
+//            }
+
+//            buttons[currentButtonIndex]->click();
+//            buttons[currentButtonIndex]->setFocus();
+//        }
+
+//      // Handling for nHandPiece == 1
+//        if (gpio == 0) {
+//      if (nHandPiece == 1 && nHandPiece1==0) {
+
+//              // Cycle through DIABUT, IA1BUT, IA2BUT, VITRECTOMYBUT
+//              if (currentButtonIndex == -1) {
+//                  currentButtonIndex = 0; // Start from DIABUT
+//              } else {
+//                  // Move to the next button in the sequence, loop back to DIABUT after VITRECTOMYBUT
+//                  currentButtonIndex = (currentButtonIndex + 1) % totalButtons1;
+//              }
+
+//              // Debugging output
+//              //qDebug() << "Handpiece 1, GPIO: " << gpio << ", Button Index: " << currentButtonIndex;
+//              //qDebug() << "Selected Button: " << buttons1[currentButtonIndex]->text();
+
+//              // Handle each button's specific action
+//              if(buttons1[currentButtonIndex] == ui->DIABUT) {
+//                  DIATHERMYBUT();
+//                //  qDebug()<<"The mode is diathermy";
+//              } else if(buttons1[currentButtonIndex] == ui->IA1BUT) {
+//                  IRRIGATIONBUT1();
+//                 // qDebug()<<"the button is ia1";
+//              } else if(buttons1[currentButtonIndex] == ui->IA2BUT) {
+//                  IRRIGATIONBUT2();
+//                  //qDebug()<<"the button is ia2";
+//              } else if(buttons1[currentButtonIndex] == ui->VITRECTOMYBUT) {
+//                  VITRECTOMYBUT();
+//                  //qDebug()<<"the button is vit";
+//              }
+
+//              buttons1[currentButtonIndex]->click();
+//              buttons1[currentButtonIndex]->setFocus();
+//          }
+//      }
+//}
+
+//void MainWindow::movePushButtonBottomToTop(int gpio) {
+//    // Define button arrays for each set of buttons
+//    QPushButton *buttons[] = {
+//        ui->ULTRASONICBUT1, ui->ULTRASONICBUT2,
+//        ui->ULTRASONICBUT3, ui->ULTRASONICBUT4, ui->IA1BUT,
+//        ui->IA2BUT, ui->VITRECTOMYBUT, ui->DIABUT
+//    };
+
+//    QPushButton *buttons1[] = {
+//        ui->DIABUT, ui->IA1BUT,
+//        ui->IA2BUT, ui->VITRECTOMYBUT
+//    };
+
+//    int totalButtons = sizeof(buttons) / sizeof(buttons[0]);
+//    int totalButtons1 = sizeof(buttons1) / sizeof(buttons1[0]);
+
+//    // Ensure gpio is 0 for processing
+//    if (gpio == 0) {
+//        if (nHandPiece == 0 && nHandPiece1 == 1) {
+//            // Handle button index for the first set of buttons (buttons)
+//            if (currentButtonIndex == -1) {
+//                currentButtonIndex = totalButtons - 1; // Start at the last button
+//            } else {
+//                // Move to the previous button (bottom to top)
+//                currentButtonIndex = (currentButtonIndex - 1 + totalButtons) % totalButtons;
+//            }
+//            qDebug()<<"the nhandpiece for decrement"<<nHandPiece<<nHandPiece1;
+
+//            // Debugging output
+//            //qDebug() << "Handpiece 0, GPIO: " << gpio << ", Button Index: " << currentButtonIndex;
+//            //qDebug() << "Selected Button: " << buttons[currentButtonIndex]->text();
+
+//            // Handle corresponding PDM Modes
+//            if (buttons[currentButtonIndex] == ui->ULTRASONICBUT1) {
+//                ULTRASONICBUT1();
+//                //qDebug() << "The PDM mode is DECREMENT" << ui->CutMode_vitCom->currentText() << "us1";
+//            } else if (buttons[currentButtonIndex] == ui->ULTRASONICBUT2) {
+//                ULTRASONICBUT2();
+//                //qDebug() << "The PDM mode is DECREMENT" << ui->CutMode_vitCom_2->currentText() << "us2";
+//            } else if (buttons[currentButtonIndex] == ui->ULTRASONICBUT3) {
+//                ULTRASONICBUT3();
+//                //qDebug() << "The PDM mode is DECREMENT" << ui->CutMode_vitCom_3->currentText() << "us3";
+//            } else if (buttons[currentButtonIndex] == ui->ULTRASONICBUT4) {
+//                ULTRASONICBUT4();
+//               // qDebug() << "The PDM mode is DECREMENT" << ui->CutMode_vitCom_4->currentText() << "us4";
+//            } else if (buttons[currentButtonIndex] == ui->IA1BUT) {
+//                IRRIGATIONBUT1();
+//            } else if (buttons[currentButtonIndex] == ui->IA2BUT) {
+//                IRRIGATIONBUT2();
+//            } else if (buttons[currentButtonIndex] == ui->VITRECTOMYBUT) {
+//                VITRECTOMYBUT();
+//            } else if (buttons[currentButtonIndex] == ui->DIABUT) {
+//                DIATHERMYBUT();
+//            }
+
+//            buttons[currentButtonIndex]->click();
+//            buttons[currentButtonIndex]->setFocus();
+//        }
+//        // Handle second set of buttons (buttons1)
+//          if (nHandPiece == 1 && nHandPiece1 == 0) {
+//              if (currentButtonIndex == -1) {
+//                  currentButtonIndex = totalButtons1 - 1; // Start at the last button
+//              } else {
+//                  // If the current button is DIABUT (Diathermy), check GPIO value
+//                  if (buttons1[currentButtonIndex] == ui->DIABUT) {
+//                      // Read the GPIO value (assume gpio is the variable holding the current GPIO state)
+//                      if (gpio == 0) {
+//                          // If GPIO value is 0, move to the previous button (Vitrectomy)
+//                          currentButtonIndex = (currentButtonIndex - 1 + totalButtons1) % totalButtons1;
+//                      }
+//                  } else {
+//                      // Move to the previous button (bottom to top)
+//                      currentButtonIndex = (currentButtonIndex - 1 + totalButtons1) % totalButtons1;
+//                  }
+//              }
+
+//              // Debugging output
+//              qDebug() << "Handpiece 1, GPIO: " << gpio << ", Button Index: " << currentButtonIndex;
+//              qDebug() << "Selected Button: " << buttons1[currentButtonIndex]->text();
+
+//              // Handle the actions for buttons1
+//              if (buttons1[currentButtonIndex] == ui->DIABUT) {
+//                  DIATHERMYBUT();
+//                  qDebug() << "The mode is diathermy";
+//              } else if (buttons1[currentButtonIndex] == ui->IA1BUT) {
+//                  IRRIGATIONBUT1();
+//                  qDebug() << "The button is IA1";
+//              } else if (buttons1[currentButtonIndex] == ui->IA2BUT) {
+//                  IRRIGATIONBUT2();
+//                  qDebug() << "The button is IA2";
+//              } else if (buttons1[currentButtonIndex] == ui->VITRECTOMYBUT) {
+//                  VITRECTOMYBUT();
+//                  qDebug() << "The button is vitrectomy";
+//              }
+
+//              // Simulate a click on the selected button and set focus
+//              buttons1[currentButtonIndex]->click();
+//              buttons1[currentButtonIndex]->setFocus();
+//          }
+//      }
+//}
 void MainWindow::movePushButtonBottomToTop(int gpio) {
     // Define button arrays for each set of buttons
     QPushButton *buttons[] = {
@@ -5954,24 +6131,18 @@ void MainWindow::movePushButtonBottomToTop(int gpio) {
                 // Move to the previous button (bottom to top)
                 currentButtonIndex = (currentButtonIndex - 1 + totalButtons) % totalButtons;
             }
+           // qDebug() << "Decrementing button, currentButtonIndex: " << currentButtonIndex;
 
-            // Debugging output
-            qDebug() << "Handpiece 0, GPIO: " << gpio << ", Button Index: " << currentButtonIndex;
-            qDebug() << "Selected Button: " << buttons[currentButtonIndex]->text();
-
-            // Handle corresponding PDM Modes
+            // Handle corresponding actions based on the selected button
             if (buttons[currentButtonIndex] == ui->ULTRASONICBUT1) {
-                ULTRASONICBUT1();
-                qDebug() << "The PDM mode is DECREMENT" << ui->CutMode_vitCom->currentText() << "us1";
+                // Handle ULTRASONICBUT1 as required (could be DIABUT depending on logic)
+                DIATHERMYBUT();
             } else if (buttons[currentButtonIndex] == ui->ULTRASONICBUT2) {
                 ULTRASONICBUT2();
-                qDebug() << "The PDM mode is DECREMENT" << ui->CutMode_vitCom_2->currentText() << "us2";
             } else if (buttons[currentButtonIndex] == ui->ULTRASONICBUT3) {
                 ULTRASONICBUT3();
-                qDebug() << "The PDM mode is DECREMENT" << ui->CutMode_vitCom_3->currentText() << "us3";
             } else if (buttons[currentButtonIndex] == ui->ULTRASONICBUT4) {
                 ULTRASONICBUT4();
-                qDebug() << "The PDM mode is DECREMENT" << ui->CutMode_vitCom_4->currentText() << "us4";
             } else if (buttons[currentButtonIndex] == ui->IA1BUT) {
                 IRRIGATIONBUT1();
             } else if (buttons[currentButtonIndex] == ui->IA2BUT) {
@@ -5985,196 +6156,43 @@ void MainWindow::movePushButtonBottomToTop(int gpio) {
             buttons[currentButtonIndex]->click();
             buttons[currentButtonIndex]->setFocus();
         }
-        // Handle second set of buttons (buttons1)
-          if (nHandPiece == 1 && nHandPiece1 == 0) {
-              if (currentButtonIndex == -1) {
-                  currentButtonIndex = totalButtons1 - 1; // Start at the last button
-              } else {
-                  // If the current button is DIABUT (Diathermy), check GPIO value
-                  if (buttons1[currentButtonIndex] == ui->DIABUT) {
-                      // Read the GPIO value (assume gpio is the variable holding the current GPIO state)
-                      if (gpio == 0) {
-                          // If GPIO value is 0, move to the previous button (Vitrectomy)
-                          currentButtonIndex = (currentButtonIndex - 1 + totalButtons1) % totalButtons1;
-                      }
-                  } else {
-                      // Move to the previous button (bottom to top)
-                      currentButtonIndex = (currentButtonIndex - 1 + totalButtons1) % totalButtons1;
-                  }
-              }
 
-              // Debugging output
-              qDebug() << "Handpiece 1, GPIO: " << gpio << ", Button Index: " << currentButtonIndex;
-              qDebug() << "Selected Button: " << buttons1[currentButtonIndex]->text();
+        // Handle second set of buttons (buttons1) if nHandPiece == 1 and nHandPiece1 == 0
+        if (nHandPiece == 1 && nHandPiece1 == 0) {
+            if (currentButtonIndex == -1) {
+                currentButtonIndex = totalButtons1 - 1; // Start at the last button
+            } else {
+                // Handle DIABUT separately for GPIO check
+                if (buttons1[currentButtonIndex] == ui->DIABUT && gpio == 0) {
+                    // If GPIO is 0, decrement to the previous button
+                    currentButtonIndex = (currentButtonIndex - 1 + totalButtons1) % totalButtons1;
+                } else {
+                    // Move to the previous button (bottom to top)
+                    currentButtonIndex = (currentButtonIndex - 1 + totalButtons1) % totalButtons1;
+                }
+            }
 
-              // Handle the actions for buttons1
-              if (buttons1[currentButtonIndex] == ui->DIABUT) {
-                  DIATHERMYBUT();
-                  qDebug() << "The mode is diathermy";
-              } else if (buttons1[currentButtonIndex] == ui->IA1BUT) {
-                  IRRIGATIONBUT1();
-                  qDebug() << "The button is IA1";
-              } else if (buttons1[currentButtonIndex] == ui->IA2BUT) {
-                  IRRIGATIONBUT2();
-                  qDebug() << "The button is IA2";
-              } else if (buttons1[currentButtonIndex] == ui->VITRECTOMYBUT) {
-                  VITRECTOMYBUT();
-                  qDebug() << "The button is vitrectomy";
-              }
+            //qDebug() << "Handpiece 1, GPIO: " << gpio << ", Button Index: " << currentButtonIndex;
 
-              // Simulate a click on the selected button and set focus
-              buttons1[currentButtonIndex]->click();
-              buttons1[currentButtonIndex]->setFocus();
-          }
-      }
+            // Handle actions for buttons in buttons1
+            if (buttons1[currentButtonIndex] == ui->DIABUT) {
+                DIATHERMYBUT();
+                qDebug() << "Diathermy mode triggered";
+            } else if (buttons1[currentButtonIndex] == ui->IA1BUT) {
+                IRRIGATIONBUT1();
+            } else if (buttons1[currentButtonIndex] == ui->IA2BUT) {
+                IRRIGATIONBUT2();
+            } else if (buttons1[currentButtonIndex] == ui->VITRECTOMYBUT) {
+                VITRECTOMYBUT();
+            }
+
+            buttons1[currentButtonIndex]->click();
+            buttons1[currentButtonIndex]->setFocus();
+        }
+    }
 }
 
-//void MainWindow::movePushButtonBottomToTop(int gpio) {//already have logic
-//    QPushButton *buttons[] = {
-//     ui->ULTRASONICBUT1, ui->ULTRASONICBUT2,
-//        ui->ULTRASONICBUT3, ui->ULTRASONICBUT4, ui->IA1BUT,
-//        ui->IA2BUT, ui->VITRECTOMYBUT,   ui->DIABUT
-//    };
-//    QPushButton *buttons1[] = {
-//        ui->DIABUT, ui->IA1BUT,
-//        ui->IA2BUT, ui->VITRECTOMYBUT
-//    };
 
-//    int totalButtons = sizeof(buttons) / sizeof(buttons[0]);
-//    int totalButtons1 = sizeof(buttons1) / sizeof(buttons1[0]);
-
-////    // Handling for nHandPiece == 0 (first set of buttons)
-//     if (gpio == 0) {
-//    if (nHandPiece == 0 && nHandPiece1==1) {
-
-//            // If currentButtonIndex is -1, start from the last button
-//            if (currentButtonIndex == -1) {
-//                currentButtonIndex = totalButtons - 1; // Start at the last button
-//            } else {
-//                // Move to the previous button (bottom to top)
-//                currentButtonIndex = (currentButtonIndex - 1 + totalButtons) % totalButtons;
-//            }
-
-//            // Debugging output: Log the selected button and PDM mode
-//            qDebug() << "Handpiece 0, GPIO: " << gpio << ", Button Index: " << currentButtonIndex;
-//            qDebug() << "Selected Button: " << buttons[currentButtonIndex]->text();
-
-//            // Debugging the associated PDM Mode for each button
-//            if (buttons[currentButtonIndex] == ui->ULTRASONICBUT1) {
-//                qDebug() << "PDM Mode: 1 (Ultrasonic 1)";
-//                ULTRASONICBUT1();
-//                qDebug()<<"the pdm mode is DECREMENT"<<ui->CutMode_vitCom->currentText()<<"us1";
-//            } else if (buttons[currentButtonIndex] == ui->ULTRASONICBUT2) {
-//                qDebug() << "PDM Mode: 2 (Ultrasonic 2)";
-//                ULTRASONICBUT2();
-//                qDebug()<<"the pdm mode2 is DECREMENT"<<ui->CutMode_vitCom_2->currentText()<<"us2";
-
-//            } else if (buttons[currentButtonIndex] == ui->ULTRASONICBUT3) {
-//                qDebug() << "PDM Mode: 3 (Ultrasonic 3)";
-//                ULTRASONICBUT3();
-//                qDebug()<<"the pdm mode3 is DECREMENT"<<ui->CutMode_vitCom_3->currentText()<<"us3";
-
-//            } else if (buttons[currentButtonIndex] == ui->ULTRASONICBUT4) {
-//                qDebug() << "PDM Mode: 4 (Ultrasonic 4)";
-//                ULTRASONICBUT4();
-//                qDebug()<<"the pdm mode4 is DECREMENT"<<ui->CutMode_vitCom_4->currentText()<<"us4";
-
-//            }
-//            else if(buttons[currentButtonIndex] == ui->IA1BUT){
-//                              IRRIGATIONBUT1();
-//                          }else if(buttons[currentButtonIndex] == ui->IA2BUT){
-//                              IRRIGATIONBUT2();
-//                          }else if(buttons[currentButtonIndex] == ui->VITRECTOMYBUT){
-//                              VITRECTOMYBUT();
-//                          }else if(buttons[currentButtonIndex] == ui->DIABUT){
-//                              DIATHERMYBUT();
-//                          }
-//        }
-
-//    buttons[currentButtonIndex]->click();
-//    buttons[currentButtonIndex]->setFocus();
-//    }
-//    // Handling for nHandPiece == 1 (second set of buttons)
-//     if (gpio == 0) {
-//    if (nHandPiece == 1 &&nHandPiece1 == 0) {
-
-//            // If currentButtonIndex is -1, start from the last button
-//            if (currentButtonIndex == -1) {
-//                currentButtonIndex = totalButtons1 - 1; // Start at the last button
-//            } else {
-//                // Move to the previous button (bottom to top)
-//                currentButtonIndex = (currentButtonIndex - 1 + totalButtons1) % totalButtons1;
-//            }
-
-//            // Debugging output: Log the selected button and PDM mode
-//            qDebug() << "Handpiece 1, GPIO: " << gpio << ", Button Index: " << currentButtonIndex;
-//            qDebug() << "Selected Button: " << buttons1[currentButtonIndex]->text();
-//           if(buttons1[currentButtonIndex] == ui->DIABUT){
-//                                          DIATHERMYBUT();
-//                                          qDebug()<<"The mode is diathermy";
-//                                      }
-//            if(buttons1[currentButtonIndex] == ui->IA1BUT){
-//                              IRRIGATIONBUT1();
-//                              qDebug()<<"the button is ia1";
-//                          }else if(buttons1[currentButtonIndex] == ui->IA2BUT){
-//                              IRRIGATIONBUT2();
-//                              qDebug()<<"the button is ia2";
-
-//                          }else if(buttons1[currentButtonIndex] == ui->VITRECTOMYBUT){
-//                              VITRECTOMYBUT();
-//                              qDebug()<<"the button is vit";
-
-//                          }
-//            buttons1[currentButtonIndex]->click();
-//            buttons1[currentButtonIndex]->setFocus();
-//        }
-
-
-//    }
-//}
-
-//void MainWindow::movePushButtonBottomToTop(int gpio) {
-//    QPushButton *buttons[] = {
-//        ui->DIABUT, ui->ULTRASONICBUT1, ui->ULTRASONICBUT2,
-//        ui->ULTRASONICBUT3, ui->ULTRASONICBUT4, ui->IA1BUT,
-//        ui->IA2BUT, ui->VITRECTOMYBUT
-//    };
-//    QPushButton *buttons1[] = {
-//        ui->DIABUT, ui->IA1BUT,
-//        ui->IA2BUT, ui->VITRECTOMYBUT
-//    };
-
-//    int totalButtons = sizeof(buttons) / sizeof(buttons[0]);
-//    int totalButtons1 = sizeof(buttons1) / sizeof(buttons1[0]);
-
-//    if (nHandPiece == 0) {
-//        if (gpio == 0) {
-//            if (currentButtonIndex == -1) {
-//                currentButtonIndex = totalButtons - 1; // Start at the last button
-//            } else {
-//                currentButtonIndex = (currentButtonIndex - 1 + totalButtons) % totalButtons;
-//            }
-//        }
-//        // Ensure currentButtonIndex is within bounds and correctly mapped
-//        if (currentButtonIndex >= 0 && currentButtonIndex < totalButtons) {
-//            buttons[currentButtonIndex]->click();
-//            buttons[currentButtonIndex]->setFocus();
-//        }
-//    } else if (nHandPiece == 1) {
-//        if (gpio == 0) {
-//            if (currentButtonIndex == -1) {
-//                currentButtonIndex = totalButtons1 - 1; // Start at the last button in the smaller array
-//            } else {
-//                currentButtonIndex = (currentButtonIndex - 1 + totalButtons1) % totalButtons1;
-//            }
-//        }
-//        // Ensure currentButtonIndex is within bounds and correctly mapped
-//        if (currentButtonIndex >= 0 && currentButtonIndex < totalButtons1) {
-//            buttons1[currentButtonIndex]->click();
-//            buttons1[currentButtonIndex]->setFocus();
-//        }
-//    }
-//}
 
 void MainWindow::onPdmModeSelected(int gpio) {
     if (gpio == 0 && us1PdmMode) {
@@ -6367,17 +6385,17 @@ void MainWindow::moveTab3(int usIndex) {
 void MainWindow::footreflux(int gpio)
 {
    reflux=gpio;
-    if (reflux == 0) {
-       // motorccwon();
+    if (gpio == 0) {
+        motorccwon();
       //  QTimer::singleShot(1000, [this]() {
       //      motoroff();
        // });
 
-reflux= 1;       // Update the flag to indicate motor action completed
-    }
+//reflux= 1;       // Update the flag to indicate motor action completed
+   // }
 
-    else{
-        reflux=0;
+   // else{
+      //  reflux=0;
     }
 }
 //void MainWindow::continousirrigation(int value) {
@@ -7018,7 +7036,7 @@ ui->comboBox->setCurrentText(text);
         ui->us1flowup_but->show();
         ui->us1flowdown_but->show();
 
-        ui->textEdit_41->show();
+        ui->lblus1flow->show();
 
         //us2
         ui->label_91->show();
@@ -7026,14 +7044,14 @@ ui->comboBox->setCurrentText(text);
         ui->us2flowup_but->show();
         ui->us2flowdown_but->show();
 
-        ui->textEdit_44->show();
+        ui->lblus2flow->show();
         //us3
          ui->label_96->show();
         ui->lineEdit_62->show();
         ui->us3flowup_but->show();
         ui->us3flowdown_but->show();
 
-        ui->textEdit_48->show();
+        ui->lblus3flow->show();
 
         //us4
         ui->label_103->show();
@@ -7041,7 +7059,7 @@ ui->comboBox->setCurrentText(text);
         ui->us4flowup_but->show();
         ui->us4flowdown_but->show();
 
-        ui->textEdit_50->show();
+        ui->lblus4flow->show();
 
         //ia 1
         ui->label_112->show();
@@ -7049,7 +7067,7 @@ ui->comboBox->setCurrentText(text);
         ui->ia1flowup_but->show();
         ui->ia1flowdown_but->show();
 
-        ui->textEdit_55->show();
+        ui->lblia1flow->show();
 
         //ia2
         ui->label_108->show();
@@ -7057,7 +7075,7 @@ ui->comboBox->setCurrentText(text);
         ui->ia2flowup_but->show();
         ui->ia2flowdown_but->show();
 
-        ui->textEdit_53->show();
+        ui->lblia2flow->show();
 
         //vit
         ui->label_122->show();
@@ -7065,7 +7083,7 @@ ui->comboBox->setCurrentText(text);
         ui->vitflowup_but->show();
         ui->vitflowdown_but->show();
 
-        ui->textEdit_58->show();
+        ui->lblvitflow->show();
       
 
     }
@@ -7077,49 +7095,49 @@ ui->comboBox->setCurrentText(text);
         ui->us1flowup_but->hide();
         ui->us1flowdown_but->hide();
 
-        ui->textEdit_41->hide();
+        ui->lblus1flow->hide();
         //us2
         ui->label_91->hide();
         ui->lineEdit_59->hide();
         ui->us2flowup_but->hide();
         ui->us2flowdown_but->hide();
 
-        ui->textEdit_44->hide();
+        ui->lblus2flow->hide();
         //us3
          ui->label_96->hide();
         ui->lineEdit_62->hide();
         ui->us3flowup_but->hide();
         ui->us3flowdown_but->hide();
 
-        ui->textEdit_48->hide();
+        ui->lblus3flow->hide();
         //us4
         ui->label_103->hide();
         ui->lineEdit_65->hide();
         ui->us4flowup_but->hide();
         ui->us4flowdown_but->hide();
 
-        ui->textEdit_50->hide();
+        ui->lblus4flow->hide();
         //ia 1
         ui->label_112->hide();
         ui->lineEdit_69->hide();
         ui->ia1flowup_but->hide();
         ui->ia1flowdown_but->hide();
 
-        ui->textEdit_55->hide();
+        ui->lblia1flow->hide();
         //ia2
         ui->label_108->hide();
         ui->lineEdit_67->hide();
         ui->ia2flowup_but->hide();
         ui->ia2flowdown_but->hide();
 
-        ui->textEdit_53->hide();
+        ui->lblia1flow->hide();
         //vit
         ui->label_122->hide();
         ui->lineEdit_72->hide();
         ui->vitflowup_but->hide();
         ui->vitflowdown_but->hide();
 
-        ui->textEdit_58->hide();
+        ui->lblvitflow->hide();
     }
 
 }
@@ -7553,9 +7571,10 @@ void MainWindow::on_pushButton_clicked()
     handler->vit_off();
     protimer->stop();
     Tacutalsensor->stop();
-    this->close();
     nHandPiece=1;
     nHandPiece1=1;
+    this->close();
+
 
 
 }

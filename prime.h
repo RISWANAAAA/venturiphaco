@@ -2,7 +2,7 @@
 #define PRIME_H
 
 #include <QWidget>
-#include "mainwindow.h"
+//#include "mainwindow.h"
 #include<QTimer>
 #include "doctor.h"
 //#include "settings.h"
@@ -70,10 +70,10 @@ private slots:
 
     void on_begin_clean_but_2_clicked();
 
-    void on_pushButton_5_clicked();
+   // void on_pushButton_5_clicked();
 
 
-    void on_pushButton_8_clicked();
+  //  void on_pushButton_8_clicked();
 
     void on_Tune_but_clicked();
 
@@ -83,7 +83,7 @@ signals:
 private:
     Ui::prime *ui;
 //    int hp=0;
-    MainWindow *m;
+   // MainWindow *m;
     tuning *tune;
     QTimer *timer1;
     QTimer *pretimer;
