@@ -160,7 +160,7 @@ MainWindow::MainWindow(QWidget *parent)
    ui->lineEdit_68->setText("500");
    ui->lineEdit_67->setText("40");
    //vit
-   ui->lineEdit_71->setText("960");
+   ui->lineEdit_71->setText("2500");
    ui->lineEdit_73->setText("500");
    ui->lineEdit_72->setText("40");
    //dia
@@ -971,7 +971,7 @@ void MainWindow::on_clicked(const QString& digit)
       if(value==0){
           ui->lineEdit_71->setText(QString::number(5));
           return;}
-      setRange(ui->lineEdit_71, prevValue, value, 960);
+      setRange(ui->lineEdit_71, prevValue, value, 2500);
 
   }
    if(ui->lineEdit_73->focusWidget()) {
@@ -1346,9 +1346,9 @@ void MainWindow::vitcutup()
      handler->buzz();
    int value=ui->lineEdit_71->text().toInt();
     value=value+60;
-     if(value > 960)
+     if(value > 2500)
     {
-        value=960;
+        value=2500;
     }
     ui->lineEdit_71->setText(QString::number(value));
 
