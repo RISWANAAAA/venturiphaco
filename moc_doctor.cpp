@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_doctor_t {
-    QByteArrayData data[102];
-    char stringdata0[1178];
+    QByteArrayData data[104];
+    char stringdata0[1209];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -87,53 +87,55 @@ QT_MOC_LITERAL(51, 476, 7), // "ia1mode"
 QT_MOC_LITERAL(52, 484, 7), // "ia2mode"
 QT_MOC_LITERAL(53, 492, 7), // "vitmode"
 QT_MOC_LITERAL(54, 500, 10), // "vitvacmode"
-QT_MOC_LITERAL(55, 511, 15), // "surgeonNamefoot"
-QT_MOC_LITERAL(56, 527, 7), // "surgeon"
-QT_MOC_LITERAL(57, 535, 11), // "transmitval"
-QT_MOC_LITERAL(58, 547, 4), // "int&"
-QT_MOC_LITERAL(59, 552, 6), // "fpzero"
-QT_MOC_LITERAL(60, 559, 5), // "fpone"
-QT_MOC_LITERAL(61, 565, 5), // "fptwo"
-QT_MOC_LITERAL(62, 571, 7), // "fpthree"
-QT_MOC_LITERAL(63, 579, 18), // "activatemainwindow"
-QT_MOC_LITERAL(64, 598, 17), // "txfootpedalvalues"
-QT_MOC_LITERAL(65, 616, 7), // "topleft"
-QT_MOC_LITERAL(66, 624, 8), // "topright"
-QT_MOC_LITERAL(67, 633, 13), // "tx_viberation"
-QT_MOC_LITERAL(68, 647, 4), // "text"
-QT_MOC_LITERAL(69, 652, 15), // "tx_speakeronoff"
-QT_MOC_LITERAL(70, 668, 22), // "onComboBoxIndexChanged"
-QT_MOC_LITERAL(71, 691, 5), // "index"
-QT_MOC_LITERAL(72, 697, 10), // "on_clicked"
-QT_MOC_LITERAL(73, 708, 5), // "digit"
-QT_MOC_LITERAL(74, 714, 15), // "on_clickedenter"
-QT_MOC_LITERAL(75, 730, 10), // "clickedtab"
-QT_MOC_LITERAL(76, 741, 4), // "tab1"
-QT_MOC_LITERAL(77, 746, 5), // "click"
-QT_MOC_LITERAL(78, 752, 3), // "tab"
-QT_MOC_LITERAL(79, 756, 14), // "increasebutton"
-QT_MOC_LITERAL(80, 771, 5), // "input"
-QT_MOC_LITERAL(81, 777, 14), // "decreasebutton"
-QT_MOC_LITERAL(82, 792, 14), // "receivetopleft"
-QT_MOC_LITERAL(83, 807, 17), // "receivebottomleft"
-QT_MOC_LITERAL(84, 825, 15), // "receivetopright"
-QT_MOC_LITERAL(85, 841, 18), // "receivebottomright"
-QT_MOC_LITERAL(86, 860, 12), // "DiathermyBut"
-QT_MOC_LITERAL(87, 873, 8), // "PhacoBut"
-QT_MOC_LITERAL(88, 882, 23), // "IrrigationAspirationBut"
-QT_MOC_LITERAL(89, 906, 13), // "VitrectomyBut"
-QT_MOC_LITERAL(90, 920, 7), // "BackBut"
-QT_MOC_LITERAL(91, 928, 24), // "on_QuadBut_phaco_clicked"
-QT_MOC_LITERAL(92, 953, 24), // "on_ChopBut_phaco_clicked"
-QT_MOC_LITERAL(93, 978, 26), // "on_ScupltBut_phaco_clicked"
-QT_MOC_LITERAL(94, 1005, 24), // "on_EpinBut_phaco_clicked"
-QT_MOC_LITERAL(95, 1030, 21), // "on_pushButton_clicked"
-QT_MOC_LITERAL(96, 1052, 9), // "pumpvalue"
-QT_MOC_LITERAL(97, 1062, 21), // "on_SaveDiaBut_clicked"
-QT_MOC_LITERAL(98, 1084, 15), // "handleDataSaved"
-QT_MOC_LITERAL(99, 1100, 23), // "on_pushButton_2_clicked"
-QT_MOC_LITERAL(100, 1124, 26), // "on_Vibration_onoff_clicked"
-QT_MOC_LITERAL(101, 1151, 26) // "on_ButSpeakerOnOff_clicked"
+QT_MOC_LITERAL(55, 511, 13), // "sendavsvalues"
+QT_MOC_LITERAL(56, 525, 15), // "surgeonNamefoot"
+QT_MOC_LITERAL(57, 541, 7), // "surgeon"
+QT_MOC_LITERAL(58, 549, 11), // "transmitval"
+QT_MOC_LITERAL(59, 561, 4), // "int&"
+QT_MOC_LITERAL(60, 566, 6), // "fpzero"
+QT_MOC_LITERAL(61, 573, 5), // "fpone"
+QT_MOC_LITERAL(62, 579, 5), // "fptwo"
+QT_MOC_LITERAL(63, 585, 7), // "fpthree"
+QT_MOC_LITERAL(64, 593, 18), // "activatemainwindow"
+QT_MOC_LITERAL(65, 612, 17), // "txfootpedalvalues"
+QT_MOC_LITERAL(66, 630, 7), // "topleft"
+QT_MOC_LITERAL(67, 638, 8), // "topright"
+QT_MOC_LITERAL(68, 647, 13), // "tx_viberation"
+QT_MOC_LITERAL(69, 661, 4), // "text"
+QT_MOC_LITERAL(70, 666, 15), // "tx_speakeronoff"
+QT_MOC_LITERAL(71, 682, 16), // "avsSwitchingmode"
+QT_MOC_LITERAL(72, 699, 22), // "onComboBoxIndexChanged"
+QT_MOC_LITERAL(73, 722, 5), // "index"
+QT_MOC_LITERAL(74, 728, 10), // "on_clicked"
+QT_MOC_LITERAL(75, 739, 5), // "digit"
+QT_MOC_LITERAL(76, 745, 15), // "on_clickedenter"
+QT_MOC_LITERAL(77, 761, 10), // "clickedtab"
+QT_MOC_LITERAL(78, 772, 4), // "tab1"
+QT_MOC_LITERAL(79, 777, 5), // "click"
+QT_MOC_LITERAL(80, 783, 3), // "tab"
+QT_MOC_LITERAL(81, 787, 14), // "increasebutton"
+QT_MOC_LITERAL(82, 802, 5), // "input"
+QT_MOC_LITERAL(83, 808, 14), // "decreasebutton"
+QT_MOC_LITERAL(84, 823, 14), // "receivetopleft"
+QT_MOC_LITERAL(85, 838, 17), // "receivebottomleft"
+QT_MOC_LITERAL(86, 856, 15), // "receivetopright"
+QT_MOC_LITERAL(87, 872, 18), // "receivebottomright"
+QT_MOC_LITERAL(88, 891, 12), // "DiathermyBut"
+QT_MOC_LITERAL(89, 904, 8), // "PhacoBut"
+QT_MOC_LITERAL(90, 913, 23), // "IrrigationAspirationBut"
+QT_MOC_LITERAL(91, 937, 13), // "VitrectomyBut"
+QT_MOC_LITERAL(92, 951, 7), // "BackBut"
+QT_MOC_LITERAL(93, 959, 24), // "on_QuadBut_phaco_clicked"
+QT_MOC_LITERAL(94, 984, 24), // "on_ChopBut_phaco_clicked"
+QT_MOC_LITERAL(95, 1009, 26), // "on_ScupltBut_phaco_clicked"
+QT_MOC_LITERAL(96, 1036, 24), // "on_EpinBut_phaco_clicked"
+QT_MOC_LITERAL(97, 1061, 21), // "on_pushButton_clicked"
+QT_MOC_LITERAL(98, 1083, 9), // "pumpvalue"
+QT_MOC_LITERAL(99, 1093, 21), // "on_SaveDiaBut_clicked"
+QT_MOC_LITERAL(100, 1115, 15), // "handleDataSaved"
+QT_MOC_LITERAL(101, 1131, 23), // "on_pushButton_2_clicked"
+QT_MOC_LITERAL(102, 1155, 26), // "on_Vibration_onoff_clicked"
+QT_MOC_LITERAL(103, 1182, 26) // "on_ButSpeakerOnOff_clicked"
 
     },
     "doctor\0sendleftfootvalues\0\0text1\0"
@@ -150,14 +152,15 @@ QT_MOC_LITERAL(101, 1151, 26) // "on_ButSpeakerOnOff_clicked"
     "us3powmode\0us3vacmode\0us3powermethod\0"
     "us4powmode\0us4vacmode\0us4powermethod\0"
     "ia1mode\0ia2mode\0vitmode\0vitvacmode\0"
-    "surgeonNamefoot\0surgeon\0transmitval\0"
-    "int&\0fpzero\0fpone\0fptwo\0fpthree\0"
-    "activatemainwindow\0txfootpedalvalues\0"
+    "sendavsvalues\0surgeonNamefoot\0surgeon\0"
+    "transmitval\0int&\0fpzero\0fpone\0fptwo\0"
+    "fpthree\0activatemainwindow\0txfootpedalvalues\0"
     "topleft\0topright\0tx_viberation\0text\0"
-    "tx_speakeronoff\0onComboBoxIndexChanged\0"
-    "index\0on_clicked\0digit\0on_clickedenter\0"
-    "clickedtab\0tab1\0click\0tab\0increasebutton\0"
-    "input\0decreasebutton\0receivetopleft\0"
+    "tx_speakeronoff\0avsSwitchingmode\0"
+    "onComboBoxIndexChanged\0index\0on_clicked\0"
+    "digit\0on_clickedenter\0clickedtab\0tab1\0"
+    "click\0tab\0increasebutton\0input\0"
+    "decreasebutton\0receivetopleft\0"
     "receivebottomleft\0receivetopright\0"
     "receivebottomright\0DiathermyBut\0"
     "PhacoBut\0IrrigationAspirationBut\0"
@@ -178,59 +181,61 @@ static const uint qt_meta_data_doctor[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-      43,   14, // methods
+      45,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-      16,       // signalCount
+      18,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    1,  229,    2, 0x06 /* Public */,
-       4,    1,  232,    2, 0x06 /* Public */,
-       6,    1,  235,    2, 0x06 /* Public */,
-       8,    1,  238,    2, 0x06 /* Public */,
-      10,    1,  241,    2, 0x06 /* Public */,
-      12,    1,  244,    2, 0x06 /* Public */,
-      13,    1,  247,    2, 0x06 /* Public */,
-      14,    1,  250,    2, 0x06 /* Public */,
-      15,    1,  253,    2, 0x06 /* Public */,
-      16,   38,  256,    2, 0x06 /* Public */,
-      55,    1,  333,    2, 0x06 /* Public */,
-      57,    4,  336,    2, 0x06 /* Public */,
-      63,    0,  345,    2, 0x06 /* Public */,
-      64,    4,  346,    2, 0x06 /* Public */,
-      67,    1,  355,    2, 0x06 /* Public */,
-      69,    1,  358,    2, 0x06 /* Public */,
+       1,    1,  239,    2, 0x06 /* Public */,
+       4,    1,  242,    2, 0x06 /* Public */,
+       6,    1,  245,    2, 0x06 /* Public */,
+       8,    1,  248,    2, 0x06 /* Public */,
+      10,    1,  251,    2, 0x06 /* Public */,
+      12,    1,  254,    2, 0x06 /* Public */,
+      13,    1,  257,    2, 0x06 /* Public */,
+      14,    1,  260,    2, 0x06 /* Public */,
+      15,    1,  263,    2, 0x06 /* Public */,
+      16,   38,  266,    2, 0x06 /* Public */,
+      55,   13,  343,    2, 0x06 /* Public */,
+      56,    1,  370,    2, 0x06 /* Public */,
+      58,    4,  373,    2, 0x06 /* Public */,
+      64,    0,  382,    2, 0x06 /* Public */,
+      65,    4,  383,    2, 0x06 /* Public */,
+      68,    1,  392,    2, 0x06 /* Public */,
+      70,    1,  395,    2, 0x06 /* Public */,
+      71,    1,  398,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-      70,    1,  361,    2, 0x0a /* Public */,
-      72,    1,  364,    2, 0x0a /* Public */,
-      74,    0,  367,    2, 0x0a /* Public */,
-      75,    1,  368,    2, 0x0a /* Public */,
-      77,    1,  371,    2, 0x0a /* Public */,
-      79,    1,  374,    2, 0x0a /* Public */,
-      81,    1,  377,    2, 0x0a /* Public */,
-      82,    1,  380,    2, 0x0a /* Public */,
-      83,    1,  383,    2, 0x0a /* Public */,
-      84,    1,  386,    2, 0x0a /* Public */,
-      85,    1,  389,    2, 0x0a /* Public */,
-      86,    0,  392,    2, 0x08 /* Private */,
-      87,    0,  393,    2, 0x08 /* Private */,
-      88,    0,  394,    2, 0x08 /* Private */,
-      89,    0,  395,    2, 0x08 /* Private */,
-      90,    0,  396,    2, 0x08 /* Private */,
-      91,    0,  397,    2, 0x08 /* Private */,
-      92,    0,  398,    2, 0x08 /* Private */,
-      93,    0,  399,    2, 0x08 /* Private */,
-      94,    0,  400,    2, 0x08 /* Private */,
-      95,    0,  401,    2, 0x08 /* Private */,
-      96,    0,  402,    2, 0x08 /* Private */,
-      97,    0,  403,    2, 0x08 /* Private */,
-      98,    0,  404,    2, 0x08 /* Private */,
-      99,    0,  405,    2, 0x08 /* Private */,
-     100,    0,  406,    2, 0x08 /* Private */,
-     101,    0,  407,    2, 0x08 /* Private */,
+      72,    1,  401,    2, 0x0a /* Public */,
+      74,    1,  404,    2, 0x0a /* Public */,
+      76,    0,  407,    2, 0x0a /* Public */,
+      77,    1,  408,    2, 0x0a /* Public */,
+      79,    1,  411,    2, 0x0a /* Public */,
+      81,    1,  414,    2, 0x0a /* Public */,
+      83,    1,  417,    2, 0x0a /* Public */,
+      84,    1,  420,    2, 0x0a /* Public */,
+      85,    1,  423,    2, 0x0a /* Public */,
+      86,    1,  426,    2, 0x0a /* Public */,
+      87,    1,  429,    2, 0x0a /* Public */,
+      88,    0,  432,    2, 0x08 /* Private */,
+      89,    0,  433,    2, 0x08 /* Private */,
+      90,    0,  434,    2, 0x08 /* Private */,
+      91,    0,  435,    2, 0x08 /* Private */,
+      92,    0,  436,    2, 0x08 /* Private */,
+      93,    0,  437,    2, 0x08 /* Private */,
+      94,    0,  438,    2, 0x08 /* Private */,
+      95,    0,  439,    2, 0x08 /* Private */,
+      96,    0,  440,    2, 0x08 /* Private */,
+      97,    0,  441,    2, 0x08 /* Private */,
+      98,    0,  442,    2, 0x08 /* Private */,
+      99,    0,  443,    2, 0x08 /* Private */,
+     100,    0,  444,    2, 0x08 /* Private */,
+     101,    0,  445,    2, 0x08 /* Private */,
+     102,    0,  446,    2, 0x08 /* Private */,
+     103,    0,  447,    2, 0x08 /* Private */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::QString,    3,
@@ -243,25 +248,27 @@ static const uint qt_meta_data_doctor[] = {
     QMetaType::Void, QMetaType::QString,   11,
     QMetaType::Void, QMetaType::QString,   11,
     QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString,   17,   18,   19,   20,   21,   22,   23,   24,   25,   26,   27,   28,   29,   30,   31,   32,   33,   34,   35,   36,   37,   38,   39,   40,   41,   42,   43,   44,   45,   46,   47,   48,   49,   50,   51,   52,   53,   54,
-    QMetaType::Void, QMetaType::QString,   56,
-    QMetaType::Void, 0x80000000 | 58, 0x80000000 | 58, 0x80000000 | 58, 0x80000000 | 58,   59,   60,   61,   62,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::QString, QMetaType::QString, QMetaType::QString,   17,   18,   19,   32,   33,   34,   35,   36,   37,   38,   51,   52,   54,
+    QMetaType::Void, QMetaType::QString,   57,
+    QMetaType::Void, 0x80000000 | 59, 0x80000000 | 59, 0x80000000 | 59, 0x80000000 | 59,   60,   61,   62,   63,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString,   65,   66,   13,   14,
-    QMetaType::Void, QMetaType::QString,   68,
-    QMetaType::Void, QMetaType::QString,   68,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString,   66,   67,   13,   14,
+    QMetaType::Void, QMetaType::QString,   69,
+    QMetaType::Void, QMetaType::QString,   69,
+    QMetaType::Void, QMetaType::QString,   11,
 
  // slots: parameters
-    QMetaType::Void, QMetaType::Int,   71,
-    QMetaType::Void, QMetaType::QString,   73,
+    QMetaType::Void, QMetaType::Int,   73,
+    QMetaType::Void, QMetaType::QString,   75,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Int,   76,
     QMetaType::Void, QMetaType::Int,   78,
-    QMetaType::Int, QMetaType::Int,   80,
-    QMetaType::Int, QMetaType::Int,   80,
-    QMetaType::Void, QMetaType::QString,   68,
-    QMetaType::Void, QMetaType::QString,   68,
-    QMetaType::Void, QMetaType::QString,   68,
-    QMetaType::Void, QMetaType::QString,   68,
+    QMetaType::Void, QMetaType::Int,   80,
+    QMetaType::Int, QMetaType::Int,   82,
+    QMetaType::Int, QMetaType::Int,   82,
+    QMetaType::Void, QMetaType::QString,   69,
+    QMetaType::Void, QMetaType::QString,   69,
+    QMetaType::Void, QMetaType::QString,   69,
+    QMetaType::Void, QMetaType::QString,   69,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -298,41 +305,43 @@ void doctor::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         case 7: _t->bottomright((*reinterpret_cast< const QString(*)>(_a[1]))); break;
         case 8: _t->pumpsignal((*reinterpret_cast< const QString(*)>(_a[1]))); break;
         case 9: _t->sendValues((*reinterpret_cast< const QString(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2])),(*reinterpret_cast< int(*)>(_a[3])),(*reinterpret_cast< int(*)>(_a[4])),(*reinterpret_cast< int(*)>(_a[5])),(*reinterpret_cast< int(*)>(_a[6])),(*reinterpret_cast< int(*)>(_a[7])),(*reinterpret_cast< int(*)>(_a[8])),(*reinterpret_cast< int(*)>(_a[9])),(*reinterpret_cast< int(*)>(_a[10])),(*reinterpret_cast< int(*)>(_a[11])),(*reinterpret_cast< int(*)>(_a[12])),(*reinterpret_cast< int(*)>(_a[13])),(*reinterpret_cast< int(*)>(_a[14])),(*reinterpret_cast< int(*)>(_a[15])),(*reinterpret_cast< int(*)>(_a[16])),(*reinterpret_cast< int(*)>(_a[17])),(*reinterpret_cast< int(*)>(_a[18])),(*reinterpret_cast< int(*)>(_a[19])),(*reinterpret_cast< int(*)>(_a[20])),(*reinterpret_cast< int(*)>(_a[21])),(*reinterpret_cast< int(*)>(_a[22])),(*reinterpret_cast< const QString(*)>(_a[23])),(*reinterpret_cast< const QString(*)>(_a[24])),(*reinterpret_cast< const QString(*)>(_a[25])),(*reinterpret_cast< const QString(*)>(_a[26])),(*reinterpret_cast< const QString(*)>(_a[27])),(*reinterpret_cast< const QString(*)>(_a[28])),(*reinterpret_cast< const QString(*)>(_a[29])),(*reinterpret_cast< const QString(*)>(_a[30])),(*reinterpret_cast< const QString(*)>(_a[31])),(*reinterpret_cast< const QString(*)>(_a[32])),(*reinterpret_cast< const QString(*)>(_a[33])),(*reinterpret_cast< const QString(*)>(_a[34])),(*reinterpret_cast< const QString(*)>(_a[35])),(*reinterpret_cast< const QString(*)>(_a[36])),(*reinterpret_cast< const QString(*)>(_a[37])),(*reinterpret_cast< const QString(*)>(_a[38]))); break;
-        case 10: _t->surgeonNamefoot((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 11: _t->transmitval((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< int(*)>(_a[3])),(*reinterpret_cast< int(*)>(_a[4]))); break;
-        case 12: _t->activatemainwindow(); break;
-        case 13: _t->txfootpedalvalues((*reinterpret_cast< const QString(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2])),(*reinterpret_cast< const QString(*)>(_a[3])),(*reinterpret_cast< const QString(*)>(_a[4]))); break;
-        case 14: _t->tx_viberation((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 15: _t->tx_speakeronoff((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 16: _t->onComboBoxIndexChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 17: _t->on_clicked((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 18: _t->on_clickedenter(); break;
-        case 19: _t->clickedtab((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 20: _t->click((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 21: { int _r = _t->increasebutton((*reinterpret_cast< int(*)>(_a[1])));
+        case 10: _t->sendavsvalues((*reinterpret_cast< const QString(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2])),(*reinterpret_cast< int(*)>(_a[3])),(*reinterpret_cast< int(*)>(_a[4])),(*reinterpret_cast< int(*)>(_a[5])),(*reinterpret_cast< int(*)>(_a[6])),(*reinterpret_cast< int(*)>(_a[7])),(*reinterpret_cast< int(*)>(_a[8])),(*reinterpret_cast< int(*)>(_a[9])),(*reinterpret_cast< int(*)>(_a[10])),(*reinterpret_cast< const QString(*)>(_a[11])),(*reinterpret_cast< const QString(*)>(_a[12])),(*reinterpret_cast< const QString(*)>(_a[13]))); break;
+        case 11: _t->surgeonNamefoot((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 12: _t->transmitval((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< int(*)>(_a[3])),(*reinterpret_cast< int(*)>(_a[4]))); break;
+        case 13: _t->activatemainwindow(); break;
+        case 14: _t->txfootpedalvalues((*reinterpret_cast< const QString(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2])),(*reinterpret_cast< const QString(*)>(_a[3])),(*reinterpret_cast< const QString(*)>(_a[4]))); break;
+        case 15: _t->tx_viberation((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 16: _t->tx_speakeronoff((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 17: _t->avsSwitchingmode((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 18: _t->onComboBoxIndexChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 19: _t->on_clicked((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 20: _t->on_clickedenter(); break;
+        case 21: _t->clickedtab((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 22: _t->click((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 23: { int _r = _t->increasebutton((*reinterpret_cast< int(*)>(_a[1])));
             if (_a[0]) *reinterpret_cast< int*>(_a[0]) = std::move(_r); }  break;
-        case 22: { int _r = _t->decreasebutton((*reinterpret_cast< int(*)>(_a[1])));
+        case 24: { int _r = _t->decreasebutton((*reinterpret_cast< int(*)>(_a[1])));
             if (_a[0]) *reinterpret_cast< int*>(_a[0]) = std::move(_r); }  break;
-        case 23: _t->receivetopleft((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 24: _t->receivebottomleft((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 25: _t->receivetopright((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 26: _t->receivebottomright((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 27: _t->DiathermyBut(); break;
-        case 28: _t->PhacoBut(); break;
-        case 29: _t->IrrigationAspirationBut(); break;
-        case 30: _t->VitrectomyBut(); break;
-        case 31: _t->BackBut(); break;
-        case 32: _t->on_QuadBut_phaco_clicked(); break;
-        case 33: _t->on_ChopBut_phaco_clicked(); break;
-        case 34: _t->on_ScupltBut_phaco_clicked(); break;
-        case 35: _t->on_EpinBut_phaco_clicked(); break;
-        case 36: _t->on_pushButton_clicked(); break;
-        case 37: _t->pumpvalue(); break;
-        case 38: _t->on_SaveDiaBut_clicked(); break;
-        case 39: _t->handleDataSaved(); break;
-        case 40: _t->on_pushButton_2_clicked(); break;
-        case 41: _t->on_Vibration_onoff_clicked(); break;
-        case 42: _t->on_ButSpeakerOnOff_clicked(); break;
+        case 25: _t->receivetopleft((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 26: _t->receivebottomleft((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 27: _t->receivetopright((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 28: _t->receivebottomright((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 29: _t->DiathermyBut(); break;
+        case 30: _t->PhacoBut(); break;
+        case 31: _t->IrrigationAspirationBut(); break;
+        case 32: _t->VitrectomyBut(); break;
+        case 33: _t->BackBut(); break;
+        case 34: _t->on_QuadBut_phaco_clicked(); break;
+        case 35: _t->on_ChopBut_phaco_clicked(); break;
+        case 36: _t->on_ScupltBut_phaco_clicked(); break;
+        case 37: _t->on_EpinBut_phaco_clicked(); break;
+        case 38: _t->on_pushButton_clicked(); break;
+        case 39: _t->pumpvalue(); break;
+        case 40: _t->on_SaveDiaBut_clicked(); break;
+        case 41: _t->handleDataSaved(); break;
+        case 42: _t->on_pushButton_2_clicked(); break;
+        case 43: _t->on_Vibration_onoff_clicked(); break;
+        case 44: _t->on_ButSpeakerOnOff_clicked(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -408,44 +417,58 @@ void doctor::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
             }
         }
         {
+            using _t = void (doctor::*)(const QString & , const QString & , int , int , int , int , int , int , int , int , const QString & , const QString & , const QString & );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&doctor::sendavsvalues)) {
+                *result = 10;
+                return;
+            }
+        }
+        {
             using _t = void (doctor::*)(const QString & );
             if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&doctor::surgeonNamefoot)) {
-                *result = 10;
+                *result = 11;
                 return;
             }
         }
         {
             using _t = void (doctor::*)(int & , int & , int & , int & );
             if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&doctor::transmitval)) {
-                *result = 11;
+                *result = 12;
                 return;
             }
         }
         {
             using _t = void (doctor::*)();
             if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&doctor::activatemainwindow)) {
-                *result = 12;
+                *result = 13;
                 return;
             }
         }
         {
             using _t = void (doctor::*)(const QString & , const QString & , const QString & , const QString & );
             if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&doctor::txfootpedalvalues)) {
-                *result = 13;
-                return;
-            }
-        }
-        {
-            using _t = void (doctor::*)(const QString & );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&doctor::tx_viberation)) {
                 *result = 14;
                 return;
             }
         }
         {
             using _t = void (doctor::*)(const QString & );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&doctor::tx_speakeronoff)) {
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&doctor::tx_viberation)) {
                 *result = 15;
+                return;
+            }
+        }
+        {
+            using _t = void (doctor::*)(const QString & );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&doctor::tx_speakeronoff)) {
+                *result = 16;
+                return;
+            }
+        }
+        {
+            using _t = void (doctor::*)(const QString & );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&doctor::avsSwitchingmode)) {
+                *result = 17;
                 return;
             }
         }
@@ -481,13 +504,13 @@ int doctor::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 43)
+        if (_id < 45)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 43;
+        _id -= 45;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 43)
+        if (_id < 45)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 43;
+        _id -= 45;
     }
     return _id;
 }
@@ -563,44 +586,58 @@ void doctor::sendValues(const QString & _t1, const QString & _t2, int _t3, int _
 }
 
 // SIGNAL 10
-void doctor::surgeonNamefoot(const QString & _t1)
+void doctor::sendavsvalues(const QString & _t1, const QString & _t2, int _t3, int _t4, int _t5, int _t6, int _t7, int _t8, int _t9, int _t10, const QString & _t11, const QString & _t12, const QString & _t13)
 {
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t3))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t4))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t5))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t6))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t7))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t8))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t9))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t10))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t11))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t12))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t13))) };
     QMetaObject::activate(this, &staticMetaObject, 10, _a);
 }
 
 // SIGNAL 11
-void doctor::transmitval(int & _t1, int & _t2, int & _t3, int & _t4)
+void doctor::surgeonNamefoot(const QString & _t1)
 {
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t3))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t4))) };
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
     QMetaObject::activate(this, &staticMetaObject, 11, _a);
 }
 
 // SIGNAL 12
-void doctor::activatemainwindow()
+void doctor::transmitval(int & _t1, int & _t2, int & _t3, int & _t4)
 {
-    QMetaObject::activate(this, &staticMetaObject, 12, nullptr);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t3))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t4))) };
+    QMetaObject::activate(this, &staticMetaObject, 12, _a);
 }
 
 // SIGNAL 13
-void doctor::txfootpedalvalues(const QString & _t1, const QString & _t2, const QString & _t3, const QString & _t4)
+void doctor::activatemainwindow()
 {
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t3))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t4))) };
-    QMetaObject::activate(this, &staticMetaObject, 13, _a);
+    QMetaObject::activate(this, &staticMetaObject, 13, nullptr);
 }
 
 // SIGNAL 14
-void doctor::tx_viberation(const QString & _t1)
+void doctor::txfootpedalvalues(const QString & _t1, const QString & _t2, const QString & _t3, const QString & _t4)
 {
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t3))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t4))) };
     QMetaObject::activate(this, &staticMetaObject, 14, _a);
 }
 
 // SIGNAL 15
-void doctor::tx_speakeronoff(const QString & _t1)
+void doctor::tx_viberation(const QString & _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
     QMetaObject::activate(this, &staticMetaObject, 15, _a);
+}
+
+// SIGNAL 16
+void doctor::tx_speakeronoff(const QString & _t1)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 16, _a);
+}
+
+// SIGNAL 17
+void doctor::avsSwitchingmode(const QString & _t1)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 17, _a);
 }
 QT_WARNING_POP
 QT_END_MOC_NAMESPACE

@@ -10,7 +10,7 @@
 #include"tuning.h"
 #include<QSqlDatabase>
 #include<QSqlQuery>
-
+//#include"avsmode.h"
 #define PATH "/home/phacohigh.db"
 
 class MainWindow;
@@ -38,7 +38,7 @@ public:
     void motoron();
     void motoroff();
     void serialnumber();
-
+ // void switchmodes();
 protected:
     bool eventFilter(QObject *watched, QEvent *event) override; // Declaration of eventFilter
 
@@ -78,9 +78,12 @@ private slots:
     void on_Tune_but_clicked();
 
 
+   // void on_pushButton_clicked();
+
 signals:
     void sendsignal(const QString &text);
 private:
+
     Ui::prime *ui;
 //    int hp=0;
    // MainWindow *m;
@@ -95,6 +98,10 @@ private:
      QTimer *statusUpdateTimer;
      hwhandler *hand;
      QSqlDatabase db;
+     QStringList modes;
+    // avsmode *avs;
+         QString line;
+
 
 };
 

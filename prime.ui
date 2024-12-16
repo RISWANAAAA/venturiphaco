@@ -301,6 +301,19 @@ QCheckBox {
       <number>0</number>
      </property>
     </widget>
+    <widget class="QPushButton" name="pushButton">
+     <property name="geometry">
+      <rect>
+       <x>720</x>
+       <y>670</y>
+       <width>89</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>PushButton</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="tab_8">
     <property name="styleSheet">
@@ -690,6 +703,17 @@ font-weight: bold;</string>
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
+  <widget class="QComboBox" name="comboBox">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>220</y>
+     <width>241</width>
+     <height>61</height>
+    </rect>
+   </property>
+  </widget>
+  <zorder>comboBox</zorder>
   <zorder>prime1_but</zorder>
   <zorder>tabWidget</zorder>
   <zorder>label_2</zorder>

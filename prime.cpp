@@ -14,8 +14,10 @@ prime::prime(QWidget *parent) :
 {
     ui->setupUi(this);
     move(0,0);
+    //switchmodes();
   //  m=new MainWindow;
     sur=new doctor;
+   // avs=new avsmode;
 
     hand=new hwhandler;
     tune=new tuning;
@@ -76,7 +78,7 @@ prime::prime(QWidget *parent) :
     serialnumber();
    //
     connect(ui->comboBox_4, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &prime::onComboBoxIndexChanged);
-
+ ui->comboBox->hide();
     //connect(statusUpdateTimer, &QTimer::timeout, this, &prime::onUpdateStatusTimeout);
     // statusUpdateTimer->start(500); // Update every second
 
@@ -133,8 +135,9 @@ prime::prime(QWidget *parent) :
     ui->lab_time->setText(formatTime);
 
     ui->progressBar_2->setRange(0, 100);
-    current(1);
     on_Tune_but_clicked();
+    current(1);
+
 
 
 }
@@ -364,49 +367,7 @@ void prime::on_start_prime_but_2_clicked()
     // Begin the priming process
     motoron();
 }
-//void prime::on_start_prime_but_2_clicked()
-//{
-//    // Reset progress bar and UI elements
-//    ui->progressBar_2->setValue(0);
-//    ui->start_check_2->setChecked(false);
-//    ui->motor_Check_2->setChecked(false);
-//    ui->wait_Check_2->setChecked(false);
-//    ui->done_Check_2->setChecked(false);
 
-//    // Stop any ongoing timers to reset the state
-//    if (pretimer->isActive()) {
-//        pretimer->stop();
-//    }
-
-//    // Buzz to indicate start
-//    hand->buzz();
-
-//    // Step 1: Start the motor for 15000 ms
-//    motoron();
-//    ui->motor_Check_2->setChecked(true); // Update UI to show motor is on
-//    QTimer::singleShot(15000, this, [this]() {
-//        // Step 2: Start irrigation for another 15000 ms
-//        hand->pinchvalve_on(); // Start irrigation
-//        QTimer::singleShot(15000, this, [this]() {
-//            ui->wait_Check_2->setChecked(true); // Update UI to show wait/chamber filling
-
-//            // Step 3: Wait for the chamber to fill for 15000 ms
-//            QTimer::singleShot(15000, this, [this]() {
-//                // Step 4: Finalize - Turn off motor, pinch valve, and update UI
-//                motoroff();
-//                hand->pinchvalve_off();
-//                hand->safetyvent_off();
-
-//                ui->done_Check_2->setChecked(true); // Indicate the process is done
-//                ui->motor_Check_2->setChecked(false);
-//                ui->wait_Check_2->setChecked(false);
-
-//                // Optionally indicate completion with a buzz
-//                hand->buzz();
-//            });
-//        });
-//    });
-//}
 
 void prime::start_irrigation()
 {
@@ -669,6 +630,74 @@ void prime::serialnumber() {
     QSqlDatabase::removeDatabase("connection2");
 }
 
+//void prime::switchmodes()
+//{
+
+//        // Specify the file path
+//        QString filePath = "/home/allmodes.txt";
+
+//        // Check if the file exists and is readable
+//        QFileInfo fileInfo(filePath);
+//        if (!fileInfo.exists() || !fileInfo.isReadable()) {
+//            qDebug() << "File does not exist or is not readable:" << filePath;
+//            return;
+//        }
+
+//        qDebug() << "Attempting to open file at path:" << filePath;
+
+//        // Create a QFile object with the specified file path
+//        QFile file(filePath);
+
+//        // Try opening the file
+//        if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+//            qDebug() << "Could not open file for reading. Error:" << file.errorString();
+//            return;
+//        }
+
+//        // Create a QTextStream object to read text from the file
+//        QTextStream in(&file);
+//        in.setCodec("UTF-8");  // Adjust encoding if necessary
+
+//        // Read the content from the file
+//        while (!in.atEnd()) {
+//            QString line = in.readLine().trimmed();  // Read each line and remove leading/trailing whitespaces
+
+//            // Skip empty lines or comments (lines starting with //)
+//            if (line.isEmpty() || line.startsWith("//")) {
+//                continue;
+//            }
+
+//            // Add the mode to the list
+//            modes.append(line);
+//        }
+
+//        // Close the file when done
+//        file.close();
+
+//        // Update the combo box with the modes read from the file
+//        if (!modes.isEmpty()) {
+//            ui->comboBox->clear();  // Clear existing items
+//            ui->comboBox->addItems(modes);  // Add the modes from the file
+//        }
+//         if(ui->comboBox->currentText() == "PHAPeristaltic" || ui->comboBox->currentText() == "PHAVenturi"){
+//             //ui->Tune_but->setEnabled(true);
+//                        //     ui->Tune_but->show();
+//                           //  on_Tune_but_clicked();
+//                           //  current(1); // Assuming current() switches some UI logic
+//            }
+//        if(ui->comboBox->currentText()=="AVSPeristaltic" || ui->comboBox->currentText() == "AVSVenturi"){
+//            ui->Tune_but->setEnabled(false);
+//                           ui->Tune_but->hide();
+//                         current(0);
+//                        ui->prime1_but->move(50, 200); // Example repositioning
+//        }
+
+//        qDebug() << "Modes read from file:" << modes;
+
+
+
+//}
+
 void prime::on_Tune_but_clicked()
 {
 
@@ -873,3 +902,9 @@ void prime::on_begin_clean_but_2_clicked()
 
 
 
+
+//void prime::on_pushButton_clicked()
+//{
+//    avs->show();
+//    avs->on_DIABUT_clicked();
+//}

@@ -1463,7 +1463,7 @@ public:
         label->setStyleSheet(QString::fromUtf8("background-color:rgb(83, 104, 120);"));
         Select_2 = new QLabel(doctor);
         Select_2->setObjectName(QString::fromUtf8("Select_2"));
-        Select_2->setGeometry(QRect(10, 100, 191, 61));
+        Select_2->setGeometry(QRect(100, 70, 191, 61));
         Select_2->setStyleSheet(QString::fromUtf8("font: 15pt \"Ubuntu Condensed\";\n"
 "background-color:transparent;\n"
 "font:25px;\n"
@@ -1481,7 +1481,7 @@ public:
         comboBox->addItem(QString());
         comboBox->addItem(QString());
         comboBox->setObjectName(QString::fromUtf8("comboBox"));
-        comboBox->setGeometry(QRect(0, 170, 201, 51));
+        comboBox->setGeometry(QRect(0, 120, 211, 51));
         comboBox->setStyleSheet(QString::fromUtf8("border-radius:20px;\n"
 "color: rgb(255, 255, 255);\n"
 "font:20pt \"Ubuntu\";\n"

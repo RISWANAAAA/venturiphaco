@@ -412,6 +412,8 @@ MainWindow::~MainWindow()
     delete protimer;
     delete sensortimer;
     delete timerfoot;
+    delete in;
+    delete foot;
     db.close();
 }
 

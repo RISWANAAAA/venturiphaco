@@ -19,6 +19,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    avsmode.cpp \
     doctor.cpp \
     footpedal.cpp \
     footswitch.cpp \
@@ -30,6 +31,7 @@ SOURCES += \
     tuning.cpp
 
 HEADERS += \
+    avsmode.h \
     doctor.h \
     footlib.h \
     footpedal.h \
@@ -43,6 +45,7 @@ HEADERS += \
     vaccum.h
 
 FORMS += \
+    avsmode.ui \
     doctor.ui \
     footpedal.ui \
     footswitch.ui \

@@ -11,8 +11,9 @@ doctor::doctor(QWidget *parent) :
 {
     ui->setupUi(this);
     hand=new hwhandler;
+   //avs=new avsmode;
     hand->speaker_off();
-
+readModeFromConfig();
     //last surgeon update
    setLastSelectedValue();
    move(0,0);
@@ -114,7 +115,7 @@ connect(ui->SelectSurgeon,&QComboBox::currentTextChanged,this,&doctor::onSurgeon
   ui->progressBar_17->setRange(2,40);
   ui->progressBar_19->setRange(5,500);
   ui->progressBar_20->setRange(2,40);
-  ui->progressBar_21->setRange(60,960);
+  ui->progressBar_21->setRange(60,2500);
 
   connect(ui->DiaBut,&QPushButton::clicked,this,&doctor::DiathermyBut);
   connect(ui->PhacoBut,&QPushButton::clicked,this,&doctor::PhacoBut);
@@ -762,7 +763,7 @@ if(value ==0){
             ui->lineEdit->setText(QString::number(60));
             return;
         }
-        setRange(ui->lineEdit, prevValue, value8, 960);
+        setRange(ui->lineEdit, prevValue, value8, 2500);
         ui->progressBar_21->setValue(value8);
 
     }
@@ -889,7 +890,63 @@ int doctor::decreasebutton(int input)
       }
       return input;
 }
+void doctor::readModeFromConfig()
+{
+//    // Specify the file path
+//    QString filePath = "/home/allmodes.txt";
 
+//    // Check if the file exists and is readable
+//    QFileInfo fileInfo(filePath);
+//    if (!fileInfo.exists() || !fileInfo.isReadable()) {
+//        qDebug() << "File does not exist or is not readable:" << filePath;
+//        return;
+//    }
+
+//    qDebug() << "Attempting to open file at path:" << filePath;
+
+//    // Create a QFile object with the specified file path
+//    QFile file(filePath);
+
+//    // Try opening the file
+//    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+//        qDebug() << "Could not open file for reading. Error:" << file.errorString();
+//        return;
+//    }
+
+//    // Create a QTextStream object to read text from the file
+//    QTextStream in(&file);
+//    in.setCodec("UTF-8");  // Adjust encoding if necessary
+
+//    // Read the content from the file
+//    while (!in.atEnd()) {
+//        QString line = in.readLine().trimmed();  // Read each line and remove leading/trailing whitespaces
+
+//        // Skip empty lines or comments (lines starting with //)
+//        if (line.isEmpty() || line.startsWith("//")) {
+//            continue;
+//        }
+
+//        // Add the mode to the list
+//        modes.append(line);
+//    }
+
+//    // Close the file when done
+//    file.close();
+
+//    // Update the combo box with the modes read from the file
+//    if (!modes.isEmpty()) {
+//        ui->comboBox->clear();  // Clear existing items
+//        ui->comboBox->addItems(modes);  // Add the modes from the file
+//    }
+//    if(ui->comboBox->currentText()=="AVSPeristaltic" || ui->comboBox->currentText() == "AVSVenturi"){
+//        ui->PhacoBut->setEnabled(false);
+//        emit avsSwitchingmode(ui->comboBox->currentText());
+//    }else if(ui->comboBox->currentText() == "PHAPeristaltic" || ui->comboBox->currentText() == "PHAVenturi"){
+//        ui->PhacoBut->setEnabled(true);
+//}
+
+//    qDebug() << "Modes read from file:" << modes;
+}
 
 
 void doctor::DiathermyBut()
@@ -1221,9 +1278,6 @@ QString speakeronoff=ui->ButSpeakerOnOff->text();
     query.bindValue(":footbottomright", ui->BottomRFoot->currentText());
     query.bindValue(":surgeon", surgeon);
 
-    // Debug: Log the update query and bound values
-//    //qDebug() << "Executing update query for surgeon:" << surgeon;
-
     // Execute the update query
     if (!query.exec()) {
 //qDebug() << "Error executing UPDATE query: " << query.lastError().text();
@@ -1241,7 +1295,7 @@ QString speakeronoff=ui->ButSpeakerOnOff->text();
 
     });
     }
-
+if(ui->comboBox->currentText() == "PHAPeristaltic" || ui->comboBox->currentText() == "PHAVenturi"){
 emit sendValues(
     value,value1, dia, us1pow, us1vac, us1asp,
     us2pow, us2vac, us2asp, us3pow, us3vac, us3asp,
@@ -1253,23 +1307,31 @@ emit sendValues(
     us4powmode, us4vacmode, us4powermethod,
     ia1mode, ia2mode, vitmode, vitvacmode
 );
-    //qDebug()<<ia2asp<<ia1asp<<ia1vac<<ia2vac<<"these are sended to mainwindow1111111111111";
 emit sendleftfootvalues(ui->LeftFoot->currentText());
-//    //qDebug()<<"footleft is"<<footleft;
     emit sendrightfootvalues(ui->RightFoot->currentText());
 //      //qDebug()<<"footright is"<<footright;
     emit sendbleftfootvalues(ui->BottomLFoot->currentText());
-//    //qDebug()<<"footbottom left is"<<b_left;
     emit sendbrightfootvalues(ui->BottomRFoot->currentText());
-//    //qDebug()<<"footbottom right is"<<b_right;
-    //transmitval(fpzero,fpone,fptwo,fpthree);
    emit activatemainwindow();
-     //qDebug()<<"values are transmitted"<<fpzero<<fpone<<fptwo<<fpthree;
     emit tx_viberation(ui->Vibration_onoff->text());
-    //qDebug()<<"viberation in doctor"<<ui->Vibration_onoff->text();
     emit tx_speakeronoff(ui->ButSpeakerOnOff->text());
     this->close();
     mydb.close();
+}/*if(ui->comboBox->currentText() == "AVSPeristaltic" || ui->comboBox->currentText() == "AVSVenturi"){
+    ui->PhacoBut->setEnabled(false);
+    emit sendavsvalues(value,value1,dia,ia1vac,ia1asp,ia2vac,ia2asp,vitcut,vitvac,vitasp,ia1mode,ia2mode,vitvacmode);
+    emit sendleftfootvalues(ui->LeftFoot->currentText());
+       emit sendrightfootvalues(ui->RightFoot->currentText());
+    //      //qDebug()<<"footright is"<<footright;
+        emit sendbleftfootvalues(ui->BottomLFoot->currentText());
+        emit sendbrightfootvalues(ui->BottomRFoot->currentText());
+       emit activatemainwindow();
+     //   emit tx_viberation(ui->Vibration_onoff->text());
+     //   emit tx_speakeronoff(ui->ButSpeakerOnOff->text());
+    emit avsSwitchingmode(ui->comboBox->currentText());
+        this->close();
+        mydb.close();*/
+//}
 
     QSqlDatabase::removeDatabase("unique_connection_name");
 }

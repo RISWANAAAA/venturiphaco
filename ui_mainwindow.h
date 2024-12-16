@@ -3146,11 +3146,11 @@ public:
         lab_time->raise();
         label_21->raise();
         label_22->raise();
-        pushButton_42->raise();
         elapsed_time_2->raise();
         label_28->raise();
         label_26->raise();
         line->raise();
+        pushButton_42->raise();
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
         MainWindow->setStatusBar(statusbar);
@@ -3323,7 +3323,7 @@ public:
         lblia2vac->setText(QCoreApplication::translate("MainWindow", "VACCUM(mmHg)", nullptr));
         lblia2flow->setText(QCoreApplication::translate("MainWindow", "FLOW RATE(ml/min)", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_37), QCoreApplication::translate("MainWindow", "Page", nullptr));
-        lineEdit_71->setText(QCoreApplication::translate("MainWindow", "960", nullptr));
+        lineEdit_71->setText(QCoreApplication::translate("MainWindow", "2500", nullptr));
         vitpowup_but->setText(QString());
         vitpowdown_but->setText(QString());
         lineEdit_72->setText(QCoreApplication::translate("MainWindow", "40", nullptr));

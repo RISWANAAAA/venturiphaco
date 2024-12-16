@@ -38,6 +38,7 @@ public:
     QCheckBox *motor_Check_2;
     QCheckBox *done_Check_2;
     QProgressBar *progressBar_2;
+    QPushButton *pushButton;
     QWidget *tab_8;
     QLabel *warning_lab_2;
     QTextEdit *Instruction_lab_2;
@@ -56,6 +57,7 @@ public:
     QLabel *lbloverall;
     QLabel *label_7;
     QFrame *line;
+    QComboBox *comboBox;
 
     void setupUi(QWidget *prime)
     {
@@ -216,6 +218,9 @@ public:
         progressBar_2->setObjectName(QString::fromUtf8("progressBar_2"));
         progressBar_2->setGeometry(QRect(40, 560, 761, 51));
         progressBar_2->setValue(0);
+        pushButton = new QPushButton(tab_6);
+        pushButton->setObjectName(QString::fromUtf8("pushButton"));
+        pushButton->setGeometry(QRect(720, 670, 89, 25));
         tabWidget->addTab(tab_6, QString());
         tab_8 = new QWidget();
         tab_8->setObjectName(QString::fromUtf8("tab_8"));
@@ -363,6 +368,10 @@ public:
         line->setStyleSheet(QString::fromUtf8("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(255, 255, 255, 255));"));
         line->setFrameShape(QFrame::HLine);
         line->setFrameShadow(QFrame::Sunken);
+        comboBox = new QComboBox(prime);
+        comboBox->setObjectName(QString::fromUtf8("comboBox"));
+        comboBox->setGeometry(QRect(50, 220, 241, 61));
+        comboBox->raise();
         prime1_but->raise();
         tabWidget->raise();
         label_2->raise();
@@ -400,6 +409,7 @@ public:
         wait_Check_2->setText(QCoreApplication::translate("prime", "Wait For Chamber To Be Filled", nullptr));
         motor_Check_2->setText(QCoreApplication::translate("prime", "Start Motor", nullptr));
         done_Check_2->setText(QCoreApplication::translate("prime", "Done", nullptr));
+        pushButton->setText(QCoreApplication::translate("prime", "PushButton", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_6), QCoreApplication::translate("prime", "Tab 1", nullptr));
         warning_lab_2->setText(QCoreApplication::translate("prime", "   BEFORE CLEANING", nullptr));
         Instruction_lab_2->setHtml(QCoreApplication::translate("prime", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"

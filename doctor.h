@@ -3,11 +3,13 @@
 
 #include <QDialog>
 #include"keypad.h"
+//#include"avsmode.h"
 #include"mainwindow.h"
 #include<QMessageBox>
 #include<QtSql/QSqlDatabase>
 #include <QtSql/QSqlQuery>
 #define PATH "/home/phacohigh.db"
+#define FILEPATH "/home/allmodes.txt"
 #include"footswitch.h"
 #include"hwhandler.h"
 class QLineEdit;
@@ -28,6 +30,9 @@ public:
    void onSurgeonSelectionChanged(const QString &surgeonName);
    void setLastSelectedValue();
    void receivingvalueffs(int &val0,int &val1,int &val2,int &val3);
+   // Create a list to store modes
+   QStringList modes;
+   void readModeFromConfig();
 
 public slots:
 
@@ -119,12 +124,25 @@ signals:
                      const QString &vitmode,
                      const QString &vitvacmode
                  );
+              void sendavsvalues(
+                  const QString &comboBoxValue,
+                   const QString &combo,
+                  int dia,
+
+                  int ia1vac, int ia1asp,
+                  int ia2vac, int ia2asp,
+                  int vitcut, int vitvac, int vitasp,
+                  const QString &ia1mode,
+                  const QString &ia2mode,
+                  const QString &vitvacmode
+              );
               void surgeonNamefoot(const QString &surgeon);
              void transmitval(int &fpzero,int &fpone,int &fptwo,int &fpthree);
              void activatemainwindow();
      void txfootpedalvalues(const QString &topleft,const QString &topright,const QString &bottomleft,const QString &bottomright);
      void tx_viberation(const QString &text);
      void tx_speakeronoff(const QString &text);
+     void avsSwitchingmode(const QString &value);
 
 
 
@@ -132,6 +150,9 @@ private:
     Ui::doctor *ui;
     int value =0;
     keypad *key;
+   // avsmode *avs;
+
+
     int getvalue(int input);
     QMap<QString, QMap<int, QStringList>> surgeonData;
     QMap<QLineEdit*, int> lastValidValues;  // Declare the QMap as a member variable
