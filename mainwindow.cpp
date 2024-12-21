@@ -36,7 +36,8 @@ MainWindow::MainWindow(QWidget *parent)
     handler->phaco_off();
     handler->vibrator_off();
     handler->phaco_power(0);
-    handler->fs_count_limit(nfpzero);
+    handler->fs_count_limit(nfpzero+nfpone+nfptwo);
+
     handler->freq_count(0);
     handler->speaker_off();
     lfoot=new footlib;
@@ -1879,7 +1880,7 @@ void MainWindow::BACKBUT()
 
     motoroff();
     handler->phaco_off();
-    handler->fs_count_limit(nfpzero+nfpone);
+    handler->fs_count_limit(nfpzero+nfpone+nfptwo);
     handler->freq_count(0);
     handler->phaco_power(0);
     handler->pinchvalve_off();
@@ -2243,7 +2244,7 @@ void MainWindow::onCutMode_vitComChanged3(int index) {
 
 void MainWindow::updateTabsBasedOnComboBox(const QString &selected) {
     bool modeFound = false;
-    handler->fs_count_limit(nfpzero);
+    handler->fs_count_limit(nfpzero+nfpone+nfptwo);
     handler->phaco_off();
 
     if (selected == "Continuous") {
@@ -2419,7 +2420,8 @@ vus4=ui->us4vacmode->text();
         bool flag = true;
         static int currentCount = -1;
         handler->phaco_off();
-        handler->fs_count_limit(nfpzero);
+            handler->fs_count_limit(nfpzero+nfpone+nfptwo);
+
         handler->phaco_power(0);
         handler->pinchvalve_off();
        motoroff();
@@ -2506,7 +2508,7 @@ vus4=ui->us4vacmode->text();
                 ui->dial_2->setValue(range);
                     handler->freq_count(0);
                     handler->phaco_off();
-                    handler->fs_count_limit(nfpzero);
+                    handler->fs_count_limit(nfpzero+nfpone+nfptwo);
                      us1poweron=false;
                        if(!overallci){
                            ui->CI5_5->setStyleSheet(styleSheet4);
@@ -2645,6 +2647,8 @@ flag1 = true;
                     handler->phaco_off();
                     handler->freq_count(0);
                     handler->phaco_power(0);
+                    handler->fs_count_limit(nfpzero);
+
                  }
                 }
 
@@ -2705,7 +2709,7 @@ if(vus1 == "Panel"){
                  handler->phaco_off();
                  handler->phaco_power(0);
                  handler->freq_count(0);
-                 handler->fs_count_limit(nfpzero);
+                 handler->fs_count_limit(nfpzero+nfpone+nfptwo);
                 ui->label_8->setText("0");
                 ui->label_7->setText("0");
                 handler->speaker_off();
@@ -2804,7 +2808,7 @@ if(vus1 == "Panel"){
                 handler->phaco_off();
                 handler->phaco_power(0);
                 handler->freq_count(0);
-              //  handler->fs_count(0);
+                handler->fs_count_limit(nfpzero);
                 us1poweron=false;
    us1currectcount=2;
                 flag1 = true; // Reset flag
@@ -2871,7 +2875,7 @@ if(vus1 == "Panel"){
                  }else {  // If pushButton is OFF
                     handler->phaco_off();
                     handler->freq_count(0);
-                  //  handler->fs_count(0);
+                    handler->fs_count_limit(nfpzero);
                     handler->phaco_power(0);
                  }
                 }
@@ -2960,7 +2964,8 @@ if(vus1 == "Panel"){
                 ui->dial_2->setValue(range);
                     handler->freq_count(0);
                     handler->phaco_off();
-                    handler->fs_count_limit(nfpzero);
+                        handler->fs_count_limit(nfpzero+nfpone+nfptwo);
+
                      us2poweron=false;
                        if(!overallci){
                            ui->CI5_5->setStyleSheet(styleSheet4);
@@ -3154,7 +3159,8 @@ if(us2 == "Panel"){
                  handler->phaco_off();
                  handler->phaco_power(0);
                  handler->freq_count(0);
-                 handler->fs_count_limit(nfpzero);
+                     handler->fs_count_limit(nfpzero+nfpone+nfptwo);
+
                 ui->label_93->setText("0");
                 ui->label_92->setText("0");
                 handler->speaker_off();
@@ -3405,7 +3411,8 @@ if(us2 == "Panel"){
                 ui->dial_2->setValue(range);
                     handler->freq_count(0);
                     handler->phaco_off();
-                    handler->fs_count_limit(nfpzero);
+                        handler->fs_count_limit(nfpzero+nfpone+nfptwo);
+
                      us3poweron=false;
                        if(!overallci){
                            ui->CI5_5->setStyleSheet(styleSheet4);
@@ -3591,7 +3598,8 @@ if(us3 == "Panel"){
                  handler->phaco_off();
                  handler->phaco_power(0);
                  handler->freq_count(0);
-                 handler->fs_count_limit(nfpzero);
+                     handler->fs_count_limit(nfpzero+nfpone+nfptwo);
+
                 ui->label_99->setText("0");
                 ui->label_98->setText("0");
                 handler->speaker_off();
@@ -3838,7 +3846,8 @@ if(us3 == "Panel"){
 
                     handler->freq_count(0);
                     handler->phaco_off();
-                    handler->fs_count_limit(nfpzero);
+                        handler->fs_count_limit(nfpzero+nfpone+nfptwo);
+
                      us4poweron=false;
                        if(!overallci){
                            ui->CI5_5->setStyleSheet(styleSheet4);
@@ -4026,7 +4035,8 @@ if(us4 == "Panel"){
                  handler->phaco_off();
                  handler->phaco_power(0);
                  handler->freq_count(0);
-                 handler->fs_count_limit(nfpzero);
+                     handler->fs_count_limit(nfpzero+nfpone+nfptwo);
+
                 ui->label_104->setText("0");
                 ui->label_105->setText("0");
                 handler->speaker_off();
@@ -7257,7 +7267,8 @@ void MainWindow::on_SETTINGS_BUT_2_clicked()
     handler->buzz();
     motoroff();
     handler->phaco_off();
-    handler->fs_count_limit(nfpzero);
+        handler->fs_count_limit(nfpzero+nfpone+nfptwo);
+
     handler->freq_count(0);
     handler->phaco_power(0);
     handler->pinchvalve_off();
@@ -7567,7 +7578,8 @@ void MainWindow::on_pushButton_42_clicked()
    // qDebug() << "Disabling functions.";
     motoroff();
     handler->phaco_off();
-    handler->fs_count_limit(nfpzero);
+        handler->fs_count_limit(nfpzero+nfpone+nfptwo);
+
     handler->freq_count(0);
     handler->phaco_power(0);
     handler->pinchvalve_off();
@@ -7585,7 +7597,8 @@ void MainWindow::on_pushButton_clicked()
    // qDebug() << "Disabling functions.";
     motoroff();
     handler->phaco_off();
-    handler->fs_count_limit(nfpzero);
+        handler->fs_count_limit(nfpzero+nfpone+nfptwo);
+
     handler->freq_count(0);
     handler->phaco_power(0);
     handler->pinchvalve_off();
