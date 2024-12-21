@@ -18,14 +18,14 @@ ltc2614::~ltc2614() {
     close(fd);
 }
 
-void ltc2614::writeDAC(uint16_t value) {
+void ltc2614::writeDAC(int channel,uint16_t value) {
     uint8_t tx[4];
     uint8_t rx[4] = {0};
 
     tx[0] = 0x00;
 
     // First byte is 0x31
-    tx[1] = 0x30;
+    tx[1] = channel;
 
     // Second byte contains bits 13-6 of the value
     tx[2] = (value >> 6) & 0xFF;
@@ -41,7 +41,7 @@ void ltc2614::writeDAC(uint16_t value) {
         .bits_per_word = bits,
     };
 
-   // qDebug()<<tx[0]<<tx[1]<<tx[2]<<tx[3]<<fd;
+//    qDebug()<<tx[0]<<tx[1]<<tx[2]<<tx[3]<<fd;
 
     if (ioctl(fd, SPI_IOC_MESSAGE(1), &tr) < 1) {
         throw std::runtime_error("Failed to send SPI message");

@@ -34,8 +34,9 @@ MainWindow::MainWindow(QWidget *parent)
     elapsedTimer=new QElapsedTimer;
 
     handler->phaco_off();
+    handler->vibrator_off();
     handler->phaco_power(0);
-    handler->fs_count(0);
+    handler->fs_count_limit(nfpzero);
     handler->freq_count(0);
     handler->speaker_off();
     lfoot=new footlib;
@@ -1087,6 +1088,8 @@ void MainWindow::ULTRASONICBUT1()
     ui->CutMode_vitCom->show();
     ui->tabWidget_2->show();
     ui->CI5_5->show();
+    handler->phaco_off();
+    handler->freq_count(0);
 
     butname=1;
     handler->buzz();
@@ -1186,7 +1189,8 @@ void MainWindow::ULTRASONICBUT2()
     //qDebug()<<"the mode from us2"<<currentText;
  ui->CI5_5->setEnabled(true);
  ui->CI5_5->show();
-
+ handler->phaco_off();
+ handler->freq_count(0);
     ui->tabWidget_2->show();
     butname=2;
   handler->buzz();
@@ -1214,7 +1218,8 @@ void MainWindow::ULTRASONICBUT3()
         us3PdmMode = true;
         us4PdmMode = false;
         handler->safetyvent_off();
-
+        handler->phaco_off();
+        handler->freq_count(0);
 
 }
 
@@ -1235,7 +1240,8 @@ void MainWindow::ULTRASONICBUT4()
          us3PdmMode = false;
          us4PdmMode = true;
          handler->safetyvent_off();
-
+         handler->phaco_off();
+         handler->freq_count(0);
 
   }
 
@@ -1873,7 +1879,7 @@ void MainWindow::BACKBUT()
 
     motoroff();
     handler->phaco_off();
-    handler->fs_count(0);
+    handler->fs_count_limit(nfpzero+nfpone);
     handler->freq_count(0);
     handler->phaco_power(0);
     handler->pinchvalve_off();
@@ -2188,10 +2194,10 @@ void MainWindow::footpedalbeep()
 void MainWindow::beepsound()
 {
     if(vibon == "Vibration ON"){
-    system("beep");
-    ui->pushButton_2->setStyleSheet("image: url(:/images/vibrationon.png);border-radius:20px;border:none;");
+//handler->vibrator_on(1,300);
+ui->pushButton_2->setStyleSheet("image: url(:/images/vibrationon.png);border-radius:20px;border:none;");
     }else{
-        system(0);
+handler->vibrator_off();
         ui->pushButton_2->setStyleSheet("image: url(:/images/vibrationoff.png);border-radius:20px;border:none;");
     }
    // qDebug()<<"beep";
@@ -2237,21 +2243,23 @@ void MainWindow::onCutMode_vitComChanged3(int index) {
 
 void MainWindow::updateTabsBasedOnComboBox(const QString &selected) {
     bool modeFound = false;
+    handler->fs_count_limit(nfpzero);
+    handler->phaco_off();
 
     if (selected == "Continuous") {
         ui->tabWidget_2->setCurrentIndex(0);
         handler->pdm_mode(CONTINOUS);
+        handler->freq_count(nFreqCount);
+//       handler->phaco_on(nfpzero+nfpone+nfptwo);
         modeFound = true;
         ui->label_32->hide();
         handler->buzz();
     }
     else if (selected == "Pulse") {
         ui->tabWidget_2->setCurrentIndex(1);
-        handler->phaco_on();
-        handler->fs_count(nfpzero + nfpone + nfptwo);
+
         handler->freq_count(nFreqCount);
         handler->pdm_mode(PULSE_MODE);
-
         nPulseCount = ui->lineEdit_75->text().toInt();
         handler->pulse_count(nPulseCount);
        // qDebug() << "The pulse count is:" << nPulseCount;
@@ -2262,8 +2270,7 @@ void MainWindow::updateTabsBasedOnComboBox(const QString &selected) {
     }
     else if (selected == "Ocupulse") {
         ui->tabWidget_2->setCurrentIndex(2);
-        handler->phaco_on();
-        handler->fs_count(nfpzero + nfpone + nfptwo);
+        //handler->phaco_on(nfpzero+nfpone+nfptwo);
         handler->freq_count(nFreqCount);
         handler->pdm_mode(CONTINOUS);
 
@@ -2276,8 +2283,7 @@ void MainWindow::updateTabsBasedOnComboBox(const QString &selected) {
     }
     else if (selected == "Ocuburst") {
         ui->tabWidget_2->setCurrentIndex(3);
-        handler->phaco_on();
-        handler->fs_count(nfpzero + nfpone + nfptwo);
+        //handler->phaco_on(nfpzero+nfpone+nfptwo);
         handler->freq_count(nFreqCount);
         handler->pdm_mode(CONTINOUS);
 
@@ -2292,8 +2298,7 @@ void MainWindow::updateTabsBasedOnComboBox(const QString &selected) {
     else if (selected == "Single burst") {
         ui->tabWidget_2->setCurrentIndex(4);
         handler->pdm_mode(SINGLE_BURST);
-        handler->phaco_on();
-        handler->fs_count(nfpzero + nfpone + nfptwo);
+       // handler->phaco_on(nfpzero+nfpone+nfptwo);
         handler->freq_count(nFreqCount);
         handler->phaco_power(100);
         nSingleBurst=ui->lineEdit_78->text().toInt();
@@ -2308,8 +2313,7 @@ modeFound = true;
     else if (selected == "Multi burst") {
         ui->tabWidget_2->setCurrentIndex(5);
         handler->pdm_mode(MULTI_BURST);
-        handler->phaco_on();
-        handler->fs_count(1920); // Static value as per original code
+      //  handler->phaco_on(nfpzero+nfpone+nfptwo);
         handler->freq_count(nFreqCount);
        // qDebug() << "The resonant freq_count is:" << nFreqCount;
 
@@ -2325,8 +2329,8 @@ modeFound = true;
     }
     else if (selected == "Cold phaco") {
         ui->tabWidget_2->setCurrentIndex(6);
-        handler->phaco_on();
-        handler->fs_count(nfpzero + nfpone + nfptwo);
+        //handler->phaco_on(nfpzero+nfpone+nfptwo);
+      //  handler->fs_count(nfpzero + nfpone + nfptwo);
         handler->freq_count(nFreqCount);
         handler->pdm_mode(COLD_PHACO);
         nColdPhacoPer=ui->lineEdit_80->text().toInt();
@@ -2415,7 +2419,7 @@ vus4=ui->us4vacmode->text();
         bool flag = true;
         static int currentCount = -1;
         handler->phaco_off();
-        handler->fs_count(0);
+        handler->fs_count_limit(nfpzero);
         handler->phaco_power(0);
         handler->pinchvalve_off();
        motoroff();
@@ -2425,6 +2429,7 @@ vus4=ui->us4vacmode->text();
                 currentCount = 0;
                 ui->dial_2->setValue(range);
                 handler->dia_off();
+               handler->vibrator_off();
 
                 if (!overallci ) {
                     ui->CI5_5->setStyleSheet(styleSheet4);
@@ -2444,6 +2449,7 @@ vus4=ui->us4vacmode->text();
             else if (range >= nfpzero && range < (nfpzero + nfpone + nfptwo + nfpthree)) {
                 ui->pushButton_42->setText("1");
                 currentCount = 1;
+                handler->vibrator_on(1,1,300);
                 ui->dial_2->setValue(range);
                 handler->dia_on();
                 handler->dia_count(pow);
@@ -2467,10 +2473,14 @@ vus4=ui->us4vacmode->text();
                 }
             }
             if (currentCount > diacount) {
-                beepsound();
+                //beepsound();
+                //handler->vibrator_on(1,300);
             }
             if (currentCount != -1) {
                 diacount = currentCount;
+               // handler->vibrator_off();
+               // handler->vibrator_off();
+
             }
    }
         break;
@@ -2486,6 +2496,7 @@ vus4=ui->us4vacmode->text();
         int us1currectcount=-1;
         QString us1powmode=ui->CutMode_vitCom->currentText();
          int nOfftime;
+        // qDebug()<<nfpzero<<nfpone<<nfptwo<<nfpthree<<"those are reterved from the footpedal screen";
 
  //qDebug()<<"the nonlinear vaccum is"<<nonlinear_prevac;
         if (us1 == "Panel"||vus1=="Panel"){
@@ -2495,7 +2506,7 @@ vus4=ui->us4vacmode->text();
                 ui->dial_2->setValue(range);
                     handler->freq_count(0);
                     handler->phaco_off();
-                    handler->fs_count(0);
+                    handler->fs_count_limit(nfpzero);
                      us1poweron=false;
                        if(!overallci){
                            ui->CI5_5->setStyleSheet(styleSheet4);
@@ -2543,7 +2554,7 @@ vus4=ui->us4vacmode->text();
 
                   handler->freq_count(0);
                   handler->phaco_off();
-                  handler->fs_count(0);
+                //  handler->fs_count(0);
                  us1poweron=false;
 us1currectcount=1;
 flag1 = true;
@@ -2558,7 +2569,7 @@ flag1 = true;
                 handler->pinchvalve_on();
                 handler->freq_count(0);
                 handler->phaco_off();
-                handler->fs_count(0);
+               // handler->fs_count(0);
                 us1poweron= false;
  if(vus1=="Panel" ){
      int nonlinear_prevac=readsensorvalue();
@@ -2600,11 +2611,9 @@ flag1 = true;
                 ui->CI5_5->setStyleSheet(styleSheet3);
                 if(us1 == "Panel"){
                 if((!us1poweron && text == "ON")){
-                      //  qDebug()<<"the power is "<<ui->us1onoff->text();
-                  //  qDebug()<<us1<<"the panel mode is activated";
-                        handler->fs_count(range);
+
+                    handler->phaco_on(range);
                         handler->freq_count(nFreqCount);
-                        handler->phaco_on();
 
                         if(us1powmode == "Multi burst"){
                                     if(range>(nfpzero+nfpone+nfptwo)){
@@ -2632,10 +2641,9 @@ flag1 = true;
                     //    cumulativeEffectiveTimeSec=0;
                         updateTimes(pow1,ui->elapsed_time, ui->elapsed_time_2);
 
- }else {  // If pushButton is OFF
+ }else {
                     handler->phaco_off();
                     handler->freq_count(0);
-                    handler->fs_count(0);
                     handler->phaco_power(0);
                  }
                 }
@@ -2664,7 +2672,7 @@ if(vus1 == "Panel"){
                                   }
                                   if(us1powmode == "Ocuburst"){
                                       handler->pdm_mode(SINGLE_BURST);
-                                      handler->phaco_on();
+                                      handler->phaco_on(range);
                                       handler->phaco_power(100);
                                   }else if(us1powmode == "Ocupulse" ){
                                       handler->pdm_mode(PULSE_MODE);
@@ -2697,7 +2705,7 @@ if(vus1 == "Panel"){
                  handler->phaco_off();
                  handler->phaco_power(0);
                  handler->freq_count(0);
-                 handler->fs_count(0);
+                 handler->fs_count_limit(nfpzero);
                 ui->label_8->setText("0");
                 ui->label_7->setText("0");
                 handler->speaker_off();
@@ -2728,7 +2736,7 @@ if(vus1 == "Panel"){
                 handler->phaco_off();
                 handler->phaco_power(0);
                 handler->freq_count(0);
-                handler->fs_count(0);
+             //   handler->fs_count(0);
                 if(speakeronoff == "Speaker ON"){
                 handler->speaker_on(0,0,1,0);
                 }else{
@@ -2796,7 +2804,7 @@ if(vus1 == "Panel"){
                 handler->phaco_off();
                 handler->phaco_power(0);
                 handler->freq_count(0);
-                handler->fs_count(0);
+              //  handler->fs_count(0);
                 us1poweron=false;
    us1currectcount=2;
                 flag1 = true; // Reset flag
@@ -2812,9 +2820,9 @@ if(vus1 == "Panel"){
                 if(us1 == "Surgeon"){
                  if (!us1poweron && text == "ON") {
 
-                     handler->phaco_on();
+                     handler->phaco_on(range);
                      handler->freq_count(nFreqCount);
-                     handler->fs_count(range);
+                   //  handler->fs_count(range);
 
                      if(us1powmode == "Multi burst"){
                              if(range>(nfpzero+nfpone+nfptwo)){
@@ -2835,6 +2843,11 @@ if(vus1 == "Panel"){
 
 
 
+                     }else{
+                         handler->phaco_off();
+                      //   handler->fs_count(0);
+                         handler->freq_count(0);
+                         handler->pdm_mode(0);
                      }
 
                      float progress4 = ((range - static_cast<float>(nfpone + nfptwo + nfpzero)) /
@@ -2858,7 +2871,7 @@ if(vus1 == "Panel"){
                  }else {  // If pushButton is OFF
                     handler->phaco_off();
                     handler->freq_count(0);
-                    handler->fs_count(0);
+                  //  handler->fs_count(0);
                     handler->phaco_power(0);
                  }
                 }
@@ -2891,7 +2904,7 @@ if(vus1 == "Panel"){
                               // Check for specific power modes
                                     if(us1powmode == "Ocuburst"){
                                         handler->pdm_mode(SINGLE_BURST);
-                                        handler->phaco_on();
+                                        handler->phaco_on(range);
                                         handler->phaco_power(100);
                                     }else if(us1powmode == "Ocupulse" ){
                                         handler->pdm_mode(PULSE_MODE);
@@ -2947,7 +2960,7 @@ if(vus1 == "Panel"){
                 ui->dial_2->setValue(range);
                     handler->freq_count(0);
                     handler->phaco_off();
-                    handler->fs_count(0);
+                    handler->fs_count_limit(nfpzero);
                      us2poweron=false;
                        if(!overallci){
                            ui->CI5_5->setStyleSheet(styleSheet4);
@@ -2995,7 +3008,7 @@ if(vus1 == "Panel"){
                   }
                   handler->freq_count(0);
                   handler->phaco_off();
-                  handler->fs_count(0);
+                //  handler->fs_count(0);
                  us2poweron=false;
 us2currectcount=1;
 flag1 = true;
@@ -3033,7 +3046,7 @@ flag1 = true;
  }
                     handler->freq_count(0);
                     handler->phaco_off();
-                    handler->fs_count(0);
+                   // handler->fs_count(0);
                     us2poweron= false;
                     us2currectcount=2;
 
@@ -3071,7 +3084,7 @@ if(vus2=="Panel"){
                                  }
                                  if(us2powmode == "Ocuburst"){
                                      handler->pdm_mode(SINGLE_BURST);
-                                     handler->phaco_on();
+                                     handler->phaco_on(range);
                                      handler->phaco_power(100);
                                  }else if(us2powmode == "Ocupulse" ){
                                      handler->pdm_mode(PULSE_MODE);
@@ -3082,9 +3095,9 @@ if(vus2=="Panel"){
 }
 if(us2 == "Panel"){
                if(!us2poweron && text == "ON" ){
-                       handler->fs_count(range);
+                     //  handler->fs_count(range);
                        handler->freq_count(nFreqCount);
-                       handler->phaco_on();
+                       handler->phaco_on(range);
                        if(us2powmode == "Multi burst"){
                                if(range>(nfpzero+nfpone+nfptwo)){
 
@@ -3141,7 +3154,7 @@ if(us2 == "Panel"){
                  handler->phaco_off();
                  handler->phaco_power(0);
                  handler->freq_count(0);
-                 handler->fs_count(0);
+                 handler->fs_count_limit(nfpzero);
                 ui->label_93->setText("0");
                 ui->label_92->setText("0");
                 handler->speaker_off();
@@ -3171,7 +3184,7 @@ if(us2 == "Panel"){
                 handler->phaco_off();
                 handler->phaco_power(0);
                 handler->freq_count(0);
-                handler->fs_count(0);
+               // handler->fs_count(0);
                 if(speakeronoff == "Speaker ON"){
                 handler->speaker_on(0,0,1,0);
                 }else{
@@ -3237,7 +3250,7 @@ if(us2 == "Panel"){
                 handler->phaco_off();
                 handler->phaco_power(0);
                 handler->freq_count(0);
-                handler->fs_count(0);
+               // handler->fs_count(0);
                 us2poweron=false;
    us2currectcount=2;
                 flag1 = true; // Reset flag
@@ -3277,7 +3290,7 @@ if(us2 == "Panel"){
                             motoroff();
                             if(us2powmode == "Ocuburst"){
                                 handler->pdm_mode(SINGLE_BURST);
-                                handler->phaco_on();
+                                handler->phaco_on(range);
                                 handler->phaco_power(100);
                             }else if(us2powmode == "Ocupulse" ){
                                 handler->pdm_mode(PULSE_MODE);
@@ -3303,9 +3316,9 @@ if(us2 == "Panel"){
                 if (!us2poweron && text == "ON") {
                   //  qDebug()<<"the power is "<<ui->us2onoff->text();
                    // us2poweron=true;
-                    handler->phaco_on();
+                    handler->phaco_on(range);
                     handler->freq_count(nFreqCount);
-                    handler->fs_count(range);
+                  //  handler->fs_count(range);
 
                     if(us2powmode == "Multi burst"){
                             if(range>(nfpzero+nfpone+nfptwo)){
@@ -3351,7 +3364,7 @@ if(us2 == "Panel"){
                 }else {  // If pushButton is OFF
                    handler->phaco_off();
                    handler->freq_count(0);
-                   handler->fs_count(0);
+                  // handler->fs_count(0);
                    handler->phaco_power(0);
                 }
                }
@@ -3392,7 +3405,7 @@ if(us2 == "Panel"){
                 ui->dial_2->setValue(range);
                     handler->freq_count(0);
                     handler->phaco_off();
-                    handler->fs_count(0);
+                    handler->fs_count_limit(nfpzero);
                      us3poweron=false;
                        if(!overallci){
                            ui->CI5_5->setStyleSheet(styleSheet4);
@@ -3440,7 +3453,7 @@ if(us2 == "Panel"){
                   }
                   handler->freq_count(0);
                   handler->phaco_off();
-                  handler->fs_count(0);
+                //  handler->fs_count(0);
                  us3poweron=false;
 us3currectcount=1;
 flag1 = true;
@@ -3474,7 +3487,7 @@ flag1 = true;
  ui->label_98->setText("0");
                     handler->freq_count(0);
                     handler->phaco_off();
-                    handler->fs_count(0);
+                   // handler->fs_count(0);
                     us3poweron= false;
                     us3currectcount=2;
 
@@ -3502,7 +3515,7 @@ if(vus3=="Panel"){
                                       }
                                       if(us3powmode == "Ocuburst"){
                                           handler->pdm_mode(SINGLE_BURST);
-                                          handler->phaco_on();
+                                          handler->phaco_on(range);
                                           handler->phaco_power(100);
                                       }else if(us3powmode == "Ocupulse" ){
                                           handler->pdm_mode(PULSE_MODE);
@@ -3514,9 +3527,9 @@ if(vus3=="Panel"){
 }
 if(us3 == "Panel"){
                if(!us3poweron && text == "ON" ){
-                       handler->fs_count(range);
+                     //  handler->fs_count(range);
                        handler->freq_count(nFreqCount);
-                       handler->phaco_on();
+                       handler->phaco_on(range);
                        if(us3powmode == "Multi burst"){
                           // qDebug()<<range<<"multi burst";
                                // qDebug()<<"the range is from foot pedal"<<range;
@@ -3578,7 +3591,7 @@ if(us3 == "Panel"){
                  handler->phaco_off();
                  handler->phaco_power(0);
                  handler->freq_count(0);
-                 handler->fs_count(0);
+                 handler->fs_count_limit(nfpzero);
                 ui->label_99->setText("0");
                 ui->label_98->setText("0");
                 handler->speaker_off();
@@ -3609,7 +3622,7 @@ if(us3 == "Panel"){
                 handler->phaco_off();
                 handler->phaco_power(0);
                 handler->freq_count(0);
-                handler->fs_count(0);
+               // handler->fs_count(0);
                 if(speakeronoff == "Speaker ON"){
                 handler->speaker_on(0,0,1,0);
                 }else{
@@ -3673,7 +3686,7 @@ if(us3 == "Panel"){
                 handler->phaco_off();
                 handler->phaco_power(0);
                 handler->freq_count(0);
-                handler->fs_count(0);
+                //handler->fs_count(0);
                 us2poweron=false;
    us3currectcount=2;
                 flag1 = true; // Reset flag
@@ -3713,7 +3726,7 @@ if(us3 == "Panel"){
                             ui->label_99->setText(QString::number(pro));
                             if(us3powmode == "Ocuburst"){
                                 handler->pdm_mode(SINGLE_BURST);
-                                handler->phaco_on();
+                                handler->phaco_on(range);
                                 handler->phaco_power(100);
                             }else if(us3powmode == "Ocupulse" ){
                                 handler->pdm_mode(PULSE_MODE);
@@ -3740,9 +3753,9 @@ if(us3 == "Panel"){
                 if (!us3poweron && text == "ON") {
                   //  qDebug()<<"the power is "<<ui->us2onoff->text();
                    // us2poweron=true;
-                    handler->phaco_on();
+                    handler->phaco_on(range);
                     handler->freq_count(nFreqCount);
-                    handler->fs_count(range);
+                 //   handler->fs_count(range);
 
                     if(us3powmode == "Multi burst"){
                               if(range>(nfpzero+nfpone+nfptwo)){
@@ -3783,7 +3796,7 @@ if(us3 == "Panel"){
                 }else {  // If pushButton is OFF
                    handler->phaco_off();
                    handler->freq_count(0);
-                   handler->fs_count(0);
+                  // handler->fs_count(0);
                    handler->phaco_power(0);
                 }
                }
@@ -3825,7 +3838,7 @@ if(us3 == "Panel"){
 
                     handler->freq_count(0);
                     handler->phaco_off();
-                    handler->fs_count(0);
+                    handler->fs_count_limit(nfpzero);
                      us4poweron=false;
                        if(!overallci){
                            ui->CI5_5->setStyleSheet(styleSheet4);
@@ -3871,7 +3884,7 @@ if(us3 == "Panel"){
                       handler->speaker_off();
                   }                  handler->freq_count(0);
                   handler->phaco_off();
-                  handler->fs_count(0);
+                 // handler->fs_count(0);
                  us4poweron=false;
 us4currectcount=1;
 flag1 = true;
@@ -3909,7 +3922,7 @@ flag1 = true;
  ui->label_105->setText("0");
                     handler->freq_count(0);
                     handler->phaco_off();
-                    handler->fs_count(0);
+                  //  handler->fs_count(0);
                     us4poweron= false;
                     us4currectcount=2;
 
@@ -3943,7 +3956,7 @@ if(vus4=="Panel"){
                                       }
                                       if(us4powmode == "Ocuburst"){
                                           handler->pdm_mode(SINGLE_BURST);
-                                          handler->phaco_on();
+                                          handler->phaco_on(range);
                                           handler->phaco_power(100);
                                       }else if(us4powmode == "Ocupulse" ){
                                           handler->pdm_mode(PULSE_MODE);
@@ -3954,9 +3967,9 @@ if(vus4=="Panel"){
                               }
 if(us4 == "Panel"){
                if(!us4poweron && text == "ON" ){
-                       handler->fs_count(range);
+                     //  handler->fs_count(range);
                        handler->freq_count(nFreqCount);
-                       handler->phaco_on();
+                       handler->phaco_on(range);
                        if(us4powmode == "Multi burst"){
                                if(range>(nfpzero+nfpone+nfptwo)){
 
@@ -4013,7 +4026,7 @@ if(us4 == "Panel"){
                  handler->phaco_off();
                  handler->phaco_power(0);
                  handler->freq_count(0);
-                 handler->fs_count(0);
+                 handler->fs_count_limit(nfpzero);
                 ui->label_104->setText("0");
                 ui->label_105->setText("0");
                 handler->speaker_off();
@@ -4044,7 +4057,7 @@ if(us4 == "Panel"){
                 handler->phaco_off();
                 handler->phaco_power(0);
                 handler->freq_count(0);
-                handler->fs_count(0);
+              //  handler->fs_count(0);
                 if(speakeronoff == "Speaker ON"){
                 handler->speaker_on(0,0,1,0);
                 }else{
@@ -4110,7 +4123,7 @@ if(us4 == "Panel"){
                 handler->phaco_off();
                 handler->phaco_power(0);
                 handler->freq_count(0);
-                handler->fs_count(0);
+             //   handler->fs_count(0);
                 us4poweron=false;
    us4currectcount=2;
                 flag1 = true; // Reset flag
@@ -4149,7 +4162,7 @@ if(us4 == "Panel"){
                             ui->label_104->setText(QString::number(pro));
                             if(us4powmode == "Ocuburst"){
                                 handler->pdm_mode(SINGLE_BURST);
-                                handler->phaco_on();
+                                handler->phaco_on(range);
                                 handler->phaco_power(100);
                             }else if(us4powmode == "Ocupulse" ){
                                 handler->pdm_mode(PULSE_MODE);
@@ -4175,9 +4188,9 @@ if(us4 == "Panel"){
                 if (!us4poweron && text == "ON") {
                   //  qDebug()<<"the power is "<<ui->us2onoff->text();
                    // us2poweron=true;
-                    handler->phaco_on();
+                    handler->phaco_on(range);
                     handler->freq_count(nFreqCount);
-                    handler->fs_count(range);
+                  //  handler->fs_count(range);
 
                     if(us4powmode == "Multi burst"){
                             if(range>(nfpzero+nfpone+nfptwo)){
@@ -4218,7 +4231,7 @@ if(us4 == "Panel"){
                 }else {  // If pushButton is OFF
                    handler->phaco_off();
                    handler->freq_count(0);
-                   handler->fs_count(0);
+                  // handler->fs_count(0);
                    handler->phaco_power(0);
                 }
                }
@@ -4244,12 +4257,12 @@ double ia1preset=ui->lineEdit_70->text().toDouble();
 QString ia1=ui->ia2mode->text();
  int ia1currentcount=-1;
  handler->phaco_off();
- handler->fs_count(0);
  handler->phaco_power(0);
         if (ia1 == "Panel") { // surgeon
             if (range >= 0 && range < nfpzero) {
                 ui->pushButton_42->setText("0");
                 ui->dial_2->setValue(range);
+                handler->vibrator_off();
 
                 if (!overallci) {
                     ui->CI5_5->setStyleSheet(styleSheet4);
@@ -4264,7 +4277,7 @@ QString ia1=ui->ia2mode->text();
                handler->speaker_off();
                 motoroff();
                 ui->label_113->setText(QString::number(0));
-                ia1currentcount=0;
+                //ia1currentcount=0;
                 flag6=true;
             }
 
@@ -4277,6 +4290,8 @@ QString ia1=ui->ia2mode->text();
                 }
 
                 ui->dial_2->setValue(range);
+                handler->vibrator_on(1,1,300);
+
                 handler->pinchvalve_on();
                 ui->CI5_5->setStyleSheet(styleSheet3);
                 if(ventonia1 == false) {
@@ -4288,12 +4303,14 @@ QString ia1=ui->ia2mode->text();
                 motoroff();
                 int pro = readsensorvalue();
                 ui->label_113->setText(QString::number(pro));
-ia1currentcount=1;
+//ia1currentcount=1;
                  flag6=true;
             }
 
             else if (range >= (nfpzero + nfpone) && range < (nfpzero + nfpone + nfptwo + nfpthree)) {
                 ui->pushButton_42->setText("2");
+                handler->vibrator_on(1,2,300);
+
                 ventonia1 = false;
                 handler->safetyvent_off();
                 ui->dial_2->setValue(range);
@@ -4318,7 +4335,7 @@ ia1currentcount=1;
                          }
 
                     }
-               ia1currentcount=2;
+             //  ia1currentcount=2;
            }
         }
 
@@ -4326,6 +4343,7 @@ ia1currentcount=1;
             if(range>=0 && range<nfpzero){
                 ui->pushButton_42->setText("0");
                   ui->dial_2->setValue(range);
+                  handler->vibrator_off();
                 if(!overallci){
              ui->CI5_5->setStyleSheet(styleSheet4);
                     handler->pinchvalve_off();
@@ -4341,19 +4359,22 @@ ia1currentcount=1;
                     //int pro = readsensorvalue();
                  ui->label_113->setText(QString::number(0));
                  handler->speaker_off();
-                 ia1currentcount=0;
+              //   ia1currentcount=0;
                   flag6=true;
 
 
             }
             else if(range>=(nfpzero) && range<(nfpone+nfpzero)){
                 ui->pushButton_42->setText("1");
+
                 if(speakeronoff == "Speaker ON"){
                 handler->speaker_on(0,0,1,0);
                 }else{
                     handler->speaker_off();
                 }
                   ui->dial_2->setValue(range);
+                  handler->vibrator_on(1,1,300);
+
              ui->CI5_5->setStyleSheet(styleSheet3);
                 handler->pinchvalve_on();
                   motoroff();
@@ -4367,7 +4388,7 @@ ia1currentcount=1;
                    handler->safetyvent_off();
                    ventonia1 = true;
                }
-               ia1currentcount=1;
+            //   ia1currentcount=1;
              flag6=true;
 }
             if (range >= (nfpzero + nfpone) && range < (nfpzero + nfpone + nfptwo + nfpthree)) {
@@ -4375,6 +4396,8 @@ ia1currentcount=1;
                 ventonia1=false;
                 beepsound();
                 ui->dial_2->setValue(range);
+                handler->vibrator_on(1,2,300);
+
                 ui->CI5_5->setStyleSheet(styleSheet3);
 handler->safetyvent_off();
 handler->pinchvalve_on();
@@ -4419,15 +4442,15 @@ handler->pinchvalve_on();
                     }
 
             }
-                ia1currentcount=2;
+               // ia1currentcount=2;
 
 }
         }
         if (ia1currentcount>ia1count) {
-            beepsound();
+            //beepsound();
         }
         if (ia1currentcount != -1) {
-            ia1count = ia1currentcount;
+           // ia1count = ia1currentcount;
         }
     break;
     }
@@ -4440,7 +4463,6 @@ handler->pinchvalve_on();
   int ia2currentcount=-1;
 
   handler->phaco_off();
-  handler->fs_count(0);
   handler->phaco_power(0);
             if(ia2 == "Panel"){
             if(range>=0 && range<nfpzero){
@@ -4621,7 +4643,6 @@ ia2currentcount=2;
         double vitpreset = ui->lineEdit_73->text().toDouble();  // vitpreset should be double for better precision
    int vitcurrentcount=-1;
    handler->phaco_off();
-   handler->fs_count(0);
    handler->phaco_power(0);
         if (range > 0 && range < nfpzero) {
             // State 0
@@ -4763,7 +4784,7 @@ ia2currentcount=2;
                                   static_cast<float>(4096 - (nfpzero + nfpone + nfptwo)) * static_cast<float>(pow7);
                 ui->label_119->setText(QString::number(static_cast<int>(progress4)));
 
-                handler->vit_on(static_cast<float>(pow7));
+                handler->vit_on(40,static_cast<float>(pow7));
                 handler->vit_ontime(30);
             }
 
@@ -4840,6 +4861,7 @@ ia2currentcount=2;
 }
 void MainWindow::updateLabel()
 {
+
     if (!elapsedTimer->isValid()) {
     }
 }
@@ -5423,8 +5445,8 @@ void MainWindow::pulseup_mode()
     }
     ui->lineEdit_75->setText(QString::number(nPulseCount));
    // qDebug()<<"the increment pulse count is"<<nPulseCount;
-    handler->phaco_on();
-     handler->fs_count(nfpzero+nfpone+nfptwo);
+ //   handler->phaco_on(nfpzero+nfpone+nfptwo);
+  //   handler->fs_count(nfpzero+nfpone+nfptwo);
     handler->freq_count(nFreqCount);
 handler->pdm_mode(PULSE_MODE);
     handler->pulse_count(nPulseCount);
@@ -5444,8 +5466,8 @@ void MainWindow::pulsedown_mode()
     }
     ui->lineEdit_75->setText(QString::number(nPulseCount));
      //qDebug()<<"the decrement pulse count is"<<nPulseCount;
-     handler->phaco_on();
-      handler->fs_count(nfpzero+nfpone+nfptwo);
+    // handler->phaco_on(nfpzero+nfpone+nfptwo);
+    //  handler->fs_count(nfpzero+nfpone+nfptwo);
     handler->freq_count(nFreqCount);
     handler->pdm_mode(PULSE_MODE);
     handler->pulse_count( nPulseCount);
@@ -5473,8 +5495,8 @@ void MainWindow::singleburstup_mode()
         nSingleBurst = 400;
     }
     ui->lineEdit_78->setText(QString::number(nSingleBurst));
-    handler->phaco_on();
-     handler->fs_count(nfpzero+nfpone+nfptwo);
+//    handler->phaco_on(nfpzero+nfpone+nfptwo);
+  //   handler->fs_count(nfpzero+nfpone+nfptwo);
    handler->freq_count(nFreqCount);
     handler->freq_count(nFreqCount);
      handler->pdm_mode(SINGLE_BURST);
@@ -5491,8 +5513,8 @@ void MainWindow::singleburstdown_mode()
         nSingleBurst = 10;
     }
     ui->lineEdit_78->setText(QString::number(nSingleBurst));
-    handler->phaco_on();
-     handler->fs_count(nfpzero+nfpone+nfptwo);
+  //  handler->phaco_on(nfpzero+nfpone+nfptwo);
+   //  handler->fs_count(nfpzero+nfpone+nfptwo);
    handler->freq_count(nFreqCount);
      handler->pdm_mode(SINGLE_BURST);
    handler->burst_length(nSingleBurst);
@@ -5509,7 +5531,7 @@ void MainWindow::multiburstup_mode()
         nMultiBurstCount = 400;
     }
     ui->lineEdit_79->setText(QString::number(nMultiBurstCount));
-    handler->fs_count(nfpzero+nfpone+nfptwo);
+  //  handler->fs_count(nfpzero+nfpone+nfptwo);
     handler->freq_count(nFreqCount);
     handler->pdm_mode(MULTI_BURST);
     handler->burst_length(nMultiBurstCount);
@@ -5526,7 +5548,7 @@ void MainWindow::multiburstdown_mode()
         nMultiBurstCount = 10;
     }
     ui->lineEdit_79->setText(QString::number(nMultiBurstCount));
-    handler->fs_count(nfpzero+nfpone+nfptwo);
+  //  handler->fs_count(nfpzero+nfpone+nfptwo);
     handler->freq_count(nFreqCount);
     handler->pdm_mode(MULTI_BURST);
     handler->burst_length(nMultiBurstCount);
@@ -5554,7 +5576,7 @@ void MainWindow::on_ButColdPhacoPer_down_clicked()
         nColdPhacoPer = 5;
     }
     ui->lineEdit_80->setText(QString::number(nColdPhacoPer));
-    handler->fs_count(nfpzero+nfpone+nfptwo);
+  //  handler->fs_count(nfpzero+nfpone+nfptwo);
     handler->freq_count(nFreqCount);
     handler->pdm_mode(COLD_PHACO);
 
@@ -5571,7 +5593,7 @@ void MainWindow::on_ButColdPulse_up_clicked()
          nColdPhacoCount = 15;
      }
      ui->lineEdit_81->setText(QString::number(nColdPhacoCount));
-     handler->fs_count(nfpzero+nfpone+nfptwo);
+   //  handler->fs_count(nfpzero+nfpone+nfptwo);
      handler->freq_count(nFreqCount);
      handler->pdm_mode(COLD_PHACO);
 
@@ -5589,7 +5611,7 @@ void MainWindow::on_ButColdPulse_down_clicked()
           nColdPhacoCount = 1;
       }
       ui->lineEdit_81->setText(QString::number(nColdPhacoCount));
-      handler->fs_count(nfpzero+nfpone+nfptwo);
+     // handler->fs_count(nfpzero+nfpone+nfptwo);
       handler->freq_count(nFreqCount);
       handler->pdm_mode(COLD_PHACO);
 
@@ -5607,7 +5629,7 @@ void MainWindow::on_ButColdPhacoPer_up_clicked()
            nColdPhacoPer = 40;
        }
        ui->lineEdit_80->setText(QString::number(nColdPhacoPer));
-       handler->fs_count(nfpzero+nfpone+nfptwo);
+      // handler->fs_count(nfpzero+nfpone+nfptwo);
        handler->freq_count(nFreqCount);
        handler->pdm_mode(COLD_PHACO);
 
@@ -7235,7 +7257,7 @@ void MainWindow::on_SETTINGS_BUT_2_clicked()
     handler->buzz();
     motoroff();
     handler->phaco_off();
-    handler->fs_count(0);
+    handler->fs_count_limit(nfpzero);
     handler->freq_count(0);
     handler->phaco_power(0);
     handler->pinchvalve_off();
@@ -7545,7 +7567,7 @@ void MainWindow::on_pushButton_42_clicked()
    // qDebug() << "Disabling functions.";
     motoroff();
     handler->phaco_off();
-    handler->fs_count(0);
+    handler->fs_count_limit(nfpzero);
     handler->freq_count(0);
     handler->phaco_power(0);
     handler->pinchvalve_off();
@@ -7563,7 +7585,7 @@ void MainWindow::on_pushButton_clicked()
    // qDebug() << "Disabling functions.";
     motoroff();
     handler->phaco_off();
-    handler->fs_count(0);
+    handler->fs_count_limit(nfpzero);
     handler->freq_count(0);
     handler->phaco_power(0);
     handler->pinchvalve_off();
@@ -7589,7 +7611,7 @@ void MainWindow::on_ocuburstdown_but_clicked()
     }
     ui->lineEdit_77->setText(QString::number( nOcuPulseCount));
     handler->freq_count(nFreqCount);
-    handler->fs_count(nfpzero+nfpone+nfptwo);
+   // handler->fs_count(nfpzero+nfpone+nfptwo);
    // handler->burst_length(nOcuBurstCount);
      handler->pdm_mode(CONTINOUS);
     // qDebug()<<nOcuBurstCount;
@@ -7604,7 +7626,7 @@ void MainWindow::on_ocuburstup_but_clicked()
     }
     ui->lineEdit_77->setText(QString::number( nOcuPulseCount));
     handler->freq_count(nFreqCount);
-    handler->fs_count(nfpzero+nfpone+nfptwo);
+    //handler->fs_count(nfpzero+nfpone+nfptwo);
    // handler->burst_length(nOcuBurstCount);
     handler->pdm_mode(CONTINOUS);
    // qDebug()<<nOcuBurstCount;
@@ -7619,7 +7641,7 @@ void MainWindow::on_ocupulsedown_but_clicked()
     }
     ui->lineEdit_76->setText(QString::number(nOcuBurstCount));
     handler->freq_count(nFreqCount);
-    handler->fs_count(nfpzero+nfpone+nfptwo);
+   // handler->fs_count(nfpzero+nfpone+nfptwo);
     handler->pdm_mode(CONTINOUS);
 }
 
@@ -7633,7 +7655,7 @@ void MainWindow::on_ocupulseup_but_clicked()
     ui->lineEdit_76->setText(QString::number(nOcuBurstCount));
 
     handler->freq_count(nFreqCount);
-    handler->fs_count(nfpzero+nfpone+nfptwo);
+   // handler->fs_count(nfpzero+nfpone+nfptwo);
     handler->pdm_mode(CONTINOUS);
 
 }

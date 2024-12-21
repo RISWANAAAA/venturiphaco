@@ -8,6 +8,9 @@
 #include"mainwindow.h"
 #include"hwhandler.h"
 #include"vaccum.h"
+#include<QSqlDatabase>
+#define PATH "/home/phacohigh.db"
+
 
 #define TUNE_LOWERFREQ_COUNT 2564 //100000/2631=38KHz      100000/2777=36.0KHz
 #define TUNE_HIGHFREQ_COUNT 2272  //100000/2272 100000/2380=42KHz      10000/2500 = 40KHz
@@ -50,6 +53,7 @@ int ADC_value();
 void loose_tip();
 public slots:
 void on_pushButton_clicked();
+void rx_surgeonName(const int &text);
 
 protected:
     // Override paintEvent to draw the circular progress bar
@@ -77,6 +81,8 @@ private:
     int m_value=0; // Holds the current value of the progress (0 to 100)
     int m_value1=0; // Holds the current value of the progress (0 to 100)
     int currentCircle;
+    QSqlDatabase db;
+
     QTimer *timer;
      bool isRunning=false;
      QTimer *timer1;
@@ -89,6 +95,8 @@ private:
         bool tuneCompleted = false;
       int nADCValue;
         int statushp;
+        int nFsCount;
+        int surgeon;
 
 };
 

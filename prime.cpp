@@ -22,11 +22,10 @@ prime::prime(QWidget *parent) :
     cleantimer=new QTimer;
     hand->phaco_off();
     hand->phaco_power(0);
-    hand->fs_count(0);
     hand->freq_count(0);
     ui->progressBar_2->setRange(0,100);
+    hand->fs_count_limit(0);
     hand->phaco_off();
-    hand->fs_count(0);
     hand->freq_count(0);
     hand->safetyvent_off();
     hand->pinchvalve_off();
@@ -76,7 +75,7 @@ prime::prime(QWidget *parent) :
     serialnumber();
    //
     connect(ui->comboBox_4, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &prime::onComboBoxIndexChanged);
-
+  connect(this,&prime::sendsurgeon_tune,tune,&tuning::rx_surgeonName);
     //connect(statusUpdateTimer, &QTimer::timeout, this, &prime::onUpdateStatusTimeout);
     // statusUpdateTimer->start(500); // Update every second
 
@@ -617,13 +616,17 @@ void prime::setLastSelectedValue() {
         if (lastIndex >= 0 && lastIndex <= 4) {  // Ensure index is within valid range
             ui->comboBox_4->setCurrentIndex(lastIndex);
             QString surgeonName = ui->comboBox_4->currentText();
+            qDebug()<<surgeonName<<"the last surgeon is updated";
 
-        } else {
+
+
+}
+        }
+
+         else {
             //qDebug() << "Invalid index found in the database. Verify the data in the table.";
         }
-    } else {
-        //qDebug() << "No data found in the table.";
-    }
+
 
     // Close and clean up the database connection
     db.close();
@@ -646,7 +649,8 @@ void prime::serialnumber() {
     // Prepare a single query to fetch the serial number
     QSqlQuery query(db);
     query.prepare(
-        "SELECT iNanoPlusVP_SerialNo "
+        "SELECT iNanoPlusVP_SerialNo, "
+                "fzero, fone, ftwo "
         "FROM phacohigh "
         "WHERE surgeon = :surgeon"
         );
@@ -655,7 +659,21 @@ void prime::serialnumber() {
     if (query.exec()) {
         if (query.next()) {
             QString serialNumber = query.value(0).toString(); // Correct index for the result
+            int nfpo = query.value("fzero").toInt();
+            int nfp1 = query.value("fone").toInt();
+            int nfp2 = query.value("ftwo").toInt();
+            qDebug()<<nfpo<<nfp1<<nfp2<<"that is the sql value before calibration";
+            int nfpzero = static_cast<int>((nfpo / 100.0) * 4090);
+            int nfpone = static_cast<int>((nfp1 / 100.0) * 4090);
+            int nfptwo = static_cast<int>((nfp2 / 100.0) * 4090);
+            qDebug()<<nfpzero<<nfpone<<nfptwo<<"that is the sql value after calibration";
+
+            nFsCount=(nfpzero+nfpone+nfptwo);
+            qDebug()<<"the surgeon name is sended to tune window"<<nFsCount;
             ui->label_6->setText(serialNumber);
+            emit sendsurgeon_tune(nFsCount);
+            qDebug()<<"the nfscount is sended to tune window";
+
         } else {
             //qDebug() << "No data found for the given surgeon.";
             ui->label_6->setText("N/A");
@@ -713,6 +731,8 @@ void prime::on_Tune_but_clicked()
     ui->label_2->raise();
     ui->label_3->raise();
     cleantimer->stop();
+    emit sendsurgeon_tune(nFsCount);
+
 
 }
 

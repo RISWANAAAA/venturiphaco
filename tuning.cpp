@@ -14,7 +14,7 @@ tuning::tuning(QWidget *parent) :
     vacSensor=new Vaccum;
     hand->phaco_off();
     hand->phaco_power(0);
-    hand->fs_count(0);
+    hand->fs_count_limit(0);
     hand->freq_count(0);
     exportGPIO(960);
     setGPIODirection("in",960);
@@ -33,7 +33,28 @@ tuning::tuning(QWidget *parent) :
     ui->lblTuned->hide();
     ui->butTuned->hide();
 
-   // qDebug()<<"the tune is window is closed";
+//    if (!db.isValid()) {
+//        db = QSqlDatabase::addDatabase("QSQLITE","PATH");
+//        db.setDatabaseName(PATH);
+//    }
+//    QSqlQuery query(db);
+//    query.prepare("SELECT fzero, fone, ftwo, fthree "
+//                "FROM phacohigh "
+//                "WHERE surgeon = :surgeon"
+//            );
+//    query.bindValue(":surgeon", surgeon);
+
+//    int nfpo = query.value("fzero").toInt();
+//    int nfp1 = query.value("fone").toInt();
+//    int nfp2 = query.value("ftwo").toInt();
+//    int nfp3 = query.value("fthree").toInt();
+//   // qDebug()<<nfpo<<nfp1<<nfp2<<nfp3<<"that is the sql value before calibration";
+//    int nfpzero = static_cast<int>((nfpo / 100.0) * 4090);
+//    int nfpone = static_cast<int>((nfp1 / 100.0) * 4090);
+//    int nfptwo = static_cast<int>((nfp2 / 100.0) * 4090);
+//    nFsCount =nfpzero+nfpone+nfptwo+1;
+//    db.close();
+//   // qDebug()<<"the tune is window is closed";
 
 }
 
@@ -303,6 +324,12 @@ Tune_Phaco();
     }
 }
 
+void tuning::rx_surgeonName(const int &text)
+{
+    surgeon=text;
+    qDebug()<<"the value is received"<<text;
+}
+
 // Update the circle which reaches 100 and then moves to MainWindow
 void tuning::updateProgress()
 {
@@ -381,9 +408,9 @@ int tuning::Tune_Phaco()
 
 
         hand->phaco_power(100);
-        //hand->phaco_on();
-       // hand->emitTunePhaco();
-        hand->emitTunePhaco();
+        //hand->phaco_on(0);
+
+        hand->emitTuneStartPhaco();
 
         nNoOfCurrentCount=0;
         // Loop until m_value reaches 100
@@ -474,8 +501,22 @@ int tuning::Tune_Phaco()
                        updateProgress();
                        update();
                    });
+                   hand->emitTuneStopPhaco();
+
             trueFreqFound=false;
             return -1;
+//            isRunning = false;
+//            hand->phaco_off();
+//            main->show();
+//            main->ULTRASONICBUT1();
+//            main->activategpio();
+
+//            main->setTuneMode();
+//            updateProgress();
+//             emit sendfreq(2781);
+//            trueFreqFound=true;
+
+//            return 0;
         }
 
         //qDebug()<<"set object circle at " <<100000.0/nResonantFreqCount<<","<<nADC7841CurrentCount[nLowValueFreq]<<" radius 0.01"<<"\n";
@@ -527,8 +568,21 @@ int tuning::Tune_Phaco()
             isRunning=false;
             updateProgress();
             update();
-            trueFreqFound=false;
+           trueFreqFound=false;
+           hand->emitTuneStopPhaco();
 
+//            trueFreqFound=true;
+//            isRunning = false;
+//            hand->phaco_off();
+//            main->show();
+//            main->ULTRASONICBUT1();
+//            main->activategpio();
+
+//            main->setTuneMode();
+//            updateProgress();
+//            emit sendfreq(2781);
+
+           // return 0;
             return -1;
         }
         else{
@@ -557,6 +611,7 @@ int tuning::Tune_Phaco()
                 ntmpDiffVolt = abs(nADC7841CurrentCountPrev - fResFrequency);
                 //qDebug()<<nADC7841CurrentCountPrev<<fResFrequency<<"diff "<<ntmpDiffVolt;
                 hand->phaco_off();
+                hand->emitTuneStopPhaco();
                 hand->phaco_power(0);
 
 
@@ -584,6 +639,7 @@ int tuning::Tune_Phaco()
         out<<"set object circle at " <<100000.0/(TUNE_LOWERFREQ_COUNT - (nLowValueFreq+25))<<","<<nADC7841CurrentCount[nLowValueFreq+25]<<" radius 0.01\n";
 
         isRunning = false;
+        hand->emitTuneStopPhaco();
         hand->phaco_off();
         main->show();
         main->ULTRASONICBUT1();
@@ -627,7 +683,7 @@ void tuning::on_But_Next_clicked()
     main->show();
     emit activatemain();
    main->DIATHERMYBUT();
-
+ // main->setTuneMode();
 main->disablegpio();
 
 

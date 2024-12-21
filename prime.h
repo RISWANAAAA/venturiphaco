@@ -80,6 +80,8 @@ private slots:
 
 signals:
     void sendsignal(const QString &text);
+    void sendsurgeon_tune(const int &text);
+
 private:
     Ui::prime *ui;
 //    int hp=0;
@@ -95,6 +97,7 @@ private:
      QTimer *statusUpdateTimer;
      hwhandler *hand;
      QSqlDatabase db;
+     int nFsCount;
 
 };
 

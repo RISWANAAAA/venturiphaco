@@ -57,14 +57,19 @@
 #define REG1 32
 #define REG2 36
 
+
+#define PHACO_ONOFF_REG         0
+#define FS_COUNT_REG            2
 #define PDM_MODE_REG            6
 #define PULSE_COUNT_REG         4
 #define BURST_LENGTH_REG        8
 #define COLD_PULSE_REG          10
 #define FREQ_COUNT_REG          12
+#define TUNE_REQ_REG              14
 #define BURST_OFF_LENGTH_REG    18
-#define FS_COUNT_REG            2
-#define PHACO_ONOFF_REG         0
+
+#define TUNE_REQUEST_MASK	    0x8000
+
 
 #define CONTINOUS       0x01
 #define PULSE_MODE      0x02
@@ -107,10 +112,9 @@ class hwhandler: public QThread
 public:
     explicit hwhandler(QObject *parent = 0);
     int memfd;
-    static void vit_on(int count);
+    static void vit_on(int vitONTime,int count);
     static void vit_off();
     static void vit_ontime(int ontime);
-    void emitTunePhaco();
 
     static void vso_off();
     static void vso_ontime(int ontime);
@@ -128,7 +132,7 @@ public:
 
     void write_motor(uint16_t status, uint16_t direction, uint16_t value);
 
-    void phaco_on();
+    void phaco_on(int nFSCount);
     void phaco_off();
     int phaco_power(int val);
     void pulse_count(int count);
@@ -137,12 +141,17 @@ public:
     void cold_pulse(int time,int pulse);
     void freq_count(int count);
     void burst_off_length(int length);
-    void fs_count(int count);
+    void fs_count_limit(int count);
+    void emitTuneStartPhaco();
+    void emitTuneStopPhaco();
 
-    void convert_dac(int count);
+
+    void convert_dac(int channel, int count);
 
     void speaker_on(uint8_t value, uint8_t asp, uint8_t irr, uint8_t occ);
     void speaker_off();
+    void vibrator_on(uint8_t onoff,uint8_t position,uint16_t value);
+    void vibrator_off();
     void buzz();
 
 
