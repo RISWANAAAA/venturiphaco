@@ -37,13 +37,10 @@ prime::prime(QWidget *parent) :
                          "    background-color: transparent;"
                          "    image: url(:/images/primeddd.png);"
                          "    color: white;"
-                         "    min-width: 411px;"
-                         "    max-width: 411px;"
-                         "    min-height: 241px;"
-                         "    max-height: 241px;"
-                         "    border-radius: 20px;" // Adjust the radius as needed
-
-                         "    color: black;"
+                         "    min-width: 350px;"
+                         "    max-width: 350px;"
+                         "    min-height: 200px;"
+                         "    max-height: 200px;"
                          "    border-radius: 20px;" // Adjust the radius as needed
                          "width: 401;"
                          "height:211;"
@@ -95,6 +92,7 @@ prime::prime(QWidget *parent) :
         ui->label->move(20,120);
         ui->prime1_but->raise();
         ui->label->raise();
+        hand->buzz();
 
 
 
@@ -105,7 +103,7 @@ prime::prime(QWidget *parent) :
         ui->label_2->move(30,380);
         ui->Tune_but->raise();
         ui->label_2->raise();
-
+hand->buzz();
 
     });
     connect(ui->clean_but, &QPushButton::clicked, [=](){
@@ -114,7 +112,7 @@ prime::prime(QWidget *parent) :
         ui->label_3->move(30,580);
         ui->clean_but->raise();
         ui->label_3->raise();
-
+hand->buzz();
 
     });
     //timerssss
@@ -227,10 +225,10 @@ void prime::current(int tab)
                          "    image: url(:/images/primeddd.png);"
                          "    background-color: transparent;"
                          "    color: white;"
-                         "    min-width: 411px;"
-                         "    max-width: 411px;"
-                         "    min-height: 241px;"
-                         "    max-height: 241px;"
+                         "    min-width: 350px;"
+                         "    max-width: 350px;"
+                         "    min-height: 200px;"
+                         "    max-height: 200px;"
                          "width: 401;"
                          "height:211;"
                          //"    border-radius: 20px;" // Uncomment if needed
@@ -363,49 +361,6 @@ void prime::on_start_prime_but_2_clicked()
     // Begin the priming process
     motoron();
 }
-//void prime::on_start_prime_but_2_clicked()
-//{
-//    // Reset progress bar and UI elements
-//    ui->progressBar_2->setValue(0);
-//    ui->start_check_2->setChecked(false);
-//    ui->motor_Check_2->setChecked(false);
-//    ui->wait_Check_2->setChecked(false);
-//    ui->done_Check_2->setChecked(false);
-
-//    // Stop any ongoing timers to reset the state
-//    if (pretimer->isActive()) {
-//        pretimer->stop();
-//    }
-
-//    // Buzz to indicate start
-//    hand->buzz();
-
-//    // Step 1: Start the motor for 15000 ms
-//    motoron();
-//    ui->motor_Check_2->setChecked(true); // Update UI to show motor is on
-//    QTimer::singleShot(15000, this, [this]() {
-//        // Step 2: Start irrigation for another 15000 ms
-//        hand->pinchvalve_on(); // Start irrigation
-//        QTimer::singleShot(15000, this, [this]() {
-//            ui->wait_Check_2->setChecked(true); // Update UI to show wait/chamber filling
-
-//            // Step 3: Wait for the chamber to fill for 15000 ms
-//            QTimer::singleShot(15000, this, [this]() {
-//                // Step 4: Finalize - Turn off motor, pinch valve, and update UI
-//                motoroff();
-//                hand->pinchvalve_off();
-//                hand->safetyvent_off();
-
-//                ui->done_Check_2->setChecked(true); // Indicate the process is done
-//                ui->motor_Check_2->setChecked(false);
-//                ui->wait_Check_2->setChecked(false);
-
-//                // Optionally indicate completion with a buzz
-//                hand->buzz();
-//            });
-//        });
-//    });
-//}
 
 void prime::start_irrigation()
 {
@@ -510,7 +465,6 @@ void prime::Prime()
     ui->done_Check_2->setChecked(false);
     ui->progressBar_2->setValue(0);
 
-
 }
 
 void prime::Tune()
@@ -575,7 +529,7 @@ void prime::onComboBoxIndexChanged(int index) {
     // m->push(ui->comboBox_4->currentText());
    // emit sendsignal(ui->comboBox_4->currentText());
 
-    qDebug()<<"the current text is"<<ui->comboBox_4->currentText();
+   // qDebug()<<"the current text is"<<ui->comboBox_4->currentText();
 
     if (!query.exec()) {
         //qDebug() << "Error updating last selected index:" << query.lastError().text();
@@ -616,7 +570,7 @@ void prime::setLastSelectedValue() {
         if (lastIndex >= 0 && lastIndex <= 4) {  // Ensure index is within valid range
             ui->comboBox_4->setCurrentIndex(lastIndex);
             QString surgeonName = ui->comboBox_4->currentText();
-            qDebug()<<surgeonName<<"the last surgeon is updated";
+            //qDebug()<<surgeonName<<"the last surgeon is updated";
 
 
 
@@ -662,17 +616,17 @@ void prime::serialnumber() {
             int nfpo = query.value("fzero").toInt();
             int nfp1 = query.value("fone").toInt();
             int nfp2 = query.value("ftwo").toInt();
-            qDebug()<<nfpo<<nfp1<<nfp2<<"that is the sql value before calibration";
+           // qDebug()<<nfpo<<nfp1<<nfp2<<"that is the sql value before calibration";
             int nfpzero = static_cast<int>((nfpo / 100.0) * 4090);
             int nfpone = static_cast<int>((nfp1 / 100.0) * 4090);
             int nfptwo = static_cast<int>((nfp2 / 100.0) * 4090);
-            qDebug()<<nfpzero<<nfpone<<nfptwo<<"that is the sql value after calibration";
+           // qDebug()<<nfpzero<<nfpone<<nfptwo<<"that is the sql value after calibration";
 
             nFsCount=(nfpzero+nfpone+nfptwo);
-            qDebug()<<"the surgeon name is sended to tune window"<<nFsCount;
+           // qDebug()<<"the surgeon name is sended to tune window"<<nFsCount;
             ui->label_6->setText(serialNumber);
             emit sendsurgeon_tune(nFsCount);
-            qDebug()<<"the nfscount is sended to tune window";
+           // qDebug()<<"the nfscount is sended to tune window";
 
         } else {
             //qDebug() << "No data found for the given surgeon.";
@@ -825,71 +779,4 @@ void prime::on_begin_clean_but_2_clicked()
     // Connect the timer's timeout signal to a cleanup slot if necessary
     connect(cleantimer, &QTimer::timeout, this, &prime::Start_Tune);
 }
-
-
-
-//void prime::on_pushButton_5_clicked()
-//{
-//    QString styleSheet = "QPushButton {"
-//                         "    font-family: Ubuntu;"
-//                         "    font-size: 60pt;"
-//                         "font:bold;"
-//                         "    background-color: transparent;"
-//                         "    image: url(:/images/primeddd.png);"
-//                         "    color: white;"
-//                         "    min-width: 411px;"
-//                         "    max-width: 411px;"
-//                         "    min-height: 241px;"
-//                         "    max-height: 241px;"
-//                         "    border-radius: 20px;" // Adjust the radius as needed
-
-//                         "    color: black;"
-//                         "    border-radius: 20px;" // Adjust the radius as needed
-//                         "width: 401;"
-//                         "height:211;"
-//                         "}"
-//                         "QPushButton:focus {"
-//                         "    outline: none;"
-//                         "    border: none;"
-//                         "}";
-
-//    on_Tune_but_clicked();
-//    ui->Tune_but->setStyleSheet(styleSheet);
-//    ui->Tune_but->move(20,240);
-//    ui->label_2->move(30,380);
-//}
-
-
-//void prime::on_pushButton_8_clicked()
-//{
-//    QString styleSheet = "QPushButton {"
-//                         "    font-family: Ubuntu;"
-//                         "    font-size: 60pt;"
-//                         "font:bold;"
-//                         "    background-color: transparent;"
-//                         "    image: url(:/images/primeddd.png);"
-//                         "    color: white;"
-//                         "    min-width: 411px;"
-//                         "    max-width: 411px;"
-//                         "    min-height: 241px;"
-//                         "    max-height: 241px;"
-//                         "    border-radius: 20px;" // Adjust the radius as needed
-
-//                         "    color: black;"
-//                         "    border-radius: 20px;" // Adjust the radius as needed
-//                         "width: 401;"
-//                         "height:211;"
-//                         "}"
-//                         "QPushButton:focus {"
-//                         "    outline: none;"
-//                         "    border: none;"
-//                         "}";
-//  on_Tune_but_clicked();
-//  ui->Tune_but->setStyleSheet(styleSheet);
-//  ui->Tune_but->move(20,240);
-//  ui->label_2->move(30,380);
-
-//}
-
-
 

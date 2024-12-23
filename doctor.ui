@@ -194,13 +194,19 @@ background-color:transparent;</string>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">border-radius: 35px;
-width:10px;
-height:10px;
-background-color:transparent;
-border:none;
-font:bold;
-border:3px solid black;</string>
+    <string notr="true">QPushButton {
+    border-radius: 35px;
+    width: 10px;
+    height: 10px;
+    background-color: transparent;
+    border: 3px solid black;
+    font: bold;
+}
+
+QPushButton:focus {
+    outline: none;
+}
+</string>
    </property>
    <property name="text">
     <string>VIT</string>
@@ -229,7 +235,7 @@ border-radius:120px;</string>
     <rect>
      <x>10</x>
      <y>600</y>
-     <width>231</width>
+     <width>281</width>
      <height>51</height>
     </rect>
    </property>
@@ -252,12 +258,19 @@ font:bold;</string>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">border-radius: 35px;
-width:10px;
-height:10px;
-background-color:transparent;
-border:none;
-font:bold;border:3px solid black;</string>
+    <string notr="true">QPushButton {
+    border-radius: 35px;
+    width: 10px;
+    height: 10px;
+    background-color: transparent;
+    border: 3px solid black;
+    font: bold;
+}
+
+QPushButton:focus {
+    outline: none;
+}
+</string>
    </property>
    <property name="text">
     <string>I/A</string>
@@ -365,12 +378,19 @@ background-color: rgb(14, 50, 6);</string>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">border-radius: 35px;
-width:10px;
-height:10px;
-background-color:transparent;
-border:none;
-font:bold;border:3px solid black;</string>
+    <string notr="true">QPushButton {
+    border-radius: 35px;
+    width: 10px;
+    height: 10px;
+    background-color: transparent;
+    border: 3px solid black;
+    font: bold;
+}
+
+QPushButton:focus {
+    outline: none;
+}
+</string>
    </property>
    <property name="text">
     <string>PHACO</string>
@@ -3206,13 +3226,19 @@ border-radius:20px;</string>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">border-radius: 35px;
-width:10px;
-height:10px;
-background-color:transparent;
-border:none;
-font:bold;
-border:3px solid black;</string>
+    <string notr="true">QPushButton {
+    border-radius: 35px;
+    width: 10px;
+    height: 10px;
+    background-color: transparent;
+    border: 3px solid black;
+    font: bold;
+}
+
+QPushButton:focus {
+    outline: none;
+}
+</string>
    </property>
    <property name="text">
     <string>DIA</string>
@@ -3278,8 +3304,8 @@ font:bold;</string>
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>170</y>
-     <width>201</width>
+     <y>150</y>
+     <width>211</width>
      <height>51</height>
     </rect>
    </property>

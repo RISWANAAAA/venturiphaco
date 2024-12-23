@@ -168,7 +168,7 @@ else if (leftFootcomAction == "Increment") {
             emit powerdm3(value1);
                 flag1 = 0;
                 state1 = 0;       }
-    } else if(leftFootcomAction == "Reflux"){
+    } else if(ui->left_footcom->currentText() == "Reflux" || leftFootcomAction == "Reflux"){
            if (value1 == 1 && flag1 == 0 && state1 == 0) {
                 state1 = 1;           }
             if (value1 == 0 && flag1 == 0 && state1 == 1) {
@@ -276,7 +276,7 @@ else if (leftFootcomAction == "Increment") {
              flag2 = 0;
              state2 = 0;       }
     }
-    else if(brightFootcomAction == "Reflux"){
+    else if(ui->bright_footcom->currentText()=="Reflux" || brightFootcomAction == "Reflux"){
         if (value2 == 1 && flag2 == 0 && state2 == 0) {
              state2 = 1;           }
          if (value2 == 0 && flag2 == 0 && state2 == 1) {
@@ -376,7 +376,7 @@ else if (leftFootcomAction == "Increment") {
         emit powerdm3(value3);
              flag3 = 0;
              state3 = 0;       }
-    }else if(rightFootcomAction == "Reflux"){
+    }else if(ui->right_footcom->currentText() == "Reflux" || rightFootcomAction == "Reflux"){
         if (value3 == 1 && flag3 == 0 && state3 == 0) {
              state3 = 1;           }
          if (value3 == 0 && flag3 == 0 && state3 == 1) {
@@ -475,7 +475,7 @@ else if (leftFootcomAction == "Increment") {
         emit powerdm3(value4);
              flag4 = 0;
              state4 = 0;       }
-    }else if(bleftFootcomAction == "Reflux"){
+    }else if(ui->bleft_footcom->currentText() == "Reflux" || bleftFootcomAction == "Reflux"){
         if (value4 == 1 && flag4 == 0 && state4 == 0) {
              state4 = 1;           }
          if (value4 == 0 && flag4 == 0 && state4 == 1) {

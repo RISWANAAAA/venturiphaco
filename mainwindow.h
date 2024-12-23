@@ -54,7 +54,7 @@ void nReceiveFreq(int count);
      void disablegpio();
      void activategpio();
     void footpedalbeep();
-    void beepsound();
+    void beepsound(int position);
     void receivesignal(const QString &text);
 void push(const QString &surgeonName);
 void changesvaluesql();
@@ -411,6 +411,10 @@ void on_ButColdPulse_up_clicked();
 void on_ButColdPulse_down_clicked();
 
 void on_ButColdPhacoPer_up_clicked();
+
+void on_elapsed_time_2_clicked();
+
+void on_elapsed_time_clicked();
 
 signals:
      void sensorValueChanged(int value);

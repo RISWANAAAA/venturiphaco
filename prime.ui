@@ -84,7 +84,7 @@ QPushButton:focus {
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>80</y>
+     <y>90</y>
      <width>351</width>
      <height>141</height>
     </rect>
@@ -436,7 +436,7 @@ background-color:transparent;</string>
    <property name="geometry">
     <rect>
      <x>270</x>
-     <y>140</y>
+     <y>160</y>
      <width>61</width>
      <height>71</height>
     </rect>

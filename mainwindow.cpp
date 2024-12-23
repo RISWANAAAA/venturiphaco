@@ -1110,6 +1110,7 @@ void MainWindow:: disablegpio()
 {
     nHandPiece=1;
     nHandPiece1 = 0;  // Set nHandPiece to 1
+    currentButtonIndex=0;
 
         QPushButton *buttons1[] = { ui->DIABUT, ui->IA1BUT, ui->IA2BUT, ui->VITRECTOMYBUT };
 
@@ -1129,6 +1130,7 @@ void MainWindow:: disablegpio()
 void MainWindow::activategpio() {
     nHandPiece = 0;
     nHandPiece1 = 1;
+    currentButtonIndex=0;
 
     QPushButton *buttons[] = {
         ui->ULTRASONICBUT1, ui->ULTRASONICBUT2,
@@ -1306,9 +1308,10 @@ void MainWindow::DIATHERMYBUT() {
     // Switch to Diathermy tab
     ui->tabWidget->setCurrentIndex(7);
     ui->CI5_5->hide();
+    overallci=false;
 
     // Hide unnecessary UI elements for Diathermy mode
-    ui->label_32->hide();
+   // ui->label_32->hide();
     ui->CutMode_vit->hide();
     ui->CutMode_vitCom->hide();
     ui->tabWidget_2->hide();
@@ -1961,12 +1964,12 @@ void MainWindow::current(int tab)
     ui->elapsed_time_2->hide();
     ui->label_28->hide();
     ui->label_26->hide();
-    ui->label_32->hide();
+   // ui->label_32->hide();
     switch (tab) {
         case 0:
             ui->ULTRASONICBUT1->setStyleSheet(styleSheet);
             ui->label_3->show();
-            ui->label_32->show();
+           // ui->label_32->show();
             ui->elapsed_time->show();
             ui->label_26->show();
             ui->label_28->show();
@@ -1989,7 +1992,7 @@ void MainWindow::current(int tab)
             ui->label_26->show();
             ui->label_28->show();
             ui->elapsed_time_2->show();
-            ui->label_32->show();
+           // ui->label_32->show();
             break;
         case 3:
             ui->ULTRASONICBUT4->setStyleSheet(styleSheet);
@@ -2003,7 +2006,7 @@ void MainWindow::current(int tab)
         case 4:
             ui->IA1BUT->setStyleSheet(styleSheet);
             ui->label_13->show();
-            ui->label_32->hide();
+           ui->label_32->hide();
 
             break;
         case 5:
@@ -2015,13 +2018,13 @@ void MainWindow::current(int tab)
         case 6:
             ui->VITRECTOMYBUT->setStyleSheet(styleSheet);
             ui->label_6->show();
-            ui->label_32->hide();
+           ui->label_32->hide();
 
             break;
         case 7:
             ui->DIABUT->setStyleSheet(styleSheet);
             ui->label_11->show();
-            ui->label_32->hide();
+           ui->label_32->hide();
 
             break;
         default:
@@ -2081,7 +2084,7 @@ void MainWindow::setTuneMode() {
     ui->us4onoff->setStyleSheet(styleSheetOn);
     ui->us4powup_but->setEnabled(true);
     ui->us4powdown_but->setEnabled(true);
-    ui->label_32->show();
+   // ui->label_32->show();
     ui->us1onoff->setEnabled(true);
     ui->us2onoff->setEnabled(true);
     ui->us3onoff->setEnabled(true);
@@ -2113,7 +2116,7 @@ void MainWindow::enableButtons(bool powerOn)
 
     // Enable or disable buttons and update their styles
     if (powerOn) {
-        // handler->buzz();
+         handler->buzz();
         ui->us1onoff->setStyleSheet(styleSheetOn);
         ui->us1onoff->setText("ON");
         ui->us1powup_but->setEnabled(true);
@@ -2143,7 +2146,7 @@ void MainWindow::enableButtons(bool powerOn)
 
 
     } else {
-        // handler->buzz();
+        handler->buzz();
         ui->us1onoff->setStyleSheet(styleSheetOff);
         ui->us1onoff->setText("OFF");
         ui->us1powup_but->setEnabled(false);
@@ -2192,13 +2195,14 @@ void MainWindow::footpedalbeep()
 {
 
 }
-void MainWindow::beepsound()
+void MainWindow::beepsound(int position )
 {
     if(vibon == "Vibration ON"){
-//handler->vibrator_on(1,300);
+        handler->vibrator_on(1,position,300);
 ui->pushButton_2->setStyleSheet("image: url(:/images/vibrationon.png);border-radius:20px;border:none;");
     }else{
 handler->vibrator_off();
+handler->vibrator_on(0,0,0);
         ui->pushButton_2->setStyleSheet("image: url(:/images/vibrationoff.png);border-radius:20px;border:none;");
     }
    // qDebug()<<"beep";
@@ -2266,7 +2270,7 @@ void MainWindow::updateTabsBasedOnComboBox(const QString &selected) {
        // qDebug() << "The pulse count is:" << nPulseCount;
 
         modeFound = true;
-        ui->label_32->show();
+       // ui->label_32->show();
         handler->buzz();
     }
     else if (selected == "Ocupulse") {
@@ -2278,7 +2282,7 @@ void MainWindow::updateTabsBasedOnComboBox(const QString &selected) {
 
 
         modeFound = true;
-        ui->label_32->show();
+       // ui->label_32->show();
         handler->buzz();
 
     }
@@ -2292,7 +2296,7 @@ void MainWindow::updateTabsBasedOnComboBox(const QString &selected) {
         handler->pulse_count(nOcuBurstCount);
 
         modeFound = true;
-        ui->label_32->show();
+       // ui->label_32->show();
         handler->buzz();
 
     }
@@ -2307,7 +2311,7 @@ void MainWindow::updateTabsBasedOnComboBox(const QString &selected) {
 
 //qDebug()<<"the single burst mode is workinggggg";
 modeFound = true;
-        ui->label_32->show();
+       // ui->label_32->show();
         handler->buzz();
 
     }
@@ -2340,7 +2344,7 @@ modeFound = true;
 
         modeFound = true;
 
-        ui->label_32->show();
+       // ui->label_32->show();
         handler->buzz();
 
     }
@@ -2418,7 +2422,6 @@ vus4=ui->us4vacmode->text();
     {
         int pow = (ui->lineEdit_74->text().toInt() * 255) / 100;
         bool flag = true;
-        static int currentCount = -1;
         handler->phaco_off();
             handler->fs_count_limit(nfpzero+nfpone+nfptwo);
 
@@ -2428,7 +2431,6 @@ vus4=ui->us4vacmode->text();
    if(flag){
             if (range > 0 && range < nfpzero) {
                 ui->pushButton_42->setText("0");
-                currentCount = 0;
                 ui->dial_2->setValue(range);
                 handler->dia_off();
                handler->vibrator_off();
@@ -2445,17 +2447,17 @@ vus4=ui->us4vacmode->text();
 //                    handler->safetyvent_off();
 //                    ventondia = true;
 //                }
+                beepsound(0);
                 flag=true;
                 handler->speaker_off();
             }
             else if (range >= nfpzero && range < (nfpzero + nfpone + nfptwo + nfpthree)) {
                 ui->pushButton_42->setText("1");
-                currentCount = 1;
                 handler->vibrator_on(1,1,300);
                 ui->dial_2->setValue(range);
                 handler->dia_on();
                 handler->dia_count(pow);
-
+  beepsound(1);
                 if (!overallci) {
                     ui->CI5_5->setStyleSheet(styleSheet4);
                     handler->pinchvalve_off();
@@ -2474,16 +2476,7 @@ vus4=ui->us4vacmode->text();
                       handler->speaker_off();
                 }
             }
-            if (currentCount > diacount) {
-                //beepsound();
-                //handler->vibrator_on(1,300);
-            }
-            if (currentCount != -1) {
-                diacount = currentCount;
-               // handler->vibrator_off();
-               // handler->vibrator_off();
 
-            }
    }
         break;
     }
@@ -2495,7 +2488,6 @@ vus4=ui->us4vacmode->text();
         int vacline=ui->lineEdit_55->text().toInt();
         QString text=ui->us1onoff->text();
         bool flag1 = false;
-        int us1currectcount=-1;
         QString us1powmode=ui->CutMode_vitCom->currentText();
          int nOfftime;
         // qDebug()<<nfpzero<<nfpone<<nfptwo<<nfpthree<<"those are reterved from the footpedal screen";
@@ -2529,7 +2521,7 @@ vus4=ui->us4vacmode->text();
 
                 ui->label_7->setText("0");
           handler->speaker_off();
-                us1currectcount=0;
+          beepsound(0);
                 flag1 = true; // Reset flag
 }
             else if (range >= nfpzero & range < nfpzero+nfpone) {
@@ -2558,8 +2550,8 @@ vus4=ui->us4vacmode->text();
                   handler->phaco_off();
                 //  handler->fs_count(0);
                  us1poweron=false;
-us1currectcount=1;
-flag1 = true;
+  beepsound(1);
+  flag1 = true;
             }
             else if (range >=(nfpone+nfpzero) && range < (nfpzero+nfpone+nfptwo)) {
                 ui->pushButton_42->setText("2");
@@ -2568,6 +2560,7 @@ flag1 = true;
                 ventonus1=false;
                 ui->dial_2->setValue(range);
                 ui->CI5_5->setStyleSheet(styleSheet3);
+                beepsound(2);
                 handler->pinchvalve_on();
                 handler->freq_count(0);
                 handler->phaco_off();
@@ -2597,8 +2590,6 @@ flag1 = true;
                 }
  }
 
-                    us1currectcount=2;
-
                 flag1 = true; // Reset flag
             }
             else if (range >=(nfpzero+nfpone+nfptwo) && range < (nfpzero+nfpone+nfptwo+nfpthree)) {
@@ -2607,6 +2598,7 @@ flag1 = true;
                 ui->label_7->show();
                 ui->label_8->show();
                 //footpedalbeep();
+                beepsound(3);
                 ventonus1=false;
                 handler->pinchvalve_on();
                 //handler->safetyvent_off();
@@ -2686,7 +2678,6 @@ if(vus1 == "Panel"){
                               }
 }
 
-                                     us1currectcount=3;
  }
 
   }
@@ -2713,7 +2704,8 @@ if(vus1 == "Panel"){
                 ui->label_8->setText("0");
                 ui->label_7->setText("0");
                 handler->speaker_off();
-                us1currectcount=0;
+                beepsound(0);
+
                 us1poweron=false;
                 flag1 = true; // Reset flag
 
@@ -2748,7 +2740,8 @@ if(vus1 == "Panel"){
                 }
                 us1poweron=false;
 
-                us1currectcount=1;
+                beepsound(1);
+
                 flag1 = true; // Reset flag
 
             } else if (range >= (nfpzero + nfpone) && range < (nfpzero + nfpone + nfptwo)) {
@@ -2810,7 +2803,8 @@ if(vus1 == "Panel"){
                 handler->freq_count(0);
                 handler->fs_count_limit(nfpzero);
                 us1poweron=false;
-   us1currectcount=2;
+                beepsound(2);
+
                 flag1 = true; // Reset flag
 
             } else if (range >= (nfpzero + nfpone + nfptwo) && range < (nfpzero + nfpone + nfptwo + nfpthree)) {
@@ -2821,6 +2815,8 @@ if(vus1 == "Panel"){
                 handler->pinchvalve_on();
                // handler->safetyvent_off();
                 ui->CI5_5->setStyleSheet(styleSheet3);
+                beepsound(3);
+
                 if(us1 == "Surgeon"){
                  if (!us1poweron && text == "ON") {
 
@@ -2930,17 +2926,11 @@ if(vus1 == "Panel"){
                       }
                   }
 
-          us1currectcount=3;
          // qDebug()<<"the final of us1 mode and vac mode is"<<us1 <<vus1;
 
 
             }
-            if (us1currectcount> us1count) {
-                beepsound();
-            }
-            if (us1currectcount != -1) {
-                us1count = us1currectcount;
-            }
+
         }
 
 
@@ -2952,7 +2942,6 @@ if(vus1 == "Panel"){
         int us2vacline=ui->lineEdit_60->text().toInt();
         QString text=ui->us2onoff->text();
         bool flag1 = false;
-        int us2currectcount=-1;
         QString us2powmode=ui->CutMode_vitCom_2->currentText();
          int nOfftime;
 
@@ -2986,7 +2975,7 @@ if(vus1 == "Panel"){
 
                 ui->label_92->setText("0");
 
-                us2currectcount=0;
+                beepsound(0);
                 flag1 = true; // Reset flag
 }
             else if (range >= nfpzero & range < nfpzero+nfpone) {
@@ -3015,7 +3004,7 @@ if(vus1 == "Panel"){
                   handler->phaco_off();
                 //  handler->fs_count(0);
                  us2poweron=false;
-us2currectcount=1;
+                 beepsound(1);
 flag1 = true;
             }
             else if (range >=(nfpone+nfpzero) && range < (nfpzero+nfpone+nfptwo)) {
@@ -3053,7 +3042,8 @@ flag1 = true;
                     handler->phaco_off();
                    // handler->fs_count(0);
                     us2poweron= false;
-                    us2currectcount=2;
+                    beepsound(2);
+
 
                 flag1 = true; // Reset flag
             }
@@ -3135,7 +3125,8 @@ if(us2 == "Panel"){
 
                      }
 }
-                                     us2currectcount=3;
+beepsound(3);
+
 
             }
 
@@ -3164,7 +3155,8 @@ if(us2 == "Panel"){
                 ui->label_93->setText("0");
                 ui->label_92->setText("0");
                 handler->speaker_off();
-                us2currectcount=0;
+                beepsound(0);
+
                 us2poweron=false;
                 flag1 = true; // Reset flag
 
@@ -3198,7 +3190,8 @@ if(us2 == "Panel"){
                 }
                 us2poweron=false;
 
-                us2currectcount=1;
+                beepsound(1);
+
                 flag1 = true; // Reset flag
 
             } else if (range >= (nfpzero + nfpone) && range < (nfpzero + nfpone + nfptwo)) {
@@ -3258,7 +3251,8 @@ if(us2 == "Panel"){
                 handler->freq_count(0);
                // handler->fs_count(0);
                 us2poweron=false;
-   us2currectcount=2;
+                beepsound(2);
+
                 flag1 = true; // Reset flag
 
             } else if (range >= (nfpzero + nfpone + nfptwo) && range < (nfpzero + nfpone + nfptwo + nfpthree)) {
@@ -3374,16 +3368,11 @@ if(us2 == "Panel"){
                    handler->phaco_power(0);
                 }
                }
-          us2currectcount=3;
+               beepsound(3);
 
 
             }
-            if (us2currectcount> us2count) {
-                beepsound();
-            }
-            if (us2currectcount != -1) {
-                us2count = us2currectcount;
-            }
+
         }
 
 
@@ -3399,7 +3388,6 @@ if(us2 == "Panel"){
         int us3vacline=ui->lineEdit_63->text().toInt();
         QString text=ui->us3onoff->text();
         bool flag1 = false;
-        int us3currectcount=-1;
         QString us3powmode=ui->CutMode_vitCom_3->currentText();
          int nOfftime;
 
@@ -3433,7 +3421,8 @@ if(us2 == "Panel"){
 
                 ui->label_98->setText("0");
 
-                us3currectcount=0;
+                beepsound(0);
+
                 flag1 = true; // Reset flag
 }
             else if (range >= nfpzero & range < nfpzero+nfpone) {
@@ -3462,7 +3451,8 @@ if(us2 == "Panel"){
                   handler->phaco_off();
                 //  handler->fs_count(0);
                  us3poweron=false;
-us3currectcount=1;
+                 beepsound(1);
+
 flag1 = true;
             }
             else if (range >=(nfpone+nfpzero) && range < (nfpzero+nfpone+nfptwo)) {
@@ -3496,7 +3486,8 @@ flag1 = true;
                     handler->phaco_off();
                    // handler->fs_count(0);
                     us3poweron= false;
-                    us3currectcount=2;
+                    beepsound(2);
+
 
                 flag1 = true; // Reset flag
             }
@@ -3574,7 +3565,8 @@ if(us3 == "Panel"){
                        updateTimes(pow3,ui->elapsed_time,ui->elapsed_time_2);
 }
 }
-                                     us3currectcount=3;
+beepsound(3);
+
 
             }
 
@@ -3603,7 +3595,8 @@ if(us3 == "Panel"){
                 ui->label_99->setText("0");
                 ui->label_98->setText("0");
                 handler->speaker_off();
-                us3currectcount=0;
+                beepsound(0);
+
                 us3poweron=false;
                 flag1 = true; // Reset flag
 
@@ -3638,7 +3631,8 @@ if(us3 == "Panel"){
                 }
                 us3poweron=false;
 
-                us3currectcount=1;
+                beepsound(1);
+
                 flag1 = true; // Reset flag
 
             } else if (range >= (nfpzero + nfpone) && range < (nfpzero + nfpone + nfptwo)) {
@@ -3696,7 +3690,8 @@ if(us3 == "Panel"){
                 handler->freq_count(0);
                 //handler->fs_count(0);
                 us2poweron=false;
-   us3currectcount=2;
+                beepsound(2);
+
                 flag1 = true; // Reset flag
 
             } else if (range >= (nfpzero + nfpone + nfptwo) && range < (nfpzero + nfpone + nfptwo + nfpthree)) {
@@ -3808,16 +3803,12 @@ if(us3 == "Panel"){
                    handler->phaco_power(0);
                 }
                }
-          us3currectcount=3;
+               beepsound(3);
 
 
+
             }
-            if (us3currectcount> us2count) {
-                beepsound();
-            }
-            if (us3currectcount != -1) {
-                us3count = us3currectcount;
-            }
+
         }
 
 
@@ -3832,7 +3823,6 @@ if(us3 == "Panel"){
         int us4vacline=ui->lineEdit_66->text().toInt();
         QString text=ui->us4onoff->text();
         bool flag1 = false;
-        int us4currectcount=-1;
         QString us4powmode=ui->CutMode_vitCom_4->currentText();
          int nOfftime;
 
@@ -3867,7 +3857,8 @@ if(us3 == "Panel"){
                    motoroff();
 
 
-                us4currectcount=0;
+                   beepsound(0);
+
                 flag1 = true; // Reset flag
 }
             else if (range >= nfpzero & range < nfpzero+nfpone) {
@@ -3895,7 +3886,8 @@ if(us3 == "Panel"){
                   handler->phaco_off();
                  // handler->fs_count(0);
                  us4poweron=false;
-us4currectcount=1;
+                 beepsound(1);
+
 flag1 = true;
             }
             else if (range >=(nfpone+nfpzero) && range < (nfpzero+nfpone+nfptwo)) {
@@ -3933,7 +3925,8 @@ flag1 = true;
                     handler->phaco_off();
                   //  handler->fs_count(0);
                     us4poweron= false;
-                    us4currectcount=2;
+                    beepsound(2);
+
 
                 flag1 = true; // Reset flag
             }
@@ -4009,7 +4002,8 @@ if(us4 == "Panel"){
                        handler->phaco_power(pow4);
 
 }
-                                     us4currectcount=3;
+               beepsound(3);
+
 
             }
 
@@ -4040,7 +4034,8 @@ if(us4 == "Panel"){
                 ui->label_104->setText("0");
                 ui->label_105->setText("0");
                 handler->speaker_off();
-                us4currectcount=0;
+                beepsound(0);
+
                 us4poweron=false;
                 flag1 = true; // Reset flag
 
@@ -4074,7 +4069,8 @@ if(us4 == "Panel"){
                     handler->speaker_off();
                 }                us4poweron=false;
 
-                us4currectcount=1;
+                beepsound(1);
+
                 flag1 = true; // Reset flag
 
             } else if (range >= (nfpzero + nfpone) && range < (nfpzero + nfpone + nfptwo)) {
@@ -4135,7 +4131,8 @@ if(us4 == "Panel"){
                 handler->freq_count(0);
              //   handler->fs_count(0);
                 us4poweron=false;
-   us4currectcount=2;
+                beepsound(2);
+
                 flag1 = true; // Reset flag
 
             } else if (range >= (nfpzero + nfpone + nfptwo) && range < (nfpzero + nfpone + nfptwo + nfpthree)) {
@@ -4245,19 +4242,14 @@ if(us4 == "Panel"){
                    handler->phaco_power(0);
                 }
                }
-          us4currectcount=3;
+               beepsound(3);
 
 
             }
 
         }
 
-        if (us4currectcount> us2count) {
-            beepsound();
-        }
-        if (us4currectcount != -1) {
-            us4count = us4currectcount;
-        }
+
         break;
     }        // ia1
         case 5:
@@ -4265,7 +4257,6 @@ if(us4 == "Panel"){
 bool flag6=false;
 double ia1preset=ui->lineEdit_70->text().toDouble();
 QString ia1=ui->ia2mode->text();
- int ia1currentcount=-1;
  handler->phaco_off();
  handler->phaco_power(0);
         if (ia1 == "Panel") { // surgeon
@@ -4287,7 +4278,7 @@ QString ia1=ui->ia2mode->text();
                handler->speaker_off();
                 motoroff();
                 ui->label_113->setText(QString::number(0));
-                //ia1currentcount=0;
+                beepsound(0);
                 flag6=true;
             }
 
@@ -4313,7 +4304,7 @@ QString ia1=ui->ia2mode->text();
                 motoroff();
                 int pro = readsensorvalue();
                 ui->label_113->setText(QString::number(pro));
-//ia1currentcount=1;
+                beepsound(1);
                  flag6=true;
             }
 
@@ -4345,7 +4336,7 @@ QString ia1=ui->ia2mode->text();
                          }
 
                     }
-             //  ia1currentcount=2;
+               beepsound(2);
            }
         }
 
@@ -4369,7 +4360,7 @@ QString ia1=ui->ia2mode->text();
                     //int pro = readsensorvalue();
                  ui->label_113->setText(QString::number(0));
                  handler->speaker_off();
-              //   ia1currentcount=0;
+                 beepsound(0);
                   flag6=true;
 
 
@@ -4398,13 +4389,13 @@ QString ia1=ui->ia2mode->text();
                    handler->safetyvent_off();
                    ventonia1 = true;
                }
-            //   ia1currentcount=1;
+               beepsound(1);
              flag6=true;
 }
             if (range >= (nfpzero + nfpone) && range < (nfpzero + nfpone + nfptwo + nfpthree)) {
                 ui->pushButton_42->setText("2");
                 ventonia1=false;
-                beepsound();
+                beepsound(2);
                 ui->dial_2->setValue(range);
                 handler->vibrator_on(1,2,300);
 
@@ -4456,12 +4447,7 @@ handler->pinchvalve_on();
 
 }
         }
-        if (ia1currentcount>ia1count) {
-            //beepsound();
-        }
-        if (ia1currentcount != -1) {
-           // ia1count = ia1currentcount;
-        }
+
     break;
     }
         // ia2
@@ -4470,7 +4456,6 @@ handler->pinchvalve_on();
   bool flag6=true;
   ia2=ui->ia1mode->text();
   double ia2vacline=ui->lineEdit_68->text().toInt();
-  int ia2currentcount=-1;
 
   handler->phaco_off();
   handler->phaco_power(0);
@@ -4492,7 +4477,7 @@ handler->pinchvalve_on();
                 ui->label_109->setText(QString::number(0));
  motoroff();
   handler->speaker_off();
-  ia2currentcount=0;
+  beepsound(0);
  flag6=true;
             }
             if(range>=nfpzero && range<(nfpzero+nfpone)){
@@ -4513,7 +4498,7 @@ handler->pinchvalve_on();
                 handler->safetyvent_off();
                 ventonia2=true;
             }
-            ia2currentcount=1;
+            beepsound(1);
 }
             else if(range>=(nfpzero+nfpone) && range <(nfpzero+nfpone+nfptwo+nfpthree)){
                 ui->pushButton_42->setText("2");
@@ -4540,7 +4525,7 @@ handler->pinchvalve_on();
                                       handler->speaker_off();
                                   }
                               }
-ia2currentcount=2;
+                              beepsound(2);
 
             }
 
@@ -4563,7 +4548,7 @@ ia2currentcount=2;
 //                      }
                       //int ia2pro=readsensorvalue();
                       ui->label_109->setText(QString::number(0));
-                      ia2currentcount=0;
+                      beepsound(0);
                 }
                 if(range>=nfpzero && range<(nfpone+nfpzero)){
                     ui->pushButton_42->setText("1");
@@ -4585,7 +4570,7 @@ ia2currentcount=2;
                       }
                       int ia2pro=readsensorvalue();
                       ui->label_109->setText(QString::number(ia2pro));
-                      ia2currentcount=1;
+                      beepsound(1);
                 }
                 else if(range>=(nfpzero+nfpone) && range <(nfpone+nfpzero+nfptwo+nfpthree)){
                     ui->pushButton_42->setText("2");
@@ -4631,19 +4616,14 @@ ia2currentcount=2;
                       handler->speaker_off();
                   }
                 }
-                    ia2currentcount=2;
+                        beepsound(2);
                       }
                 }
 
 
 
        }
-            if (ia2currentcount>ia2count) {
-                beepsound();
-            }
-            if (ia2currentcount != -1) {
-                ia2count = ia2currentcount;
-            }
+
             break;
         }
         // vit
@@ -4651,7 +4631,6 @@ ia2currentcount=2;
         int pow7 = ui->lineEdit_71->text().toInt();
        QString vvac = ui->vitvacmode->text();  // "Surgeon" or "Panel"
         double vitpreset = ui->lineEdit_73->text().toDouble();  // vitpreset should be double for better precision
-   int vitcurrentcount=-1;
    handler->phaco_off();
    handler->phaco_power(0);
         if (range > 0 && range < nfpzero) {
@@ -4675,7 +4654,7 @@ ia2currentcount=2;
             int vitpro = readsensorvalue();
             ui->label_118->setText(QString::number(0));
  handler->speaker_off();
- vitcurrentcount=0;
+ beepsound(0);
             handler->vit_off();
         } else if (range >= nfpzero && range < (nfpzero + nfpone)) {
             // State 1
@@ -4701,7 +4680,8 @@ ia2currentcount=2;
             ui->label_118->setText(QString::number(vitpro));
             ui->label_119->setText("0");
             handler->vit_off();
-            vitcurrentcount=1;
+            beepsound(1);
+
         } else if (range >= (nfpzero + nfpone) && range < (nfpzero + nfpone + nfptwo)) {
             // State 2
             ui->pushButton_42->setText("2");
@@ -4778,7 +4758,8 @@ ia2currentcount=2;
 
             ui->label_119->setText("0");
             handler->vit_off();
-             vitcurrentcount=2;
+            beepsound(3);
+
         } else if (range >= (nfpzero + nfpone + nfptwo) && range < (nfpzero + nfpone + nfptwo + nfpthree)) {
             // State 3
             ui->pushButton_42->setText("3");
@@ -4790,12 +4771,11 @@ ia2currentcount=2;
             handler->pinchvalve_on();
 
             if (vitonoff) {  // vitonoff check for vit actions
-                float progress4 = static_cast<float>(range - (nfpzero + nfpone + nfptwo)) /
-                                  static_cast<float>(4096 - (nfpzero + nfpone + nfptwo)) * static_cast<float>(pow7);
-                ui->label_119->setText(QString::number(static_cast<int>(progress4)));
 
-                handler->vit_on(40,static_cast<float>(pow7));
-                handler->vit_ontime(30);
+                ui->label_119->setText(QString::number(static_cast<int>(pow7)));
+
+                handler->vit_on((pow7));
+              //  handler->vit_ontime(30);
             }
 
             if (vvac == "Surgeon") {
@@ -4854,14 +4834,10 @@ ia2currentcount=2;
                     }
                 }
             }
-             vitcurrentcount=3;
+            beepsound(3);
+
         }
-        if (vitcurrentcount>vitcount) {
-            beepsound();
-        }
-        if (vitcurrentcount != -1) {
-            vitcount = vitcurrentcount;
-        }
+
         break;
     }
 
@@ -4995,7 +4971,34 @@ void MainWindow::updateLabel()
 //          effectiveTimeLabel->setText(effectiveTimeStr);
 
 //}
-void MainWindow::updateTimes(float progress4, QPushButton* elapsedTimeLabel, QPushButton* effectiveTimeLabel) {//working
+
+void MainWindow::on_elapsed_time_clicked()
+{
+    // Reset the elapsed time and cumulative elapsed time
+    if (elapsedTimer) {
+        elapsedTimer->restart();  // Restart the timer to reset elapsed time
+    }
+    cumulativeElapsedTimeSec = 0;  // Reset the cumulative elapsed time
+
+    // Reset the UI labels to "00:00"
+    ui->elapsed_time->setText("00:00");
+    ui->elapsed_time_2->setText("00:00");
+}
+
+void MainWindow::on_elapsed_time_2_clicked()
+{
+    // Reset the elapsed time and cumulative elapsed time
+    if (elapsedTimer) {
+        elapsedTimer->restart();  // Restart the timer to reset elapsed time
+    }
+    cumulativeElapsedTimeSec = 0;  // Reset the cumulative elapsed time
+
+    // Reset the UI labels to "00:00"
+    ui->elapsed_time->setText("00:00");
+    ui->elapsed_time_2->setText("00:00");
+}
+
+void MainWindow::updateTimes(float progress4, QPushButton* elapsedTimeLabel, QPushButton* effectiveTimeLabel) {
     // Ensure the timer is not null
     if (!elapsedTimer) {
         qDebug() << "Timer is null!";
@@ -5004,22 +5007,18 @@ void MainWindow::updateTimes(float progress4, QPushButton* elapsedTimeLabel, QPu
 
     // Get elapsed time in milliseconds
     int elapsedTimeMs = elapsedTimer->elapsed();
-    //qDebug() << "Elapsed Time (ms):" << elapsedTimeMs;
 
-    // Calculate minutes, seconds, and milliseconds for elapsed time
+    // Calculate minutes and seconds for elapsed time
     int elapsedTimeSec = elapsedTimeMs / 1000;  // Get the full seconds part
-    int milliseconds = elapsedTimeMs % 1000;  // Get the milliseconds part
     int minutes = elapsedTimeSec / 60;  // Calculate minutes
     elapsedTimeSec = elapsedTimeSec % 60;  // Get remaining seconds
 
     // Add current elapsed time to cumulative elapsed time
     cumulativeElapsedTimeSec += elapsedTimeSec;
 
-    // Format the elapsed time string as min:sec::ms
+    // Format the elapsed time string as min:sec
     QString elapsedTimeStr = QString::number(minutes) + ":"
-                             + QString::number(elapsedTimeSec).rightJustified(2, '0') + ":"
-                             + QString::number(milliseconds).rightJustified(3, '0');
-   // qDebug() << "Elapsed Time (min:sec::ms):" << elapsedTimeStr;
+                             + QString::number(elapsedTimeSec).rightJustified(2, '0');
 
     // Update the UI with formatted elapsed time
     elapsedTimeLabel->setText(elapsedTimeStr);
@@ -5033,26 +5032,21 @@ void MainWindow::updateTimes(float progress4, QPushButton* elapsedTimeLabel, QPu
     }
 
     // Calculate effective time based on elapsed time and progress4
-       float effectiveTime = static_cast<float>(elapsedTimeSec) * progress4;
-       int effectiveTimeSec = static_cast<int>(effectiveTime);  // Cast effectiveTime to int before using
+    float effectiveTime = static_cast<float>(elapsedTimeSec) * progress4;
+    int effectiveTimeSec = static_cast<int>(effectiveTime);  // Cast effectiveTime to int before using
 
-      // qDebug() << "Effective Time (seconds):" << effectiveTimeSec;
+    // Format the effective time as min:sec
+    int effectiveMinutes = effectiveTimeSec / 60;  // Convert to minutes
+    int effectiveSeconds = effectiveTimeSec % 60;  // Remaining seconds
 
-       // Format the effective time as mm:ss:ms
-       int effectiveMinutes = effectiveTimeSec / 60;   // Convert to minutes
-       int effectiveSeconds = effectiveTimeSec % 60;   // Remaining seconds
-       int effectiveMilliseconds = static_cast<int>(elapsedTimeMs * progress4) % 1000;
+    // Format the effective time as min:sec
+    QString effectiveTimeStr = QString::number(effectiveMinutes) + ":"
+                               + QString::number(effectiveSeconds).rightJustified(2, '0');
 
-       // Format the effective time as min:sec:ms
-       QString effectiveTimeStr = QString::number(effectiveMinutes) + ":"
-                                  + QString::number(effectiveSeconds).rightJustified(2, '0') + ":"
-                                  + QString::number(effectiveMilliseconds).rightJustified(3, '0');
-
-      // qDebug() << "Effective Time (min:sec:ms):" << effectiveTimeStr;
-
-       // Update the UI with formatted effective time
-       effectiveTimeLabel->setText(effectiveTimeStr);
+    // Update the UI with formatted effective time
+    effectiveTimeLabel->setText(effectiveTimeStr);
 }
+
 
 
 
@@ -5772,7 +5766,7 @@ void MainWindow::motoroff()
 
 void MainWindow::motorccwon()
 {
-    handler->write_motor(0x01,0x01,40);
+handler->write_motor(0x01,0x07,2);
 }
 //roundoff value
 
@@ -5898,8 +5892,8 @@ void MainWindow::moved(int gpio) {
             currentButtonIndex = (currentButtonIndex + 1) % totalButtons;
         }
 
-//        qDebug() << "Handpiece 0, GPIO: " << gpio << ", Button Index: " << currentButtonIndex;
-//        qDebug() << "Selected Button: " << buttons[currentButtonIndex]->text();
+      //  qDebug() << "Handpiece 0, GPIO: " << gpio << ", Button Index: " << currentButtonIndex;
+      //  qDebug() << "Selected Button: " << buttons[currentButtonIndex]->text();
 
         // Handle each button's specific action
         if (buttons[currentButtonIndex] == ui->ULTRASONICBUT1) {
@@ -5933,8 +5927,8 @@ void MainWindow::moved(int gpio) {
         }
 
 //        // Debugging output
-//        qDebug() << "Handpiece 1, GPIO: " << gpio << ", Button Index: " << currentButtonIndex;
-//        qDebug() << "Selected Button: " << buttons1[currentButtonIndex]->text();
+       // qDebug() << "Handpiece 1, GPIO: " << gpio << ", Button Index: " << currentButtonIndex;
+        //qDebug() << "Selected Button: " << buttons1[currentButtonIndex]->text();
 
         // Handle each button's specific action
         if (buttons1[currentButtonIndex] == ui->DIABUT) {
@@ -5953,190 +5947,7 @@ void MainWindow::moved(int gpio) {
 }
 
 
-//void MainWindow::moved(int gpio) {
-//    QPushButton *buttons[] = {
-//         ui->ULTRASONICBUT1, ui->ULTRASONICBUT2,
-//          ui->ULTRASONICBUT3, ui->ULTRASONICBUT4, ui->IA1BUT,
-//          ui->IA2BUT, ui->VITRECTOMYBUT, ui->DIABUT
-//      };
-//      QPushButton *buttons1[] = {
-//          ui->DIABUT, ui->IA1BUT,
-//          ui->IA2BUT, ui->VITRECTOMYBUT
-//      };
-//      int totalButtons = sizeof(buttons) / sizeof(buttons[0]);
-//      int totalButtons1 = sizeof(buttons1) / sizeof(buttons1[0]);
 
-//      if (gpio == 0 && nHandPiece == 0 && nHandPiece1 == 1) {
-//            if (currentButtonIndex == -1) {
-//                currentButtonIndex = 0; // Start from the first button (IA1)
-//            } else {
-//                currentButtonIndex = (currentButtonIndex + 1) % totalButtons;
-//            }
-
-//            qDebug() << "Handpiece 0, GPIO: " << gpio << ", Button Index: " << currentButtonIndex;
-//            qDebug() << "Selected Button: " << buttons[currentButtonIndex]->text();
-//  qDebug()<<"the nhandpiece"<<nHandPiece<<nHandPiece1;
-//            // Handle each button's specific action
-//            if (buttons[currentButtonIndex] == ui->ULTRASONICBUT1) {
-//                ULTRASONICBUT1();
-//            } else if (buttons[currentButtonIndex] == ui->ULTRASONICBUT2) {
-//                ULTRASONICBUT2();
-//            } else if (buttons[currentButtonIndex] == ui->ULTRASONICBUT3) {
-//                ULTRASONICBUT3();
-//            } else if (buttons[currentButtonIndex] == ui->ULTRASONICBUT4) {
-//                ULTRASONICBUT4();
-//            } else if (buttons[currentButtonIndex] == ui->IA1BUT) {
-//                IRRIGATIONBUT1();
-//            } else if (buttons[currentButtonIndex] == ui->IA2BUT) {
-//                IRRIGATIONBUT2();
-//            } else if (buttons[currentButtonIndex] == ui->VITRECTOMYBUT) {
-//                VITRECTOMYBUT();
-//            } else if (buttons[currentButtonIndex] == ui->DIABUT) {
-//                DIATHERMYBUT();
-//            }
-
-//            buttons[currentButtonIndex]->click();
-//            buttons[currentButtonIndex]->setFocus();
-//        }
-
-//      // Handling for nHandPiece == 1
-//        if (gpio == 0) {
-//      if (nHandPiece == 1 && nHandPiece1==0) {
-
-//              // Cycle through DIABUT, IA1BUT, IA2BUT, VITRECTOMYBUT
-//              if (currentButtonIndex == -1) {
-//                  currentButtonIndex = 0; // Start from DIABUT
-//              } else {
-//                  // Move to the next button in the sequence, loop back to DIABUT after VITRECTOMYBUT
-//                  currentButtonIndex = (currentButtonIndex + 1) % totalButtons1;
-//              }
-
-//              // Debugging output
-//              //qDebug() << "Handpiece 1, GPIO: " << gpio << ", Button Index: " << currentButtonIndex;
-//              //qDebug() << "Selected Button: " << buttons1[currentButtonIndex]->text();
-
-//              // Handle each button's specific action
-//              if(buttons1[currentButtonIndex] == ui->DIABUT) {
-//                  DIATHERMYBUT();
-//                //  qDebug()<<"The mode is diathermy";
-//              } else if(buttons1[currentButtonIndex] == ui->IA1BUT) {
-//                  IRRIGATIONBUT1();
-//                 // qDebug()<<"the button is ia1";
-//              } else if(buttons1[currentButtonIndex] == ui->IA2BUT) {
-//                  IRRIGATIONBUT2();
-//                  //qDebug()<<"the button is ia2";
-//              } else if(buttons1[currentButtonIndex] == ui->VITRECTOMYBUT) {
-//                  VITRECTOMYBUT();
-//                  //qDebug()<<"the button is vit";
-//              }
-
-//              buttons1[currentButtonIndex]->click();
-//              buttons1[currentButtonIndex]->setFocus();
-//          }
-//      }
-//}
-
-//void MainWindow::movePushButtonBottomToTop(int gpio) {
-//    // Define button arrays for each set of buttons
-//    QPushButton *buttons[] = {
-//        ui->ULTRASONICBUT1, ui->ULTRASONICBUT2,
-//        ui->ULTRASONICBUT3, ui->ULTRASONICBUT4, ui->IA1BUT,
-//        ui->IA2BUT, ui->VITRECTOMYBUT, ui->DIABUT
-//    };
-
-//    QPushButton *buttons1[] = {
-//        ui->DIABUT, ui->IA1BUT,
-//        ui->IA2BUT, ui->VITRECTOMYBUT
-//    };
-
-//    int totalButtons = sizeof(buttons) / sizeof(buttons[0]);
-//    int totalButtons1 = sizeof(buttons1) / sizeof(buttons1[0]);
-
-//    // Ensure gpio is 0 for processing
-//    if (gpio == 0) {
-//        if (nHandPiece == 0 && nHandPiece1 == 1) {
-//            // Handle button index for the first set of buttons (buttons)
-//            if (currentButtonIndex == -1) {
-//                currentButtonIndex = totalButtons - 1; // Start at the last button
-//            } else {
-//                // Move to the previous button (bottom to top)
-//                currentButtonIndex = (currentButtonIndex - 1 + totalButtons) % totalButtons;
-//            }
-//            qDebug()<<"the nhandpiece for decrement"<<nHandPiece<<nHandPiece1;
-
-//            // Debugging output
-//            //qDebug() << "Handpiece 0, GPIO: " << gpio << ", Button Index: " << currentButtonIndex;
-//            //qDebug() << "Selected Button: " << buttons[currentButtonIndex]->text();
-
-//            // Handle corresponding PDM Modes
-//            if (buttons[currentButtonIndex] == ui->ULTRASONICBUT1) {
-//                ULTRASONICBUT1();
-//                //qDebug() << "The PDM mode is DECREMENT" << ui->CutMode_vitCom->currentText() << "us1";
-//            } else if (buttons[currentButtonIndex] == ui->ULTRASONICBUT2) {
-//                ULTRASONICBUT2();
-//                //qDebug() << "The PDM mode is DECREMENT" << ui->CutMode_vitCom_2->currentText() << "us2";
-//            } else if (buttons[currentButtonIndex] == ui->ULTRASONICBUT3) {
-//                ULTRASONICBUT3();
-//                //qDebug() << "The PDM mode is DECREMENT" << ui->CutMode_vitCom_3->currentText() << "us3";
-//            } else if (buttons[currentButtonIndex] == ui->ULTRASONICBUT4) {
-//                ULTRASONICBUT4();
-//               // qDebug() << "The PDM mode is DECREMENT" << ui->CutMode_vitCom_4->currentText() << "us4";
-//            } else if (buttons[currentButtonIndex] == ui->IA1BUT) {
-//                IRRIGATIONBUT1();
-//            } else if (buttons[currentButtonIndex] == ui->IA2BUT) {
-//                IRRIGATIONBUT2();
-//            } else if (buttons[currentButtonIndex] == ui->VITRECTOMYBUT) {
-//                VITRECTOMYBUT();
-//            } else if (buttons[currentButtonIndex] == ui->DIABUT) {
-//                DIATHERMYBUT();
-//            }
-
-//            buttons[currentButtonIndex]->click();
-//            buttons[currentButtonIndex]->setFocus();
-//        }
-//        // Handle second set of buttons (buttons1)
-//          if (nHandPiece == 1 && nHandPiece1 == 0) {
-//              if (currentButtonIndex == -1) {
-//                  currentButtonIndex = totalButtons1 - 1; // Start at the last button
-//              } else {
-//                  // If the current button is DIABUT (Diathermy), check GPIO value
-//                  if (buttons1[currentButtonIndex] == ui->DIABUT) {
-//                      // Read the GPIO value (assume gpio is the variable holding the current GPIO state)
-//                      if (gpio == 0) {
-//                          // If GPIO value is 0, move to the previous button (Vitrectomy)
-//                          currentButtonIndex = (currentButtonIndex - 1 + totalButtons1) % totalButtons1;
-//                      }
-//                  } else {
-//                      // Move to the previous button (bottom to top)
-//                      currentButtonIndex = (currentButtonIndex - 1 + totalButtons1) % totalButtons1;
-//                  }
-//              }
-
-//              // Debugging output
-//              qDebug() << "Handpiece 1, GPIO: " << gpio << ", Button Index: " << currentButtonIndex;
-//              qDebug() << "Selected Button: " << buttons1[currentButtonIndex]->text();
-
-//              // Handle the actions for buttons1
-//              if (buttons1[currentButtonIndex] == ui->DIABUT) {
-//                  DIATHERMYBUT();
-//                  qDebug() << "The mode is diathermy";
-//              } else if (buttons1[currentButtonIndex] == ui->IA1BUT) {
-//                  IRRIGATIONBUT1();
-//                  qDebug() << "The button is IA1";
-//              } else if (buttons1[currentButtonIndex] == ui->IA2BUT) {
-//                  IRRIGATIONBUT2();
-//                  qDebug() << "The button is IA2";
-//              } else if (buttons1[currentButtonIndex] == ui->VITRECTOMYBUT) {
-//                  VITRECTOMYBUT();
-//                  qDebug() << "The button is vitrectomy";
-//              }
-
-//              // Simulate a click on the selected button and set focus
-//              buttons1[currentButtonIndex]->click();
-//              buttons1[currentButtonIndex]->setFocus();
-//          }
-//      }
-//}
 void MainWindow::movePushButtonBottomToTop(int gpio) {
     // Define button arrays for each set of buttons
     QPushButton *buttons[] = {
@@ -6260,7 +6071,7 @@ void MainWindow::onPdmModeSelected3(int gpio) {
 
 void MainWindow::moveTab(int usIndex) {
     if (!ui->tabWidget_2) {
-        qDebug() << "tabWidget_2 is null!";
+     //   qDebug() << "tabWidget_2 is null!";
         return;
     }
 
@@ -6268,7 +6079,7 @@ void MainWindow::moveTab(int usIndex) {
     int tabCount = ui->tabWidget_2->count();
 
     if (tabCount == 0) {
-        qDebug() << "No tabs available!";
+        //qDebug() << "No tabs available!";
         return;
     }
 
@@ -6278,24 +6089,24 @@ void MainWindow::moveTab(int usIndex) {
     } else if (usIndex == 3 || usIndex == 4) {
         currentIndex = (currentIndex - 1 + tabCount) % tabCount;
     } else {
-        qDebug() << "Invalid usIndex value:" << usIndex;
+      //  qDebug() << "Invalid usIndex value:" << usIndex;
         return;
     }
 
     // Update combo boxes based on usIndex
     if (usIndex == 1) {
         if (ui->CutMode_vitCom) {
-            qDebug() << "Updating CutMode_vitCom with index:" << currentIndex;
+          //  qDebug() << "Updating CutMode_vitCom with index:" << currentIndex;
             ui->CutMode_vitCom->setCurrentIndex(currentIndex);
             onCutMode_vitComChanged(ui->CutMode_vitCom->currentIndex());
         } else {
-            qDebug() << "CutMode_vitCom is null!";
+           // qDebug() << "CutMode_vitCom is null!";
         }
     }
 
     // Update tab widget
     ui->tabWidget_2->setCurrentIndex(currentIndex);
-    qDebug() << "Moved to tab index:" << currentIndex << " for usIndex:" << usIndex;
+   // qDebug() << "Moved to tab index:" << currentIndex << " for usIndex:" << usIndex;
 }
 
 void MainWindow::moveTab1(int usIndex) {
@@ -6413,151 +6224,15 @@ void MainWindow::moveTab3(int usIndex) {
 // Member variable to keep track of the active combo box
 
 
-
 void MainWindow::footreflux(int gpio)
 {
-   reflux=gpio;
+   // qDebug()<<"the reflux value is from the gpio"<<gpio;
     if (gpio == 0) {
-        motorccwon();
-      //  QTimer::singleShot(1000, [this]() {
-      //      motoroff();
-       // });
+             motorccwon();
 
-//reflux= 1;       // Update the flag to indicate motor action completed
-   // }
-
-   // else{
-      //  reflux=0;
     }
 }
-//void MainWindow::continousirrigation(int value) {
-//    QString styleSheetOn = "QPushButton {"
-//                           "font: 20pt Ubuntu;"
-//                           "background-color: green;"
-//                           "color: black;"
-//                           "image: url(:/images/ci.png);"
-//                           "border: 5px solid black;"
-//                           "border-radius: 30px;"
-//                           "font-weight: bold;"
-//                           "}";
 
-//    QString styleSheetOff = "QPushButton {"
-//                            "font: 20pt Ubuntu;"
-//                            "background-color: red;"
-//                            "image: url(:/images/ci.png);"
-//                            "border: 5px solid black;"
-//                            "border-radius: 30px;"
-//                            "font-weight: bold;"
-//                            "}";
-
-//    con = value; // Update the con value with the input
-
-//    if (con == 0) {
-//        // GPIO value is 0
-//        if (overallci) {
-//            // If irrigation is ON, turn it OFF
-//            ui->CI5_5->setStyleSheet(styleSheetOff);
-//            ui->CI5_5->update();
-//            overallci = false;
-//            handler->pinchvalve_off();
-//            handler->buzz();
-//        }
-//    } else {
-//        // GPIO value is 1
-//        if (!overallci) {
-//            // If irrigation is OFF, turn it ON
-//            ui->CI5_5->setStyleSheet(styleSheetOn);
-//            ui->CI5_5->update();
-//            overallci = true;
-//            handler->pinchvalve_on();
-//            handler->buzz();
-//        }
-//    }
-//}
-//void MainWindow::continousirrigation(int value)
-//{
-//    QString styleSheetOn = "QPushButton {"
-//                           "font: 20pt Ubuntu;"
-//                           "background-color: green;"
-//                           "color: black;"
-//                           "image: url(:/images/ci.png);"
-//                           "border: 5px solid black;"
-//                           "border-radius: 30px;"
-//                           "font-weight: bold;"
-//                           "}";
-
-//    QString styleSheetOff = "QPushButton {"
-//                            "font: 20pt Ubuntu;"
-//                            "background-color: red;"
-//                            "image: url(:/images/ci.png);"
-//                            "border: 5px solid black;"
-//                            "border-radius: 30px;"
-//                            "font-weight: bold;"
-//                            "}";
-
-//    con = value; // Update GPIO value
-
-//    if (con == 0 && overallci) {
-//        // GPIO value is 0 and irrigation is ON -> Turn OFF
-//        ui->CI5_5->setStyleSheet(styleSheetOff);
-//        ui->CI5_5->update();
-//        overallci = false; // Update state
-//        handler->pinchvalve_off();    // Deactivate pinch valve
-//        handler->buzz();              // Trigger buzzer
-//    } else if (con == 1 && !overallci) {
-//        // GPIO value is 1 and irrigation is OFF -> Turn ON
-//        ui->CI5_5->setStyleSheet(styleSheetOn);
-//        ui->CI5_5->update();
-//        overallci = true;             // Update state
-//        handler->pinchvalve_on();     // Activate pinch valve
-//        handler->buzz();              // Trigger buzzer
-//    }
-//}
-
-//void MainWindow::continousirrigation(int value) {
-//    QString styleSheetOn = "QPushButton {"
-//                           "font: 20pt Ubuntu;"
-//                           "background-color: green;"
-//                           "color: black;"
-//                           "image: url(:/images/ci.png);"
-//                           "border: 5px solid black;"
-//                           "border-radius: 30px;"
-//                           "font-weight: bold;"
-//                           "}";
-
-//    QString styleSheetOff = "QPushButton {"
-//                            "font: 20pt Ubuntu;"
-//                            "background-color: red;"
-//                            "image: url(:/images/ci.png);"
-//                            "border: 5px solid black;"
-//                            "border-radius: 30px;"
-//                            "font-weight: bold;"
-//                            "}";
-
-//    con = value; // Update the con value with the input
-
-//    if (overallci) {
-//        // Continuous Irrigation is ON
-//        if (con == 0) {
-//            // GPIO value is 0, turn OFF irrigation
-//            ui->CI5_5->setStyleSheet(styleSheetOff);
-//            ui->CI5_5->update();
-//            overallci = false; // Update state
-//            handler->pinchvalve_off();
-//            handler->buzz();
-//        }
-//    } else {
-//        // Continuous Irrigation is OFF
-//        if (con == 1) {
-//            // GPIO value is 1, turn ON irrigation
-//            ui->CI5_5->setStyleSheet(styleSheetOn);
-//            ui->CI5_5->update();
-//            overallci = true; // Update state
-//            handler->pinchvalve_on();
-//            handler->buzz();
-//        }
-//    }
-//}
 void MainWindow::on_CI4_2_clicked()
 {
     QString styleSheetOn = "QPushButton {"
@@ -6596,8 +6271,7 @@ void MainWindow::on_CI4_2_clicked()
     ui->CI5_5->update(); // Ensure UI updates immediately
 }
 
-void MainWindow::continousirrigation(int value)
-{
+void MainWindow::continousirrigation(int value) {
     QString styleSheetOn = "QPushButton {"
                            "font: 20pt Ubuntu;"
                            "background-color: green;"
@@ -6616,6 +6290,17 @@ void MainWindow::continousirrigation(int value)
                             "border-radius: 30px;"
                             "font-weight: bold;"
                             "}";
+
+    // If Diathermy mode is active, always keep pinch valve off
+    if (ui->tabWidget->currentIndex() == 7) { // Check if in Diathermy tab
+        if (overallci) {
+            overallci = false;
+            ui->CI5_5->setStyleSheet(styleSheetOff);
+            handler->pinchvalve_off(); // Ensure pinch valve is off
+        }
+        ui->CI5_5->update();
+        return; // Exit early to prevent any further action
+    }
 
     // Adjust Continuous Irrigation based on GPIO input
     if (value == 0 && !overallci) {
@@ -7224,6 +6909,28 @@ void MainWindow::receiveValues(const QString &comboBoxValue,const QString &combo
       ui->us1mode->setText(surgicalData.powmode);
       ui->us1vacmode->setText(surgicalData.vacmode);
       ui->CutMode_vitCom->setCurrentText(surgicalData.powmethod);
+      if(surgicalData.powmethod=="Continuous"){
+          ui->tabWidget_2->setCurrentIndex(0);
+      }
+      if(surgicalData.powmethod=="Pulse"){
+          ui->tabWidget_2->setCurrentIndex(1);
+      }
+      if(surgicalData.powmethod=="Ocupulse"){
+          ui->tabWidget_2->setCurrentIndex(2);
+      }
+      if(surgicalData.powmethod=="Ocuburst"){
+          ui->tabWidget_2->setCurrentIndex(3);
+      }
+      if(surgicalData.powmethod=="Single burst"){
+          ui->tabWidget_2->setCurrentIndex(4);
+      }
+      if(surgicalData.powmethod=="Multi burst"){
+          ui->tabWidget_2->setCurrentIndex(5);
+      }
+      if(surgicalData.powmethod=="Cold Phaco"){
+          ui->tabWidget_2->setCurrentIndex(6);
+      }
+
       //us2
       ui->lineEdit_58->setText(QString::number(surgicalData.us2pow));
       ui->lineEdit_60->setText(QString::number(surgicalData.us2vac));
@@ -7231,6 +6938,27 @@ void MainWindow::receiveValues(const QString &comboBoxValue,const QString &combo
       ui->us2mode->setText(surgicalData.us2powmode);
       ui->us2vacmode->setText(surgicalData.us2vacmode);
       ui->CutMode_vitCom_2->setCurrentText(surgicalData.us2powermethod);
+      if(surgicalData.us2powermethod=="Continuous"){
+          ui->tabWidget_2->setCurrentIndex(0);
+      }
+      if(surgicalData.us2powermethod=="Pulse"){
+          ui->tabWidget_2->setCurrentIndex(1);
+      }
+      if(surgicalData.us2powermethod=="Ocupulse"){
+          ui->tabWidget_2->setCurrentIndex(2);
+      }
+      if(surgicalData.us2powermethod=="Ocuburst"){
+          ui->tabWidget_2->setCurrentIndex(3);
+      }
+      if(surgicalData.us2powermethod=="Single burst"){
+          ui->tabWidget_2->setCurrentIndex(4);
+      }
+      if(surgicalData.us2powermethod=="Multi burst"){
+          ui->tabWidget_2->setCurrentIndex(5);
+      }
+      if(surgicalData.us2powermethod=="Cold Phaco"){
+          ui->tabWidget_2->setCurrentIndex(6);
+      }
       //us3
       ui->lineEdit_61->setText(QString::number(surgicalData.us3pow));
       ui->lineEdit_63->setText(QString::number(surgicalData.us3vac));
@@ -7238,6 +6966,27 @@ void MainWindow::receiveValues(const QString &comboBoxValue,const QString &combo
       ui->us3mode->setText(surgicalData.us3powmode);
       ui->us3vacmode->setText(surgicalData.us3vacmode);
       ui->CutMode_vitCom_3->setCurrentText(surgicalData.us3powermethod);
+      if(surgicalData.us3powermethod=="Continuous"){
+          ui->tabWidget_2->setCurrentIndex(0);
+      }
+      if(surgicalData.us3powermethod=="Pulse"){
+          ui->tabWidget_2->setCurrentIndex(1);
+      }
+      if(surgicalData.us3powermethod=="Ocupulse"){
+          ui->tabWidget_2->setCurrentIndex(2);
+      }
+      if(surgicalData.us3powermethod=="Ocuburst"){
+          ui->tabWidget_2->setCurrentIndex(3);
+      }
+      if(surgicalData.us3powermethod=="Single burst"){
+          ui->tabWidget_2->setCurrentIndex(4);
+      }
+      if(surgicalData.us3powermethod=="Multi burst"){
+          ui->tabWidget_2->setCurrentIndex(5);
+      }
+      if(surgicalData.us3powermethod=="Cold Phaco"){
+          ui->tabWidget_2->setCurrentIndex(6);
+      }
       //us4
       ui->lineEdit_64->setText(QString::number(surgicalData.us4pow));
       ui->lineEdit_66->setText(QString::number(surgicalData.us4vac));
@@ -7245,6 +6994,27 @@ void MainWindow::receiveValues(const QString &comboBoxValue,const QString &combo
       ui->us4mode->setText(surgicalData.us4powmode);
       ui->us4vacmode->setText(surgicalData.us4vacmode);
       ui->CutMode_vitCom_4->setCurrentText(surgicalData.us4powermethod);
+      if(surgicalData.us4powermethod=="Continuous"){
+          ui->tabWidget_2->setCurrentIndex(0);
+      }
+      if(surgicalData.us4powermethod=="Pulse"){
+          ui->tabWidget_2->setCurrentIndex(1);
+      }
+      if(surgicalData.us4powermethod=="Ocupulse"){
+          ui->tabWidget_2->setCurrentIndex(2);
+      }
+      if(surgicalData.us4powermethod=="Ocuburst"){
+          ui->tabWidget_2->setCurrentIndex(3);
+      }
+      if(surgicalData.us4powermethod=="Single burst"){
+          ui->tabWidget_2->setCurrentIndex(4);
+      }
+      if(surgicalData.us4powermethod=="Multi burst"){
+          ui->tabWidget_2->setCurrentIndex(5);
+      }
+      if(surgicalData.us4powermethod=="Cold Phaco"){
+          ui->tabWidget_2->setCurrentIndex(6);
+      }
       //ia1
       ui->lineEdit_70->setText(QString::number(surgicalData.ia1vac));
       ui->lineEdit_69->setText(QString::number(surgicalData.ia1asp));
@@ -7556,7 +7326,7 @@ emit sendsurgeon(surgeonName);
         vibon=vibeonoff;
         speakeronoff=speaker_onoff;
 
-
+  on_clickedenter();
         //qDebug()<<nfpzero<<nfpone<<nfptwo<<nfpthree<<"that is sql value";
           emit left_foot(footleft);
         emit right_foot(footright);
@@ -7672,6 +7442,7 @@ void MainWindow::on_ocupulseup_but_clicked()
     handler->pdm_mode(CONTINOUS);
 
 }
+
 
 
 

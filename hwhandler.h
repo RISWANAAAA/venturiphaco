@@ -112,7 +112,7 @@ class hwhandler: public QThread
 public:
     explicit hwhandler(QObject *parent = 0);
     int memfd;
-    static void vit_on(int vitONTime,int count);
+    static void vit_on(int periodCount);
     static void vit_off();
     static void vit_ontime(int ontime);
 

@@ -114,7 +114,7 @@ connect(ui->SelectSurgeon,&QComboBox::currentTextChanged,this,&doctor::onSurgeon
   ui->progressBar_17->setRange(2,40);
   ui->progressBar_19->setRange(5,500);
   ui->progressBar_20->setRange(2,40);
-  ui->progressBar_21->setRange(60,960);
+  ui->progressBar_21->setRange(60,2520);
 
   connect(ui->DiaBut,&QPushButton::clicked,this,&doctor::DiathermyBut);
   connect(ui->PhacoBut,&QPushButton::clicked,this,&doctor::PhacoBut);
@@ -762,7 +762,7 @@ if(value ==0){
             ui->lineEdit->setText(QString::number(60));
             return;
         }
-        setRange(ui->lineEdit, prevValue, value8, 960);
+        setRange(ui->lineEdit, prevValue, value8, 2520);
         ui->progressBar_21->setValue(value8);
 
     }
@@ -1438,9 +1438,10 @@ void doctor::onSurgeonSelectionChanged(const QString &surgeonName)
         ui->Vibration_onoff->setText(vib_onoff);
         QString speaker_onoff = query.value("speakeronoff").toString();
         ui->ButSpeakerOnOff->setText(speaker_onoff);
-        if(vib_onoff == "Viberation ON"){
+        if(ui->Vibration_onoff->text() == "Vibration ON"){
             ui->lab_vibonoff->setStyleSheet("image: url(:/images/vibrationon.png);border:2px solid skyblue;border-radius:20px;");
-        }else if(vib_onoff == "Viberation OFF"){
+            ui->lab_vibonoff->update();
+        }else if(ui->Vibration_onoff->text() == "Vibration OFF"){
             ui->lab_vibonoff->setStyleSheet("image: url(:/images/vibrationoff.png);border:2px solid skyblue;border-radius:20px;");
         }
         if(speaker_onoff == "Speaker ON"){
@@ -1626,7 +1627,7 @@ void doctor::receivebottomright(const QString &text)
 void doctor::on_Vibration_onoff_clicked()
 {
     vib_onoff=!vib_onoff;
-    if(vib_onoff){
+    if(!vib_onoff){
         ui->Vibration_onoff->setText("Vibration ON");
         ui->lab_vibonoff->setStyleSheet("image: url(:/images/vibrationon.png);border:2px solid skyblue;border-radius:20px;");
     }else{
@@ -1639,7 +1640,7 @@ void doctor::on_Vibration_onoff_clicked()
 void doctor::on_ButSpeakerOnOff_clicked()
 {
     spealer_onoff = !spealer_onoff;
-    if(spealer_onoff){
+    if(!spealer_onoff){
         ui->ButSpeakerOnOff->setText("Speaker ON");
         ui->lab_vibonoff_2->setStyleSheet("image: url(:/images/speakeron.png);border:2px solid skyblue;border-radius:20px;");
 

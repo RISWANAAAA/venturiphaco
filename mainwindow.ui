@@ -53,7 +53,7 @@ background-color: rgb(18, 78, 102);
      <string notr="true">background-color: rgb(36, 73, 90);</string>
     </property>
     <property name="currentIndex">
-     <number>5</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab_33">
      <property name="styleSheet">
@@ -497,9 +497,9 @@ color: rgb(0, 0, 0);</string>
      <widget class="QLabel" name="label_88">
       <property name="geometry">
        <rect>
-        <x>970</x>
+        <x>960</x>
         <y>10</y>
-        <width>231</width>
+        <width>241</width>
         <height>51</height>
        </rect>
       </property>
@@ -1172,9 +1172,9 @@ color: rgb(0, 0, 0);</string>
      <widget class="QLabel" name="label_94">
       <property name="geometry">
        <rect>
-        <x>970</x>
+        <x>960</x>
         <y>10</y>
-        <width>231</width>
+        <width>241</width>
         <height>51</height>
        </rect>
       </property>
@@ -1594,9 +1594,9 @@ color: rgb(0, 0, 0);</string>
      <widget class="QLabel" name="label_100">
       <property name="geometry">
        <rect>
-        <x>970</x>
+        <x>960</x>
         <y>10</y>
-        <width>231</width>
+        <width>241</width>
         <height>51</height>
        </rect>
       </property>
@@ -3782,9 +3782,9 @@ border-bottom-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop: 0 rgb(195,195
      <widget class="QLabel" name="label_119">
       <property name="geometry">
        <rect>
-        <x>780</x>
+        <x>750</x>
         <y>130</y>
-        <width>91</width>
+        <width>121</width>
         <height>91</height>
        </rect>
       </property>
@@ -5151,11 +5151,17 @@ QPushButton:focus {
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">
-image: url(:/images/settings1.png);
-background-color: rgb(222, 221, 218);
-border:4px solid black;
-border-radius:30px;</string>
+     <string notr="true">QPushButton {
+    image: url(:/images/settings1.png);
+    background-color: rgb(222, 221, 218);
+    border: 4px solid black;
+    border-radius: 30px;
+}
+
+QPushButton:focus {
+    outline: none;
+}
+</string>
     </property>
     <property name="text">
      <string/>
@@ -5171,11 +5177,18 @@ border-radius:30px;</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">image: url(:/images/elapsed.png);
-background-color:transparent;
-font:20pt;
-border:none;
-border-radius:20px;</string>
+     <string notr="true">QPushButton {
+    image: url(:/images/elapsed.png);
+    background-color: transparent;
+    font: 20pt;
+    border: none;
+    border-radius: 20px;
+}
+
+QPushButton:focus {
+    outline: none;
+}
+</string>
     </property>
     <property name="text">
      <string>0:00:00</string>
@@ -5462,10 +5475,17 @@ QPushButton:focus {
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">image: url(:/images/handpiece1.png);
-background-color:Red;
-border:3px solid black;
-border-radius:20px;</string>
+     <string notr="true">QPushButton {
+    image: url(:/images/handpiece1.png);
+    background-color: red;
+    border: 3px solid black;
+    border-radius: 20px;
+}
+
+QPushButton:focus {
+    outline: none;
+}
+</string>
     </property>
     <property name="text">
      <string/>
@@ -5521,12 +5541,17 @@ image: url(:/images/4img.png);
      <enum>Qt::LeftToRight</enum>
     </property>
     <property name="styleSheet">
-     <string notr="true">font:50pt &quot;Ubuntu&quot;;
+     <string notr="true">QPushButton {
+    font: 50pt &quot;Ubuntu&quot;;
+    color: rgb(255, 255, 255);
+    background-color: transparent;
+    border: none;
+    font-weight: bold;
+}
 
-color: rgb(255, 255, 255);
-background-color:transparent;
-border:none;
-font-weight: bold;
+QPushButton:focus {
+    outline: none;
+}
 </string>
     </property>
     <property name="text">
@@ -5715,7 +5740,7 @@ font-weight: bold;</string>
      <string/>
     </property>
     <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QPushButton" name="elapsed_time_2">
@@ -5728,11 +5753,18 @@ font-weight: bold;</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">image: url(:/images/elapsed.png);
-background-color:transparent;
-font:20pt;
-border:none;
-border-radius:20px;</string>
+     <string notr="true">QPushButton {
+    image: url(:/images/elapsed.png);
+    background-color: transparent;
+    font: 20pt;
+    border: none;
+    border-radius: 20px;
+}
+
+QPushButton:focus {
+    outline: none;
+}
+</string>
     </property>
     <property name="text">
      <string>0:00:00</string>
