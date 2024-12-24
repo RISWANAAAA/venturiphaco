@@ -6257,9 +6257,19 @@ void MainWindow::moveTab3(int usIndex) {
 
 void MainWindow::footreflux(int gpio)
 {
-   // qDebug()<<"the reflux value is from the gpio"<<gpio;
+     if (ui->tabWidget->currentIndex() == 7) {
+           motoroff();
+           handler->write_motor(0,0,0);
+        }
+
+
+
     if (gpio == 0) {
              motorccwon();
+             if (ui->tabWidget->currentIndex() == 7) {
+                   motoroff();
+                   handler->write_motor(0,0,0);
+                }
 
     }
 }
