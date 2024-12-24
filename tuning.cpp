@@ -504,7 +504,7 @@ int tuning::Tune_Phaco()
                    hand->emitTuneStopPhaco();
 
             trueFreqFound=false;
-            return -1;
+           return -1;
 //            isRunning = false;
 //            hand->phaco_off();
 //            main->show();
@@ -582,8 +582,8 @@ int tuning::Tune_Phaco()
 //            updateProgress();
 //            emit sendfreq(2781);
 
-           // return 0;
-            return -1;
+//            return 0;
+           return -1;
         }
         else{
             if ( nADC7841CurrentCountPrev >= 3100){
@@ -644,7 +644,6 @@ int tuning::Tune_Phaco()
         main->show();
         main->ULTRASONICBUT1();
         main->activategpio();
-
         main->setTuneMode();
         updateProgress();
         emit sendfreq(nResonantFreqCount);
@@ -683,7 +682,6 @@ void tuning::on_But_Next_clicked()
     main->show();
     emit activatemain();
    main->DIATHERMYBUT();
-
 main->disablegpio();
 
 

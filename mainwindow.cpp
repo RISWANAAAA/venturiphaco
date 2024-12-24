@@ -1091,7 +1091,7 @@ void MainWindow::ULTRASONICBUT1()
     ui->CI5_5->show();
     handler->phaco_off();
     handler->freq_count(0);
-
+ui->label_32->show();
     butname=1;
     handler->buzz();
      us1PdmMode = true;
@@ -1189,7 +1189,7 @@ void MainWindow::ULTRASONICBUT2()
     ui->tabWidget->setCurrentIndex(1);
     QString currentText = ui->CutMode_vitCom_2->currentText();
  updateTabsBasedOnComboBox(currentText);
-    //qDebug()<<"the mode from us2"<<currentText;
+ ui->label_32->show();
  ui->CI5_5->setEnabled(true);
  ui->CI5_5->show();
  handler->phaco_off();
@@ -1203,6 +1203,9 @@ void MainWindow::ULTRASONICBUT2()
       us4PdmMode = false;
       handler->safetyvent_off();
 
+      ui->CutMode_vit_2->show();
+      ui->CutMode_vitCom_2->show();
+
 }
 void MainWindow::ULTRASONICBUT3()
 {
@@ -1211,6 +1214,7 @@ void MainWindow::ULTRASONICBUT3()
    updateTabsBasedOnComboBox(currentText2);
    ui->CI5_5->setEnabled(true);
    ui->CI5_5->show();
+   ui->label_32->show();
 
 
     ui->tabWidget_2->show();
@@ -1223,6 +1227,8 @@ void MainWindow::ULTRASONICBUT3()
         handler->safetyvent_off();
         handler->phaco_off();
         handler->freq_count(0);
+        ui->CutMode_vit_3->show();
+        ui->CutMode_vitCom_3->show();
 
 }
 
@@ -1234,6 +1240,7 @@ void MainWindow::ULTRASONICBUT4()
     updateTabsBasedOnComboBox(currentText3);
     ui->CI5_5->setEnabled(true);
     ui->CI5_5->show();
+    ui->label_32->show();
 
      ui->tabWidget_2->show();
      butname=4;
@@ -1245,7 +1252,8 @@ void MainWindow::ULTRASONICBUT4()
          handler->safetyvent_off();
          handler->phaco_off();
          handler->freq_count(0);
-
+         ui->CutMode_vit_4->show();
+         ui->CutMode_vitCom_4->show();
   }
 
 void MainWindow::IRRIGATIONBUT1()
@@ -1253,9 +1261,14 @@ void MainWindow::IRRIGATIONBUT1()
     ui->tabWidget->setCurrentIndex(4);
     ui->CI5_5->setEnabled(true);
     ui->CI5_5->show();
-
-     ui->CutMode_vit->hide();
-     ui->CutMode_vitCom->hide();
+    ui->CutMode_vit->hide();
+    ui->CutMode_vitCom->hide();
+    ui->CutMode_vit_2->hide();
+    ui->CutMode_vitCom_2->hide();
+    ui->CutMode_vit_3->hide();
+    ui->CutMode_vitCom_3->hide();
+    ui->CutMode_vit_4->hide();
+    ui->CutMode_vitCom_4->hide();
      ui->tabWidget_2->hide();
      butname=5;
      handler->buzz();
@@ -1272,8 +1285,14 @@ void MainWindow::IRRIGATIONBUT2()
     ui->CI5_5->setEnabled(true);
     ui->CI5_5->show();
 
-     ui->CutMode_vit->hide();
-     ui->CutMode_vitCom->hide();
+    ui->CutMode_vit->hide();
+    ui->CutMode_vitCom->hide();
+    ui->CutMode_vit_2->hide();
+    ui->CutMode_vitCom_2->hide();
+    ui->CutMode_vit_3->hide();
+    ui->CutMode_vitCom_3->hide();
+    ui->CutMode_vit_4->hide();
+    ui->CutMode_vitCom_4->hide();
      ui->tabWidget_2->hide();
      butname=6;
      handler->buzz();
@@ -1293,8 +1312,14 @@ ui->CI5_5->show();
     ui->label_32->hide();
     ui->tabWidget_2->hide();
     handler->safetyvent_off();
-
-
+    ui->CutMode_vit->hide();
+    ui->CutMode_vitCom->hide();
+    ui->CutMode_vit_2->hide();
+    ui->CutMode_vitCom_2->hide();
+    ui->CutMode_vit_3->hide();
+    ui->CutMode_vitCom_3->hide();
+    ui->CutMode_vit_4->hide();
+    ui->CutMode_vitCom_4->hide();
 }
 
 void MainWindow::DIATHERMYBUT() {
@@ -1311,9 +1336,15 @@ void MainWindow::DIATHERMYBUT() {
     overallci=false;
 
     // Hide unnecessary UI elements for Diathermy mode
-   // ui->label_32->hide();
+    ui->label_32->hide();
     ui->CutMode_vit->hide();
     ui->CutMode_vitCom->hide();
+    ui->CutMode_vit_2->hide();
+    ui->CutMode_vitCom_2->hide();
+    ui->CutMode_vit_3->hide();
+    ui->CutMode_vitCom_3->hide();
+    ui->CutMode_vit_4->hide();
+    ui->CutMode_vitCom_4->hide();
     ui->tabWidget_2->hide();
 
     // Reset button name
@@ -2270,7 +2301,7 @@ void MainWindow::updateTabsBasedOnComboBox(const QString &selected) {
        // qDebug() << "The pulse count is:" << nPulseCount;
 
         modeFound = true;
-       // ui->label_32->show();
+        ui->label_32->show();
         handler->buzz();
     }
     else if (selected == "Ocupulse") {
@@ -2282,7 +2313,7 @@ void MainWindow::updateTabsBasedOnComboBox(const QString &selected) {
 
 
         modeFound = true;
-       // ui->label_32->show();
+        ui->label_32->show();
         handler->buzz();
 
     }
@@ -2296,7 +2327,7 @@ void MainWindow::updateTabsBasedOnComboBox(const QString &selected) {
         handler->pulse_count(nOcuBurstCount);
 
         modeFound = true;
-       // ui->label_32->show();
+       ui->label_32->show();
         handler->buzz();
 
     }
@@ -2311,7 +2342,7 @@ void MainWindow::updateTabsBasedOnComboBox(const QString &selected) {
 
 //qDebug()<<"the single burst mode is workinggggg";
 modeFound = true;
-       // ui->label_32->show();
+       ui->label_32->show();
         handler->buzz();
 
     }
@@ -2344,7 +2375,7 @@ modeFound = true;
 
         modeFound = true;
 
-       // ui->label_32->show();
+        ui->label_32->show();
         handler->buzz();
 
     }

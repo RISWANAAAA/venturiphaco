@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.11.1, 2024-12-11T20:18:38. -->
+<!-- Written by QtCreator 4.11.1, 2024-12-23T19:59:56. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -319,9 +319,9 @@
     </valuelist>
     <value type="int" key="PE.EnvironmentAspect.Base">1</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">phacoupdate (on zynq)</value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">RemoteLinuxRunConfiguration:/home/amt-04/QtWorkspace/iNanoPlusVP_V1.5.8/phacoupdate.pro</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">/home/amt-04/QtWorkspace/iNanoPlusVP_V1.5.8/phacoupdate.pro</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">phacoupdate (on zynq)2</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">RemoteLinuxRunConfiguration:/home/amt-04/QtWorkspace/iNanoPlusVP_V1.6.0/phacoupdate.pro</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">/home/amt-04/QtWorkspace/iNanoPlusVP_V1.6.0/phacoupdate.pro</value>
     <value type="int" key="RemoteLinux.EnvironmentAspect.Version">1</value>
     <value type="QString" key="RemoteLinux.RunConfig.AlternateRemoteExecutable"></value>
     <value type="bool" key="RemoteLinux.RunConfig.UseAlternateRemoteExecutable">false</value>
