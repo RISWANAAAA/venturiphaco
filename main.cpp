@@ -8,12 +8,13 @@
 #include <QMovie>
 #include <QTimer>
 #include <QCoreApplication>
-
+#include"hwhandler.h"
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     prime p;
-
+    hwhandler h;
+    h.speaker_off();
     // Create a QLabel to display the GIF animation
     QLabel *splashLabel = new QLabel;
 

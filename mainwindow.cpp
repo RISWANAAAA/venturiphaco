@@ -4309,7 +4309,6 @@ QString ia1=ui->ia2mode->text();
                handler->speaker_off();
                 motoroff();
                 ui->label_113->setText(QString::number(0));
-                beepsound(0);
                 flag6=true;
             }
 
@@ -4322,7 +4321,6 @@ QString ia1=ui->ia2mode->text();
                 }
 
                 ui->dial_2->setValue(range);
-                handler->vibrator_on(1,1,300);
 
                 handler->pinchvalve_on();
                 ui->CI5_5->setStyleSheet(styleSheet3);
@@ -4341,7 +4339,6 @@ QString ia1=ui->ia2mode->text();
 
             else if (range >= (nfpzero + nfpone) && range < (nfpzero + nfpone + nfptwo + nfpthree)) {
                 ui->pushButton_42->setText("2");
-                handler->vibrator_on(1,2,300);
 
                 ventonia1 = false;
                 handler->safetyvent_off();
@@ -4391,7 +4388,6 @@ QString ia1=ui->ia2mode->text();
                     //int pro = readsensorvalue();
                  ui->label_113->setText(QString::number(0));
                  handler->speaker_off();
-                 beepsound(0);
                   flag6=true;
 
 
@@ -4405,7 +4401,6 @@ QString ia1=ui->ia2mode->text();
                     handler->speaker_off();
                 }
                   ui->dial_2->setValue(range);
-                  handler->vibrator_on(1,1,300);
 
              ui->CI5_5->setStyleSheet(styleSheet3);
                 handler->pinchvalve_on();
@@ -4428,7 +4423,6 @@ QString ia1=ui->ia2mode->text();
                 ventonia1=false;
                 beepsound(2);
                 ui->dial_2->setValue(range);
-                handler->vibrator_on(1,2,300);
 
                 ui->CI5_5->setStyleSheet(styleSheet3);
 handler->safetyvent_off();
@@ -4668,7 +4662,7 @@ handler->pinchvalve_on();
             // State 0
             ui->pushButton_42->setText("0");
             ui->dial_2->setValue(range);
-
+  handler->vibrator_off();
             if (!overallci) {
                 ui->CI5_5->setStyleSheet(styleSheet4);
                 handler->pinchvalve_off();
@@ -4717,7 +4711,7 @@ handler->pinchvalve_on();
             // State 2
             ui->pushButton_42->setText("2");
             ventonvit = false;
-            //footpedalbeep();
+            beepsound(2);
             ui->dial_2->setValue(range);
             ui->CI5_5->setStyleSheet(styleSheet3);
             handler->safetyvent_off();
@@ -4789,13 +4783,12 @@ handler->pinchvalve_on();
 
             ui->label_119->setText("0");
             handler->vit_off();
-            beepsound(3);
 
         } else if (range >= (nfpzero + nfpone + nfptwo) && range < (nfpzero + nfpone + nfptwo + nfpthree)) {
             // State 3
             ui->pushButton_42->setText("3");
             ventonvit = false;
-            //footpedalbeep();
+            beepsound(3);
             ui->dial_2->setValue(range);
             ui->CI5_5->setStyleSheet(styleSheet3);
             handler->safetyvent_off();
@@ -4865,7 +4858,6 @@ handler->pinchvalve_on();
                     }
                 }
             }
-            beepsound(3);
 
         }
 

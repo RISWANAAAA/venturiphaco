@@ -70,6 +70,8 @@ private slots:
 
     void on_ButRTune_clicked();
 
+    void on_butTuned_clicked();
+
 signals:
     void sendvisibleisgnale(bool status);
     void sendfreq(int count);

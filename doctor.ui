@@ -657,7 +657,7 @@ QProgressBar::chunk {
       <string notr="true">background-color:rgb(83, 104, 120);</string>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>3</number>
      </property>
      <widget class="QWidget" name="tab_6">
       <attribute name="title">

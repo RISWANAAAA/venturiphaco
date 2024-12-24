@@ -96,6 +96,8 @@ connect(ui->SelectSurgeon,&QComboBox::currentTextChanged,this,&doctor::onSurgeon
     ui->lineEdit_20->installEventFilter(this);
 //PROGRESSBAR SETTINGS
   ui->progressBar->setRange(5,100);
+    ui->progressBar_21->setMinimum(60);
+  ui->progressBar_21->setMaximum(2520);
   ui->progressBar_5->setRange(2,40);
   ui->progressBar_6->setRange(5,500);
   ui->progressBar_7->setRange(5,100);
@@ -815,7 +817,6 @@ void doctor::on_clickedenter()
             ui->lineEdit->setText(QString::number(lastValidValues[ui->lineEdit]));
         }
     }
-
     // Process other QLineEdits for power and vacuum
     QList<QLineEdit*> lineEdits = {
         ui->lineEdit_3, ui->lineEdit_4, ui->lineEdit_10, ui->lineEdit_9,
@@ -860,6 +861,7 @@ void doctor::on_clickedenter()
             }
         }
     }
+
 }
 
 
@@ -925,6 +927,7 @@ void doctor::BackBut()
 {
     hand->buzz();
     emit activatemainwindow();
+    key->hide();
     this->close();
 }
 
@@ -1580,7 +1583,7 @@ void doctor::onSurgeonSelectionChanged(const QString &surgeonName)
       cFoot->receivelineEditval(footpedalzero,footpedalone,footpedaltwo,footpedalthree);
       emit tx_speakeronoff(speaker_onoff);
   emit activatemainwindow();
-
+      on_clickedenter();
        query.clear();
     } if (db.isOpen()) {
         db.close();  // This closes the connection safely.

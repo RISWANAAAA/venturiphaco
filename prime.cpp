@@ -32,13 +32,13 @@ prime::prime(QWidget *parent) :
     hand->speaker_off();
     QString styleSheet = "QPushButton {"
                          "    font-family: Ubuntu;"
-                         "    font-size: 60pt;"
+                         "    font-size: 40pt;"
                          "font:bold;"
                          "    background-color: transparent;"
                          "    image: url(:/images/primeddd.png);"
                          "    color: white;"
-                         "    min-width: 350px;"
-                         "    max-width: 350px;"
+                         "    min-width: 380px;"
+                         "    max-width: 380px;"
                          "    min-height: 200px;"
                          "    max-height: 200px;"
                          "    border-radius: 20px;" // Adjust the radius as needed
@@ -220,17 +220,16 @@ void prime::current(int tab)
 {
     QString styleSheet = "QPushButton {"
                          "    font-family: Ubuntu;"
-                         "    font-size: 60pt;"
+                         "    font-size: 40pt;"
                          "font:bold;"
                          "    image: url(:/images/primeddd.png);"
                          "    background-color: transparent;"
                          "    color: white;"
-                         "    min-width: 350px;"
-                         "    max-width: 350px;"
+                         "    min-width: 380px;"
+                         "    max-width: 380px;"
                          "    min-height: 200px;"
                          "    max-height: 200px;"
-                         "width: 401;"
-                         "height:211;"
+
                          //"    border-radius: 20px;" // Uncomment if needed
                          "}"
                          "QPushButton:focus {"

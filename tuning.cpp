@@ -115,6 +115,10 @@ void tuning::updatehandpieceStatus()
        ui->But_Handpiece->setStyleSheet(styleSheet4);
        ui->But_Tune->setEnabled(true);
        ui->But_value->setEnabled(true);
+       ui->ButRTune->setText("Ready For Tune");
+
+       ui->ButRTune->setStyleSheet("background-color: rgb(12, 40, 82);color:rgb(255,255,255);font:20pt;font:bold;");
+       ui->lblRTune->setStyleSheet("image: url(:/images/singletick.png);background-color:transparent;border:none;");
 
 
        // ui->But_Next->hide();
@@ -128,6 +132,12 @@ void tuning::updatehandpieceStatus()
        ui->But_Tune->move(170, 280); // Move button back to starting position
        ui->But_Tune->resize(541, 141); // Resize button back to original size
        ui->But_Handpiece->show();
+       ui->ButRTune->setText("No HP Connected!");
+       ui->ButRTune->setStyleSheet("background-color: rgb(12, 40, 82);color:rgb(255,255,255);font:20pt;font:bold;");
+       ui->lblRTune->setStyleSheet("image: url(:/images/notconnected.png);background-color:transparent;border:none;");
+       ui->butTuned->setText("No HP Connected!");
+       ui->butTuned->setStyleSheet("background-color: rgb(12, 40, 82);color:rgb(255,255,255);font:20pt;font:bold;");
+       ui->lblTuned->setStyleSheet("image: url(:/images/notconnected.png);background-color:transparent;border:none;");
 
        isRunning=false;
      //  ui->But_Next->show();
@@ -490,7 +500,7 @@ int tuning::Tune_Phaco()
             ui->ButRTune->resize(681,41);
             ui->lblRTune->move(10,620);
             ui->lblRTune->setStyleSheet("image: url(:/images/information.png);background-color:transparent;");
-            ui->ButRTune->setText("Tune is not completed.May be loose tip");
+            ui->lblinfo->setText("May Be Loose Tip");
          ui->ButRTune->move(80,621);
             // Reset the text, size, and hide the label after 1 second
                    QTimer::singleShot(1000, this, [this]() {
@@ -556,11 +566,10 @@ int tuning::Tune_Phaco()
             qDebug()<<"Error < 5";
             hand->phaco_off();
             hand->phaco_power(0);
-           // QMessageBox::information(nullptr,"WARNING","Tune is not Completed May Be Loose Tip");
-            ui->ButRTune->setText("Tune is NOT Completed May Be Loose Tip");
-            ui->ButRTune->resize(621,41);
-            ui->lblRTune->move(70,620);
-            usleep(1000000);
+            ui->lblinfo->setText("May Be Loose Tip");
+          /// ui->ButRTune->resize(621,41);
+            //ui->lblRTune->move(70,620);
+           // usleep(1000000);
             ui->ButRTune->resize(441,41);
             ui->ButRTune->move(130,620);
             ui->But_value->setStyleSheet("border:none;background-color:transparent;image: url(:/images/singletick.png);outline:none");
@@ -586,7 +595,7 @@ int tuning::Tune_Phaco()
            return -1;
         }
         else{
-            if ( nADC7841CurrentCountPrev >= 3100){
+            if ( nADC7841CurrentCountPrev >= 3000){
 
                 hand->phaco_power(100);
                 hand->freq_count(nResonantFreqCount);
@@ -594,11 +603,11 @@ int tuning::Tune_Phaco()
                 nAveFeedBack=0;
                 for(iCount=0;iCount<100;iCount++){
                     nAveADC7841CurrentCount =0;
-                    for(loop1=0;loop1<512;loop1++){
+                    for(loop1=0;loop1<1024;loop1++){
                         nADC7841CurrentCount1=vacSensor->convert(ADS7841_CURRENTSENSOR_CH2);
                         nAveADC7841CurrentCount += nADC7841CurrentCount1;
                     }
-                    nADC7841CurrentCount1 = (int) (nAveADC7841CurrentCount/512.0);
+                    nADC7841CurrentCount1 = (int) (nAveADC7841CurrentCount/1024.0);
                     nAveFeedBack += nADC7841CurrentCount1;
                     // qDebug()<<iCount<<nADC7841CurrentCount1;
                     m_value=90+(int)(iCount/10.0);
@@ -631,10 +640,13 @@ int tuning::Tune_Phaco()
 
 
                 }
+                ui->lblinfo->setText("Tune is Completed H");
 
             }
+            else{
+                ui->lblinfo->setText("Tune is Completed L");
 
-
+            }
         }
         out<<"set object circle at " <<100000.0/(TUNE_LOWERFREQ_COUNT - (nLowValueFreq+25))<<","<<nADC7841CurrentCount[nLowValueFreq+25]<<" radius 0.01\n";
 
@@ -690,6 +702,22 @@ main->disablegpio();
 }
 
 void tuning::on_ButRTune_clicked()
+{
+    if (!isRunning) { // Only start if the progress is not currently running
+        ui->But_Tune->move(170,430);
+        ui->But_Handpiece->hide();
+
+        ui->But_value->setStyleSheet("font-size: 90px; font-weight: bold; color: white; background-color: transparent;");
+
+        ui->But_value->show();
+
+
+        Tune_Phaco();
+    }
+}
+
+
+void tuning::on_butTuned_clicked()
 {
     if (!isRunning) { // Only start if the progress is not currently running
         ui->But_Tune->move(170,430);
