@@ -126,7 +126,7 @@ signals:
      void tx_viberation(const QString &text);
      void tx_speakeronoff(const QString &text);
 
-
+  void togglbutton();
 
 private:
     Ui::doctor *ui;

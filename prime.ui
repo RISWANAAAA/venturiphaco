@@ -301,6 +301,13 @@ QCheckBox {
       <number>0</number>
      </property>
     </widget>
+    <zorder>progressBar_2</zorder>
+    <zorder>process_lab_2</zorder>
+    <zorder>start_prime_but_2</zorder>
+    <zorder>start_check_2</zorder>
+    <zorder>wait_Check_2</zorder>
+    <zorder>motor_Check_2</zorder>
+    <zorder>done_Check_2</zorder>
    </widget>
    <widget class="QWidget" name="tab_8">
     <property name="styleSheet">

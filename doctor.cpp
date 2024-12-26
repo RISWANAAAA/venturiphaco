@@ -1223,7 +1223,7 @@ QString speakeronoff=ui->ButSpeakerOnOff->text();
     query.bindValue(":footbottomleft", ui->BottomLFoot->currentText());
     query.bindValue(":footbottomright", ui->BottomRFoot->currentText());
     query.bindValue(":surgeon", surgeon);
-
+qDebug()<<"the power method"<<ui->PowMethodCom_phaco->currentText()<<ui->PowMethodCom_phaco_2->currentText()<<ui->PowMethodCom_phaco_3->currentText()<<ui->PowMethodCom_phaco_4->currentText();
     // Debug: Log the update query and bound values
 //    //qDebug() << "Executing update query for surgeon:" << surgeon;
 
@@ -1272,6 +1272,7 @@ emit sendleftfootvalues(ui->LeftFoot->currentText());
     //qDebug()<<"viberation in doctor"<<ui->Vibration_onoff->text();
     emit tx_speakeronoff(ui->ButSpeakerOnOff->text());
     this->close();
+    emit togglbutton();
     mydb.close();
 
     QSqlDatabase::removeDatabase("unique_connection_name");

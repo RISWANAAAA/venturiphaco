@@ -32,29 +32,8 @@ tuning::tuning(QWidget *parent) :
     connect(this,&tuning::activatemain,main,&MainWindow::disablefunction);
     ui->lblTuned->hide();
     ui->butTuned->hide();
-
-//    if (!db.isValid()) {
-//        db = QSqlDatabase::addDatabase("QSQLITE","PATH");
-//        db.setDatabaseName(PATH);
-//    }
-//    QSqlQuery query(db);
-//    query.prepare("SELECT fzero, fone, ftwo, fthree "
-//                "FROM phacohigh "
-//                "WHERE surgeon = :surgeon"
-//            );
-//    query.bindValue(":surgeon", surgeon);
-
-//    int nfpo = query.value("fzero").toInt();
-//    int nfp1 = query.value("fone").toInt();
-//    int nfp2 = query.value("ftwo").toInt();
-//    int nfp3 = query.value("fthree").toInt();
-//   // qDebug()<<nfpo<<nfp1<<nfp2<<nfp3<<"that is the sql value before calibration";
-//    int nfpzero = static_cast<int>((nfpo / 100.0) * 4090);
-//    int nfpone = static_cast<int>((nfp1 / 100.0) * 4090);
-//    int nfptwo = static_cast<int>((nfp2 / 100.0) * 4090);
-//    nFsCount =nfpzero+nfpone+nfptwo+1;
-//    db.close();
-//   // qDebug()<<"the tune is window is closed";
+    ui->butTuned->setText("Tuned");
+    connect(main,&MainWindow::emittuning,this,&tuning::alreadyTune);
 
 }
 
@@ -95,55 +74,90 @@ int tuning::readGPIOValue(int pin)
         return value;
     }
 }
-
 void tuning::updatehandpieceStatus()
 {
-     statushp = readGPIOValue(960);
-    QString styleSheet4 = "QPushButton {"
-          "image: url(:/images/connected.png);"
-            "border:none;"
-            "background-color:transparent;"
- "}";
-    QString styleSheet5 = "QPushButton {"
-            "image: url(:/images/notconnected.png);"
-         "border:none;"
-            "background-color:transparent;"
+    // Read GPIO value from pin 960
+    statushp = readGPIOValue(960);
+
+    // Define styles for connected and not connected states
+    QString styleSheetConnected = "QPushButton {"
+                                  "image: url(:/images/connected.png);"
+                                  "border:none;"
+                                  "background-color:transparent;"
+                                  "}";
+
+    QString styleSheetNotConnected = "QPushButton {"
+                                     "image: url(:/images/notconnected.png);"
+                                     "border:none;"
+                                     "background-color:transparent;"
                                      "}";
-    //qDebug()<<"the handpiece from the gpio pin is 960"<<statushp;
-   if(statushp==0)
-   {
-       ui->But_Handpiece->setStyleSheet(styleSheet4);
-       ui->But_Tune->setEnabled(true);
-       ui->But_value->setEnabled(true);
-       ui->ButRTune->setText("Ready For Tune");
 
-       ui->ButRTune->setStyleSheet("background-color: rgb(12, 40, 82);color:rgb(255,255,255);font:20pt;font:bold;");
-       ui->lblRTune->setStyleSheet("image: url(:/images/singletick.png);background-color:transparent;border:none;");
+    // Debug: Log the current status of the handpiece
+    // qDebug() << "The handpiece status from GPIO pin 960: " << statushp;
+
+    if (statushp == 0) {
+        // GPIO status 0 means handpiece is connected and ready for tune
+        if (!isTuned) {
+            // If tuning is not yet done, set status to "Ready For Tune"
+            ui->But_Handpiece->setStyleSheet(styleSheetConnected);
+            ui->But_Tune->setEnabled(true);  // Enable the tune button
+            ui->But_value->setEnabled(true); // Enable the value button
+            ui->ButRTune->setText("Ready For Tune");
+            ui->ButRTune->setStyleSheet("background-color: rgb(12, 40, 82); color: rgb(255,255,255); font: 20pt; font: bold;");
+            ui->lblRTune->setStyleSheet("image: url(:/images/singletick.png); background-color: transparent; border: none;");
+            ui->butTuned->hide();
+            ui->lblTuned->hide();
+            ui->ButRTune->show();
+            ui->lblRTune->show();
+        } else {
+            // If already tuned, show "Already Tuned"
+            //ui->But_Handpiece->setStyleSheet("border:none;background-color:transparent;image: url(:/images/doubled.png);outline:none");
+            ui->But_value->show();  // Show the value button
+            ui->butTuned->show();  // Show the 'Tuned' button
+            ui->lblTuned->show();  // Show the 'Tuned' label
+            ui->lblRTune->hide();  // Hide the 'RTune' label
+            ui->ButRTune->hide();  // Hide the 'RTune' button
+
+            ui->butTuned->setText("Already Tuned");  // Update text to "Already Tuned"
+            ui->lblTuned->setStyleSheet("image: url(:/images/doubled.png);background-color:transparent;border:none;");
+        }
+        ui->butTuned->setEnabled(true);
+        ui->ButRTune->setEnabled(true);
 
 
-       // ui->But_Next->hide();
-   }
-   else if(statushp==1)
-   {
-     //  qDebug()<<status;
-       ui->But_Handpiece->setStyleSheet(styleSheet5);
-       ui->But_Tune->setEnabled(false);
-       ui->But_value->hide();
-       ui->But_Tune->move(170, 280); // Move button back to starting position
-       ui->But_Tune->resize(541, 141); // Resize button back to original size
-       ui->But_Handpiece->show();
-       ui->ButRTune->setText("No HP Connected!");
-       ui->ButRTune->setStyleSheet("background-color: rgb(12, 40, 82);color:rgb(255,255,255);font:20pt;font:bold;");
-       ui->lblRTune->setStyleSheet("image: url(:/images/notconnected.png);background-color:transparent;border:none;");
-       ui->butTuned->setText("No HP Connected!");
-       ui->butTuned->setStyleSheet("background-color: rgb(12, 40, 82);color:rgb(255,255,255);font:20pt;font:bold;");
-       ui->lblTuned->setStyleSheet("image: url(:/images/notconnected.png);background-color:transparent;border:none;");
+    } else if (statushp == 1) {
+        // GPIO status 1 means no handpiece connected
+        isTuned = false;  // No tuning possible, so set isTuned to false
+        ui->But_Handpiece->setStyleSheet(styleSheetNotConnected);
+        ui->But_Tune->setEnabled(false);  // Disable tune button when no HP connected
+        ui->But_value->hide();  // Hide the value button
+        ui->But_Tune->move(170, 300);  // Move button back to starting position
+        ui->But_Tune->resize(541, 141);  // Resize button back to original size
+        ui->But_Handpiece->show();  // Show the handpiece button
 
-       isRunning=false;
-     //  ui->But_Next->show();
+        ui->ButRTune->setText("No HP Connected!");
+        ui->ButRTune->setStyleSheet("background-color: rgb(12, 40, 82); color: rgb(255,255,255); font: 20pt; font: bold;");
+        ui->lblRTune->setStyleSheet("image: url(:/images/notconnected.png); background-color: transparent; border: none;");
 
-   }
+        // Update the status message for tuning
+        ui->butTuned->setText("No HP Connected!");
+        ui->butTuned->setStyleSheet("background-color: rgb(12, 40, 82); color: rgb(255,255,255); font: 20pt; font: bold;");
+        ui->lblTuned->setStyleSheet("image: url(:/images/notconnected.png); background-color: transparent; border: none;");
+
+        // Reset the previous GPIO value to 0
+        previousGpioValue = 0;
+        ui->butTuned->setEnabled(false);
+        ui->ButRTune->setEnabled(false);
+
+        // Disable tuning mode function from main
+        main->disablesetTunemode();
+
+        // Set isRunning flag to false
+        isRunning = false;
+    }
 }
+
+
 void tuning::resizeEvent(QResizeEvent *event)
 {
     QDialog::resizeEvent(event);
@@ -297,12 +311,13 @@ void tuning::updateCircle()
 void tuning::on_But_Handpiece_clicked()
 {
     if (!isRunning) { // Only start if the progress is not currently running
-        ui->But_Tune->move(170,430);
+        ui->But_Tune->move(170,390);
     //       ui->But_Tune->move(150, 230);
         ui->But_Handpiece->hide();
            ui->But_value->setStyleSheet("font-size: 90px; font-weight: bold; color: white; background-color: transparent;");
 
            ui->But_value->show();
+           ui->ButRTune->setText("Tuning");
 
 Tune_Phaco();
     }
@@ -311,12 +326,13 @@ Tune_Phaco();
 void tuning::on_But_value_clicked()
 {
     if (!isRunning) { // Only start if the progress is not currently running
-           ui->But_Tune->move(170,430);
+           ui->But_Tune->move(170,390);
            ui->But_Handpiece->hide();
 
            ui->But_value->setStyleSheet("font-size: 90px; font-weight: bold; color: white; background-color: transparent;");
 
            ui->But_value->show();
+           ui->ButRTune->setText("Tuning");
 
 Tune_Phaco();
     }
@@ -325,10 +341,11 @@ Tune_Phaco();
 void tuning::on_pushButton_clicked()
 {
     if (!isRunning) { // Only start if the progress is not currently running
-        ui->But_Tune->move(170,430);
+        ui->But_Tune->move(170,390);
         ui->But_Handpiece->hide();
         ui->But_value->setStyleSheet("font-size: 90px; font-weight: bold; color: white; background-color: transparent;");
         ui->But_value->show();
+        ui->ButRTune->setText("Tuning");
 
 Tune_Phaco();
     }
@@ -345,11 +362,11 @@ void tuning::updateProgress()
 {
     m_value = 0; // Reset value
     ui->But_value->setText(QString::number(m_value)); // Update label to show 0
-      ui->But_value->move(410,320); // Move label if necessary
+      ui->But_value->move(390,320); // Move label if necessary
 
     ui->But_value->show(); // Show the label
     update();
-    ui->But_Tune->move(170, 300); // Move button back to starting position
+    ui->But_Tune->move(170, 290); // Move button back to starting position
    // ui->But_Tune->move(170, 280); // Move button back to starting position
     ui->But_Tune->resize(541, 141); // Resize button back to original size
   //  ui->But_Handpiece->show();
@@ -396,6 +413,7 @@ int tuning::Tune_Phaco()
     updateProgress();
     // Start the timer if it's not running
     if (!isRunning) {
+        ui->But_Next->setEnabled(false);
         ui->But_value->show();
         isRunning = true; // Set the running status
           ui->But_Tune->move(170, 340);
@@ -651,6 +669,7 @@ int tuning::Tune_Phaco()
         out<<"set object circle at " <<100000.0/(TUNE_LOWERFREQ_COUNT - (nLowValueFreq+25))<<","<<nADC7841CurrentCount[nLowValueFreq+25]<<" radius 0.01\n";
 
         isRunning = false;
+        ui->ButRTune->setText("Tune Completed.Ready For Phaco");
         hand->emitTuneStopPhaco();
         hand->phaco_off();
         main->show();
@@ -660,24 +679,17 @@ int tuning::Tune_Phaco()
         updateProgress();
         emit sendfreq(nResonantFreqCount);
         emit activatemain();
-
+  ui->But_Next->setEnabled(true);
         qDebug()<<nResonantFreqCount;
-        if(statushp==0){
-            ui->But_Handpiece->hide();
-        ui->But_value->setStyleSheet("border:none;background-color:transparent;image: url(:/images/doubled.png);outline:none");
-             ui->But_value->move(680,270);
-            ui->But_value->resize(141,131);
-             ui->But_value->show();
-            ui->butTuned->show();
-             ui->lblTuned->show();
-            ui->lblRTune->hide();
-             ui->ButRTune->hide();
-        }else{
-            ui->But_value->setEnabled(false);
-            ui->But_value->hide();
-            ui->But_value->setStyleSheet("border:none;background-color:transparent;image: url(:/images/singletick.png);outline:none");
+        if (statushp == 0 && !isTuned) {
+               // Start tuning process here
+               // After tuning, set the flag to indicate tuning is complete
+               isTuned = true;  // Mark the tuning as complete
+               updatehandpieceStatus();  // Call the update function to reflect the "Already Tuned" status
+           }
 
-        }
+
+
 
         file.close();
 
@@ -691,10 +703,25 @@ int tuning::Tune_Phaco()
 
 void tuning::on_But_Next_clicked()
 {
+    QString buttonstate=ui->butTuned->text();
+  // qDebug()<<"the buttonstate"<<buttonstate;
+   if(buttonstate == "Tuned" || buttonstate == "No HP Connected!" || buttonstate == "Ready For Tune"){
+       qDebug()<<"the button state is"<<ui->butTuned->text();
+
+        main->show();
+        emit activatemain();
+        main->DIATHERMYBUT();
+    main->disablegpio();
+    }
+
+if(buttonstate == "Already Tuned"){
+   // qDebug()<<"the button state is"<<ui->butTuned->text();
+
     main->show();
     emit activatemain();
-   main->DIATHERMYBUT();
-main->disablegpio();
+    main->ULTRASONICBUT1();
+    main->activategpio();
+}
 
 
 
@@ -704,11 +731,10 @@ main->disablegpio();
 void tuning::on_ButRTune_clicked()
 {
     if (!isRunning) { // Only start if the progress is not currently running
-        ui->But_Tune->move(170,430);
+        ui->But_Tune->move(170,390);
         ui->But_Handpiece->hide();
-
+         ui->ButRTune->setText("Tuning");
         ui->But_value->setStyleSheet("font-size: 90px; font-weight: bold; color: white; background-color: transparent;");
-
         ui->But_value->show();
 
 
@@ -720,7 +746,7 @@ void tuning::on_ButRTune_clicked()
 void tuning::on_butTuned_clicked()
 {
     if (!isRunning) { // Only start if the progress is not currently running
-        ui->But_Tune->move(170,430);
+        ui->But_Tune->move(170,390);
         ui->But_Handpiece->hide();
 
         ui->But_value->setStyleSheet("font-size: 90px; font-weight: bold; color: white; background-color: transparent;");
@@ -730,5 +756,10 @@ void tuning::on_butTuned_clicked()
 
         Tune_Phaco();
     }
+}
+
+void tuning::alreadyTune()
+{
+  previousGpioValue=1;
 }
 

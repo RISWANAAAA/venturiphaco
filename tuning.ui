@@ -185,6 +185,7 @@ font:bold;
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
+  <zorder>lblinfo</zorder>
   <zorder>But_Tune</zorder>
   <zorder>But_Next</zorder>
   <zorder>But_value</zorder>
@@ -193,7 +194,6 @@ font:bold;
   <zorder>lblRTune</zorder>
   <zorder>butTuned</zorder>
   <zorder>lblTuned</zorder>
-  <zorder>lblinfo</zorder>
  </widget>
  <resources/>
  <connections/>

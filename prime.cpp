@@ -30,6 +30,7 @@ prime::prime(QWidget *parent) :
     hand->safetyvent_off();
     hand->pinchvalve_off();
     hand->speaker_off();
+    ui->progressBar_2->hide();
     QString styleSheet = "QPushButton {"
                          "    font-family: Ubuntu;"
                          "    font-size: 40pt;"
@@ -359,12 +360,14 @@ void prime::on_start_prime_but_2_clicked()
 
     // Begin the priming process
     motoron();
+    hand->pinchvalve_on();
+  // start_irrigation();
 }
 
 void prime::start_irrigation()
 {
     // Start irrigation and update UI
-    hand->pinchvalve_on();
+   // hand->pinchvalve_on();
     ui->start_check_2->setChecked(true);
 
     // Start progress bar timer

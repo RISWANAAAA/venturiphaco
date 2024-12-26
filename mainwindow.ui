@@ -53,7 +53,7 @@ background-color: rgb(18, 78, 102);
      <string notr="true">background-color: rgb(36, 73, 90);</string>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>7</number>
     </property>
     <widget class="QWidget" name="tab_33">
      <property name="styleSheet">
@@ -1295,24 +1295,6 @@ font:bold;</string>
        <string>Mode</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_24">
-      <property name="geometry">
-       <rect>
-        <x>980</x>
-        <y>280</y>
-        <width>67</width>
-        <height>17</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">font:13pt;
-font:bold;
-background-color:transparent;</string>
-      </property>
-      <property name="text">
-       <string>EPT  :</string>
-      </property>
-     </widget>
      <widget class="QLabel" name="lblus2pow">
       <property name="geometry">
        <rect>
@@ -1396,7 +1378,6 @@ border:none;
      <zorder>us2powup_but</zorder>
      <zorder>label_94</zorder>
      <zorder>CutMode_vit_2</zorder>
-     <zorder>label_24</zorder>
      <zorder>lblus2pow</zorder>
      <zorder>lblus2flow</zorder>
      <zorder>lblus2vac</zorder>
@@ -5170,7 +5151,7 @@ QPushButton:focus {
    <widget class="QPushButton" name="elapsed_time">
     <property name="geometry">
      <rect>
-      <x>1090</x>
+      <x>860</x>
       <y>260</y>
       <width>191</width>
       <height>71</height>
@@ -5191,7 +5172,7 @@ QPushButton:focus {
 </string>
     </property>
     <property name="text">
-     <string>0:00:00</string>
+     <string>0:00</string>
     </property>
    </widget>
    <widget class="QComboBox" name="comboBox">
@@ -5746,7 +5727,7 @@ font-weight: bold;</string>
    <widget class="QPushButton" name="elapsed_time_2">
     <property name="geometry">
      <rect>
-      <x>860</x>
+      <x>1080</x>
       <y>260</y>
       <width>191</width>
       <height>71</height>
@@ -5767,31 +5748,13 @@ QPushButton:focus {
 </string>
     </property>
     <property name="text">
-     <string>0:00:00</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_28">
-    <property name="geometry">
-     <rect>
-      <x>831</x>
-      <y>290</y>
-      <width>67</width>
-      <height>17</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">font:13pt;
-font:bold;
-background-color:transparent;</string>
-    </property>
-    <property name="text">
-     <string>EFT:</string>
+     <string>0:00</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_26">
     <property name="geometry">
      <rect>
-      <x>1050</x>
+      <x>1040</x>
       <y>290</y>
       <width>51</width>
       <height>17</height>
@@ -5822,6 +5785,24 @@ background-color:transparent;</string>
      <enum>Qt::Horizontal</enum>
     </property>
    </widget>
+   <widget class="QLabel" name="label_28">
+    <property name="geometry">
+     <rect>
+      <x>830</x>
+      <y>290</y>
+      <width>67</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font:13pt;
+font:bold;
+background-color:transparent;</string>
+    </property>
+    <property name="text">
+     <string>EFT:</string>
+    </property>
+   </widget>
    <zorder>BACKBUT</zorder>
    <zorder>pushButton_2</zorder>
    <zorder>comboBox</zorder>
@@ -5835,7 +5816,6 @@ background-color:transparent;</string>
    <zorder>label_30</zorder>
    <zorder>label_31</zorder>
    <zorder>label_29</zorder>
-   <zorder>label_9</zorder>
    <zorder>label_10</zorder>
    <zorder>label_2</zorder>
    <zorder>label_4</zorder>
@@ -5848,8 +5828,6 @@ background-color:transparent;</string>
    <zorder>label_5</zorder>
    <zorder>pushButton</zorder>
    <zorder>label_19</zorder>
-   <zorder>label_32</zorder>
-   <zorder>tabWidget_2</zorder>
    <zorder>label_11</zorder>
    <zorder>DIABUT</zorder>
    <zorder>ULTRASONICBUT1</zorder>
@@ -5871,9 +5849,12 @@ background-color:transparent;</string>
    <zorder>label_22</zorder>
    <zorder>pushButton_42</zorder>
    <zorder>elapsed_time_2</zorder>
-   <zorder>label_28</zorder>
    <zorder>label_26</zorder>
    <zorder>line</zorder>
+   <zorder>label_28</zorder>
+   <zorder>tabWidget_2</zorder>
+   <zorder>label_9</zorder>
+   <zorder>label_32</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>

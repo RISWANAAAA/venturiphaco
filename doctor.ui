@@ -88,7 +88,7 @@ background-color:transparent;</string>
    <property name="geometry">
     <rect>
      <x>1170</x>
-     <y>10</y>
+     <y>650</y>
      <width>111</width>
      <height>71</height>
     </rect>
@@ -233,7 +233,7 @@ border-radius:120px;</string>
   <widget class="QLabel" name="FootPedalSettings">
    <property name="geometry">
     <rect>
-     <x>10</x>
+     <x>0</x>
      <y>600</y>
      <width>281</width>
      <height>51</height>
@@ -584,56 +584,8 @@ QProgressBar::chunk {
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>10</y>
+       <y>0</y>
        <width>241</width>
-       <height>61</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: rgb(170, 171, 191);</string>
-     </property>
-     <property name="text">
-      <string>Epinucleus</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="QuadBut_phaco">
-     <property name="geometry">
-      <rect>
-       <x>240</x>
-       <y>10</y>
-       <width>221</width>
-       <height>61</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: rgb(170, 171, 191);</string>
-     </property>
-     <property name="text">
-      <string>Quad</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="ChopBut_phaco">
-     <property name="geometry">
-      <rect>
-       <x>460</x>
-       <y>10</y>
-       <width>171</width>
-       <height>61</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: rgb(170, 171, 191);</string>
-     </property>
-     <property name="text">
-      <string>Chop</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="ScupltBut_phaco">
-     <property name="geometry">
-      <rect>
-       <x>630</x>
-       <y>10</y>
-       <width>211</width>
        <height>61</height>
       </rect>
      </property>
@@ -644,11 +596,59 @@ QProgressBar::chunk {
       <string>Sculpt</string>
      </property>
     </widget>
+    <widget class="QPushButton" name="QuadBut_phaco">
+     <property name="geometry">
+      <rect>
+       <x>240</x>
+       <y>0</y>
+       <width>221</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(170, 171, 191);</string>
+     </property>
+     <property name="text">
+      <string>Chop</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="ChopBut_phaco">
+     <property name="geometry">
+      <rect>
+       <x>460</x>
+       <y>0</y>
+       <width>151</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(170, 171, 191);</string>
+     </property>
+     <property name="text">
+      <string>Quad</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="ScupltBut_phaco">
+     <property name="geometry">
+      <rect>
+       <x>610</x>
+       <y>0</y>
+       <width>231</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(170, 171, 191);</string>
+     </property>
+     <property name="text">
+      <string>Epinucleus</string>
+     </property>
+    </widget>
     <widget class="QTabWidget" name="tabWidget_2">
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>40</y>
+       <y>30</y>
        <width>831</width>
        <height>641</height>
       </rect>
@@ -932,7 +932,7 @@ background-color: rgb(14, 50, 6);</string>
        </item>
        <item>
         <property name="text">
-         <string>Hyper burst</string>
+         <string>Cold phaco</string>
         </property>
        </item>
       </widget>
@@ -1346,7 +1346,7 @@ background-color: rgb(14, 50, 6);</string>
        </item>
        <item>
         <property name="text">
-         <string>Hyper Burst</string>
+         <string>Cold Phaco</string>
         </property>
        </item>
       </widget>
@@ -2188,7 +2188,7 @@ background-color: rgb(14, 50, 6);</string>
        <property name="geometry">
         <rect>
          <x>70</x>
-         <y>500</y>
+         <y>490</y>
          <width>351</width>
          <height>41</height>
         </rect>

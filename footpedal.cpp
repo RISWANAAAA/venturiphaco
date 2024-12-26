@@ -415,7 +415,7 @@ else if (leftFootcomAction == "Increment") {
          if (value4 == 0 && flag4 == 0 && state4 == 1) {
              flag4 = 1;
              state4 = 2;
-             emit togglePower(1);
+             emit togglePower(0);
          }
         if (value4 == 1 && flag4 == 1 && state4 == 2) {
              state4 = 3;

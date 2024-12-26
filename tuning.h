@@ -71,6 +71,7 @@ private slots:
     void on_ButRTune_clicked();
 
     void on_butTuned_clicked();
+    void alreadyTune();
 
 signals:
     void sendvisibleisgnale(bool status);
@@ -99,6 +100,8 @@ private:
         int statushp;
         int nFsCount;
         int surgeon;
+        int previousGpioValue;
+        bool isTuned=false;
 
 };
 

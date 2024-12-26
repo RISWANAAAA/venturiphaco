@@ -213,7 +213,7 @@ public slots:
  void on_pushButton_clicked();
  void ULTRASONICBUT1();
  void updateTabsBasedOnComboBox(const QString &text);
-
+ void disablesetTunemode();
 private slots:
 
  void ULTRASONICBUT2();
@@ -415,7 +415,7 @@ void on_ButColdPhacoPer_up_clicked();
 void on_elapsed_time_2_clicked();
 
 void on_elapsed_time_clicked();
-
+  void mainus1button();
 signals:
      void sensorValueChanged(int value);
      void surgeonSelected(const QString &surgeonName);
@@ -425,6 +425,7 @@ signals:
      void bottom_right(const QString &value);
      void con_irrigation(bool on); // Signal to handle Continuous Irrigation state
      void sendsurgeon(const QString &value);
+     void emittuning();
 private:
     Ui::MainWindow *ui;
     //instance
@@ -488,8 +489,8 @@ QTimer *Tacutalsensor;
   QTimer *timerfoot;
 QTimer *burstTimer;
 QElapsedTimer *elapsedTimer;  // Elapsed time (in milliseconds)
-int cumulativeElapsedTimeSec;
-    int cumulativeEffectiveTimeSec;
+int cumulativeElapsedTimeSec=0;
+    int cumulativeEffectiveTimeSec=0;
 
 bool flag1=false;
 bool on;
@@ -553,7 +554,8 @@ QString vus4;
 QString vvit;
 QString vibon;
 QString speakeronoff;
-
+QString activebutton;
+QString disablelayout;
 
 
 
