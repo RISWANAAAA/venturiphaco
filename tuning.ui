@@ -179,7 +179,7 @@ font:bold;
 </string>
    </property>
    <property name="text">
-    <string/>
+    <string>Tune Status</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>

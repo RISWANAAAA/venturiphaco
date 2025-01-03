@@ -4652,39 +4652,44 @@ handler->pinchvalve_on();
                     int calibration = range - MIN_RANGE; // Calibration value
 
                     if (divi != 0) {
-                        double final =ia2vacline / divi;
+                        double final =ia2vacline/ divi;
                         int presetvac = static_cast<int>(std::round(calibration * final));
                         int pro =readsensorvalue();
-                        if(speakeronoff == "Speaker ON"){
-                        handler->speaker_on(pro,1,0,0);
-                        }else{
-                            handler->speaker_off();
-                        }
                         ui->label_109->setText(QString::number(pro));
-                        if (pro < presetvac) {
+                        const int tolerance = 5; // Example tolerance
+
+                        if (pro < (presetvac - tolerance)) {
                             motoron(ui->lineEdit_67);
+                            if(speakeronoff == "Speaker ON"){
+                            handler->speaker_on(pro,1,0,0);
+                            }else{
+                                handler->speaker_off();
+                            }
                             if (!motoria2) {
                                 motoron(ui->lineEdit_67);
                                 motoria2 = true;
                             }
-                        } else if (motoria2) {
+                        } else if (pro >= presetvac || motoria2) {
                             motoroff();
                             motoria2 = false;
-                        }
-                        // If pro exceeds vitpreset, cap it
+                        } // If pro exceeds vitpreset, cap it
                         if (pro >= ia2vacline) {
                             pro = static_cast<int>(ia2vacline);
-                            ui->label_118->setText(QString::number(pro));
+                            ui->label_109->setText(QString::number(pro));
+                          //  speedofthelabe(ui->label_113);
                             motoroff();
-                  if(speakeronoff == "Speaker ON"){
+
+                            if(speakeronoff == "Speaker ON"){
                             handler->speaker_on(0,0,0,1);
-                        }else{
-                      handler->speaker_off();
-                  }
+                            }else{
+                                handler->speaker_off();
+                            }
+                        }
+
                 }
                         beepsound(2);
                       }
-                }
+
 
 
 

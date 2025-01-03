@@ -34,6 +34,7 @@ tuning::tuning(QWidget *parent) :
     ui->butTuned->hide();
     ui->butTuned->setText("Tuned");
     connect(main,&MainWindow::emittuning,this,&tuning::alreadyTune);
+   // ui->lblinfo->hide();
 
 }
 

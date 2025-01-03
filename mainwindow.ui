@@ -5852,9 +5852,9 @@ background-color:transparent;</string>
    <zorder>label_26</zorder>
    <zorder>line</zorder>
    <zorder>label_28</zorder>
-   <zorder>tabWidget_2</zorder>
    <zorder>label_9</zorder>
    <zorder>label_32</zorder>
+   <zorder>tabWidget_2</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
