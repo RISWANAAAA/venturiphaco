@@ -433,7 +433,7 @@ int tuning::Tune_Phaco()
         QTextStream out(&file);
 
         file.open(QIODevice::WriteOnly | QIODevice::Text);
-        qDebug()<<"file opend";
+       // qDebug()<<"file opend";
 
 
         hand->phaco_power(100);
@@ -443,7 +443,7 @@ int tuning::Tune_Phaco()
 
         nNoOfCurrentCount=0;
         // Loop until m_value reaches 100
-        qDebug()<<"PHACO_ON";
+        //qDebug()<<"PHACO_ON";
         for (iCount=TUNE_LOWERFREQ_COUNT; iCount >= TUNE_HIGHFREQ_COUNT; iCount--) {
             hand->freq_count(iCount);
 
@@ -489,29 +489,31 @@ int tuning::Tune_Phaco()
             }
         }
 
-        qDebug()<<"LowValueFreq"<<nLowValueFreq;
-        qDebug()<<"set object circle at " <<100000.0/(TUNE_LOWERFREQ_COUNT - (nLowValueFreq))<<","<<nInvADC7841CurrentCount[nLowValueFreq]<<" radius 0.01"<<"\n";
+        qDebug()<<"set object circle at " <<100000.0/(TUNE_LOWERFREQ_COUNT - nLowValueFreq)<<","<<nInvADC7841CurrentCount[nLowValueFreq]<<" radius 0.01"<<"\n";
+
         if (nLowValueFreq > 50 && nLowValueFreq < 250){
-           qDebug()<<"set object circle at " <<100000.0/(TUNE_LOWERFREQ_COUNT - (nLowValueFreq-50))<<","<<nInvADC7841CurrentCount[nLowValueFreq-50]<<" radius 0.01"<<"\n";
-
-
-        for(i=nLowValueFreq-50;i<nLowValueFreq;i++){
-            qDebug()<<i<<100000.0/(TUNE_LOWERFREQ_COUNT - i)<<nInvADC7841CurrentCount[i]<<nADC7841CurrentCount[i];
-            if ((nInvADC7841CurrentCount[i] <= nInvADC7841CurrentCount[i+2]) && (nInvADC7841CurrentCount[i+2] <= nInvADC7841CurrentCount[i+4]) && (nInvADC7841CurrentCount[i+4] <= nInvADC7841CurrentCount[i+6]) && (nInvADC7841CurrentCount[i] <= nInvADC7841CurrentCount[i-2])){
+           for(i=nLowValueFreq;i>nLowValueFreq-20;i--){
+                qDebug()<<trueFreqFound<<i<<nLowCountValue<<nLowValueFreq<<nInvADC7841CurrentCount[i];
+               if((nInvADC7841CurrentCount[i-1] <= nInvADC7841CurrentCount[i])  &&
+                    ((nInvADC7841CurrentCount[i-1] <= 10) && (nInvADC7841CurrentCount[i+1] >= nInvADC7841CurrentCount[i]))) {
 
                 trueFreqFound = true;
                 nResonantFreqCount=TUNE_LOWERFREQ_COUNT-i;
                 nResonantPosition=i;
+                nLowCountValue =  nInvADC7841CurrentCount[i];
                 nADC7841CurrentCountPrev=nADC7841CurrentCount[i];
                 //qDebug()<<"set object circle at " <<100000.0/(TUNE_LOWERFREQ_COUNT - i)<<","<<nInvADC7841CurrentCount[i]<<" radius 0.01"<<"\n";
                 //qDebug()<<i<<100000.0/(TUNE_LOWERFREQ_COUNT - i)<<nInvADC7841CurrentCount[i]<<nADC7841CurrentCount[i];
                 break;
-            }
-            else{
+               }
+               else{
                 // qDebug()<<nADC7841CurrentCount[i] << nADC7841CurrentCount[nLowValueFreq];
                 trueFreqFound = false;
+               }
             }
-         }
+              qDebug()<<"set object circle at " <<100000.0/(TUNE_LOWERFREQ_COUNT - nResonantPosition)<<","<<nInvADC7841CurrentCount[nResonantPosition]<<" radius 0.01"<<"\n";
+
+
         }
         else{
             file.close();
@@ -548,37 +550,8 @@ int tuning::Tune_Phaco()
 //            return 0;
         }
 
-        //qDebug()<<"set object circle at " <<100000.0/nResonantFreqCount<<","<<nADC7841CurrentCount[nLowValueFreq]<<" radius 0.01"<<"\n";
-        //qDebug()<<"set object circle at " <<100000.0/nResonantFreqCount<<","<<nInvADC7841CurrentCount[nLowValueFreq]<<" radius 0.01"<<"\n";
 
-        // qDebug()<<"set object circle at " <<100000.0/(TUNE_LOWERFREQ_COUNT-(nLowValueFreq-1))<<","<<nInvADC7841CurrentCount[nLowValueFreq-1]<<" radius 0.01"<<"\n";
-        // qDebug()<<"set object circle at " <<100000.0/(TUNE_LOWERFREQ_COUNT-(nLowValueFreq-2))<<","<<nInvADC7841CurrentCount[nLowValueFreq-2]<<" radius 0.01"<<"\n";
-        // qDebug()<<"set object circle at " <<100000.0/(TUNE_LOWERFREQ_COUNT-(nLowValueFreq-3))<<","<<nInvADC7841CurrentCount[nLowValueFreq-3]<<" radius 0.01"<<"\n";
-        // qDebug()<<"set object circle at " <<100000.0/(TUNE_LOWERFREQ_COUNT-(nLowValueFreq-4))<<","<<nInvADC7841CurrentCount[nLowValueFreq-4]<<" radius 0.01"<<"\n";
-        // qDebug()<<"set object circle at " <<100000.0/(TUNE_LOWERFREQ_COUNT-(nLowValueFreq-5))<<","<<nInvADC7841CurrentCount[nLowValueFreq-5]<<" radius 0.01"<<"\n";
-        // qDebug()<<"set object circle at " <<100000.0/(TUNE_LOWERFREQ_COUNT-(nLowValueFreq-6))<<","<<nInvADC7841CurrentCount[nLowValueFreq-6]<<" radius 0.01"<<"\n";
-        // qDebug()<<"set object circle at " <<100000.0/(TUNE_LOWERFREQ_COUNT-(nLowValueFreq-7))<<","<<nInvADC7841CurrentCount[nLowValueFreq-7]<<" radius 0.01"<<"\n";
-        // qDebug()<<"set object circle at " <<100000.0/(TUNE_LOWERFREQ_COUNT-(nLowValueFreq-8))<<","<<nInvADC7841CurrentCount[nLowValueFreq-8]<<" radius 0.01"<<"\n";
-        // qDebug()<<"set object circle at " <<100000.0/(TUNE_LOWERFREQ_COUNT-(nLowValueFreq-9))<<","<<nInvADC7841CurrentCount[nLowValueFreq-9]<<" radius 0.01"<<"\n";
-        // qDebug()<<"set object circle at " <<100000.0/(TUNE_LOWERFREQ_COUNT-(nLowValueFreq-10))<<","<<nInvADC7841CurrentCount[nLowValueFreq-10]<<" radius 0.01"<<"\n";
-        // qDebug()<<"set object circle at " <<100000.0/(TUNE_LOWERFREQ_COUNT-(nLowValueFreq-11))<<","<<nInvADC7841CurrentCount[nLowValueFreq-11]<<" radius 0.01"<<"\n";
-        // qDebug()<<"set object circle at " <<100000.0/(TUNE_LOWERFREQ_COUNT-(nLowValueFreq-12))<<","<<nInvADC7841CurrentCount[nLowValueFreq-12]<<" radius 0.01"<<"\n";
-        // qDebug()<<"set object circle at " <<100000.0/(TUNE_LOWERFREQ_COUNT-(nLowValueFreq-13))<<","<<nInvADC7841CurrentCount[nLowValueFreq-13]<<" radius 0.01"<<"\n";
-        // qDebug()<<"set object circle at " <<100000.0/(TUNE_LOWERFREQ_COUNT-(nLowValueFreq-14))<<","<<nInvADC7841CurrentCount[nLowValueFreq-14]<<" radius 0.01"<<"\n";
-        // qDebug()<<"set object circle at " <<100000.0/(TUNE_LOWERFREQ_COUNT-(nLowValueFreq-15))<<","<<nInvADC7841CurrentCount[nLowValueFreq-15]<<" radius 0.01"<<"\n";
-        // qDebug()<<"set object circle at " <<100000.0/(TUNE_LOWERFREQ_COUNT-(nLowValueFreq-16))<<","<<nInvADC7841CurrentCount[nLowValueFreq-16]<<" radius 0.01"<<"\n";
-        // qDebug()<<"set object circle at " <<100000.0/(TUNE_LOWERFREQ_COUNT-(nLowValueFreq-17))<<","<<nInvADC7841CurrentCount[nLowValueFreq-17]<<" radius 0.01"<<"\n";
-        // qDebug()<<"set object circle at " <<100000.0/(TUNE_LOWERFREQ_COUNT-(nLowValueFreq-18))<<","<<nInvADC7841CurrentCount[nLowValueFreq-18]<<" radius 0.01"<<"\n";
-        // qDebug()<<"set object circle at " <<100000.0/(TUNE_LOWERFREQ_COUNT-(nLowValueFreq-19))<<","<<nInvADC7841CurrentCount[nLowValueFreq-19]<<" radius 0.01"<<"\n";
-        // qDebug()<<"set object circle at " <<100000.0/(TUNE_LOWERFREQ_COUNT-(nLowValueFreq-20))<<","<<nInvADC7841CurrentCount[nLowValueFreq-20]<<" radius 0.01"<<"\n";
 
-        qDebug()<<trueFreqFound<<nResonantFreqCount<<nResonantPosition;
-        if(nLowValueFreq >20)
-        //nResonantFreqCount=TUNE_LOWERFREQ_COUNT-(nResonantPosition-20);
-
-        fResFrequency = 100000.0/nResonantFreqCount;
-
-        qDebug()<<fResFrequency<<nADC7841CurrentCount[nResonantPosition];
 
 
         if (nLowValueFreq < 5){
@@ -614,6 +587,11 @@ int tuning::Tune_Phaco()
            return -1;
         }
         else{
+            nResonantFreqCount=TUNE_LOWERFREQ_COUNT-nResonantPosition;
+            qDebug()<<"set object circle at " <<100000.0/nResonantFreqCount<<","<<"10"<<" radius 0.01"<<"\n";
+
+            fResFrequency = 100000.0/nResonantFreqCount;
+            qDebug()<<trueFreqFound<<fResFrequency<<nResonantFreqCount<<nResonantPosition;
             if ( nADC7841CurrentCountPrev >= 3000){
 
                 hand->phaco_power(100);

@@ -25,8 +25,8 @@
 #include <QTime>
 #include <QLineEdit>
 
-#define XPAR_AXI_COMBINED_BASEADDR 	0x43C20000;
-#define SPEAKER_BASEADDR		0x43C30000
+#define XPAR_AXI_COMBINED_BASEADDR 	0xA3C20000;
+#define SPEAKER_BASEADDR		0xA3C30000
 #define MAP_SIZE 4096UL
 #define MAP_MASK (MAP_SIZE - 1)
 
@@ -112,7 +112,7 @@ class hwhandler: public QThread
 public:
     explicit hwhandler(QObject *parent = 0);
     int memfd;
-    static void vit_on(int periodCount);
+    static void vit_on(int count);
     static void vit_off();
     static void vit_ontime(int ontime);
 
