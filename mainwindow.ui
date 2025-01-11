@@ -53,7 +53,7 @@ background-color: rgb(18, 78, 102);
      <string notr="true">background-color: rgb(36, 73, 90);</string>
     </property>
     <property name="currentIndex">
-     <number>7</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="tab_33">
      <property name="styleSheet">
@@ -627,24 +627,6 @@ background-color: rgb(99, 69, 44);</string>
        </property>
       </item>
      </widget>
-     <widget class="QLabel" name="label_23">
-      <property name="geometry">
-       <rect>
-        <x>980</x>
-        <y>280</y>
-        <width>67</width>
-        <height>17</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">font:13pt;
-font:bold;
-background-color:transparent;</string>
-      </property>
-      <property name="text">
-       <string>EPT  :</string>
-      </property>
-     </widget>
      <widget class="QLabel" name="lblus1vac">
       <property name="geometry">
        <rect>
@@ -723,7 +705,6 @@ border:none;
      <zorder>CutMode_vit</zorder>
      <zorder>us1vacdow_but</zorder>
      <zorder>us1powup_but</zorder>
-     <zorder>label_23</zorder>
      <zorder>us1flowdown_but</zorder>
      <zorder>lineEdit_56</zorder>
      <zorder>us1flowup_but</zorder>
@@ -1189,7 +1170,7 @@ font:bold;
 </string>
       </property>
       <property name="text">
-       <string>Chop</string>
+       <string>Quad</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -1592,7 +1573,7 @@ font:bold;
 </string>
       </property>
       <property name="text">
-       <string>Quad</string>
+       <string>Chop</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -1943,24 +1924,6 @@ font:bold;</string>
        <string>Mode</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_25">
-      <property name="geometry">
-       <rect>
-        <x>980</x>
-        <y>280</y>
-        <width>67</width>
-        <height>17</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">font:13pt;
-font:bold;
-background-color:transparent;</string>
-      </property>
-      <property name="text">
-       <string>EPT  :</string>
-      </property>
-     </widget>
      <widget class="QLabel" name="lblus3pow">
       <property name="geometry">
        <rect>
@@ -2044,7 +2007,6 @@ border:none;
      <zorder>us3flowup_but</zorder>
      <zorder>label_98</zorder>
      <zorder>CutMode_vit_3</zorder>
-     <zorder>label_25</zorder>
      <zorder>lblus3pow</zorder>
      <zorder>lblus3flow</zorder>
      <zorder>lblus3vac</zorder>
@@ -5803,13 +5765,20 @@ background-color:transparent;</string>
      <string>EFT:</string>
     </property>
    </widget>
+   <zorder>label_26</zorder>
+   <zorder>elapsed_time_2</zorder>
+   <zorder>elapsed_time</zorder>
+   <zorder>label_28</zorder>
+   <zorder>label_22</zorder>
+   <zorder>lab_time</zorder>
+   <zorder>lab_date</zorder>
+   <zorder>label_21</zorder>
    <zorder>BACKBUT</zorder>
    <zorder>pushButton_2</zorder>
    <zorder>comboBox</zorder>
    <zorder>label</zorder>
    <zorder>tabWidget</zorder>
    <zorder>CI5_5</zorder>
-   <zorder>elapsed_time</zorder>
    <zorder>SETTINGS_BUT_2</zorder>
    <zorder>comboBox_4</zorder>
    <zorder>SETTINGS_BUT_4</zorder>
@@ -5843,15 +5812,8 @@ background-color:transparent;</string>
    <zorder>label_17</zorder>
    <zorder>label_18</zorder>
    <zorder>label_27</zorder>
-   <zorder>lab_date</zorder>
-   <zorder>lab_time</zorder>
-   <zorder>label_21</zorder>
-   <zorder>label_22</zorder>
    <zorder>pushButton_42</zorder>
-   <zorder>elapsed_time_2</zorder>
-   <zorder>label_26</zorder>
    <zorder>line</zorder>
-   <zorder>label_28</zorder>
    <zorder>label_9</zorder>
    <zorder>label_32</zorder>
    <zorder>tabWidget_2</zorder>

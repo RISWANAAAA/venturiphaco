@@ -2573,6 +2573,7 @@ vus4=ui->us4vacmode->text();
         bool flag1 = false;
         QString us1powmode=ui->CutMode_vitCom->currentText();
          int nOfftime;
+         int us1reachedvac;
         // qDebug()<<nfpzero<<nfpone<<nfptwo<<nfpthree<<"those are reterved from the footpedal screen";
 
  //qDebug()<<"the nonlinear vaccum is"<<nonlinear_prevac;
@@ -2590,14 +2591,14 @@ vus4=ui->us4vacmode->text();
                            handler->pinchvalve_off();
                     }
 
-//                       if(ventonus1==false){
-//                        //   handler->pinchvalve_on();
-//                 handler->safetyvent_on();
-//                     QThread::msleep(100);
-//                       handler->pinchvalve_off();
-//                     handler->safetyvent_off();
-//                     ventonus1=true;
-//                       }
+                       if(ventonus1==false){
+                        //   handler->pinchvalve_on();
+                 handler->safetyvent_on();
+                     QThread::msleep(100);
+                       handler->pinchvalve_off();
+                     handler->safetyvent_off();
+                     ventonus1=true;
+                       }
                        int pro=readsensorvalue();
                        ui->label_8->setText(QString::number(pro));
                    motoroff();
@@ -2649,30 +2650,37 @@ vus4=ui->us4vacmode->text();
                 handler->phaco_off();
                // handler->fs_count(0);
                 us1poweron= false;
- if(vus1=="Panel" ){
-     int nonlinear_prevac=readsensorvalue();
-     if(nonlinear_prevac < vacline){
-                ui->label_8->setText(QString::number(nonlinear_prevac));
-                motoron(ui->lineEdit_56);
-                //handler->speaker_on(nonlinear_prevac,1,0,0);
-                if(speakeronoff == "Speaker ON"){
-                handler->speaker_on(nonlinear_prevac,1,0,0);
-                }else{
-                    handler->speaker_off();
-                }
-     }
-   if (nonlinear_prevac == vacline) {
-                    motoroff(); // Turn off the motor
+                if(vus1=="Panel" ){
+                    int nonlinear_prevac=readsensorvalue();
+                    qDebug()<<nonlinear_prevac<<"us1 mode from 2nd pos panel mode";
                     ui->label_8->setText(QString::number(nonlinear_prevac));
-                  //  speedofthelabe(ui->label_8);
-                    if(speakeronoff == "Speaker ON"){
-                    handler->speaker_on(nonlinear_prevac,0,0,1);
-                    }else{
-                        handler->speaker_off();
-                    }                   //qDebug()<<"the vaccum is reached preset vac"<<nonlinear_prevac<<"PANEL";
-                }
- }
+                    if(nonlinear_prevac <=  vacline){
+                     motoron(ui->lineEdit_56);
+                     if(speakeronoff == "Speaker ON"){
+                  handler->speaker_on(nonlinear_prevac,1,0,0);
+                     }else{
+                         handler->speaker_off();
+                     }
+                    }
 
+
+                  if (nonlinear_prevac > vacline) {
+                                   motoroff(); // Turn off the motor
+                                   ui->label_8->setText(QString::number(vacline));
+                                   if(speakeronoff == "Speaker ON"){
+                                  handler->speaker_on(nonlinear_prevac,0,0,1);
+                                   }else{
+                                       handler->speaker_off();
+                                   }
+                                   if(ui->label_8->text()==vacline){
+                                   ui->label_8->setText(QString::number(vacline));
+                                   }
+                               }
+
+                  if(us1reachedvac == vacline){
+                      motoroff();
+                  }
+                }
                 flag1 = true; // Reset flag
             }
             else if (range >=(nfpzero+nfpone+nfptwo) && range < (nfpzero+nfpone+nfptwo+nfpthree)) {
@@ -2729,8 +2737,10 @@ vus4=ui->us4vacmode->text();
 
 if(vus1 == "Panel"){
      int nonlinear_prevac=readsensorvalue();
-                              int nonlinear_vac = std::min(nonlinear_prevac, vacline);
-                              ui->label_8->setText(QString::number(nonlinear_vac));
+                            //  int nonlinear_vac = std::min(nonlinear_prevac, vacline);
+     ui->label_8->setText(QString::number(nonlinear_prevac));
+
+     if(nonlinear_prevac <= vacline){
                               motoron(ui->lineEdit_56);
                               if(us1powmode == "Ocuburst"){
                                   handler->pdm_mode(CONTINOUS);
@@ -2738,14 +2748,18 @@ if(vus1 == "Panel"){
                                   handler->pdm_mode(CONTINOUS);
                               }
                               if(speakeronoff == "Speaker ON"){
-                              handler->speaker_on(nonlinear_vac,1,0,0);
+                              handler->speaker_on(nonlinear_prevac,1,0,0);
                               }else{
                                   handler->speaker_off();
                               }
-                              if (nonlinear_vac == vacline) {
-                                  motoroff(); // Turn off the motor
+     }
+
+                              if (nonlinear_prevac > vacline) {
+                                  motoroff(); // Turn off the motori
+                                  ui->label_8->setText(QString::number(vacline));
+
                                   if(speakeronoff == "Speaker ON"){
-                                  handler->speaker_on(nonlinear_vac,0,0,1);
+                                  handler->speaker_on(0,0,0,1);
                                   }else{
                                       handler->speaker_off();
                                   }
@@ -2758,7 +2772,9 @@ if(vus1 == "Panel"){
                                     nOcuPulseCount = ui->lineEdit_77->text().toInt();
                                       handler->pulse_count(nOcuPulseCount);
                                   }
+                                  us1reachedvac=nonlinear_prevac;
                               }
+
 }
 
  }
@@ -2772,23 +2788,23 @@ if(vus1 == "Panel"){
                     ui->CI5_5->setStyleSheet(styleSheet4);
                     handler->pinchvalve_off();
                 }
-//                if(ventonus1==false){
-//                   handler->safetyvent_on();
-//              QThread::msleep(100);
-//              handler->safetyvent_off();
-//              ventonus1=true;
-//                }
+                if(ventonus1==false){
+                   handler->safetyvent_on();
+              QThread::msleep(100);
+              handler->safetyvent_off();
+              ventonus1=true;
+                }
                 motoroff();
 
                  handler->phaco_off();
                  handler->phaco_power(0);
                  handler->freq_count(0);
                  handler->fs_count_limit(nfpzero+nfpone+nfptwo);
-                ui->label_8->setText("0");
                 ui->label_7->setText("0");
                 handler->speaker_off();
                 beepsound(0);
-
+                int pro = readsensorvalue();
+                 ui->label_8->setText(QString::number(pro));
                 us1poweron=false;
                 flag1 = true; // Reset flag
 
@@ -2805,11 +2821,11 @@ if(vus1 == "Panel"){
              handler->safetyvent_off();
               ventonus1=true;
                 }
-
+                int pro = readsensorvalue();
+                 ui->label_8->setText(QString::number(pro));
                 ui->CI5_5->setStyleSheet(styleSheet3);
                 motoroff();
                 ui->label_7->setText("0");
-                ui->label_8->setText("0");
 
                 handler->phaco_off();
                 handler->phaco_power(0);
@@ -2836,48 +2852,57 @@ if(vus1 == "Panel"){
                 handler->pinchvalve_on();
                // handler->safetyvent_off();
                 ui->CI5_5->setStyleSheet(styleSheet3);
-        if(vus1=="Surgeon"){
-                const int MIN_RANGE = nfpzero + nfpone;
-                const int MAX_RANGE =nfpzero + nfpone + nfptwo;
-                int divi =  MAX_RANGE-MIN_RANGE ; // Divider
-                int calibration = range - MIN_RANGE; // Calibration value
+                if(vus1=="Surgeon"){
+                        const int MIN_RANGE = nfpzero + nfpone;
+                        const int MAX_RANGE =nfpzero + nfpone + nfptwo;
+                        int divi =  MAX_RANGE-MIN_RANGE ; // Divider
+                        int calibration = range - MIN_RANGE; // Calibration value
 
-                if (divi != 0) {
-                    double final = static_cast<double>(vacline) / static_cast<double>(divi);
-                    int presetvac = static_cast<int>(std::round(calibration * final));
-                    int pro = readsensorvalue();
-                     ui->label_8->setText(QString::number(pro));
-//                     handler->speaker_on(presetvac,1,0,0);
+                        if (divi != 0) {
+                            double final = static_cast<double>( vacline) / static_cast<double>(divi);
+                            int presetvac = static_cast<int>(std::round(calibration * final));
+                            int pro = readsensorvalue();
+                             ui->label_8->setText(QString::number(pro));
+                             if(speakeronoff == "Speaker ON"){
+                             handler->speaker_on(pro,1,0,0);
+                             }else{
+                                 handler->speaker_off();
+                             }
+                             ui->label_8->setText(QString::number(pro));
 
-                     if (pro < presetvac) {
-                        motoron(ui->lineEdit_56);
-                        if(speakeronoff == "Speaker ON"){
-                            handler->speaker_on(pro,1,0,0);
-                        }else{
-                            handler->speaker_off();
+                             if(pro<=presetvac){
+                                  motoron(ui->lineEdit_56);
+
+                             }
+//                             if (pro < presetvac) {
+//                                 motoron(ui->lineEdit_56);
+//                                if (!motorus1) {
+//                                    motoron(ui->lineEdit_56);
+//                                    motorus1 = true;
+//                                }
+//                            } else if (motorus1) {
+//                                motoroff();
+//                                motorus1 = false;
+//                            }
+                             if(pro>= vacline){
+                                  pro=static_cast<int>( vacline);
+                                   //speedofthelabe(ui->label_8);
+                                  motoroff();
+                                   ui->label_8->setText(QString::number(pro));
+                                   if(speakeronoff == "Speaker ON"){
+                                   handler->speaker_on(0,0,0,1);
+                                   }
+                                   else{
+                                       handler->speaker_off();
+                                   }
+
+
+                      }
+                             if(pro ==us1reachedvac){
+                                 motoroff();
+                             }
                         }
-                        if (!motorus1) {
-                            motoron(ui->lineEdit_56);
-                            motorus1 = true;
-                        }
-                    } else if (motorus1) {
-                        motoroff();
-                        motorus1 = false;
-                    }
-                     if(pro>=vacline){
-                          pro=static_cast<int>(vacline);
-                           //speedofthelabe(ui->label_8);
-                           ui->label_8->setText(QString::number(pro));
-                           if(speakeronoff == "Speaker ON"){
-                           handler->speaker_on(pro,0,0,1);
-                           }else{
-                               handler->speaker_off();
-                           }
-
-
-              }
-                }
-  }
+          }
 
 
                 handler->phaco_off();
@@ -2950,55 +2975,65 @@ if(vus1 == "Panel"){
                  }
                 }
                 if (vus1 == "Surgeon") {
-                      const int MIN_RANGE = nfpzero + nfpone + nfptwo;
-                      const int MAX_RANGE = nfpzero + nfpone + nfptwo + nfpthree;
-                      int divi = MAX_RANGE - MIN_RANGE; // Divider
-                      int calibration = range - MIN_RANGE; // Calibration value
+                    const int MIN_RANGE = nfpzero + nfpone + nfptwo;
+                    const int MAX_RANGE = nfpzero + nfpone + nfptwo + nfpthree;
+                    int divi = MAX_RANGE - MIN_RANGE; // Divider
+                    int calibration = range - MIN_RANGE; // Calibration value
+                    if(us1powmode == "Ocuburst"){
+                        handler->pdm_mode(CONTINOUS);
+                    }else if(us1powmode == "Ocupulse" ){
+                        handler->pdm_mode(CONTINOUS);
+                    }
+                    if (divi != 0) {
+                        double final = static_cast<double>(vacline) / static_cast<double>(divi);
+                        int presetvac = static_cast<int>(std::round(calibration * final));
+                        int pro = readsensorvalue();
+                        if(speakeronoff== "Speaker ON"){
+                        handler->speaker_on(pro, 1, 0, 0);
+}else{
+                            handler->speaker_off();
+                        }
+                    /*    // Motor control based on vacuum level
+                        if (pro < presetvac) {
+                            if (!motorus1) {
+                                motoron(ui->lineEdit_56);
+                                motorus1 = true;
+                            }
+                        }*/
+                        ui->label_8->setText(QString::number(pro));
 
-                      if (divi != 0) {
-                          double final = static_cast<double>(vacline) / static_cast<double>(divi);
-                          int presetvac = static_cast<int>(std::round(calibration * final));
-                          int pro = readsensorvalue();
-                          ui->label_8->setText(QString::number(pro));
-                          if(speakeronoff == "Speaker ON"){
-                          handler->speaker_on(pro,1,0,0);
-                          }else{
-                              handler->speaker_off();
-                          }
-                          // Motor control based on vacuum level
-                          if (pro < presetvac) {
-                              if (!motorus1) {
-                                  motoron(ui->lineEdit_56);
-                                  motorus1 = true;
-                              }
-                          } else if (pro >= vacline) {
-                              pro = static_cast<int>(vacline);
-                              ui->label_8->setText(QString::number(pro));
-                                    motoroff();
-                              // Check for specific power modes
-                                    if(us1powmode == "Ocuburst"){
-                                        handler->pdm_mode(SINGLE_BURST);
-                                        handler->phaco_on(range);
-                                        handler->phaco_power(100);
-                                    }else if(us1powmode == "Ocupulse" ){
-                                        handler->pdm_mode(PULSE_MODE);
-                                      nOcuPulseCount = ui->lineEdit_77->text().toInt();
-                                        handler->pulse_count(nOcuPulseCount);
-                                    }
+                        if(pro<=presetvac){
+                            motoron(ui->lineEdit_56);
+                        }
+                        else if (pro > vacline) {
+                            pro = static_cast<int>(vacline);
+                            ui->label_8->setText(QString::number(pro));
+                            motoroff();
+                            if(us1powmode == "Ocuburst"){
+                                handler->pdm_mode(SINGLE_BURST);
+                                handler->phaco_on(range);
+                                handler->phaco_power(100);
+                            }else if(us1powmode == "Ocupulse" ){
+                                handler->pdm_mode(PULSE_MODE);
+                              nOcuPulseCount = ui->lineEdit_77->text().toInt();
+                                handler->pulse_count(nOcuPulseCount);
+                            }
+                           if(speakeronoff == "Speaker ON"){
+                            handler->speaker_on(0, 0, 0, 1);
+                           }else{
+                               handler->speaker_off();
+                           }
 
-                                    if(speakeronoff == "Speaker ON"){
-                                    handler->speaker_on(0,0,0,1);
-                                    }else{
-                                        handler->speaker_off();
-                                    }
-                              // Keep motor running continuously
-                              if (!motorus1) {
-                                  motoron(ui->lineEdit_56);
-                                  motorus1 = true;
-                              }
-                          }
-                      }
-                  }
+                            // Keep motor running continuously
+                            if (!motorus1) {
+                                motoron(ui->lineEdit_56);
+                                motorus1 = true;
+                            }
+                            us1reachedvac=pro;
+
+                        }
+                    }
+                }
 
          // qDebug()<<"the final of us1 mode and vac mode is"<<us1 <<vus1;
 
@@ -3018,7 +3053,7 @@ if(vus1 == "Panel"){
         bool flag1 = false;
         QString us2powmode=ui->CutMode_vitCom_2->currentText();
          int nOfftime;
-
+           int us2reachedvac;
         // qDebug()<<"the us2 mode is"<<us2<<"the us2 vacmode is"<<vus2;
         if (us2 == "Panel"||vus2=="Panel"){
             if (range>0 && range<nfpzero) {
@@ -3035,14 +3070,14 @@ if(vus1 == "Panel"){
                            handler->pinchvalve_off();
                     }
 
-//                       if(ventonus2==false){
-//                        //   handler->pinchvalve_on();
-//                 handler->safetyvent_on();
-//                     QThread::msleep(100);
-//                       handler->pinchvalve_off();
-//                     handler->safetyvent_off();
-//                     ventonus2=true;
-//                       }
+                       if(ventonus2==false){
+                        //   handler->pinchvalve_on();
+                 handler->safetyvent_on();
+                     QThread::msleep(100);
+                       handler->pinchvalve_off();
+                     handler->safetyvent_off();
+                     ventonus2=true;
+                       }
                        int pro=readsensorvalue();
                        ui->label_93->setText(QString::number(pro));
                    motoroff();
@@ -3093,7 +3128,7 @@ flag1 = true;
                 //footpedalbeep();
  if(vus2=="Panel" ){
      int nonlinear_prevac=readsensorvalue();
-     if(nonlinear_prevac <  us2vacline){
+     if(nonlinear_prevac <=  us2vacline){
        ui->label_93->setText(QString::number(nonlinear_prevac));
       motoron(ui->lineEdit_59);
       if(speakeronoff == "Speaker ON"){
@@ -3102,15 +3137,18 @@ flag1 = true;
           handler->speaker_off();
       }
      }
-   if (nonlinear_prevac ==  us2vacline) {
+   if (nonlinear_prevac >  us2vacline) {
                     motoroff(); // Turn off the motor
-                    ui->label_93->setText(QString::number(nonlinear_prevac));
+                    ui->label_93->setText(QString::number(us2vacline));
                     if(speakeronoff == "Speaker ON"){
-                   handler->speaker_on(nonlinear_prevac,0,0,1);
+                   handler->speaker_on(us2vacline,0,0,1);
                     }else{
                         handler->speaker_off();
                     }
                 }
+   if(us2reachedvac == us2vacline){
+       motoroff();
+   }
  }
                     handler->freq_count(0);
                     handler->phaco_off();
@@ -3131,8 +3169,8 @@ flag1 = true;
                 ui->CI5_5->setStyleSheet(styleSheet3);
 if(vus2=="Panel"){
      int nonlinear_prevac=readsensorvalue();
-                              int nonlinear_vac = std::min(nonlinear_prevac,  us2vacline);
-                              ui->label_93->setText(QString::number(nonlinear_vac));
+     if(nonlinear_prevac<=us2vacline){
+                              ui->label_93->setText(QString::number(nonlinear_prevac));
                               motoron(ui->lineEdit_59);
                               if(us2powmode == "Ocuburst"){
                                   handler->pdm_mode(CONTINOUS);
@@ -3140,14 +3178,16 @@ if(vus2=="Panel"){
                                   handler->pdm_mode(CONTINOUS);
                               }
                               if(speakeronoff == "Speaker ON"){
-                             handler->speaker_on(nonlinear_vac,0,1,0);
+                             handler->speaker_on(nonlinear_prevac,1,0,0);
                               }else{
                                   handler->speaker_off();
                               }
-                             if (nonlinear_vac == us2vacline) {
+     }
+                             if (nonlinear_prevac > us2vacline) {
                                  motoroff(); // Turn off the motor
+                                   ui->label_93->setText(QString::number(us2vacline));
                                  if(speakeronoff == "Speaker ON"){
-                                 handler->speaker_on(nonlinear_vac,0,0,1);
+                                 handler->speaker_on(0,0,0,1);
                                  }else{
                                      handler->speaker_off();
                                  }
@@ -3160,6 +3200,7 @@ if(vus2=="Panel"){
                                    nOcuPulseCount = ui->lineEdit_77->text().toInt();
                                      handler->pulse_count(nOcuPulseCount);
                                  }
+                                 us2reachedvac=nonlinear_prevac;
                              }
 }
 if(us2 == "Panel"){
@@ -3213,12 +3254,12 @@ beepsound(3);
                     ui->CI5_5->setStyleSheet(styleSheet4);
                     handler->pinchvalve_off();
                 }
-//                if(ventonus2==false){
-//                   handler->safetyvent_on();
-//              QThread::msleep(100);
-//              handler->safetyvent_off();
-//              ventonus2=true;
-//                }
+                if(ventonus2==false){
+                   handler->safetyvent_on();
+              QThread::msleep(100);
+              handler->safetyvent_off();
+              ventonus2=true;
+                }
                 motoroff();
 
                  handler->phaco_off();
@@ -3226,8 +3267,9 @@ beepsound(3);
                  handler->freq_count(0);
                      handler->fs_count_limit(nfpzero+nfpone+nfptwo);
 
-                ui->label_93->setText("0");
-                ui->label_92->setText("0");
+                     int pro=readsensorvalue();
+                     ui->label_93->setText(QString::number(pro));
+                     ui->label_92->setText("0");
                 handler->speaker_off();
                 beepsound(0);
 
@@ -3251,8 +3293,8 @@ beepsound(3);
                 ui->CI5_5->setStyleSheet(styleSheet3);
                 motoroff();
                 ui->label_92->setText("0");
-                ui->label_93->setText("0");
-
+                int pro=readsensorvalue();
+                ui->label_93->setText(QString::number(pro));
                 handler->phaco_off();
                 handler->phaco_power(0);
                 handler->freq_count(0);
@@ -3294,28 +3336,35 @@ beepsound(3);
                      }else{
                          handler->speaker_off();
                      }
-                     if (pro < presetvac) {
+                     if (pro <= presetvac) {
                          motoron(ui->lineEdit_59);
-                        if (!motorus2) {
-                            motoron(ui->lineEdit_59);
-                            motorus2 = true;
-                        }
-                    } else if (motorus2) {
-                        motoroff();
-                        motorus2 = false;
-                    }
-                     if(pro>= us2vacline){
+//                        if (!motorus2) {
+//                            motoron(ui->lineEdit_59);
+//                            motorus2 = true;
+//                        }
+//                    } else if (motorus2) {
+//                        motoroff();
+//                        motorus2 = false;
+//                    }
+                     }
+                     if(pro> us2vacline){
+                         motoroff();
                           pro=static_cast<int>( us2vacline);
                            //speedofthelabe(ui->label_8);
-                           ui->label_93->setText(QString::number(pro));
+                           ui->label_93->setText(QString::number(us2vacline));
                            if(speakeronoff == "Speaker ON"){
-                           handler->speaker_on(0,0,0,1);}
+                           handler->speaker_on(0,0,0,1);
+                           }
                            else{
                                handler->speaker_off();
                            }
 
 
               }
+
+                     if(pro ==us2reachedvac){
+                         motoroff();
+                     }
                 }
   }
 
@@ -3396,7 +3445,11 @@ beepsound(3);
                     const int MAX_RANGE = nfpzero + nfpone + nfptwo + nfpthree;
                     int divi = MAX_RANGE - MIN_RANGE; // Divider
                     int calibration = range - MIN_RANGE; // Calibration value
-
+                    if(us2powmode == "Ocuburst"){
+                        handler->pdm_mode(CONTINOUS);
+                    }else if(us2powmode == "Ocupulse" ){
+                        handler->pdm_mode(CONTINOUS);
+                    }
                     if (divi != 0) {
                         double final = static_cast<double>(us2vacline) / static_cast<double>(divi);
                         int presetvac = static_cast<int>(std::round(calibration * final));
@@ -3408,14 +3461,13 @@ beepsound(3);
                             handler->speaker_off();
                         }
                         // Motor control based on vacuum level
-                        if (pro < presetvac) {
-                            if (!motorus2) {
+                        if (pro <= presetvac) {
+
                                 motoron(ui->lineEdit_59);
-                                motorus2 = true;
-                            }
-                        } else if (pro >= us2vacline) {
+
+                        } else if (pro > us2vacline) {
                             pro = static_cast<int>(us2vacline);
-                            ui->label_93->setText(QString::number(pro));
+                            ui->label_93->setText(QString::number(us2vacline));
                             motoroff();
                             if(us2powmode == "Ocuburst"){
                                 handler->pdm_mode(SINGLE_BURST);
@@ -3432,11 +3484,13 @@ beepsound(3);
                                handler->speaker_off();
                            }
 
-                            // Keep motor running continuously
-                            if (!motorus2) {
-                                motoron(ui->lineEdit_59);
-                                motorus2 = true;
-                            }
+//                            // Keep motor running continuously
+//                            if (!motorus2) {
+//                                motoron(ui->lineEdit_59);
+//                                motorus2 = true;
+//                            }
+                            us2reachedvac=pro;
+
                         }
                     }
                 }
@@ -3464,7 +3518,7 @@ beepsound(3);
         bool flag1 = false;
         QString us3powmode=ui->CutMode_vitCom_3->currentText();
          int nOfftime;
-
+      int us3reachedvac;
       // qDebug()<<"the us3 pdm is"<<us3powmode;
         if (us3 == "Panel"||vus3=="Panel"){
             if (range>0 && range<nfpzero) {
@@ -3481,14 +3535,14 @@ beepsound(3);
                            handler->pinchvalve_off();
                     }
 
-//                       if(ventonus3==false){
-//                        //   handler->pinchvalve_on();
-//                 handler->safetyvent_on();
-//                     QThread::msleep(100);
-//                       handler->pinchvalve_off();
-//                     handler->safetyvent_off();
-//                     ventonus2=true;
-//                       }
+                       if(ventonus3==false){
+                        //   handler->pinchvalve_on();
+                 handler->safetyvent_on();
+                     QThread::msleep(100);
+                       handler->pinchvalve_off();
+                     handler->safetyvent_off();
+                     ventonus2=true;
+                       }
                        int pro=readsensorvalue();
                        ui->label_99->setText(QString::number(pro));
                    motoroff();
@@ -3540,7 +3594,7 @@ flag1 = true;
 
  if(vus3=="Panel" ){
      int nonlinear_prevac=readsensorvalue();
-     if(nonlinear_prevac <  us3vacline){
+     if(nonlinear_prevac <=  us3vacline){
        ui->label_99->setText(QString::number(nonlinear_prevac));
       motoron(ui->lineEdit_62);
       if(speakeronoff == "Speaker ON"){
@@ -3549,11 +3603,19 @@ flag1 = true;
           handler->speaker_off();
       }
      }
-   if (nonlinear_prevac ==  us3vacline) {
+   if (nonlinear_prevac >  us3vacline) {
                     motoroff(); // Turn off the motor
-                    ui->label_99->setText(QString::number(nonlinear_prevac));
+                    ui->label_99->setText(QString::number(us3vacline));
+                    if(speakeronoff == "Speaker ON"){
+                 handler->speaker_on(nonlinear_prevac,0,0,1);
+                    }else{
+                        handler->speaker_off();
+                    }
 
                 }
+   if(us3reachedvac == us3vacline){
+       motoroff();
+   }
  }
  ui->label_98->setText("0");
                     handler->freq_count(0);
@@ -3575,13 +3637,26 @@ flag1 = true;
                 ui->CI5_5->setStyleSheet(styleSheet3);
 if(vus3=="Panel"){
      int nonlinear_prevac=readsensorvalue();
-                              int nonlinear_vac = std::min(nonlinear_prevac,  us3vacline);
-                              ui->label_99->setText(QString::number(nonlinear_vac));
+     if(nonlinear_prevac <=us3vacline){
+                              ui->label_99->setText(QString::number(nonlinear_prevac));
                               motoron(ui->lineEdit_62);
-                                  if (nonlinear_vac == us3vacline) {
+                              if(us3powmode == "Ocuburst"){
+                                  handler->pdm_mode(CONTINOUS);
+                              }else if(us3powmode == "Ocupulse" ){
+                                  handler->pdm_mode(CONTINOUS);
+                              }
+                              if(speakeronoff == "Speaker ON"){
+                           handler->speaker_on(nonlinear_prevac,1,0,0);
+                              }else{
+                                  handler->speaker_off();
+                              }
+     }
+                                  if (nonlinear_prevac > us3vacline) {
                                       motoroff(); // Turn off the motor
+                                      ui->label_99->setText(QString::number(us3vacline));
+
                                       if(speakeronoff == "Speaker ON"){
-                                      handler->speaker_on(nonlinear_vac,0,0,1);
+                                      handler->speaker_on(0,0,0,1);
                                       }else{
                                           handler->speaker_off();
                                       }
@@ -3594,6 +3669,7 @@ if(vus3=="Panel"){
                                         nOcuPulseCount = ui->lineEdit_77->text().toInt();
                                           handler->pulse_count(nOcuPulseCount);
                                       }
+                                      us3reachedvac=us3vacline;
                                   }
 
 }
@@ -3653,20 +3729,20 @@ beepsound(3);
                     ui->CI5_5->setStyleSheet(styleSheet4);
                     handler->pinchvalve_off();
                 }
-//                if(ventonus3==false){
-//                   handler->safetyvent_on();
-//              QThread::msleep(100);
-//              handler->safetyvent_off();
-//              ventonus3=true;
-//                }
+                if(ventonus3==false){
+                   handler->safetyvent_on();
+              QThread::msleep(100);
+              handler->safetyvent_off();
+              ventonus3=true;
+                }
                 motoroff();
 
                  handler->phaco_off();
                  handler->phaco_power(0);
                  handler->freq_count(0);
                      handler->fs_count_limit(nfpzero+nfpone+nfptwo);
-
-                ui->label_99->setText("0");
+                     int pro=readsensorvalue();
+                     ui->label_99->setText(QString::number(pro));
                 ui->label_98->setText("0");
                 handler->speaker_off();
                 beepsound(0);
@@ -3730,23 +3806,17 @@ beepsound(3);
                     int pro = readsensorvalue();
 
                      ui->label_99->setText(QString::number(pro));
-
-                     if (pro < presetvac) {
+                     if(speakeronoff == "Speaker ON"){
+                     handler->speaker_on(pro, 1, 0, 0);
+ }else{
+                         handler->speaker_off();
+                     }
+                     if (pro <= presetvac) {
                          motoron(ui->lineEdit_62);
-                         if(speakeronoff == "Speaker ON"){
-                         handler->speaker_on(pro, 1, 0, 0);
-     }else{
-                             handler->speaker_off();
-                         }
-                        if (!motorus3) {
-                            motoron(ui->lineEdit_62);
-                            motorus3 = true;
+
                         }
-                    } else if (motorus3) {
-                        motoroff();
-                        motorus3 = false;
-                    }
-                     if(pro>= us3vacline){
+                     if(pro> us3vacline){
+                         motoroff();
                           pro=static_cast<int>( us3vacline);
                            //speedofthelabe(ui->label_8);
                            ui->label_99->setText(QString::number(pro));
@@ -3754,6 +3824,9 @@ beepsound(3);
 
 
               }
+                     if(us3reachedvac ==us3vacline){
+                         motoroff();
+                     }
                 }
   }
 
@@ -3829,27 +3902,33 @@ beepsound(3);
                     const int MAX_RANGE = nfpzero + nfpone + nfptwo + nfpthree;
                     int divi = MAX_RANGE - MIN_RANGE; // Divider
                     int calibration = range - MIN_RANGE; // Calibration value
+                    if(us3powmode == "Ocuburst"){
+                        handler->pdm_mode(CONTINOUS);
+                    }else if(us3powmode == "Ocupulse" ){
+                        handler->pdm_mode(CONTINOUS);
+                    }
+                    int pro = readsensorvalue();
+                    ui->label_99->setText(QString::number(pro));
 
+                    if(speakeronoff == "Speaker ON"){
+                    handler->speaker_on(pro, 1, 0, 0);
+}else{
+                        handler->speaker_off();
+                    }
                     if (divi != 0) {
                         double final = static_cast<double>(us3vacline) / static_cast<double>(divi);
                         int presetvac = static_cast<int>(std::round(calibration * final));
-                        int pro = readsensorvalue();
-                        ui->label_99->setText(QString::number(pro));
 
                         // Motor control based on vacuum level
-                        if (pro < presetvac) {
-                            if(speakeronoff == "Speaker ON"){
-                            handler->speaker_on(pro, 1, 0, 0);
-    }else{
-                                handler->speaker_off();
-                            }
-                            if (!motorus3) {
+                        if (pro <= presetvac) {
+
+
                                 motoron(ui->lineEdit_62);
-                                motorus3 = true;
-                            }
-                        } else if (pro >= us3vacline) {
+
+                        } else if (pro > us3vacline) {
+                            motoroff();
                             pro = static_cast<int>(us3vacline);
-                            ui->label_99->setText(QString::number(pro));
+                            ui->label_99->setText(QString::number(us3vacline));
                             if(us3powmode == "Ocuburst"){
                                 handler->pdm_mode(SINGLE_BURST);
                                 handler->phaco_on(range);
@@ -3871,6 +3950,7 @@ beepsound(3);
                                 motoron(ui->lineEdit_62);
                                 motorus3 = true;
                             }
+                            us3reachedvac=pro;
                         }
                     }
                 }
@@ -3898,6 +3978,7 @@ beepsound(3);
         bool flag1 = false;
         QString us4powmode=ui->CutMode_vitCom_4->currentText();
          int nOfftime;
+         int us4reachedvac;
 
        //qDebug()<<"the us4 pdm is"<<us4powmode;
         if (us4 == "Panel"||vus4=="Panel"){
@@ -3917,14 +3998,14 @@ beepsound(3);
                            handler->pinchvalve_off();
                     }
 //qDebug()<<"the power value at us4 is"<<pow4;
-//                       if(ventonus4==false){
-//                        //   handler->pinchvalve_on();
-//                 handler->safetyvent_on();
-//                     QThread::msleep(100);
-//                       handler->pinchvalve_off();
-//                     handler->safetyvent_off();
-//                     ventonus4=true;
-//                       }
+                       if(ventonus4==false){
+                        //   handler->pinchvalve_on();
+                 handler->safetyvent_on();
+                     QThread::msleep(100);
+                       handler->pinchvalve_off();
+                     handler->safetyvent_off();
+                     ventonus4=true;
+                       }
                        int pro=readsensorvalue();
                        ui->label_104->setText(QString::number(pro));
                    motoroff();
@@ -3974,7 +4055,7 @@ flag1 = true;
 
  if(vus4=="Panel" ){
      int nonlinear_prevac=readsensorvalue();
-     if(nonlinear_prevac <  us4vacline){
+     if(nonlinear_prevac <=  us4vacline){
        ui->label_104->setText(QString::number(nonlinear_prevac));
       motoron(ui->lineEdit_65);
       if(speakeronoff =="Speaker ON"){
@@ -3983,15 +4064,18 @@ flag1 = true;
           handler->speaker_off();
       }
      }
-   if (nonlinear_prevac ==  us4vacline) {
+   if (nonlinear_prevac >  us4vacline) {
                     motoroff(); // Turn off the motor
-                    ui->label_104->setText(QString::number(nonlinear_prevac));
+                    ui->label_104->setText(QString::number(us4vacline));
                     if(speakeronoff == "Speaker ON"){
-                   handler->speaker_on(nonlinear_prevac,0,0,1);
+                   handler->speaker_on(us4vacline,0,0,1);
                     }else{
                         handler->speaker_off();
                     }
                 }
+   if(us4reachedvac == us4vacline){
+       motoroff();
+   }
  }
  ui->label_105->setText("0");
                     handler->freq_count(0);
@@ -4013,19 +4097,26 @@ flag1 = true;
                 ui->CI5_5->setStyleSheet(styleSheet3);
 if(vus4=="Panel"){
      int nonlinear_prevac=readsensorvalue();
-                              int nonlinear_vac = std::min(nonlinear_prevac,  us4vacline);
-                              ui->label_104->setText(QString::number(nonlinear_vac));
+     if(nonlinear_prevac<=us4vacline){
+                              ui->label_104->setText(QString::number(nonlinear_prevac));
                               motoron(ui->lineEdit_65);
                               if(us4powmode == "Ocuburst"){
                                   handler->pdm_mode(CONTINOUS);
                               }else if(us4powmode == "Ocupulse" ){
                                   handler->pdm_mode(CONTINOUS);
                               }
+                              if(speakeronoff == "Speaker ON"){
+                           handler->speaker_on(nonlinear_prevac,1,0,0);
+                              }else{
+                                  handler->speaker_off();
+                              }
+     }
 
-                                  if (nonlinear_vac == us4vacline) {
+                                  if (nonlinear_prevac > us4vacline) {
                                       motoroff(); // Turn off the motor
+                                      ui->label_104->setText(QString::number(us4vacline));
                                       if(speakeronoff == "Speaker ON"){
-                                      handler->speaker_on(nonlinear_vac,0,0,1);
+                                      handler->speaker_on(us4vacline,0,0,1);
                                       }else{
                                           handler->speaker_off();
                                       }
@@ -4091,12 +4182,12 @@ if(us4 == "Panel"){
                     ui->CI5_5->setStyleSheet(styleSheet4);
                     handler->pinchvalve_off();
                 }
-//                if(ventonus4==false){
-//                   handler->safetyvent_on();
-//              QThread::msleep(100);
-//              handler->safetyvent_off();
-//              ventonus4=true;
-//                }
+                if(ventonus4==false){
+                   handler->safetyvent_on();
+              QThread::msleep(100);
+              handler->safetyvent_off();
+              ventonus4=true;
+                }
                 motoroff();
 
                  handler->phaco_off();
@@ -4104,8 +4195,9 @@ if(us4 == "Panel"){
                  handler->freq_count(0);
                      handler->fs_count_limit(nfpzero+nfpone+nfptwo);
 
-                ui->label_104->setText("0");
-                ui->label_105->setText("0");
+                     int pro=readsensorvalue();
+                     ui->label_104->setText(QString::number(pro));
+                     ui->label_105->setText("0");
                 handler->speaker_off();
                 beepsound(0);
 
@@ -4167,23 +4259,24 @@ if(us4 == "Panel"){
                     int pro = readsensorvalue();
                      ui->label_104->setText(QString::number(pro));
 
-                     if (pro < presetvac) {
+                     if (pro <= presetvac) {
                          motoron(ui->lineEdit_65);
-                         if(speakeronoff == "Speaker ON"){
-                         handler->speaker_on(pro,1,0,0);
-                         }else{
-                             handler->speaker_off();
-                         }
-                        if (!motorus4) {
-                            motoron(ui->lineEdit_65);
-                            motorus4 = true;
-                        }
-                    } else if (motorus4) {
-                        motoroff();
-                        motorus4 = false;
+//                         if(speakeronoff == "Speaker ON"){
+//                         handler->speaker_on(pro,1,0,0);
+//                         }else{
+//                             handler->speaker_off();
+//                         }
+//                        if (!motorus4) {
+//                            motoron(ui->lineEdit_65);
+//                            motorus4 = true;
+//                        }
+//                    } else if (motorus4) {
+//                        motoroff();
+//                        motorus4 = false;
                     }
-                     if(pro>= us4vacline){
+                     if(pro> us4vacline){
                           pro=static_cast<int>( us4vacline);
+                          motoroff();
                            //speedofthelabe(ui->label_8);
                            ui->label_104->setText(QString::number(pro));
                            if(speakeronoff == "Speaker ON"){
@@ -4194,6 +4287,9 @@ if(us4 == "Panel"){
 
 
               }
+                     if(us4reachedvac == us4vacline){
+                         motoroff();
+                     }
                 }
   }
 
@@ -4219,7 +4315,11 @@ if(us4 == "Panel"){
                     const int MAX_RANGE = nfpzero + nfpone + nfptwo + nfpthree;
                     int divi = MAX_RANGE - MIN_RANGE; // Divider
                     int calibration = range - MIN_RANGE; // Calibration value
-
+                    if(us4powmode == "Ocuburst"){
+                        handler->pdm_mode(CONTINOUS);
+                    }else if(us4powmode == "Ocupulse" ){
+                        handler->pdm_mode(CONTINOUS);
+                    }
                     if (divi != 0) {
                         double final = static_cast<double>(us4vacline) / static_cast<double>(divi);
                         int presetvac = static_cast<int>(std::round(calibration * final));
@@ -4231,14 +4331,20 @@ if(us4 == "Panel"){
                             handler->speaker_off();
                         }
                         // Motor control based on vacuum level
-                        if (pro < presetvac) {
-                            if (!motorus3) {
+                        if(us4powmode == "Ocuburst"){
+                            handler->pdm_mode(CONTINOUS);
+                        }else if(us4powmode == "Ocupulse" ){
+                            handler->pdm_mode(CONTINOUS);
+                        }
+                        if (pro <= presetvac) {
+
                                 motoron(ui->lineEdit_65);
-                                motorus3 = true;
-                            }
-                        } else if (pro >= us4vacline) {
+
+
+                        } else if (pro > us4vacline) {
+                            motoroff();
                             pro = static_cast<int>(us4vacline);
-                            ui->label_104->setText(QString::number(pro));
+                            ui->label_104->setText(QString::number(us4vacline));
                             if(us4powmode == "Ocuburst"){
                                 handler->pdm_mode(SINGLE_BURST);
                                 handler->phaco_on(range);
@@ -4255,10 +4361,11 @@ if(us4 == "Panel"){
                              handler->speaker_off();
                          }
                             // Keep motor running continuously
-                            if (!motorus3) {
+                            if (!motorus4) {
                                 motoron(ui->lineEdit_65);
-                                motorus3 = true;
+                                motorus4 = true;
                             }
+                            us4reachedvac=us4vacline;
                         }
                     }
                 }
@@ -4341,12 +4448,12 @@ QString ia1=ui->ia2mode->text();
                     ui->CI5_5->setStyleSheet(styleSheet4);
                     handler->pinchvalve_off();
                 }
-//                if(ventonia1 == false) {
-//                    handler->safetyvent_on();
-//                    QThread::msleep(200);
-//                    handler->safetyvent_off();
-//                    ventonia1 = true;
-//                }
+                if(ventonia1 == false) {
+                    handler->safetyvent_on();
+                    QThread::msleep(200);
+                    handler->safetyvent_off();
+                    ventonia1 = true;
+                }
                handler->speaker_off();
                 motoroff();
                 ui->label_113->setText(QString::number(0));
@@ -4418,12 +4525,12 @@ QString ia1=ui->ia2mode->text();
              ui->CI5_5->setStyleSheet(styleSheet4);
                     handler->pinchvalve_off();
                 }
-//                if(ventonia1 == false) {
-//                    handler->safetyvent_on();
-//                    QThread::msleep(200);
-//                    handler->safetyvent_off();
-//                    ventonia1 = true;
-//                }
+                if(ventonia1 == false) {
+                    handler->safetyvent_on();
+                    QThread::msleep(200);
+                    handler->safetyvent_off();
+                    ventonia1 = true;
+                }
 
                   motoroff();
                     //int pro = readsensorvalue();
@@ -4478,9 +4585,9 @@ handler->pinchvalve_on();
                     int presetvac = static_cast<int>(std::round(calibration * final));
                     int pro =readsensorvalue();
                     ui->label_113->setText(QString::number(pro));
-                    const int tolerance = 5; // Example tolerance
+                  //  const int tolerance = 5; // Example tolerance
 
-                    if (pro < (presetvac - tolerance)) {
+                    if (pro < (presetvac)) {
                         motoron(ui->lineEdit_69);
                         if(speakeronoff == "Speaker ON"){
                         handler->speaker_on(pro,1,0,0);
@@ -4533,12 +4640,12 @@ handler->pinchvalve_on();
             ui->CI5_5->setStyleSheet(styleSheet4);
                     handler->pinchvalve_off();
                 }
-//                if(ventonia2==false){
-//                    handler->safetyvent_on();
-//                    QThread::msleep(100);
-//                    handler->safetyvent_off();
-//                   ventonia2=true;
-//                }
+                if(ventonia2==false){
+                    handler->safetyvent_on();
+                    QThread::msleep(100);
+                    handler->safetyvent_off();
+                   ventonia2=true;
+                }
              //   int ia2pro=readsensorvalue();
                 ui->label_109->setText(QString::number(0));
  motoroff();
@@ -4606,12 +4713,12 @@ handler->pinchvalve_on();
                     }
                     handler->speaker_off();
                       motoroff();
-//                      if(ventonia2==false){
-//                        handler->safetyvent_on();
-//                        QThread::msleep(100);
-//                        handler->safetyvent_off();
-//                        ventonia2=true;
-//                      }
+                      if(ventonia2==false){
+                        handler->safetyvent_on();
+                        QThread::msleep(100);
+                        handler->safetyvent_off();
+                        ventonia2=true;
+                      }
                       //int ia2pro=readsensorvalue();
                       ui->label_109->setText(QString::number(0));
                       beepsound(0);
@@ -4656,9 +4763,8 @@ handler->pinchvalve_on();
                         int presetvac = static_cast<int>(std::round(calibration * final));
                         int pro =readsensorvalue();
                         ui->label_109->setText(QString::number(pro));
-                        const int tolerance = 5; // Example tolerance
 
-                        if (pro < (presetvac - tolerance)) {
+                        if (pro < (presetvac)) {
                             motoron(ui->lineEdit_67);
                             if(speakeronoff == "Speaker ON"){
                             handler->speaker_on(pro,1,0,0);
@@ -4713,12 +4819,12 @@ handler->pinchvalve_on();
                 ui->CI5_5->setStyleSheet(styleSheet4);
                 handler->pinchvalve_off();
             }
-//            if (!ventonvit) {
-//                handler->safetyvent_on();
-//                QThread::msleep(100);
-//                handler->safetyvent_off();
-//                ventonvit = true;
-//            }
+            if (!ventonvit) {
+                handler->safetyvent_on();
+                QThread::msleep(100);
+                handler->safetyvent_off();
+                ventonvit = true;
+            }
 
             motoroff();
             ui->label_119->setText("0");

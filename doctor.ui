@@ -488,7 +488,7 @@ background-color: rgb(14, 50, 6);</string>
     <string notr="true">background-color: rgb(162, 128, 137);</string>
    </property>
    <property name="currentIndex">
-    <number>3</number>
+    <number>1</number>
    </property>
    <widget class="QWidget" name="Diathermy">
     <property name="styleSheet">
@@ -609,7 +609,7 @@ QProgressBar::chunk {
       <string notr="true">background-color: rgb(170, 171, 191);</string>
      </property>
      <property name="text">
-      <string>Chop</string>
+      <string>Quad</string>
      </property>
     </widget>
     <widget class="QPushButton" name="ChopBut_phaco">
@@ -625,7 +625,7 @@ QProgressBar::chunk {
       <string notr="true">background-color: rgb(170, 171, 191);</string>
      </property>
      <property name="text">
-      <string>Quad</string>
+      <string>Chop</string>
      </property>
     </widget>
     <widget class="QPushButton" name="ScupltBut_phaco">
@@ -657,7 +657,7 @@ QProgressBar::chunk {
       <string notr="true">background-color:rgb(83, 104, 120);</string>
      </property>
      <property name="currentIndex">
-      <number>3</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab_6">
       <attribute name="title">

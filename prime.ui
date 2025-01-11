@@ -697,6 +697,10 @@ font-weight: bold;</string>
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
+  <zorder>lab_date</zorder>
+  <zorder>lab_time</zorder>
+  <zorder>label_5</zorder>
+  <zorder>label_4</zorder>
   <zorder>prime1_but</zorder>
   <zorder>tabWidget</zorder>
   <zorder>label_2</zorder>
@@ -705,12 +709,8 @@ font-weight: bold;</string>
   <zorder>Tune_but</zorder>
   <zorder>clean_but</zorder>
   <zorder>lbloverall</zorder>
-  <zorder>lab_time</zorder>
-  <zorder>lab_date</zorder>
   <zorder>label_6</zorder>
   <zorder>comboBox_4</zorder>
-  <zorder>label_5</zorder>
-  <zorder>label_4</zorder>
   <zorder>label_7</zorder>
   <zorder>line</zorder>
  </widget>
