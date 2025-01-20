@@ -243,8 +243,7 @@ public:
         Instruction_lab_2 = new QTextEdit(tab_8);
         Instruction_lab_2->setObjectName(QString::fromUtf8("Instruction_lab_2"));
         Instruction_lab_2->setGeometry(QRect(130, 260, 741, 281));
-        Instruction_lab_2->setStyleSheet(QString::fromUtf8("\n"
-"font:20px;border:none;\n"
+        Instruction_lab_2->setStyleSheet(QString::fromUtf8("font:20px;border:none;\n"
 "background-color: transparent;\n"
 ""));
         begin_clean_but_2 = new QPushButton(tab_8);
@@ -389,7 +388,7 @@ public:
 
         retranslateUi(prime);
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(prime);
@@ -418,12 +417,12 @@ public:
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:14pt; font-weight:600; color:#ffffff;\">2.Connect the irrigation,aspir"
                         "ation connectors together</span></p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:14pt; font-weight:600; color:#ffffff;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:14pt; font-weight:600; color:#ffffff;\">3.Disconnect the saline connection from irrigation.</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:14pt; font-weight:600; color:#ffffff;\">3.Disconnect the saline connection from irrigation</span></p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:14pt; font-weight:600; color:#ffffff;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:14pt; font-weight:600; color:#ffffff;\">4.Disconnect the tubing from irriagtion valve.</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-botto"
-                        "m:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:14pt; font-weight:600; color:#ffffff;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:14pt; font-weight:600; color:#ffffff;\">5.dip the irrigation connector in distilled water bowl</span></p></body></html>", nullptr));
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:14pt; font-weight:600; color:#ffffff;\">4.Disconnect the tubing from irriagtion valve</span></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:"
+                        "0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:14pt; font-weight:600; color:#ffffff;\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:14pt; font-weight:600; color:#ffffff;\">5.Dip the irrigation connector in distilled water bowl.</span></p></body></html>", nullptr));
         begin_clean_but_2->setText(QCoreApplication::translate("prime", "Begin Clean", nullptr));
         warning_img_2->setText(QString());
         label_10->setText(QCoreApplication::translate("prime", " Instructions To Be Followed:", nullptr));

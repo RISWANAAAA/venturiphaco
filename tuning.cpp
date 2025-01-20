@@ -124,6 +124,7 @@ void tuning::updatehandpieceStatus()
         }
         ui->butTuned->setEnabled(true);
         ui->ButRTune->setEnabled(true);
+        ui->But_Handpiece->setEnabled(true);
 
 
     } else if (statushp == 1) {
@@ -149,6 +150,7 @@ void tuning::updatehandpieceStatus()
         previousGpioValue = 0;
         ui->butTuned->setEnabled(false);
         ui->ButRTune->setEnabled(false);
+        ui->But_Handpiece->setEnabled(false);
 
         // Disable tuning mode function from main
         main->disablesetTunemode();

@@ -89,8 +89,8 @@ prime::prime(QWidget *parent) :
 
     connect(ui->prime1_but, &QPushButton::clicked, [=](){
         ui->prime1_but->setStyleSheet(styleSheet);
-        ui->prime1_but->move(20,40);
-        ui->label->move(20,120);
+        ui->prime1_but->move(20,70);
+        ui->label->move(20,180);
         ui->prime1_but->raise();
         ui->label->raise();
         hand->buzz();
