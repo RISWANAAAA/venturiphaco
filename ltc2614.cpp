@@ -28,10 +28,10 @@ void ltc2614::writeDAC(int channel,uint16_t value) {
     tx[1] = channel;
 
     // Second byte contains bits 13-6 of the value
-    tx[2] = (value >> 6) & 0xFF;
+    tx[2] = (value >> 8) & 0x00FF;//HHEXA
 
     // Third byte contains bits 5-0 of the value, shifted left by 2, with 2 don't-care bits at the end
-    tx[3] = (value << 2) & 0xFC;
+    tx[3] = (value) & 0x00FF;//LHEXA
 
     struct spi_ioc_transfer tr = {
         .tx_buf = (unsigned long)tx,

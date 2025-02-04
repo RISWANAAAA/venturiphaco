@@ -2572,7 +2572,7 @@ vus4=ui->us4vacmode->text();
         QString text=ui->us1onoff->text();
         bool flag1 = false;
         QString us1powmode=ui->CutMode_vitCom->currentText();
-         int nOfftime;
+         int nOfftime=0;
          int us1reachedvac;
         // qDebug()<<nfpzero<<nfpone<<nfptwo<<nfpthree<<"those are reterved from the footpedal screen";
 
@@ -2709,13 +2709,10 @@ vus4=ui->us4vacmode->text();
                                 nOfftime=120-static_cast<int>(ontime);
                                 handler->burst_off_length(nOfftime);
                                 }
-                                if(nOfftime == 1 || nOfftime ==2 ){
-                                   handler->pdm_mode(CONTINOUS);
 
                         }
-                        }
                         ui->label_7->setText(QString::number(pow1));
-                        handler->phaco_power(pow1);
+                        handler->convert_dac(0x30,pow1);
                         // Ensure this is called once, when the timer should start
                         //qDebug()<<"the mode is from us1 is"<<ui->CutMode_vitCom->currentText();
                         if (!elapsedTimer->isValid()) {
@@ -2764,10 +2761,7 @@ if(vus1 == "Panel"){
                                   }
                                   if (us1powmode == "Ocuburst") {
                                       handler->pdm_mode(SINGLE_BURST);
-                                      handler->phaco_on(range);
-                                      handler->phaco_power(100);
-                                      handler->freq_count(nFreqCount);
-                                      // Retrieve the burst length from the UI
+
                                      nOcuBurstCount = ui->lineEdit_76->text().toInt();
                                       handler->burst_length(  nOcuBurstCount ); // Set burst length
 
@@ -2914,6 +2908,7 @@ if(vus1 == "Panel"){
                 flag1 = true; // Reset flag
 
             } else if (range >= (nfpzero + nfpone + nfptwo) && range < (nfpzero + nfpone + nfptwo + nfpthree)) {
+                int nOfftime=0;
                 ui->pushButton_42->setText("3");
                 ui->dial_2->setValue(range);
                 //footpedalbeep();
@@ -2930,8 +2925,8 @@ if(vus1 == "Panel"){
                      handler->freq_count(nFreqCount);
                    //  handler->fs_count(range);
 
-                     if(us1powmode == "Multi burst"){
-                             if(range>(nfpzero+nfpone+nfptwo)){
+                     if(ui->CutMode_vitCom->currentText()== "Multi burst"){
+
 
                                  double upper=static_cast<int>(range)-static_cast<int>(nfpzero+nfpone+nfptwo);
                                  double lower=static_cast<int>(nfpzero+nfpone+nfptwo+nfpthree)-static_cast<int>(nfpzero+nfpone+nfptwo);
@@ -2940,11 +2935,8 @@ if(vus1 == "Panel"){
                              int rounded_Value=std::round(ontime);
                              nOfftime=120-static_cast<int>(ontime);
                              handler->burst_off_length(nOfftime);
-                             }
-                             if(nOfftime == 1 || nOfftime ==2 ){
-                               // qDebug()<<"the mode is continuous";
-                                handler->pdm_mode(CONTINOUS);
-                                                        }
+                             nMultiBurstCount = ui->lineEdit_79->text().toInt();
+                             handler->burst_length(nMultiBurstCount);
 
 
 
@@ -2952,13 +2944,11 @@ if(vus1 == "Panel"){
                      }
 
                      float progress4 = ((range - static_cast<float>(nfpone + nfptwo + nfpzero)) /
-                                        (4096.0 - static_cast<float>(nfpone + nfptwo + nfpzero))) * pow1;
-                   // qDebug()<<"the power is"<<progress4;
-                      handler->phaco_power(progress4);
-                    // qDebug()<<"power id deliverd from the us1 is"<<progress4;
-                     ui->label_7->setText(QString::number(std::round(progress4)));
-// qDebug()<<"the us1 mode is from the ultrasonic but1 is"<<ui->CutMode_vitCom->currentText()<<us1powmode;
- // Ensure this is called once, when the timer should start
+                                        (static_cast<float>(nfpzero+nfpone+nfptwo+nfpthree) - static_cast<float>(nfpone + nfptwo + nfpzero)) )* pow1;
+                     int rounded_value=std::round(progress4);
+                      handler->phaco_power(rounded_value);
+                     ui->label_7->setText(QString::number(rounded_value));
+
  if (!elapsedTimer->isValid()) {
      elapsedTimer->start();
  }
@@ -3008,10 +2998,6 @@ if(vus1 == "Panel"){
                             // Handle power mode actions
                             if (us1powmode == "Ocuburst") {
                                 handler->pdm_mode(SINGLE_BURST);
-                                handler->phaco_on(range);
-                                handler->phaco_power(100);
-                                handler->freq_count(nFreqCount);
-                                // Retrieve the burst length from the UI
                                nOcuBurstCount = ui->lineEdit_76->text().toInt();
                                 handler->burst_length(  nOcuBurstCount ); // Set burst length
 
@@ -3227,11 +3213,9 @@ if(us2 == "Panel"){
                                int rounded_Value=std::round(ontime);
                                nOfftime=120-static_cast<int>(ontime);
                                handler->burst_off_length(nOfftime);
+                               nMultiBurstCount = ui->lineEdit_79->text().toInt();
+                               handler->burst_length(nMultiBurstCount);
                                }
-                               if(nOfftime == 1 || nOfftime ==2 ){
-                                 // qDebug()<<"the mode is continuous";
-                                  handler->pdm_mode(CONTINOUS);
-                                                          }
 
 
 
@@ -3415,24 +3399,22 @@ beepsound(3);
                              int rounded_Value=std::round(ontime);
                              nOfftime=120-static_cast<int>(ontime);
                              handler->burst_off_length(nOfftime);
+                             nMultiBurstCount = ui->lineEdit_79->text().toInt();
+                             handler->burst_length(nMultiBurstCount);
+
                              }
-                             if(nOfftime == 1 || nOfftime ==2 ){
-                               // qDebug()<<"the mode is continuous";
-                                handler->pdm_mode(CONTINOUS);
-                       }
 
 
 
 
                      }
                      float progress4 = ((range - static_cast<float>(nfpone + nfptwo + nfpzero)) /
-                                        (4096.0 - static_cast<float>(nfpone + nfptwo + nfpzero))) * pow2;
-                   // qDebug()<<"the power is"<<progress4;
-                      handler->phaco_power(progress4);
+                                        (static_cast<float>(nfpzero+nfpone+nfptwo+nfpthree) - static_cast<float>(nfpone + nfptwo + nfpzero))) * pow2;
+                     int rounded_value=std::round(progress4);
+                      handler->phaco_power(rounded_value);
                     // qDebug()<<"power id deliverd from the us2 is"<<progress4;
-                     ui->label_92->setText(QString::number(std::round(progress4)));
-                     // Ensure this is called once, when the timer should start
-                     // Ensure this is called once, when the timer should start
+                     ui->label_92->setText(QString::number(rounded_value));
+
                      if (!elapsedTimer->isValid()) {
                          elapsedTimer->start();  // Start the timer only if it's not already running
                          qDebug() << "Timer started!";
@@ -3484,9 +3466,7 @@ beepsound(3);
                             motoroff();
                             if(us2powmode == "Ocuburst"){
                                 handler->pdm_mode(SINGLE_BURST);
-                                handler->phaco_on(range);
-                                handler->phaco_power(100);
-                                handler->freq_count(nFreqCount);
+
                                 // Retrieve the burst length from the UI
                                nOcuBurstCount = ui->lineEdit_76->text().toInt();
                                 handler->burst_length(  nOcuBurstCount ); // Set burst length
@@ -3701,32 +3681,19 @@ if(us3 == "Panel"){
                        handler->freq_count(nFreqCount);
                        handler->phaco_on(range);
                        if(us3powmode == "Multi burst"){
-                          // qDebug()<<range<<"multi burst";
-                               // qDebug()<<"the range is from foot pedal"<<range;
-                               if(range>(nfpzero+nfpone+nfptwo)){
-                                  // qDebug()<<"footswitch range is"<<range;
-                                    //nOnTime=(int)((range/(nfpzero+nfpone+nfptwo))*120);
+                                   if(range>(nfpzero+nfpone+nfptwo)){
                                    double upper=static_cast<int>(range)-static_cast<int>(nfpzero+nfpone+nfptwo);
-                                  // qDebug()<<"the upper range is"<<upper;
                                    double lower=static_cast<int>(nfpzero+nfpone+nfptwo+nfpthree)-static_cast<int>(nfpzero+nfpone+nfptwo);
-                              // qDebug()<<"the lower range is"<<lower;
                                double intialontime=static_cast<double>(upper)/static_cast<double>(lower);
-                              // qDebug()<<"the initalontime is"<<intialontime;
-
-
                                double ontime=static_cast<double>(intialontime)*120;
-                               //qDebug()<<"before burst off length is"<<ontime;
                                int rounded_Value=std::round(ontime);
-                               // qDebug()<<"the after rounded value is"<<rounded_Value;
                                nOfftime=120-static_cast<int>(ontime);
                               // qDebug()<<"the off time of burst is"<<nOfftime;
                                handler->burst_off_length(nOfftime);
+                               nMultiBurstCount = ui->lineEdit_79->text().toInt();
+                               handler->burst_length(nMultiBurstCount);
                                }
-                               if(nOfftime == 1 || nOfftime ==2 ){
-                                //  qDebug()<<"the mode is continuous";
-                                  handler->pdm_mode(CONTINOUS);
 
-                       }
                        }
                        ui->label_98->setText(QString::number(pow3));
                        handler->phaco_power(pow3);
@@ -3898,11 +3865,9 @@ beepsound(3);
                              int rounded_Value=std::round(ontime);
                              nOfftime=120-static_cast<int>(ontime);
                              handler->burst_off_length(nOfftime);
+                             nMultiBurstCount = ui->lineEdit_79->text().toInt();
+                             handler->burst_length(nMultiBurstCount);
                              }
-                             if(nOfftime == 1 || nOfftime ==2 ){
-                               // qDebug()<<"the mode is continuous";
-                                handler->pdm_mode(CONTINOUS);
-                 }
 
 
 
@@ -3910,11 +3875,11 @@ beepsound(3);
                      }
 
                      float progress4 = ((range - static_cast<float>(nfpone + nfptwo + nfpzero)) /
-                                        (4096.0 - static_cast<float>(nfpone + nfptwo + nfpzero))) * pow3;
-                   // qDebug()<<"the power is"<<progress4;
-                      handler->phaco_power(progress4);
+                                        (static_cast<float>(nfpzero+nfpone+nfptwo+nfpthree) - static_cast<float>(nfpone + nfptwo + nfpzero))) * pow3;
+                     int rounded_value=std::round(progress4);
+                      handler->phaco_power(rounded_value);
                     // qDebug()<<"power id deliverd from the us2 is"<<progress4;
-                     ui->label_98->setText(QString::number(std::round(progress4)));
+                     ui->label_98->setText(QString::number(rounded_value));
                      if (!elapsedTimer->isValid()) {
                          elapsedTimer->start();
                          qDebug() << "Timer started!";
@@ -4196,11 +4161,9 @@ if(us4 == "Panel"){
                                int rounded_Value=std::round(ontime);
                                nOfftime=120-static_cast<int>(ontime);
                                handler->burst_off_length(nOfftime);
+                               nMultiBurstCount = ui->lineEdit_79->text().toInt();
+                               handler->burst_length(nMultiBurstCount);
                                }
-                               if(nOfftime == 1 || nOfftime ==2 ){
-                                 // qDebug()<<"the mode is continuous";
-                                  handler->pdm_mode(CONTINOUS);
-                                                          }
 
 
 
@@ -4446,11 +4409,10 @@ if(us4 == "Panel"){
                             int rounded_Value=std::round(ontime);
                             nOfftime=120-static_cast<int>(ontime);
                             handler->burst_off_length(nOfftime);
+                            nMultiBurstCount = ui->lineEdit_79->text().toInt();
+                            handler->burst_length(nMultiBurstCount);
                             }
-                            if(nOfftime == 1 || nOfftime ==2 ){
-                              // qDebug()<<"the mode is continuous";
-                               handler->pdm_mode(CONTINOUS);
-                                                       }
+
 
 
 
@@ -4458,10 +4420,10 @@ if(us4 == "Panel"){
                     }
 
                     float progress4 = ((range - static_cast<float>(nfpone + nfptwo + nfpzero)) /
-                                       (4096.0 - static_cast<float>(nfpone + nfptwo + nfpzero))) * pow4;
-                  // qDebug()<<"the power is"<<progress4;
-                     handler->phaco_power(progress4);
-                     ui->label_105->setText(QString::number(std::round(progress4)));
+                                       (static_cast<float>(nfpzero+nfpone+nfptwo+nfpthree) - static_cast<float>(nfpone + nfptwo + nfpzero))) * pow4;
+                    int rounded_value=std::round(progress4);
+                     handler->phaco_power(rounded_value);
+                     ui->label_105->setText(QString::number(rounded_value));
 
                    // qDebug()<<"power id deliverd from the us2 is"<<progress4;
                     if (!elapsedTimer->isValid()) {

@@ -23,7 +23,6 @@ SOURCES += \
     footpedal.cpp \
     footswitch.cpp \
     keypad.cpp \
-    ltc2614.cpp \
     main.cpp \
     mainwindow.cpp \
     prime.cpp \
