@@ -24,7 +24,8 @@ public:
     explicit ltc2614(QObject *parent = nullptr);
     ~ltc2614();
     void openDevice();
-    void writeDAC(int channel, uint16_t value);
+    void writeDAC(int channel,uint16_t value);
+    void writeDAC550x(int channel,uint16_t value);
     //uint16_t value=0x0000;
 
 private:

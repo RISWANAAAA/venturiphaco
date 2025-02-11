@@ -1,4 +1,4 @@
- #include "mainwindow.h"
+#include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include"footpedal.h"
 
@@ -4970,7 +4970,7 @@ handler->pinchvalve_on();
             if (vitonoff) {  // vitonoff check for vit actions
 
                 ui->label_119->setText(QString::number(static_cast<int>(pow7)));
-
+              qDebug()<<"the value is from the vit"<<pow7;
                 handler->vit_on((pow7));
               //  handler->vit_ontime(30);
             }
