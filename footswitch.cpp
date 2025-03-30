@@ -64,8 +64,8 @@ void footswitch::paintEvent(QPaintEvent *event) {
     QPainter painter(this);
 
     painter.setRenderHint(QPainter::Antialiasing);
-    QRect rect(30, -10, 800, 800); // Rectangle for pie
-    QPointF center(430, 390); // Center of the pie
+    QRect rect(30, -10, 1000, 990); // Rectangle for pie
+    QPointF center(560,430); // Center of the pie
 
     int startAngle = 60 * 16; // Start at 60 degrees
     int spanAngle = -90 * 16; // Span of -90 degrees for each part
@@ -74,11 +74,11 @@ void footswitch::paintEvent(QPaintEvent *event) {
     auto getTextPosition = [&](int start, int span, int value) -> QPointF {
         int angle = start + (span * value) / 200; // Middle of the slice
         qreal radians = angle / 16.0 * M_PI / 180.0; // Convert to radians
-        qreal radius = 250; // Adjust radius for text placement
+        qreal radius = 350; // Adjust radius for text placement
         return QPointF(center.x() + radius * cos(radians), center.y() - radius * sin(radians));
     };
     QFont font = painter.font();
-       font.setPointSize(16); // Increase font size (you can adjust this value as needed)
+       font.setPointSize(20); // Increase font size (you can adjust this value as needed)
        painter.setFont(font);
     // Part 1
     painter.setBrush(QColor("#62A0EA"));
@@ -86,7 +86,7 @@ void footswitch::paintEvent(QPaintEvent *event) {
 
     // Calculate and draw text for part 1
     QPointF part1TextPos = getTextPosition(startAngle, spanAngle, part1Value);
-    painter.setPen(Qt::white);
+    painter.setPen(Qt::black);
     painter.drawText(part1TextPos, QString::number(part1Value) + "%");
 
     // Part 2
@@ -96,7 +96,7 @@ void footswitch::paintEvent(QPaintEvent *event) {
 
     // Calculate and draw text for part 2
     QPointF part2TextPos = getTextPosition(part2StartAngle, spanAngle, part2Value);
-    painter.setPen(Qt::white);
+    painter.setPen(Qt::black);
     painter.drawText(part2TextPos, QString::number(part2Value) + "%");
 
     // Part 3
@@ -106,7 +106,7 @@ void footswitch::paintEvent(QPaintEvent *event) {
 
     // Calculate and draw text for part 3
     QPointF part3TextPos = getTextPosition(part3StartAngle, spanAngle, part3Value);
-    painter.setPen(Qt::white);
+    painter.setPen(Qt::black);
     painter.drawText(part3TextPos, QString::number(part3Value) + "%");
 
     // Part 4
@@ -116,7 +116,7 @@ void footswitch::paintEvent(QPaintEvent *event) {
 
     // Calculate and draw text for part 4
     QPointF part4TextPos = getTextPosition(part4StartAngle, spanAngle, part4Value);
-    painter.setPen(Qt::white);
+    painter.setPen(Qt::black);
     painter.drawText(part4TextPos, QString::number(part4Value) + "%");
     // }
 }

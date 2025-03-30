@@ -34,10 +34,10 @@ public:
     {
         if (tuning->objectName().isEmpty())
             tuning->setObjectName(QString::fromUtf8("tuning"));
-        tuning->resize(861, 711);
+        tuning->resize(1920, 1080);
         But_Tune = new QPushButton(tuning);
         But_Tune->setObjectName(QString::fromUtf8("But_Tune"));
-        But_Tune->setGeometry(QRect(170, 310, 561, 141));
+        But_Tune->setGeometry(QRect(400, 410, 701, 261));
         But_Tune->setStyleSheet(QString::fromUtf8("QPushButton{background-color:transparent;\n"
 "image: url(:/images/handpiece1.png);\n"
 "border:none;}\n"
@@ -47,53 +47,54 @@ public:
 "}"));
         But_Next = new QPushButton(tuning);
         But_Next->setObjectName(QString::fromUtf8("But_Next"));
-        But_Next->setGeometry(QRect(690, 570, 151, 121));
+        But_Next->setGeometry(QRect(1300, 930, 151, 121));
         But_Next->setStyleSheet(QString::fromUtf8("background-color:transparent;\n"
 "image: url(:/images/nextbutton.png);\n"
 "border:none;"));
         But_Handpiece = new QPushButton(tuning);
         But_Handpiece->setObjectName(QString::fromUtf8("But_Handpiece"));
-        But_Handpiece->setGeometry(QRect(150, 370, 141, 131));
+        But_Handpiece->setGeometry(QRect(370, 530, 171, 151));
         But_Handpiece->setStyleSheet(QString::fromUtf8("background-color:transparent;\n"
+"background-color: rgb(192, 28, 40);\n"
 "border:none;"));
         But_value = new QPushButton(tuning);
         But_value->setObjectName(QString::fromUtf8("But_value"));
-        But_value->setGeometry(QRect(370, 300, 131, 141));
-        But_value->setStyleSheet(QString::fromUtf8(""));
+        But_value->setGeometry(QRect(740, 420, 131, 141));
+        But_value->setStyleSheet(QString::fromUtf8("background-color: rgb(3, 60, 119);"));
         ButRTune = new QPushButton(tuning);
         ButRTune->setObjectName(QString::fromUtf8("ButRTune"));
-        ButRTune->setGeometry(QRect(160, 620, 521, 41));
+        ButRTune->setGeometry(QRect(540, 830, 601, 91));
         ButRTune->setStyleSheet(QString::fromUtf8("background-color: rgb(12, 40, 82);\n"
 "color:rgb(255,255,255);\n"
-"font:20pt;\n"
+"font:25pt;\n"
 "font:bold;\n"
 ""));
         lblRTune = new QLabel(tuning);
         lblRTune->setObjectName(QString::fromUtf8("lblRTune"));
-        lblRTune->setGeometry(QRect(150, 620, 71, 41));
+        lblRTune->setGeometry(QRect(540, 830, 81, 81));
         lblRTune->setStyleSheet(QString::fromUtf8("image: url(:/images/singletick.png);\n"
 "background-color:transparent;\n"
 "border:none;"));
         lblTuned = new QLabel(tuning);
         lblTuned->setObjectName(QString::fromUtf8("lblTuned"));
-        lblTuned->setGeometry(QRect(150, 670, 71, 41));
+        lblTuned->setGeometry(QRect(520, 970, 91, 71));
         lblTuned->setStyleSheet(QString::fromUtf8("background-color:transparent;\n"
 "image: url(:/images/doubled.png);\n"
 "border:none;"));
         butTuned = new QPushButton(tuning);
         butTuned->setObjectName(QString::fromUtf8("butTuned"));
-        butTuned->setGeometry(QRect(160, 670, 521, 41));
+        butTuned->setGeometry(QRect(530, 970, 611, 81));
         butTuned->setStyleSheet(QString::fromUtf8("background-color: rgb(12, 40, 82);\n"
 "color:rgb(255,255,255);\n"
-"font:20pt;\n"
+"font:25pt;\n"
 "font:bold;\n"
 ""));
         lblinfo = new QLabel(tuning);
         lblinfo->setObjectName(QString::fromUtf8("lblinfo"));
-        lblinfo->setGeometry(QRect(380, 110, 471, 31));
+        lblinfo->setGeometry(QRect(890, 90, 491, 71));
         lblinfo->setStyleSheet(QString::fromUtf8("background-color: rgb(12, 40, 82);\n"
 "color:rgb(255,255,255);\n"
-"font:20pt;\n"
+"font:25pt;\n"
 "font:bold;\n"
 ""));
         lblinfo->setAlignment(Qt::AlignCenter);

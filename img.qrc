@@ -96,5 +96,12 @@
         <file>speakeron.png</file>
         <file>speakeroff.png</file>
         <file>spalshscreen.png</file>
+        <file>EYE1.png</file>
+        <file>splash1920x1080.png</file>
+        <file>newedsplash.png</file>
+        <file>sidemenu.png</file>
+        <file>sidemenu12.png</file>
+        <file>sidemenu13.png</file>
+        <file>assesstive.png</file>
     </qresource>
 </RCC>

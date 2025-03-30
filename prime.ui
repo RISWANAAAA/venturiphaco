@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1280</width>
-    <height>720</height>
+    <width>1920</width>
+    <height>1080</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -23,15 +23,15 @@ background-color: rgb(18, 78, 102);
   <widget class="QPushButton" name="clean_but">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>500</y>
-     <width>351</width>
-     <height>141</height>
+     <x>40</x>
+     <y>810</y>
+     <width>421</width>
+     <height>191</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">QPushButton {
-    font: 30pt &quot;Ubuntu&quot;;
+    font: 40pt &quot;Ubuntu&quot;;
     background-color: transparent;
     border-radius: 20px;
     border: none;
@@ -53,15 +53,15 @@ QPushButton:focus {
   <widget class="QPushButton" name="Tune_but">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>280</y>
-     <width>351</width>
-     <height>141</height>
+     <x>40</x>
+     <y>480</y>
+     <width>421</width>
+     <height>191</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">QPushButton {
-    font: 30pt &quot;Ubuntu&quot;;
+    font: 40pt &quot;Ubuntu&quot;;
     background-color: transparent;
     border-radius: 20px;
     border: none;
@@ -83,15 +83,15 @@ QPushButton:focus {
   <widget class="QPushButton" name="prime1_but">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>90</y>
-     <width>351</width>
-     <height>141</height>
+     <x>40</x>
+     <y>120</y>
+     <width>421</width>
+     <height>191</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">QPushButton {
-    font: 30pt &quot;Ubuntu&quot;;
+    font: 40pt &quot;Ubuntu&quot;;
     background-color: transparent;
     border-radius: 20px;
     border: none;
@@ -113,17 +113,17 @@ QPushButton:focus {
   <widget class="QTabWidget" name="tabWidget">
    <property name="geometry">
     <rect>
-     <x>410</x>
-     <y>-30</y>
-     <width>871</width>
-     <height>791</height>
+     <x>470</x>
+     <y>10</y>
+     <width>1461</width>
+     <height>1080</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true"/>
    </property>
    <property name="currentIndex">
-    <number>1</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="tab_6">
     <property name="styleSheet">
@@ -139,14 +139,14 @@ background-color: rgb(18, 78, 102);
     <widget class="QLabel" name="process_lab_2">
      <property name="geometry">
       <rect>
-       <x>140</x>
-       <y>110</y>
-       <width>351</width>
-       <height>51</height>
+       <x>500</x>
+       <y>90</y>
+       <width>441</width>
+       <height>81</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">font:25pt &quot;Ubuntu&quot;;
+      <string notr="true">font:30pt &quot;Ubuntu&quot;;
 background-color: rgb(255, 255, 255);
 color: rgb(0, 0, 0);
 border-radius:20px;
@@ -155,12 +155,15 @@ border:none;font:bold;</string>
      <property name="text">
       <string>     PROCESS </string>
      </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
     </widget>
     <widget class="QPushButton" name="start_prime_but_2">
      <property name="geometry">
       <rect>
-       <x>250</x>
-       <y>620</y>
+       <x>500</x>
+       <y>860</y>
        <width>321</width>
        <height>121</height>
       </rect>
@@ -187,10 +190,10 @@ QPushButton:focus {
     <widget class="QCheckBox" name="start_check_2">
      <property name="geometry">
       <rect>
-       <x>110</x>
-       <y>260</y>
-       <width>721</width>
-       <height>51</height>
+       <x>400</x>
+       <y>340</y>
+       <width>731</width>
+       <height>91</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -200,7 +203,7 @@ QPushButton:focus {
     height: 30px;
 }
 QCheckBox {
-    font-size: 30px;
+    font-size: 50px;
 	color: rgb(255, 255, 255);
 
 }
@@ -213,10 +216,10 @@ QCheckBox {
     <widget class="QCheckBox" name="wait_Check_2">
      <property name="geometry">
       <rect>
-       <x>110</x>
-       <y>360</y>
-       <width>751</width>
-       <height>71</height>
+       <x>400</x>
+       <y>470</y>
+       <width>841</width>
+       <height>81</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -226,7 +229,7 @@ QCheckBox {
     height: 30px;
 }
 QCheckBox {
-    font-size: 30px;
+    font-size: 50px;
 	color: rgb(255, 255, 255);
 
 }
@@ -239,10 +242,10 @@ QCheckBox {
     <widget class="QCheckBox" name="motor_Check_2">
      <property name="geometry">
       <rect>
-       <x>110</x>
-       <y>170</y>
-       <width>381</width>
-       <height>61</height>
+       <x>400</x>
+       <y>210</y>
+       <width>551</width>
+       <height>71</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -252,7 +255,7 @@ QCheckBox {
     height: 30px;
 }
 QCheckBox {
-    font-size: 30px;
+    font-size: 50px;
 	color: rgb(255, 255, 255);
 
 }
@@ -265,10 +268,10 @@ QCheckBox {
     <widget class="QCheckBox" name="done_Check_2">
      <property name="geometry">
       <rect>
-       <x>110</x>
-       <y>470</y>
-       <width>321</width>
-       <height>41</height>
+       <x>400</x>
+       <y>590</y>
+       <width>381</width>
+       <height>51</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -278,7 +281,7 @@ QCheckBox {
     height: 30px;
 }
 QCheckBox {
-    font-size: 30px;
+    font-size: 50px;
 	color: rgb(255, 255, 255);
 
 }
@@ -291,9 +294,9 @@ QCheckBox {
     <widget class="QProgressBar" name="progressBar_2">
      <property name="geometry">
       <rect>
-       <x>40</x>
-       <y>560</y>
-       <width>761</width>
+       <x>170</x>
+       <y>730</y>
+       <width>1111</width>
        <height>51</height>
       </rect>
      </property>
@@ -323,10 +326,10 @@ background-color: rgb(18, 78, 102);
     <widget class="QLabel" name="warning_lab_2">
      <property name="geometry">
       <rect>
-       <x>70</x>
-       <y>110</y>
-       <width>431</width>
-       <height>41</height>
+       <x>60</x>
+       <y>90</y>
+       <width>531</width>
+       <height>61</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -340,18 +343,21 @@ font:bold;</string>
      <property name="text">
       <string>   BEFORE CLEANING</string>
      </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
     </widget>
     <widget class="QTextEdit" name="Instruction_lab_2">
      <property name="geometry">
       <rect>
-       <x>130</x>
-       <y>260</y>
-       <width>741</width>
-       <height>281</height>
+       <x>380</x>
+       <y>350</y>
+       <width>1121</width>
+       <height>431</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">font:20px;border:none;
+      <string notr="true">font:50px;border:none;
 background-color: transparent;
 </string>
      </property>
@@ -359,23 +365,23 @@ background-color: transparent;
       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:20px; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt; font-weight:600; color:#ffffff;&quot;&gt;1.Disconnect the Irrigation/Aspiration connectors from handpiece&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:14pt; font-weight:600; color:#ffffff;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt; font-weight:600; color:#ffffff;&quot;&gt;2.Connect the irrigation,aspiration connectors together&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:14pt; font-weight:600; color:#ffffff;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt; font-weight:600; color:#ffffff;&quot;&gt;3.Disconnect the saline connection from irrigation&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:14pt; font-weight:600; color:#ffffff;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt; font-weight:600; color:#ffffff;&quot;&gt;4.Disconnect the tubing from irriagtion valve&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:14pt; font-weight:600; color:#ffffff;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt; font-weight:600; color:#ffffff;&quot;&gt;5.Dip the irrigation connector in distilled water bowl.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:50px; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:24pt; font-weight:600; color:#ffffff;&quot;&gt;1.Disconnect the Irrigation/Aspiration connectors from handpiece&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:24pt; font-weight:600; color:#ffffff;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:24pt; font-weight:600; color:#ffffff;&quot;&gt;2.Connect the irrigation,aspiration connectors together&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:24pt; font-weight:600; color:#ffffff;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:24pt; font-weight:600; color:#ffffff;&quot;&gt;3.Disconnect the saline connection from irrigation&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:24pt; font-weight:600; color:#ffffff;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:24pt; font-weight:600; color:#ffffff;&quot;&gt;4.Disconnect the tubing from irriagtion valve&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:24pt; font-weight:600; color:#ffffff;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:24pt; font-weight:600; color:#ffffff;&quot;&gt;5.Dip the irrigation connector in distilled water bowl.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
     <widget class="QPushButton" name="begin_clean_but_2">
      <property name="geometry">
       <rect>
-       <x>320</x>
-       <y>570</y>
+       <x>650</x>
+       <y>830</y>
        <width>331</width>
        <height>141</height>
       </rect>
@@ -403,10 +409,10 @@ QPushButton:focus {
     <widget class="QLabel" name="warning_img_2">
      <property name="geometry">
       <rect>
-       <x>90</x>
-       <y>110</y>
-       <width>31</width>
-       <height>41</height>
+       <x>70</x>
+       <y>90</y>
+       <width>61</width>
+       <height>61</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -420,14 +426,14 @@ BACKGROUND-COLOR:TRANSPARENT;</string>
     <widget class="QLabel" name="label_10">
      <property name="geometry">
       <rect>
-       <x>80</x>
-       <y>180</y>
+       <x>140</x>
+       <y>200</y>
        <width>651</width>
        <height>51</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">font: 75 20pt &quot;Ubuntu&quot;;
+      <string notr="true">font: 75 40pt &quot;Ubuntu&quot;;
 color: rgb(255, 255, 255);
 font:bold;
 background-color:transparent;</string>
@@ -441,10 +447,10 @@ background-color:transparent;</string>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>270</x>
-     <y>160</y>
-     <width>61</width>
-     <height>71</height>
+     <x>370</x>
+     <y>220</y>
+     <width>101</width>
+     <height>101</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -459,10 +465,10 @@ border:none;</string>
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>270</x>
-     <y>360</y>
-     <width>61</width>
-     <height>61</height>
+     <x>380</x>
+     <y>570</y>
+     <width>101</width>
+     <height>101</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -477,10 +483,10 @@ border:none;</string>
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
-     <x>270</x>
-     <y>570</y>
-     <width>71</width>
-     <height>61</height>
+     <x>360</x>
+     <y>920</y>
+     <width>101</width>
+     <height>101</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -583,9 +589,9 @@ background-color: transparent;</string>
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>19</y>
+     <y>10</y>
      <width>341</width>
-     <height>51</height>
+     <height>71</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -594,7 +600,7 @@ background-color: transparent;
 border:1px solid white;
 border-radius:10px;
 color: rgb(255, 255, 255);
-font:20pt &quot;Ubuntu&quot;;
+font:30pt &quot;Ubuntu&quot;;
 font-weight: bold;</string>
    </property>
    <property name="text">
@@ -608,9 +614,9 @@ font-weight: bold;</string>
    <property name="geometry">
     <rect>
      <x>350</x>
-     <y>20</y>
+     <y>11</y>
      <width>391</width>
-     <height>51</height>
+     <height>71</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -619,7 +625,7 @@ background-color: transparent;
 border:1px solid white;
 border-radius:10px;
 color: rgb(255, 255, 255);
-font:20pt &quot;Ubuntu&quot;;
+font:30pt &quot;Ubuntu&quot;;
 font-weight: bold;</string>
    </property>
    <item>
@@ -653,24 +659,8 @@ font-weight: bold;</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1281</width>
+     <width>1971</width>
      <height>81</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true"/>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_7">
-   <property name="geometry">
-    <rect>
-     <x>410</x>
-     <y>80</y>
-     <width>16</width>
-     <height>651</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -684,8 +674,8 @@ font-weight: bold;</string>
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>70</y>
-     <width>1280</width>
+     <y>81</y>
+     <width>1920</width>
      <height>3</height>
     </rect>
    </property>
@@ -696,22 +686,38 @@ font-weight: bold;</string>
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
+  <widget class="QLabel" name="label_7">
+   <property name="geometry">
+    <rect>
+     <x>470</x>
+     <y>80</y>
+     <width>16</width>
+     <height>1080</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
   <zorder>lab_date</zorder>
   <zorder>lab_time</zorder>
   <zorder>label_5</zorder>
   <zorder>label_4</zorder>
   <zorder>prime1_but</zorder>
   <zorder>tabWidget</zorder>
-  <zorder>label_2</zorder>
-  <zorder>label_3</zorder>
   <zorder>label</zorder>
   <zorder>Tune_but</zorder>
   <zorder>clean_but</zorder>
   <zorder>lbloverall</zorder>
   <zorder>label_6</zorder>
-  <zorder>comboBox_4</zorder>
-  <zorder>label_7</zorder>
   <zorder>line</zorder>
+  <zorder>label_7</zorder>
+  <zorder>label_3</zorder>
+  <zorder>label_2</zorder>
+  <zorder>comboBox_4</zorder>
  </widget>
  <resources/>
  <connections/>

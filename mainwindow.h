@@ -214,13 +214,14 @@ public slots:
  void ULTRASONICBUT1();
  void updateTabsBasedOnComboBox(const QString &text);
  void disablesetTunemode();
+ void IRRIGATIONBUT1();
+
 private slots:
 
  void ULTRASONICBUT2();
 
  void ULTRASONICBUT4();
 
- void IRRIGATIONBUT1();
 
  void IRRIGATIONBUT2();
 
@@ -416,6 +417,7 @@ void on_elapsed_time_2_clicked();
 
 void on_elapsed_time_clicked();
   void mainus1button();
+
 signals:
      void sensorValueChanged(int value);
      void surgeonSelected(const QString &surgeonName);

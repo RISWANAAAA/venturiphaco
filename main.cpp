@@ -19,10 +19,10 @@ int main(int argc, char *argv[])
     QLabel *splashLabel = new QLabel;
 
     // Load the GIF using QMovie
-    QMovie *movie = new QMovie(":/images/spalshscreen.png"); // Use the correct path to your GIF
+    QMovie *movie = new QMovie(":/images/newedsplash.png"); // Use the correct path to your GIF
 
     // Set the QLabel to the desired size (1280x720)
-    splashLabel->setFixedSize(1280, 720);
+    splashLabel->setFixedSize(1920, 1080);
     splashLabel->move(0,0);
 
     // Scale the movie to fit the QLabel size

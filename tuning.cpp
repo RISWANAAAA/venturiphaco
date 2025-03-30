@@ -133,8 +133,8 @@ void tuning::updatehandpieceStatus()
         ui->But_Handpiece->setStyleSheet(styleSheetNotConnected);
         ui->But_Tune->setEnabled(false);  // Disable tune button when no HP connected
         ui->But_value->hide();  // Hide the value button
-        ui->But_Tune->move(170, 300);  // Move button back to starting position
-        ui->But_Tune->resize(541, 141);  // Resize button back to original size
+        ui->But_Tune->move(330,410);  // Move button back to starting position
+        ui->But_Tune->resize(800,300);  // Resize button back to original size
         ui->But_Handpiece->show();  // Show the handpiece button
 
         ui->ButRTune->setText("No HP Connected!");
@@ -179,7 +179,7 @@ void tuning::paintEvent(QPaintEvent *event)
     // Define the circle parameters
     int width = qMin(this->width(), this->height());
     QPoint center = rect().center();
-    int radius = 200;
+    int radius = 250;
     // Calculate active lines based on progress
     int totalLines = 100;
     int activeLines = (m_value * totalLines) / 100;
@@ -198,7 +198,7 @@ void tuning::paintEvent(QPaintEvent *event)
 
         // Set pen for lines
         QPen pen;
-        pen.setWidth(8);
+        pen.setWidth(9);
         pen.setColor(i < activeLines ? QColor("#e0e0e0") : QColor("#00050B")); // Active/Inactive colors
         painter.setPen(pen);
         painter.drawLine(x1, y1, x2, y2);
@@ -219,8 +219,8 @@ void tuning::paintEvent1(QPaintEvent *event)
     int totalLines = 60; // Total number of lines for a full circle
 
     // Define a base center for positioning all circles
-    int baseOffsetX = 440; // Base horizontal position (center of circles)
-    int baseOffsetY = 390; // Base vertical position (center of circles)
+    int baseOffsetX = 410; // Base horizontal position (center of circles)
+    int baseOffsetY = 370; // Base vertical position (center of circles)
     // int baseOffsetX = 430; // Base horizontal position (center of circles)
     // int baseOffsetY = 450; // Base vertical position (center of circles)
 
@@ -314,10 +314,11 @@ void tuning::updateCircle()
 void tuning::on_But_Handpiece_clicked()
 {
     if (!isRunning) { // Only start if the progress is not currently running
-        ui->But_Tune->move(170,390);
+        ui->But_Tune->move(240, 400);
     //       ui->But_Tune->move(150, 230);
+
         ui->But_Handpiece->hide();
-           ui->But_value->setStyleSheet("font-size: 90px; font-weight: bold; color: white; background-color: transparent;");
+           ui->But_value->setStyleSheet("font-size: 120px; font-weight: bold; color: white; background-color: transparent;");
 
            ui->But_value->show();
            ui->ButRTune->setText("Tuning");
@@ -329,10 +330,10 @@ Tune_Phaco();
 void tuning::on_But_value_clicked()
 {
     if (!isRunning) { // Only start if the progress is not currently running
-           ui->But_Tune->move(170,390);
+        ui->But_Tune->move(240, 400);
            ui->But_Handpiece->hide();
 
-           ui->But_value->setStyleSheet("font-size: 90px; font-weight: bold; color: white; background-color: transparent;");
+           ui->But_value->setStyleSheet("font-size: 120px; font-weight: bold; color: white; background-color: transparent;");
 
            ui->But_value->show();
            ui->ButRTune->setText("Tuning");
@@ -344,11 +345,12 @@ Tune_Phaco();
 void tuning::on_pushButton_clicked()
 {
     if (!isRunning) { // Only start if the progress is not currently running
-        ui->But_Tune->move(170,390);
+        ui->But_Tune->move(240, 400);
         ui->But_Handpiece->hide();
-        ui->But_value->setStyleSheet("font-size: 90px; font-weight: bold; color: white; background-color: transparent;");
+        ui->But_value->setStyleSheet("font-size: 120px; font-weight: bold; color: white; background-color: transparent;");
         ui->But_value->show();
         ui->ButRTune->setText("Tuning");
+
 
 Tune_Phaco();
     }
@@ -365,20 +367,20 @@ void tuning::updateProgress()
 {
     m_value = 0; // Reset value
     ui->But_value->setText(QString::number(m_value)); // Update label to show 0
-      ui->But_value->move(390,320); // Move label if necessary
+      ui->But_value->move(680,450); // Move label if necessary
 
-    ui->But_value->show(); // Show the label
+    ui->But_value->hide(); // Show the label
     update();
-    ui->But_Tune->move(170, 290); // Move button back to starting position
+    ui->But_Tune->move(400,390); // Move button back to starting position
    // ui->But_Tune->move(170, 280); // Move button back to starting position
-    ui->But_Tune->resize(541, 141); // Resize button back to original size
-  //  ui->But_Handpiece->show();
-    // ui->But_Handpiece->move(270,360);
-    // ui->But_Handpiece->resize(141,131);
+    ui->But_Tune->resize(700, 400); // Resize button back to original size
+    ui->But_Handpiece->show();
+   ui->But_Handpiece->move(370,530);
+    ui->But_Handpiece->resize(171,151);
     ui->lblRTune->setStyleSheet("image: url(:/images/singletick.png);background-color:transparent;");
-    ui->lblRTune->move(150,620);
+    ui->lblRTune->move(540,830);
    ui->ButRTune->setText("Ready For Tune");
-    ui->ButRTune->resize(521,41);
+    ui->ButRTune->resize(601,91);
 
    timer1->stop();
 
@@ -419,9 +421,8 @@ int tuning::Tune_Phaco()
         ui->But_Next->setEnabled(false);
         ui->But_value->show();
         isRunning = true; // Set the running status
-          ui->But_Tune->move(170, 340);
-        ui->But_Tune->move(150, 330);
-        ui->But_Tune->resize(271, 171);
+          ui->But_Tune->move(240, 400);
+          ui->But_Tune->resize(500, 300); // Resize button back to original size
         timer1->start(100);
         QDateTime currentDateTime = QDateTime::currentDateTime();
         QString dateTimeString = currentDateTime.toString("yyyy-MM-dd_HH-mm-ss");  // e.g., 20240924_142530
@@ -520,11 +521,11 @@ int tuning::Tune_Phaco()
         else{
             file.close();
             qDebug()<<"Error < 5";
-            ui->ButRTune->resize(681,41);
-            ui->lblRTune->move(10,620);
+            ui->lblRTune->move(540,830);
+            ui->ButRTune->resize(601,91);
             ui->lblRTune->setStyleSheet("image: url(:/images/information.png);background-color:transparent;");
             ui->lblinfo->setText("May Be Loose Tip");
-         ui->ButRTune->move(80,621);
+         ui->ButRTune->move(540,830);
             // Reset the text, size, and hide the label after 1 second
                    QTimer::singleShot(1000, this, [this]() {
                        hand->phaco_off();
@@ -564,8 +565,8 @@ int tuning::Tune_Phaco()
           /// ui->ButRTune->resize(621,41);
             //ui->lblRTune->move(70,620);
            // usleep(1000000);
-            ui->ButRTune->resize(441,41);
-            ui->ButRTune->move(130,620);
+            ui->ButRTune->resize(601,91);
+            ui->ButRTune->move(540,830);
             ui->But_value->setStyleSheet("border:none;background-color:transparent;image: url(:/images/singletick.png);outline:none");
             qDebug()<<"remote crashedddddddd";
             isRunning=false;
@@ -691,7 +692,7 @@ void tuning::on_But_Next_clicked()
 
         main->show();
         emit activatemain();
-        main->DIATHERMYBUT();
+        main->IRRIGATIONBUT1();
     main->disablegpio();
     }
 

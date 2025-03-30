@@ -936,8 +936,8 @@ void doctor::click(int tab)
 {
     QString styleSheet = "QPushButton {"
             "border-radius: 40px;"
-            "width:10px;"
-            "height:10px;"
+            "width:71px;"
+            "height:71px;"
             "background-color:black;"
             "color:white;"
             "border:none;"
@@ -945,8 +945,8 @@ void doctor::click(int tab)
                                  "}";
     QString styleSheet1 = "QPushButton {"
             "border-radius: 40px;"
-            "width:10px;"
-            "height:10px;"
+            "width:71px;"
+            "height:71px;"
             "background-color:transparent;"
             "border:none;"
             "font:bold;"// Adjust the radius as needed

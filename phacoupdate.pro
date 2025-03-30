@@ -4,7 +4,8 @@ QT       += core gui sql
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++11 release precompile_header
-TARGET = iNanoPlusPer_V1.5.7.0
+#1920x1080
+TARGET = iNanoPlusPer_V1.5.7.3
 QMAKE_CXXFLAGS_RELEASE += -O3 -g0 -DNDEBUG
 
 # The following define makes your compiler emit warnings if you use

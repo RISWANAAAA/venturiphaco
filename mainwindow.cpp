@@ -1341,8 +1341,7 @@ void MainWindow::DIATHERMYBUT() {
 
     // Disable safety vent and motor
     handler->safetyvent_off();
-    motoroff();
-
+handler->stepper_motorOFF();
     // Switch to Diathermy tab
     ui->tabWidget->setCurrentIndex(7);
     ui->CI5_5->hide();
@@ -1925,12 +1924,12 @@ void MainWindow::BACKBUT()
 {
     handler->buzz();
 
-    motoroff();
+    handler->stepper_motorOFF();
     handler->phaco_off();
     handler->fs_count_limit(nfpzero+nfpone+nfptwo);
     handler->freq_count(0);
     handler->phaco_power(0);
-    handler->pinchvalve_off();
+    handler->pinchvalve1_off();
     handler->safetyvent_off();
     handler->vit_off();
     protimer->stop();
@@ -1941,23 +1940,29 @@ void MainWindow::current(int tab)
 {
     QString styleSheet = "QPushButton {"
                          "    font-family: Ubuntu;"
-                         "    font-size: 15pt;"
+                         "    font-size: 25pt;"
+                         "    min-width: 161px;"
+                         "    min-height: 161px;"
+                         "    max-width: 161px;"
+                         "    max-height: 161px;"
                          "    background-color: transparent;"
                          "    image: url(:/images/pushbutton.png);"
-                         "    height: 91px;"
-                         "    width: 91px;"
                          "    color: white;"
                          "    border-radius: 40px;"
                          "    outline: none;"  // Removes focus outline
                          "}";
 
+
     QString styleSheet1 = "QPushButton {"
                           "    font-family: Ubuntu;"
-                          "    font-size: 15pt;"
+                          "    font-size: 25pt;"
+                          "    min-width: 131px;"
+                          "    min-height: 131px;"
+                          "    max-width: 131px;"
+                          "    max-height: 131px;"
                           "    background-color: transparent;"
                           "    image: url(:/images/glass.png);"
-                          "    height: 81px;"
-                          "    width: 81px;"
+
                           "    color: black;"
                           "    border-radius: 40px;"
                           "    outline: none;"  // Removes focus outline
@@ -1996,6 +2001,11 @@ void MainWindow::current(int tab)
     ui->IA2BUT->setStyleSheet(styleSheet1);
     ui->VITRECTOMYBUT->setStyleSheet(styleSheet1);
     ui->DIABUT->setStyleSheet(styleSheet1);
+    ui->ULTRASONICBUT1->move(890,280);
+    ui->ULTRASONICBUT2->move(1090,400);
+    ui->ULTRASONICBUT3->move(1080,650);
+    ui->ULTRASONICBUT4->move(890,750);
+    ui->IA1BUT->move(690,630);
     ui->label_11->hide();
     ui->label_12->hide();
     ui->label_3->hide();
@@ -2012,7 +2022,8 @@ void MainWindow::current(int tab)
     switch (tab) {
         case 0:
             ui->ULTRASONICBUT1->setStyleSheet(styleSheet);
-            ui->label_3->show();
+            ui->ULTRASONICBUT1->move(870,250);
+            ui->label_11->show();
            ui->label_32->show();
             ui->elapsed_time->show();
             ui->label_26->show();
@@ -2022,7 +2033,8 @@ void MainWindow::current(int tab)
             break;
         case 1:
             ui->ULTRASONICBUT2->setStyleSheet(styleSheet);
-            ui->label_4->show();
+            ui->ULTRASONICBUT2->move(1100,380);
+            ui->label_3->show();
             ui->elapsed_time->show();
             ui->label_26->show();
             ui->label_28->show();
@@ -2031,6 +2043,7 @@ void MainWindow::current(int tab)
             break;
         case 2:
             ui->ULTRASONICBUT3->setStyleSheet(styleSheet);
+            ui->ULTRASONICBUT3->move(1080,640);
             ui->label_14->show();
             ui->elapsed_time->show();
             ui->label_26->show();
@@ -2040,6 +2053,7 @@ void MainWindow::current(int tab)
             break;
         case 3:
             ui->ULTRASONICBUT4->setStyleSheet(styleSheet);
+            ui->ULTRASONICBUT4->move(880,750);
             ui->elapsed_time->show();
             ui->label_26->show();
             ui->label_28->show();
@@ -2049,26 +2063,30 @@ void MainWindow::current(int tab)
             break;
         case 4:
             ui->IA1BUT->setStyleSheet(styleSheet);
+            ui->IA1BUT->move(670,610);
             ui->label_13->show();
            ui->label_32->hide();
 
             break;
         case 5:
             ui->IA2BUT->setStyleSheet(styleSheet);
-            ui->label_5->show();
+            ui->IA2BUT->move(670,360);
+            ui->label_6->show();
             ui->label_32->hide();
 
             break;
         case 6:
             ui->VITRECTOMYBUT->setStyleSheet(styleSheet);
-            ui->label_6->show();
+       //     ui->label_6->show();
            ui->label_32->hide();
+           ui->VITRECTOMYBUT->move(1630,930);
 
             break;
         case 7:
             ui->DIABUT->setStyleSheet(styleSheet);
-            ui->label_11->show();
+           // ui->label_11->show();
            ui->label_32->hide();
+           ui->DIABUT->move(1770,930);
 
             break;
         default:
@@ -2430,7 +2448,7 @@ void MainWindow::disablesetTunemode()
     ui->ULTRASONICBUT2->setEnabled(false);  // us2
     ui->ULTRASONICBUT3->setEnabled(false);  // us3
     ui->ULTRASONICBUT4->setEnabled(false);  // us4
-
+ui->label_19->setStyleSheet("background-color:transparent;border:none;image: url(:/images/singletick.png);");
     ui->us1onoff->setEnabled(false);
     ui->us2onoff->setEnabled(false);
     ui->us3onoff->setEnabled(false);
@@ -2509,9 +2527,9 @@ vus4=ui->us4vacmode->text();
             handler->fs_count_limit(nfpzero+nfpone+nfptwo);
 
         handler->phaco_power(0);
-        handler->pinchvalve_off();
-       motoroff();
-   if(flag){
+        handler->pinchvalve1_off();
+       handler->stepper_motorOFF();
+
             if (range > 0 && range < nfpzero) {
                 ui->pushButton_42->setText("0");
                 ui->dial_2->setValue(range);
@@ -2520,16 +2538,11 @@ vus4=ui->us4vacmode->text();
 
                 if (!overallci ) {
                     ui->CI5_5->setStyleSheet(styleSheet4);
-                    handler->pinchvalve_off();
+                    handler->pinchvalve1_off();
                     handler->safetyvent_off();
                 }
 
-//                if (!ventondia) {
-//                    handler->safetyvent_on();
-//                    QThread::msleep(100);
-//                    handler->safetyvent_off();
-//                    ventondia = true;
-//                }
+
                 beepsound(0);
                 flag=true;
                 handler->speaker_off();
@@ -2543,22 +2556,16 @@ vus4=ui->us4vacmode->text();
   beepsound(1);
                 if (!overallci) {
                     ui->CI5_5->setStyleSheet(styleSheet4);
-                    handler->pinchvalve_off();
+                    handler->pinchvalve1_off();
                     handler->safetyvent_off();
                 }
 
-//                if (!ventondia) {
-//                    handler->safetyvent_on();
-//                    QThread::msleep(100);
-//                    handler->safetyvent_off();
-//                    ventondia = true;
-//                }
                 if(speakeronoff == "Speaker ON"){
                     handler->speaker_on(0,0,1,0);
                 }else{
                       handler->speaker_off();
                 }
-            }
+
 
    }
         break;
@@ -2588,20 +2595,20 @@ vus4=ui->us4vacmode->text();
                      us1poweron=false;
                        if(!overallci){
                            ui->CI5_5->setStyleSheet(styleSheet4);
-                           handler->pinchvalve_off();
+                           handler->pinchvalve1_off();
                     }
 
                        if(ventonus1==false){
-                        //   handler->pinchvalve_on();
+                        //   handler->pinchvalve1_on();
                  handler->safetyvent_on();
                      QThread::msleep(100);
-                       handler->pinchvalve_off();
+                       handler->pinchvalve1_off();
                      handler->safetyvent_off();
                      ventonus1=true;
                        }
                        int pro=readsensorvalue();
                        ui->label_8->setText(QString::number(pro));
-                   motoroff();
+                   handler->stepper_motorOFF();
 
                 ui->label_7->setText("0");
           handler->speaker_off();
@@ -2611,7 +2618,7 @@ vus4=ui->us4vacmode->text();
             else if (range >= nfpzero & range < nfpzero+nfpone) {
                      ui->pushButton_42->setText("1");
                      ui->dial_2->setValue(range);
-                     handler->pinchvalve_on();
+                     handler->pinchvalve1_on();
                      if(ventonus1==false){
                      handler->safetyvent_on();
                    QThread::msleep(100);
@@ -2627,7 +2634,7 @@ vus4=ui->us4vacmode->text();
                   ui->label_8->setText(QString::number(pro));
                   ui->CI5_5->setStyleSheet(styleSheet3);
                   //footpedalbeep();
-                  motoroff();
+                  handler->stepper_motorOFF();
                   ui->label_7->setText("0");
 
                   handler->freq_count(0);
@@ -2645,7 +2652,7 @@ vus4=ui->us4vacmode->text();
                 ui->dial_2->setValue(range);
                 ui->CI5_5->setStyleSheet(styleSheet3);
                 beepsound(2);
-                handler->pinchvalve_on();
+                handler->pinchvalve1_on();
                 handler->freq_count(0);
                 handler->phaco_off();
                // handler->fs_count(0);
@@ -2654,7 +2661,9 @@ vus4=ui->us4vacmode->text();
                     int nonlinear_prevac=readsensorvalue();
                     ui->label_8->setText(QString::number(nonlinear_prevac));
                     if(nonlinear_prevac <=  vacline){
-                     motoron(ui->lineEdit_56);
+                    // motoron(ui->lineEdit_56);
+                        handler->stepper_motorOn();
+                        handler->stepper_motorCount(ui->lineEdit_56->text().toInt());
                      if(speakeronoff == "Speaker ON"){
                   handler->speaker_on(nonlinear_prevac,1,0,0);
                      }else{
@@ -2664,7 +2673,7 @@ vus4=ui->us4vacmode->text();
 
 
                   if (nonlinear_prevac > vacline) {
-                                   motoroff(); // Turn off the motor
+                                   handler->stepper_motorOFF(); // Turn off the motor
                                    ui->label_8->setText(QString::number(vacline));
                                    if(speakeronoff == "Speaker ON"){
                                   handler->speaker_on(nonlinear_prevac,0,0,1);
@@ -2677,7 +2686,7 @@ vus4=ui->us4vacmode->text();
                                }
 
                   if(us1reachedvac == vacline){
-                      motoroff();
+                      handler->stepper_motorOFF();
                   }
                 }
                 flag1 = true; // Reset flag
@@ -2690,7 +2699,7 @@ vus4=ui->us4vacmode->text();
                 //footpedalbeep();
                 beepsound(3);
                 ventonus1=false;
-                handler->pinchvalve_on();
+                handler->pinchvalve1_on();
                 //handler->safetyvent_off();
                 ui->CI5_5->setStyleSheet(styleSheet3);
                 if(us1 == "Panel"){
@@ -2737,7 +2746,9 @@ if(vus1 == "Panel"){
      ui->label_8->setText(QString::number(nonlinear_prevac));
 
      if(nonlinear_prevac < vacline){
-                              motoron(ui->lineEdit_56);
+                              //motoron(ui->lineEdit_56);
+         handler->stepper_motorOn();
+         handler->stepper_motorCount(ui->lineEdit_56->text().toInt());
                               if(us1powmode == "Ocuburst"){
                                   handler->pdm_mode(CONTINOUS);
                               }else if(us1powmode == "Ocupulse" ){
@@ -2751,7 +2762,7 @@ if(vus1 == "Panel"){
      }
 
                               if (nonlinear_prevac >= vacline) {
-                                  motoroff(); // Turn off the motori
+                                  handler->stepper_motorOFF(); // Turn off the motori
                                   ui->label_8->setText(QString::number(vacline));
 
                                   if(speakeronoff == "Speaker ON"){
@@ -2788,7 +2799,7 @@ if(vus1 == "Panel"){
                 ui->dial_2->setValue(range);
                 if (!overallci) {
                     ui->CI5_5->setStyleSheet(styleSheet4);
-                    handler->pinchvalve_off();
+                    handler->pinchvalve1_off();
                 }
                 if(ventonus1==false){
                    handler->safetyvent_on();
@@ -2796,7 +2807,7 @@ if(vus1 == "Panel"){
               handler->safetyvent_off();
               ventonus1=true;
                 }
-                motoroff();
+                handler->stepper_motorOFF();
 
                  handler->phaco_off();
                  handler->phaco_power(0);
@@ -2815,7 +2826,7 @@ if(vus1 == "Panel"){
                 ui->pushButton_42->setText("1");
                 //footpedalbeep();
                 ui->dial_2->setValue(range);
-                handler->pinchvalve_on();
+                handler->pinchvalve1_on();
 
                 if(ventonus1==false){
                     handler->safetyvent_on();
@@ -2826,7 +2837,7 @@ if(vus1 == "Panel"){
                 int pro = readsensorvalue();
                  ui->label_8->setText(QString::number(pro));
                 ui->CI5_5->setStyleSheet(styleSheet3);
-                motoroff();
+                handler->stepper_motorOFF();
                 ui->label_7->setText("0");
 
                 handler->phaco_off();
@@ -2850,7 +2861,7 @@ if(vus1 == "Panel"){
                 ui->dial_2->setValue(range);
                 ventonus1 = false;
 
-                handler->pinchvalve_on();
+                handler->pinchvalve1_on();
                 ui->CI5_5->setStyleSheet(styleSheet3);
 
                 if (vus1 == "Surgeon") {
@@ -2872,10 +2883,12 @@ if(vus1 == "Panel"){
 
                         // Motor Control Based on Sensor Value
                         if (pro < presetvac) {
-                            motoron(ui->lineEdit_56);
+                            handler->stepper_motorOn();
+                            handler->stepper_motorCount(ui->lineEdit_56->text().toInt());
+                            //motoron(ui->lineEdit_56);
                             motorus1 = true;
                         } else {
-                            motoroff();
+                            handler->stepper_motorOFF();
                             motorus1 = false;
                         }
 
@@ -2883,13 +2896,13 @@ if(vus1 == "Panel"){
                         if (pro >= vacline) {
                             pro = static_cast<int>(vacline); // Cap to vacline
                             ui->label_8->setText(QString::number(pro));
-                            motoroff();
+                            handler->stepper_motorOFF();
                             handler->speaker_on(0, 0, 0, 1); // Feedback
                         }
 
                         // Turn Off Motor if Reached Specific Vacuum
                         if (pro == us1reachedvac) {
-                            motoroff();
+                            handler->stepper_motorOFF();
                             motorus1 = false;
                         }
                     }
@@ -2913,7 +2926,7 @@ if(vus1 == "Panel"){
                 ui->dial_2->setValue(range);
                 //footpedalbeep();
                 ventonus1 = false;
-                handler->pinchvalve_on();
+                handler->pinchvalve1_on();
                // handler->safetyvent_off();
                 ui->CI5_5->setStyleSheet(styleSheet3);
                 beepsound(3);
@@ -2987,13 +3000,15 @@ if(vus1 == "Panel"){
 
                         // Motor control based on vacuum level
                         if (pro < presetvac) {
-                            motoron(ui->lineEdit_56);
+                           // motoron(ui->lineEdit_56);
+                            handler->stepper_motorOn();
+                            handler->stepper_motorCount(ui->lineEdit_56->text().toInt());
                             motorus1 = true;
                         } else if (pro > vacline) {
                             // Cap vacuum level and update UI
                             pro = static_cast<int>(vacline);
                             ui->label_8->setText(QString::number(pro));
-                            motoroff();
+                            handler->stepper_motorOFF();
 
                             // Handle power mode actions
                             if (us1powmode == "Ocuburst") {
@@ -3017,7 +3032,9 @@ if(vus1 == "Panel"){
 
                             // Continuous motor operation
                             if (!motorus1) {
-                                motoron(ui->lineEdit_56);
+                                //motoron(ui->lineEdit_56);
+                                handler->stepper_motorOn();
+                                handler->stepper_motorCount(ui->lineEdit_56->text().toInt());
                                 motorus1 = true;
                             }
 
@@ -3057,20 +3074,20 @@ if(vus1 == "Panel"){
                      us2poweron=false;
                        if(!overallci){
                            ui->CI5_5->setStyleSheet(styleSheet4);
-                           handler->pinchvalve_off();
+                           handler->pinchvalve1_off();
                     }
 
                        if(ventonus2==false){
-                        //   handler->pinchvalve_on();
+                        //   handler->pinchvalve1_on();
                  handler->safetyvent_on();
                      QThread::msleep(100);
-                       handler->pinchvalve_off();
+                       handler->pinchvalve1_off();
                      handler->safetyvent_off();
                      ventonus2=true;
                        }
                        int pro=readsensorvalue();
                        ui->label_93->setText(QString::number(pro));
-                   motoroff();
+                   handler->stepper_motorOFF();
 
                 ui->label_92->setText("0");
 
@@ -3080,7 +3097,7 @@ if(vus1 == "Panel"){
             else if (range >= nfpzero & range < nfpzero+nfpone) {
                      ui->pushButton_42->setText("1");
                      ui->dial_2->setValue(range);
-                     handler->pinchvalve_on();
+                     handler->pinchvalve1_on();
                      if(ventonus2==false){
                      handler->safetyvent_on();
                    QThread::msleep(100);
@@ -3092,7 +3109,7 @@ if(vus1 == "Panel"){
                   ui->label_93->setText(QString::number(pro));
                   ui->CI5_5->setStyleSheet(styleSheet3);
                   //footpedalbeep();
-                  motoroff();
+                  handler->stepper_motorOFF();
                   ui->label_92->setText("0");
                   if(speakeronoff == "Speaker ON"){
                   handler->speaker_on(0,0,1,0);
@@ -3113,14 +3130,16 @@ flag1 = true;
                 ventonus2=false;
                 ui->dial_2->setValue(range);
                 ui->CI5_5->setStyleSheet(styleSheet3);
-                handler->pinchvalve_on();
+                handler->pinchvalve1_on();
                 //handler->safetyvent_off();
                 //footpedalbeep();
  if(vus2=="Panel" ){
      int nonlinear_prevac=readsensorvalue();
      if(nonlinear_prevac <=  us2vacline){
        ui->label_93->setText(QString::number(nonlinear_prevac));
-      motoron(ui->lineEdit_59);
+     // motoron(ui->lineEdit_59);
+       handler->stepper_motorOn();
+       handler->stepper_motorCount(ui->lineEdit_59->text().toInt());
       if(speakeronoff == "Speaker ON"){
    handler->speaker_on(nonlinear_prevac,1,0,0);
       }else{
@@ -3128,7 +3147,7 @@ flag1 = true;
       }
      }
    if (nonlinear_prevac >  us2vacline) {
-                    motoroff(); // Turn off the motor
+                    handler->stepper_motorOFF(); // Turn off the motor
                     ui->label_93->setText(QString::number(us2vacline));
                     if(speakeronoff == "Speaker ON"){
                    handler->speaker_on(us2vacline,0,0,1);
@@ -3137,7 +3156,7 @@ flag1 = true;
                     }
                 }
    if(us2reachedvac == us2vacline){
-       motoroff();
+       handler->stepper_motorOFF();
    }
  }
                     handler->freq_count(0);
@@ -3155,13 +3174,15 @@ flag1 = true;
                 ui->label_92->show();
                 ui->label_93->show();
                 ventonus2=false;
-                handler->pinchvalve_on();
+                handler->pinchvalve1_on();
                 ui->CI5_5->setStyleSheet(styleSheet3);
 if(vus2=="Panel"){
      int nonlinear_prevac=readsensorvalue();
      if(nonlinear_prevac<=us2vacline){
                               ui->label_93->setText(QString::number(nonlinear_prevac));
-                              motoron(ui->lineEdit_59);
+                             // motoron(ui->lineEdit_59);
+                              handler->stepper_motorOn();
+                              handler->stepper_motorCount(ui->lineEdit_59->text().toInt());
                               if(us2powmode == "Ocuburst"){
                                   handler->pdm_mode(CONTINOUS);
                               }else if(us2powmode == "Ocupulse" ){
@@ -3174,7 +3195,7 @@ if(vus2=="Panel"){
                               }
      }
                              if (nonlinear_prevac > us2vacline) {
-                                 motoroff(); // Turn off the motor
+                                 handler->stepper_motorOFF(); // Turn off the motor
                                    ui->label_93->setText(QString::number(us2vacline));
                                  if(speakeronoff == "Speaker ON"){
                                  handler->speaker_on(0,0,0,1);
@@ -3245,7 +3266,7 @@ beepsound(3);
                 ui->dial_2->setValue(range);
                 if (!overallci) {
                     ui->CI5_5->setStyleSheet(styleSheet4);
-                    handler->pinchvalve_off();
+                    handler->pinchvalve1_off();
                 }
                 if(ventonus2==false){
                    handler->safetyvent_on();
@@ -3253,7 +3274,7 @@ beepsound(3);
               handler->safetyvent_off();
               ventonus2=true;
                 }
-                motoroff();
+                handler->stepper_motorOFF();
 
                  handler->phaco_off();
                  handler->phaco_power(0);
@@ -3274,7 +3295,7 @@ beepsound(3);
                 ui->pushButton_42->setText("1");
                 //footpedalbeep();
                 ui->dial_2->setValue(range);
-                handler->pinchvalve_on();
+                handler->pinchvalve1_on();
 
                 if(ventonus2==false){
                     handler->safetyvent_on();
@@ -3284,7 +3305,7 @@ beepsound(3);
                 }
 
                 ui->CI5_5->setStyleSheet(styleSheet3);
-                motoroff();
+                handler->stepper_motorOFF();
                 ui->label_92->setText("0");
                 int pro=readsensorvalue();
                 ui->label_93->setText(QString::number(pro));
@@ -3310,7 +3331,7 @@ beepsound(3);
                 ui->dial_2->setValue(range);
                 ventonus2 = false;
 
-                handler->pinchvalve_on();
+                handler->pinchvalve1_on();
                // handler->safetyvent_off();
                 ui->CI5_5->setStyleSheet(styleSheet3);
                 if (vus2 == "Surgeon") {
@@ -3336,16 +3357,18 @@ beepsound(3);
 
                         // Motor Control Based on Sensor Value
                         if (pro <= presetvac) {
-                            motoron(ui->lineEdit_59); // Turn on motor
+                           // motoron(ui->lineEdit_59); // Turn on motor
+                            handler->stepper_motorOn();
+                            handler->stepper_motorCount(ui->lineEdit_59->text().toInt());
                             motorus2=true;
                         } else {
-                            motoroff(); // Turn off motor
+                            handler->stepper_motorOFF(); // Turn off motor
                             motorus2=false;
                         }
 
                         // Check if Vacuum Exceeds Maximum Line
                         if (pro > us2vacline) {
-                            motoroff(); // Turn off motor
+                            handler->stepper_motorOFF(); // Turn off motor
                             pro = static_cast<int>(us2vacline); // Cap vacuum to max line
                             ui->label_93->setText(QString::number(us2vacline)); // Update UI with capped value
 
@@ -3359,7 +3382,7 @@ beepsound(3);
 
                         // Stop Motor When Reached Specific Vacuum
                         if (pro == us2reachedvac) {
-                            motoroff(); // Turn off motor
+                            handler->stepper_motorOFF(); // Turn off motor
                             motorus2=false;
                         }
                     }
@@ -3379,7 +3402,7 @@ beepsound(3);
                 ui->pushButton_42->setText("3");
                 ui->dial_2->setValue(range);
                 ventonus2 = false;
-                handler->pinchvalve_on();
+                handler->pinchvalve1_on();
                 ui->CI5_5->setStyleSheet(styleSheet3);
                 if(us2 == "Surgeon"){
                  if (!us2poweron && text == "ON") {
@@ -3458,12 +3481,13 @@ beepsound(3);
                         if (pro <= presetvac) {
                             ui->label_93->setText(QString::number(pro));
 
-                                motoron(ui->lineEdit_59);
-
+                                //motoron(ui->lineEdit_59);
+                            handler->stepper_motorOn();
+                            handler->stepper_motorCount(ui->lineEdit_59->text().toInt());
                         } else if (pro > us2vacline) {
                             pro = static_cast<int>(us2vacline);
                             ui->label_93->setText(QString::number(us2vacline));
-                            motoroff();
+                            handler->stepper_motorOFF();
                             if(us2powmode == "Ocuburst"){
                                 handler->pdm_mode(SINGLE_BURST);
 
@@ -3484,7 +3508,9 @@ beepsound(3);
 
 //                            // Keep motor running continuously
                             if (!motorus2) {
-                                motoron(ui->lineEdit_59);
+                                //motoron(ui->lineEdit_59);
+                                handler->stepper_motorOn();
+                                handler->stepper_motorCount(ui->lineEdit_59->text().toInt());
                                 motorus2 = true;
                             }
                             us2reachedvac=pro;
@@ -3530,11 +3556,11 @@ beepsound(3);
                      us3poweron=false;
                        if(!overallci){
                            ui->CI5_5->setStyleSheet(styleSheet4);
-                           handler->pinchvalve_off();
+                           handler->pinchvalve1_off();
                     }
 
                        if(ventonus3==false){
-                        //   handler->pinchvalve_on();
+                        //   handler->pinchvalve1_on();
                  handler->safetyvent_on();
                      QThread::msleep(100);
                      handler->safetyvent_off();
@@ -3542,7 +3568,7 @@ beepsound(3);
                        }
                        int pro=readsensorvalue();
                        ui->label_99->setText(QString::number(pro));
-                   motoroff();
+                   handler->stepper_motorOFF();
 
                 ui->label_98->setText("0");
 
@@ -3553,7 +3579,7 @@ beepsound(3);
             else if (range >= nfpzero & range < nfpzero+nfpone) {
                      ui->pushButton_42->setText("1");
                      ui->dial_2->setValue(range);
-                     handler->pinchvalve_on();
+                     handler->pinchvalve1_on();
                      if(ventonus3==false){
                      handler->safetyvent_on();
                    QThread::msleep(100);
@@ -3565,7 +3591,7 @@ beepsound(3);
                   ui->label_99->setText(QString::number(pro));
                   ui->CI5_5->setStyleSheet(styleSheet3);
                   //footpedalbeep();
-                  motoroff();
+                  handler->stepper_motorOFF();
                   ui->label_98->setText("0");
                   if(speakeronoff == "Speaker ON"){
                   handler->speaker_on(0,0,1,0);
@@ -3587,13 +3613,15 @@ flag1 = true;
                 ventonus3=false;
                 ui->dial_2->setValue(range);
                 ui->CI5_5->setStyleSheet(styleSheet3);
-                handler->pinchvalve_on();
+                handler->pinchvalve1_on();
 
  if(vus3=="Panel" ){
      int nonlinear_prevac=readsensorvalue();
      if(nonlinear_prevac <=  us3vacline){
        ui->label_99->setText(QString::number(nonlinear_prevac));
-      motoron(ui->lineEdit_62);
+      //motoron(ui->lineEdit_62);
+       handler->stepper_motorOn();
+       handler->stepper_motorCount(ui->lineEdit_62->text().toInt());
       if(speakeronoff == "Speaker ON"){
    handler->speaker_on(nonlinear_prevac,1,0,0);
       }else{
@@ -3601,7 +3629,7 @@ flag1 = true;
       }
      }
    if (nonlinear_prevac >  us3vacline) {
-                    motoroff(); // Turn off the motor
+                    handler->stepper_motorOFF(); // Turn off the motor
                     ui->label_99->setText(QString::number(us3vacline));
                     if(speakeronoff == "Speaker ON"){
                  handler->speaker_on(nonlinear_prevac,0,0,1);
@@ -3611,7 +3639,7 @@ flag1 = true;
 
                 }
    if(us3reachedvac == us3vacline){
-       motoroff();
+       handler->stepper_motorOFF();
    }
  }
  ui->label_98->setText("0");
@@ -3630,13 +3658,15 @@ flag1 = true;
                 ui->label_98->show();
                 ui->label_99->show();
                 ventonus2=false;
-                handler->pinchvalve_on();
+                handler->pinchvalve1_on();
                 ui->CI5_5->setStyleSheet(styleSheet3);
 if(vus3=="Panel"){
      int nonlinear_prevac=readsensorvalue();
      if(nonlinear_prevac <=us3vacline){
                               ui->label_99->setText(QString::number(nonlinear_prevac));
-                              motoron(ui->lineEdit_62);
+                             // motoron(ui->lineEdit_62);
+                              handler->stepper_motorOn();
+                              handler->stepper_motorCount(ui->lineEdit_62->text().toInt());
                               if(us3powmode == "Ocuburst"){
                                   handler->pdm_mode(CONTINOUS);
                               }else if(us3powmode == "Ocupulse" ){
@@ -3649,7 +3679,7 @@ if(vus3=="Panel"){
                               }
      }
                                   if (nonlinear_prevac > us3vacline) {
-                                      motoroff(); // Turn off the motor
+                                      handler->stepper_motorOFF(); // Turn off the motor
                                       ui->label_99->setText(QString::number(us3vacline));
 
                                       if(speakeronoff == "Speaker ON"){
@@ -3716,7 +3746,7 @@ beepsound(3);
                 ui->dial_2->setValue(range);
                 if (!overallci) {
                     ui->CI5_5->setStyleSheet(styleSheet4);
-                    handler->pinchvalve_off();
+                    handler->pinchvalve1_off();
                 }
                 if(ventonus3==false){
                    handler->safetyvent_on();
@@ -3724,7 +3754,7 @@ beepsound(3);
               handler->safetyvent_off();
               ventonus3=true;
                 }
-                motoroff();
+                handler->stepper_motorOFF();
 
                  handler->phaco_off();
                  handler->phaco_power(0);
@@ -3744,7 +3774,7 @@ beepsound(3);
                 ui->pushButton_42->setText("1");
                 //footpedalbeep();
                 ui->dial_2->setValue(range);
-                handler->pinchvalve_on();
+                handler->pinchvalve1_on();
 
                 if(ventonus3==false){
                     handler->safetyvent_on();
@@ -3754,7 +3784,7 @@ beepsound(3);
                 }
 
                 ui->CI5_5->setStyleSheet(styleSheet3);
-                motoroff();
+                handler->stepper_motorOFF();
                   int pro=readsensorvalue();
                   ui->label_99->setText(QString::number(pro));
                   ui->label_98->setText("0");
@@ -3780,7 +3810,7 @@ beepsound(3);
                 ui->dial_2->setValue(range);
                 ventonus3 = false;
 
-                handler->pinchvalve_on();
+                handler->pinchvalve1_on();
                // handler->safetyvent_off();
                 ui->CI5_5->setStyleSheet(styleSheet3);
                 if (vus3 == "Surgeon") {
@@ -3806,25 +3836,27 @@ beepsound(3);
 
                         // Motor Control Based on Sensor Value
                         if (pro <= presetvac) {
-                            motoron(ui->lineEdit_62); // Turn on motor
+                            handler->stepper_motorOn();
+                            handler->stepper_motorCount(ui->lineEdit_62->text().toInt());
+                           // motoron(ui->lineEdit_62); // Turn on motor
                             motorus3=true;
 
                         } else {
-                            motoroff(); // Turn off motor
+                            handler->stepper_motorOFF(); // Turn off motor
                             motorus3=false;
 
                         }
 
                         // Check if Vacuum Exceeds Maximum Line
                         if (pro > us3vacline) {
-                            motoroff(); // Turn off motor
+                            handler->stepper_motorOFF(); // Turn off motor
                             pro = static_cast<int>(us3vacline); // Cap vacuum to max line
                             ui->label_99->setText(QString::number(pro)); // Update UI with capped value
                         }
 
                         // Stop Motor When Reached Specific Vacuum
                         if (us3reachedvac == pro) {
-                            motoroff(); // Turn off motor
+                            handler->stepper_motorOFF(); // Turn off motor
                             motorus3=false;
                         }
                     }
@@ -3845,7 +3877,7 @@ beepsound(3);
                 ui->pushButton_42->setText("3");
                 ui->dial_2->setValue(range);
                 ventonus3 = false;
-                handler->pinchvalve_on();
+                handler->pinchvalve1_on();
                 ui->CI5_5->setStyleSheet(styleSheet3);
                 if(us3 == "Surgeon"){
                  if (!us3poweron && text == "ON") {
@@ -3925,9 +3957,11 @@ beepsound(3);
                         // Motor control based on vacuum level
                         if (pro <= presetvac) {
                             ui->label_99->setText(QString::number(pro));
-                            motoron(ui->lineEdit_62); // Turn on motor
+                            handler->stepper_motorOn();
+                            handler->stepper_motorCount(ui->lineEdit_62->text().toInt());
+                          //  motoron(ui->lineEdit_62); // Turn on motor
                         } else if (pro > us3vacline) {
-                            motoroff(); // Turn off motor if vacuum exceeds limit
+                            handler->stepper_motorOFF(); // Turn off motor if vacuum exceeds limit
                             pro = static_cast<int>(us3vacline); // Cap vacuum to maximum line
                             ui->label_99->setText(QString::number(us3vacline));
 
@@ -3956,7 +3990,9 @@ beepsound(3);
 
                             // Continuous motor operation
                             if (!motorus3) {
-                                motoron(ui->lineEdit_62); // Keep motor running
+                                handler->stepper_motorOn();
+                                handler->stepper_motorCount(ui->lineEdit_62->text().toInt());
+                               // motoron(ui->lineEdit_62); // Keep motor running
                                 motorus3 = true;
                             }
 
@@ -4004,20 +4040,20 @@ beepsound(3);
                      us4poweron=false;
                        if(!overallci){
                            ui->CI5_5->setStyleSheet(styleSheet4);
-                           handler->pinchvalve_off();
+                           handler->pinchvalve1_off();
                     }
 //qDebug()<<"the power value at us4 is"<<pow4;
                        if(ventonus4==false){
-                        //   handler->pinchvalve_on();
+                        //   handler->pinchvalve1_on();
                  handler->safetyvent_on();
                      QThread::msleep(100);
-                       handler->pinchvalve_off();
+                       handler->pinchvalve1_off();
                      handler->safetyvent_off();
                      ventonus4=true;
                        }
                        int pro=readsensorvalue();
                        ui->label_104->setText(QString::number(pro));
-                   motoroff();
+                   handler->stepper_motorOFF();
 
 
                    beepsound(0);
@@ -4027,7 +4063,7 @@ beepsound(3);
             else if (range >= nfpzero & range < nfpzero+nfpone) {
                      ui->pushButton_42->setText("1");
                      ui->dial_2->setValue(range);
-                     handler->pinchvalve_on();
+                     handler->pinchvalve1_on();
                      if(ventonus4==false){
                      handler->safetyvent_on();
                    QThread::msleep(100);
@@ -4039,7 +4075,7 @@ beepsound(3);
                   ui->label_104->setText(QString::number(pro));
                   ui->CI5_5->setStyleSheet(styleSheet3);
                   //footpedalbeep();
-                  motoroff();
+                  handler->stepper_motorOFF();
                   ui->label_105->setText("0");
                   if(speakeronoff == "Speaker ON"){
                   handler->speaker_on(0,0,1,0);
@@ -4060,13 +4096,15 @@ flag1 = true;
                 ventonus4=false;
                 ui->dial_2->setValue(range);
                 ui->CI5_5->setStyleSheet(styleSheet3);
-                handler->pinchvalve_on();
+                handler->pinchvalve1_on();
 
  if(vus4=="Panel" ){
      int nonlinear_prevac=readsensorvalue();
      if(nonlinear_prevac <=  us4vacline){
        ui->label_104->setText(QString::number(nonlinear_prevac));
-      motoron(ui->lineEdit_65);
+      //motoron(ui->lineEdit_65);
+       handler->stepper_motorOn();
+       handler->stepper_motorCount(ui->lineEdit_65->text().toInt());
       if(speakeronoff =="Speaker ON"){
    handler->speaker_on(nonlinear_prevac,1,0,0);
       }else{
@@ -4074,7 +4112,7 @@ flag1 = true;
       }
      }
    if (nonlinear_prevac >  us4vacline) {
-                    motoroff(); // Turn off the motor
+                    handler->stepper_motorOFF(); // Turn off the motor
                     ui->label_104->setText(QString::number(us4vacline));
                     if(speakeronoff == "Speaker ON"){
                    handler->speaker_on(us4vacline,0,0,1);
@@ -4083,7 +4121,7 @@ flag1 = true;
                     }
                 }
    if(us4reachedvac == us4vacline){
-       motoroff();
+       handler->stepper_motorOFF();
    }
  }
  ui->label_105->setText("0");
@@ -4102,13 +4140,15 @@ flag1 = true;
                 ui->label_105->show();
                 ui->label_104->show();
                 ventonus4=false;
-                handler->pinchvalve_on();
+                handler->pinchvalve1_on();
                 ui->CI5_5->setStyleSheet(styleSheet3);
 if(vus4=="Panel"){
      int nonlinear_prevac=readsensorvalue();
      if(nonlinear_prevac<=us4vacline){
                               ui->label_104->setText(QString::number(nonlinear_prevac));
-                              motoron(ui->lineEdit_65);
+                              //motoron(ui->lineEdit_65);
+                              handler->stepper_motorOn();
+                              handler->stepper_motorCount(ui->lineEdit_65->text().toInt());
                               if(us4powmode == "Ocuburst"){
                                   handler->pdm_mode(CONTINOUS);
                               }else if(us4powmode == "Ocupulse" ){
@@ -4122,7 +4162,7 @@ if(vus4=="Panel"){
      }
 
                                   if (nonlinear_prevac > us4vacline) {
-                                      motoroff(); // Turn off the motor
+                                      handler->stepper_motorOFF(); // Turn off the motor
                                       ui->label_104->setText(QString::number(us4vacline));
                                       if(speakeronoff == "Speaker ON"){
                                       handler->speaker_on(us4vacline,0,0,1);
@@ -4193,7 +4233,7 @@ if(us4 == "Panel"){
                 ui->dial_2->setValue(range);
                 if (!overallci) {
                     ui->CI5_5->setStyleSheet(styleSheet4);
-                    handler->pinchvalve_off();
+                    handler->pinchvalve1_off();
                 }
                 if(ventonus4==false){
                    handler->safetyvent_on();
@@ -4201,7 +4241,7 @@ if(us4 == "Panel"){
               handler->safetyvent_off();
               ventonus4=true;
                 }
-                motoroff();
+                handler->stepper_motorOFF();
 
                  handler->phaco_off();
                  handler->phaco_power(0);
@@ -4222,7 +4262,7 @@ if(us4 == "Panel"){
                 ui->pushButton_42->setText("1");
                 //footpedalbeep();
                 ui->dial_2->setValue(range);
-                handler->pinchvalve_on();
+                handler->pinchvalve1_on();
 
                 if(ventonus4==false){
                     handler->safetyvent_on();
@@ -4232,7 +4272,7 @@ if(us4 == "Panel"){
                 }
 
                 ui->CI5_5->setStyleSheet(styleSheet3);
-                motoroff();
+                handler->stepper_motorOFF();
                   int pro=readsensorvalue();
                   ui->label_104->setText(QString::number(pro));
                   ui->label_105->setText("0");
@@ -4257,7 +4297,7 @@ if(us4 == "Panel"){
                 ui->dial_2->setValue(range);
                 ventonus4 = false;
 
-                handler->pinchvalve_on();
+                handler->pinchvalve1_on();
                // handler->safetyvent_off();
                 ui->CI5_5->setStyleSheet(styleSheet3);
         if(vus4=="Surgeon"){
@@ -4272,7 +4312,9 @@ if(us4 == "Panel"){
                     int pro = readsensorvalue();
 
                      if (pro <= presetvac) {
-                         motoron(ui->lineEdit_65);
+                         //motoron(ui->lineEdit_65);
+                         handler->stepper_motorOn();
+                         handler->stepper_motorCount(ui->lineEdit_65->text().toInt());
                          ui->label_104->setText(QString::number(pro));
 
 //                         if(speakeronoff == "Speaker ON"){
@@ -4285,13 +4327,13 @@ if(us4 == "Panel"){
                             motorus4 = true;
 //                        }
                     } else  {
-                        motoroff();
+                        handler->stepper_motorOFF();
                         motorus4 = false;
                      }
 
                      if(pro> us4vacline){
                           pro=static_cast<int>( us4vacline);
-                          motoroff();
+                          handler->stepper_motorOFF();
                            //speedofthelabe(ui->label_8);
                            ui->label_104->setText(QString::number(pro));
                            if(speakeronoff == "Speaker ON"){
@@ -4303,7 +4345,7 @@ if(us4 == "Panel"){
 
               }
                      if(us4reachedvac == pro){
-                         motoroff();
+                         handler->stepper_motorOFF();
                          motorus4=false;
                      }
                 }
@@ -4323,7 +4365,7 @@ if(us4 == "Panel"){
                 ui->pushButton_42->setText("3");
                 ui->dial_2->setValue(range);
                 ventonus3 = false;
-                handler->pinchvalve_on();
+                handler->pinchvalve1_on();
                 ui->CI5_5->setStyleSheet(styleSheet3);
 
                 if (vus4 == "Surgeon") {
@@ -4353,12 +4395,13 @@ if(us4 == "Panel"){
                         }
                         if (pro <= presetvac) {
                             ui->label_104->setText(QString::number(pro));
-
-                                motoron(ui->lineEdit_65);
+                            handler->stepper_motorOn();
+                            handler->stepper_motorCount(ui->lineEdit_65->text().toInt());
+                               // motoron(ui->lineEdit_65);
 
 
                         } else if (pro > us4vacline) {
-                            motoroff();
+                            handler->stepper_motorOFF();
                             pro = static_cast<int>(us4vacline);
                             ui->label_104->setText(QString::number(us4vacline));
                             if(us4powmode == "Ocuburst"){
@@ -4383,7 +4426,9 @@ if(us4 == "Panel"){
                          }
                             // Keep motor running continuously
                             if (!motorus4) {
-                                motoron(ui->lineEdit_65);
+                             //   motoron(ui->lineEdit_65);
+                                handler->stepper_motorOn();
+                                handler->stepper_motorCount(ui->lineEdit_65->text().toInt());
                                 motorus4 = true;
                             }
                             us4reachedvac=pro;
@@ -4467,7 +4512,7 @@ QString ia1=ui->ia2mode->text();
 
                 if (!overallci) {
                     ui->CI5_5->setStyleSheet(styleSheet4);
-                    handler->pinchvalve_off();
+                    handler->pinchvalve1_off();
                 }
                 if(ventonia1 == false) {
                     handler->safetyvent_on();
@@ -4476,7 +4521,8 @@ QString ia1=ui->ia2mode->text();
                     ventonia1 = true;
                 }
                handler->speaker_off();
-                motoroff();
+               handler->stepper_motorOFF();
+               // motoroff();
                 ui->label_113->setText(QString::number(0));
                 flag6=true;
             }
@@ -4491,7 +4537,7 @@ QString ia1=ui->ia2mode->text();
 
                 ui->dial_2->setValue(range);
 
-                handler->pinchvalve_on();
+                handler->pinchvalve1_on();
                 ui->CI5_5->setStyleSheet(styleSheet3);
                 if(ventonia1 == false) {
                     handler->safetyvent_on();
@@ -4499,7 +4545,7 @@ QString ia1=ui->ia2mode->text();
                     handler->safetyvent_off();
                     ventonia1 = true;
                 }
-                motoroff();
+               handler->stepper_motorOFF();
                 int pro = readsensorvalue();
                 ui->label_113->setText(QString::number(pro));
                 beepsound(1);
@@ -4508,23 +4554,25 @@ QString ia1=ui->ia2mode->text();
 
             else if (range >= (nfpzero + nfpone) && range < (nfpzero + nfpone + nfptwo + nfpthree)) {
                 ui->pushButton_42->setText("2");
-
                 ventonia1 = false;
                 handler->safetyvent_off();
                 ui->dial_2->setValue(range);
                 ui->CI5_5->setStyleSheet(styleSheet3);
-                handler->pinchvalve_on();
+                handler->pinchvalve1_on();
+
                int nonlinear_prevac = readsensorvalue(); // Assuming this function reads the current sensor value
                int nonlinear_vac = std::min(nonlinear_prevac, static_cast<int>(ia1preset));
                ui->label_113->setText(QString::number(nonlinear_vac));
-               motoron(ui->lineEdit_69);
+               handler->stepper_motorOn();
+               handler->stepper_motorCount(ui->lineEdit_69->text().toInt());
+              // motoron(ui->lineEdit_69);
                if(speakeronoff == "Speaker ON"){
                handler->speaker_on(nonlinear_prevac,1,0,0);
                }else{
                    handler->speaker_off();
                }
                if (nonlinear_prevac >= ia1preset) {
-                         motoroff(); // Turn off the motor
+                        handler->stepper_motorOFF();
                        //  speedofthelabe(ui->label_113);
                          if(speakeronoff == "Speaker ON"){
                          handler->speaker_on(0,0,0,1);
@@ -4544,7 +4592,7 @@ QString ia1=ui->ia2mode->text();
                   handler->vibrator_off();
                 if(!overallci){
              ui->CI5_5->setStyleSheet(styleSheet4);
-                    handler->pinchvalve_off();
+                    handler->pinchvalve1_off();
                 }
                 if(ventonia1 == false) {
                     handler->safetyvent_on();
@@ -4553,7 +4601,8 @@ QString ia1=ui->ia2mode->text();
                     ventonia1 = true;
                 }
 
-                  motoroff();
+                 // motoroff();
+                handler->stepper_motorOFF();
                     //int pro = readsensorvalue();
                  ui->label_113->setText(QString::number(0));
                  handler->speaker_off();
@@ -4572,8 +4621,11 @@ QString ia1=ui->ia2mode->text();
                   ui->dial_2->setValue(range);
 
              ui->CI5_5->setStyleSheet(styleSheet3);
-                handler->pinchvalve_on();
-                  motoroff();
+                handler->pinchvalve1_on();
+                handler->pinchvalve2_on();
+
+                handler->stepper_motorOFF();
+                //  motoroff();
                   int pro = readsensorvalue();
                ui->label_113->setText(QString::number(pro));
 
@@ -4595,7 +4647,9 @@ QString ia1=ui->ia2mode->text();
 
                 ui->CI5_5->setStyleSheet(styleSheet3);
 handler->safetyvent_off();
-handler->pinchvalve_on();
+handler->pinchvalve1_on();
+handler->pinchvalve2_on();
+
                 const int MIN_RANGE = nfpzero + nfpone;
                 const int MAX_RANGE =nfpzero + nfpone + nfptwo + nfpthree;
                 int divi =  MAX_RANGE-MIN_RANGE ; // Divider
@@ -4609,25 +4663,27 @@ handler->pinchvalve_on();
                   //  const int tolerance = 5; // Example tolerance
 
                     if (pro < (presetvac)) {
-                        motoron(ui->lineEdit_69);
-                        if(speakeronoff == "Speaker ON"){
+                        handler->stepper_motorOn();
+                        handler->stepper_motorCount(ui->lineEdit_69->text().toInt());                        if(speakeronoff == "Speaker ON"){
                         handler->speaker_on(pro,1,0,0);
                         }else{
                             handler->speaker_off();
                         }
                         if (!motoria1) {
-                            motoron(ui->lineEdit_69);
-                            motoria1 = true;
+                            handler->stepper_motorOn();
+                            handler->stepper_motorCount(ui->lineEdit_69->text().toInt());                            motoria1 = true;
                         }
                     } else if (pro >= presetvac || motoria1) {
-                        motoroff();
+                        //motoroff();
+                        handler->stepper_motorOFF();
                         motoria1 = false;
                     } // If pro exceeds vitpreset, cap it
                     if (pro >= ia1preset) {
                         pro = static_cast<int>(ia1preset);
                         ui->label_113->setText(QString::number(pro));
                       //  speedofthelabe(ui->label_113);
-                        motoroff();
+                        //motoroff();
+                        handler->stepper_motorOFF();
 
                         if(speakeronoff == "Speaker ON"){
                         handler->speaker_on(0,0,0,1);
@@ -4659,7 +4715,7 @@ handler->pinchvalve_on();
                   ui->dial_2->setValue(range);
                 if(!overallci){
             ui->CI5_5->setStyleSheet(styleSheet4);
-                    handler->pinchvalve_off();
+                    handler->pinchvalve1_off();
                 }
                 if(ventonia2==false){
                     handler->safetyvent_on();
@@ -4669,7 +4725,8 @@ handler->pinchvalve_on();
                 }
              //   int ia2pro=readsensorvalue();
                 ui->label_109->setText(QString::number(0));
- motoroff();
+                handler->stepper_motorOFF();
+ //motoroff();
   handler->speaker_off();
   beepsound(0);
  flag6=true;
@@ -4684,8 +4741,10 @@ handler->pinchvalve_on();
                 //footpedalbeep();
                 ui->dial_2->setValue(range);
                 ui->CI5_5->setStyleSheet(styleSheet3);
-                handler->pinchvalve_on();
-                 motoroff();
+                handler->pinchvalve1_on();
+                handler->stepper_motorOFF();
+
+                 //motoroff();
             if(ventonia2==false){
                 handler->safetyvent_on();
                 QThread::msleep(100);
@@ -4701,18 +4760,21 @@ handler->pinchvalve_on();
                 ui->dial_2->setValue(range);
                 ui->CI5_5->setStyleSheet(styleSheet3);
                 handler->safetyvent_off();
-                handler->pinchvalve_on();
+                handler->pinchvalve1_on();
             int nonlinear_prevac = readsensorvalue(); // Assuming this function reads the current sensor value
                               int nonlinear_vac = std::min(nonlinear_prevac, static_cast<int>(ia2vacline));
                               ui->label_109->setText(QString::number(nonlinear_vac));
-                              motoron(ui->lineEdit_67);
+                              handler->stepper_motorOn();
+                              handler->stepper_motorCount(ui->lineEdit_67->text().toInt());
+                              //motoron(ui->lineEdit_67);
                               if(speakeronoff == "Speaker ON"){
                               handler->speaker_on(nonlinear_prevac,1,0,0);
                               }else{
                                   handler->speaker_off();
                               }
                               if (nonlinear_prevac >= ia2vacline) {
-                                  motoroff(); // Turn off the motor
+                                  handler->stepper_motorOFF();
+                                 // motoroff(); // Turn off the motor
                                   if(speakeronoff == "Speaker ON"){
                                   handler->speaker_on(0,0,0,1);
                                   }else{
@@ -4730,10 +4792,11 @@ handler->pinchvalve_on();
                       ui->dial_2->setValue(range);
                     if(!overallci){
                  ui->CI5_5->setStyleSheet(styleSheet4);
-                        handler->pinchvalve_off();
+                        handler->pinchvalve1_off();
                     }
                     handler->speaker_off();
-                      motoroff();
+                      handler->stepper_motorOFF();
+                      //motoroff();
                       if(ventonia2==false){
                         handler->safetyvent_on();
                         QThread::msleep(100);
@@ -4754,8 +4817,9 @@ handler->pinchvalve_on();
                     //footpedalbeep();
                       ui->dial_2->setValue(range);
                  ui->CI5_5->setStyleSheet(styleSheet3);
-                    handler->pinchvalve_on();
-                      motoroff();
+                    handler->pinchvalve1_on();
+                    //  motoroff();
+                      handler->stepper_motorOFF();
                       if(ventonia2==false){
                           handler->safetyvent_on();
                                            QThread::msleep(100);
@@ -4773,7 +4837,7 @@ handler->pinchvalve_on();
                       ui->dial_2->setValue(range);
                   ui->CI5_5->setStyleSheet(styleSheet3);
                     handler->safetyvent_off();
-                    handler->pinchvalve_on();
+                    handler->pinchvalve1_on();
                     const int MIN_RANGE = nfpzero + nfpone;
                     const int MAX_RANGE =nfpzero + nfpone + nfptwo + nfpthree;
                     int divi =  MAX_RANGE-MIN_RANGE ; // Divider
@@ -4786,25 +4850,31 @@ handler->pinchvalve_on();
                         ui->label_109->setText(QString::number(pro));
 
                         if (pro < (presetvac)) {
-                            motoron(ui->lineEdit_67);
+                            handler->stepper_motorOn();
+                            handler->stepper_motorCount(ui->lineEdit_67->text().toInt());
+                           // motoron(ui->lineEdit_67);
                             if(speakeronoff == "Speaker ON"){
                             handler->speaker_on(pro,1,0,0);
                             }else{
                                 handler->speaker_off();
                             }
                             if (!motoria2) {
-                                motoron(ui->lineEdit_67);
+                                handler->stepper_motorOn();
+                                handler->stepper_motorCount(ui->lineEdit_67->text().toInt());
+                              //  motoron(ui->lineEdit_67);
                                 motoria2 = true;
                             }
                         } else if (pro >= presetvac || motoria2) {
-                            motoroff();
+                           // motoroff();
+                            handler->stepper_motorOFF();
                             motoria2 = false;
                         } // If pro exceeds vitpreset, cap it
                         if (pro >= ia2vacline) {
                             pro = static_cast<int>(ia2vacline);
                             ui->label_109->setText(QString::number(pro));
                           //  speedofthelabe(ui->label_113);
-                            motoroff();
+                                handler->stepper_motorOFF();
+                           // motoroff();
 
                             if(speakeronoff == "Speaker ON"){
                             handler->speaker_on(0,0,0,1);
@@ -4838,7 +4908,7 @@ handler->pinchvalve_on();
   handler->vibrator_off();
             if (!overallci) {
                 ui->CI5_5->setStyleSheet(styleSheet4);
-                handler->pinchvalve_off();
+                handler->pinchvalve1_off();
             }
             if (!ventonvit) {
                 handler->safetyvent_on();
@@ -4847,7 +4917,9 @@ handler->pinchvalve_on();
                 ventonvit = true;
             }
 
-            motoroff();
+
+            //motoroff();
+            handler->stepper_motorOFF();
             ui->label_119->setText("0");
             int vitpro = readsensorvalue();
             ui->label_118->setText(QString::number(0));
@@ -4872,8 +4944,9 @@ handler->pinchvalve_on();
                 ventonvit = true;
             }
 
-            handler->pinchvalve_on();
-            motoroff();
+            handler->pinchvalve1_on();
+           // motoroff();
+            handler->stepper_motorOFF();
             int vitpro = readsensorvalue();
             ui->label_118->setText(QString::number(vitpro));
             ui->label_119->setText("0");
@@ -4888,7 +4961,7 @@ handler->pinchvalve_on();
             ui->dial_2->setValue(range);
             ui->CI5_5->setStyleSheet(styleSheet3);
             handler->safetyvent_off();
-            handler->pinchvalve_on();
+            handler->pinchvalve1_on();
 
             if (vvac == "Surgeon") {
                 const int MIN_RANGE = nfpzero + nfpone;
@@ -4909,13 +4982,15 @@ handler->pinchvalve_on();
 
                     // Motor control based on preset value
                     if (pro < presetvac) {
-                        motoron(ui->lineEdit_72);
-
+                      //  motoron(ui->lineEdit_72);
+handler->stepper_motorOn();
+handler->stepper_motorCount(ui->lineEdit_72->text().toInt());
                         if (!motorvit) {
                             motorvit = true;
                         }
                     } else if (motorvit) {
-                        motoroff();
+                      //  motoroff();
+                        handler->stepper_motorOFF();
                         motorvit = false;
                     }
 
@@ -4923,7 +4998,8 @@ handler->pinchvalve_on();
                     if (pro >= vitpreset) {
                         pro = static_cast<int>(vitpreset);
                         ui->label_118->setText(QString::number(pro));
-                        motoroff();
+                        //motoroff();
+                        handler->stepper_motorOFF();
                         if(speakeronoff == "Speaker ON"){
                         handler->speaker_on(0,0,0,1);
                         }else{
@@ -4942,9 +5018,12 @@ handler->pinchvalve_on();
                     handler->speaker_off();
                 }
                 // Motor control for Panel
-                motoron(ui->lineEdit_72);
+              //  motoron(ui->lineEdit_72);
+                handler->stepper_motorOn();
+                handler->stepper_motorCount(ui->lineEdit_72->text().toInt());
                 if (nonlinear_prevac >= vitpreset) {
-                    motoroff();
+                   // motoroff();
+                    handler->stepper_motorOFF();
                     if(speakeronoff == "Speaker ON"){
                     handler->speaker_on(0,0,0,1);
                     }else{
@@ -4965,7 +5044,7 @@ handler->pinchvalve_on();
             ui->dial_2->setValue(range);
             ui->CI5_5->setStyleSheet(styleSheet3);
             handler->safetyvent_off();
-            handler->pinchvalve_on();
+            handler->pinchvalve1_on();
 
             if (vitonoff) {  // vitonoff check for vit actions
 
@@ -4973,6 +5052,8 @@ handler->pinchvalve_on();
               qDebug()<<"the value is from the vit"<<pow7;
                 handler->vit_on((pow7));
               //  handler->vit_ontime(30);
+            }else{
+                      handler->vit_off();
             }
 
             if (vvac == "Surgeon") {
@@ -4992,12 +5073,16 @@ handler->pinchvalve_on();
                         handler->speaker_off();
                     }
                     if (pro < presetvac) {
-                        motoron(ui->lineEdit_72);
+                        handler->stepper_motorOn();
+                        handler->stepper_motorCount(ui->lineEdit_72->text().toInt());
+
+                        //motoron(ui->lineEdit_72);
                         if (!motorvit) {
                             motorvit = true;
                         }
                     } else if (motorvit) {
-                        motoroff();
+                        handler->stepper_motorOFF();
+                        //motoroff();
                         motorvit = false;
                     }
 
@@ -5009,7 +5094,8 @@ handler->pinchvalve_on();
                         }else{
                             handler->speaker_off();
                         }
-                        motoroff();
+                        handler->stepper_motorOFF();
+                       // motoroff();
                     }
                 }
             } else if (vvac == "Panel") {
@@ -5021,9 +5107,12 @@ handler->pinchvalve_on();
                 }else{
                     handler->speaker_off();
                 }
-                motoron(ui->lineEdit_72);
+               // motoron(ui->lineEdit_72);
+                handler->stepper_motorCount(ui->lineEdit_72->text().toInt());
+
                 if (nonlinear_prevac >= vitpreset) {
-                    motoroff();
+                    handler->stepper_motorOFF();
+                  //  motoroff();
                     if(speakeronoff == "Speaker ON"){
                     handler->speaker_on(nonlinear_prevac,0,0,1);
                     }else{
@@ -5270,7 +5359,7 @@ void MainWindow::us1_linear_nonlinear()
        if(us1 == "Surgeon" )
        {
            ui->us1mode->setStyleSheet(
-               "font: 15pt;"
+               "font:25pt;"
                "image: url(:/images/panelbutton.png);"
                "background-color: transparent;"
                "border: none;"
@@ -5285,7 +5374,7 @@ void MainWindow::us1_linear_nonlinear()
        else if(us1 == "Panel" )
        {
            ui->us1mode->setStyleSheet(
-               "font: 15pt;"
+               "font: 25pt;"
                "image: url(:/images/panelbutton.png);"
                "background-color: transparent;"
                "border: none;"
@@ -5306,7 +5395,7 @@ void MainWindow::on_us1vacmode_clicked()
        {
 
            ui->us1vacmode->setStyleSheet(
-               "font: 15pt;"
+               "font: 25pt;"
                "image: url(:/images/panelbutton.png);"
                "background-color: transparent;"
                "border: none;"
@@ -5320,7 +5409,7 @@ void MainWindow::on_us1vacmode_clicked()
        {
 
            ui->us1vacmode->setStyleSheet(
-               "font: 15pt;"
+               "font: 25pt;"
                "image: url(:/images/panelbutton.png);"
                "background-color: transparent;"
                "border: none;"
@@ -5344,7 +5433,7 @@ void MainWindow::us2_linear_nonlinear()
        {
 
            ui->us2mode->setStyleSheet(
-               "font: 15pt;"
+               "font: 25pt;"
                "image: url(:/images/panelbutton.png);"
                "background-color: transparent;"
                "border: none;"
@@ -5358,7 +5447,7 @@ void MainWindow::us2_linear_nonlinear()
        else if(us2 == "Panel")
        {
            ui->us2mode->setStyleSheet(
-               "font: 15pt;"
+               "font: 25pt;"
                "image: url(:/images/panelbutton.png);"
                "background-color: transparent;"
                "border: none;"
@@ -5378,7 +5467,7 @@ void MainWindow::on_us2vacmode_clicked()
     {
 
         ui->us2vacmode->setStyleSheet(
-            "font: 15pt;"
+            "font: 25pt;"
             "image: url(:/images/panelbutton.png);"
             "background-color: transparent;"
             "border: none;"
@@ -5393,7 +5482,7 @@ void MainWindow::on_us2vacmode_clicked()
 
         ui->us2vacmode->setText("Surgeon");
         ui->us2vacmode->setStyleSheet(
-            "font: 15pt;"
+            "font: 25pt;"
             "image: url(:/images/panelbutton.png);"
             "background-color: transparent;"
             "border: none;"
@@ -5413,7 +5502,7 @@ void MainWindow::us3_linear_nonlinear()
        if(us3 == "Surgeon")
        {
            ui->us3mode->setStyleSheet(
-               "font: 15pt;"
+               "font: 25pt;"
                "image: url(:/images/panelbutton.png);"
                "background-color: transparent;"
                "border: none;"
@@ -5426,7 +5515,7 @@ void MainWindow::us3_linear_nonlinear()
        else if(us3 == "Panel")
        {
            ui->us3mode->setStyleSheet(
-               "font: 15pt;"
+               "font: 25pt;"
                "image: url(:/images/panelbutton.png);"
                "background-color: transparent;"
                "border: none;"
@@ -5447,7 +5536,7 @@ void MainWindow::on_us3vacmode_clicked()
 
            ui->us3vacmode->setText("Panel");
            ui->us3vacmode->setStyleSheet(
-               "font: 15pt;"
+               "font: 25pt;"
                "image: url(:/images/panelbutton.png);"
                "background-color: transparent;"
                "border: none;"
@@ -5460,7 +5549,7 @@ void MainWindow::on_us3vacmode_clicked()
 
          ui->us3vacmode->setText("Surgeon");
          ui->us3vacmode->setStyleSheet(
-             "font: 15pt;"
+             "font: 25pt;"
              "image: url(:/images/panelbutton.png);"
              "background-color: transparent;"
              "border: none;"
@@ -5480,7 +5569,7 @@ void MainWindow::us4_linear_nonlinear()
        {
 
            ui->us4mode->setStyleSheet(
-               "font: 15pt;"
+               "font: 25pt;"
                "image: url(:/images/panelbutton.png);"
                "background-color: transparent;"
                "border: none;"
@@ -5494,7 +5583,7 @@ void MainWindow::us4_linear_nonlinear()
        {
            ui->us4mode->setText("Surgeon");
            ui->us4mode->setStyleSheet(
-               "font: 15pt;"
+               "font: 25pt;"
                "image: url(:/images/panelbutton.png);"
                "background-color: transparent;"
                "border: none;"
@@ -5517,7 +5606,7 @@ void MainWindow::on_us4vacmode_clicked()
 
           ui->us4vacmode->setText("Panel");
           ui->us4vacmode->setStyleSheet(
-              "font: 15pt;"
+              "font: 25pt;"
               "image: url(:/images/panelbutton.png);"
               "background-color: transparent;"
               "border: none;"
@@ -5530,7 +5619,7 @@ void MainWindow::on_us4vacmode_clicked()
 
            ui->us4vacmode->setText("Surgeon");
            ui->us4vacmode->setStyleSheet(
-               "font: 15pt;"
+               "font: 25pt;"
                "image: url(:/images/panelbutton.png);"
                "background-color: transparent;"
                "border: none;"
@@ -5552,7 +5641,7 @@ void MainWindow::ia1_linear_nonlinear()
        {
 
            ui->ia1mode->setStyleSheet(
-               "font: 15pt;"
+               "font: 25pt;"
                "image: url(:/images/panelbutton.png);"
                "background-color: transparent;"
                "border: none;"
@@ -5564,7 +5653,7 @@ void MainWindow::ia1_linear_nonlinear()
        else if(ia1 == "Panel")
        {
            ui->ia1mode->setStyleSheet(
-               "font: 15pt;"
+               "font: 25pt;"
                "image: url(:/images/panelbutton.png);"
                "background-color: transparent;"
                "border: none;"
@@ -5583,7 +5672,7 @@ void MainWindow::ia2_linear_nonlinear()
        {
            ui->ia2mode->setText("Panel");
            ui->ia2mode->setStyleSheet(
-               "font: 15pt;"
+               "font: 25pt;"
                "image: url(:/images/panelbutton.png);"
                "background-color: transparent;"
                "border: none;"
@@ -5594,7 +5683,7 @@ void MainWindow::ia2_linear_nonlinear()
        {
            ui->ia2mode->setText("Surgeon");
            ui->ia2mode->setStyleSheet(
-               "font: 15pt;"
+               "font: 25pt;"
                "image: url(:/images/panelbutton.png);"
                "background-color: transparent;"
                "border: none;"
@@ -5612,14 +5701,14 @@ void MainWindow::vit_linear_nonlinear()
        if(vit == "Surgeon" )
        {
 
-           ui->vitmode->setStyleSheet("font:15pt;image: url(:/images/panelbutton.png);background-color:transparent;border:none");
+           ui->vitmode->setStyleSheet("font:25pt;image: url(:/images/panelbutton.png);background-color:transparent;border:none");
             ui->vitmode->setText("Panel");
 
             footpedalcheck();
                }
        else if(vit == "Panel")
        {
-              ui->vitmode->setStyleSheet("font:15pt;image: url(:/images/panelbutton.png);background-color:transparent;border:none");
+              ui->vitmode->setStyleSheet("font:25pt;image: url(:/images/panelbutton.png);background-color:transparent;border:none");
            ui->vitmode->setText("Surgeon");
 
            footpedalcheck();
@@ -5635,14 +5724,14 @@ void MainWindow::on_vitvacmode_clicked()
 
 
            ui->vitvacmode->setText("Panel");
-           ui->vitvacmode->setStyleSheet("font:15pt;image: url(:/images/panelbutton.png);background-color:transparent;border:none");
+           ui->vitvacmode->setStyleSheet("font:25pt;image: url(:/images/panelbutton.png);background-color:transparent;border:none");
            footpedalcheck();
               }
       else if(vvit == "Panel")
       {
 
           ui->vitvacmode->setText("Surgeon");
-          ui->vitvacmode->setStyleSheet("font:15pt;image: url(:/images/panelbutton.png);background-color:transparent;border:none");
+          ui->vitvacmode->setStyleSheet("font:25pt;image: url(:/images/panelbutton.png);background-color:transparent;border:none");
           footpedalcheck();
              }
 
@@ -5978,7 +6067,12 @@ void MainWindow::motoroff()
 
 void MainWindow::motorccwon()
 {
+    qDebug()<<"the reflux motor is working";
 handler->write_motor(0x01,0x07,2);
+   //handler->write_motor(0x00,0x07,2);
+   //handler->write_motor(0x01,0x03,40);
+
+
 }
 //roundoff value
 
@@ -6100,11 +6194,11 @@ void MainWindow::moved(int gpio) {
     QPushButton *buttons[] = {
          ui->ULTRASONICBUT1, ui->ULTRASONICBUT2,
          ui->ULTRASONICBUT3, ui->ULTRASONICBUT4, ui->IA1BUT,
-         ui->IA2BUT, ui->VITRECTOMYBUT, ui->DIABUT
+         ui->IA2BUT/*, ui->VITRECTOMYBUT, ui->DIABUT*/
       };
     QPushButton *buttons1[] = {
-         ui->DIABUT, ui->IA1BUT,
-         ui->IA2BUT, ui->VITRECTOMYBUT
+        /* ui->DIABUT,*/ ui->IA1BUT,
+         ui->IA2BUT/*, ui->VITRECTOMYBUT*/
     };
     int totalButtons = sizeof(buttons) / sizeof(buttons[0]);
     int totalButtons1 = sizeof(buttons1) / sizeof(buttons1[0]);
@@ -6133,11 +6227,11 @@ void MainWindow::moved(int gpio) {
             IRRIGATIONBUT1();
         } else if (buttons[currentButtonIndex] == ui->IA2BUT) {
             IRRIGATIONBUT2();
-        } else if (buttons[currentButtonIndex] == ui->VITRECTOMYBUT) {
+        }/* else if (buttons[currentButtonIndex] == ui->VITRECTOMYBUT) {
             VITRECTOMYBUT();
         } else if (buttons[currentButtonIndex] == ui->DIABUT) {
             DIATHERMYBUT();
-        }
+        }*/
 
         buttons[currentButtonIndex]->click();
         buttons[currentButtonIndex]->setFocus();
@@ -6156,15 +6250,15 @@ void MainWindow::moved(int gpio) {
         //qDebug() << "Selected Button: " << buttons1[currentButtonIndex]->text();
 
         // Handle each button's specific action
-        if (buttons1[currentButtonIndex] == ui->DIABUT) {
+        /*if (buttons1[currentButtonIndex] == ui->DIABUT) {
             DIATHERMYBUT();
-        } else if (buttons1[currentButtonIndex] == ui->IA1BUT) {
+        }*/ if (buttons1[currentButtonIndex] == ui->IA1BUT) {
             IRRIGATIONBUT1();
         } else if (buttons1[currentButtonIndex] == ui->IA2BUT) {
             IRRIGATIONBUT2();
-        } else if (buttons1[currentButtonIndex] == ui->VITRECTOMYBUT) {
+        } /*else if (buttons1[currentButtonIndex] == ui->VITRECTOMYBUT) {
             VITRECTOMYBUT();
-        }
+        }*/
 
         buttons1[currentButtonIndex]->click();
         buttons1[currentButtonIndex]->setFocus();
@@ -6178,12 +6272,12 @@ void MainWindow::movePushButtonBottomToTop(int gpio) {
     QPushButton *buttons[] = {
         ui->ULTRASONICBUT1, ui->ULTRASONICBUT2,
         ui->ULTRASONICBUT3, ui->ULTRASONICBUT4, ui->IA1BUT,
-        ui->IA2BUT, ui->VITRECTOMYBUT, ui->DIABUT
+        ui->IA2BUT/*, ui->VITRECTOMYBUT, ui->DIABUT*/
     };
 
     QPushButton *buttons1[] = {
-        ui->DIABUT, ui->IA1BUT,
-        ui->IA2BUT, ui->VITRECTOMYBUT
+       /* ui->DIABUT,*/ ui->IA1BUT,
+        ui->IA2BUT/*, ui->VITRECTOMYBUT*/
     };
 
     int totalButtons = sizeof(buttons) / sizeof(buttons[0]);
@@ -6215,11 +6309,11 @@ void MainWindow::movePushButtonBottomToTop(int gpio) {
                 IRRIGATIONBUT1();
             } else if (buttons[currentButtonIndex] == ui->IA2BUT) {
                 IRRIGATIONBUT2();
-            } else if (buttons[currentButtonIndex] == ui->VITRECTOMYBUT) {
+            } /*else if (buttons[currentButtonIndex] == ui->VITRECTOMYBUT) {
                 VITRECTOMYBUT();
             } else if (buttons[currentButtonIndex] == ui->DIABUT) {
                 DIATHERMYBUT();
-            }
+            }*/
 
             buttons[currentButtonIndex]->click();
             buttons[currentButtonIndex]->setFocus();
@@ -6243,16 +6337,16 @@ void MainWindow::movePushButtonBottomToTop(int gpio) {
             //qDebug() << "Handpiece 1, GPIO: " << gpio << ", Button Index: " << currentButtonIndex;
 
             // Handle actions for buttons in buttons1
-            if (buttons1[currentButtonIndex] == ui->DIABUT) {
+           /* if (buttons1[currentButtonIndex] == ui->DIABUT) {
                 DIATHERMYBUT();
                 qDebug() << "Diathermy mode triggered";
-            } else if (buttons1[currentButtonIndex] == ui->IA1BUT) {
+            }*/  if (buttons1[currentButtonIndex] == ui->IA1BUT) {
                 IRRIGATIONBUT1();
             } else if (buttons1[currentButtonIndex] == ui->IA2BUT) {
                 IRRIGATIONBUT2();
-            } else if (buttons1[currentButtonIndex] == ui->VITRECTOMYBUT) {
+            } /*else if (buttons1[currentButtonIndex] == ui->VITRECTOMYBUT) {
                 VITRECTOMYBUT();
-            }
+            }*/
 
             buttons1[currentButtonIndex]->click();
             buttons1[currentButtonIndex]->setFocus();
@@ -6472,21 +6566,44 @@ void MainWindow::moveTab3(int usIndex) {
 
 void MainWindow::footreflux(int gpio)
 {
-     if (ui->tabWidget->currentIndex() == 7) {
-           motoroff();
-           handler->write_motor(0,0,0);
-        }
+    static bool refluxActive = false;  // Track reflux state
+  qDebug()<<"the gpio value from the footpedal class"<<gpio;
+    QString styleSheetOff = "QPushButton {"
+                            "font: 20pt Ubuntu;"
+                            "background-color: red;"
+                            "image: url(:/images/ci.png);"
+                            "border: 5px solid black;"
+                            "border-radius: 30px;"
+                            "font-weight: bold;"
+                            "}";
 
-
+    if (ui->tabWidget->currentIndex() == 7) {
+        handler->pinchvalve1_off();
+        handler->pinchvalve2_off();
+    }
 
     if (gpio == 0) {
-             motorccwon();
-             if (ui->tabWidget->currentIndex() == 7) {
-                   motoroff();
-                   handler->write_motor(0,0,0);
-                }
+        if (!refluxActive) {  // If reflux is not active, turn it on
+            qDebug() << "Reflux activated, GPIO: " << gpio;
+            handler->pinchvalve2_on();
+            handler->pinchvalve1_off();
+            overallci = false;
+            ui->CI5_5->setStyleSheet(styleSheetOff);
+            refluxActive = true;  // Mark reflux as active
+        }
+        else {  // If reflux is already active, turn it off
+            qDebug() << "Reflux deactivated, GPIO: " << gpio;
+            handler->pinchvalve1_off();
+            handler->pinchvalve2_off();
+            refluxActive = false;  // Mark reflux as inactive
+        }
 
+        if (ui->tabWidget->currentIndex() == 7) {
+            handler->pinchvalve1_off();
+            handler->pinchvalve2_off();
+        }
     }
+
 }
 
 void MainWindow::on_CI4_2_clicked()
@@ -6516,12 +6633,12 @@ void MainWindow::on_CI4_2_clicked()
     if (overallci) {
         // Turn ON Continuous Irrigation
         ui->CI5_5->setStyleSheet(styleSheetOn);
-        handler->pinchvalve_on();       // Activate pinch valve
+        handler->pinchvalve1_on();       // Activate pinch valve
         handler->speaker_on(0, 0, 1, 0); // Activate speaker
     } else {
         // Turn OFF Continuous Irrigation
         ui->CI5_5->setStyleSheet(styleSheetOff);
-        handler->pinchvalve_off();     // Deactivate pinch valve
+        handler->pinchvalve1_off();     // Deactivate pinch valve
         handler->speaker_off();        // Deactivate speaker
     }
     ui->CI5_5->update(); // Ensure UI updates immediately
@@ -6552,7 +6669,7 @@ void MainWindow::continousirrigation(int value) {
         if (overallci) {
             overallci = false;
             ui->CI5_5->setStyleSheet(styleSheetOff);
-            handler->pinchvalve_off(); // Ensure pinch valve is off
+            handler->pinchvalve1_off(); // Ensure pinch valve is off
         }
         ui->CI5_5->update();
         return; // Exit early to prevent any further action
@@ -6563,13 +6680,13 @@ void MainWindow::continousirrigation(int value) {
         // GPIO indicates to turn ON Continuous Irrigation
         overallci = true;
         ui->CI5_5->setStyleSheet(styleSheetOn);
-        handler->pinchvalve_on();
+        handler->pinchvalve1_on();
         handler->buzz(); // Indicate change
     } else if (value == 0 && overallci) {
         // GPIO indicates to turn OFF Continuous Irrigation
         overallci = false;
         ui->CI5_5->setStyleSheet(styleSheetOff);
-        handler->pinchvalve_off();
+        handler->pinchvalve1_off();
         handler->buzz(); // Indicate change
     }
     ui->CI5_5->update(); // Ensure UI updates immediately
@@ -6992,12 +7109,12 @@ int MainWindow::getvalue(int input)
 //    if(!overallci){
 //        ui->CI5_5->setStyleSheet(styleSheet3);
 
-//            handler->pinchvalve_on();
+//            handler->pinchvalve1_on();
 //        handler->speaker_on(0,0,1,0);
 //    }
 //    else{
 //    ui->CI5_5->setStyleSheet(styleSheet4);
-//        handler->pinchvalve_off();
+//        handler->pinchvalve1_off();
 //        handler->speaker_off();
 //    }
 //    overallci=!overallci;
@@ -7234,7 +7351,7 @@ void MainWindow::on_SETTINGS_BUT_2_clicked()
 
     handler->freq_count(0);
     handler->phaco_power(0);
-    handler->pinchvalve_off();
+    handler->pinchvalve1_off();
     handler->safetyvent_off();
     handler->vit_off();
     protimer->stop();
@@ -7585,7 +7702,7 @@ void MainWindow::on_pushButton_42_clicked()
 
     handler->freq_count(0);
     handler->phaco_power(0);
-    handler->pinchvalve_off();
+    handler->pinchvalve1_off();
     handler->safetyvent_off();
     handler->vit_off();
     protimer->stop();
@@ -7631,7 +7748,7 @@ void MainWindow::on_pushButton_clicked()
 
     handler->freq_count(0);
     handler->phaco_power(0);
-    handler->pinchvalve_off();
+    handler->pinchvalve1_off();
     handler->safetyvent_off();
     handler->vit_off();
     protimer->stop();

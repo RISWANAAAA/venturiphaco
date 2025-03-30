@@ -138,9 +138,9 @@ QT_MOC_LITERAL(102, 1142, 21), // "on_pushButton_clicked"
 QT_MOC_LITERAL(103, 1164, 14), // "ULTRASONICBUT1"
 QT_MOC_LITERAL(104, 1179, 25), // "updateTabsBasedOnComboBox"
 QT_MOC_LITERAL(105, 1205, 18), // "disablesetTunemode"
-QT_MOC_LITERAL(106, 1224, 14), // "ULTRASONICBUT2"
-QT_MOC_LITERAL(107, 1239, 14), // "ULTRASONICBUT4"
-QT_MOC_LITERAL(108, 1254, 14), // "IRRIGATIONBUT1"
+QT_MOC_LITERAL(106, 1224, 14), // "IRRIGATIONBUT1"
+QT_MOC_LITERAL(107, 1239, 14), // "ULTRASONICBUT2"
+QT_MOC_LITERAL(108, 1254, 14), // "ULTRASONICBUT4"
 QT_MOC_LITERAL(109, 1269, 14), // "IRRIGATIONBUT2"
 QT_MOC_LITERAL(110, 1284, 13), // "VITRECTOMYBUT"
 QT_MOC_LITERAL(111, 1298, 8), // "diapowup"
@@ -274,8 +274,8 @@ QT_MOC_LITERAL(204, 2805, 13) // "mainus1button"
     "ia1mode\0ia2mode\0vitmode\0vitvacmode\0"
     "on_pushButton_clicked\0ULTRASONICBUT1\0"
     "updateTabsBasedOnComboBox\0disablesetTunemode\0"
-    "ULTRASONICBUT2\0ULTRASONICBUT4\0"
-    "IRRIGATIONBUT1\0IRRIGATIONBUT2\0"
+    "IRRIGATIONBUT1\0ULTRASONICBUT2\0"
+    "ULTRASONICBUT4\0IRRIGATIONBUT2\0"
     "VITRECTOMYBUT\0diapowup\0diapowdown\0"
     "vitcutup\0vitcutdown\0vitvacup\0vitvacdown\0"
     "vitflowup\0vitflowdown\0ia2vacup\0"
@@ -386,7 +386,7 @@ static const uint qt_meta_data_MainWindow[] = {
      103,    0,  949,    2, 0x0a /* Public */,
      104,    1,  950,    2, 0x0a /* Public */,
      105,    0,  953,    2, 0x0a /* Public */,
-     106,    0,  954,    2, 0x08 /* Private */,
+     106,    0,  954,    2, 0x0a /* Public */,
      107,    0,  955,    2, 0x08 /* Private */,
      108,    0,  956,    2, 0x08 /* Private */,
      109,    0,  957,    2, 0x08 /* Private */,
@@ -695,9 +695,9 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 45: _t->ULTRASONICBUT1(); break;
         case 46: _t->updateTabsBasedOnComboBox((*reinterpret_cast< const QString(*)>(_a[1]))); break;
         case 47: _t->disablesetTunemode(); break;
-        case 48: _t->ULTRASONICBUT2(); break;
-        case 49: _t->ULTRASONICBUT4(); break;
-        case 50: _t->IRRIGATIONBUT1(); break;
+        case 48: _t->IRRIGATIONBUT1(); break;
+        case 49: _t->ULTRASONICBUT2(); break;
+        case 50: _t->ULTRASONICBUT4(); break;
         case 51: _t->IRRIGATIONBUT2(); break;
         case 52: _t->VITRECTOMYBUT(); break;
         case 53: _t->diapowup(); break;

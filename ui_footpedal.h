@@ -38,7 +38,7 @@ public:
     {
         if (footpedal->objectName().isEmpty())
             footpedal->setObjectName(QString::fromUtf8("footpedal"));
-        footpedal->resize(1280, 720);
+        footpedal->resize(1920, 1080);
         footpedal->setStyleSheet(QString::fromUtf8("background-color: rgb(4, 118, 151);"));
         right_footcom = new QComboBox(footpedal);
         right_footcom->addItem(QString());
@@ -48,8 +48,8 @@ public:
         right_footcom->addItem(QString());
         right_footcom->addItem(QString());
         right_footcom->setObjectName(QString::fromUtf8("right_footcom"));
-        right_footcom->setGeometry(QRect(430, 210, 281, 101));
-        right_footcom->setStyleSheet(QString::fromUtf8("font:20pt \"Ubuntu\";\n"
+        right_footcom->setGeometry(QRect(1010, 330, 401, 141));
+        right_footcom->setStyleSheet(QString::fromUtf8("font:30pt \"Ubuntu\";\n"
 "color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 0);\n"
 "\n"
@@ -63,8 +63,8 @@ public:
         left_footcom->addItem(QString());
         left_footcom->addItem(QString());
         left_footcom->setObjectName(QString::fromUtf8("left_footcom"));
-        left_footcom->setGeometry(QRect(430, 100, 281, 101));
-        left_footcom->setStyleSheet(QString::fromUtf8("font:20pt \"Ubuntu\";\n"
+        left_footcom->setGeometry(QRect(1010, 150, 401, 141));
+        left_footcom->setStyleSheet(QString::fromUtf8("font:30pt \"Ubuntu\";\n"
 "color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 0);\n"
 "\n"
@@ -72,7 +72,7 @@ public:
 ""));
         foot_img = new QLabel(footpedal);
         foot_img->setObjectName(QString::fromUtf8("foot_img"));
-        foot_img->setGeometry(QRect(860, 140, 281, 431));
+        foot_img->setGeometry(QRect(1470, 320, 291, 341));
         foot_img->setMaximumSize(QSize(291, 16777215));
         foot_img->setStyleSheet(QString::fromUtf8("image: url(:/images/footimg.png);\n"
 "background-color:transparent;"));
@@ -84,8 +84,8 @@ public:
         bleft_footcom->addItem(QString());
         bleft_footcom->addItem(QString());
         bleft_footcom->setObjectName(QString::fromUtf8("bleft_footcom"));
-        bleft_footcom->setGeometry(QRect(430, 320, 281, 111));
-        bleft_footcom->setStyleSheet(QString::fromUtf8("font:20pt \"Ubuntu\";\n"
+        bleft_footcom->setGeometry(QRect(1010, 510, 401, 151));
+        bleft_footcom->setStyleSheet(QString::fromUtf8("font:30pt \"Ubuntu\";\n"
 "color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 0);\n"
 "\n"
@@ -99,8 +99,8 @@ public:
         bright_footcom->addItem(QString());
         bright_footcom->addItem(QString());
         bright_footcom->setObjectName(QString::fromUtf8("bright_footcom"));
-        bright_footcom->setGeometry(QRect(430, 440, 281, 111));
-        bright_footcom->setStyleSheet(QString::fromUtf8("font:20pt \"Ubuntu\";\n"
+        bright_footcom->setGeometry(QRect(1010, 700, 401, 131));
+        bright_footcom->setStyleSheet(QString::fromUtf8("font:30pt \"Ubuntu\";\n"
 "color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 0);\n"
 "\n"
@@ -108,42 +108,42 @@ public:
 ""));
         savebut = new QPushButton(footpedal);
         savebut->setObjectName(QString::fromUtf8("savebut"));
-        savebut->setGeometry(QRect(250, 590, 541, 61));
+        savebut->setGeometry(QRect(720, 870, 541, 61));
         savebut->setStyleSheet(QString::fromUtf8("font: 30pt \"Ubuntu Condensed\";\n"
 "background-color: rgb(255, 255, 255);\n"
 "border-radius:20px;\n"
 "border:3px solid black;"));
         backbut = new QPushButton(footpedal);
         backbut->setObjectName(QString::fromUtf8("backbut"));
-        backbut->setGeometry(QRect(40, 20, 111, 91));
+        backbut->setGeometry(QRect(40, 20, 181, 131));
         backbut->setStyleSheet(QString::fromUtf8("background-color:transparent;\n"
 "image: url(:/images/backbuttonarrow.png);\n"
 "border:none;"));
         label_7 = new QLabel(footpedal);
         label_7->setObjectName(QString::fromUtf8("label_7"));
-        label_7->setGeometry(QRect(940, 70, 271, 51));
-        label_7->setStyleSheet(QString::fromUtf8("font: 20pt \"Ubuntu Condensed\";\n"
+        label_7->setGeometry(QRect(830, 70, 381, 51));
+        label_7->setStyleSheet(QString::fromUtf8("font: 30pt \"Ubuntu Condensed\";\n"
 "font:bold;\n"
 "background-color:transparent;"));
         right_lab = new QLabel(footpedal);
         right_lab->setObjectName(QString::fromUtf8("right_lab"));
-        right_lab->setGeometry(QRect(160, 260, 171, 41));
-        right_lab->setStyleSheet(QString::fromUtf8("font: 20pt \"Ubuntu Condensed\";\n"
+        right_lab->setGeometry(QRect(530, 370, 281, 61));
+        right_lab->setStyleSheet(QString::fromUtf8("font: 30pt \"Ubuntu Condensed\";\n"
 "font:bold;"));
         left_lab = new QLabel(footpedal);
         left_lab->setObjectName(QString::fromUtf8("left_lab"));
-        left_lab->setGeometry(QRect(160, 160, 171, 41));
-        left_lab->setStyleSheet(QString::fromUtf8("font: 20pt \"Ubuntu Condensed\";\n"
+        left_lab->setGeometry(QRect(530, 200, 221, 51));
+        left_lab->setStyleSheet(QString::fromUtf8("font: 30pt \"Ubuntu Condensed\";\n"
 "font:bold;"));
         bleft_lab = new QLabel(footpedal);
         bleft_lab->setObjectName(QString::fromUtf8("bleft_lab"));
-        bleft_lab->setGeometry(QRect(160, 350, 201, 51));
-        bleft_lab->setStyleSheet(QString::fromUtf8("font: 20pt \"Ubuntu Condensed\";\n"
+        bleft_lab->setGeometry(QRect(530, 570, 281, 51));
+        bleft_lab->setStyleSheet(QString::fromUtf8("font: 30pt \"Ubuntu Condensed\";\n"
 "font:bold;"));
         bright_lab = new QLabel(footpedal);
         bright_lab->setObjectName(QString::fromUtf8("bright_lab"));
-        bright_lab->setGeometry(QRect(160, 470, 241, 41));
-        bright_lab->setStyleSheet(QString::fromUtf8("font: 20pt \"Ubuntu Condensed\";\n"
+        bright_lab->setGeometry(QRect(530, 730, 331, 81));
+        bright_lab->setStyleSheet(QString::fromUtf8("font: 30pt \"Ubuntu Condensed\";\n"
 "font:bold;"));
 
         retranslateUi(footpedal);

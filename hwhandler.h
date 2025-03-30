@@ -26,9 +26,11 @@
 #include <QLineEdit>
 
 #define XPAR_AXI_COMBINED_BASEADDR 	0x43C20000;
-#define SPEAKER_BASEADDR		0x43C30000
+#define SPEAKER_BASEADDR		    0x43C30000
 #define MAP_SIZE 4096UL
 #define MAP_MASK (MAP_SIZE - 1)
+#define STEP_REG_OFFSET 0x20        // Frequency control register offset
+#define STEP_REG_COUNT 0x24        // Frequency control register offset
 
 #define VIT_ONOFF_REG               24
 #define VIT_ONTIME_REG              25
@@ -37,8 +39,8 @@
 #define ON_MASK                     0x01
 #define OFF_MASK                    0x00
 
-#define VSO_PWM_ON_REG              40
-#define VSO_PWM_PERIOD_REG          42
+#define VSO_PWM_ON_REG              00//36
+#define VSO_PWM_PERIOD_REG          38
 
 #define DIA_ONOFF_REG               20
 #define DIA_COUNT_REG               22
@@ -47,7 +49,7 @@
 #define AI_PRESET_REG               48
 #define AI_COUNT_REG                50
 
-#define SIL_OIL_REG                 28
+#define SIL_OIL_REG                 0x1C
 
 #define CHANNEL_0                   0x97
 #define CHANNEL_1                   0xD7
@@ -55,6 +57,7 @@
 #define CHANNEL_3                   0xE7
 
 #define REG1 32
+//#define REG2 34
 #define REG2 36
 
 
@@ -65,7 +68,7 @@
 #define BURST_LENGTH_REG        8
 #define COLD_PULSE_REG          10
 #define FREQ_COUNT_REG          12
-#define TUNE_REQ_REG              14
+#define TUNE_REQ_REG            14
 #define BURST_OFF_LENGTH_REG    18
 
 #define TUNE_REQUEST_MASK	    0x8000
@@ -117,8 +120,8 @@ public:
     static void vit_ontime(int ontime);
 
     static void vso_off();
-    static void vso_ontime(int ontime);
-    static void vso_period(int count);
+    static void vso_ontime(float ontime);
+    static void vso_period(float count);
 
     static void dia_on();
     static void dia_off();
@@ -127,9 +130,10 @@ public:
 
     void safetyvent_on();
     void safetyvent_off();
-    void pinchvalve_on();
-    void pinchvalve_off();
-
+    void pinchvalve1_on();
+    void pinchvalve1_off();
+    void pinchvalve2_on();
+    void pinchvalve2_off();
     void write_motor(uint16_t status, uint16_t direction, uint16_t value);
 
     void phaco_on(int nFSCount);
@@ -142,6 +146,7 @@ public:
     void freq_count(int count);
     void burst_off_length(int length);
     void fs_count_limit(int count);
+    void digitalgain(int value);
     void emitTuneStartPhaco();
     void emitTuneStopPhaco();
 
@@ -153,6 +158,9 @@ public:
     void vibrator_on(uint8_t onoff,uint8_t position,uint16_t value);
     void vibrator_off();
     void buzz();
+    void stepper_motorOn();
+    void stepper_motorOFF();
+    void stepper_motorCount(int count);
 
 
 
